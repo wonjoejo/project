@@ -2,14 +2,13 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.wonjoejo.myapp.domain.PersonalBoxVO;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,14 +36,17 @@ public class BoxMapperTests {
 	} // setup
 	
 	@Test
-	public void testGetPersonalList() {
-		
-		log.debug("testGetPersonalList() invoked.");
-		
-		List<PersonalBoxVO> list = this.mapper.getPersonalBoxList();
+	public void testGetBoxList() {
+
+		log.debug("testGetBoxList() invoked.");
+
+		String user_id = "userid1";
+
+		List<BoxVO> list = this.mapper.selectBoxList(user_id);
+		log.info(list.get(0).getBox_mode());
 		list.forEach(log::info);
-		
-		
+
+
 	} // testGetPersonalList
 
 }

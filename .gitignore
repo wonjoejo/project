@@ -2,3 +2,13 @@
 target/
 
 .DS_Store
+
+.classpath
+
+.factorypath
+
+.project
+
+.idea/
+
+.settings/

@@ -2,13 +2,13 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wonjoejo.myapp.domain.PersonalBoxVO;
 import com.wonjoejo.myapp.service.BoxService;
 
 import lombok.NoArgsConstructor;
@@ -25,16 +25,18 @@ public class BoxController {
 	@Setter(onMethod_= { @Autowired })
 	private BoxService service;
 	
-	@GetMapping("/personalbox")
-	public void getPersonalBoxList(Model model) {
-		
-		log.debug("getPersonalBoxList() invoked.");
-		
-		List<PersonalBoxVO> list = this.service.getPersonalBoxList();
+	@GetMapping("/boxlist")
+	public void getBoxList(Model model) {
+
+		log.debug("getBoxList() invoked.");
+
+		String user_id = "userid3";
+
+		List<BoxVO> list = this.service.getBoxList(user_id);
 		log.info("\t+ list.size:{}",list.size());
-		
+
 		model.addAttribute("list",list);
-		
+
 	} // list
 	
 

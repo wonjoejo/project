@@ -2,13 +2,16 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>PersonalBoxList</title>
+	<title>BoxList</title>
 </head>
 <body>
-<>
-	PersonalBoxList
+<h1>
+	BoxList
 </h1>
 
-<P>  ${list} </P>
+<c:forEach items="${list}" var="box">
+	${box}
+</c:forEach>
+
 </body>
 </html>
