@@ -12,51 +12,51 @@
         <!-- /*+ index_asc(tbl_board pk_board) */ *
             /*+ index desc(tbl_board pk_board) */* -->
 
-    <select id="getPersonalBoxList" resultType="com.wonjoejo.myapp.domain.PersonalBoxVO">
-        
-        <![CDATA[ 
-            
-            SELECT 
-            /*+ index_desc(PERSONAL_BOX) */ * 
-            FROM PERSONAL_BOX
-            WHERE PRODUCT_NO > 0
-        
+    <select id="selectBoxList" resultType="com.wonjoejo.myapp.domain.BoxVO">
+
+        <![CDATA[
+
+            SELECT
+            /*+ index_desc(BOX) */
+            *
+            FROM BOX
+            WHERE user_id = #{user_id}
+
         ]]>
+
     </select>
 
-<!--     <insert id="insert">
-        INSERT INTO tbl_board (title, content, writer)
-        VALUES ( #{title}, #{content}, #{writer} )
+    <insert id="insertBox">
+
+        INSERT INTO BOX (USER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
+        VALUES (#{user_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+
     </insert>
 
-    <select id="read" resultType="org.zerock.myapp.domain.BoardVO">
+    <select id="selectBox" resultType="com.wonjoejo.myapp.domain.BoxVO">
+        <![CDATA[
 
-        SELECT * FROM TBL_BOARD WHERE bno = #{bno}
+        SELECT
+            /*+ index_desc(BOX) */
+            *
+        FROM BOX
+        WHERE BOX_NO = #{box_no}
+
+        ]]>
 
     </select>
 
-    <update id="update">
-    
-    	UPDATE TBL_BOARD SET 
-    	title = #{title},
-    	content = #{content},
-    	writer = #{writer},
-    	update_ts = sysdate
-    	WHERE bno = #{bno}
-  
+    <update id="updateBox">
+        UPDATE BOX SET
+        BOX_NAME = #{box_name},
+        BOX_MEMO = #{box_memo},
+        BOX_PHOTO_NAME = #{box_photo_name},
+        BOX_PHOTO_PATH = #{box_photo_path}
+        WHERE BOX_NO = #{box_no}
     </update>
 
-    <insert id="insertSelectKey">
-
-        <selectKey keyProperty="bno" order="BEFORE" resultType="int">
-            SELECT ADMIN.ISEQ$$_59889.nextval FROM dual
-    	</selectKey>
-        INSERT INTO TBL_BOARD (title, content, writer)
-    		VALUES (#{title}, #{content}, #{writer})
-    </insert>
-
-    <delete id="delete">
-        DELETE FROM TBL_BOARD WHERE bno=#{bno}
-    </delete> -->
+    <delete id="deleteBox">
+        DELETE FROM BOX WHERE BOX_NO = #{box_no}
+    </delete>
 
 </mapper>
