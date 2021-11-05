@@ -22,3 +22,5 @@ src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
 src/main/webapp/WEB-INF/spring/root-context.xml
 
 pom.xml
+
+*.prefs
