@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wonjoejo.myapp.domain.BoxVO;
-import com.wonjoejo.myapp.service.BoxService;
+import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.service.ProductService;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,20 +24,37 @@ import lombok.extern.log4j.Log4j2;
 public class ProductController {
 
 	@Setter(onMethod_= { @Autowired })
-	private BoxService service;
+	private ProductService service;
 	
 	@GetMapping("/productlist")
-	public void getProductlist(Model model) {
-
+	public void getProductList(Model model) {
 		log.debug("getProductList() invoked.");
+		
+		Integer box_id = 1005;
 
-		String user_id = "userid3";
+		List<ProductVO> list = this.service.getProductList(box_id);				
 
-		List<BoxVO> boxlist = this.service.getBoxList(user_id);
-		log.info("\t+ list.size:{}",boxlist.size());
+		log.info("\t+ list.size:{}",list.size());
 
-		model.addAttribute("list",boxlist);
+		model.addAttribute("list",list);
 
-	} // list
+	} // getProductList
+
+	
+	
+	@GetMapping("/productdetail")
+	public void productDetail(Model model) {
+		log.debug("productDetail() invoked.");
+		
+		Integer product_no = 6;
+
+		List<ProductVO> list = this.service.getProductList(product_no);				
+
+		log.info("\t+ list.size:{}",list.size());
+
+		model.addAttribute("list",list);
+		
+
+	} // productDetail
 
 } // end class

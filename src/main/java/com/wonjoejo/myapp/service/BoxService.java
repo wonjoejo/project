@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxDTO;
 import com.wonjoejo.myapp.domain.BoxVO;
 
 public interface BoxService {
@@ -16,4 +17,4 @@ public interface BoxService {
 
 	public abstract boolean deleteBox(Integer box_no);
 
-}
+} // end interface

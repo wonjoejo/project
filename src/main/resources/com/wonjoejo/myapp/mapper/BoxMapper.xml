@@ -20,7 +20,7 @@
             /*+ index_desc(BOX) */
             *
             FROM BOX
-            WHERE user_id = #{user_id}
+            WHERE member_id = #{member_id}
 
         ]]>
 
@@ -28,8 +28,8 @@
 
     <insert id="insertBox">
 
-        INSERT INTO BOX (USER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
-        VALUES (#{user_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+        INSERT INTO BOX (MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
+        VALUES (#{member_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
 
     </insert>
 

@@ -1,5 +1,6 @@
 package com.wonjoejo.myapp.mapper;
 
+import com.wonjoejo.myapp.domain.BoxDTO;
 import com.wonjoejo.myapp.domain.BoxVO;
 
 import java.util.List;
