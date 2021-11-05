@@ -14,7 +14,7 @@
 
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 
-		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@db202110221035_high?TNS_ADMIN=/opt/OracleCloudWallet/ATP2" />
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@db202110221035_high?TNS_ADMIN=C:/opt/TeamCloudWallet/ATP" />
 
 		<property name="username" value="ADMIN" />
 		<property name="password" value="Oracle12345!!!" />
