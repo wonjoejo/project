@@ -26,3 +26,6 @@ src/main/webapp/META-INF/MANIFEST.MF
 src/main/webapp/WEB-INF/classes/
 
 src/main/webapp/WEB-INF/lib/
+
+pom.xml
+
