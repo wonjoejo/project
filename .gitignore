@@ -20,3 +20,9 @@ bin/
 src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
 
 src/main/webapp/WEB-INF/spring/root-context.xml
+
+src/main/webapp/META-INF/MANIFEST.MF
+
+src/main/webapp/WEB-INF/classes/
+
+src/main/webapp/WEB-INF/lib/
