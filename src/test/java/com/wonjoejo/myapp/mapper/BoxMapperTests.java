@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxDTO;
 import com.wonjoejo.myapp.domain.BoxVO;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,5 +49,54 @@ public class BoxMapperTests {
 
 
 	} // testGetPersonalList
+
+	@Test
+	public void testInsertBox() {
+		log.debug("testInsertBox() invoked.");
+
+		BoxVO box = new BoxVO(
+				null,
+				"userid4",
+				4,
+				"boxname2",
+				"mappertest",
+				"mapperimg",
+				"mapperpath",
+				null
+		);
+
+		this.mapper.insertBox(box);
+		log.info("\t+ box:{}",box);
+
+	}
+
+	@Test
+	public void testUpdateBox() {
+		log.debug("testUpdateBox() invoked.");
+
+		BoxVO box = new BoxVO(
+				1093,
+				null,
+				null,
+				"box-edit",
+				"box-path-edit",
+				"photoname",
+				"photopath",
+				null
+		);
+		this.mapper.updateBox(box);
+		log.info("\t+ box:{}",box);
+	}
+
+	@Test
+	public void testDeleteBox() {
+		log.debug("testDeleteBox() invoked.");
+
+		int box_no = 1100;
+
+		this.mapper.deleteBox(box_no);
+
+		log.info("\t+ box:{}",box_no);
+	}
 
 }
