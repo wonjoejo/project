@@ -2,11 +2,13 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxDTO;
 import com.wonjoejo.myapp.domain.BoxVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wonjoejo.myapp.service.BoxService;
@@ -14,6 +16,7 @@ import com.wonjoejo.myapp.service.BoxService;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Log4j2
 @NoArgsConstructor
@@ -25,19 +28,48 @@ public class BoxController {
 	@Setter(onMethod_= { @Autowired })
 	private BoxService service;
 	
-	@GetMapping("/boxlist")
-	public void getBoxList(Model model) {
+	@GetMapping("/list")
+	public void list(Model model, String member_id) {
 
-		log.debug("getBoxList() invoked.");
+		log.debug("list({},{}) invoked.",model,member_id);
 
-		String user_id = "userid3";
-
-		List<BoxVO> list = this.service.getBoxList(user_id);
+		List<BoxVO> list = this.service.getBoxList(member_id);
 		log.info("\t+ list.size:{}",list.size());
 
 		model.addAttribute("list",list);
 
-	} // list
+	} // getBoxList
+
+	@PostMapping("/create")
+	public String create(BoxDTO box, RedirectAttributes rttrs) {
+
+		log.debug("create({}) invoked.",box);
+
+		BoxVO boxVO = new BoxVO(
+				null,
+				box.getMember_id(),
+				box.getBox_mode(),
+				box.getBox_name(),
+				box.getBox_memo(),
+				box.getBox_photo_name(),
+				box.getBox_photo_path(),
+				null
+		);
+
+		boolean result = this.service.createBox(boxVO);
+		log.info("\t +result: {}",result);
+		rttrs.addAttribute("result",result);
+
+		return "/box/list";
+	}
+
+
+
+
+
 	
 
-}
+
+	
+
+} // end class

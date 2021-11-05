@@ -2,9 +2,13 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxDTO;
 import com.wonjoejo.myapp.domain.BoxVO;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wonjoejo.myapp.mapper.BoxMapper;
@@ -13,11 +17,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@AllArgsConstructor
+@NoArgsConstructor
 
 @Service
 public class BoxServiceImpl implements BoxService, InitializingBean, DisposableBean {
-	
+
+	@Setter(onMethod_= { @Autowired})
 	private BoxMapper mapper;
 
 	@Override
@@ -79,4 +84,4 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 		return affectedLines == 1;
 	} // deleteBox
-}
+} // end class
