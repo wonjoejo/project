@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- HikariCP 라이브러리를 이용한 데이터 소스 설정 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<description>hikari Project Wallet</description>
+
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@db202110221035_high?TNS_ADMIN=/opt/OracleCloudWallet/ATP2" />
+
+		<property name="username" value="ADMIN" />
+		<property name="password" value="Oracle12345!!!" />
+
+		<property name="maximumPoolSize" value="10" />
+		<property name="minimumIdle" value="2" />
+		<property name="idleTimeout" value="10000" />
+		<property name="connectionTimeout" value="1000" />
+		<property name="connectionTestQuery" value="SELECT 1 FROM dual" />
+		<property name="dataSourceJNDI" value="jdbc/HikariCP" />
+		<property name="poolName" value="*** HikariDataSource ***" />
+
+	</bean>
+
+	<!-- 데이터 소스 빈 클래스 설정 -->
+	<bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource">
+
+		<constructor-arg ref="hikariConfig" />
+
+	</bean>
+
+	<!-- MyBatis와 Spring 연계라이브러리에서 제공되는 특수한 빈을 등록 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hikariDataSource" />
+
+		<!-- classpath: LIKE path환경변수-->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!-- ** all dir // ** all file -->
+		<!-- mybatis-config 에서 이미 mapper다 설정할 수 있어서 필요없긴하다
+      <property name="mapperLocations" value="classpath:mappers/**/SQL*.xml" />-->
+	</bean>
+
+	<!-- MyBatis와 Spring 연계라이브러리에서 제공되는 특수한 태그를 등록 -->
+	<!-- MyBatis Mapper Interface를 Scanning 해서, 자동으로 빈으로 등록해주는 태그가 있다 -->
+	<mybatis-spring:scan base-package="com.wonjoejo.myapp.mapper" />
+
+</beans>
