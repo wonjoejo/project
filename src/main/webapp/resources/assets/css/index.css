@@ -58,14 +58,17 @@
     right: 0;
     left: 0;
     /*background-color: rgba(249, 250, 253, 0);*/
-    background-color: white;
-    /*background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(219, 219, 250, 0.01) 10.94%, rgb(255, 255, 255) 86.46%, rgba(255, 255, 255, 0) 100%);*/
+    /*background-color: white;*/
+    background-image: linear-gradient(270deg, rgba(255, 255, 255, 0) -6%, rgba(219, 219, 250, 0.01) -5%, rgb(255, 255, 255) 86.46%, rgba(255, 255, 255, 0) 100%);
     transition: none 0s ease 0s;
     backdrop-filter: blur(10px);
-    border-style: solid !important;
     padding : 0.8rem;
     z-index: 1030;
+    border-bottom: 1px solid ghostwhite;
+}
 
+.nav-shadow {
+    box-shadow:  0px 5px 21px rgba(0,0,0,0.25);
 }
 
 .main-logo {
@@ -74,7 +77,7 @@
 }
 
 .main-logo img {
-    width: 150%;
+    width: 130%;
     padding-top: 6px;
     display: inline-block;
     vertical-align: middle;
@@ -83,21 +86,22 @@
 .top-right {
     float: right;
     vertical-align: middle;
-    line-height: 56px;
+    line-height: 77px;
 }
 .login-btn {
     margin-left: 8px;
 }
 .join-btn, .login-btn {
     font-family: 'Wemakeprice-Bold';
-    border: 1px solid #ADADAD;
+    /*border: 1px solid #ADADAD;*/
+    border: 1px solid #4E4E4E;
     border-radius: 0.7rem;
     padding: 8px;
     transition: all 0.3s ease 0s;
     align-items: center;
     justify-content: center;
     font-size: 13px;
-    color: #858585;
+    color: #4E4E4E;
     letter-spacing: 0.5px;
 }
 
@@ -108,20 +112,26 @@
     transform: translateY(-10px);
 }
 
+/* section home*/
+
 #home {
     background-color: #5A95F5;
-    height: 700px;
+    height: 721px;
 }
 
 .main-container {
-    padding: 12% 15% 3% 15%;
+    padding: 18% 9% 3% 9%;
     color:white;
     font-family: "Noto Sans KR Medium";
+}
 
+.main-container img {
+    float: left;
 }
 
 .pointfont {
-    margin-top: 15%;
+    float: right;
+    margin-top: 11%;
     font-family: "NEXON Lv1 Gothic OTF Light";
     font-size: 38px;
 }
@@ -129,9 +139,38 @@
 .boxfont {
     font-family: Wemakeprice-Bold;
     font-size: 48px;
+    margin-top: 25px;
+    margin-left: 49%;
 }
 
-h2 {
+.home-box {
+    width: 49%;
+    font-size: 1rem;
+    border: 1px solid white;
+    border-radius: 0.7rem;
+    color: white;
+    padding: 3%;
+    text-align: center;
     float: right;
+    margin-top: 15px;
 }
 
+.fa-arrow-right {
+    padding-left: 6%;
+}
+
+/* section2 */
+#section2{
+    background-color: #ffffff;
+    height: 721px;
+}
+
+.section2_wrap{
+    padding: 6% 9%;
+    color: white;
+    font-family: "Noto Sans KR Medium";
+}
+
+.content {
+    color: black;
+}
