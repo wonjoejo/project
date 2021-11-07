@@ -1,0 +1,110 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+	font-family: 'Wemakeprice-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wemakeprice-SemiBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wemakeprice-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF Light';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	/* gradient */
+	background: linear-gradient(26.81deg, #E2E3FC 65.34%, #D7F1F8 90.6%);
+}
+
+.side-menu {
+	/* Left */
+
+
+	position: absolute;
+	width: 210px;
+	height: 50%;
+	left: 105px;
+	top: 97px;
+	bottom: 91px;
+
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+}
+
+.main-container {
+	/* Right */
+	position: absolute;
+	height: 50%;
+	left: 331px;
+	right: 115px;
+	top: 97px;
+	bottom: 91px;
+
+	/* background */
+
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+}
+
+.main-container h1 {
+	font-family: 'Wemakeprice-Bold', serif;
+	color: #5A95F5;
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 54px;
+}
+
+.box-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.box {
+	position: absolute;
+	width: 20vw;
+	height: 20vw;
+	left: 128px;
+	top: 159px;
+
+	background: #FFFFFF;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 50px;
+}
