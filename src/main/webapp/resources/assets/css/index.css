@@ -110,6 +110,7 @@
     box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
     color: #fff;
     transform: translateY(-10px);
+    border: 1px solid #5A95F5;
 }
 
 /* section home*/
@@ -173,4 +174,95 @@
 
 .content {
     color: black;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.con1 {
+    float: left;
+}
+
+.title1 {
+    background-color: #5A95F5;
+    border-radius: 0px 1.2rem 1.2rem 1.2rem;
+    height: 50px;
+    color: white;
+    text-align: center;
+    line-height: 46px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16), 0px -1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.title1-1 {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.con2 {
+    margin-top: 210px;
+    margin-bottom: 110px;
+    float: right;
+
+
+}
+
+.title2 {
+    background-color: #5A95F5;
+    border-radius: 1.2rem 0rem 1.2rem 1.2rem;
+    height: 50px;
+    color: white;
+    text-align: center;
+    line-height: 46px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16), 0px -1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.title2-2 {
+    margin-top: 15px;
+    line-height: 30px;
+}
+
+.content span {
+    color: #5A95F5;
+}
+
+.con3 {
+    clear: both;
+}
+
+.title3 {
+    width: 26%;
+    background-color: #5A95F5;
+    border-radius: 0rem 1.2rem 1.2rem 1.2rem;
+    height: 50px;
+    color: white;
+    text-align: center;
+    line-height: 46px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.24), 0px 2px 4px rgba(0, 0, 0, 0.16), 0px -1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.title3-3 {
+    margin-top: 15px;
+    margin-left: 15px;
+    line-height: 30px;
+}
+
+/* section3 */
+#section3{
+    background-color: #5A95F5;
+    height: 721px;
+}
+
+.section3_wrap{
+    padding: 6% 9%;
+    color: white;
+    font-family: "Noto Sans KR Medium";
+}
+
+.sec3-title {
+    text-align: center;
+}
+
+.section3_wrap h1 {
+    font-size: 2rem;
+    font-weight: bold;
 }
