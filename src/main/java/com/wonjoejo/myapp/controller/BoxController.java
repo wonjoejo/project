@@ -61,7 +61,42 @@ public class BoxController {
 		rttrs.addAttribute("result",result);
 
 		return "/box/list";
-	}
+	} // create
+
+	@PostMapping("/edit")
+	public String edit(BoxDTO box, RedirectAttributes rttrs) {
+
+		log.debug("edit({}) invoked.",box);
+
+		BoxVO boxVO = new BoxVO(
+				box.getBox_no(),
+				box.getMember_id(),
+				box.getBox_mode(),
+				box.getBox_name(),
+				box.getBox_memo(),
+				box.getBox_photo_name(),
+				box.getBox_photo_path(),
+				null
+		);
+
+		boolean result = this.service.editBox(boxVO);
+		log.info("\t +result: {}",result);
+		rttrs.addAttribute("result",result);
+
+		return "/box/list";
+	} // edit
+
+	@PostMapping("/delete")
+	public String delete(Integer box_no, RedirectAttributes rttrs) {
+
+		log.debug("delete({}) invoked.",box_no);
+
+		boolean result = this.service.deleteBox(box_no);
+		log.info("\t +result: {}",result);
+		rttrs.addAttribute("\t+ result: {}",result);
+
+		return "/box/list";
+	} // delete
 
 
 
