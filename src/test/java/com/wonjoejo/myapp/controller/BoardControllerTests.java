@@ -51,8 +51,9 @@ public class BoardControllerTests {
 	}//setup
 	
 	@Test 
-	public void textList() throws Exception {
+	public void testList() throws Exception {
 		log.debug("testList() invoked.");
+		
 		//Step.1 : MockMvcBuilder 객체를 생성.
 		MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
 		log.info("\t+ builder: {}" , builder);
