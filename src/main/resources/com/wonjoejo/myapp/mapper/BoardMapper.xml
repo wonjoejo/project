@@ -45,18 +45,17 @@
     
      <!-- 새로운 게시물 등록 -->
     <select id="insert">
-        INSERT INTO qna_board (member_id,title,content,notice)
-		VALUES (#{member_id},#{title},#{content},#{notice})
+        INSERT INTO qna_board (member_id,title,content)
+		VALUES (#{member_id},#{title},#{content})
     </select>
     
     <insert id="insertSelectKey">
-        order : 실행순서  , resultType : 기본타입
         <selectKey keyProperty="board_idx" order="BEFORE" resultType="int">
             SELECT ISEQ$$_61790.nextval          
             FROM dual
         </selectKey>
-        INSERT INTO qna_board (board_idx,member_id,title,content,notice)
-        VALUES(#{board_idx},#{member_id},#{title},#{content},#{notice})
+        INSERT INTO qna_board (board_idx,member_id,title,content)
+        VALUES(#{board_idx},#{member_id},#{title},#{content})
     </insert>
     
 	<!-- insert_ts는 update 하면 안됨 , 건드리면 안됨  -->
@@ -66,8 +65,7 @@
         SET
         	member_id=#{member_id},
             title=#{title},
-            content=#{content},
-            reg_date=date
+            content=#{content}
         WHERE
             board_idx=#{board_idx}
             
@@ -78,5 +76,8 @@
         DELETE FROM qna_board WHERE board_idx=#{board_idx}
     </delete>
 
+	 
+    
+    
 
 </mapper>

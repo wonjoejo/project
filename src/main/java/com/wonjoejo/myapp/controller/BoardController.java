@@ -46,7 +46,7 @@ public class BoardController {
     }//list
     
     //특정 게시물 상세조회 화면 요청 
-    @GetMapping({"/detail"})
+    @GetMapping("/detail")
     public void boarddetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model) {
     	log.debug("detail({},{},{}) invoked.",cri,board_idx,model);
     
@@ -94,7 +94,7 @@ public class BoardController {
 	}//edit
     
     @PostMapping("/write")
-	public String register(BoardDTO board, RedirectAttributes rttrs) {
+	public String write(BoardDTO board, RedirectAttributes rttrs) {
 		log.debug("write({}) invoked.",board);
 		
 		BoardVO vo = new BoardVO(
