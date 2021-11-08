@@ -41,7 +41,7 @@ public class BoxMapperTests {
 
 		log.debug("testGetBoxList() invoked.");
 
-		String user_id = "userid1";
+		String user_id = "MEMBERid1";
 
 		List<BoxVO> list = this.mapper.selectBoxList(user_id);
 		log.info(list.get(0).getBox_mode());
@@ -56,7 +56,7 @@ public class BoxMapperTests {
 
 		BoxVO box = new BoxVO(
 				null,
-				"userid4",
+				"MEMBERid4",
 				4,
 				"boxname2",
 				"mappertest",
