@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wonjoejo.myapp.domain.ProductDTO;
 import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.service.ProductService;
 
@@ -26,35 +27,31 @@ public class ProductController {
 	@Setter(onMethod_= { @Autowired })
 	private ProductService service;
 	
-	@GetMapping("/productlist")
-	public void getProductList(Model model) {
+	@GetMapping("/list")
+	public void getlist(Model model) {
 		log.debug("getProductList() invoked.");
 		
 		Integer box_id = 1005;
-
-		List<ProductVO> list = this.service.getProductList(box_id);				
-
-		log.info("\t+ list.size:{}",list.size());
+		List<ProductVO> list = this.service.getProductList(box_id);	
 
 		model.addAttribute("list",list);
 
-	} // getProductList
+	} // getlist
 
 	
 	
-	@GetMapping("/productdetail")
-	public void productDetail(Model model) {
+	@GetMapping("/detail")
+	public void detail(Model model) {
 		log.debug("productDetail() invoked.");
 		
 		Integer product_no = 6;
+		ProductVO pv = this.service.getProductDetail(product_no);
 
-		List<ProductVO> list = this.service.getProductList(product_no);				
-
-		log.info("\t+ list.size:{}",list.size());
-
-		model.addAttribute("list",list);
+		model.addAttribute("ProductDetail",pv);
 		
-
-	} // productDetail
+	} // detail
+	
+	
+	
 
 } // end class

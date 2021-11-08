@@ -28,8 +28,16 @@
 
     <insert id="insertProduct">
 
-        INSERT INTO PRODUCT (이런거저런거)
-        VALUES (#{이런거}, #{저런거},...)
+       <![CDATA[
+       
+        INSERT INTO PRODUCT (
+        BOX_NO, PRODUCT_NAME, PRODUCT_MEMO, PRODUCT_QTN, 
+        PRODUCT_PHOTO_NAME, PRODUCT_PHOTO_PATH, BARCODE)
+        
+        VALUES (#{box_no}, #{product_name}, #{product_memo}, #{product_qtn},  
+        #{product_photo_name}, #{product_photo_path}, #{barcode})
+        
+       ]]>
 
     </insert>
 
@@ -47,13 +55,22 @@
     </select>
 
     <update id="updateProduct">
+        <![CDATA[
         UPDATE PRODUCT SET
-        PRODUCT_NAME = #{product_name},
-        어쩌구저쩌구
+        PRODUCT_NAME = #{product_name}, 
+        PRODUCT_MEMO = #{product_memo},
+        PRODUCT_QTN = #{product_qtn},
+        PRODUCT_PHOTO_NAME = #{product_photo_name},
+        PRODUCT_PHOTO_PATH = #{product_photo_path},
+        BARCODE = #{barcode}
+        
         WHERE PRODUCT_NO = #{product_no}
+        ]]>
     </update>
-
-
+    
+    
+    
+    
     <delete id="deleteProduct">
         DELETE FROM PRODUCT WHERE PRODUCT_NO = #{product_no}
     </delete>

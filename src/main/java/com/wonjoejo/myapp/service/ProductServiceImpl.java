@@ -6,7 +6,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 
-import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.ProductDTO;
 import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.mapper.ProductMapper;
 
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	
 
 	@Override
-	public ProductVO getProduct(Integer product_no) {
+	public ProductVO getProductDetail(Integer product_no) {
 		log.debug("getProduct({}) invoked.", product_no);
 
 		ProductVO product = this.mapper.selectProduct(product_no);
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	
 
 	@Override
-	public boolean insertProduct(ProductVO product) {
+	public boolean insertProduct(ProductDTO product) {
 		log.debug("createProduct({}) invoked", product);
 
 		int affectedLines = this.mapper.insertProduct(product);
@@ -67,8 +67,8 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	
 
 	@Override
-	public boolean editProduct(ProductVO product) {
-		log.debug("editProduct({}) invoked", product);
+	public boolean updateProduct(ProductVO product) {
+		log.debug("updateProduct({}) invoked", product);
 
 		int affectedLines = this.mapper.updateProduct(product);
 
