@@ -28,8 +28,19 @@
 
     <insert id="insertBox">
 
-        INSERT INTO BOX (MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
-        VALUES (#{member_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+        <selectKey keyProperty="box_no" resultType="int" order="BEFORE">
+            SELECT BOX_NO_SEQ.nextval FROM DUAL
+        </selectKey>
+
+        INSERT INTO BOX (BOX_NO, MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
+        VALUES (#{box_no}, #{member_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+
+    </insert>
+
+    <insert id="insertCategory">
+
+        INSERT INTO BASE_CATEGORY(BOX_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
+        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3},#{cate_name4}, #{cate_name5})
 
     </insert>
 
