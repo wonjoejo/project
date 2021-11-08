@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.domain;
 
+
+
 import lombok.Data;
 
 @Data
@@ -19,5 +21,6 @@ public class BaseCategoryDTO {
         this.cate_name4 = cate_name4;
         this.cate_name5 = cate_name5;
         this.box_no = box_no;
-    }
+    } // constructor
+  
 } // end class
