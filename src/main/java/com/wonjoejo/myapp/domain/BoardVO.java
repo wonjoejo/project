@@ -8,7 +8,8 @@ import java.util.Date;
 @Value
 public class BoardVO {
 
-    private String id;
+	private Integer board_idx;
+    private String member_id;
     private String title;
     private String content;
     private Integer notice;
