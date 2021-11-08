@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -88,7 +89,85 @@ public class BoardControllerTests {
 		//Step.8 : ModelAndView 객체로부터, 우리가 알고자 하는 View 이름을 얻어내어 출력
 		String viewName = modelAndView.getViewName();
 		log.info("\t+  viewName: {}", viewName);
-	}//textList
+	}//textList	
+	
+	@Test
+    public void testDetail() throws Exception {
+        log.debug("testDetail() invoked.");
+
+        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
+        MockMvc mockMvc = builder.build();
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/board/detail");
+
+        reqBuilder.param("board_idx","90");
+
+        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+
+        log.info("\t+ viewName: {}", viewName);
+
+    } // testDetail
+	
+	@Test
+	public void testWrite() throws Exception {
+		log.debug("testWrite() invoked.");
+		
+		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);	
+		MockMvc mockMvc = mockMvcBuilder.build();	
+		MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/board/write");
+		
+		//3개의 전송파라미터를 요청문서에 전달 
+		reqBuilder.param("member_id","MEMBERid99");
+		reqBuilder.param("title","NEW TITLE");
+		reqBuilder.param("content","NEW CONTENT");
+		
+		String viewName =   mockMvc.
+							perform(reqBuilder).
+							andReturn().
+							getModelAndView(). 
+							getViewName();
+	
+		log.info("\t+ viewName : {}",viewName);				
+	}//testWrite
+	
+	@Test
+	public void testEdit() throws Exception {
+		log.debug("testEdit() invoked.");
+		
+		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);	
+		MockMvc mockMvc = mockMvcBuilder.build();	
+		MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/board/edit");
+		
+		//3개의 전송파라미터를 요청문서에 전달
+		reqBuilder.param("board_idx","99");
+		reqBuilder.param("member_id","MEMBERid99");
+		reqBuilder.param("title","NEW TITLE");
+		reqBuilder.param("content","NEW CONTENT");
+		
+		String viewName =   mockMvc.
+							perform(reqBuilder).
+							andReturn().
+							getModelAndView(). 
+							getViewName();
+	
+		log.info("\t+ viewName : {}",viewName);				
+	}//testEdit
+	
+	@Test
+    public void testDelete() throws Exception {
+        log.debug("testDelete() invoked.");
+
+        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
+        MockMvc mockMvc = builder.build();
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/board/delete");
+
+        reqBuilder.param("board_idx","174");
+
+        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+
+        log.info("\t+ viewName: {}", viewName);
+
+    } // testDelete
+	
 	
 	@After
 	public void tearDown() {

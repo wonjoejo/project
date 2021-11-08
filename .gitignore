@@ -36,3 +36,5 @@ src/main/webapp/WEB-INF/classes/
 src/main/webapp/WEB-INF/lib/
 
 pom.xml
+
+src/main/webapp/META-INF/

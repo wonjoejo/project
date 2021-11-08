@@ -37,6 +37,7 @@ public class BoardMapperTests {
         log.info("\t+ type:{}", this.mapper.getClass().getName());
     }//setup
 
+    //게시물 목록 
     @Test
     public void testGetList() {
         log.debug("testGetList() invoked.");
@@ -46,6 +47,7 @@ public class BoardMapperTests {
 
     }//testGetList
     
+    //게시물 목록 페이징 처리 
     @Test
 	public void testGetListWithPaging() {
 		log.debug("testGetListWithPaging() invoked.");
@@ -72,11 +74,18 @@ public class BoardMapperTests {
 	public void testInsert() {
 		log.debug("testInsert() invoked.");
 		
-		BoardVO newBoard=
-				new BoardVO(null, "MEMBERid99", "TEST", "TEST", 0, null,null,null,null);
+		BoardVO board=
+				new BoardVO(
+						null,
+						"MEMBERid99",
+						"TEST",
+						"TEST",
+						0,
+						null,
+						null,null,null);
 		
-			int affectedLines =
-				this.mapper.insert(newBoard); 
+		this.mapper.insert(board);
+		log.info("\t+ board:{}",board);
 		
 	}//testInsert
     
@@ -106,7 +115,7 @@ public class BoardMapperTests {
 	public void testDelete() {
 		log.debug("testDelete() invoked.");
 		
-		int board_idx=107;
+		int board_idx=176;
 		int affectedLines = this.mapper.delete(board_idx);
 		
 		log.info("\t+ affectedLines:{}", affectedLines);		
@@ -116,7 +125,7 @@ public class BoardMapperTests {
 	public void testRead() {
 		log.debug("testRead () invoked.");
 		
-		int board_idx=100;
+		int board_idx=99;
 		BoardVO board = this.mapper.read(board_idx);
 		
 		log.info("\t+ board:{}", board);		
@@ -128,10 +137,10 @@ public class BoardMapperTests {
 		
 		BoardVO newBoard=
 				new BoardVO(
-				111,
+				99,
 				"MEMBERid99",
-				"TITLE_MODIFIED",
-				"CONTENT_MODIFIED",
+				"MODIFIED",
+				"MODIFIED",
 				0,
 				null, 
 				null,null,null);
@@ -141,7 +150,26 @@ public class BoardMapperTests {
 			log.info("\t+ affectedLines:{}", affectedLines);
 			
 	}//testUpdate
-
+    
+    @Test
+    public void testReplyInsert() {
+    	log.debug("testReplyInsert() invoked.");
+		
+		BoardVO board=
+				new BoardVO(
+						99,
+						"MEMBERid99",
+						"TEST",
+						"TEST",
+						0,
+						null,
+						99,1,1);
+		
+		this.mapper.insert(board);
+		log.info("\t+ board:{}",board);
+		
+    }//testReplyInsert
+    
     @After
     public void tearDawn() {
         log.debug("tearDawn() invoked.");
