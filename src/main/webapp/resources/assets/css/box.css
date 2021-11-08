@@ -143,10 +143,15 @@ body {
 }
 
 .menu {
+	display: flex;
+	flex-direction: column;
 	font-family: 'Noto Sans KR', serif;
 	color: #4E4E4E;
 	list-style: none;
+	padding-bottom: 5px;
+}
 
-
+.box img {
+	width: 50%;
 }
 

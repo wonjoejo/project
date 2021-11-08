@@ -29,10 +29,10 @@
 		<p class="name">name</p>
 	</div>
 	<div class="menu">
-		<i class="far fa-list-alt"></i> 박스 리스트
-		<i class="far fa-plus-square"></i> 박스 생성
-		<i class="far fa-question-circle"></i> Q&A
-		<i class="fas fa-sign-out-alt"></i> 로그아웃
+		<span class="menu-item"><i class="far fa-list-alt"></i> 박스 리스트</span>
+		<span class="menu-item"><i class="far fa-plus-square"></i> 박스 생성</span>
+		<span class="menu-item"><i class="far fa-question-circle"></i> Q&A</span>
+		<span class="menu-item"><i class="fas fa-sign-out-alt"></i> 로그아웃</span>
 	</div>
 </div>
 

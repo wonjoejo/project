@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wonjoejo.myapp.mapper.BoxMapper">
+<mapper namespace="com.wonjoejo.myapp.mapper.AdminMapper">
 
     <!-- SELECT/INSERT/UPDATE/DELETE  각각의 SQL 문장을 저장하는 태그가 이미 준비되어 있다 (DTD에)-->
 
