@@ -52,16 +52,22 @@ body {
 	background: linear-gradient(26.81deg, #E2E3FC 65.34%, #D7F1F8 90.6%);
 }
 
+.container {
+	height: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	width: 90vw;
+	justify-content: space-between;
+
+}
+
 .side-menu {
 	/* Left */
-
-
-	position: absolute;
-	width: 210px;
-	height: 50%;
-	left: 105px;
-	top: 97px;
-	bottom: 91px;
+	width: 12vw;
+	height: 80vh;
+	padding: 30px;
+	margin-right: 10px;
 
 	background: rgba(255, 255, 255, 0.66);
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
@@ -70,12 +76,10 @@ body {
 
 .main-container {
 	/* Right */
-	position: absolute;
-	height: 50%;
-	left: 331px;
-	right: 115px;
-	top: 97px;
-	bottom: 91px;
+	width: 80vw;
+	height: 80vh;
+	padding: 30px;
+	overflow: hidden;
 
 	/* background */
 
@@ -95,16 +99,54 @@ body {
 .box-container {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	width: 75%;
+	height: 75%;
+	padding: 10px;
+	justify-content: center;
 }
 
 .box {
-	position: absolute;
-	width: 20vw;
-	height: 20vw;
-	left: 128px;
-	top: 159px;
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 10vw;
+	height: 10vw;
+	margin-right: 10px;
+	margin-bottom: 10px;
 
 	background: #FFFFFF;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	border-radius: 50px;
 }
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.name {
+	font-family: 'Noto Sans KR', serif;
+	color: #5A95F5;
+	font-weight: 500;
+	margin-top: 5px;
+}
+
+.menu {
+	font-family: 'Noto Sans KR', serif;
+	color: #4E4E4E;
+	list-style: none;
+
+
+}
+
