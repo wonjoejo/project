@@ -1,7 +1,9 @@
 package com.wonjoejo.myapp.mapper;
 
+import com.wonjoejo.myapp.domain.BaseCategoryDTO;
 import com.wonjoejo.myapp.domain.BoxDTO;
 import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 
 import java.util.List;
 
@@ -16,5 +18,7 @@ public interface BoxMapper {
 	public abstract int updateBox(BoxVO box);
 
 	public abstract int deleteBox(Integer box_no);
+
+	public abstract int insertCategory(BaseCategoryDTO baseCategory);
 
 } // end interface
