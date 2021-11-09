@@ -64,14 +64,13 @@
                         <option value="6">기타</option>
                     </select>
                     박스 메모
-                    <input type="text" name="memo">
+                    <textarea rows="5" cols="10" name="memo"></textarea>
                     </div>
-
-
             </div>
+
             <div class="buttons">
-                <input class="submit-btn hvr-grow" type="submit" value="생성하기">
-                <input class="cancel-btn hvr-grow" type="button" value="취소">
+                <input class="submit-btn hvr-float" type="submit" value="생성하기">
+                <input class="cancel-btn hvr-float" type="button" value="취소">
             </div>
 
             </form>
