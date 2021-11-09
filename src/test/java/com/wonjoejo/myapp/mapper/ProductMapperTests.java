@@ -25,6 +25,7 @@ public class ProductMapperTests {
 	@Setter(onMethod_= { @Autowired })
 	private ProductMapper mapper;
 	
+	
 	@Before
 	public void setup() {
 		
@@ -36,19 +37,90 @@ public class ProductMapperTests {
 		
 	} // setup
 	
-	@Test
-	public void testGetBoxList() {
-
-		log.debug("testGetBoxList() invoked.");
+	
+	@Test	// box 번호를 기준으로 그 박스의 물품 리스트 조회
+	public void testProductxList() {
+		log.debug("testProductxList() invoked.");
 
 		Integer box_no = 1005;
 
 		List<ProductVO> list = this.mapper.selectProductList(box_no);
-		log.info("으이잉" + list.get(0).getProduct_memo());
+		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
 		list.forEach(log::info);
+
+	} // testProductxList
+	
+	
+	@Test	// 물품 번호를 기준으로 물품 정보 조회
+	public void testProductDetail() {
+		log.debug("testProductxList() invoked.");
 		
+		Integer product_no = 6;
+		
+		ProductVO product = this.mapper.selectProduct(product_no);
+		log.info("{}번 물품 조회: ", product_no, product.getProduct_name());
+		
+	} // testProductDetail
+	
+	
+	@Test	// INSERT
+	public void testProductInsert() {
+		log.debug("testProductInsert() invoked.");
+		
+		Integer box_no = 1005;
+		String product_name = "productInsert";
+		String product_memo = "productMemo";
+		Integer product_qtn = 2;
+		
+		ProductVO product = new ProductVO(
+				null,
+				box_no,
+				product_name,
+				product_memo,
+				product_qtn,
+				null, null, null, null				
+				);
+		
+		this.mapper.insertProduct(product);
+		log.info("\t+ product: {}",product);
+		
+	} // testProductInsert
+	
+	
+	@Test	// UPDATE
+	public void testProductEdit() {
+		log.debug("testProductEdit() invoked.");
+		
+		Integer product_no = 302;
+		Integer box_no = null;
+		String product_name = "update_test";
+		String product_memo = "productMemo";
+		Integer product_qtn = 100;
+		
+		ProductVO product = new ProductVO(
+				product_no, 
+				box_no,
+				product_name,
+				product_memo,
+				product_qtn,
+				null, null, null, null				
+				);
+		
+		this.mapper.updateProduct(product);
+		log.info("\t+ product: {}",product);
+		
+	} // testProductEdit
+	
+	
+	@Test	// DELETE
+	public void testProductDelete() {
+		log.debug("testProductDelete() invoked.");
+		
+		Integer product_no = 315;
+		this.mapper.deleteProduct(product_no);
+		
+	} // testProductDelete
+	
+	
 
-
-	} // testGetPersonalList
-
-}
+} // end class

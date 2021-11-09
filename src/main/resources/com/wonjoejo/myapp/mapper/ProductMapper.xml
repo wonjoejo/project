@@ -12,50 +12,57 @@
         <!-- /*+ index_asc(tbl_board pk_board) */ *
             /*+ index desc(tbl_board pk_board) */* -->
 
+	<!-- product list 조회 -->
     <select id="selectProductList" resultType="com.wonjoejo.myapp.domain.ProductVO">
-
         <![CDATA[
-
             SELECT
             /*+ index_desc(BOX) */
             *
             FROM PRODUCT
             WHERE box_no = #{box_no}
-
         ]]>
-
     </select>
 
-    <insert id="insertProduct">
 
-        INSERT INTO PRODUCT (이런거저런거)
-        VALUES (#{이런거}, #{저런거},...)
-
-    </insert>
-
+	<!-- product 1건 상세조회 -->
     <select id="selectProduct" resultType="com.wonjoejo.myapp.domain.ProductVO">
         <![CDATA[
-
         SELECT
             /*+ index_desc(PRODUCT) */
             *
         FROM PRODUCT
         WHERE PRODUCT_NO = #{product_no}
-
         ]]>
-
     </select>
+    
 
+	<!-- insert -->
+    <insert id="insertProduct">
+        INSERT INTO PRODUCT (BOX_NO, PRODUCT_NAME, PRODUCT_MEMO, PRODUCT_QTN, 
+        PRODUCT_PHOTO_NAME, PRODUCT_PHOTO_PATH, BARCODE)
+        
+        VALUES (#{box_no}, #{product_name}, #{product_memo}, #{product_qtn},
+        #{product_photo_name}, #{product_photo_path}, #{barcode})
+    </insert>
+
+
+	<!-- edit -->
     <update id="updateProduct">
         UPDATE PRODUCT SET
         PRODUCT_NAME = #{product_name},
-        어쩌구저쩌구
+        PRODUCT_MEMO = #{product_memo},
+        PRODUCT_QTN = #{product_qtn},
+        PRODUCT_PHOTO_NAME = #{product_photo_name},
+        PRODUCT_PHOTO_PATH = #{product_photo_path},
+        BARCODE = #{barcode}
         WHERE PRODUCT_NO = #{product_no}
     </update>
+    
 
-
+	<!-- delete -->
     <delete id="deleteProduct">
         DELETE FROM PRODUCT WHERE PRODUCT_NO = #{product_no}
     </delete>
+
 
 </mapper>
