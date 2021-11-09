@@ -17,16 +17,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
+
 @Log4j2
 @NoArgsConstructor
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class BoardMapperTests {
 
+	
     @Setter(onMethod_= {@Autowired})
     private BoardMapper mapper;
 
+    
     @Before
     public void setup() {		
         log.debug("setup() invoked.");
@@ -37,7 +41,8 @@ public class BoardMapperTests {
         log.info("\t+ type:{}", this.mapper.getClass().getName());
     }//setup
 
-    //게시물 목록 
+    
+    //게시물 목록 조회 
     @Test
     public void testGetList() {
         log.debug("testGetList() invoked.");
@@ -47,7 +52,8 @@ public class BoardMapperTests {
 
     }//testGetList
     
-    //게시물 목록 페이징 처리 
+    
+    //페이징 처리된 게시판 목록조회
     @Test
 	public void testGetListWithPaging() {
 		log.debug("testGetListWithPaging() invoked.");
@@ -61,6 +67,8 @@ public class BoardMapperTests {
 		
 	}//testGetListWithPaging
 
+    
+    //총 게시물 개수를 반환 
     @Test
 	public void testGetTotalCount() {
 		log.debug("testGetTotalCount() invoked.");
@@ -70,6 +78,8 @@ public class BoardMapperTests {
 		
 	}//testGetTotalCount
     
+    
+    //게시물 작성 
     @Test
 	public void testInsert() {
 		log.debug("testInsert() invoked.");
@@ -89,6 +99,8 @@ public class BoardMapperTests {
 		
 	}//testInsert
     
+    
+    //새로운 게시글이 등록완료됨과 동시에 ,자동생성된 게시글(BNO)값을 얻어낼수가 있다.
     @Test
 	public void testInsertSelectKey() {
 		log.debug("testInsertSelectKey() invoked.");
@@ -111,16 +123,20 @@ public class BoardMapperTests {
 		
 	}//testInsertSelectKey
     
+    
+    //게시물 삭제 
     @Test
 	public void testDelete() {
 		log.debug("testDelete() invoked.");
 		
-		int board_idx=176;
+		int board_idx=228;
 		int affectedLines = this.mapper.delete(board_idx);
 		
 		log.info("\t+ affectedLines:{}", affectedLines);		
 	}//testDelete
     
+    
+    //게시물 상세보기 
     @Test
 	public void testRead() {
 		log.debug("testRead () invoked.");
@@ -131,13 +147,15 @@ public class BoardMapperTests {
 		log.info("\t+ board:{}", board);		
 	}//testRead
     
+    
+    //게시물 수정 
     @Test
 	public void testUpdate() {
 		log.debug("testUpdate() invoked.");
 		
 		BoardVO newBoard=
 				new BoardVO(
-				99,
+				226,
 				"MEMBERid99",
 				"MODIFIED",
 				"MODIFIED",
@@ -151,6 +169,8 @@ public class BoardMapperTests {
 			
 	}//testUpdate
     
+    
+    //답글 작성 
     @Test
     public void testReplyInsert() {
     	log.debug("testReplyInsert() invoked.");
@@ -163,15 +183,50 @@ public class BoardMapperTests {
 						"TEST",
 						0,
 						null,
-						12,1,1);
+						99,1,1);
 		
 		this.mapper.insertReply(board);
 		log.info("\t+ board:{}",board);
 		
     }//testReplyInsert
     
+    
+    //답글 수정 
+    @Test
+	public void testReplyUpdate() {
+		log.debug("testReplyUpdate() invoked.");
+		
+		BoardVO newBoard=
+				new BoardVO(
+				238,
+				"MEMBERid99",
+				"답글",
+				"답글",
+				0,
+				null, 
+				99,1,1);
+		
+			int affectedLines = this.mapper.update(newBoard);
+			
+			log.info("\t+ affectedLines:{}", affectedLines);
+			
+	}//testReplyUpdate
+    
+    
+    //답글 삭제 
+    @Test
+	public void testReplyDelete() {
+		log.debug("testReplyDelete() invoked.");
+		
+		int ref = 99;
+		int affectedLines = this.mapper.deleteReply(ref);
+		
+		log.info("\t+ affectedLines:{}", affectedLines);		
+	}//testDelete
+    
+    
     @After
-    public void tearDawn() {
+    public void tearReplyDawn() {
         log.debug("tearDawn() invoked.");
 
     }//tearDawn

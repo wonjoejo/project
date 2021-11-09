@@ -12,5 +12,6 @@ public class BaseCategoryDTO {
     private String cate_name5;
     private Integer box_no;
 
-  
+
+
 } // end class

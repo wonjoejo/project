@@ -36,23 +36,26 @@ public class MemberMapperTests {
 	
 	@Test
 	public void testInsertMember() {
-		log.debug("testInsertBox() invoked.");
-
+		log.debug("testInsertMember() invoked.");
+		
+		Integer member_type=0;
+		Integer member_status=0;
+		
 		MemberVO member = new MemberVO(
-				 "test",
-                 0,
-                 0,
+				 "mappertest",
+				 member_type,
+				 member_status,
                  "테스트",
                  "1004",
                  "test@gmail.com",
-                 010-1234-5678,
+                 "01012345678",
                  "photo_name",
                  "photo_path",
                  null, null
 		);
 
 		this.mapper.insertMember(member);
-		log.info("\t+ member:{}",member);
+		log.info("\t+ member: {}",member);
 
 	} // testInsertMember
 
@@ -61,18 +64,19 @@ public class MemberMapperTests {
 		log.debug("testUpdateMember() invoked.");
 
 		MemberVO member = new MemberVO(
-				 null,
+			 	"mappertest",
                  null,
                  null,
                  "개명함",
-                 "test123",
+                 "edit",
                  "edit@gmail.com",
-                 010-2345-6789,
+                 "01023456789",
                  "edit_photo_name",
                  "edit_photo_path",
                  null, null
 		);
 		this.mapper.updateMember(member);
+		
 		log.info("\t+ member:{}",member);
 	} // testUpdateMember
 
@@ -80,7 +84,7 @@ public class MemberMapperTests {
 	public void testDeleteMember() {
 		log.debug("testDeleteMember() invoked.");
 
-		String member_id = "test";
+		String member_id = "mappertest";
 
 		this.mapper.deleteMember(member_id);
 
