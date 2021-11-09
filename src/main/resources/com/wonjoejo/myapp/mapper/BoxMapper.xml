@@ -4,14 +4,6 @@
 
 <mapper namespace="com.wonjoejo.myapp.mapper.BoxMapper">
 
-    <!-- SELECT/INSERT/UPDATE/DELETE  각각의 SQL 문장을 저장하는 태그가 이미 준비되어 있다 (DTD에)-->
-
-    <!-- 게시판 목록 조회 -->
-    
-    <!-- 비교 연산자(***, >, <)를 사용하는 SQL 문장 (DQL, DML) -->
-        <!-- /*+ index_asc(tbl_board pk_board) */ *
-            /*+ index desc(tbl_board pk_board) */* -->
-
     <select id="selectBoxList" resultType="com.wonjoejo.myapp.domain.BoxVO">
 
         <![CDATA[
@@ -20,7 +12,9 @@
             /*+ index_desc(BOX) */
             *
             FROM BOX
-            WHERE user_id = #{user_id}
+            WHERE member_id = #{member_id}
+            OFFSET (#{currPage}-1)*#{amount} ROWS
+                FETCH NEXT #{amount} ROWS ONLY
 
         ]]>
 
@@ -28,8 +22,28 @@
 
     <insert id="insertBox">
 
-        INSERT INTO BOX (USER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
-        VALUES (#{user_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+        <selectKey keyProperty="box_no" resultType="int" order="BEFORE">
+            SELECT BOX_NO_SEQ.nextval FROM DUAL
+        </selectKey>
+
+        INSERT INTO BOX (BOX_NO, MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
+        VALUES (#{box_no}, #{member_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+
+    </insert>
+
+    <!--  박스 모드별 BASE_CATEGORY 생성   -->
+    <insert id="insertCategory">
+
+        INSERT INTO BASE_CATEGORY(BOX_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
+        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3},#{cate_name4}, #{cate_name5})
+
+    </insert>
+
+    <!--박스 생성 시 생성자에게 마스터 권한 부여-->
+    <insert id="insertMasterPermission">
+
+        INSERT INTO BOX_PERMISSION(MEMBER_ID, BOX_NO, MASTER_PER)
+        VALUES (#{member_id}, #{box_no}, #{master_per})
 
     </insert>
 
@@ -58,5 +72,9 @@
     <delete id="deleteBox">
         DELETE FROM BOX WHERE BOX_NO = #{box_no}
     </delete>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT count(box_no) FROM BOX
+    </select>
 
 </mapper>

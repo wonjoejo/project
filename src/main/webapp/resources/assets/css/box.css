@@ -1,0 +1,180 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+	font-family: 'Wemakeprice-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wemakeprice-SemiBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wemakeprice-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF Light';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	/* gradient */
+	background: linear-gradient(26.81deg, #E2E3FC 65.34%, #D7F1F8 90.6%);
+}
+
+.container {
+	height: 100%;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	width: 90vw;
+	justify-content: space-between;
+
+}
+
+.side-menu {
+	/* Left */
+	width: 15vw;
+	height: 80vh;
+	padding: 30px;
+	margin-right: 10px;
+
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+}
+
+.main-container {
+	/* Right */
+	width: 80vw;
+	height: 80vh;
+	padding: 30px;
+	overflow: hidden;
+
+	/* background */
+
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+}
+
+.main-container h1 {
+	font-family: 'Wemakeprice-Bold', serif;
+	color: #5A95F5;
+	font-weight: 500;
+	font-size: 2.3rem;
+	line-height: 54px;
+}
+
+.box-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.box-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 80%;
+	height: 90%;
+	padding: 10px;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+.box {
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 15vw;
+	height: 15vw;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	color: #4E4E4E;
+
+	background: #FFFFFF;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 50px;
+
+	font-family: 'NEXON Lv1 Gothic OTF Bold',sans-serif;
+
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.name {
+	font-family: 'Noto Sans KR', serif;
+	color: #5A95F5;
+	font-weight: 500;
+	margin-top: 5px;
+}
+
+.menu {
+	font-family: 'Noto Sans KR', serif;
+	font-size: 1rem;
+	color: #4E4E4E;
+	margin-top: 10px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0;
+}
+
+.box img {
+	width: 70%;
+	margin-bottom: 10px;
+}
+
+.menu-item {
+	margin-bottom: 2rem;
+}
+
+.menu-item i {
+	margin-right: 12px;
+}
+

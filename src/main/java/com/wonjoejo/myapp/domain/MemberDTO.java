@@ -5,10 +5,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class UserVO {
-    private String user_id;
-    private Integer user_type;
-    private Integer user_status;
+public class MemberDTO {
+    private String member_id;
+    private Integer member_type;
+    private Integer member_status;
     private String name;
     private String password;
     private String email;

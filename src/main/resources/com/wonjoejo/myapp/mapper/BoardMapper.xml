@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- FQCN 으로 작성 -->
+<mapper namespace="com.wonjoejo.myapp.mapper.BoardMapper">
+
+    <!-- 게시판 목록조회 -->
+    <select id="getList" resultType="com.wonjoejo.myapp.domain.BoardVO">
+
+        <![CDATA[ 
+            SELECT
+                /*+ index_desc(qna_board) */ *
+            FROM qna_board
+            
+        ]]>
+    </select>
+    
+    <!-- 페이징 처리된 게시판 목록조회 -->
+    <select id="getListWithPaging" resultType="com.wonjoejo.myapp.domain.BoardVO">
+       
+        <![CDATA[ 
+            SELECT
+                /*+ index_desc(qna_board) */ *
+            FROM qna_board
+            OFFSET (#{currPage} - 1) * #{amount} ROWS 
+            FETCH NEXT #{amount} ROWS ONLY
+        ]]>
+    </select>
+    
+     <!-- 게시판 총 목록개수 반환  -->
+     <select id="getTotalCount" resultType="int">
+
+        <![CDATA[ 
+            SELECT count(board_idx)
+            FROM qna_board
+            WHERE board_idx > 0
+        ]]>
+    </select>
+    
+    <!-- 게시물 상세 조회 -->
+    <select id="read" resultType="com.wonjoejo.myapp.domain.BoardVO">
+        SELECT * FROM qna_board WHERE board_idx=#{board_idx}       
+    </select>
+    
+     <!-- 새로운 게시물 등록 -->
+    <select id="insert">
+        INSERT INTO qna_board (member_id,title,content)
+		VALUES (#{member_id},#{title},#{content})
+    </select>
+    
+    <insert id="insertSelectKey">
+        <selectKey keyProperty="board_idx" order="BEFORE" resultType="int">
+            SELECT ISEQ$$_61790.nextval          
+            FROM dual
+        </selectKey>
+        INSERT INTO qna_board (board_idx,member_id,title,content)
+        VALUES(#{board_idx},#{member_id},#{title},#{content})
+    </insert>
+
+    <insert id="insertReply">
+        INSERT INTO QNA_BOARD (MEMBER_ID,TITLE,CONTENT,REF,DEPTH,STEP)
+        VALUES (#{member_id},#{title},#{content},#{ref},#{depth},#{step})
+    </insert>
+    
+	<!-- insert_ts는 update 하면 안됨 , 건드리면 안됨  -->
+    <update id="update">
+
+        UPDATE qna_board 
+        SET
+        	member_id=#{member_id},
+            title=#{title},
+            content=#{content}
+        WHERE
+            board_idx=#{board_idx}
+            
+    </update>
+
+    <!-- 게시물 삭제 -->
+    <delete id="delete">
+        DELETE FROM qna_board WHERE board_idx=#{board_idx}
+    </delete>
+
+	 
+    
+    
+
+</mapper>
