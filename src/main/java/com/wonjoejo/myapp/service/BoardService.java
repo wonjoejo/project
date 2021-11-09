@@ -24,6 +24,8 @@ public interface BoardService {
 	//새로운 게시글의 등록
 	public abstract boolean write(BoardVO board);
 
+	public abstract boolean writeReply(BoardVO board);
+
 	//총 레코드 개수 반환 
 	public abstract Integer getTotal();
 	
