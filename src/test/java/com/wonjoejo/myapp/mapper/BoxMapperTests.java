@@ -104,6 +104,14 @@ public class BoxMapperTests {
 				break;
 		}
 
+//		Master 권한 부여
+
+//		BoxPermissionVO vo = new BoxPermissionVO(
+//
+//		)
+//
+//		this.mapper.insertMasterPermission()
+
 
 	}
 

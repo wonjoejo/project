@@ -57,6 +57,11 @@
         INSERT INTO qna_board (board_idx,member_id,title,content)
         VALUES(#{board_idx},#{member_id},#{title},#{content})
     </insert>
+
+    <insert id="insertReply">
+        INSERT INTO QNA_BOARD (MEMBER_ID,TITLE,CONTENT,REF,DEPTH,STEP)
+        VALUES (#{member_id},#{title},#{content},#{ref},#{depth},#{step})
+    </insert>
     
 	<!-- insert_ts는 update 하면 안됨 , 건드리면 안됨  -->
     <update id="update">

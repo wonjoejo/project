@@ -157,15 +157,15 @@ public class BoardMapperTests {
 		
 		BoardVO board=
 				new BoardVO(
-						99,
+						null,
 						"MEMBERid99",
 						"TEST",
 						"TEST",
 						0,
 						null,
-						99,1,1);
+						12,1,1);
 		
-		this.mapper.insert(board);
+		this.mapper.insertReply(board);
 		log.info("\t+ board:{}",board);
 		
     }//testReplyInsert

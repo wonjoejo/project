@@ -63,6 +63,8 @@ public class BoxController {
 		boolean result = this.service.createBox(boxVO);
 		log.info("\t +result: {}",result);
 
+		// Box 모드별 카테고리 입력
+
 		if(box.getBox_mode()==1) { // 식품
 			BaseCategoryVO vo = new BaseCategoryVO(
 					null,
@@ -135,7 +137,7 @@ public class BoxController {
 			);
 			boolean result2 = this.service.insertCategory(vo);
 			log.info("\t +category Result:{}",result2);
-		}
+		} // if
 
 		rttrs.addAttribute("result",result);
 

@@ -153,7 +153,7 @@ public class BoardServiceTests {
 				"NEWCONTENT",
 				0,
 				null, 
-				null,null,null);
+				52,1,1);
 		
 				
 		

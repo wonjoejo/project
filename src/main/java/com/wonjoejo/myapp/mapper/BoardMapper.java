@@ -15,6 +15,8 @@ public interface BoardMapper {
 
 	//새로운 게시물 등록
 	public abstract	Integer insert(BoardVO board);
+
+	public abstract Integer insertReply(BoardVO board);
 	
 	//새로운 게시글이 등록완료됨과 동시에 ,자동생성된 게시글(BNO)값을 얻어낼수가 있다.
 	public abstract Integer insertSelectKey(BoardVO board);

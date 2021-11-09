@@ -78,6 +78,16 @@ public class BoardServiceImpl
 	}//write
 
 	@Override
+	public boolean writeReply(BoardVO board) {
+		log.debug("writeReply({}) invoked.", board);
+
+		int affectedRows = this.mapper.insertReply(board);
+		log.info("\t+ affectedRows: {}", affectedRows);
+
+		return affectedRows==1;
+	}
+
+	@Override
 	public List<BoardVO> getListPerPage(Criteria cri) {
 		log.debug("getListPerPage({}) invoked.",cri);
 		

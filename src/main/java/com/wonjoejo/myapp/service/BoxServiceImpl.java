@@ -27,12 +27,12 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 	@Override
 	public void destroy() throws Exception {
 		
-	}
+	} // destroy
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		
-	}
+	} // afterPropertiesSet
 
 
 	@Override
@@ -89,7 +89,7 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 		log.debug("getTotal() invoked.");
 
 		return this.mapper.getTotalCount();
-	}
+	} // getTotal
 
 	@Override
 	public boolean insertCategory(BaseCategoryVO baseCategory) {
@@ -99,5 +99,15 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 		return affectedLines == 1;
 	} // insertCategory
+
+	@Override
+	public boolean grantMasterPermission(BoxPermissionVO boxPermission) {
+		log.debug("grantMasterPermission({}) invoked.",boxPermission);
+
+		int affectedLines = this.mapper.insertMasterPermission(boxPermission);
+
+		return affectedLines == 1;
+	} // grantMasterPermission
+
 
 } // end class

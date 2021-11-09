@@ -1,6 +1,7 @@
 package com.wonjoejo.myapp.controller;
 
 import java.util.Map;
+import java.util.Objects;
 
 import org.junit.After;
 import org.junit.Before;
@@ -128,6 +129,31 @@ public class BoardControllerTests {
 	
 		log.info("\t+ viewName : {}",viewName);				
 	}//testWrite
+
+	@Test
+	public void testWriteReply() throws Exception {
+
+		log.debug("testWriteReply() invoked.");
+
+		MockMvcBuilder mockMvcBuilder = MockMvcBuilders.webAppContextSetup(ctx);
+		MockMvc mockMvc = mockMvcBuilder.build();
+		MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/board/replywrite");
+
+		//3개의 전송파라미터를 요청문서에 전달
+		reqBuilder.param("member_id","MEMBERid99");
+		reqBuilder.param("title","Reply TITLE");
+		reqBuilder.param("content","Reply CONTENT");
+		reqBuilder.param("ref","99");
+
+		String viewName =   Objects.requireNonNull(mockMvc.
+						perform(reqBuilder).
+						andReturn().
+						getModelAndView()).
+				getViewName();
+
+		log.info("\t+ viewName : {}",viewName);
+
+	} // testWriteReply
 	
 	@Test
 	public void testEdit() throws Exception {

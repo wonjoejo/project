@@ -118,10 +118,25 @@ public class BoardController {
     
 	//게시글 답글 작성 
 	@PostMapping("/replywrite")
-	public void replywrite() {
-		log.debug("replywrite() invoked.");
+	public String replyWrite(BoardDTO board, RedirectAttributes rttrs) {
+		log.debug("replyWrite({},{}) invoked.",board,rttrs);
+
+		BoardVO vo = new BoardVO(
+				null,
+				board.getMember_id(),
+				board.getTitle(),
+				board.getContent(),
+				null,
+				null,
+				board.getRef(),1,1
+		);
+
+		boolean result = this.service.writeReply(vo);
+		rttrs.addAttribute("result",result);
+
+		return "redirect:/board/list";
 			
-	}//replywrite
+	}//replyWrite
 	
 	//게시글 답글 수정  
 	@PostMapping("/replyedit")
