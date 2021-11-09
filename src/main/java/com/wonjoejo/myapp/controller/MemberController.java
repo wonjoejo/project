@@ -26,8 +26,7 @@ public class MemberController {
 	
 	// 회원가입
 	@PostMapping("/register")
-	public String create(MemberDTO member, RedirectAttributes rttrs) {
-
+	public String register(MemberDTO member, RedirectAttributes rttrs) {
 		log.debug("register({}) invoked.",member);
 
 		MemberVO memberVO = new MemberVO(
@@ -54,11 +53,10 @@ public class MemberController {
 	// 회원 정보 수정
 	@PostMapping("/edit")
 	public String edit(MemberDTO member, RedirectAttributes rttrs) {
-
 		log.debug("edit({}) invoked.",member);
 
 		MemberVO memberVO = new MemberVO(
-				null,
+				member.getMember_id(),
 				null,
 				null,
 				member.getName(),
@@ -67,7 +65,7 @@ public class MemberController {
 				member.getPhone_number(),
 				member.getPhoto_name(),
 				member.getPhoto_path(),
-				member.getCompany_name(),
+				null,
 				null
 		);
 
@@ -81,7 +79,6 @@ public class MemberController {
 	// 회원 탈퇴
 	@PostMapping("/delete")
 	public String delete(String member_id, RedirectAttributes rttrs) {
-
 		log.debug("delete({}) invoked.",member_id);
 
 		boolean result = this.service.deleteAccount(member_id);

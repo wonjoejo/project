@@ -12,14 +12,14 @@ public class MemberVO {
     private String name;
     private String password;
     private String email;
-    private Integer phone_number;
+    private String phone_number;
     private String photo_name;
     private String photo_path;
     private String company_name;
     private Date reg_date;
 	
     public MemberVO(String member_id, Integer member_type, Integer member_status, String name, String password,
-			String email, Integer phone_number, String photo_name, String photo_path, String company_name,
+			String email, String phone_number, String photo_name, String photo_path, String company_name,
 			Date reg_date) {
 		super();
 		this.member_id = member_id;
