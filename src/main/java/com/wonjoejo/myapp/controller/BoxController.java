@@ -194,6 +194,11 @@ public class BoxController {
 		return "/box/list";
 	} // delete
 
+	@GetMapping("/createview")
+	public void createView() {
+		log.debug("createView() invoked.");
+	} // createview
+
 
 
 
