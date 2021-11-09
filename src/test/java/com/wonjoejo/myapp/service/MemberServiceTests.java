@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
 )
 public class MemberServiceTests {
 
-    @Setter(onMethod_= { @Autowired})
+    @Setter(onMethod_= {@Autowired})
     private MemberService service;
 
     @Before
@@ -39,19 +39,19 @@ public class MemberServiceTests {
     } // setup
 
     
-
+    // 회원가입
     @Test(timeout=1000)
     public void testRegister() {
         log.debug("testRegister() invoked.");
 
         MemberVO member = new MemberVO(
-                "test",
+                "servicetest",
                 0,
                 0,
                 "테스트",
                 "1004",
                 "test@gmail.com",
-                010-1234-5678,
+                "01012345678",
                 "photo_name",
                 "photo_path",
                 null, null
@@ -59,23 +59,24 @@ public class MemberServiceTests {
 
         boolean isSuccess = this.service.register(member);
 
-        log.info("Member register successfully: {}",isSuccess);
+        log.info("Member registered successfully: {}",isSuccess);
 
     } // testRegister
 
+    // 회원 정보 수정
     @Test(timeout=1000)
     public void testEditMember() {
 
         log.debug("testEditMember() invoked");
 
         MemberVO member = new MemberVO(
-        		 null,
+        		 "servicetest",
                  null,
                  null,
-                 "개명함",
-                 "test123",
+                 "이름변경",
+                 "edit123",
                  "edit@gmail.com",
-                 010-2345-6789,
+                 "01023456789",
                  "edit_photo_name",
                  "edit_photo_path",
                  null, null
@@ -84,14 +85,15 @@ public class MemberServiceTests {
         boolean isSuccess = this.service.editMember(member);
 
         log.info("Member edited successfully: {}",isSuccess);
-    } // testEditBox
-
+    } // testEditMember
+    
+    // 회원 탈퇴
     @Test(timeout=1000)
     public void testDeleteAccount() {
 
         log.debug("testDeleteAccount() invoked.");
 
-        String member_id = "test";
+        String member_id = "servicetest";
         boolean isSuccess = this.service.deleteAccount(member_id);
 
         log.info("Account deleted successfully: {}",isSuccess);

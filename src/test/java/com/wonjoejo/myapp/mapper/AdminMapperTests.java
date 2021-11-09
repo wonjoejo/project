@@ -36,38 +36,39 @@ public class AdminMapperTests {
 		
 	} // setup
 	
+	// 전체 회원 목록
 	@Test
 	public void testSelectMemberList() {
-
 		log.debug("testSelectMemberList() invoked.");
 
-		String member_id = "";
-
-		List<MemberVO> list = this.mapper.selectMemberList(member_id);
+		List<MemberVO> list = this.mapper.selectMemberList();
 		list.forEach(log::info);
 
-
 	} // testSelectMemberList
+	
+	// 특정 회원 상세조회
+	@Test
+	public void testReadMember() {
+		log.debug("testReadMember () invoked.");
+		
+		String member_id="MEMBERid3";
+		MemberVO member = this.mapper.readMember(member_id);
+		
+		log.info("\t+ member:{}", member);		
+	} // testRead
+	 
+	// 회원 검색
+	@Test
+	public void testSelectMember() {
+	
+		log.debug("testSelectMember() invoked.");
 
-	 @Test
-		public void testRead() {
-			log.debug("testRead () invoked.");
-			
-			String member_id="";
-			MemberVO member = this.mapper.read(member_id);
-			
-			log.info("\t+ member:{}", member);		
-		} // testRead
-
-	 @Test
-		public void testSelectMember() {
-
-			log.debug("testSelectMember() invoked.");
-
-			String member_id = "";
-			MemberVO member = this.mapper.read(member_id);
-			
-			log.info("\t+ member:{}", member);
-		} // testSelectMember
+		String member_id = "MEMBERid5";
+		String name="이름15";
+		
+		List<MemberVO> list = this.mapper.selectMember(member_id, name);
+		
+		log.info("\t+ list:{}", list);
+	} // testSelectMember
 
 } // end class

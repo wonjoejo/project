@@ -93,6 +93,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}//edit
     
+    //게시글 작성 
     @PostMapping("/write")
 	public String write(BoardDTO board, RedirectAttributes rttrs) {
 		log.debug("write({}) invoked.",board);
@@ -118,23 +119,61 @@ public class BoardController {
     
 	//게시글 답글 작성 
 	@PostMapping("/replywrite")
-	public void replywrite() {
-		log.debug("replywrite() invoked.");
+	public String replyWrite(BoardDTO board, RedirectAttributes rttrs) {
+		log.debug("replyWrite({},{}) invoked.",board,rttrs);
+
+		BoardVO vo = new BoardVO(
+				null,
+				board.getMember_id(),
+				board.getTitle(),
+				board.getContent(),
+				null,
+				null,
+				board.getRef(),1,1
+		);
+
+		boolean result = this.service.writeReply(vo);
+		rttrs.addAttribute("result",result);
+
+		return "redirect:/board/list";
 			
-	}//replywrite
+	}//replyWrite
 	
 	//게시글 답글 수정  
 	@PostMapping("/replyedit")
-	public void replyedit() {
-		log.debug("replyedit() invoked.");
-			
+	public String replyedit(BoardDTO board,RedirectAttributes rttrs) {
+		log.debug("replyedit({},{}) invoked.",board,rttrs);
+		
+		//DTO -> VO 변환 
+		BoardVO vo = 
+			new BoardVO(
+				board.getBoard_idx(),
+				board.getMember_id(),
+				board.getTitle(),
+				board.getContent(),
+				board.getNotice(),
+				null,
+				board.getRef(),1,1
+			);
+		
+		boolean result = this.service.editReply(vo);
+		
+		rttrs.addAttribute("result",result);
+		
+		return "redirect:/board/list";
 	}//replyedit
 	
 	//게시글 답글 삭제  
 	@PostMapping("/replydelete")
-	public void replydelete() {
-		log.debug("replydelete() invoked.");
+	 public String replydelete(@RequestParam("board_idx") Integer board_idx, 
+				RedirectAttributes rttrs)  
+		{
+			log.debug("remove({}) invoked.",board_idx);
 			
+			boolean result = this.service.delete(board_idx);
+			rttrs.addAttribute("result",result);
+			
+			return "redirect:/board/list";		
 	}//replydelete
 	
 		

@@ -1,6 +1,8 @@
 package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+
 import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
@@ -89,7 +91,6 @@ public class BoxServiceTests {
         boolean isSuccess = this.service.createBox(box);
         log.info("Box created successfully: {}",isSuccess);
 
-
         boolean isSuccess2 = false;
         // BaseCategory
         BaseCategoryVO baseCategory = null;
@@ -126,6 +127,22 @@ public class BoxServiceTests {
                 log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
         }
+
+        //		Master 권한 부여
+
+        BoxPermissionVO vo = new BoxPermissionVO(
+                null,
+                box.getBox_no(),
+                box.getMember_id(),
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        );
+
+        this.service.grantMasterPermission(vo);
 
     } // testCreateBox
 

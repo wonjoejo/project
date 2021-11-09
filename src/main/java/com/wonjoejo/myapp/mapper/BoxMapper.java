@@ -18,6 +18,8 @@ public interface BoxMapper {
 
 	public abstract int insertCategory(BaseCategoryVO baseCategory);
 
+	public abstract int insertMasterPermission(BoxPermissionVO boxPermission);
+
 	public abstract Integer getTotalCount();
 
 

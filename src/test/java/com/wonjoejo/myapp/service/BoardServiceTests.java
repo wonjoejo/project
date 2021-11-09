@@ -108,8 +108,8 @@ public class BoardServiceTests {
 				new BoardVO(
 				99,
 				"MEMBERid99",
-				"수정",
-				"수정",
+				"질문글99",
+				"질문글 내용99",
 				0,
 				null, 
 				null,null,null);
@@ -122,7 +122,7 @@ public class BoardServiceTests {
 	public void testDelete() {
 		log.debug("testRemove() invoked.");
 				
-		int board_idx = 179;	
+		int board_idx = 237;	
 		boolean isSeccess=this.service.delete(board_idx);
 		
 		log.info("\t+ isSeccess: {}", isSeccess);
@@ -132,7 +132,7 @@ public class BoardServiceTests {
 	public void testDetail() {
 		log.debug("testGet() invoked.");
 				
-		int board_idx = 115;	
+		int board_idx = 90;	
 		BoardVO board = this.service.detail(board_idx);
 		
 		Objects.requireNonNull(board);
@@ -153,15 +153,39 @@ public class BoardServiceTests {
 				"NEWCONTENT",
 				0,
 				null, 
-				null,null,null);
-		
-				
-		
-		boolean isSeccess=this.service.write(board);
+				99,1,1);
+	
+		boolean isSeccess=this.service.writeReply(board);
 		log.info("\t+ isSeccess: {}", isSeccess);
 			
 	}//testReplyWrite
     
+    @Test(timeout=1000)
+   	public void testReplyDelete() {
+   		log.debug("testReplyDelete() invoked.");
+   				
+   		int ref = 99;	
+   		boolean isSeccess=this.service.deleteReply(ref);
+   		
+   		log.info("\t+ isSeccess: {}", isSeccess);
+   	}//testReplyDelete
     
+    @Test(timeout=1000)
+   	public void testReplyEdit() {
+   		log.debug("testReplyEdit() invoked.");
+   		
+   		BoardVO board=
+   				new BoardVO(
+   				234,
+   				"MEMBERid99",
+   				"수정",
+   				"수정",
+   				0,
+   				null, 
+   				99,1,1);
+   		
+   		boolean isSeccess=this.service.editReply(board);
+   		log.info("\t+ isSeccess: {}", isSeccess);
+   	}//testReplyEdit
 
 }

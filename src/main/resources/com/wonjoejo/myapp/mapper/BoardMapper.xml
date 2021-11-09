@@ -7,7 +7,6 @@
 
     <!-- 게시판 목록조회 -->
     <select id="getList" resultType="com.wonjoejo.myapp.domain.BoardVO">
-
         <![CDATA[ 
             SELECT
                 /*+ index_desc(qna_board) */ *
@@ -17,8 +16,7 @@
     </select>
     
     <!-- 페이징 처리된 게시판 목록조회 -->
-    <select id="getListWithPaging" resultType="com.wonjoejo.myapp.domain.BoardVO">
-       
+    <select id="getListWithPaging" resultType="com.wonjoejo.myapp.domain.BoardVO">     
         <![CDATA[ 
             SELECT
                 /*+ index_desc(qna_board) */ *
@@ -30,7 +28,6 @@
     
      <!-- 게시판 총 목록개수 반환  -->
      <select id="getTotalCount" resultType="int">
-
         <![CDATA[ 
             SELECT count(board_idx)
             FROM qna_board
@@ -58,26 +55,43 @@
         VALUES(#{board_idx},#{member_id},#{title},#{content})
     </insert>
     
-	<!-- insert_ts는 update 하면 안됨 , 건드리면 안됨  -->
+    <!-- 게시글 수정 -->
     <update id="update">
-
         UPDATE qna_board 
         SET
         	member_id=#{member_id},
             title=#{title},
             content=#{content}
         WHERE
-            board_idx=#{board_idx}
-            
+            board_idx=#{board_idx}           
     </update>
 
-    <!-- 게시물 삭제 -->
+    <!-- 게시글 삭제 -->
     <delete id="delete">
         DELETE FROM qna_board WHERE board_idx=#{board_idx}
     </delete>
-
-	 
-    
     
 
+	<!-- 답글 작성 -->
+    <insert id="insertReply">
+        INSERT INTO QNA_BOARD (MEMBER_ID,TITLE,CONTENT,REF,DEPTH,STEP)
+        VALUES (#{member_id},#{title},#{content},#{ref},#{depth},#{step})
+    </insert>
+    
+    <!-- 답글 수정 -->
+    <update id="updateReply">
+        UPDATE qna_board 
+        SET
+            title=#{title},
+            content=#{content}        
+        WHERE
+             ref=#{ref} and depth=1           
+    </update>
+    
+    <!-- 답글 삭제 -->
+    <delete id="deleteReply">
+        DELETE FROM qna_board WHERE ref=#{ref} and depth=1
+    </delete>
+    
+ 
 </mapper>

@@ -20,4 +20,6 @@ public interface BoxService {
 
 	public abstract boolean insertCategory(BaseCategoryVO baseCategory);
 
+	public abstract boolean grantMasterPermission(BoxPermissionVO boxPermission);
+
 } // end interface

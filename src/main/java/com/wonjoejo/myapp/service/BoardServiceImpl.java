@@ -15,17 +15,20 @@ import com.wonjoejo.myapp.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+
 @Log4j2
-//@NoArgsConstructor
 @AllArgsConstructor
+
 
 @Service
 public class BoardServiceImpl
 	implements BoardService, InitializingBean, DisposableBean{
 
+	
 	@Setter(onMethod_= { @Autowired})
     private BoardMapper mapper;
 
+	
     //게시물 목록 
     @Override
 	public List<BoardVO> getList() {
@@ -33,6 +36,7 @@ public class BoardServiceImpl
 		return this.mapper.getList();
 	}//getList
 
+    
     //게시물 상세보기 
 	@Override
 	public BoardVO detail(Integer board_idx) {
@@ -43,7 +47,8 @@ public class BoardServiceImpl
 		
 		return board;
 	}//detail
-
+ 
+	
 	//기존 게시물 삭제 
 	@Override
 	public boolean delete(Integer board_idx) {
@@ -55,6 +60,7 @@ public class BoardServiceImpl
 		return affectedRows==1;
 	}//delete
 
+	
 	//기존 게시물 수정 
 	@Override
 	public boolean edit(BoardVO board) {
@@ -66,6 +72,7 @@ public class BoardServiceImpl
 		return affectedRows==1;
 	}//edit
 
+	
 	//새로운 게시물 작성 
 	@Override
 	public boolean write(BoardVO board) {
@@ -77,6 +84,43 @@ public class BoardServiceImpl
 		return affectedRows==1;
 	}//write
 
+	
+	//게시물 답글 작성 
+	@Override
+	public boolean writeReply(BoardVO board) {
+		log.debug("writeReply({}) invoked.", board);
+
+		int affectedRows = this.mapper.insertReply(board);
+		log.info("\t+ affectedRows: {}", affectedRows);
+
+		return affectedRows==1;
+	}
+	
+	
+	//답글 수정 
+	@Override
+	public boolean editReply(BoardVO board) {
+		log.debug("editReply({}) invoked.", board);
+		
+		int affectedRows = this.mapper.updateReply(board);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;
+	}//editReply
+
+	
+	//답글 삭제 
+	@Override
+	public boolean deleteReply(Integer board_idx) {
+		log.debug("deleteReplye({}) invoked.", board_idx);
+		
+		int affectedRows = this.mapper.deleteReply(board_idx);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;
+	}//deleteReply
+
+	//게시물 페이지 
 	@Override
 	public List<BoardVO> getListPerPage(Criteria cri) {
 		log.debug("getListPerPage({}) invoked.",cri);
@@ -87,6 +131,8 @@ public class BoardServiceImpl
 		return list;
 	}//getListPerPage
 	
+	
+	//총 레코드 개수 반환 
 	@Override
 	public Integer getTotal() {
 		log.debug("getTotal() invoked.");
@@ -106,6 +152,6 @@ public class BoardServiceImpl
 		
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
-	}//afterPropertiesSet
+	}
 
 }//end class 

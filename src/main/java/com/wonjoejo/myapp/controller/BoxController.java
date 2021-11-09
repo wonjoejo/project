@@ -155,9 +155,25 @@ public class BoxController {
                 log.info("\t +category Result:{}", result2);
                 break;
         }
+      
+      		// 박스 마스터권한 부여
+		BoxPermissionVO permissionVo = new BoxPermissionVO(
+				null,
+				boxVO.getBox_no(),
+				boxVO.getMember_id(),
+				0,
+				0,
+				0,
+				0,
+				0,
+				0
+		);
+		boolean result3 = this.service.grantMasterPermission(permissionVo);
+		log.info("\t +Permission Result:{}",result3);
+
+		rttrs.addAttribute("result",result);
 
 
-        rttrs.addAttribute("result", result);
 
         return "/box/list";
     } // create
@@ -196,6 +212,5 @@ public class BoxController {
 
         return "/box/list";
     } // delete
-
 
 } // end class

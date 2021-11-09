@@ -29,10 +29,10 @@
 		<p class="name">name</p>
 	</div>
 	<div class="menu">
-		<span class="menu-item"><i class="far fa-list-alt"></i> 박스 리스트</span>
-		<span class="menu-item"><i class="far fa-plus-square"></i> 박스 생성</span>
-		<span class="menu-item"><i class="far fa-question-circle"></i> Q&A</span>
-		<span class="menu-item"><i class="fas fa-sign-out-alt"></i> 로그아웃</span>
+		<span class="menu-item"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i> 박스 리스트</a></span>
+		<span class="menu-item"><a href="#"><i class="far fa-plus-square"></i> 박스 생성</a></span>
+		<span class="menu-item"><a href="#"><i class="far fa-question-circle"></i> Q&A</a></span>
+		<span class="menu-item"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
 	</div>
 </div>
 
@@ -42,7 +42,7 @@
 	<div class="box-wrapper">
 	<div class="box-container">
 	<c:forEach items="${list}" var="box">
-		<div class="box">
+		<div class="box hvr-grow">
 		<img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"/>
 		${box.box_name}
 		</div>
