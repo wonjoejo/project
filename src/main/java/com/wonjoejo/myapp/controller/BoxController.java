@@ -73,7 +73,7 @@ public class BoxController {
 					"보관방법",
 					null,
 					null,
-					box.getBox_no()
+					boxVO.getBox_no()
 			);
 			boolean result2 = this.service.insertCategory(vo);
 			log.info("\t +category Result:{}",result2);
@@ -85,7 +85,7 @@ public class BoxController {
 					"색상",
 					null,
 					null,
-					box.getBox_no()
+					boxVO.getBox_no()
 			);
 			boolean result2 = this.service.insertCategory(vo);
 			log.info("\t +category Result:{}",result2);
@@ -97,7 +97,7 @@ public class BoxController {
 					"구매자",
 					null,
 					null,
-					box.getBox_no()
+					boxVO.getBox_no()
 			);
 			boolean result2 = this.service.insertCategory(vo);
 			log.info("\t +category Result:{}",result2);
@@ -121,7 +121,7 @@ public class BoxController {
 					"멤버명",
 					null,
 					null,
-					box.getBox_no()
+					boxVO.getBox_no()
 			);
 			boolean result2 = this.service.insertCategory(vo);
 			log.info("\t +category Result:{}",result2);
@@ -133,11 +133,26 @@ public class BoxController {
 					"커스텀3",
 					"커스텀4",
 					"커스텀5",
-					box.getBox_no()
+					boxVO.getBox_no()
 			);
 			boolean result2 = this.service.insertCategory(vo);
 			log.info("\t +category Result:{}",result2);
 		} // if
+
+		// 박스 마스터권한 부여
+		BoxPermissionVO permissionVo = new BoxPermissionVO(
+				null,
+				boxVO.getBox_no(),
+				boxVO.getMember_id(),
+				0,
+				0,
+				0,
+				0,
+				0,
+				0
+		);
+		boolean result3 = this.service.grantMasterPermission(permissionVo);
+		log.info("\t +Permission Result:{}",result3);
 
 		rttrs.addAttribute("result",result);
 
