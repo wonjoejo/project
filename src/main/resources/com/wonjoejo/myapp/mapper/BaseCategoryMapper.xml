@@ -20,20 +20,24 @@
             /*+ index_desc(BASE_CATEGORY) */
             *
             FROM BASE_CATEGORY
-            WHERE product_no = #{product_no}
+            WHERE box_no = #{box_no}
 
         ]]>
 
     </select>
 
+    <!--  BASE_CATEGORY   -->
+    <insert id="insertCategory">
 
-    <insert id="insertBaseCategory">
-
-        INSERT INTO BASE_CATEGORY (BOX_NO, PRODUCT_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
-        VALUES (#{BOX_NO}, #{PRODUCT_NO}, #{cate_name1}, #{cate_name2}, #{cate_name3}, #{cate_name4}, #{cate_name5})
-        FROM BOX, PRODUCT WHERE BOX.BOX_NO = PRODUCT.BOX_NO
+        INSERT INTO BASE_CATEGORY(BOX_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
+        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3},#{cate_name4}, #{cate_name5})
 
     </insert>
+
+    <update id="updateBaseCategory">
+
+
+    </update>
 
 
 </mapper>

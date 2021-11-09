@@ -39,6 +39,7 @@
 
     </insert>
 
+    <!--  BASE_CATEGORY   -->
     <insert id="insertCategory">
 
         INSERT INTO BASE_CATEGORY(BOX_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
