@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.service;
 
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
@@ -75,7 +77,7 @@ public class BoxServiceTests {
 
         BoxVO box = new BoxVO(
                 null,
-                "userid3",
+                "MEMBERid3",
                 2,
                 "box_name_new",
                 "box_memo_new",
@@ -87,6 +89,52 @@ public class BoxServiceTests {
         boolean isSuccess = this.service.createBox(box);
 
         log.info("Box created successfully: {}",isSuccess);
+
+        //		BaseCategory insert
+        BaseCategoryVO basecategoryVO = null;
+
+        switch (box.getBox_mode()){
+            case 1:
+                basecategoryVO = new BaseCategoryVO(null, "종류","유통기한","보관방법",null,null,box.getBox_no());
+                this.service.insertCategory(basecategoryVO);
+                break;
+            case 2:
+                basecategoryVO = new BaseCategoryVO(null, "종류", "유통기한", "색상", null, null, box.getBox_no());
+                this.service.insertCategory(basecategoryVO);
+                break;
+            case 3:
+                basecategoryVO = new BaseCategoryVO(null, "구매자", "구매일자", "종류", null, null, box.getBox_no());
+                this.service.insertCategory(basecategoryVO);
+                break;
+            case 4:
+                basecategoryVO = new BaseCategoryVO(null, "구매자", "종류", "색상", null, null, box.getBox_no());
+                this.service.insertCategory(basecategoryVO);
+                break;
+            case 5:
+                basecategoryVO = new BaseCategoryVO(null, "종류", "구매일자", "멤버명", null, null, box.getBox_no());
+                this.service.insertCategory(basecategoryVO);
+                break;
+            default:
+                basecategoryVO = new BaseCategoryVO(null, null, null, null, null, null, box.getBox_no());
+                this.service.insertCategory(basecategoryVO);
+                break;
+        }
+
+        //		Master 권한 부여
+
+        BoxPermissionVO vo = new BoxPermissionVO(
+                null,
+                box.getBox_no(),
+                box.getMember_id(),
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        );
+
+        this.service.grantMasterPermission(vo);
 
     } // testCreateBox
 

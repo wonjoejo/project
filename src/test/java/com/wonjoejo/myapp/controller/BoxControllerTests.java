@@ -82,7 +82,7 @@ public class BoxControllerTests {
         reqBuilder.param("box_photo_name","photo_name");
         reqBuilder.param("box_photo_path","photo_path");
 
-        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+        String viewName = Objects.requireNonNull(mockMvc.perform(reqBuilder).andReturn().getModelAndView()).getViewName();
 
         log.info("\t+ viewName: {}",viewName);
 
