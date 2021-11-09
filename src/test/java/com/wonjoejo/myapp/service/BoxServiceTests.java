@@ -1,6 +1,7 @@
 package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -43,8 +44,12 @@ public class BoxServiceTests {
 
         log.debug("getBoxList() invoked.");
 
-        String user_id = "userid2";
-        List<BoxVO> list = this.service.getBoxList(user_id);
+        String member_id = "MEMBERid2";
+        Criteria cri = new Criteria();
+        cri.setCurrPage(1);
+        cri.setAmount(6);
+        cri.setMember_id(member_id);
+        List<BoxVO> list = this.service.getBoxList(cri);
 
         assert list != null;
         list.forEach(log::info);

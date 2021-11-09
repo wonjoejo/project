@@ -64,7 +64,7 @@ body {
 
 .side-menu {
 	/* Left */
-	width: 12vw;
+	width: 15vw;
 	height: 80vh;
 	padding: 30px;
 	margin-right: 10px;
@@ -91,19 +91,26 @@ body {
 .main-container h1 {
 	font-family: 'Wemakeprice-Bold', serif;
 	color: #5A95F5;
-	font-weight: 600;
-	font-size: 48px;
+	font-weight: 500;
+	font-size: 2.3rem;
 	line-height: 54px;
+}
+
+.box-wrapper {
+	display: flex;
+	justify-content: center;
 }
 
 .box-container {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	width: 75%;
-	height: 75%;
+	width: 80%;
+	height: 90%;
 	padding: 10px;
 	justify-content: center;
+	align-content: center;
+	align-items: center;
 }
 
 .box {
@@ -112,14 +119,18 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 10vw;
-	height: 10vw;
-	margin-right: 10px;
-	margin-bottom: 10px;
+	width: 15vw;
+	height: 15vw;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	color: #4E4E4E;
 
 	background: #FFFFFF;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	border-radius: 50px;
+
+	font-family: 'NEXON Lv1 Gothic OTF Bold',sans-serif;
+
 }
 
 .profile {
@@ -143,15 +154,27 @@ body {
 }
 
 .menu {
+	font-family: 'Noto Sans KR', serif;
+	font-size: 1rem;
+	color: #4E4E4E;
+	margin-top: 10px;
+
 	display: flex;
 	flex-direction: column;
-	font-family: 'Noto Sans KR', serif;
-	color: #4E4E4E;
-	list-style: none;
-	padding-bottom: 5px;
+	align-items: flex-start;
+	padding: 0;
 }
 
 .box img {
-	width: 50%;
+	width: 70%;
+	margin-bottom: 10px;
+}
+
+.menu-item {
+	margin-bottom: 2rem;
+}
+
+.menu-item i {
+	margin-right: 12px;
 }
 

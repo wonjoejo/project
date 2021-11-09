@@ -2,9 +2,7 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BaseCategoryDTO;
-import com.wonjoejo.myapp.domain.BoxDTO;
-import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,9 +40,13 @@ public class BoxMapperTests {
 
 		log.debug("testGetBoxList() invoked.");
 
-		String user_id = "MEMBERid1";
+		String member_id = "MEMBERid32";
+		Criteria cri = new Criteria();
+		cri.setCurrPage(1);
+		cri.setAmount(5);
+		cri.setMember_id(member_id);
 
-		List<BoxVO> list = this.mapper.selectBoxList(user_id);
+		List<BoxVO> list = this.mapper.selectBoxList(cri);
 		log.info(list.get(0).getBox_mode());
 		list.forEach(log::info);
 
@@ -72,8 +74,8 @@ public class BoxMapperTests {
 
 
 		if(box_mode==1) {
-			BaseCategoryDTO dto = new BaseCategoryDTO("종류","유통기한","보관방법","커스텀1",null,box.getBox_no());
-			this.mapper.insertCategory(dto);
+			BaseCategoryVO vo = new BaseCategoryVO(box.getBox_no(),null,"종류","유통기한","보관방법","커스텀1",null);
+			this.mapper.insertCategory(vo);
 		}
 
 

@@ -2,8 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BoxDTO;
-import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.*;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
@@ -37,10 +36,10 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 
 	@Override
-	public List<BoxVO> getBoxList(String user_id) {
+	public List<BoxVO> getBoxList(Criteria cri) {
 		log.debug("getBoxList() invoked.");
 
-		List<BoxVO> list = this.mapper.selectBoxList(user_id);
+		List<BoxVO> list = this.mapper.selectBoxList(cri);
 
 		list.forEach(log::info);
 
@@ -84,4 +83,21 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 		return affectedLines == 1;
 	} // deleteBox
+
+	@Override
+	public Integer getTotal() {
+		log.debug("getTotal() invoked.");
+
+		return this.mapper.getTotalCount();
+	}
+
+	@Override
+	public boolean insertCategory(BaseCategoryVO baseCategory) {
+		log.debug("insertCategory({}) invoked.",baseCategory);
+
+		int affectedLines = this.mapper.insertCategory(baseCategory);
+
+		return affectedLines == 1;
+	} // insertCategory
+
 } // end class

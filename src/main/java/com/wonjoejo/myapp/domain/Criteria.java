@@ -14,6 +14,9 @@ public class Criteria {
 	private Integer amount=20;
 	//3.한 페이지당 보여줄 페이지 번호 목록의 길이 
 	private Integer pagesPerPage=10;
+
+	// 멤버 ID
+	private String member_id;
 	
 	
 }//end class 

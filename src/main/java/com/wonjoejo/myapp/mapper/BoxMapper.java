@@ -1,15 +1,12 @@
 package com.wonjoejo.myapp.mapper;
 
-import com.wonjoejo.myapp.domain.BaseCategoryDTO;
-import com.wonjoejo.myapp.domain.BoxDTO;
-import com.wonjoejo.myapp.domain.BoxVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
+import com.wonjoejo.myapp.domain.*;
 
 import java.util.List;
 
 public interface BoxMapper {
 
-	public abstract List<BoxVO> selectBoxList(String user_id);
+	public abstract List<BoxVO> selectBoxList(Criteria cri);
 
 	public abstract BoxVO selectBox(Integer box_no);
 
@@ -19,6 +16,8 @@ public interface BoxMapper {
 
 	public abstract int deleteBox(Integer box_no);
 
-	public abstract int insertCategory(BaseCategoryDTO baseCategory);
+	public abstract int insertCategory(BaseCategoryVO baseCategory);
+
+	public abstract Integer getTotalCount();
 
 } // end interface
