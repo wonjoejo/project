@@ -183,6 +183,7 @@ public class BoxController {
 
         log.debug("edit({}) invoked.", box);
 
+
         BoxVO boxVO = new BoxVO(
                 box.getBox_no(),
                 box.getMember_id(),
@@ -212,5 +213,10 @@ public class BoxController {
 
         return "/box/list";
     } // delete
+  
+  	@GetMapping("/createview")
+	public void createView() {
+		log.debug("createView() invoked.");
+	} // createview
 
 } // end class
