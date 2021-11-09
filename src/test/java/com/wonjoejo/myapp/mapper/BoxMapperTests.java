@@ -2,7 +2,12 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+<<<<<<< Updated upstream
 import com.wonjoejo.myapp.domain.*;
+=======
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+>>>>>>> Stashed changes
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,7 +62,7 @@ public class BoxMapperTests {
 	public void testInsertBox() {
 		log.debug("testInsertBox() invoked.");
 
-		Integer box_mode = 1;
+		Integer box_mode = 5;
 		BoxVO box = new BoxVO(
 				null,
 				"MEMBERid4",
@@ -73,12 +78,41 @@ public class BoxMapperTests {
 		log.info("\t+ box:{}",box);
 
 
+<<<<<<< Updated upstream
 		if(box_mode==1) {
 			BaseCategoryVO vo = new BaseCategoryVO(box.getBox_no(),null,"종류","유통기한","보관방법","커스텀1",null);
 			this.mapper.insertCategory(vo);
+=======
+//		BaseCategory insert
+		BaseCategoryVO basecategoryVO = null;
+
+		switch (box_mode){
+			case 1:
+				basecategoryVO = new BaseCategoryVO(null, "종류","유통기한","보관방법",null,null,box.getBox_no());
+				this.mapper.insertCategory(basecategoryVO);
+				break;
+			case 2:
+				basecategoryVO = new BaseCategoryVO(null, "종류", "유통기한", "색상", null, null, box.getBox_no());
+				this.mapper.insertCategory(basecategoryVO);
+				break;
+			case 3:
+				basecategoryVO = new BaseCategoryVO(null, "구매자", "구매일자", "종류", null, null, box.getBox_no());
+				this.mapper.insertCategory(basecategoryVO);
+				break;
+			case 4:
+				basecategoryVO = new BaseCategoryVO(null, "구매자", "종류", "색상", null, null, box.getBox_no());
+				this.mapper.insertCategory(basecategoryVO);
+				break;
+			case 5:
+				basecategoryVO = new BaseCategoryVO(null, "종류", "구매일자", "멤버명", null, null, box.getBox_no());
+				this.mapper.insertCategory(basecategoryVO);
+				break;
+			default:
+				basecategoryVO = new BaseCategoryVO(null, null, null, null, null, null, box.getBox_no());
+				this.mapper.insertCategory(basecategoryVO);
+				break;
+>>>>>>> Stashed changes
 		}
-
-
 
 
 	}

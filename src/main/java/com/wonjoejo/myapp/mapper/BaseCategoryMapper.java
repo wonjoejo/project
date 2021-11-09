@@ -6,9 +6,13 @@ import java.util.List;
 
 public interface BaseCategoryMapper {
 
-    public abstract List<BaseCategoryVO> selectBaseCategoryList(Integer product_no);
+    public abstract List<BaseCategoryVO> selectBaseCategoryList(Integer box_no);
 
-    public abstract Integer insertBaseCategory(BaseCategoryVO baseCategory);
+    // 박스 생성될 때 카테고리도 같이 생성..
+    public abstract Integer insertCategory(BaseCategoryVO baseCategory);
+
+    public abstract Integer updateBaseCategory(BaseCategoryVO baseCategory);
+
 
 
 } // end interface

@@ -17,7 +17,10 @@ public interface BoxMapper {
 	public abstract int deleteBox(Integer box_no);
 
 	public abstract int insertCategory(BaseCategoryVO baseCategory);
+<<<<<<< Updated upstream
 
 	public abstract Integer getTotalCount();
+=======
+>>>>>>> Stashed changes
 
 } // end interface

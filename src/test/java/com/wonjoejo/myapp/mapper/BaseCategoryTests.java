@@ -38,9 +38,9 @@ public class BaseCategoryTests {
     public void testGetBaseCategoryList(){
         log.debug("testGetBaseCategoryList() invoked.");
 
-        Integer product_no = 211;
+        Integer box_no = 1314;
 
-        List<BaseCategoryVO> list = this.mapper.selectBaseCategoryList(product_no);
+        List<BaseCategoryVO> list = this.mapper.selectBaseCategoryList(box_no);
         list.forEach(log::info);
 
     } // testGetBaseCategoryList
