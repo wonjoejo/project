@@ -2,12 +2,9 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
-<<<<<<< Updated upstream
 import com.wonjoejo.myapp.domain.*;
-=======
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.BoxVO;
->>>>>>> Stashed changes
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,12 +74,6 @@ public class BoxMapperTests {
 		this.mapper.insertBox(box);
 		log.info("\t+ box:{}",box);
 
-
-<<<<<<< Updated upstream
-		if(box_mode==1) {
-			BaseCategoryVO vo = new BaseCategoryVO(box.getBox_no(),null,"종류","유통기한","보관방법","커스텀1",null);
-			this.mapper.insertCategory(vo);
-=======
 //		BaseCategory insert
 		BaseCategoryVO basecategoryVO = null;
 
@@ -111,7 +102,6 @@ public class BoxMapperTests {
 				basecategoryVO = new BaseCategoryVO(null, null, null, null, null, null, box.getBox_no());
 				this.mapper.insertCategory(basecategoryVO);
 				break;
->>>>>>> Stashed changes
 		}
 
 
