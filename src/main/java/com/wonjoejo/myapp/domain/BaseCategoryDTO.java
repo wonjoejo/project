@@ -11,9 +11,6 @@ public class BaseCategoryDTO {
     private String cate_name4;
     private String cate_name5;
     private Integer box_no;
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
   
 } // end class
