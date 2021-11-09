@@ -4,7 +4,7 @@
 
 <mapper namespace="com.wonjoejo.myapp.mapper.GroupMapper">
 
-		<!--그룹원 목록  -->
+	<!--그룹원 목록  -->
 	<select id="selectGroupMemberList" resultType="com.wonjoejo.myapp.domain.MemberVO">
 		<![CDATA[
 		
@@ -15,11 +15,28 @@
 		]]>	
 	
 	</select>
+	
+	<!--그룹원 권한 조회  -->
+	
+		<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO">
+		<![CDATA[
+		
+			 SELECT 
+			 *
+			 FROM BOX_PERMISSION
+			 WHERE BOX_NO = #{BOX_NO}
+		]]>	
+	
+	</select>
 
 	<!--그룹 가입-->
 	<insert id="insertMember"> 
-		INSERT INTO BOX_PERMISSION(MEMBER_ID, BOX_NO, MASTER_PER, WRITE_PER, READ_PER, EDIT_PER, DELETE_PER,MEMBER_STAT)
-		VALUES (#{member_id}, #{box_no}, #{master_per}, #{write_per}, #{read_per}, #{edit_per}, #{delete_per}, #{member_stat})
+		 <selectKey keyProperty="no" resultType="int" order="BEFORE">
+            SELECT NO_SEQ.nextval FROM DUAL
+        </selectKey>
+	
+		INSERT INTO BOX_PERMISSION(NO, BOX_NO, MEMBER_ID, MASTER_PER, WRITE_PER, READ_PER, EDIT_PER, DELETE_PER,MEMBER_STAT)
+		VALUES (#{no}, #{box_no}, #{member_id}, #{master_per}, #{write_per}, #{read_per}, #{edit_per}, #{delete_per}, #{member_stat})
 		
 	</insert>
 
