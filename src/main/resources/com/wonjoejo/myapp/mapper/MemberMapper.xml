@@ -4,59 +4,68 @@
 
 <mapper namespace="com.wonjoejo.myapp.mapper.MemberMapper">
 
-    <!-- SELECT/INSERT/UPDATE/DELETE  각각의 SQL 문장을 저장하는 태그가 이미 준비되어 있다 (DTD에)-->
+    <!-- 회원가입 -->
+    <insert id="insertMember">
 
-    <!-- 게시판 목록 조회 -->
-    
-    <!-- 비교 연산자(***, >, <)를 사용하는 SQL 문장 (DQL, DML) -->
-        <!-- /*+ index_asc(tbl_board pk_board) */ *
-            /*+ index desc(tbl_board pk_board) */* -->
-
-    <select id="selectBoxList" resultType="com.wonjoejo.myapp.domain.BoxVO">
-
-        <![CDATA[
-
-            SELECT
-            /*+ index_desc(BOX) */
-            *
-            FROM BOX
-            WHERE member_id = #{member_id}
-
-        ]]>
-
-    </select>
-
-    <insert id="insertBox">
-
-        INSERT INTO BOX (MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH)
-        VALUES (#{member_id}, #{box_mode}, #{box_name}, #{box_memo}, #{box_photo_name}, #{box_photo_path})
+        INSERT INTO MEMBER (MEMBER_ID, MEMBER_TYPE, MEMBER_STATUS, NAME, PASSWORD, EMAIL, PHONE_NUMBER, PHOTO_NAME, PHOTO_PATH, COMPANY_NAME)
+        VALUES (#{member_id}, #{member_type}, #{member_status}, #{name}, #{password}, #{email}, #{phone_number}, #{photo_name}, #{photo_path}, #{company_name})
 
     </insert>
 
-    <select id="selectBox" resultType="com.wonjoejo.myapp.domain.BoxVO">
+    <!-- 로그인 -->
+    <select id="loginMember" resultType="com.wonjoejo.myapp.domain.MemberVO">
+
         <![CDATA[
 
-        SELECT
-            /*+ index_desc(BOX) */
-            *
-        FROM BOX
-        WHERE BOX_NO = #{box_no}
+        SELECT *
+        FROM MEMBER
+        WHERE 
+            MEMBER_ID=#{member_id}
+            AND PASSWORD=#{password}
 
         ]]>
 
     </select>
 
-    <update id="updateBox">
-        UPDATE BOX SET
-        BOX_NAME = #{box_name},
-        BOX_MEMO = #{box_memo},
-        BOX_PHOTO_NAME = #{box_photo_name},
-        BOX_PHOTO_PATH = #{box_photo_path}
-        WHERE BOX_NO = #{box_no}
+    <!-- 아이디 찾기 -->
+    <select id="selectId" resultType="com.wonjoejo.myapp.domain.MemberVO">
+        <![CDATA[
+
+            SELECT 
+            MEMBER_ID 
+            FROM MEMBER 
+            WHERE EMAIL=#{email}
+
+        ]]>
+        
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="updatePwd">
+        UPDATE MEMBER 
+        SET
+        PASSWORD = #{password}
+        WHERE EMAIL = #{email}
     </update>
 
-    <delete id="deleteBox">
-        DELETE FROM BOX WHERE BOX_NO = #{box_no}
+    <!-- 회원 정보 수정 -->
+    <update id="updateMember">
+        UPDATE MEMBER 
+        SET
+        NAME = #{name},
+        PASSWORD = #{password},
+        EMAIL = #{email},
+        PHONE_NUMBER = #{phone_number},
+        PHOTO_NAME = #{photo_name},
+        PHOTO_PATH = #{photo_path}
+        WHERE MEMBER_ID = #{member_id}
+    </update>
+
+    <!-- 회원 탈퇴 -->
+    <delete id="deleteMember">
+        DELETE
+        FROM MEMBER 
+        WHERE MEMBER_ID = #{member_id}
     </delete>
 
 </mapper>
