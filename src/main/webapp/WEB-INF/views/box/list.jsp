@@ -39,6 +39,7 @@
 <div class="main-container">
 	<h1>박스 리스트</h1>
 
+	<div class="box-wrapper">
 	<div class="box-container">
 	<c:forEach items="${list}" var="box">
 		<div class="box">
@@ -49,6 +50,7 @@
 	</div>
 
 	</div>
+</div>
 
 </div>
 

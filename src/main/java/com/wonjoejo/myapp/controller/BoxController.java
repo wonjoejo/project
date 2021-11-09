@@ -2,8 +2,7 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BoxDTO;
-import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,14 +28,19 @@ public class BoxController {
 	private BoxService service;
 	
 	@GetMapping("/list")
-	public void list(Model model, String member_id) {
+	public void list(Model model, Criteria cri) {
 
-		log.debug("list({},{}) invoked.",model,member_id);
+		log.debug("list({},{}) invoked.",model,cri);
 
-		List<BoxVO> list = this.service.getBoxList(member_id);
+		List<BoxVO> list = this.service.getBoxList(cri);
 		log.info("\t+ list.size:{}",list.size());
 
 		model.addAttribute("list",list);
+
+		// paging
+		Integer totalAmount = this.service.getTotal();
+		PageDTO dto = new PageDTO(cri,totalAmount);
+		model.addAttribute("pageMaker",dto);
 
 	} // getBoxList
 
@@ -58,6 +62,81 @@ public class BoxController {
 
 		boolean result = this.service.createBox(boxVO);
 		log.info("\t +result: {}",result);
+
+		if(box.getBox_mode()==1) { // 식품
+			BaseCategoryVO vo = new BaseCategoryVO(
+					null,
+					"종류",
+					"유통기한",
+					"보관방법",
+					null,
+					null,
+					box.getBox_no()
+			);
+			boolean result2 = this.service.insertCategory(vo);
+			log.info("\t +category Result:{}",result2);
+		} else if(box.getBox_mode()==2) { // 화장품
+			BaseCategoryVO vo = new BaseCategoryVO(
+					null,
+					"종류",
+					"유통기한",
+					"색상",
+					null,
+					null,
+					box.getBox_no()
+			);
+			boolean result2 = this.service.insertCategory(vo);
+			log.info("\t +category Result:{}",result2);
+		} else if(box.getBox_mode()==3) { // 의약품
+			BaseCategoryVO vo = new BaseCategoryVO(
+					null,
+					"종류",
+					"구매일자",
+					"구매자",
+					null,
+					null,
+					box.getBox_no()
+			);
+			boolean result2 = this.service.insertCategory(vo);
+			log.info("\t +category Result:{}",result2);
+		} else if(box.getBox_mode()==4) { // 의류
+			BaseCategoryVO vo = new BaseCategoryVO(
+					null,
+					"종류",
+					"색상",
+					"구매자",
+					null,
+					null,
+					box.getBox_no()
+			);
+			boolean result2 = this.service.insertCategory(vo);
+			log.info("\t +category Result:{}",result2);
+		} else if(box.getBox_mode()==5) { // 굿즈
+			BaseCategoryVO vo = new BaseCategoryVO(
+					null,
+					"종류",
+					"구매일자",
+					"멤버명",
+					null,
+					null,
+					box.getBox_no()
+			);
+			boolean result2 = this.service.insertCategory(vo);
+			log.info("\t +category Result:{}",result2);
+		} else {
+			BaseCategoryVO vo = new BaseCategoryVO(
+					null,
+					"커스텀1",
+					"커스텀2",
+					"커스텀3",
+					"커스텀4",
+					"커스텀5",
+					box.getBox_no()
+			);
+			boolean result2 = this.service.insertCategory(vo);
+			log.info("\t +category Result:{}",result2);
+		}
+
 		rttrs.addAttribute("result",result);
 
 		return "/box/list";

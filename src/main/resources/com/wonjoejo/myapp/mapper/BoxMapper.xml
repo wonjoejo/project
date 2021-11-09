@@ -21,6 +21,8 @@
             *
             FROM BOX
             WHERE member_id = #{member_id}
+            OFFSET (#{currPage}-1)*#{amount} ROWS
+                FETCH NEXT #{amount} ROWS ONLY
 
         ]]>
 
@@ -69,5 +71,9 @@
     <delete id="deleteBox">
         DELETE FROM BOX WHERE BOX_NO = #{box_no}
     </delete>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT count(box_no) FROM BOX
+    </select>
 
 </mapper>
