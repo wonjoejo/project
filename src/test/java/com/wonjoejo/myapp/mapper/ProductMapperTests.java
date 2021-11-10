@@ -68,6 +68,7 @@ public class ProductMapperTests {
 	public void testProductInsert() {
 		log.debug("testProductInsert() invoked.");
 		
+
 		Integer box_no = 1311;
 		String product_name = "productInsert";
 		String product_memo = "productMemo";

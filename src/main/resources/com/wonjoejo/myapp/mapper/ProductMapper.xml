@@ -37,7 +37,7 @@
     
 
 	<!-- insert -->
-    <insert id="insertProduct">
+	<insert id="insertProduct">
 
         <selectKey keyProperty="product_no" resultType="int" order="BEFORE">
             SELECT PRODUCT_NO_SEQ.nextval FROM DUAL
