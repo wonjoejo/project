@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>listPerPage.jsp</title>
+<title>myPage.jsp</title>
 </head>
 <body>
-
-	<h1>/WEB-INF/views/board/listPerPage.jsp</h1>
-
+	 <h1>/WEB-INF/views/member/myPage.jsp</h1>
 </body>
 </html>
