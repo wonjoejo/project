@@ -1,10 +1,10 @@
 package com.wonjoejo.myapp.domain;
 
-import lombok.Value;
 
+import lombok.Data;
 
-@Value
-public class CategoryVO {
+@Data
+public class CategoryDTO {
 
     private Integer idx;
     private Integer category_no;
@@ -14,7 +14,5 @@ public class CategoryVO {
     private String cate_detail3;
     private String cate_detail4;
     private String cate_detail5;
-
-
 
 } // end class

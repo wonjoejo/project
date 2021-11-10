@@ -1,0 +1,126 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+	font-family: 'Wemakeprice-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wemakeprice-SemiBold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Wemakeprice-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'NEXON Lv1 Gothic OTF Light';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.side-menu {
+	/* Left */
+	width: 15vw;
+	height: 80vh;
+	margin-right: 10px;
+
+	background: rgba(255, 255, 255, 0.66);
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+}
+
+a {
+	text-decoration: none;
+	color: #4E4E4E;
+}
+
+a:hover {
+	color: #5A95F5;
+}
+
+.profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+}
+
+.profile img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.name {
+	font-family: 'Noto Sans KR', serif;
+	color: #5A95F5;
+	font-weight: 500;
+	margin-top: 5px;
+}
+
+.menu {
+	font-family: 'Noto Sans KR', serif;
+	font-size: 1rem;
+	margin-top: 10px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0;
+	border-left: 1px solid transparent;
+}
+
+.menu-item {
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: row;
+	padding-left: 1.2rem;
+}
+
+.menu-item i {
+	margin-right: 12px;
+}
+
+.menu .active {
+	font-weight: 600;
+	border-left: 6px solid #5A95F5;
+}
+
+.active a {
+	color: #5A95F5;
+}
+
+.menu .inactive {
+	border-left: 6px solid transparent;
+	color: #4E4E4E;
+}

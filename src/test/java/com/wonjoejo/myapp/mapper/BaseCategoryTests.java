@@ -1,7 +1,10 @@
 package com.wonjoejo.myapp.mapper;
 
 
+import com.wonjoejo.myapp.domain.BaseCategoryDTO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -38,12 +41,29 @@ public class BaseCategoryTests {
     public void testGetBaseCategoryList(){
         log.debug("testGetBaseCategoryList() invoked.");
 
-        Integer box_no = 1314;
+        Integer box_no = 1331;
+        BaseCategoryVO baseCategory = this.mapper.selectBaseCategoryList(box_no);
 
-        List<BaseCategoryVO> list = this.mapper.selectBaseCategoryList(box_no);
-        list.forEach(log::info);
-
+        log.info("\t+ baseCategory: {}", baseCategory);
     } // testGetBaseCategoryList
+
+    @Test
+    public void testUpdateBaseCategory(){
+        log.debug("testUpdateBaseCategory() invoked.");
+
+        BaseCategoryVO baseCategory = new BaseCategoryVO(
+                95895,
+                "색상",
+                null,
+                null,
+                null,
+                null,
+                1096
+        );
+
+        this.mapper.updateBaseCategory(baseCategory);
+        log.info("\t+ baseCategory: {}" , baseCategory);
+    } // testUpdateBaseCategory
 
 
 

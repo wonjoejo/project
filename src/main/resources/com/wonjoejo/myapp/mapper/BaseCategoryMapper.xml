@@ -43,7 +43,10 @@
         CATE_NAME4 = #{cate_name4},
         CATE_NAME5 = #{cate_name5}
         WHERE CATEGORY_NO = #{category_no}
+
     </update>
+
+
 
 
 </mapper>

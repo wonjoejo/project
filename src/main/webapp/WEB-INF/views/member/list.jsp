@@ -9,6 +9,8 @@
 <body>
 	
 	<h1>/WEB-INF/views/member/list.jsp</h1>
-
+	
+	<h2>${list}</h2>
+	
 </body>
 </html>

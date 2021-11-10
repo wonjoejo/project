@@ -23,123 +23,140 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/box")
 @Controller
 public class BoxController {
-	
-	@Setter(onMethod_= { @Autowired })
-	private BoxService service;
-	
-	@GetMapping("/list")
-	public void list(Model model, Criteria cri) {
 
-		log.debug("list({},{}) invoked.",model,cri);
+    @Setter(onMethod_ = {@Autowired})
+    private BoxService service;
 
-		List<BoxVO> list = this.service.getBoxList(cri);
-		log.info("\t+ list.size:{}",list.size());
+    @GetMapping("/list")
+    public void list(Model model, Criteria cri) {
 
-		model.addAttribute("list",list);
+        log.debug("list({},{}) invoked.", model, cri);
 
-		// paging
-		Integer totalAmount = this.service.getTotal();
-		PageDTO dto = new PageDTO(cri,totalAmount);
-		model.addAttribute("pageMaker",dto);
+        List<BoxVO> list = this.service.getBoxList(cri);
+        log.info("\t+ list.size:{}", list.size());
 
-	} // getBoxList
+        model.addAttribute("list", list);
 
-	@PostMapping("/create")
-	public String create(BoxDTO box, RedirectAttributes rttrs) {
+        // paging
+        Integer totalAmount = this.service.getTotal();
+        PageDTO dto = new PageDTO(cri, totalAmount);
+        model.addAttribute("pageMaker", dto);
 
-		log.debug("create({}) invoked.",box);
+    } // getBoxList
 
-		BoxVO boxVO = new BoxVO(
-				null,
-				box.getMember_id(),
-				box.getBox_mode(),
-				box.getBox_name(),
-				box.getBox_memo(),
-				box.getBox_photo_name(),
-				box.getBox_photo_path(),
-				null
-		);
+    @PostMapping("/create")
+    public String create(BoxDTO box, RedirectAttributes rttrs) {
 
-		boolean result = this.service.createBox(boxVO);
-		log.info("\t +result: {}",result);
+        log.debug("create({}) invoked.", box);
 
-		// Box 모드별 카테고리 입력
+        BoxVO boxVO = new BoxVO(
+                null,
+                box.getMember_id(),
+                box.getBox_mode(),
+                box.getBox_name(),
+                box.getBox_memo(),
+                box.getBox_photo_name(),
+                box.getBox_photo_path(),
+                null
+        );
 
-		if(box.getBox_mode()==1) { // 식품
-			BaseCategoryVO vo = new BaseCategoryVO(
-					null,
-					"종류",
-					"유통기한",
-					"보관방법",
-					null,
-					null,
-					boxVO.getBox_no()
-			);
-			boolean result2 = this.service.insertCategory(vo);
-			log.info("\t +category Result:{}",result2);
-		} else if(box.getBox_mode()==2) { // 화장품
-			BaseCategoryVO vo = new BaseCategoryVO(
-					null,
-					"종류",
-					"유통기한",
-					"색상",
-					null,
-					null,
-					boxVO.getBox_no()
-			);
-			boolean result2 = this.service.insertCategory(vo);
-			log.info("\t +category Result:{}",result2);
-		} else if(box.getBox_mode()==3) { // 의약품
-			BaseCategoryVO vo = new BaseCategoryVO(
-					null,
-					"종류",
-					"구매일자",
-					"구매자",
-					null,
-					null,
-					boxVO.getBox_no()
-			);
-			boolean result2 = this.service.insertCategory(vo);
-			log.info("\t +category Result:{}",result2);
-		} else if(box.getBox_mode()==4) { // 의류
-			BaseCategoryVO vo = new BaseCategoryVO(
-					null,
-					"종류",
-					"색상",
-					"구매자",
-					null,
-					null,
-					box.getBox_no()
-			);
-			boolean result2 = this.service.insertCategory(vo);
-			log.info("\t +category Result:{}",result2);
-		} else if(box.getBox_mode()==5) { // 굿즈
-			BaseCategoryVO vo = new BaseCategoryVO(
-					null,
-					"종류",
-					"구매일자",
-					"멤버명",
-					null,
-					null,
-					boxVO.getBox_no()
-			);
-			boolean result2 = this.service.insertCategory(vo);
-			log.info("\t +category Result:{}",result2);
-		} else {
-			BaseCategoryVO vo = new BaseCategoryVO(
-					null,
-					"커스텀1",
-					"커스텀2",
-					"커스텀3",
-					"커스텀4",
-					"커스텀5",
-					boxVO.getBox_no()
-			);
-			boolean result2 = this.service.insertCategory(vo);
-			log.info("\t +category Result:{}",result2);
-		} // if
+        boolean result = this.service.createBox(boxVO);
+        log.info("\t +result: {}", result);
 
-		// 박스 마스터권한 부여
+
+//		BaseCategory insert
+        BaseCategoryVO basecategoryVO = null;
+        boolean result2 = false;
+
+
+        switch (boxVO.getBox_mode()) {
+            case 1:
+                basecategoryVO = new BaseCategoryVO(
+                        null,
+                        "종류",
+                        "유통기한",
+                        "보관방법",
+                        null,
+                        null,
+                        boxVO.getBox_no()
+                );
+                result2 = this.service.insertCategory(basecategoryVO);
+                log.info("\t +category Result:{}", result2);
+                break;
+
+            case 2:
+                basecategoryVO = new BaseCategoryVO(
+                        null,
+                        "종류",
+                        "유통기한",
+                        "색상",
+                        null,
+                        null,
+                        boxVO.getBox_no()
+                );
+                result2 = this.service.insertCategory(basecategoryVO);
+                log.info("\t +category Result:{}", result2);
+                break;
+
+            case 3:
+                basecategoryVO = new BaseCategoryVO(
+                        null,
+                        "구매자",
+                        "구매일자",
+                        "종류",
+                        null,
+                        null,
+                        boxVO.getBox_no()
+                );
+                result2 = this.service.insertCategory(basecategoryVO);
+                log.info("\t +category Result:{}", result2);
+                break;
+
+            case 4:
+                basecategoryVO = new BaseCategoryVO(
+                        null,
+                        "구매자",
+                        "종류",
+                        "색상",
+                        null,
+                        null,
+                        boxVO.getBox_no()
+                );
+                result2 = this.service.insertCategory(basecategoryVO);
+                log.info("\t +category Result:{}", result2);
+                break;
+
+            case 5:
+
+                basecategoryVO = new BaseCategoryVO(
+                        null,
+                        "종류",
+                        "구매일자",
+                        "멤버명",
+                        null,
+                        null,
+                        boxVO.getBox_no()
+                );
+                result2 = this.service.insertCategory(basecategoryVO);
+                log.info("\t +category Result:{}", result2);
+                break;
+
+            default:
+                basecategoryVO = new BaseCategoryVO(
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        boxVO.getBox_no()
+                );
+                result2 = this.service.insertCategory(basecategoryVO);
+                log.info("\t +category Result:{}", result2);
+                break;
+        }
+      
+      		// 박스 마스터권한 부여
 		BoxPermissionVO permissionVo = new BoxPermissionVO(
 				null,
 				boxVO.getMember_id(),
@@ -156,51 +173,50 @@ public class BoxController {
 
 		rttrs.addAttribute("result",result);
 
-		return "/box/list";
-	} // create
-
-	@PostMapping("/edit")
-	public String edit(BoxDTO box, RedirectAttributes rttrs) {
-
-		log.debug("edit({}) invoked.",box);
-
-		BoxVO boxVO = new BoxVO(
-				box.getBox_no(),
-				box.getMember_id(),
-				box.getBox_mode(),
-				box.getBox_name(),
-				box.getBox_memo(),
-				box.getBox_photo_name(),
-				box.getBox_photo_path(),
-				null
-		);
-
-		boolean result = this.service.editBox(boxVO);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("result",result);
-
-		return "/box/list";
-	} // edit
-
-	@PostMapping("/delete")
-	public String delete(Integer box_no, RedirectAttributes rttrs) {
-
-		log.debug("delete({}) invoked.",box_no);
-
-		boolean result = this.service.deleteBox(box_no);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("\t+ result: {}",result);
-
-		return "/box/list";
-	} // delete
 
 
+        return "/box/list";
+    } // create
+
+    @PostMapping("/edit")
+    public String edit(BoxDTO box, RedirectAttributes rttrs) {
+
+        log.debug("edit({}) invoked.", box);
 
 
+        BoxVO boxVO = new BoxVO(
+                box.getBox_no(),
+                box.getMember_id(),
+                box.getBox_mode(),
+                box.getBox_name(),
+                box.getBox_memo(),
+                box.getBox_photo_name(),
+                box.getBox_photo_path(),
+                null
+        );
 
-	
+        boolean result = this.service.editBox(boxVO);
+        log.info("\t +result: {}", result);
+        rttrs.addAttribute("result", result);
 
+        return "/box/list";
+    } // edit
 
-	
+    @PostMapping("/delete")
+    public String delete(Integer box_no, RedirectAttributes rttrs) {
+
+        log.debug("delete({}) invoked.", box_no);
+
+        boolean result = this.service.deleteBox(box_no);
+        log.info("\t +result: {}", result);
+        rttrs.addAttribute("\t+ result: {}", result);
+
+        return "/box/list";
+    } // delete
+  
+  	@GetMapping("/createview")
+	public void createView() {
+		log.debug("createView() invoked.");
+	} // createview
 
 } // end class

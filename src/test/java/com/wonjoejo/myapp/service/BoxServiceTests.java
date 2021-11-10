@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
+
 import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
@@ -75,10 +76,11 @@ public class BoxServiceTests {
     public void testCreateBox() {
         log.debug("createBox() invoked.");
 
+        Integer box_mode = 2;
         BoxVO box = new BoxVO(
                 null,
-                "MEMBERid3",
-                2,
+                "MEMBERid5",
+                box_mode,
                 "box_name_new",
                 "box_memo_new",
                 "photo_name",
@@ -87,36 +89,42 @@ public class BoxServiceTests {
         );
 
         boolean isSuccess = this.service.createBox(box);
-
         log.info("Box created successfully: {}",isSuccess);
 
-        //		BaseCategory insert
-        BaseCategoryVO basecategoryVO = null;
+        boolean isSuccess2 = false;
+        // BaseCategory
+        BaseCategoryVO baseCategory = null;
 
-        switch (box.getBox_mode()){
+        switch (box_mode){
             case 1:
-                basecategoryVO = new BaseCategoryVO(null, "종류","유통기한","보관방법",null,null,box.getBox_no());
-                this.service.insertCategory(basecategoryVO);
+                baseCategory = new BaseCategoryVO(null, "종류","유통기한","보관방법",null,null,box.getBox_no());
+                isSuccess2 = this.service.insertCategory(baseCategory);
+                log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
             case 2:
-                basecategoryVO = new BaseCategoryVO(null, "종류", "유통기한", "색상", null, null, box.getBox_no());
-                this.service.insertCategory(basecategoryVO);
+                baseCategory = new BaseCategoryVO(null, "종류", "유통기한", "색상", null, null, box.getBox_no());
+                isSuccess2 = this.service.insertCategory(baseCategory);
+                log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
             case 3:
-                basecategoryVO = new BaseCategoryVO(null, "구매자", "구매일자", "종류", null, null, box.getBox_no());
-                this.service.insertCategory(basecategoryVO);
+                baseCategory = new BaseCategoryVO(null, "구매자", "구매일자", "종류", null, null, box.getBox_no());
+                isSuccess2 = this.service.insertCategory(baseCategory);
+                log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
             case 4:
-                basecategoryVO = new BaseCategoryVO(null, "구매자", "종류", "색상", null, null, box.getBox_no());
-                this.service.insertCategory(basecategoryVO);
+                baseCategory = new BaseCategoryVO(null, "구매자", "종류", "색상", null, null, box.getBox_no());
+                isSuccess2 = this.service.insertCategory(baseCategory);
+                log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
             case 5:
-                basecategoryVO = new BaseCategoryVO(null, "종류", "구매일자", "멤버명", null, null, box.getBox_no());
-                this.service.insertCategory(basecategoryVO);
+                baseCategory = new BaseCategoryVO(null, "종류", "구매일자", "멤버명", null, null, box.getBox_no());
+                isSuccess2 = this.service.insertCategory(baseCategory);
+                log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
             default:
-                basecategoryVO = new BaseCategoryVO(null, null, null, null, null, null, box.getBox_no());
-                this.service.insertCategory(basecategoryVO);
+                baseCategory = new BaseCategoryVO(null, null, null, null, null, null, box.getBox_no());
+                isSuccess2 = this.service.insertCategory(baseCategory);
+                log.info("BaseCategory successfully : {}" , isSuccess2);
                 break;
         }
 
@@ -168,6 +176,27 @@ public class BoxServiceTests {
         boolean isSuccess = this.service.deleteBox(box_no);
 
         log.info("Box deleted successfully: {}",isSuccess);
-    }
+    } // testDeleteBox
+
+    @Test(timeout=1000)
+    public void testCreateBaseCategory() {
+        log.debug("testCreateBaseCategory() invoked.");
+
+        BoxVO box = new BoxVO(
+                null,
+                "userid3",
+                2,
+                "box_name_new",
+                "box_memo_new",
+                "photo_name",
+                "photo_path",
+                null
+        );
+
+        boolean isSuccess = this.service.createBox(box);
+
+        log.info("Box created successfully: {}",isSuccess);
+
+    } // testCreateBaseCategory
 
 } // end class

@@ -12,7 +12,7 @@ public class MemberDTO {
     private String name;
     private String password;
     private String email;
-    private Integer phone_number;
+    private String phone_number;
     private String photo_name;
     private String photo_path;
     private String company_name;

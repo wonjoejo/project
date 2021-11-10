@@ -24,5 +24,4 @@ public class BaseCategoryVO {
         this.box_no = box_no;
     } // constructor
 
-
 } // end class

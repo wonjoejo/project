@@ -1,5 +1,6 @@
 package com.wonjoejo.myapp.service;
 
+import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 
 public interface MemberService {
@@ -8,10 +9,11 @@ public interface MemberService {
 	public abstract boolean register(MemberVO member);
 	
 	// 로그인
-	public abstract MemberVO login(String member_id, String password);
+	public abstract MemberVO login(LoginDTO dto) throws Exception;
 	
+	// 계정 찾기를 MemberVO 주는 게 맞나?
 	// 아이디 찾기
-	public abstract MemberVO logout(String email);
+	public abstract MemberVO findId(String email);
 	
 	// 비밀번호 변경
 	public abstract MemberVO changePwd(String email);
