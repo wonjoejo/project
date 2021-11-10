@@ -4,3 +4,13 @@ target/
 pom.xml
 
 .settings/
+
+.idea/
+
+src/main/java/com/wonjoejo/myapp/mapper/.DS_Store
+
+src/.DS_Store
+
+src/main/.DS_Store
+
+.DS_Store

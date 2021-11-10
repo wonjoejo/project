@@ -196,6 +196,7 @@ textarea {
 	top: 0;
 	left: 0;
 	opacity: 0;
+	cursor: pointer;
 }
 
 .photos img {
@@ -303,16 +304,19 @@ textarea {
 	margin-bottom: 30px;
 	padding-left: 20px;
 	padding-right: 60px;
+	background: url(/resources/assets/img/dropdown.png) #FFF no-repeat 87% 50%;
+	color: #4E4E4E;
 }
 
 select {
 	border-radius: 50px;
 	border: none;
-	background: url(/resources/assets/img/dropdown.png) no-repeat 80% 10px;
+	background: #FFFFFF;
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+	cursor: pointer;
 }
 
 
