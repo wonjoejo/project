@@ -1,41 +1,6 @@
 
 target/
 
-.DS_Store
-
-.classpath
-
-.factorypath
-
-.project
-
-.idea/
-
-.settings/
-
-bin/
-
-.tern-project
-
-src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
-
-src/main/webapp/WEB-INF/spring/root-context.xml
-
-src/main/webapp/WEB-INF/spring/
-
-myapp.iml
-
-src/main/webapp/META-INF/MANIFEST.MF
-
-src/main/webapp/WEB-INF/spring/
-
-src/main/webapp/WEB-INF/classes/
-
-src/main/webapp/WEB-INF/lib/
-
 pom.xml
 
-*.prefs
-
-src/main/webapp/META-INF/
-
+.settings/

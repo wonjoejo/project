@@ -13,6 +13,8 @@ public interface ProductMapper {
 
 	public abstract int insertProduct(ProductVO product);
 
+	public abstract int insertCategory(CategoryVO category);
+
 	public abstract int updateProduct(ProductVO product);
 
 	public abstract int deleteProduct(Integer product_no);

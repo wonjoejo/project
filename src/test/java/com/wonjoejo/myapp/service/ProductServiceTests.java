@@ -42,7 +42,7 @@ public class ProductServiceTests {
     } // setup
 
     
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 박스번호로 물품 리스트 조회
     public void testGetBoxList() {
     	log.debug("testProductxList() invoked.");
 
@@ -55,7 +55,7 @@ public class ProductServiceTests {
     } // testGetBoxList
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 물품번호의 물품 상세조회
     public void testProductDetail() {
 
         log.debug("testProductDetail() invoked.");
@@ -71,7 +71,7 @@ public class ProductServiceTests {
     
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 정보로 물품 등록
     public void testProductInsert() {
         log.debug("testProductInsert() invoked.");
 
@@ -113,7 +113,7 @@ public class ProductServiceTests {
     
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 물품번호의 물품 정보 수정
     public void testProductEdit() {
         log.debug("testProductEdit() invoked");
 
@@ -138,11 +138,11 @@ public class ProductServiceTests {
     
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 물품번호의 물품 삭제
     public void testProductDelete() {
         log.debug("testProductDelete() invoked.");
 
-        Integer product_no = 316;
+        Integer product_no = 307;
         boolean isSuccess = this.service.deleteProduct(product_no);
 
         log.info("Product deleted successfully: {}",isSuccess);

@@ -17,6 +17,7 @@ public class MemberVO {
     private String photo_path;
     private String company_name;
     private Date reg_date;
+
 	
     public MemberVO(String member_id, Integer member_type, Integer member_status, String name, String password,
 			String email, String phone_number, String photo_name, String photo_path, String company_name,
@@ -34,6 +35,8 @@ public class MemberVO {
 		this.company_name = company_name;
 		this.reg_date = reg_date;
 	}
+	
+
     
     
 } // end class

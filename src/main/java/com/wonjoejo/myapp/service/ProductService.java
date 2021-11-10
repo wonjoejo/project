@@ -23,3 +23,4 @@ public interface ProductService {
 	public abstract boolean insertCategory(CategoryVO category);
 
 } // ProductService
+
