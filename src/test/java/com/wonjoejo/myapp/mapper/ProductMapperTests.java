@@ -56,10 +56,13 @@ public class ProductMapperTests {
 	public void testProductDetail() {
 		log.debug("testProductxList() invoked.");
 		
-		Integer product_no = 6;
+		Integer product_no = 352;
 		
 		ProductVO product = this.mapper.selectProduct(product_no);
 		log.info("{}번 물품 조회: ", product_no, product.getProduct_name());
+
+		CategoryVO category = this.mapper.selectCategory(product_no);
+		log.info("\t+ Category: {}" , category);
 		
 	} // testProductDetail
 	
