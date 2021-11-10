@@ -48,16 +48,6 @@
         #{product_photo_name}, #{product_photo_path}, #{barcode})
     </insert>
 
-    <insert id="insertCategory">
-        <selectKey keyProperty="category_no" resultType="int" order="BEFORE">
-            SELECT CATEGORY_NO FROM BASE_CATEGORY,PRODUCT WHERE BASE_CATEGORY.BOX_NO = PRODUCT.BOX_NO and PRODUCT_NO = #{product_no}
-        </selectKey>
-
-        INSERT INTO CATEGORY(CATEGORY_NO, PRODUCT_NO, CATE_DETAIL1, CATE_DETAIL2, CATE_DETAIL3, CATE_DETAIL4, CATE_DETAIL5)
-        VALUES (#{category_no}, #{product_no}, #{cate_detail1}, #{cate_detail2}, #{cate_detail3}, #{cate_detail4}, #{cate_detail5})
-    </insert>
-
-
 	<!-- edit -->
     <update id="updateProduct">
         UPDATE PRODUCT SET
