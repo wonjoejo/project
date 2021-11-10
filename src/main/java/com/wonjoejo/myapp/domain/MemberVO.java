@@ -17,10 +17,12 @@ public class MemberVO {
     private String photo_path;
     private String company_name;
     private Date reg_date;
+    private String rememberMe;
+    private Date rememberAge;
 	
     public MemberVO(String member_id, Integer member_type, Integer member_status, String name, String password,
 			String email, String phone_number, String photo_name, String photo_path, String company_name,
-			Date reg_date) {
+			Date reg_date, String rememberMe, Date rememberAge) {
 		super();
 		this.member_id = member_id;
 		this.member_type = member_type;
@@ -33,6 +35,8 @@ public class MemberVO {
 		this.photo_path = photo_path;
 		this.company_name = company_name;
 		this.reg_date = reg_date;
+		this.rememberMe = rememberMe;
+		this.rememberAge = rememberAge;
 	}
     
     

@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.service;
 
+import java.util.Date;
+
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 
@@ -10,6 +12,10 @@ public interface MemberService {
 	
 	// 로그인
 	public abstract MemberVO login(LoginDTO dto) throws Exception;
+	
+	// 자동 로그인
+	public abstract MemberVO findMemberByRemberMe(String rememberMe) throws Exception;
+	public abstract boolean editMemberWithRememberMe(String member_id, String rememberMe, Date rememberAge) throws Exception;	 
 	
 	// 계정 찾기를 MemberVO 주는 게 맞나?
 	// 아이디 찾기

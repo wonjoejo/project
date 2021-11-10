@@ -1,11 +1,16 @@
 package com.wonjoejo.myapp.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.MemberService;
@@ -20,6 +25,9 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/member")
 @Controller
 public class MemberController {
+	
+	// 권한
+	public static final String authKey="__AUTH__";
 	
 	@Setter(onMethod_= { @Autowired })
 	private MemberService service;
@@ -40,6 +48,8 @@ public class MemberController {
 				member.getPhoto_name(),
 				member.getPhoto_path(),
 				member.getCompany_name(),
+				null,
+				null,
 				null
 		);
 
@@ -49,6 +59,35 @@ public class MemberController {
 
 		return "/member/login";
 	} // register
+	
+	// 로그인
+	@PostMapping("/loginPost")
+	public void loginPost(LoginDTO dto, Model model) throws Exception {
+		log.debug("loginPost({}) invoked.", dto);
+		
+		MemberVO member=this.service.login(dto);
+		log.info("\t+ member: {}", member);
+		
+		if(member!=null) {
+			model.addAttribute(MemberController.authKey, member);
+		} // if
+	} // loginPost
+	
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		log.debug("logout({}) invoked.", session);
+		
+		session.removeAttribute(MemberController.authKey);
+		
+		log.info("\t+ Sesson ID to be destroyed: {}", session.getId());
+		
+		session.invalidate();
+		session=null;
+		
+		return "redirect:/";
+		
+	} // logout
 	
 	// 회원 정보 수정
 	@PostMapping("/edit")
@@ -65,6 +104,8 @@ public class MemberController {
 				member.getPhone_number(),
 				member.getPhoto_name(),
 				member.getPhoto_path(),
+				null,
+				null,
 				null,
 				null
 		);

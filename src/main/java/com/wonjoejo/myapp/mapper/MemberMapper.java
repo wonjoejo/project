@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.mapper;
 
+import java.util.Date;
+
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 
@@ -9,7 +11,11 @@ public interface MemberMapper {
 	public abstract Integer insertMember(MemberVO member);
 	
 	// 로그인
-	public abstract MemberVO loginMember(LoginDTO dto);
+	public abstract MemberVO selectMember(LoginDTO dto) throws Exception;
+	
+	// 자동 로그인
+	public abstract MemberVO selectMemberWithRemberMe(String rememberMe) throws Exception;
+	public abstract Integer updateMemberWithRememberMe(String member_id, String rememberMe, Date rememberAge) throws Exception;	 
 	
 	// 아이디 찾기
 	public abstract MemberVO selectId(String email);

@@ -17,5 +17,7 @@ public class MemberDTO {
     private String photo_path;
     private String company_name;
     private Date reg_date;
+    private String rememberMe;
+    private Date rememberAge;
 
 } // end class

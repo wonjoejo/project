@@ -51,7 +51,7 @@ public class MemberMapperTests {
                  "01012345678",
                  "photo_name",
                  "photo_path",
-                 null, null
+                 null, null, null, null
 		);
 
 		this.mapper.insertMember(member);
@@ -73,7 +73,7 @@ public class MemberMapperTests {
                  "01023456789",
                  "edit_photo_name",
                  "edit_photo_path",
-                 null, null
+                 null, null, null, null
 		);
 		this.mapper.updateMember(member);
 		
