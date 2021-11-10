@@ -99,6 +99,13 @@ public class ProductController {
 
 	} // productInsert
 	
+	
+	@GetMapping("/insertview")	// 물품 작성페이지
+	public void productInsertView() {
+		log.debug("productInsertView() invoked.");		
+	} //productInsertView
+	
+	
 	@PostMapping("/edit")
 	public void productEdit(ProductDTO product, RedirectAttributes rttrs) {
 		log.debug("productEdit() invoked.");
