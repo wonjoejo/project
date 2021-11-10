@@ -63,7 +63,8 @@ public class ProductController {
 	
 	
 	@PostMapping("/insert")
-	public void productInsert(ProductDTO product, RedirectAttributes rttrs) {
+	public void productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
+
 		log.debug("productInsert() invoked.");
 		
 		ProductVO productVO = new ProductVO(
@@ -81,9 +82,22 @@ public class ProductController {
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
 
+		// Category insert
+		CategoryVO categoryVO = new CategoryVO(
+				null,
+				null,
+				productVO.getProduct_no(),
+				category.getCate_detail1(),
+				category.getCate_detail2(),
+				category.getCate_detail3(),
+				category.getCate_detail4(),
+				category.getCate_detail5()
+		);
+
+		boolean result2 = this.service.insertCategory(categoryVO);
+		log.info("\t+ category result2: {}", result2);
+
 	} // productInsert
-	
-	
 	
 	@PostMapping("/edit")
 	public void productEdit(ProductDTO product, RedirectAttributes rttrs) {
@@ -119,44 +133,5 @@ public class ProductController {
 
 	} // productDelete
 	
-
-	@PostMapping("/create")
-	public String create(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs){
-		log.debug("create({}) invoked", product);
-
-		ProductVO productVO = new ProductVO(
-				null,
-				product.getBox_no(),
-				product.getProduct_name(),
-				product.getProduct_memo(),
-				product.getProduct_qtn(),
-				product.getProduct_photo_name(),
-				product.getProduct_photo_path(),
-				product.getBarcode(),
-				null
-		);
-
-		boolean result = this.service.insertProduct(productVO);
-		log.info("\t+ result: {}", result);
-
-		// Category insert
-		CategoryVO categoryVO = new CategoryVO(
-				null,
-				null,
-				product.getProduct_no(),
-				category.getCate_detail1(),
-				category.getCate_detail2(),
-				category.getCate_detail3(),
-				category.getCate_detail4(),
-				category.getCate_detail5()
-
-		);
-
-		boolean result2 = this.service.insertCategory(categoryVO);
-		log.info("\t+ category result2: {}", result2);
-
-
-		return "/product/list";
-	}
 
 } // end class

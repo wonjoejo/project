@@ -102,13 +102,21 @@ public class ProductControllerTests {
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/insert");
 
         reqBuilder.param("product_no", "");
-        reqBuilder.param("box_no", "1005");
+        reqBuilder.param("box_no", "1339");
         reqBuilder.param("product_name","product_name");
         reqBuilder.param("product_memo","insertTest");
         reqBuilder.param("product_qtn","20");
         reqBuilder.param("product_photo_name","");
         reqBuilder.param("product_photo_path","");
         reqBuilder.param("barcode","");
+
+        // category insert
+        reqBuilder.param("product_no", "");
+        reqBuilder.param("cate_detail1", "주황색");
+        reqBuilder.param("cate_detail2", "");
+        reqBuilder.param("cate_detail3", "");
+        reqBuilder.param("cate_detail4", "");
+        reqBuilder.param("cate_detail5", "");
 
         String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
 
