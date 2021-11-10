@@ -19,3 +19,4 @@ public interface ProductService {
 	public abstract boolean deleteProduct(Integer product_no);
 
 } // ProductService
+

@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.ProductVO;
 
 public interface ProductMapper {
@@ -11,6 +12,8 @@ public interface ProductMapper {
 	public abstract ProductVO selectProduct(Integer product_no);
 
 	public abstract int insertProduct(ProductVO product);
+
+	public abstract int insertCategory(CategoryVO category);
 
 	public abstract int updateProduct(ProductVO product);
 
