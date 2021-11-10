@@ -37,11 +37,15 @@
     
 
 	<!-- insert -->
-    <insert id="insertProduct">
-        INSERT INTO PRODUCT (BOX_NO, PRODUCT_NAME, PRODUCT_MEMO, PRODUCT_QTN, 
+	<insert id="insertProduct">
+        <selectKey keyProperty="product_no" resultType="int" order="BEFORE">
+            SELECT PRODUCT_NO_SEQ.nextval FROM DUAL
+        </selectKey>
+
+        INSERT INTO PRODUCT (PRODUCT_NO, BOX_NO, PRODUCT_NAME, PRODUCT_MEMO, PRODUCT_QTN,
         PRODUCT_PHOTO_NAME, PRODUCT_PHOTO_PATH, BARCODE)
         
-        VALUES (#{box_no}, #{product_name}, #{product_memo}, #{product_qtn},
+        VALUES (#{product_no}, #{box_no}, #{product_name}, #{product_memo}, #{product_qtn},
         #{product_photo_name}, #{product_photo_path}, #{barcode})
     </insert>
 
