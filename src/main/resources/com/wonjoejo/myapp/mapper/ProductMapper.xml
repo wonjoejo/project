@@ -77,4 +77,19 @@
 
     </insert>
 
+    <!-- Category detail -->
+    <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.CategoryVO">
+
+        <![CDATA[
+
+            SELECT
+            /*+ index_desc(CATEGORY) */
+            *
+            FROM CATEGORY
+            WHERE product_no = #{product_no}
+
+        ]]>
+
+    </select>
+
 </mapper>
