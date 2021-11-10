@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!DOCTYPE html>
 <html>
 <head>
-	<title>ProducEdit</title>
+<meta charset="UTF-8">
+<title>myPage.jsp</title>
 </head>
 <body>
-<h1>
-	ProducEdit
-</h1>
-
-<p>물품 수정하기~</p>
-
-
+	 <h1>/WEB-INF/views/member/myPage.jsp</h1>
 </body>
 </html>

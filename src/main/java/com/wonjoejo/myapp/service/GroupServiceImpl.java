@@ -31,7 +31,7 @@ public class GroupServiceImpl implements GroupService{
 		
 		list.forEach(log::info);
 		
-		return null;
+		return list;
 	}//selectGroupMemberList
 	
 
@@ -43,7 +43,7 @@ public class GroupServiceImpl implements GroupService{
 		
 		list.forEach(log::info);
 		
-		return null;
+		return list;
 	}//selectGroupPermissionList
 
 	//그룹원 초대

@@ -54,7 +54,7 @@ public class MemberServiceTests {
                 "01012345678",
                 "photo_name",
                 "photo_path",
-                null, null
+                null, null, null, null
         );
 
         boolean isSuccess = this.service.register(member);
@@ -79,7 +79,7 @@ public class MemberServiceTests {
                  "01023456789",
                  "edit_photo_name",
                  "edit_photo_path",
-                 null, null
+                 null, null, null, null
          );
 
         boolean isSuccess = this.service.editMember(member);

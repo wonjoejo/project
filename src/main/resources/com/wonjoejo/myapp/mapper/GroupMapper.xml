@@ -58,7 +58,7 @@
 	<update id="deleteMember">
 		UPDATE BOX_PERMISSION SET
 		MEMBER_STAT= #{member_stat}
-		WHERE MEMBER_ID = #{member_id}
+		WHERE BOX_NO = #{box_no} AND MEMBER_ID= #{member_id}
 	</update>
 
 

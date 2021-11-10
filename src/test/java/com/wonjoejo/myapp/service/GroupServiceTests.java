@@ -43,13 +43,47 @@ public class GroupServiceTests {
 	@Test(timeout=1000) 
 	public void testselectGroupMemberList() {
 		
-		log.debug("selectGroupMemberList() invoked.");
-		
+		log.debug("testselectGroupMemberList() invoked.");
+		Integer box_no = 1097;
 
+		List<MemberVO> list = this.service.selectGroupMemberList(box_no);
+		
+		
+		list.forEach(log::info);
 		
 	}// selectGroupMemberList
+	
+	//그룹 권한 리스트
+	@Test(timeout=1000) 
+	public void testselectGroupPermissionList() {
 
+		log.debug("testselectGroupPermissionList() invoked.");
+		Integer box_no = 1098;
+		
+
+		List<BoxPermissionVO> list = this.service.selectGroupPermissionList(box_no);
+		list.forEach(log::info);
+	}
 	//그룹 가입 
+	@Test(timeout=1000)
+	public void testjoinGroup(){
+		log.debug("testjoinGroup() invoked.");
+		
+		BoxPermissionVO boxPermission = new BoxPermissionVO(
+				null,
+				"MEMBERid95",
+				1097,
+				1,
+				1,
+				0,
+				1,
+				1,
+				0		
+		);
+		
+		boolean isSuccess = this.service.joinGroup(boxPermission);
+        log.info("Box created successfully: {}",isSuccess);
+	}//testjoinGroup
 	
 	//그룹 권한 설정
 	@Test(timeout=1000)
@@ -73,7 +107,7 @@ public class GroupServiceTests {
 		log.info("Group permission successfully: {}", isSuccess);
 	}
 	// 그룹 탈퇴
-	@Test(timeout=1000)
+	@Test(timeout=3000)
 	public void testoutGroup() {
 		log.debug("testoutGroup() invoked.");
 		
@@ -81,12 +115,12 @@ public class GroupServiceTests {
 				1,
 				"MEMBERid98",
 				1097,
-				1,
-				1,
-				1,
-				1,
-				1,
-				1
+				0,
+				0,
+				0,
+			0,
+				0,
+				0
 				);
 
 		boolean isSuccess = this.service.outGroup(boxPermission);

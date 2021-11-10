@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>listPerPage.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-	<h1>/WEB-INF/views/board/listPerPage.jsp</h1>
 
 </body>
 </html>
