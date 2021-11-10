@@ -65,8 +65,8 @@ public class GroupController {
 		
 		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
 				null,
-				boxPermission.getBox_no(), 
 				boxPermission.getMember_id(),
+				boxPermission.getBox_no(), 
 				boxPermission.getMaster_per(), 
 				boxPermission.getWrite_per(), 
 				boxPermission.getRead_per(),
@@ -90,8 +90,8 @@ public class GroupController {
 		
 		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
 				boxPermission.getNo(),
-				boxPermission.getBox_no(), 
 				boxPermission.getMember_id(),
+				boxPermission.getBox_no(), 
 				boxPermission.getMaster_per(), 
 				boxPermission.getWrite_per(), 
 				boxPermission.getRead_per(),
@@ -115,8 +115,8 @@ public class GroupController {
 		
 		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
 				boxPermission.getNo(),
-				boxPermission.getBox_no(), 
 				boxPermission.getMember_id(),
+				boxPermission.getBox_no(), 
 				boxPermission.getMaster_per(), 
 				boxPermission.getWrite_per(), 
 				boxPermission.getRead_per(),

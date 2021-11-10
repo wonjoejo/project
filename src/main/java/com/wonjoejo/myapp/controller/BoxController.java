@@ -159,8 +159,8 @@ public class BoxController {
       		// 박스 마스터권한 부여
 		BoxPermissionVO permissionVo = new BoxPermissionVO(
 				null,
-				boxVO.getBox_no(),
 				boxVO.getMember_id(),
+				boxVO.getBox_no(),
 				0,
 				0,
 				0,
