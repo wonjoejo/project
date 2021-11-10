@@ -87,6 +87,7 @@ body {
 .box-wrapper {
 	display: flex;
 	justify-content: center;
+	align-content: center;
 }
 
 .box-container {
@@ -138,8 +139,6 @@ body {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 }
-
-
 
 .box img {
 	width: 70%;
@@ -257,7 +256,8 @@ textarea {
 .buttons {
 	display: flex;
 	justify-content: flex-end;
-	margin: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
 }
 
 /* Float */
