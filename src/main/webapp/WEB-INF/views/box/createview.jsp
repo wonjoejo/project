@@ -40,7 +40,7 @@
 
                     <div class="box-photos">
                         <div class="product-photo">
-                        <input type="file" name="box-photo">
+                        <input type="file" name="box-photo" id="box-photo">
                         </div>
                         <div class="photos">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/logo2.png">
@@ -87,4 +87,5 @@
 
 </div>
 </body>
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js"></script>
 </html>
