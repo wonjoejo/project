@@ -77,6 +77,20 @@
 
     </insert>
 
+    <!-- Category 수정-->
+    <update id="updateCategory">
+
+        UPDATE CATEGORY SET
+        CATE_DETAIL1 = #{cate_detail1},
+        CATE_DETAIL2 = #{cate_detail2},
+        CATE_DETAIL3 = #{cate_detail3},
+        CATE_DETAIL4 = #{cate_detail4},
+        CATE_DETAIL5 = #{cate_detail5}
+        WHERE PRODUCT_NO = #{product_no}
+
+    </update>
+
+
     <!-- Category detail -->
     <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.CategoryVO">
 
@@ -91,5 +105,22 @@
         ]]>
 
     </select>
+
+    <!-- BaseCategory detail-->
+    <select id="selectBaseCategory" resultType="com.wonjoejo.myapp.domain.BaseCategoryVO">
+
+        <![CDATA[
+
+            SELECT
+            /*+ index_desc(BASE_CATEGORY) */
+            *
+            FROM BASE_CATEGORY
+            WHERE box_no = #{box_no}
+
+        ]]>
+
+    </select>
+
+
 
 </mapper>

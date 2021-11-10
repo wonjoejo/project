@@ -23,7 +23,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class BaseCategoryTests {
+public class BaseCategoryMapperTests {
 
     @Setter(onMethod_= { @Autowired } )
     private BaseCategoryMapper mapper;

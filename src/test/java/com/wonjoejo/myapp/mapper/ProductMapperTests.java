@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,10 +60,16 @@ public class ProductMapperTests {
 		Integer product_no = 352;
 		
 		ProductVO product = this.mapper.selectProduct(product_no);
-		log.info("{}번 물품 조회: ", product_no, product.getProduct_name());
+		log.info("{}번 물품 조회: {}", product_no, product);
 
+		// Category Detail
 		CategoryVO category = this.mapper.selectCategory(product_no);
 		log.info("\t+ Category: {}" , category);
+
+		// BaseCategory Detail
+		Integer box_no = 1331;
+		BaseCategoryVO baseCategory = this.mapper.selectBaseCategory(box_no);
+		log.info("\t+ BaseCategory: {}", baseCategory);
 		
 	} // testProductDetail
 	
@@ -113,10 +120,10 @@ public class ProductMapperTests {
 	public void testProductEdit() {
 		log.debug("testProductEdit() invoked.");
 		
-		Integer product_no = 302;
+		Integer product_no = 358;
 		Integer box_no = null;
-		String product_name = "update_test";
-		String product_memo = "productMemo";
+		String product_name = "지현update";
+		String product_memo = "지현update";
 		Integer product_qtn = 100;
 		
 		ProductVO product = new ProductVO(
@@ -125,11 +132,28 @@ public class ProductMapperTests {
 				product_name,
 				product_memo,
 				product_qtn,
-				null, null, null, null				
-				);
+				null,
+				null,
+				null,
+				null
+		);
 		
 		this.mapper.updateProduct(product);
 		log.info("\t+ product: {}",product);
+
+		CategoryVO category = new CategoryVO(
+			null,
+				null,
+				product_no,
+				"지현edit",
+				"지현edit",
+				"지현edit",
+				"지현edit",
+				"지현edit"
+		);
+
+		this.mapper.updateCategory(category);
+		log.info("\t+ category: {}", category);
 		
 	} // testProductEdit
 	

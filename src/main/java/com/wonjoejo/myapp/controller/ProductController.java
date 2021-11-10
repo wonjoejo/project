@@ -2,9 +2,7 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.CategoryDTO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.ProductDTO;
+import com.wonjoejo.myapp.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wonjoejo.myapp.domain.ProductDTO;
-import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.service.ProductService;
 
 import lombok.NoArgsConstructor;
@@ -46,24 +43,31 @@ public class ProductController {
 
 	} // ProductList
 
-	@GetMapping("/detail")
-	public void productDetail(Model model) {
+	@GetMapping({"/detail", "/edit"})
+	public void productDetail(Integer product_no, Integer box_no, Model model) {
 		log.debug("productDetail() invoked.");
-		
-		Integer product_no = 6;
 
-		ProductVO product = this.service.getProduct(product_no);				
-
+		ProductVO product = this.service.getProduct(product_no);
 		log.info("\t+ 물품이름: {}", product.getProduct_name());
 
-		model.addAttribute("product",product);		
+		model.addAttribute("product", product);
+
+		// Category Detail
+		CategoryVO category = this.service.getCategory(product_no);
+		log.info("\t+ category: {}" , category);
+		model.addAttribute("category", category);
+
+		// BaseCategory Detail
+		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}", baseCategory);
+		model.addAttribute("baseCategory", baseCategory);
 
 	} // productDetail
 	
 	
 	
 	@PostMapping("/insert")
-	public void productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
+	public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
 
 		log.debug("productInsert() invoked.");
 		
@@ -81,6 +85,7 @@ public class ProductController {
 
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
+		rttrs.addAttribute("result", result);
 
 		// Category insert
 		CategoryVO categoryVO = new CategoryVO(
@@ -96,18 +101,26 @@ public class ProductController {
 
 		boolean result2 = this.service.insertCategory(categoryVO);
 		log.info("\t+ category result2: {}", result2);
+		rttrs.addAttribute("result2", result2);
 
+		return "/product/list";
 	} // productInsert
 	
 	
 	@GetMapping("/insertview")	// 물품 작성페이지
-	public void productInsertView() {
-		log.debug("productInsertView() invoked.");		
+	public void productInsertView(Integer box_no, Model model) {
+		log.debug("productInsertView() invoked.");
+
+		// BaseCategory Detail
+		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}", baseCategory);
+		model.addAttribute("baseCategory", baseCategory);
+
 	} //productInsertView
 	
 	
 	@PostMapping("/edit")
-	public void productEdit(ProductDTO product, RedirectAttributes rttrs) {
+	public String productEdit(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
 		log.debug("productEdit() invoked.");
 		
 		ProductVO productVO = new ProductVO(
@@ -125,6 +138,24 @@ public class ProductController {
         boolean result = this.service.editProduct(productVO);
         log.info("\t +result: {}", result);
 
+		// Category 수정
+		CategoryVO categoryVO = new CategoryVO(
+				category.getIdx(),
+				category.getCategory_no(),
+				category.getProduct_no(),
+				category.getCate_detail1(),
+				category.getCate_detail2(),
+				category.getCate_detail3(),
+				category.getCate_detail4(),
+				category.getCate_detail5()
+		);
+
+		boolean result2 = this.service.editCategory(categoryVO);
+		log.info("\t+ result2 : {}",result2);
+		rttrs.addAttribute("product_no" , product.getProduct_no());
+		rttrs.addAttribute("box_no" , product.getBox_no());
+
+		return "redirect:/product/detail";
 	} // productEdit
 	
 	

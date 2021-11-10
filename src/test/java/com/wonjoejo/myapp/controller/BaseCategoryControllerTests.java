@@ -29,7 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
         "file:src/main/webapp/WEB-INF/spring/root-context.xml",
         "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
 })
-public class BaseCategoryTests {
+public class BaseCategoryControllerTests {
 
     @Setter(onMethod_={@Autowired})
     private WebApplicationContext ctx;

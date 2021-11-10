@@ -12,20 +12,24 @@ public interface ProductMapper {
 
 	public abstract ProductVO selectProduct(Integer product_no);
 
-	public abstract int insertProduct(ProductVO product);
+	public abstract Integer insertProduct(ProductVO product);
 
-	public abstract int updateProduct(ProductVO product);
+	public abstract Integer updateProduct(ProductVO product);
 
-	public abstract int deleteProduct(Integer product_no);
+	public abstract Integer deleteProduct(Integer product_no);
 
 	// category insert
-	public abstract int insertCategory(CategoryVO category);
+	public abstract Integer insertCategory(CategoryVO category);
+
+	// category update
+	public abstract Integer updateCategory(CategoryVO category);
 
 	// category detail
 	public abstract CategoryVO selectCategory(Integer product_no);
 
 	// baseCategory detail
 	public abstract BaseCategoryVO selectBaseCategory(Integer box_no);
+
 
 
 } // end interface
