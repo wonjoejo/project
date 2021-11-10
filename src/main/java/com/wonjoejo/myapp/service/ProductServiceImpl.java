@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.CategoryVO;
 import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -87,5 +88,20 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 		return affectedLines == 1;
 	} // deleteProduct
-	
-}
+
+
+	// category insert
+	@Override
+	public boolean insertCategory(CategoryVO category) {
+		log.debug("insertCategory({}) invoked.", category);
+
+		int affectedLines = this.mapper.insertCategory(category);
+
+		return affectedLines == 1;
+	} // end insertCategory
+
+
+
+
+
+} // end class

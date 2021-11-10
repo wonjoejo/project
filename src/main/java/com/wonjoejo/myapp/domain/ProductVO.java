@@ -19,7 +19,6 @@ public class ProductVO {
     
 	public ProductVO(Integer product_no, Integer box_no, String product_name, String product_memo, Integer product_qtn,
 			String product_photo_name, String product_photo_path, Integer barcode, Date reg_date) {
-		super();
 		this.product_no = product_no;
 		this.box_no = box_no;
 		this.product_name = product_name;
