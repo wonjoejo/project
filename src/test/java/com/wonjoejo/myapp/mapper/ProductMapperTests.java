@@ -68,8 +68,7 @@ public class ProductMapperTests {
 	public void testProductInsert() {
 		log.debug("testProductInsert() invoked.");
 		
-
-		Integer box_no = 1311;
+		Integer box_no = 1330;
 		String product_name = "productInsert";
 		String product_memo = "productMemo";
 		Integer product_qtn = 2;
@@ -80,26 +79,29 @@ public class ProductMapperTests {
 				product_name,
 				product_memo,
 				product_qtn,
-				null, null, null, null				
-				);
+				null,
+				null,
+				null,
+				null
+		);
 		
 		this.mapper.insertProduct(product);
+		log.info("\t+ product: {}",product);
 
+		// Category insert
 		CategoryVO category = new CategoryVO(
 				null,
 				null,
 				product.getProduct_no(),
-				"detail",
-				"detail",
+				"빨간색",
+				"Small",
 				null,
 				null,
 				null
 		);
 
 		this.mapper.insertCategory(category);
-
-		log.info("\t+ product: {}",product);
-		log.info("\t+ category: {}",category);
+		log.info("\t+ category: {}", category);
 		
 	} // testProductInsert
 	

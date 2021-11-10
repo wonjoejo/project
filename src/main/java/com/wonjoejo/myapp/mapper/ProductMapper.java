@@ -19,4 +19,9 @@ public interface ProductMapper {
 
 	public abstract int deleteProduct(Integer product_no);
 
+	// category insert
+	public abstract int insertCategory(CategoryVO category);
+
+
+
 } // end interface

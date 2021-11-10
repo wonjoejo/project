@@ -16,6 +16,7 @@ public interface BoxMapper {
 
 	public abstract int deleteBox(Integer box_no);
 
+	// BaseCategory insert
 	public abstract int insertCategory(BaseCategoryVO baseCategory);
 
 	public abstract int insertMasterPermission(BoxPermissionVO boxPermission);

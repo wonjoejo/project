@@ -1,6 +1,7 @@
 package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.ProductVO;
 
 import lombok.NoArgsConstructor;
@@ -74,7 +75,7 @@ public class ProductServiceTests {
     public void testProductInsert() {
         log.debug("testProductInsert() invoked.");
 
-		Integer box_no = 1005;
+		Integer box_no = 1339;
 		String product_name = "productInsert";
 		String product_memo = "productMemo";
 		Integer product_qtn = 2;
@@ -90,6 +91,23 @@ public class ProductServiceTests {
 
         boolean isSuccess = this.service.insertProduct(product);
         log.info("Product created successfully: {}",isSuccess);
+
+        // category insert
+
+        CategoryVO category = new CategoryVO(
+                null,
+                null,
+                product.getProduct_no(),
+                "빨간색",
+                "Small",
+                null,
+                null,
+                null
+        );
+
+        boolean isSuccess2 = this.service.insertCategory(category);
+        log.info("Category inserted Successfully: {}", isSuccess2) ;
+
 
     } // testProductInsert
     
