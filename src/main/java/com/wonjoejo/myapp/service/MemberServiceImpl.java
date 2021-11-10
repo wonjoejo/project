@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +41,32 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
     public MemberVO login(LoginDTO dto) throws Exception {
     	log.debug("login({}) invoked.", dto);
 		
-		MemberVO member=this.mapper.loginMember(dto);
+		MemberVO member=this.mapper.selectMember(dto);
 		log.info("\t+ member: {}", member);
     	
     	return member;
     }
+   
+    // 자동 로그인
+	@Override
+	public MemberVO findMemberByRemberMe(String rememberMe) throws Exception {
+		log.debug("findMemberByRemberMe({}) invoked.", rememberMe);
+		
+		MemberVO member=this.mapper.selectMemberWithRemberMe(rememberMe);
+		log.info("\t+ member: {}", member);
+    	
+    	return member;
+	}
+	
+	@Override
+	public boolean editMemberWithRememberMe(String member_id, String rememberMe, Date rememberAge) throws Exception {
+		log.debug("editMemberWithRememberMe({}, {}, {}) invoked.", member_id, rememberMe, rememberAge);
+		
+		int affectedRows=this.mapper.updateMemberWithRememberMe(member_id, rememberMe, rememberAge);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;
+	}
     
     // 아이디 찾기
     @Override

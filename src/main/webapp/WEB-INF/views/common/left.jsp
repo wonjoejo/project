@@ -34,7 +34,7 @@
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/box/createview"><i class="far fa-plus-square"></i> 박스 생성</a></span>
         <span class="menu-item inactive"><a href="#"><i class="far fa-envelope"></i> 박스 참여</a></span>
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/board/list"><i class="far fa-question-circle"></i> Q&A</a></span>
-        <span class="menu-item inactive"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
+        <span class="menu-item inactive"><a href="/member/logout"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
     </div>
 </div>
 
