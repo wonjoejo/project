@@ -21,6 +21,7 @@ public interface GroupService {
 	
 	//그룹원 탈퇴 
 	public abstract boolean outGroup(BoxPermissionVO boxPermission);
+
 	
 	
 }

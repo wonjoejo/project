@@ -108,8 +108,8 @@ public class BoxMapperTests {
 
 		BoxPermissionVO vo = new BoxPermissionVO(
 				null,
-				box.getBox_no(),
 				box.getMember_id(),
+				box.getBox_no(),
 				0,
 				0,
 				0,
