@@ -50,12 +50,16 @@
                     </div>
 
                     <div class="inputs">
-                    이름
-                    <input type="text" name="name">
+                        <div class="input-container">
+                        <div class="box-name">
+                        <span class="label">박스 이름</span>
+                    <input type="text" name="name" placeholder="박스 이름을 입력해 주세요">
+                        </div>
                     <%--<c:if> 문 써서 기업회원인지 확인 후, 개인 회원일 경우에만 박스 모드 선택 노출--%>
-                    박스 모드
-                    <select class="form-select">
-                        <option selected>모드를 선택하세요</option>
+                        <div class="box-mode">
+                        <span class="label">박스 모드</span>
+                    <select class="mode-select">
+                        <option selected disabled>모드를 선택하세요</option>
                         <option value="1">식품</option>
                         <option value="2">화장품</option>
                         <option value="3">의약품</option>
@@ -63,8 +67,10 @@
                         <option value="5">굿즈</option>
                         <option value="6">기타</option>
                     </select>
-                    박스 메모
-                    <textarea rows="5" cols="10" name="memo"></textarea>
+                        </div>
+                        </div>
+                        <span class="label">박스 메모</span>
+                    <textarea rows="5" cols="10" name="memo" placeholder="박스의 간단한 설명을 입력해 주세요"></textarea>
                     </div>
             </div>
 

@@ -18,6 +18,7 @@ public interface BoxService {
 
 	public abstract Integer getTotal();
 
+	// BaseCategory insert
 	public abstract boolean insertCategory(BaseCategoryVO baseCategory);
 
 	public abstract boolean grantMasterPermission(BoxPermissionVO boxPermission);

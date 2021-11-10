@@ -1,6 +1,7 @@
 package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.ProductVO;
 
 import lombok.NoArgsConstructor;
@@ -41,7 +42,7 @@ public class ProductServiceTests {
     } // setup
 
     
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 박스번호로 물품 리스트 조회
     public void testGetBoxList() {
     	log.debug("testProductxList() invoked.");
 
@@ -54,7 +55,7 @@ public class ProductServiceTests {
     } // testGetBoxList
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 물품번호의 물품 상세조회
     public void testProductDetail() {
 
         log.debug("testProductDetail() invoked.");
@@ -70,11 +71,11 @@ public class ProductServiceTests {
     
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 정보로 물품 등록
     public void testProductInsert() {
         log.debug("testProductInsert() invoked.");
 
-		Integer box_no = 1005;
+		Integer box_no = 1339;
 		String product_name = "productInsert";
 		String product_memo = "productMemo";
 		Integer product_qtn = 2;
@@ -91,11 +92,28 @@ public class ProductServiceTests {
         boolean isSuccess = this.service.insertProduct(product);
         log.info("Product created successfully: {}",isSuccess);
 
+        // category insert
+
+        CategoryVO category = new CategoryVO(
+                null,
+                null,
+                product.getProduct_no(),
+                "빨간색",
+                "Small",
+                null,
+                null,
+                null
+        );
+
+        boolean isSuccess2 = this.service.insertCategory(category);
+        log.info("Category inserted Successfully: {}", isSuccess2) ;
+
+
     } // testProductInsert
     
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 물품번호의 물품 정보 수정
     public void testProductEdit() {
         log.debug("testProductEdit() invoked");
 
@@ -120,11 +138,11 @@ public class ProductServiceTests {
     
     
 
-    @Test(timeout=1000)
+    @Test(timeout=1000)	// 해당 물품번호의 물품 삭제
     public void testProductDelete() {
         log.debug("testProductDelete() invoked.");
 
-        Integer product_no = 316;
+        Integer product_no = 307;
         boolean isSuccess = this.service.deleteProduct(product_no);
 
         log.info("Product deleted successfully: {}",isSuccess);

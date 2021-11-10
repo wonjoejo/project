@@ -3,6 +3,7 @@ package com.wonjoejo.myapp.service;
 import java.util.List;
 
 import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.ProductVO;
 
 public interface ProductService {
@@ -18,4 +19,8 @@ public interface ProductService {
 
 	public abstract boolean deleteProduct(Integer product_no);
 
+	// Category insert
+	public abstract boolean insertCategory(CategoryVO category);
+
 } // ProductService
+

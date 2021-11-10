@@ -13,7 +13,7 @@
 
 <p>6번 물품 세부정보~</p>
 
-이열 매퍼xml에 오류있당 ㅎㅎ
+${product}
 
 <c:forEach items="${list}" var="product">
 	${product}

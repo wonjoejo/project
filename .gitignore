@@ -1,41 +1,16 @@
 
 target/
 
-.DS_Store
-
-.classpath
-
-.factorypath
-
-.project
-
-.idea/
+pom.xml
 
 .settings/
 
-bin/
+.idea/
 
-.tern-project
+src/main/java/com/wonjoejo/myapp/mapper/.DS_Store
 
-src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+src/.DS_Store
 
-src/main/webapp/WEB-INF/spring/root-context.xml
+src/main/.DS_Store
 
-src/main/webapp/WEB-INF/spring/
-
-myapp.iml
-
-src/main/webapp/META-INF/MANIFEST.MF
-
-src/main/webapp/WEB-INF/spring/
-
-src/main/webapp/WEB-INF/classes/
-
-src/main/webapp/WEB-INF/lib/
-
-pom.xml
-
-*.prefs
-
-src/main/webapp/META-INF/
-
+.DS_Store

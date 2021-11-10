@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.wonjoejo.myapp.domain.BoardDTO;
 import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
+import com.wonjoejo.myapp.domain.PageDTO;
 import com.wonjoejo.myapp.service.BoardService;
 
 import lombok.NoArgsConstructor;
@@ -33,17 +34,43 @@ public class BoardController {
     private BoardService service;
 
    // 게시판 목록화면 요청
-    @GetMapping("/list")
-    public void list(Model model){
-    	
-        log.debug("list() invoked.");
-
-        List<BoardVO> list = this.service.getList();
-        log.info("\t+ list size{}",list.size());
-
-        model.addAttribute("list",list);
-        
-    }//list
+//    @GetMapping("/list")
+//    public void list(Model model){
+//    	
+//        log.debug("list() invoked.");
+//
+//        List<BoardVO> list = this.service.getList();
+//        log.info("\t+ list size{}",list.size());
+//
+//        model.addAttribute("list",list);
+//        
+//    }//list
+    
+    // 페이징 처리된 게시판 목록화면 요청 
+ 	@GetMapping("/listPerPage")
+ 	public String listPerPage(
+ 			@ModelAttribute("cri") Criteria cri, 
+ 			Model model) {	
+ 		log.debug("listPerPage({}) invoked.",model);
+ 		
+ 		//비지니스 로직 처리 결과 데이터 --> Model 이라고 부른다.
+ 		List<BoardVO> list = this.service.getListPerPage(cri);
+ 		log.info("\t+ list size:{}",list.size());
+ 		
+ 		model.addAttribute("list",list);
+ 		
+ 		//--------------------------------------------//
+ 		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
+ 		//--------------------------------------------//
+ 		Integer totalAmount = this.service.getTotal();
+ 		
+ 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+ 		
+ 		model.addAttribute("pageMaker",pageDTO);
+ 		
+ 		//list.jsp 그대로 사용 
+ 		return "/board/list";
+ 	}//listPerPage
     
     //특정 게시물 상세조회 화면 요청 
     @GetMapping("/detail")

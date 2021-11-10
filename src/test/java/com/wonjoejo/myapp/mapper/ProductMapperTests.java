@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.CategoryVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,7 +68,7 @@ public class ProductMapperTests {
 	public void testProductInsert() {
 		log.debug("testProductInsert() invoked.");
 		
-		Integer box_no = 1005;
+		Integer box_no = 1330;
 		String product_name = "productInsert";
 		String product_memo = "productMemo";
 		Integer product_qtn = 2;
@@ -78,11 +79,29 @@ public class ProductMapperTests {
 				product_name,
 				product_memo,
 				product_qtn,
-				null, null, null, null				
-				);
+				null,
+				null,
+				null,
+				null
+		);
 		
 		this.mapper.insertProduct(product);
 		log.info("\t+ product: {}",product);
+
+		// Category insert
+		CategoryVO category = new CategoryVO(
+				null,
+				null,
+				product.getProduct_no(),
+				"빨간색",
+				"Small",
+				null,
+				null,
+				null
+		);
+
+		this.mapper.insertCategory(category);
+		log.info("\t+ category: {}", category);
 		
 	} // testProductInsert
 	

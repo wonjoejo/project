@@ -19,6 +19,7 @@ public class MemberVO {
     private Date reg_date;
     private String rememberMe;
     private Date rememberAge;
+
 	
     public MemberVO(String member_id, Integer member_type, Integer member_status, String name, String password,
 			String email, String phone_number, String photo_name, String photo_path, String company_name,
@@ -38,6 +39,8 @@ public class MemberVO {
 		this.rememberMe = rememberMe;
 		this.rememberAge = rememberAge;
 	}
+	
+
     
     
 } // end class

@@ -7,34 +7,33 @@
 	<!--그룹원 목록  -->
 	<select id="selectGroupMemberList" resultType="com.wonjoejo.myapp.domain.MemberVO">
 		<![CDATA[
+	
+		SELECT 
+		*
+		FROM MEMBER m
+		INNER JOIN BOX_PERMISSION p ON p.member_id = m.member_id
+		WHERE p.BOX_NO = #{box_no}
 		
-			 SELECT member.member_id, MEMBER.NAME, MEMBER.PHONE_NUMBER
- 			 FROM MEMBER, BOX
-			 WHERE BOX.MEMBER_ID = MEMBER.MEMBER_ID AND BOX_NO = #{BOX_NO}
- 
 		]]>	
 	
 	</select>
 	
 	<!--그룹원 권한 조회  -->
 	
-		<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO">
+		<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO" >
 		<![CDATA[
 		
 			 SELECT 
 			 *
 			 FROM BOX_PERMISSION
-			 WHERE BOX_NO = #{BOX_NO}
+			 WHERE BOX_NO = #{box_no}
 		]]>	
 	
 	</select>
 
 	<!--그룹 가입-->
 	<insert id="insertMember"> 
-		 <selectKey keyProperty="no" resultType="int" order="BEFORE">
-            SELECT NO_SEQ.nextval FROM DUAL
-        </selectKey>
-	
+
 		INSERT INTO BOX_PERMISSION(NO, BOX_NO, MEMBER_ID, MASTER_PER, WRITE_PER, READ_PER, EDIT_PER, DELETE_PER,MEMBER_STAT)
 		VALUES (#{no}, #{box_no}, #{member_id}, #{master_per}, #{write_per}, #{read_per}, #{edit_per}, #{delete_per}, #{member_stat})
 		
@@ -43,27 +42,24 @@
 
 	<!--그룹 권한 변경-->
 	<update id="updateMember">
-		UPDATE BOX_PERMISSION
-		MEMBER_ID = #{MEMBER_ID},
-		MASTER_PER = #{MASTER_PER},
-		WRITE_PER = #{WRITE_PER},
-		READ_PER = #{READ_PER},
-		EDIT_PER = #{EDIT_PER},
-		DELETE_PER = #{DELETE_PER}
-		WHERE BOX_NO = #{box_no}	
+		UPDATE BOX_PERMISSION SET
+		MASTER_PER = #{master_per},
+		WRITE_PER = #{write_per},
+		READ_PER = #{read_per},
+		EDIT_PER = #{edit_per},
+		DELETE_PER = #{delete_per},
+		MEMBER_STAT = #{member_stat}
+		WHERE BOX_NO = #{box_no} AND MEMBER_ID= #{member_id}
 	</update>	
-	
 	
 	
 	
 	<!-- 그룹 탈퇴 -->
 	<update id="deleteMember">
-		UPDATE BOX_PERMISSION
-		MEMBER_STAT= #{MEMBER_STAT}
-		WHERE MAMBER_ID = #{member_id}
+		UPDATE BOX_PERMISSION SET
+		MEMBER_STAT= #{member_stat}
+		WHERE MEMBER_ID = #{member_id}
 	</update>
-
-
 
 
 
