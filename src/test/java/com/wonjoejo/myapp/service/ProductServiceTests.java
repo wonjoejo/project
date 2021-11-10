@@ -1,5 +1,6 @@
 package com.wonjoejo.myapp.service;
 
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.ProductVO;
@@ -60,12 +61,23 @@ public class ProductServiceTests {
 
         log.debug("testProductDetail() invoked.");
 
-        Integer product_no = 6;
+        Integer product_no = 352;
 		ProductVO product = this.service.getProduct(product_no);
 		log.info("{}번 물품 조회: ", product_no, product.getProduct_name());
 
         assert product != null;
         log.info("\t+ product: {}",product);
+
+        // Category Detail
+        CategoryVO category = this.service.getCategory(product_no);
+        assert category != null;
+        log.info("\t+ Category: {}", category);
+
+        // BaseCategory Detail
+        Integer box_no = 1331;
+        BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+        assert baseCategory != null;
+        log.info("\t+ baseCategory : {}", baseCategory);
 
     } // testProductDetail
     
@@ -117,10 +129,10 @@ public class ProductServiceTests {
     public void testProductEdit() {
         log.debug("testProductEdit() invoked");
 
-		Integer product_no = 302;
+		Integer product_no = 358;
 		Integer box_no = null;
-		String product_name = "update_test12345";
-		String product_memo = "productMemo";
+		String product_name = "지현edit";
+		String product_memo = "edit";
 		Integer product_qtn = 100;
 		
 		ProductVO product = new ProductVO(
@@ -129,11 +141,28 @@ public class ProductServiceTests {
 				product_name,
 				product_memo,
 				product_qtn,
-				null, null, null, null				
-				);
+				null,
+                null,
+                null,
+                null
+        );
 
         boolean isSuccess = this.service.editProduct(product);
-        log.info("product edited successfully: {}",isSuccess);
+        log.info("product edited successfully: {}", isSuccess);
+
+        CategoryVO category = new CategoryVO(
+            null,
+            null,
+            product_no,
+            "지현update",
+            "지현update",
+            "지현update",
+            "지현update",
+            null
+        );
+
+        boolean isSuccess2 = this.service.editCategory(category);
+        log.info("Category edited successfully : {}", isSuccess2);
     } // testProductEdit
     
     

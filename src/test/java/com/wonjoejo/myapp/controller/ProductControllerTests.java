@@ -78,15 +78,12 @@ public class ProductControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/product/detail");
 
-        reqBuilder.param("product_no", "6");
+        reqBuilder.param("product_no", "352");
+        // BaseCategory Detail
+        reqBuilder.param("box_no", "1331");
 
-        ModelMap modelMap = Objects.requireNonNull(mockMvc.
-                        perform(reqBuilder).
-                        andReturn().
-                        getModelAndView()).
-                getModelMap();
-
-        modelMap.forEach(log::info);
+        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+        log.info("\t viewName : {}", viewName);
 
     } // testProductDetail
     
@@ -134,7 +131,7 @@ public class ProductControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/edit");
 
-        reqBuilder.param("product_no", "354");
+        reqBuilder.param("product_no", "358");
         reqBuilder.param("box_no", "");
         reqBuilder.param("product_name","editeditedit");
         reqBuilder.param("product_memo","memomemo");
@@ -142,6 +139,15 @@ public class ProductControllerTests {
         reqBuilder.param("product_photo_name","");
         reqBuilder.param("product_photo_path","");
         reqBuilder.param("barcode","");
+
+        reqBuilder.param("idx", "");
+        reqBuilder.param("category_no", "");
+        reqBuilder.param("product_no", "358");
+        reqBuilder.param("cate_detail1", "지현edit");
+        reqBuilder.param("cate_detail2", "edit");
+        reqBuilder.param("cate_detail3", "edit");
+        reqBuilder.param("cate_detail4", "edit");
+        reqBuilder.param("cate_detail5", "지현edit");
 
         String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
 

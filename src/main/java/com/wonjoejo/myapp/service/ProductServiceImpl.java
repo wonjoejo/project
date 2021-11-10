@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
@@ -61,7 +62,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	
 
 	@Override
-	public boolean insertProduct(ProductVO product) {
+	public Boolean insertProduct(ProductVO product) {
 		log.debug("createProduct({}) invoked", product);
 
 		int affectedLines = this.mapper.insertProduct(product);
@@ -71,7 +72,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	
 
 	@Override
-	public boolean editProduct(ProductVO product) {
+	public Boolean editProduct(ProductVO product) {
 		log.debug("editProduct({}) invoked", product);
 
 		int affectedLines = this.mapper.updateProduct(product);
@@ -81,7 +82,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 	
 	@Override
-	public boolean deleteProduct(Integer product_no) {
+	public Boolean deleteProduct(Integer product_no) {
 		log.debug("deleteProduct({}) invoked",product_no);
 
 		int affectedLines = this.mapper.deleteProduct(product_no);
@@ -92,13 +93,46 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 	// category insert
 	@Override
-	public boolean insertCategory(CategoryVO category) {
+	public Boolean insertCategory(CategoryVO category) {
 		log.debug("insertCategory({}) invoked.", category);
 
 		int affectedLines = this.mapper.insertCategory(category);
 
 		return affectedLines == 1;
 	} // end insertCategory
+
+	// category 수정
+	@Override
+	public Boolean editCategory(CategoryVO category) {
+		log.debug("editCategory({}) invoked.",category);
+
+		int affectedLines = this.mapper.updateCategory(category);
+
+		return affectedLines == 1;
+	} // end editCategory
+
+	// Category Detail
+	@Override
+	public CategoryVO getCategory(Integer product_no) {
+		log.debug("getCategory({}) invoked.", product_no);
+
+		CategoryVO category = this.mapper.selectCategory(product_no);
+		log.info("\t+ category: {}" , category);
+
+		return category;
+	} // end getCategory
+
+	// BaseCategory Detail
+	@Override
+	public BaseCategoryVO getBaseCategory(Integer box_no) {
+		log.debug("getBaseCategory({}) invoked.", box_no);
+
+		BaseCategoryVO baseCategory = this.mapper.selectBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}" , baseCategory);
+
+		return baseCategory;
+	} // end getBaseCategory
+
 
 
 
