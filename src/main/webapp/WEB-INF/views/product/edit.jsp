@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>ProductInsert</title>
+	<title>ProducEdit</title>
 </head>
 <body>
 <h1>
-	ProductInsert
+	ProducEdit
 </h1>
 
-<p>물품 등록하기~</p>
+<p>물품 수정하기~</p>
 
 
 </body>
