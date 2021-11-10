@@ -99,12 +99,12 @@ public class ProductControllerTests {
 
         MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
         MockMvc mockMvc = builder.build();
-        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/product/insert");
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/insert");
 
         reqBuilder.param("product_no", "");
         reqBuilder.param("box_no", "1005");
         reqBuilder.param("product_name","product_name");
-        reqBuilder.param("product_memo","memomemo123");
+        reqBuilder.param("product_memo","insertTest");
         reqBuilder.param("product_qtn","20");
         reqBuilder.param("product_photo_name","");
         reqBuilder.param("product_photo_path","");
@@ -118,46 +118,47 @@ public class ProductControllerTests {
     
 
     
-//    @Test
-//    public void testProductEdit() throws Exception {
-//        log.debug("testProductEdit() invoked.");
-//
-//        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
-//        MockMvc mockMvc = builder.build();
-//        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/edit");
-//
-//        reqBuilder.param("product_no", "");
-//        reqBuilder.param("box_no", "");
-//        reqBuilder.param("product_name","product_name");
-//        reqBuilder.param("product_memo","memomemo");
-//        reqBuilder.param("product_qtn","20");
-//        reqBuilder.param("product_photo_name","");
-//        reqBuilder.param("product_photo_path","");
-//        reqBuilder.param("barcode","");
-//
-//        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
-//
-//        log.info("\t+ viewName: {}", viewName);
-//
-//    } // testProductEdit
-    
-    
-//
-//    @Test
-//    public void testDelete() throws Exception {
-//        log.debug("testDelete() invoked.");
-//
-//        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
-//        MockMvc mockMvc = builder.build();
-//        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/box/delete");
-//
-//        reqBuilder.param("box_no","1202");
-//
-//        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
-//
-//        log.info("\t+ viewName: {}", viewName);
-//
-//    } // testDelete
+    @Test
+    public void testProductEdit() throws Exception {
+        log.debug("testProductEdit() invoked.");
 
+        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
+        MockMvc mockMvc = builder.build();
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/edit");
+
+        reqBuilder.param("product_no", "354");
+        reqBuilder.param("box_no", "");
+        reqBuilder.param("product_name","editeditedit");
+        reqBuilder.param("product_memo","memomemo");
+        reqBuilder.param("product_qtn","20");
+        reqBuilder.param("product_photo_name","");
+        reqBuilder.param("product_photo_path","");
+        reqBuilder.param("barcode","");
+
+        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+
+        log.info("\t+ viewName: {}", viewName);
+
+    } // testProductEdit
+    
+    
+
+    @Test
+    public void testProductDelete() throws Exception {
+        log.debug("testProductDelete() invoked.");
+
+        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
+        MockMvc mockMvc = builder.build();
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/delete");
+
+        reqBuilder.param("product_no","350");
+
+        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+
+        log.info("\t+ viewName: {}", viewName);
+
+    } // testProductDelete
+
+    
 
 } // end class
