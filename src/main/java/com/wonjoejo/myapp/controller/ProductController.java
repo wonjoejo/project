@@ -57,13 +57,17 @@ public class ProductController {
  		
  		// --- 페이지 처리 --- //
  		
- 		Integer totalAmount = this.service.getTotal(); 		
+ 		Integer totalAmount = this.service.getTotalCount(box_no); 
  		PageDTO pageDTO = new PageDTO(cri,totalAmount);
  		model.addAttribute("pageMaker",pageDTO);
-
+ 		
+ 		
+ 		
  		return "/product/list";
 
 	} // productListPerPage
+	
+	
 
 	@GetMapping({"/detail", "/edit"})
 	public void productDetail(Integer product_no, Integer box_no, Model model) {

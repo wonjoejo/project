@@ -206,7 +206,7 @@ public class ProductServiceTests {
 	public void testGetTotal() {
 		log.debug("testGetTotal() invoked.");
 				
-		int totalCount = this.service.getTotal();		
+		int totalCount = this.service.getTotalCount();		
 		log.info("\t+ totalCount: {}",totalCount);
 	}//testGetTotal
     
