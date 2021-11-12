@@ -140,13 +140,24 @@ public class BoardServiceImpl
 		return this.mapper.getTotalCount();
 	}//getTotal
 	
-//	//공지사항 목록 조회 
-//	@Override
-//	public List<BoardVO> getnoticeList() {
-//		log.debug("getnoticeList({}) invoked.");
-//		return this.mapper.getnoticeList();
-//	}//noticeList
-//	
+	//공지사항 리스트  
+	@Override
+	public List<BoardVO> getnoticeList(Criteria cri) {
+		log.debug("getnoticeList({}) invoked.");
+		return this.mapper.getnoticeList();
+	}
+
+	//공지사항 페이지 
+	@Override
+	public List<BoardVO> getnoticePage(Criteria cri) {
+		log.debug("getListPerPage({}) invoked.",cri);
+		
+		List<BoardVO> list = this.mapper.getnoticePage(cri);
+		log.info("\t+ list size:{} ",list.size());
+		
+		return list;
+	}
+	
 	
 	@Override
 	public void destroy() throws Exception {
@@ -164,10 +175,11 @@ public class BoardServiceImpl
 
 
 	@Override
-	public List<BoardVO> getnoticeList(Criteria cri) {
-		log.debug("getnoticeList({}) invoked.");
-		return this.mapper.getnoticeList();
+	public Integer getnoticeTotal() {
+		log.debug("getTotal() invoked.");	
+		return this.mapper.getNoticeCount();
 	}
-	
+
+
 
 }//end class 

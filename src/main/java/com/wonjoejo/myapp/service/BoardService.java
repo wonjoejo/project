@@ -36,9 +36,15 @@ public interface BoardService {
 	
 	//총 레코드 개수 반환 
 	public abstract Integer getTotal();
+	
+	//공지사항 총 레코드 개수 반환 
+	public abstract Integer getnoticeTotal();
 
 	//공지사항 목록조회 
     public abstract List<BoardVO> getnoticeList(Criteria cri);
+
+    //공지사항 페이지 
+	public abstract List<BoardVO> getnoticePage(Criteria cri);
 	
 	
 

@@ -24,31 +24,25 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-
+    
     <script>
     $(function name() {
         console.clear();
         console.log('jquery started...');
         
-        $('#addBtn').click(function () {
-            console.log('click event triggered..');
-
-            self.location = '/board/noticePage';
-          }); //onclick
-
-        // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
         $('#writeBtn').on('click', function () {
             console.log('onclicked on writeBtn...');
 
             self.location = '/board/write?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
         });//onclick
 
+        
         //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
         $('a.prev, a.next').on('click',function(e){
             e.preventDefault();
 
             var paginationForm=$('#paginationForm')
-            paginationForm.attr('action','/board/listPerPage')
+            paginationForm.attr('action','/board/noticePage')
             paginationForm.attr('method','GET')
 
             //Criteria 3개 전송파라미터를 설정 
@@ -93,64 +87,40 @@
 			
 			<div class="noticewrapper" >
 				<h2 class="notice">공지사항</h2>
-				<div id="notice">
 				
+				<div id="boardtitlenone" class="boardlistcontainer">
+					<div class="item">No</div>
+					<div class="item">Register date</div> 
+					<div class="item">Title</div>
+					<div class="item">written by</div>
+					
+				</div>
+				
+				<div id="notice">
 					<c:forEach items="${noticeList}" var="board">
 						<div class="noticelist">     
-							<%-- <div class="item">
-								<c:out value="${board.board_idx}" />
-							</div>	 --%>		
+							<div class="item">
+								<c:out value="${board.member_id}" />
+							</div>		
 							<div class="item">
 								<a href="/board/detail?bno=${board.board_idx}">
 								<c:out value="${board.title}" />
 								</a>
-							</div>					
-							<div class="item">
-								<c:out value="${board.member_id}" />
-							</div>						
+							</div>										
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
 							</div>            
+							<div class="item">
+								<c:out value="${board.board_idx}" />
+							</div>	
 						</div>
 			
 						
 					</c:forEach>
 				</div>
-				<button id="addBtn" type="button">더보기</button>
 			</div>
 			
-			<div id="boardtable">
-
-				<div id="boardtitlenone" class="boardlistcontainer">
-					<div class="item">No</div>
-					<div class="item">Title</div>
-					<div class="item">written by</div>
-					<div class="item">Register date</div> 
-				</div>
-
-				<div class="boardlist">
-				<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고 
-						목록을 만들어 줘야 합니다 -->
-					<c:forEach items="${list}" var="board">
-						<div class="boardlistcontainer">     
-							<div class="item">
-								<c:out value="${board.board_idx}" />
-							</div>			
-							<div class="item">
-								<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-								<c:out value="${board.title}" />
-								</a>
-							</div>					
-							<div class="item">
-								<c:out value="${board.member_id}" />
-							</div>						
-							<div class="item">
-								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div>            
-						</div>
-					</c:forEach>
-				</div>		
-			</div>
+			
 			
 			<!-- 현재화면 하단부에 , 페이징 처리기준에 맞게 , 페이지번호목록 표시 -->
 		      <div id="pagination">
@@ -168,7 +138,7 @@
 		
 		            <!-- 페이지번호목록 표시   -->
 		            <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-		              <li><a class="page" href="/board/listPerPage?currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a></li>
+		              <li><a class="page" href="/board/noticePage?currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a></li>
 		            </c:forEach>
 		
 		            <!-- 2. 이후, 이동여부표시(next) -->
