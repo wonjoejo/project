@@ -18,5 +18,8 @@ public class Criteria {
 	// 멤버 ID
 	private String member_id;
 	
+	// 박스번호
+	private Integer box_no;
+	
 	
 }//end class 

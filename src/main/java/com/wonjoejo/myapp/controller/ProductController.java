@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.wonjoejo.myapp.domain.ProductDTO;
 import com.wonjoejo.myapp.service.ProductService;
 
 import lombok.NoArgsConstructor;
@@ -30,18 +30,40 @@ public class ProductController {
 	@Setter(onMethod_= { @Autowired })
 	private ProductService service;
 	
-	@GetMapping("/list")
-	public void productList(Model model) {
-		log.debug("ProductList() invoked.");
-		Integer box_id = 1005;
+	
+//	@GetMapping("/list")
+//	public void productList(Model model) {
+//		log.debug("ProductList() invoked.");
+//		Integer box_id = 1005;
+//
+//		List<ProductVO> list = this.service.getProductList(box_id);				
+//
+//		log.info("\t+ list.size:{}",list.size());
+//
+//		model.addAttribute("list",list);
+//
+//	} // ProductList
+	
+	
+	@GetMapping("/listPerPage")
+	public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model) {
+		log.debug("productListPerPage({}) invoked.", model);
+		
+		cri.setAmount(5);
+ 		List<ProductVO> list = this.service.getListPerPage(cri);
+ 		log.info("\t+ list size:{}",list.size());
+ 		model.addAttribute("list",list);
+ 		
+ 		
+ 		// --- 페이지 처리 --- //
+ 		
+ 		Integer totalAmount = this.service.getTotal(); 		
+ 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+ 		model.addAttribute("pageMaker",pageDTO);
 
-		List<ProductVO> list = this.service.getProductList(box_id);
+ 		return "/product/list";
 
-		log.info("\t+ list.size:{}",list.size());
-
-		model.addAttribute("list",list);
-
-	} // ProductList
+	} // productListPerPage
 
 	@GetMapping({"/detail", "/edit"})
 	public void productDetail(Integer product_no, Integer box_no, Model model) {

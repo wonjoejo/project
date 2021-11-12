@@ -21,20 +21,21 @@
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
     <script>
-      $(function name() {
+    $(function name() {
         console.clear();
         console.log('jquery started...');
 
         // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
-        $('#regBtn').on('click', function () {
-          console.log('onclicked on regBtn...');
+        $('#writeBtn').on('click', function () {
+              console.log('onclicked on writeBtn...');
 
-          self.location = '/board/register?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        });
+              self.location = '/board/write?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+            });
 
         //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
         $('a.prev, a.next').on('click',function(e){
@@ -54,7 +55,7 @@
 
       }); //.jq
     </script>
-	
+
 </head>
 <body>
 
@@ -67,7 +68,7 @@
 		<div class="menu">
 			<span class="menu-item"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i>박스 리스트</a></span>
 			<span class="menu-item"><a href="#"><i class="far fa-plus-square"></i> 박스 생성</a></span>
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/board/list?member_id=${member_id}"><i class="far fa-question-circle"></i> Q&A</a></span>
+			<span class="menu-item"><a href="${pageContext.request.contextPath}/board/listPerPage?member_id=${member_id}"><i class="far fa-question-circle"></i> Q&A</a></span>
 			<span class="menu-item"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
 		</div>
 	</div>
@@ -87,13 +88,14 @@
 			<div class="noticewrapper" >
 				<h2 class="notice">공지사항</h2>
 				<div id="notice">
-					<c:forEach items="${list}" var="board">
+				
+					<c:forEach items="${noticeList}" var="board">
 						<div class="noticelist">     
-							<div class="item">
+							<%-- <div class="item">
 								<c:out value="${board.board_idx}" />
-							</div>			
+							</div>	 --%>		
 							<div class="item">
-								<a href="/board/get?bno=${board.board_idx}">
+								<a href="/board/detail?bno=${board.board_idx}">
 								<c:out value="${board.title}" />
 								</a>
 							</div>					
@@ -104,8 +106,11 @@
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
 							</div>            
 						</div>
+			
+						
 					</c:forEach>
 				</div>
+				<button id="addBtn" type="button">더보기</button>
 			</div>
 			
 			<div id="boardtable">
@@ -126,7 +131,7 @@
 								<c:out value="${board.board_idx}" />
 							</div>			
 							<div class="item">
-								<a href="/board/get?bno=${board.board_idx}">
+								<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
 								<c:out value="${board.title}" />
 								</a>
 							</div>					

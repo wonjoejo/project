@@ -22,7 +22,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
 </head>
 <body>
 
@@ -32,8 +32,6 @@
     <div class="main-container">
         <h1>박스 생성</h1>
 
-
-
         <div class="box-wrapper">
             <form method="post" action="#" enctype="multipart/form-data">
             <div class="form-container">
@@ -42,11 +40,34 @@
                         <div class="product-photo">
                         <input type="file" name="box-photo" id="box-photo">
                         </div>
-                        <div class="photos">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/logo2.png">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/logo3.png">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png">
+                        <div class="default-photos carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+<%--                        <div class="photos">--%>
+                            <div class="carousel-item active">
+                                <div class="row photos">
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/food.png"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/pill.png"></div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row photos">
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/goods.png"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"></div>
+                            </div>
+                            </div>
+<%--                        </div>--%>
                         </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                    </div>
                     </div>
 
                     <div class="inputs">
@@ -87,5 +108,6 @@
 
 </div>
 </body>
-<script src="${pageContext.request.contextPath}/resources/assets/js/box.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=1"></script>
 </html>

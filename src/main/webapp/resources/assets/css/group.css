@@ -76,6 +76,10 @@ body {
 	border-radius: 50px;
 }
 
+.name {
+	float:left;
+	
+}
 .main-container h1 {
 	font-family: 'Wemakeprice-Bold', serif;
 	color: #5A95F5;
@@ -84,32 +88,36 @@ body {
 	line-height: 54px;
 }
 
-.box-wrapper {
+.group-wrapper {
 	display: flex;
+	width :100%;
 	justify-content: center;
 	align-content: center;
+	margin-top : 1%;
 }
 
-.box-container {
+.group-container {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	width: 80%;
+	width: 100%;
 	height: 90%;
 	padding: 10px;
+	/* justify-content: space-around; */
 	justify-content: center;
 	align-content: center;
 	align-items: center;
 }
 
-.box {
+.group {
+	margin-top:10px;
 	padding: 30px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 15vw;
-	height: 15vw;
+	height: 14.3vw;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	color: #4E4E4E;
@@ -117,10 +125,10 @@ body {
 
 	background: #FFFFFF;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-	border-radius: 50px;
+	border-radius: 45px;
 
 	font-family: 'NEXON Lv1 Gothic OTF Bold',sans-serif;
-
+	font-size : 0.9rem;
 }
 
 /* Grow */
@@ -133,6 +141,7 @@ body {
 	transition-duration: 0.3s;
 	-webkit-transition-property: transform;
 	transition-property: transform;
+	text-align: center;
 }
 
 .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
@@ -177,7 +186,7 @@ textarea {
 	width: 17vw;
 	height: 17vw;
 	position: relative;
-	background: no-repeat center/40% url(/resources/assets/img/photo_name.png);
+	background: rgb(250, 250, 253);
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -186,7 +195,6 @@ textarea {
 	color: rgb(155, 153, 169);
 	cursor: pointer;
 	border-radius: 50px;
-	background-size: cover;
 }
 
 .product-photo input {
@@ -197,6 +205,20 @@ textarea {
 	left: 0;
 	opacity: 0;
 	cursor: pointer;
+}
+
+.photos img {
+	width: 20%;
+	border-radius: 50%;
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+	padding: 3px;
+}
+
+.photos {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 10px;
 }
 
 .box-photos {
@@ -243,8 +265,7 @@ textarea {
 .buttons {
 	display: flex;
 	justify-content: flex-end;
-	margin-right: 20px;
-	margin-top: 20px;
+	margin-top: 1%;
 }
 
 /* Float */
@@ -305,33 +326,5 @@ select {
 	appearance: none;
 	cursor: pointer;
 }
-
-.cell {
-	text-decoration: none;
-	list-style: none;
-	width: 10% !important;
-	/*height: 100px;*/
-	cursor: pointer;
-	margin-right: 30px;
-}
-
-.photos img {
-	width: 50px;
-	border-radius: 50%;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-	padding: 3px;
-	border: 3px solid #FFF;
-}
-
-.default-photos {
-	margin-top: 10px;
-	width: 50%;
-}
-
-.carousel-control-prev {
-	color: #4E4E4E;
-}
-
-
 
 

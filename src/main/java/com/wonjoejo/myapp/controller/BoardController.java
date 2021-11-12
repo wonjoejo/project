@@ -33,18 +33,18 @@ public class BoardController {
     @Setter(onMethod_={@Autowired})
     private BoardService service;
 
-   // 게시판 목록화면 요청
-//    @GetMapping("/list")
-//    public void list(Model model){
+//    //게시판 공지사항 목록화면 요청
+//    @GetMapping("/noticelist")
+//    public void noticelist(Model model){
 //    	
-//        log.debug("list() invoked.");
+//        log.debug("noticelist() invoked.");
 //
-//        List<BoardVO> list = this.service.getList();
-//        log.info("\t+ list size{}",list.size());
+//        List<BoardVO> noticelist = this.service.getnoticeList();
+//        log.info("\t+ list size{}",noticelist.size());
 //
-//        model.addAttribute("list",list);
+//        model.addAttribute("noticelist",noticelist);
 //        
-//    }//list
+//    }//noticelist
     
     // 페이징 처리된 게시판 목록화면 요청 
  	@GetMapping("/listPerPage")
@@ -59,10 +59,17 @@ public class BoardController {
  		
  		model.addAttribute("list",list);
  		
+ 		List<BoardVO> noticeList = this.service.getnoticeList(cri);
+ 		log.info("\t+ list size:{}",list.size());
+ 		
+ 		model.addAttribute("noticeList",noticeList);
+ 		
+ 		
  		//--------------------------------------------//
  		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
  		//--------------------------------------------//
  		Integer totalAmount = this.service.getTotal();
+ 		
  		
  		PageDTO pageDTO = new PageDTO(cri,totalAmount);
  		
@@ -73,7 +80,7 @@ public class BoardController {
  	}//listPerPage
     
     //특정 게시물 상세조회 화면 요청 
-    @GetMapping("/detail")
+    @GetMapping({"/detail","/edit"})
     public void boarddetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model) {
     	log.debug("detail({},{},{}) invoked.",cri,board_idx,model);
     
@@ -88,12 +95,12 @@ public class BoardController {
     public String delete(@RequestParam("board_idx") Integer board_idx, 
 			RedirectAttributes rttrs)  
 	{
-		log.debug("remove({}) invoked.",board_idx);
+		log.debug("delete({}) invoked.",board_idx);
 		
 		boolean result = this.service.delete(board_idx);
 		rttrs.addAttribute("result",result);
 		
-		return "redirect:/board/list";		
+		return "redirect:/board/listPerPage";		
 	}//delete
     
     //게시물 수정 
@@ -117,8 +124,16 @@ public class BoardController {
 		
 		rttrs.addAttribute("result",result);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/listPerPage";
 	}//edit
+    
+    @GetMapping("/write")
+	public void register(@ModelAttribute("cri") Criteria cri) {
+		log.debug("register() invoked.");
+		
+		log.info("\t+ cri:{}", cri);
+		
+	}//register
     
     //게시글 작성 
     @PostMapping("/write")
@@ -138,7 +153,7 @@ public class BoardController {
 		boolean result = this.service.write(vo);
 		rttrs.addAttribute("result",result);	
 		
-		return "redirect:/board/list";
+		return "redirect:/board/listPerPage";
 	}//register
     
     

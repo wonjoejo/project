@@ -2,19 +2,19 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
+import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.mapper.ProductMapper;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -143,6 +143,27 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		return baseCategory;
 	} // end getBaseCategory
 
+	
+	
+	@Override
+	public List<ProductVO> getListPerPage(Criteria cri) {
+		log.debug("getListPerPage({}) invoked.",cri);
+		
+
+		List<ProductVO> list = this.mapper.getListPaging(cri);
+		log.info("\t+ list size:{} ",list.size());
+		
+		return list;
+	} // getListPerPage
+	
+	
+
+	@Override
+	public Integer getTotal() {
+		log.debug("getTotal() invoked.");
+		
+		return this.mapper.getTotalCount();
+	} // end getTotal
 
 
 

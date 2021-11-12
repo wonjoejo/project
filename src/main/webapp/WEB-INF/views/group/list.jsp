@@ -3,9 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
-
 <head>
-	<title>GroupList</title>
+	<title>BoxList</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -19,32 +18,22 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=1">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=1">
 </head>
 <body>
 
 <div class="container">
-	<jsp:include page="../common/groupleft.jsp"/>
+	<jsp:include page="../common/left.jsp"/>
 
 <div class="main-container">
-	<div class="name" >
-	<h1>그룹 리스트</h1>
-	</div>
-	
-	  <div class="buttons"> 
-	  <input class="submit-btn hvr-float" type="button" value="권한 설정">
-	  <input class="submit-btn hvr-float" type="button" value="그룹 초대">
-	  <input class="submit-btn hvr-float" type="button" value="그룹 탈퇴">
-	  </div>
+	<h1>박스 리스트</h1>
 
-	<div class="group-wrapper">
-	<div class="group-container">
-	<c:forEach items="${list}" var="group">
-		<div class="group hvr-grow">
-		<img id="product_img" src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true" style="width: 65%;">
-		<c:out value="${group.member_id}"/><br/>
-		<c:out value="${group.name}"/><br/>
-		<c:out value="${group.phone_number}"/><br/>
+	<div class="box-wrapper">
+	<div class="box-container">
+	<c:forEach items="${list}" var="box">
+		<div class="box hvr-grow">
+		<img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"/>
+		${box.box_name}
 		</div>
 	</c:forEach>
 	</div>
