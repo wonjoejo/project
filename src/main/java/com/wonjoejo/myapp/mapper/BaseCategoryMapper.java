@@ -22,12 +22,9 @@ public interface BaseCategoryMapper {
 //    public abstract Integer deleteBaseCategory(BaseCategoryVO baseCategory);
 
     // Category 삭제 (edit)
-    public abstract Integer deleteCategory();
+    public abstract Integer deleteCategory(Integer category_no);
 
     //------ BaseCategory 삭제 (업데이트로...) ------//
-
-
-
 
 
 } // end interface

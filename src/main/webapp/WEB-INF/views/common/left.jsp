@@ -33,7 +33,7 @@
         <span class="menu-item active"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i> 박스 리스트</a></span>
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/box/createview"><i class="far fa-plus-square"></i> 박스 생성</a></span>
         <span class="menu-item inactive"><a href="#"><i class="far fa-envelope"></i> 박스 참여</a></span>
-        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/board/list"><i class="far fa-question-circle"></i> Q&A</a></span>
+        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/board/listPerPage"><i class="far fa-question-circle"></i> Q&A</a></span>
         <span class="menu-item inactive"><a href="/member/logout"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
     </div>
 </div>

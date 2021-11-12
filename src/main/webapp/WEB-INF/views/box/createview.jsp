@@ -26,6 +26,7 @@
 </head>
 <body>
 
+
 <div class="container">
     <jsp:include page="../common/left.jsp"/>
 
@@ -33,12 +34,13 @@
         <h1>박스 생성</h1>
 
         <div class="box-wrapper">
-            <form method="post" action="#" enctype="multipart/form-data">
+            <form method="post" action="/box/create" enctype="multipart/form-data">
+                <input type="hidden" name="member_id" value="${sessionScope.member_id}">
             <div class="form-container">
 
                     <div class="box-photos">
                         <div class="product-photo">
-                        <input type="file" name="box-photo" id="box-photo">
+                        <input type="file" name="file" id="box-photo">
                         </div>
                         <div class="default-photos carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
@@ -74,12 +76,12 @@
                         <div class="input-container">
                         <div class="box-name">
                         <span class="label">박스 이름</span>
-                    <input type="text" name="name" placeholder="박스 이름을 입력해 주세요">
+                    <input type="text" name="box_name" placeholder="박스 이름을 입력해 주세요">
                         </div>
                     <%--<c:if> 문 써서 기업회원인지 확인 후, 개인 회원일 경우에만 박스 모드 선택 노출--%>
                         <div class="box-mode">
                         <span class="label">박스 모드</span>
-                    <select class="mode-select">
+                    <select class="mode-select" name="box_mode">
                         <option selected disabled>모드를 선택하세요</option>
                         <option value="1">식품</option>
                         <option value="2">화장품</option>
@@ -91,7 +93,7 @@
                         </div>
                         </div>
                         <span class="label">박스 메모</span>
-                    <textarea rows="5" cols="10" name="memo" placeholder="박스의 간단한 설명을 입력해 주세요"></textarea>
+                    <textarea rows="5" cols="10" name="box_memo" placeholder="박스의 간단한 설명을 입력해 주세요"></textarea>
                     </div>
             </div>
 

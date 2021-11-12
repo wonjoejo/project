@@ -62,7 +62,7 @@ public class MemberController {
 	
 	// 로그인
 	@PostMapping("/loginPost")
-	public void loginPost(LoginDTO dto, Model model) throws Exception {
+	public String loginPost(LoginDTO dto, Model model, RedirectAttributes rttrs, HttpSession session) throws Exception {
 		log.debug("loginPost({}) invoked.", dto);
 		
 		MemberVO member=this.service.login(dto);
@@ -70,7 +70,12 @@ public class MemberController {
 		
 		if(member!=null) {
 			model.addAttribute(MemberController.authKey, member);
+			rttrs.addAttribute("member_id",member.getMember_id());
+			session.setAttribute("member_id",member.getMember_id());
+
 		} // if
+
+		return "redirect:/box/list";
 	} // loginPost
 	
 	// 로그아웃
@@ -128,6 +133,11 @@ public class MemberController {
 
 		return "/";
 	} // delete
+
+	@GetMapping("/login")
+	public void login() {
+
+	}
 
     
 } // end class
