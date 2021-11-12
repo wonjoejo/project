@@ -1,8 +1,10 @@
 package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
+import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
 
 import lombok.NoArgsConstructor;
@@ -176,6 +178,31 @@ public class ProductServiceTests {
 
         log.info("Product deleted successfully: {}",isSuccess);
     } // testProductDelete
+    
+    
+    
+    @Test(timeout=1000)
+	public void testGetListPerPage() {
+		log.debug("testGetListPerPage() invoked.");
+				
+		Criteria cri = new Criteria();
+		cri.setCurrPage(1);
+		cri.setAmount(3);
+		
+		List<ProductVO> product = this.service.getListPerPage(cri);
+		
+		assert product != null;
+		
+		product.forEach(log::info);
+	}//testGetListPerPage
+    
+    @Test(timeout=1000)
+	public void testGetTotal() {
+		log.debug("testGetTotal() invoked.");
+				
+		int totalCount = this.service.getTotal();		
+		log.info("\t+ totalCount: {}",totalCount);
+	}//testGetTotal
     
 
 } // end class
