@@ -20,16 +20,19 @@ public interface ProductService {
 
 	public abstract Boolean deleteProduct(Integer product_no);
 
-	// Category insert
+	// Category 생성
 	public abstract Boolean insertCategory(CategoryVO category);
 
 	// Category 수정
 	public abstract Boolean editCategory(CategoryVO category);
 
-	// Category detail
+	// Category 상세보기
 	public abstract CategoryVO getCategory(Integer product_no);
 
-	// BaseCategory detail
+	// Category 삭제
+	public abstract Boolean deleteCategory(Integer product_no);
+
+	// BaseCategory 상세보기
 	public abstract BaseCategoryVO getBaseCategory(Integer box_no);
 
 

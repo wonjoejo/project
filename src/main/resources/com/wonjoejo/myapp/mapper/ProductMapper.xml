@@ -91,7 +91,7 @@
     </update>
 
 
-    <!-- Category detail -->
+    <!-- Category 상세보기 -->
     <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.CategoryVO">
 
         <![CDATA[
@@ -106,7 +106,14 @@
 
     </select>
 
-    <!-- BaseCategory detail-->
+    <!-- Category 삭제 -->
+    <delete id="deleteCategory">
+
+        DELETE FROM CATEGORY WHERE PRODUCT_NO = #{product_no}
+
+    </delete>
+
+    <!-- BaseCategory 상세보기 -->
     <select id="selectBaseCategory" resultType="com.wonjoejo.myapp.domain.BaseCategoryVO">
 
         <![CDATA[

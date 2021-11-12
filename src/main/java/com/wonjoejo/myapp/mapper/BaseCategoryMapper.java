@@ -1,6 +1,7 @@
 package com.wonjoejo.myapp.mapper;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 
 import java.util.List;
 
@@ -13,7 +14,20 @@ public interface BaseCategoryMapper {
 
     public abstract Integer updateBaseCategory(BaseCategoryVO baseCategory);
 
-    public abstract Integer deleteBaseCategory(Integer category_no);
+    // Category 상세보기(edit을 위해...test만 .. )
+    public abstract List<CategoryVO> selectCategory(Integer category_no);
+
+    //------ BaseCategory 삭제 (업데이트로...) ------//
+    // BaseCategory 삭제 (edit)
+//    public abstract Integer deleteBaseCategory(BaseCategoryVO baseCategory);
+
+    // Category 삭제 (edit)
+    public abstract Integer deleteCategory();
+
+    //------ BaseCategory 삭제 (업데이트로...) ------//
+
+
+
 
 
 } // end interface

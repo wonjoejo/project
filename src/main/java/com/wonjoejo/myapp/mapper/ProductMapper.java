@@ -18,17 +18,21 @@ public interface ProductMapper {
 
 	public abstract Integer deleteProduct(Integer product_no);
 
-	// category insert
+	// category 생성
 	public abstract Integer insertCategory(CategoryVO category);
 
-	// category update
+	// category 수정
 	public abstract Integer updateCategory(CategoryVO category);
 
-	// category detail
+	// category 상세보기
 	public abstract CategoryVO selectCategory(Integer product_no);
 
-	// baseCategory detail
+	// category 삭제
+	public abstract Integer deleteCategory(Integer product_no);
+
+	// baseCategory 상세보기
 	public abstract BaseCategoryVO selectBaseCategory(Integer box_no);
+
 
 
 

@@ -35,7 +35,7 @@ public class ProductController {
 		log.debug("ProductList() invoked.");
 		Integer box_id = 1005;
 
-		List<ProductVO> list = this.service.getProductList(box_id);				
+		List<ProductVO> list = this.service.getProductList(box_id);
 
 		log.info("\t+ list.size:{}",list.size());
 
@@ -161,14 +161,22 @@ public class ProductController {
 	
 	
 	@PostMapping("/delete")
-	public String productDelete(Integer product_no, RedirectAttributes rttrs) {
-		log.debug("productDelete() invoked.");
-		
-        boolean result = this.service.deleteProduct(product_no);
-        log.info("\t +result: {}", result);
-        
-        return "/product/list";
+	public String productDelete(Integer product_no, ProductDTO product, RedirectAttributes rttrs) {
+		log.debug("productDelete({}) invoked.", product_no);
 
+
+		// category 삭제
+		boolean result1 = this.service.deleteCategory(product_no);
+		log.info("\t +result1(Category): {}", result1);
+
+		// product 삭제
+        boolean result2 = this.service.deleteProduct(product_no);
+        log.info("\t +result2: {}", result2);
+
+
+		rttrs.addAttribute("box_no" , product.getBox_no());
+
+        return "redirect:/product/list";
 	} // productDelete
 	
 

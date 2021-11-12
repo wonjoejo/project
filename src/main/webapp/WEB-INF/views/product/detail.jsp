@@ -21,6 +21,10 @@
 			$('#editBtn').on('click',function (){
 				self.location = '/product/edit?product_no=${product.product_no}&box_no=${product.box_no}';
 			}); // onClick
+
+			$('#deleteBtn').on('click',function (){
+				self.location = '/product/delete?product_no=${product.product_no}';
+			}); // onClick
 		}); // .jp
 	</script>
 </head>
@@ -84,6 +88,7 @@
 		</tr>
 		<tr>
 			<td><button type="button" id="editBtn">EDIT</button></td>
+			<td><button type="button" id="deleteBtn">DELETE</button></td>
 			<td><button type="button" ID="listBtn">LIST</button></td>
 		</tr>
 
