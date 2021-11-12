@@ -33,18 +33,29 @@ public class BoardController {
     @Setter(onMethod_={@Autowired})
     private BoardService service;
 
-//    //게시판 공지사항 목록화면 요청
-//    @GetMapping("/noticelist")
-//    public void noticelist(Model model){
-//    	
-//        log.debug("noticelist() invoked.");
-//
-//        List<BoardVO> noticelist = this.service.getnoticeList();
-//        log.info("\t+ list size{}",noticelist.size());
-//
-//        model.addAttribute("noticelist",noticelist);
-//        
-//    }//noticelist
+    //게시판 공지사항 목록화면 요청
+    @GetMapping("/noticePage")
+    public String noticePage(
+    		@ModelAttribute("cri") Criteria cri, 
+ 			Model model) {	
+ 		log.debug("listPerPage({}) invoked.",model);
+
+ 		List<BoardVO> noticeList = this.service.getnoticePage(cri);
+ 		log.info("\t+ noticeList size:{}",noticeList.size());
+ 		
+ 		model.addAttribute("noticeList",noticeList);
+ 		
+ 		Integer totalAmount = this.service.getnoticeTotal();
+ 		
+ 		
+ 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+ 		
+ 		model.addAttribute("pageMaker",pageDTO);
+ 		
+ 		//list.jsp 그대로 사용 
+ 		return "/board/noticelist";
+        
+    }//noticelist
     
     // 페이징 처리된 게시판 목록화면 요청 
  	@GetMapping("/listPerPage")

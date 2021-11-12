@@ -14,6 +14,27 @@
             
         ]]>
     </select>
+    
+    <!-- 페이징 처리된 게시판 목록조회 -->
+    <select id="getnoticePage" resultType="com.wonjoejo.myapp.domain.BoardVO">     
+        <![CDATA[ 
+            SELECT
+                /*+ index_desc(qna_board) */ *
+            FROM qna_board WHERE notice=1
+            OFFSET (#{currPage} - 1) * #{amount} ROWS 
+            FETCH NEXT #{amount} ROWS ONLY
+        ]]>
+    </select>
+    
+    <!-- 공지사항 총 목록개수 반환  -->
+     <select id="getNoticeCount" resultType="int">
+        <![CDATA[ 
+            SELECT count(board_idx)
+            FROM qna_board
+            WHERE notice = 1
+        ]]>
+    </select>
+    
 
     <!-- 게시판 목록조회 -->
     <select id="getList" resultType="com.wonjoejo.myapp.domain.BoardVO">
