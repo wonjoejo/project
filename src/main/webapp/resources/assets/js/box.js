@@ -1,24 +1,44 @@
 let file = document.querySelector("#box-photo");
 
 file.addEventListener("change",function (f) {
-	console.log("file has changed");
+
 	let reader = new FileReader();
 	let input = f.target;
-	console.log(reader);
+
 	reader.onload = function (e) {
+
 		let dataUrl = reader.result;
-		console.log(e.target.result);
+		const productPhoto = document.querySelector(".product-photo");
 
-		document.querySelector(".product-photo").style.backgroundImage =
-		"url(" + dataUrl + ")";
+		productPhoto.style.backgroundImage = "url(" + dataUrl + ")";
 
-		// css({
-		// 	"background": "url(" + dataUrl + ")",
-		// 	'background-repeat': 'no-repeat',
-		// 	'background-position': 'center center',
-		// 	'background-size': 'cover'
-		// });
 	}
+
 	reader.readAsDataURL(input.files[0]);
+
 });
+
+
+
+
+// const photos = document.querySelector(".photos");
+// const prevBtn = document.querySelector(".prev");
+// const nextBtn = document.querySelector(".next");
+//
+// (function addEvent(){
+// 	prevBtn.addEventListener('click', translatePhotos.bind(this, 1));
+// 	nextBtn.addEventListener('click', translatePhotos.bind(this, -1));
+// })();
+//
+// function translatePhotos(direction){
+// 	const selectedBtn = (direction === 1) ? 'prev' : 'next';
+// 	photos.style.transitionDuration = '100ms';
+// 	photos.style.transform = `translateX(${direction * (100 / 5)}%)`;
+// 	photos.ontransitionend = () => reorganizeEl(selectedBtn);
+// }
+//
+// function reorganizeEl(selectedBtn) {
+// 	photos.removeAttribute('style');
+// 	(selectedBtn === 'prev') ? photos.insertBefore(photos.lastElementChild, photos.firstElementChild): photos.appendChild(photos.firstElementChild);
+// }
 
