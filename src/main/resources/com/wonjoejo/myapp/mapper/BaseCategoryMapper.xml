@@ -64,15 +64,22 @@
     <!--  category 삭제(edit) baseCategory 삭제시 ..    -->
     <update id="deleteCategory">
 
-        UPDATE CATEGORY c
-        SET
-        c.cate_detail1 = (SELECT b.cate_name1 from base_category b where c.category_no = b.category_no and c.cate_detail1 is not null),
-        c.cate_detail2 = (SELECT b.cate_name2 from base_category b where c.category_no = b.category_no and c.cate_detail2 is not null),
-        c.cate_detail3 = (SELECT b.cate_name3 from base_category b where c.category_no = b.category_no and c.cate_detail3 is not null),
-        c.cate_detail4 = (SELECT b.cate_name4 from base_category b where c.category_no = b.category_no and c.cate_detail4 is not null),
-        c.cate_detail5 = (SELECT b.cate_name5 from base_category b where c.category_no = b.category_no and c.cate_detail5 is not null)
+        UPDATE BASE_CATEGORY SET
+        CATE_NAME1 = #{cate_name1},
+
+        WHERE CATEGORY_NO = #{category_no}
+
+
 
     </update>
+
+<!--    UPDATE CATEGORY c-->
+<!--    SET-->
+<!--    c.cate_detail1 = (SELECT b.cate_name1 from base_category b where c.category_no = b.category_no and c.cate_detail1 is not null),-->
+<!--    c.cate_detail2 = (SELECT b.cate_name2 from base_category b where c.category_no = b.category_no and c.cate_detail2 is not null),-->
+<!--    c.cate_detail3 = (SELECT b.cate_name3 from base_category b where c.category_no = b.category_no and c.cate_detail3 is not null),-->
+<!--    c.cate_detail4 = (SELECT b.cate_name4 from base_category b where c.category_no = b.category_no and c.cate_detail4 is not null),-->
+<!--    c.cate_detail5 = (SELECT b.cate_name5 from base_category b where c.category_no = b.category_no and c.cate_detail5 is not null)-->
 
 
 

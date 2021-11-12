@@ -1,6 +1,10 @@
 package com.wonjoejo.myapp.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.wonjoejo.myapp.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import com.wonjoejo.myapp.service.BoxService;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Log4j2
@@ -45,24 +50,29 @@ public class BoxController {
     } // getBoxList
 
     @PostMapping("/create")
-    public String create(BoxDTO box, RedirectAttributes rttrs) {
+    public String create(BoxDTO box, RedirectAttributes rttrs, MultipartFile file) throws IOException {
 
         log.debug("create({}) invoked.", box);
 
-        BoxVO boxVO = new BoxVO(
-                null,
-                box.getMember_id(),
-                box.getBox_mode(),
-                box.getBox_name(),
-                box.getBox_memo(),
-                box.getBox_photo_name(),
-                box.getBox_photo_path(),
-                null
-        );
+        String uploadDir = "/Users/heewonseo/temp/file_upload";
 
-        boolean result = this.service.createBox(boxVO);
-        log.info("\t +result: {}", result);
 
+            File targetPath = new File(uploadDir, Objects.requireNonNull(file.getOriginalFilename()));
+            file.transferTo(targetPath);
+
+            BoxVO boxVO = new BoxVO(
+                    null,
+                    box.getMember_id(),
+                    box.getBox_mode(),
+                    box.getBox_name(),
+                    box.getBox_memo(),
+                    file.getOriginalFilename(),
+                    uploadDir,
+                    null
+            );
+
+            boolean result = this.service.createBox(boxVO);
+            log.info("\t +result: {}", result);
 
 //		BaseCategory insert
         BaseCategoryVO basecategoryVO = null;
@@ -172,10 +182,11 @@ public class BoxController {
 		log.info("\t +Permission Result:{}",result3);
 
 		rttrs.addAttribute("result",result);
+        rttrs.addAttribute("member_id",box.getMember_id());
 
 
 
-        return "/box/list";
+        return "redirect:/box/list";
     } // create
 
     @PostMapping("/edit")

@@ -88,7 +88,6 @@ public class BaseCategoryMapperTests {
         this.mapper.updateBaseCategory(baseCategory);
         log.info("\t+ baseCategory: {}" , baseCategory);
 
-        this.mapper.deleteCategory();
 
     } //testDeleteBaseCategory
 

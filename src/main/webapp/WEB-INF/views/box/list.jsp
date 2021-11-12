@@ -32,7 +32,7 @@
 	<div class="box-container">
 	<c:forEach items="${list}" var="box">
 		<div class="box hvr-grow">
-		<img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"/>
+		<img src="${box.box_photo_path}/${box.box_photo_name}"/>
 		${box.box_name}
 		</div>
 	</c:forEach>

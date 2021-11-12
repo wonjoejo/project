@@ -15,6 +15,8 @@ import com.wonjoejo.myapp.mapper.BoxMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+import javax.servlet.http.HttpSession;
+
 @Log4j2
 @NoArgsConstructor
 
