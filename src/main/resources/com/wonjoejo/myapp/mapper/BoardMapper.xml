@@ -5,12 +5,22 @@
 <!-- FQCN 으로 작성 -->
 <mapper namespace="com.wonjoejo.myapp.mapper.BoardMapper">
 
+	<!-- 게시판 공지사항 목록조회 -->
+    <select id="getnoticeList" resultType="com.wonjoejo.myapp.domain.BoardVO">
+        <![CDATA[ 
+            SELECT
+                /*+ index_desc(qna_board) */ *
+            FROM qna_board WHERE notice=1
+            
+        ]]>
+    </select>
+
     <!-- 게시판 목록조회 -->
     <select id="getList" resultType="com.wonjoejo.myapp.domain.BoardVO">
         <![CDATA[ 
             SELECT
                 /*+ index_desc(qna_board) */ *
-            FROM qna_board
+            FROM qna_board WHERE notice=0
             
         ]]>
     </select>
@@ -20,7 +30,7 @@
         <![CDATA[ 
             SELECT
                 /*+ index_desc(qna_board) */ *
-            FROM qna_board
+            FROM qna_board WHERE notice=0
             OFFSET (#{currPage} - 1) * #{amount} ROWS 
             FETCH NEXT #{amount} ROWS ONLY
         ]]>

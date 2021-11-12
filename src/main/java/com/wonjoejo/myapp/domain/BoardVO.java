@@ -22,7 +22,7 @@ public class BoardVO {
     
 	public BoardVO(Integer board_idx, String member_id, String title, String content, Integer notice, Date reg_date,
 			Integer ref, Integer depth, Integer step) {
-		super();
+		
 		this.board_idx = board_idx;
 		this.member_id = member_id;
 		this.title = title;

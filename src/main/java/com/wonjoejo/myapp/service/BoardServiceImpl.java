@@ -140,6 +140,14 @@ public class BoardServiceImpl
 		return this.mapper.getTotalCount();
 	}//getTotal
 	
+//	//공지사항 목록 조회 
+//	@Override
+//	public List<BoardVO> getnoticeList() {
+//		log.debug("getnoticeList({}) invoked.");
+//		return this.mapper.getnoticeList();
+//	}//noticeList
+//	
+	
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");
@@ -153,5 +161,13 @@ public class BoardServiceImpl
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
 	}
+
+
+	@Override
+	public List<BoardVO> getnoticeList(Criteria cri) {
+		log.debug("getnoticeList({}) invoked.");
+		return this.mapper.getnoticeList();
+	}
+	
 
 }//end class 
