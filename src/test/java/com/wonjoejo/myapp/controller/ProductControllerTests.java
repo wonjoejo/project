@@ -99,7 +99,7 @@ public class ProductControllerTests {
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/insert");
 
         reqBuilder.param("product_no", "");
-        reqBuilder.param("box_no", "1339");
+        reqBuilder.param("box_no", "1331");
         reqBuilder.param("product_name","product_name");
         reqBuilder.param("product_memo","insertTest");
         reqBuilder.param("product_qtn","20");
@@ -165,7 +165,8 @@ public class ProductControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/delete");
 
-        reqBuilder.param("product_no","350");
+        reqBuilder.param("product_no","373");
+
 
         String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
 

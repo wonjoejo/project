@@ -173,10 +173,16 @@ public class ProductServiceTests {
     public void testProductDelete() {
         log.debug("testProductDelete() invoked.");
 
-        Integer product_no = 307;
-        boolean isSuccess = this.service.deleteProduct(product_no);
+        Integer product_no = 365;
 
-        log.info("Product deleted successfully: {}",isSuccess);
+        // category 삭제
+        boolean isSuccess = this.service.deleteCategory(product_no);
+        log.info("Category deleted successfully: {}",isSuccess);
+
+        // product 삭제
+        boolean isSuccess2 = this.service.deleteProduct(product_no);
+
+        log.info("Product deleted successfully: {}",isSuccess2);
     } // testProductDelete
     
     

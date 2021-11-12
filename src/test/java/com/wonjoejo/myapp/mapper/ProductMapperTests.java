@@ -72,13 +72,13 @@ public class ProductMapperTests {
 		log.info("\t+ BaseCategory: {}", baseCategory);
 		
 	} // testProductDetail
-	
+
 	
 	@Test	// INSERT
 	public void testProductInsert() {
 		log.debug("testProductInsert() invoked.");
 		
-		Integer box_no = 1330;
+		Integer box_no = 1331;
 		String product_name = "productInsert";
 		String product_memo = "productMemo";
 		Integer product_qtn = 2;
@@ -162,9 +162,18 @@ public class ProductMapperTests {
 	public void testProductDelete() {
 		log.debug("testProductDelete() invoked.");
 		
-		Integer product_no = 315;
+		Integer product_no = 366;
+
+		// Category 삭제
+		// product 하위라 category 먼저 지워줘야함
+		this.mapper.deleteCategory(product_no);
+
+		// Product 삭제
 		this.mapper.deleteProduct(product_no);
-		
+
+		log.info("\t+ product: {} ", product_no);
+
+
 	} // testProductDelete
 	
 	

@@ -43,8 +43,14 @@ public class BaseCategoryMapperTests {
 
         Integer box_no = 1331;
         BaseCategoryVO baseCategory = this.mapper.selectBaseCategoryList(box_no);
-
         log.info("\t+ baseCategory: {}", baseCategory);
+
+
+        // Category detail
+        Integer category_no = 95920;
+        List<CategoryVO> category = this.mapper.selectCategory(category_no);
+        log.info("\t+ category: {}", category);
+
     } // testGetBaseCategoryList
 
     @Test
@@ -64,6 +70,27 @@ public class BaseCategoryMapperTests {
         this.mapper.updateBaseCategory(baseCategory);
         log.info("\t+ baseCategory: {}" , baseCategory);
     } // testUpdateBaseCategory
+
+    @Test
+    public void testDeleteBaseCategory(){
+        log.debug("testDeleteBaseCategory() invoked.");
+
+        BaseCategoryVO baseCategory = new BaseCategoryVO(
+                95926,
+                "색상1",
+                "테스트1",
+               null,
+                null,
+                null,
+                1341
+        );
+
+        this.mapper.updateBaseCategory(baseCategory);
+        log.info("\t+ baseCategory: {}" , baseCategory);
+
+        this.mapper.deleteCategory();
+
+    } //testDeleteBaseCategory
 
 
 

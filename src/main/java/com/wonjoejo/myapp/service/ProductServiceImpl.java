@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	} // deleteProduct
 
 
-	// category insert
+	// category 생성
 	@Override
 	public Boolean insertCategory(CategoryVO category) {
 		log.debug("insertCategory({}) invoked.", category);
@@ -111,7 +111,7 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		return affectedLines == 1;
 	} // end editCategory
 
-	// Category Detail
+	// Category 상세보기
 	@Override
 	public CategoryVO getCategory(Integer product_no) {
 		log.debug("getCategory({}) invoked.", product_no);
@@ -121,6 +121,16 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 		return category;
 	} // end getCategory
+
+	// Category 삭제
+	@Override
+	public Boolean deleteCategory(Integer product_no) {
+		log.debug("deleteCategory({}) invoked.", product_no);
+
+		int affectedLines = this.mapper.deleteCategory(product_no);
+
+		return affectedLines == 1;
+	} // end deleteCategory
 
 	// BaseCategory Detail
 	@Override
