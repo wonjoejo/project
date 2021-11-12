@@ -40,4 +40,7 @@ public interface BoardMapper {
 	//총 게시물 개수를 반환 
 	public abstract Integer getTotalCount();
 	
+	//게시판 공지사항 목록조회  
+	public abstract List<BoardVO> getnoticeList(); 
+	
 }//end interface
