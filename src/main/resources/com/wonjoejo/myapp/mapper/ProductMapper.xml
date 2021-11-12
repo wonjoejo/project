@@ -148,7 +148,7 @@
         <![CDATA[ 
             SELECT count(product_no)
             FROM product
-            WHERE product_no > 0
+            WHERE box_no = #{box_no}
         ]]>
     </select>
 

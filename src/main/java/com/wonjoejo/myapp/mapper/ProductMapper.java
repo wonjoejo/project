@@ -3,7 +3,6 @@ package com.wonjoejo.myapp.mapper;
 import java.util.List;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
@@ -44,7 +43,7 @@ public interface ProductMapper {
     public abstract List<ProductVO> getListPaging(Criteria cri);
 
 	//총 물품 개수 반환 
-	public abstract Integer getTotalCount();
+	public abstract Integer getTotalCount(Integer box_no);
 
 
 

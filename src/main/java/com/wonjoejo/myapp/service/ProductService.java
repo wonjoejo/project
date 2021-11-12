@@ -3,7 +3,6 @@ package com.wonjoejo.myapp.service;
 import java.util.List;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
@@ -46,7 +45,8 @@ public interface ProductService {
     public abstract List<ProductVO> getListPerPage(Criteria cri);
 
 	//총 레코드 개수 반환 
-	public abstract Integer getTotal();
+	public abstract Integer getTotalCount(Integer box_no);
+
 
 
 
