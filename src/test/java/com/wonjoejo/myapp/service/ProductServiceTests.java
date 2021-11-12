@@ -203,10 +203,10 @@ public class ProductServiceTests {
 	}//testGetListPerPage
     
     @Test(timeout=1000)
-	public void testGetTotal() {
+	public void testGetTotal(Integer box_no) {
 		log.debug("testGetTotal() invoked.");
 				
-		int totalCount = this.service.getTotalCount();		
+		int totalCount = this.service.getTotalCount(box_no);		
 		log.info("\t+ totalCount: {}",totalCount);
 	}//testGetTotal
     
