@@ -23,4 +23,6 @@ public interface BoxService {
 
 	public abstract boolean grantMasterPermission(BoxPermissionVO boxPermission);
 
+	public abstract List<ProductVO> getProductList(Integer box_no);
+
 } // end interface

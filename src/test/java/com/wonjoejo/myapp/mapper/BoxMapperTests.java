@@ -152,4 +152,16 @@ public class BoxMapperTests {
 		log.info("\t+ box:{}",box_no);
 	}
 
+	@Test
+	public void testGetBox() {
+		log.debug("testGetBox() invoked.");
+
+		int box_no = 1330;
+
+		BoxVO box = this.mapper.selectBox(box_no);
+		log.info("\t+ box:{}", box);
+
+		List<ProductVO> productList = this.mapper.getProductList(box_no);
+		log.info("\t+ productList: {}", productList);
+	}
 }

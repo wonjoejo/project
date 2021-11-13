@@ -230,4 +230,20 @@ public class BoxController {
 		log.debug("createView() invoked.");
 	} // createview
 
+    @GetMapping("/get")
+    public void get(Integer box_no, Model model) {
+        log.debug("get({}) invoked.", box_no);
+
+        BoxVO box = this.service.getBox(box_no);
+        log.info("\t +box: {}", box);
+
+        // Product List 4개까지 표시
+        List<ProductVO> productList = this.service.getProductList(box_no);
+        log.info("\t+ productList: {}",productList);
+
+        model.addAttribute("box",box);
+        model.addAttribute("productList",productList);
+
+    } // get
+
 } // end class

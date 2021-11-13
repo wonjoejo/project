@@ -58,7 +58,7 @@
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="../common/left.jsp" />
+		<jsp:include page="../common/boxleft.jsp" />
 		<div class="main-container">
 			<h1>ProductList</h1>
 

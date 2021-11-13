@@ -31,10 +31,12 @@
 	<div class="box-wrapper">
 	<div class="box-container">
 	<c:forEach items="${list}" var="box">
+		<a href="${pageContext.request.contextPath}/box/get?box_no=${box.box_no}">
 		<div class="box hvr-grow">
 		<img src="${box.box_photo_path}/${box.box_photo_name}"/>
 		${box.box_name}
 		</div>
+		</a>
 	</c:forEach>
 	</div>
 

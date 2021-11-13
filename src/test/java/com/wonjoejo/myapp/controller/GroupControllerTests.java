@@ -112,6 +112,7 @@ public class GroupControllerTests {
         String viewName = Objects.requireNonNull(mockMvc.perform(reqBuilder).andReturn().getModelAndView()).getViewName();
 
         log.info("\t+ viewName: {}",viewName);
+
 	}//testJoin
 	
 	
