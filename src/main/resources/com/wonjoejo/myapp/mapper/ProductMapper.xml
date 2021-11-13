@@ -12,18 +12,16 @@
     <!-- /*+ index_asc(tbl_board pk_board) */ *
         /*+ index desc(tbl_board pk_board) */* -->
 
-    <!-- product list 조회 -->
-    <select id="selectProductList" resultType="com.wonjoejo.myapp.domain.ProductVO">
+	<!-- product list 조회 -->
+    <select id="selectProductList" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
         <![CDATA[
         SELECT
-            /*+ index_desc(PRODUCT) */
+        /*+ index_desc(PRODUCT) */
             *
-        FROM PRODUCT,
-             CATEGORY,
-             BASE_CATEGORY
-        WHERE CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
+        FROM PRODUCT, CATEGORY, BASE_CATEGORY
+        WHERE PRODUCT.BOX_NO = #{box_no}
+          AND CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
           AND PRODUCT.PRODUCT_NO = CATEGORY.PRODUCT_NO
-          AND PRODUCT.BOX_NO = #{box_no}
         ]]>
     </select>
 

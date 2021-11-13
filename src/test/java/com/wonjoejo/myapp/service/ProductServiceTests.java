@@ -1,9 +1,12 @@
 package com.wonjoejo.myapp.service;
 
+
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.domain.*;
+
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,7 +52,7 @@ public class ProductServiceTests {
 
 		Integer box_no = 1330;
 
-		List<ProductVO> list = this.service.getProductList(box_no);
+		List<ProductCategoryVO> list = this.service.getProductList(box_no);
 		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
 		list.forEach(log::info);
 

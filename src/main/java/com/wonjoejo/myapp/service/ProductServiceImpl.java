@@ -35,10 +35,10 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 
 	@Override
-	public List<ProductVO> getProductList(Integer box_no) {
+	public List<ProductCategoryVO> getProductList(Integer box_no) {
 		log.debug("getProductList() invoked.");
 
-		List<ProductVO> list = this.mapper.selectProductList(box_no);
+		List<ProductCategoryVO> list = this.mapper.selectProductList(box_no);
 
 		list.forEach(log::info);
 

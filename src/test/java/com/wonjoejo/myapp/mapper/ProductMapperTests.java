@@ -5,6 +5,8 @@ import java.util.List;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.Criteria;
+import com.wonjoejo.myapp.domain.ProductCategoryVO;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +53,7 @@ public class ProductMapperTests {
         cri.setAmount(5);
         cri.setBox_no(box_no);
 
-        List<ProductVO> list = this.mapper.getListPaging(cri);
+        List<ProductCategoryVO> list = this.mapper.getListPaging(cri);
         log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
         list.forEach(log::info);
 
@@ -180,6 +182,5 @@ public class ProductMapperTests {
 
 
     } // testProductDelete
-
 
 } // end class
