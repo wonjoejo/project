@@ -2,10 +2,7 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.domain.*;
 
 public interface ProductMapper {
 

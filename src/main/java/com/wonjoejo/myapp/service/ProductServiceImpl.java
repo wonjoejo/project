@@ -2,15 +2,12 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.*;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.mapper.ProductMapper;
 
 import lombok.AllArgsConstructor;
@@ -141,6 +138,9 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		
 
 		List<ProductVO> list = this.mapper.getListPaging(cri);
+
+		list.forEach(log::info);
+
 		log.info("\t+ list size:{} ",list.size());
 		
 		return list;

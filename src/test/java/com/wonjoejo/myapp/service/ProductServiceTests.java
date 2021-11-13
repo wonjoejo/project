@@ -1,8 +1,6 @@
 package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.BoardVO;
-import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
@@ -100,8 +98,7 @@ public class ProductServiceTests {
 				product_name,
 				product_memo,
 				product_qtn,
-				null, null, null, null				
-				);
+				null, null, null, null);
 
         boolean isSuccess = this.service.insertProduct(product);
         log.info("Product created successfully: {}",isSuccess);
@@ -146,8 +143,7 @@ public class ProductServiceTests {
 				null,
                 null,
                 null,
-                null
-        );
+                null);
 
         boolean isSuccess = this.service.editProduct(product);
         log.info("product edited successfully: {}", isSuccess);
@@ -190,10 +186,12 @@ public class ProductServiceTests {
     @Test(timeout=1000)
 	public void testGetListPerPage() {
 		log.debug("testGetListPerPage() invoked.");
-				
+
+        int box_no = 1330;
 		Criteria cri = new Criteria();
 		cri.setCurrPage(1);
-		cri.setAmount(3);
+		cri.setAmount(6);
+        cri.setBox_no(box_no);
 		
 		List<ProductVO> product = this.service.getListPerPage(cri);
 		
