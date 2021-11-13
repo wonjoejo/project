@@ -33,30 +33,6 @@ public class BoardController {
     @Setter(onMethod_={@Autowired})
     private BoardService service;
 
-    //게시판 공지사항 목록화면 요청
-    @GetMapping("/noticePage")
-    public String noticePage(
-    		@ModelAttribute("cri") Criteria cri, 
- 			Model model) {	
- 		log.debug("listPerPage({}) invoked.",model);
-
- 		List<BoardVO> noticeList = this.service.getnoticePage(cri);
- 		log.info("\t+ noticeList size:{}",noticeList.size());
- 		
- 		model.addAttribute("noticeList",noticeList);
- 		
- 		Integer totalAmount = this.service.getnoticeTotal();
- 		
- 		
- 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
- 		
- 		model.addAttribute("pageMaker",pageDTO);
- 		
- 		//list.jsp 그대로 사용 
- 		return "/board/noticelist";
-        
-    }//noticelist
-    
     // 페이징 처리된 게시판 목록화면 요청 
  	@GetMapping("/listPerPage")
  	public String listPerPage(
@@ -100,7 +76,7 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
     }
-
+    
     //게시물 삭제 
     @PostMapping("/delete")
     public String delete(@RequestParam("board_idx") Integer board_idx, 
@@ -138,6 +114,7 @@ public class BoardController {
 		return "redirect:/board/listPerPage";
 	}//edit
     
+    //게시글 작성 
     @GetMapping("/write")
 	public void register(@ModelAttribute("cri") Criteria cri) {
 		log.debug("register() invoked.");
@@ -165,10 +142,78 @@ public class BoardController {
 		rttrs.addAttribute("result",result);	
 		
 		return "redirect:/board/listPerPage";
-	}//register
+	}//write
+    
+    //-------공지사항 ------------------------------//
+    
+    //게시판 공지사항 목록화면 요청
+    @GetMapping("/noticePage")
+    public String noticePage(
+    		@ModelAttribute("cri") Criteria cri, 
+ 			Model model) {	
+ 		log.debug("listPerPage({}) invoked.",model);
+
+ 		List<BoardVO> noticeList = this.service.getnoticePage(cri);
+ 		log.info("\t+ noticeList size:{}",noticeList.size());
+ 		
+ 		model.addAttribute("noticeList",noticeList);
+ 		
+ 		Integer totalAmount = this.service.getnoticeTotal();
+ 		
+ 		
+ 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+ 		
+ 		model.addAttribute("pageMaker",pageDTO);
+ 		
+ 		//list.jsp 그대로 사용 
+ 		return "/board/noticelist";
+        
+    }//noticelist
+    
+    //공지사항 작성 
+    @GetMapping("/noticewrite")
+	public void noticeWrite(@ModelAttribute("cri") Criteria cri) {
+		log.debug("noticewrite() invoked.");
+		
+		log.info("\t+ cri:{}", cri);
+		
+	}//noticewrite
+    
+    //공지사항 작성 
+    @PostMapping("/noticewrite")
+	public String noticeWrite(BoardDTO board, RedirectAttributes rttrs) {
+		log.debug("noticeWrite({}) invoked.",board);
+		
+		BoardVO vo = new BoardVO(
+				null,
+				board.getMember_id(),
+				board.getTitle(),
+				board.getContent(),
+				1,
+				null,
+				null,null,null
+		);
+		log.info("Board VO {}", vo);
+		
+		boolean result = this.service.noticeWrite(vo);
+		rttrs.addAttribute("result",result);	
+		
+		return "redirect:/board/noticePage";
+	}//noticeWrite
+    
+    //공지사항 상세조회 화면 요청 
+    @GetMapping("/noticedetail")
+    public void noticedetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model) {
+    	log.debug("detail({},{},{}) invoked.",cri,board_idx,model);
+    
+    	BoardVO board = this.service.noticedetail(board_idx);
+		log.info("\t+ board: {}",board);
+		
+		model.addAttribute("board", board);
+    }
     
     
-    //====== 답글 ===============================================//
+    //-------- 답글 ----------------------------------------//
     
 	//게시글 답글 작성 
 	@PostMapping("/replywrite")
@@ -228,8 +273,5 @@ public class BoardController {
 			
 			return "redirect:/board/list";		
 	}//replydelete
-	
-		
-	
 
 }//end class

@@ -185,6 +185,8 @@ a:hover {
   margin-right: 12px;
 }
 
+/* ====== 상단 검색 / 글쓰기  ====== */
+
 .search {
   position: relative;
   width: 160px;
@@ -197,8 +199,13 @@ a:hover {
   border-radius: 40px;
 }
 
+.searchimg {
+	width: 25px;
+	height: 25px;
+}
+  	
 .searchbtn {
-  width: 60px;
+  width: 75px;
   height: 30px;
   margin-top:8px;
 
@@ -220,6 +227,8 @@ a:hover {
   box-shadow: inset 0px 5px 10px rgba(149, 149, 149, 0.2);
   border-radius: 24px;
 }
+
+/* ====== 공지사항 ====== */
 
 .noticewrapper {
   position: relative;
@@ -283,6 +292,8 @@ a:hover {
 	
 }
 
+/* ====== Q&A ====== */
+
 #boardtable {
   position: relative;
   top: 70px;
@@ -298,10 +309,8 @@ ul {
 	border-radius: 50px;
 	border-collapse: collapse; /*경계선 붕괴해서 한개만 나오게*/
 	background: #fff;
-	font-size: 14px;
-	 
+	font-size: 14px;	 
 }
-
 
 .boardlistcontainer{
 	display: flex;
@@ -318,20 +327,16 @@ ul {
 	font-size: 14px;
 	
 	box-sizing: border-box;
-	margin-bottom: 2px;
-	
+	margin-bottom: 2px;	
 }
 
 .boardlistcontainer:hover{
-	border-left: 5px solid #5a95f5;
-	
+	border-left: 5px solid #5a95f5;	
 }
 
 .item {
-	flex-grow: 1;
-	
+	flex-grow: 1;	
 }
-
 
 #boardtitlenone {
 	background: none;
@@ -346,8 +351,7 @@ ul {
 #pagination{
 	width: 95%;
     margin: 0 auto;
-    margin-top: 80px; 
-	
+    margin-top: 80px; 	
 }
 
 .pagination {
@@ -370,15 +374,12 @@ ul {
 	/* border: 1px solid black; */
 }
 
-
-
-/* write css */
+/* ====== write css  ====== */
 
 .write_wrapper{
 	width: 80%;
 	margin: 0 auto;
 }
-
 
 .write_title{
 	width: 100%;
@@ -392,13 +393,26 @@ ul {
 	
 }
 
-.writetitle {
+.writeid {
 	width: 100%;
 	margin: 0 auto;
 	height: 40px;
 	border: none;
 	border-radius: 30px;
 	margin-top: 80px;
+	font-size: 14px;
+	padding: 20px;
+	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+	
+}
+
+.writetitle {
+	width: 100%;
+	margin: 0 auto;
+	height: 40px;
+	border: none;
+	border-radius: 30px;
+	margin-top: 20px;
 	font-size: 14px;
 	padding: 20px;
 	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
@@ -442,7 +456,7 @@ ul {
   border-radius: 24px;
 }
 
-/* detail css */
+/* ====== detail css  ====== */
 
  #detailtop{
 	height: 80px;
@@ -502,7 +516,7 @@ ul {
     width: 100%;
 }
 
-/* edit css */
+/* ====== edit css  ====== */
 
 #editBtn, #deleteBtn {
 	float: right;
@@ -531,5 +545,37 @@ ul {
     margin: 10px 0;
 }
 
+/* ====== noticelist css  ====== */
+
+.noticelistcontainer {
+  		width: 98%;
+  		margin: 0 auto;
+  		padding-left: 40px;
+  	}
+  	
+.noticeimg{
+	width: 18px;
+	height: 18px;
+	
+}
+  	
+
+#noticelistBtn {
+	float: right;
+	width: 90px;
+	height: 37px;
+	color: #5a95f5;
+	border: none;
+	margin-right: 30px;
+	
+	background: #ffffff;
+	border: 1px solid #5a95f5;
+	border-radius: 24px;
+}
+
+#noticelistBtn:hover {
+	color: #ffffff;	
+	background: #5a95f5;	
+}
 
 

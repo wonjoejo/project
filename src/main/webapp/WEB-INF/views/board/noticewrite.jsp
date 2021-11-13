@@ -87,7 +87,7 @@
 			</div>
 			
 			
-		<form action="/board/write" method="post">
+		<form action="/board/noticewrite" method="post">
 	        <div class="write_wrapper">
 	        	<div>
 	        		<h3 class="write_title">글 쓰기</h3>   
