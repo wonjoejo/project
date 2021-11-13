@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-	<title>Q&AWrite</title>
+	<title>Q&ADetail</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -30,6 +30,24 @@
       $(function () {
         console.clear();
         console.log('JQuery stared...');
+        
+       //delete 버튼에 대한 이벤트 등록 처리
+        $('#deleteBtn').click(function () {
+          console.log('click event triggered..');
+
+          var formObj = $('form');
+          formObj.attr('method', 'POST');
+          formObj.attr('action', '/board/delete');
+
+          formObj.submit();
+        }); //onclick
+        
+       //edit 버튼에 대한 이벤트 등록 처리
+        $('#editBtn').click(function () {
+          console.log('click event triggered..');
+
+          self.location = '/board/edit?board_idx=${board.board_idx}';
+        }); //onclick
 
         //list 버튼에 대한 이벤트 등록 처리
         //$(#listBtn).on('click',function(){
@@ -40,26 +58,6 @@
         }); //onclick
       }); //.jq
     </script>
-    
-    <style>
-  	.writeid {
-		width: 100%;
-		margin: 0 auto;
-		height: 40px;
-		border: none;
-		border-radius: 30px;
-		margin-top: 80px;
-		font-size: 14px;
-		padding: 20px;
-		box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
-		
-	}
-	.writetitle{
-		margin-top: 20px;
-	}
-	
-	
-    </style>
 	
 </head>
 <body>
@@ -71,7 +69,7 @@
 			<p class="name">name</p>
 		</div>
 		<div class="menu">
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/box/listPerPage?member_id=${member_id}"><i class="far fa-list-alt"></i>박스 리스트</a></span>
+			<span class="menu-item"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i>박스 리스트</a></span>
 			<span class="menu-item"><a href="#"><i class="far fa-plus-square"></i> 박스 생성</a></span>
 			<span class="menu-item"><a href="${pageContext.request.contextPath}/board/listPerPage?member_id=${member_id}"><i class="far fa-question-circle"></i> Q&A</a></span>
 			<span class="menu-item"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
@@ -80,34 +78,43 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-			<div id="top_content">
-				<h1 class="title">Q&A</h1>
-						
+			<div id="detailtop">
+			
+				<h1 class="title">Q&A</h1>						
 				<button id="listBtn" type="button">돌아가기</button>
+			
 			</div>
 			
+			<div id="detailcontent" >
+				<form action="/board/edit" method="post">
+					<input type="hidden" name="board_idx" value="${board.board_idx}" />
 			
-		<form action="/board/write" method="post">
-	        <div class="write_wrapper">
-	        	<div>
-	        		<h3 class="write_title">글 쓰기</h3>   
-	        	</div>
-	        	<div>
-	            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
-	            </div> 
-	        	
-	        	<div>
-	            	<input class="writetitle" type="text" name="title" placeholder="제목을 입력하세요 "/>
-	            </div> 
-	         	<div>
-	                <textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>
-	            </div>
-	        	<div>         
-	                <button class="writeBtn" type="submit">등록</button>
-	            </div>         
-	        </div>
-     	 </form>
-
+					<div class="detailwrapper">
+						<div class="detailtitle">
+							<input class="noline" type="text" name="title" value="${board.title}" readonly />
+						</div>
+						
+						<div class="detailid">
+							<input class="noline" type="text" name="member_id" value="${board.member_id}" readonly />
+						</div>
+						
+						<div class="detaildate">
+							<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
+						</div>            
+						
+						<div class="detailcontent">
+							<textarea class="noline detailcon" name="content" cols="50" rows="10" readonly>${board.content}</textarea>
+						</div>
+					</div>
+				
+					<div>
+						<button type="button" id="editBtn">수정</button>
+		                <button type="button" id="deleteBtn">삭제</button>
+					</div>	
+				</form>		
+			</div>
+			
+		
 			
 			
 		</div>

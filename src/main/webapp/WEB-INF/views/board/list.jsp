@@ -61,6 +61,21 @@
 
       }); //.jq
     </script>
+    
+    <style>
+  	
+  	.noticeimg{
+  		width: 18px;
+  		height: 18px;
+  		
+  	}
+  	
+  	.searchimg {
+	width: 20px;
+	height: 20px;
+}
+  	
+    </style>
 
 </head>
 <body>
@@ -86,9 +101,9 @@
 				<h1 class="title">Q&A</h1>
 				
 				<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything"/>
-				<button class="searchbtn">검색</button>
+				<button class="searchbtn"><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 						
-				<button id="writeBtn" type="button">글 작성</button>
+				<button id="writeBtn" type="button"> + 글 작성</button>
 			</div>
 			
 			<div class="noticewrapper" >
@@ -96,21 +111,20 @@
 				<div id="notice">
 				
 					<c:forEach items="${noticeList}" var="board">
-						<div class="noticelist">     
-							<%-- <div class="item">
-								<c:out value="${board.board_idx}" />
-							</div>	 --%>		
-							<div class="item">
-								<a href="/board/detail?bno=${board.board_idx}">
-								<c:out value="${board.title}" />
-								</a>
-							</div>					
-							<div class="item">
-								<c:out value="${board.member_id}" />
-							</div>						
+						<div class="noticelist">      	
+											
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div>            
+							</div> 
+							<div class="item">
+								<c:out value="${board.member_id}" />
+							</div>	 
+							<div class="item">
+								<a href="/board/noticedetail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+								<c:out value="${board.title}" />
+								</a>
+							</div>	  
+							&nbsp;&nbsp;&nbsp;&nbsp;<img class="noticeimg" src="${pageContext.request.contextPath}/resources/assets/img/warning.png" />        
 						</div>
 			
 						
@@ -119,7 +133,7 @@
 				<button id="addBtn" type="button">더보기</button>
 			</div>
 			
-			<div id="boardtable">
+			<div id="boardtable" >
 
 				<div id="boardtitlenone" class="boardlistcontainer">
 					<div class="item">No</div>
