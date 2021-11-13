@@ -15,7 +15,7 @@
         ]]>
     </select>
     
-    <!-- 페이징 처리된 게시판 목록조회 -->
+    <!-- 공지사항 페이징 처리된 목록조회 -->
     <select id="getnoticePage" resultType="com.wonjoejo.myapp.domain.BoardVO">     
         <![CDATA[ 
             SELECT
@@ -35,6 +35,25 @@
         ]]>
     </select>
     
+    <!-- 공지사항 게시물 등록 -->
+    <insert id="insertNotice">
+        INSERT INTO qna_board (member_id,title,content,notice)
+		VALUES (#{member_id},#{title},#{content},1)
+    </insert>
+    
+    <!-- <insert id="insertNoticeSelectKey">
+        <selectKey keyProperty="board_idx" order="BEFORE" resultType="int">
+            SELECT ISEQ$$_61790.nextval          
+            FROM dual
+        </selectKey>
+        INSERT INTO qna_board (board_idx,member_id,title,content,notice)
+        VALUES(#{board_idx},#{member_id},#{title},#{content},1)
+    </insert> -->
+    
+     <!-- 공지사항 상세 조회 -->
+    <select id="noticeread" resultType="com.wonjoejo.myapp.domain.BoardVO">
+        SELECT * FROM qna_board WHERE board_idx=#{board_idx}       
+    </select>
 
     <!-- 게시판 목록조회 -->
     <select id="getList" resultType="com.wonjoejo.myapp.domain.BoardVO">
@@ -123,6 +142,5 @@
     <delete id="deleteReply">
         DELETE FROM qna_board WHERE ref=#{ref} and depth=1
     </delete>
-    
  
 </mapper>

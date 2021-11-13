@@ -44,7 +44,7 @@ public class ProductServiceTests {
     public void testGetBoxList() {
     	log.debug("testProductxList() invoked.");
 
-		Integer box_no = 1005;
+		Integer box_no = 1330;
 
 		List<ProductCategoryVO> list = this.service.getProductList(box_no);
 		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
@@ -198,9 +198,11 @@ public class ProductServiceTests {
 	}//testGetListPerPage
     
     @Test(timeout=1000)
-	public void testGetTotal(Integer box_no) {
+	public void testGetTotal() {
 		log.debug("testGetTotal() invoked.");
-				
+
+        int box_no = 1330;
+
 		int totalCount = this.service.getTotalCount(box_no);		
 		log.info("\t+ totalCount: {}",totalCount);
 	}//testGetTotal

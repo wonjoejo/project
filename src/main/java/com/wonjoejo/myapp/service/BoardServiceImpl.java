@@ -97,29 +97,6 @@ public class BoardServiceImpl
 	}
 	
 	
-	//답글 수정 
-	@Override
-	public boolean editReply(BoardVO board) {
-		log.debug("editReply({}) invoked.", board);
-		
-		int affectedRows = this.mapper.updateReply(board);
-		log.info("\t+ affectedRows: {}", affectedRows);
-		
-		return affectedRows==1;
-	}//editReply
-
-	
-	//답글 삭제 
-	@Override
-	public boolean deleteReply(Integer board_idx) {
-		log.debug("deleteReplye({}) invoked.", board_idx);
-		
-		int affectedRows = this.mapper.deleteReply(board_idx);
-		log.info("\t+ affectedRows: {}", affectedRows);
-		
-		return affectedRows==1;
-	}//deleteReply
-
 	//게시물 페이지 
 	@Override
 	public List<BoardVO> getListPerPage(Criteria cri) {
@@ -147,7 +124,7 @@ public class BoardServiceImpl
 		return this.mapper.getnoticeList();
 	}
 
-	//공지사항 페이지 
+	//공지사항 페이징 
 	@Override
 	public List<BoardVO> getnoticePage(Criteria cri) {
 		log.debug("getListPerPage({}) invoked.",cri);
@@ -158,6 +135,59 @@ public class BoardServiceImpl
 		return list;
 	}
 	
+	//공지사항 페이지 총 게시물 수 
+	@Override
+	public Integer getnoticeTotal() {
+		log.debug("getTotal() invoked.");	
+		return this.mapper.getNoticeCount();
+	}
+
+	//공지사항 작성 
+	@Override
+	public boolean noticeWrite(BoardVO board) {
+		log.debug("noticeWrite({}) invoked.", board);
+		
+		int affectedRows = this.mapper.insertNotice(board);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;
+	}
+	
+	//공지사항 상세보기 
+	@Override
+	public BoardVO noticedetail(Integer board_idx) {
+		log.debug("noticedetail({}) invoked.", board_idx);
+		
+		BoardVO board = this.mapper.noticeread(board_idx);
+		log.info("\t+ board: {}", board);
+		
+		return board;
+	}//noticedetail
+	
+	
+	//답글 수정 
+	@Override
+	public boolean editReply(BoardVO board) {
+		log.debug("editReply({}) invoked.", board);
+		
+		int affectedRows = this.mapper.updateReply(board);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;
+	}//editReply
+
+		
+	//답글 삭제 
+	@Override
+	public boolean deleteReply(Integer board_idx) {
+		log.debug("deleteReplye({}) invoked.", board_idx);
+		
+		int affectedRows = this.mapper.deleteReply(board_idx);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;
+	}//deleteReply
+
 	
 	@Override
 	public void destroy() throws Exception {
@@ -171,15 +201,6 @@ public class BoardServiceImpl
 		
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
-	}
-
-
-	@Override
-	public Integer getnoticeTotal() {
-		log.debug("getTotal() invoked.");	
-		return this.mapper.getNoticeCount();
-	}
-
-
+	}//afterPropertiesSet
 
 }//end class 

@@ -25,15 +25,6 @@ public interface BoardService {
 	//새로운 게시글의 등록
 	public abstract boolean write(BoardVO board);
 
-	//답글 등록 
-	public abstract boolean writeReply(BoardVO board);
-
-	//답글 수정
-	public abstract boolean editReply(BoardVO board);
-	
-	//답글 삭제 
-	public abstract boolean deleteReply(Integer board_idx);
-	
 	//총 레코드 개수 반환 
 	public abstract Integer getTotal();
 	
@@ -45,8 +36,21 @@ public interface BoardService {
 
     //공지사항 페이지 
 	public abstract List<BoardVO> getnoticePage(Criteria cri);
+
+	//공지사항 작성 
+	public abstract boolean noticeWrite(BoardVO board);
+
+	//공지사항 상세보기 
+	public abstract BoardVO noticedetail(Integer board_idx);
 	
+	//답글 등록 
+	public abstract boolean writeReply(BoardVO board);
+
+	//답글 수정
+	public abstract boolean editReply(BoardVO board);
 	
+	//답글 삭제 
+	public abstract boolean deleteReply(Integer board_idx);
 
 
 }//end interface

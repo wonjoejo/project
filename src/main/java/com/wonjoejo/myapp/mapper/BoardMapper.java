@@ -15,15 +15,6 @@ public interface BoardMapper {
 
 	//새로운 게시물 등록
 	public abstract	Integer insert(BoardVO board);
-
-	//답변 등록 
-	public abstract Integer insertReply(BoardVO board);
-	
-	//답변 수정  
-	public abstract Integer updateReply(BoardVO board);
-	
-	//답변 삭제  
-	public abstract Integer deleteReply(Integer board_idx);
 	
 	//새로운 게시글이 등록완료됨과 동시에 ,자동생성된 게시글(BNO)값을 얻어낼수가 있다.
 	public abstract Integer insertSelectKey(BoardVO board);
@@ -40,13 +31,30 @@ public interface BoardMapper {
 	//총 게시물 개수를 반환 
 	public abstract Integer getTotalCount();
 	
-	//게시판 공지사항 목록조회 페이징처리   
+	//공지사항 목록조회 페이징처리   
 	public abstract List<BoardVO> getnoticePage(Criteria cri);
 
-	//게시판 공지사항 목록조회 
+	//공지사항 목록조회 
 	public abstract List<BoardVO> getnoticeList();
 
 	//공지사항 게시물 개수를 반환 
 	public abstract Integer getNoticeCount(); 
 	
+	//공지사항 게시물 등록
+	public abstract	Integer insertNotice(BoardVO board);
+	
+	//공지사항 게시글이 등록완료됨과 동시에 ,자동생성된 게시글(BNO)값을 얻어낼수가 있다.
+	public abstract Integer insertNoticeSelectKey(BoardVO board);
+
+	//공지사항 상세보기 
+	public abstract BoardVO noticeread(Integer board_idx);
+	
+	//답변 등록 
+	public abstract Integer insertReply(BoardVO board);
+	
+	//답변 수정  
+	public abstract Integer updateReply(BoardVO board);
+	
+	//답변 삭제  
+	public abstract Integer deleteReply(Integer board_idx);
 }//end interface

@@ -96,20 +96,29 @@
 							<li class="next"><a class="next" href="${pageMaker.endPage + 1}">Next</a></li>
 						</c:if>
 					</ul>
+				</form>
 			</div> <!-- pagination -->
 
 
 
 
+			${list}
 			<div class="product-container">
 				<div id="product-list">
 					<c:forEach items="${list}" var="product"><br />
 						<img id="product_img"
 							src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true"
 							style="width: 50px;">
+						<c:out value='물품번호: ${product.product_no}' />
 						<c:out value='물품명: ${product.product_name}' />
 						<c:out value='박스번호: ${product.box_no}' />
-						<c:out value='수량: ${product.product_qtn}' /> <br />
+						<c:out value='수량: ${product.product_qtn}' />
+<%--						<c:out value='카테고리1: ${product.cate_name1} : ${product.cate_detail1}' />--%>
+<%--						<c:out value='카테고리2: ${product.cate_name2} : ${product.cate_detail2}' />--%>
+<%--						<c:out value='카테고리3: ${product.cate_name3} : ${product.cate_detail3}' />--%>
+
+
+						<br />
 					</c:forEach><br />
 				</div><br />
 			</div> <!-- product-container -->
