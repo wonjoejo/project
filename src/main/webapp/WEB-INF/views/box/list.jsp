@@ -27,6 +27,7 @@
 
 <div class="main-container">
 	<h1>박스 리스트</h1>
+	${sessionScope.member_id}
 
 	<div class="box-wrapper">
 	<div class="box-container">
@@ -40,12 +41,36 @@
 	</c:forEach>
 	</div>
 
+		<!-- 현재화면 하단부에 , 페이징 처리기준에 맞게 , 페이지번호목록 표시 -->
+		<div id="pagination">
+
+			<form action="#" id="paginationForm">
+				<input type="hidden" name="currPage">
+				<input type="hidden" name="amount">
+				<input type="hidden" name="pagesPerPage">
+
+				<ul class="pagination">
+					<!-- 1. 이전, 이동여부표시(prev) -->
+					<c:if test="${pageMaker.prev}">
+						<li class="prev"><a class="prev" href="${pageMaker.startPage - 1}">Prev</a></li>
+					</c:if>
+
+					<!-- 페이지번호목록 표시   -->
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+						<li><a class="page" href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}&currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a></li>
+					</c:forEach>
+
+					<!-- 2. 이후, 이동여부표시(next) -->
+					<c:if test="${pageMaker.next}">
+						<li class="next"><a class="next" href="${pageMaker.endPage + 1}">Next</a></li>
+					</c:if>
+				</ul>
+
+			</form>
+		</div>
 	</div>
 </div>
-
 </div>
-
-
 
 </body>
 </html>

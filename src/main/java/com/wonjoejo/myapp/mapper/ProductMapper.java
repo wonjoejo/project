@@ -37,7 +37,7 @@ public interface ProductMapper {
 	public abstract BaseCategoryVO selectBaseCategory(Integer box_no);
 	
     // 페이징 처리된 물품 리스트 조회
-    public abstract List<ProductVO> getListPaging(Criteria cri);
+    public abstract List<ProductCategoryVO> getListPaging(Criteria cri);
 
 	//총 물품 개수 반환 
 	public abstract Integer getTotalCount(Integer box_no);

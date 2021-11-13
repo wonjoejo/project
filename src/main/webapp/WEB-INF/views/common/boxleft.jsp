@@ -40,6 +40,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
 
 </html>

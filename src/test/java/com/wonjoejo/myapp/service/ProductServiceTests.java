@@ -196,7 +196,7 @@ public class ProductServiceTests {
 		cri.setAmount(6);
         cri.setBox_no(box_no);
 		
-		List<ProductVO> product = this.service.getListPerPage(cri);
+		List<ProductCategoryVO> product = this.service.getListPerPage(cri);
 		
 		assert product != null;
 		

@@ -1,3 +1,8 @@
 let menus = document.querySelectorAll(".menu-item");
 
-menus.forEach()
+menus.forEach(function(item,index){
+	item.addEventListener("click",function(){
+		item.classList.add("active");
+	});
+});
+
