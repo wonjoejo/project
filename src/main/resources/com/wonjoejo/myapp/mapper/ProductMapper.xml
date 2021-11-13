@@ -7,10 +7,10 @@
     <!-- SELECT/INSERT/UPDATE/DELETE  각각의 SQL 문장을 저장하는 태그가 이미 준비되어 있다 (DTD에)-->
 
     <!-- 게시판 목록 조회 -->
-    
+
     <!-- 비교 연산자(***, >, <)를 사용하는 SQL 문장 (DQL, DML) -->
-        <!-- /*+ index_asc(tbl_board pk_board) */ *
-            /*+ index desc(tbl_board pk_board) */* -->
+    <!-- /*+ index_asc(tbl_board pk_board) */ *
+        /*+ index desc(tbl_board pk_board) */* -->
 
 	<!-- product list 조회 -->
     <select id="selectProductList" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
@@ -26,7 +26,7 @@
     </select>
 
 
-	<!-- product 1건 상세조회 -->
+    <!-- product 1건 상세조회 -->
     <select id="selectProduct" resultType="com.wonjoejo.myapp.domain.ProductVO">
         <![CDATA[
         SELECT
@@ -38,8 +38,8 @@
     </select>
 
 
-	<!-- insert -->
-	 <insert id="insertProduct">
+    <!-- insert -->
+    <insert id="insertProduct">
         <selectKey keyProperty="product_no" resultType="int" order="BEFORE">
             SELECT PRODUCT_NO_SEQ.nextval FROM DUAL
         </selectKey>
@@ -50,44 +50,49 @@
         #{product_photo_name}, #{product_photo_path}, #{barcode})
     </insert>
 
-	<!-- edit -->
+    <!-- edit -->
     <update id="updateProduct">
-        UPDATE PRODUCT SET
-        PRODUCT_NAME = #{product_name},
-        PRODUCT_MEMO = #{product_memo},
-        PRODUCT_QTN = #{product_qtn},
-        PRODUCT_PHOTO_NAME = #{product_photo_name},
-        PRODUCT_PHOTO_PATH = #{product_photo_path},
-        BARCODE = #{barcode}
+        UPDATE PRODUCT
+        SET PRODUCT_NAME       = #{product_name},
+            PRODUCT_MEMO       = #{product_memo},
+            PRODUCT_QTN        = #{product_qtn},
+            PRODUCT_PHOTO_NAME = #{product_photo_name},
+            PRODUCT_PHOTO_PATH = #{product_photo_path},
+            BARCODE            = #{barcode}
         WHERE PRODUCT_NO = #{product_no}
     </update>
-    
 
-	<!-- delete -->
+
+    <!-- delete -->
     <delete id="deleteProduct">
-        DELETE FROM PRODUCT WHERE PRODUCT_NO = #{product_no}
+        DELETE
+        FROM PRODUCT
+        WHERE PRODUCT_NO = #{product_no}
     </delete>
 
     <!-- Category 생성 -->
     <insert id="insertCategory">
         <selectKey keyProperty="category_no" resultType="int" order="BEFORE">
-            SELECT CATEGORY_NO FROM BASE_CATEGORY,PRODUCT WHERE BASE_CATEGORY.BOX_NO = PRODUCT.BOX_NO and PRODUCT_NO = #{product_no}
+            SELECT CATEGORY_NO FROM BASE_CATEGORY,PRODUCT WHERE BASE_CATEGORY.BOX_NO = PRODUCT.BOX_NO and PRODUCT_NO =
+            #{product_no}
         </selectKey>
 
-        INSERT INTO CATEGORY(CATEGORY_NO, PRODUCT_NO, CATE_DETAIL1, CATE_DETAIL2, CATE_DETAIL3, CATE_DETAIL4, CATE_DETAIL5)
-        VALUES (#{category_no}, #{product_no}, #{cate_detail1}, #{cate_detail2}, #{cate_detail3}, #{cate_detail4}, #{cate_detail5})
+        INSERT INTO CATEGORY(CATEGORY_NO, PRODUCT_NO, CATE_DETAIL1, CATE_DETAIL2, CATE_DETAIL3, CATE_DETAIL4,
+        CATE_DETAIL5)
+        VALUES (#{category_no}, #{product_no}, #{cate_detail1}, #{cate_detail2}, #{cate_detail3}, #{cate_detail4},
+        #{cate_detail5})
 
     </insert>
 
     <!-- Category 수정-->
     <update id="updateCategory">
 
-        UPDATE CATEGORY SET
-        CATE_DETAIL1 = #{cate_detail1},
-        CATE_DETAIL2 = #{cate_detail2},
-        CATE_DETAIL3 = #{cate_detail3},
-        CATE_DETAIL4 = #{cate_detail4},
-        CATE_DETAIL5 = #{cate_detail5}
+        UPDATE CATEGORY
+        SET CATE_DETAIL1 = #{cate_detail1},
+            CATE_DETAIL2 = #{cate_detail2},
+            CATE_DETAIL3 = #{cate_detail3},
+            CATE_DETAIL4 = #{cate_detail4},
+            CATE_DETAIL5 = #{cate_detail5}
         WHERE PRODUCT_NO = #{product_no}
 
     </update>
@@ -97,13 +102,11 @@
     <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.CategoryVO">
 
         <![CDATA[
-
-            SELECT
+        SELECT
             /*+ index_desc(CATEGORY) */
             *
-            FROM CATEGORY
-            WHERE product_no = #{product_no}
-
+        FROM CATEGORY
+        WHERE product_no = #{product_no}
         ]]>
 
     </select>
@@ -111,7 +114,9 @@
     <!-- Category 삭제 -->
     <delete id="deleteCategory">
 
-        DELETE FROM CATEGORY WHERE PRODUCT_NO = #{product_no}
+        DELETE
+        FROM CATEGORY
+        WHERE PRODUCT_NO = #{product_no}
 
     </delete>
 
@@ -119,41 +124,41 @@
     <select id="selectBaseCategory" resultType="com.wonjoejo.myapp.domain.BaseCategoryVO">
 
         <![CDATA[
-
-            SELECT
+        SELECT
             /*+ index_desc(BASE_CATEGORY) */
             *
-            FROM BASE_CATEGORY
-            WHERE box_no = #{box_no}
-
+        FROM BASE_CATEGORY
+        WHERE box_no = #{box_no}
         ]]>
 
     </select>
-    
-    
-    
+
     <!-- 페이징 처리된 물품 리스트 조회 -->
-    <select id="getListPaging" resultType="com.wonjoejo.myapp.domain.ProductVO">     
-        <![CDATA[ 
-            SELECT
-                /*+ index_desc(product_no) */ *
-            FROM product WHERE box_no = #{box_no}
-            OFFSET (#{currPage} - 1) * #{amount} ROWS 
-            FETCH NEXT #{amount} ROWS ONLY
+    <select id="getListPaging" resultType="com.wonjoejo.myapp.domain.ProductVO">
+        <![CDATA[
+        SELECT
+            /*+ index_desc(PRODUCT) */
+            *
+        FROM PRODUCT,
+             CATEGORY,
+             BASE_CATEGORY
+        WHERE CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
+          AND PRODUCT.PRODUCT_NO = CATEGORY.PRODUCT_NO
+          AND PRODUCT.BOX_NO = #{box_no}
+        OFFSET (#{currPage} - 1) * #{amount} ROWS
+        FETCH NEXT #{amount} ROWS ONLY
         ]]>
-    </select>
-    
-    
-    
-     <!-- 총 물품 개수 반환  -->
-     <select id="getTotalCount" resultType="int">
-        <![CDATA[ 
-            SELECT count(product_no)
-            FROM product
-            WHERE box_no = #{box_no}
-        ]]>
+
     </select>
 
 
+    <!-- 총 물품 개수 반환  -->
+    <select id="getTotalCount" resultType="int">
+        <![CDATA[
+        SELECT count(product_no)
+        FROM product
+        WHERE box_no = #{box_no}
+        ]]>
+    </select>
 
 </mapper>

@@ -17,7 +17,6 @@ import com.wonjoejo.myapp.service.ProductService;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Log4j2
@@ -62,7 +61,7 @@ public class ProductController {
  		model.addAttribute("pageMaker",pageDTO);
  		
  		
- 		
+
  		return "/product/list";
 
 	} // productListPerPage
@@ -107,12 +106,12 @@ public class ProductController {
 				product.getProduct_photo_path(),
 				product.getBarcode(),
 				product.getReg_date()
-        );
+		);
 
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
 		rttrs.addAttribute("result", result);
-
+r
 		// Category insert
 		CategoryVO categoryVO = new CategoryVO(
 				null,
@@ -159,7 +158,7 @@ public class ProductController {
 				product.getProduct_photo_path(),
 				product.getBarcode(),
 				product.getReg_date()
-        );
+		);
 
         boolean result = this.service.editProduct(productVO);
         log.info("\t +result: {}", result);

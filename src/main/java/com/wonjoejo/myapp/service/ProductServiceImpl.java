@@ -138,6 +138,9 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		
 
 		List<ProductVO> list = this.mapper.getListPaging(cri);
+
+		list.forEach(log::info);
+
 		log.info("\t+ list size:{} ",list.size());
 		
 		return list;
