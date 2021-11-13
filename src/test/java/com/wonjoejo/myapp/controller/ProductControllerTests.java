@@ -54,9 +54,13 @@ public class ProductControllerTests {
 
         MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
         MockMvc mockMvc = builder.build();
-        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/product/list");
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/product/listPerPage");
 
-        reqBuilder.param("box_no", "1005");
+        reqBuilder.param("currPage", "1");
+        reqBuilder.param("amount", "5");
+        reqBuilder.param("pagesPerPage", "5");
+
+        reqBuilder.param("box_no", "1330");
 
         ModelMap modelMap = Objects.requireNonNull(mockMvc.
                         perform(reqBuilder).

@@ -44,7 +44,7 @@ public class ProductMapperTests {
 	public void testProductxList() {
 		log.debug("testProductxList() invoked.");
 
-		Integer box_no = 1005;
+		Integer box_no = 1330;
 
 		List<ProductVO> list = this.mapper.selectProductList(box_no);
 		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
