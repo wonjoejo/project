@@ -13,7 +13,7 @@
             *
             FROM BOX
             WHERE member_id = #{member_id}
-            OFFSET (#{currPage}-1)*#{amount} ROWS
+            OFFSET (#{currPage} - 1) * #{amount} ROWS
                 FETCH NEXT #{amount} ROWS ONLY
 
         ]]>

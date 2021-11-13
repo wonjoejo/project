@@ -37,6 +37,8 @@ public class BoxController {
 
         log.debug("list({},{}) invoked.", model, cri);
 
+        cri.setAmount(6);
+
         List<BoxVO> list = this.service.getBoxList(cri);
         log.info("\t+ list.size:{}", list.size());
 
@@ -52,27 +54,50 @@ public class BoxController {
     @PostMapping("/create")
     public String create(BoxDTO box, RedirectAttributes rttrs, MultipartFile file) throws IOException {
 
-        log.debug("create({}) invoked.", box);
+        log.debug("create({},{}) invoked.", box,file);
 
         String uploadDir = "/Users/heewonseo/temp/file_upload";
 
+        BoxVO boxVO;
 
-            File targetPath = new File(uploadDir, Objects.requireNonNull(file.getOriginalFilename()));
-            file.transferTo(targetPath);
+            if(file.getSize()!=0) {
+                File targetPath = new File(uploadDir, Objects.requireNonNull(file.getOriginalFilename()));
+                file.transferTo(targetPath);
 
-            BoxVO boxVO = new BoxVO(
-                    null,
-                    box.getMember_id(),
-                    box.getBox_mode(),
-                    box.getBox_name(),
-                    box.getBox_memo(),
-                    file.getOriginalFilename(),
-                    uploadDir,
-                    null
-            );
+                boxVO = new BoxVO(
+                        null,
+                        box.getMember_id(),
+                        box.getBox_mode(),
+                        box.getBox_name(),
+                        box.getBox_memo(),
+                        file.getOriginalFilename(),
+                        uploadDir,
+                        null
+                );
 
-            boolean result = this.service.createBox(boxVO);
-            log.info("\t +result: {}", result);
+                boolean result = this.service.createBox(boxVO);
+                log.info("\t +result: {}", result);
+
+            } else {
+
+                boxVO = new BoxVO(
+                        null,
+                        box.getMember_id(),
+                        box.getBox_mode(),
+                        box.getBox_name(),
+                        box.getBox_memo(),
+                        box.getBox_photo_name(),
+                        "/resources/assets/img/",
+                        null
+                );
+
+                boolean result = this.service.createBox(boxVO);
+                log.info("\t +result: {}", result);
+
+            }
+
+
+
 
 //		BaseCategory insert
         BaseCategoryVO basecategoryVO = null;
@@ -181,7 +206,7 @@ public class BoxController {
 		boolean result3 = this.service.grantMasterPermission(permissionVo);
 		log.info("\t +Permission Result:{}",result3);
 
-		rttrs.addAttribute("result",result);
+//		rttrs.addAttribute("result",result);
         rttrs.addAttribute("member_id",box.getMember_id());
 
 

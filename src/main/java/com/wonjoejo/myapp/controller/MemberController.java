@@ -72,7 +72,6 @@ public class MemberController {
 			model.addAttribute(MemberController.authKey, member);
 			rttrs.addAttribute("member_id",member.getMember_id());
 			session.setAttribute("member_id",member.getMember_id());
-
 		} // if
 
 		return "redirect:/box/list";
