@@ -111,5 +111,15 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 		return affectedLines == 1;
 	} // grantMasterPermission
 
+	@Override
+	public List<ProductVO> getProductList(Integer box_no) {
+		log.debug("getProductList({}) invoked.",box_no);
+
+		List<ProductVO> productList = this.mapper.getProductList(box_no);
+		log.info("\t+ productList: {}",productList);
+
+		return productList;
+	} // getProductList
+
 
 } // end class

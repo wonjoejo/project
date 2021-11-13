@@ -66,10 +66,11 @@
 
         UPDATE BASE_CATEGORY SET
         CATE_NAME1 = #{cate_name1},
-
+        CATE_NAME2 = #{cate_name2},
+        CATE_NAME3 = #{cate_name3},
+        CATE_NAME4 = #{cate_name4},
+        CATE_NAME5 = #{cate_name5}
         WHERE CATEGORY_NO = #{category_no}
-
-
 
     </update>
 
