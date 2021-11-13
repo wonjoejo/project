@@ -328,10 +328,10 @@ select {
 	width: 50%;
 }
 
-.carousel-control-prev-icon {
+.carousel button {
 	color: #4E4E4E;
+	padding-right: 10px;
 }
-
 
 
 

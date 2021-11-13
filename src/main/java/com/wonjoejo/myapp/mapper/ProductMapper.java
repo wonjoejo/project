@@ -2,15 +2,12 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.domain.*;
 
 public interface ProductMapper {
 
 	// 물품 리스트 조회
-	public abstract List<ProductVO> selectProductList(Integer box_no);
+	public abstract List<ProductCategoryVO> selectProductList(Integer box_no);
 
 	// 물품 상세 조회
 	public abstract ProductVO selectProduct(Integer product_no);

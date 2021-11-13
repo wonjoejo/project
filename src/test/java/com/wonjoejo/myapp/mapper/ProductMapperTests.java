@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
+import com.wonjoejo.myapp.domain.ProductCategoryVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,9 +45,9 @@ public class ProductMapperTests {
 	public void testProductxList() {
 		log.debug("testProductxList() invoked.");
 
-		Integer box_no = 1005;
+		Integer box_no = 1330;
 
-		List<ProductVO> list = this.mapper.selectProductList(box_no);
+		List<ProductCategoryVO> list = this.mapper.selectProductList(box_no);
 		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
 		list.forEach(log::info);
 

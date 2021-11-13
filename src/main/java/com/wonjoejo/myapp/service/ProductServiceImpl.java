@@ -2,15 +2,12 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.*;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.mapper.ProductMapper;
 
 import lombok.AllArgsConstructor;
@@ -38,10 +35,10 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 
 	@Override
-	public List<ProductVO> getProductList(Integer box_no) {
+	public List<ProductCategoryVO> getProductList(Integer box_no) {
 		log.debug("getProductList() invoked.");
 
-		List<ProductVO> list = this.mapper.selectProductList(box_no);
+		List<ProductCategoryVO> list = this.mapper.selectProductList(box_no);
 
 		list.forEach(log::info);
 
