@@ -87,10 +87,10 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 	} // deleteBox
 
 	@Override
-	public Integer getTotal() {
+	public Integer getTotal(String member_id) {
 		log.debug("getTotal() invoked.");
 
-		return this.mapper.getTotalCount();
+		return this.mapper.getTotalCount(member_id);
 	} // getTotal
 
 	@Override
@@ -120,6 +120,15 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 		return productList;
 	} // getProductList
+
+	@Override
+	public boolean joinBox(String member_id, Integer box_no) {
+		log.debug("joinBox({},{}) invoked.",box_no,member_id);
+
+		int affectedLines = this.mapper.insertGroup(member_id,box_no);
+
+		return affectedLines == 1;
+	}
 
 
 } // end class
