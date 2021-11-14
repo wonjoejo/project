@@ -130,6 +130,8 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		return baseCategory;
 	} // end getBaseCategory
 
+
+
 	
 	
 	@Override

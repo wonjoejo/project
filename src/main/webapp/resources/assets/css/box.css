@@ -231,7 +231,7 @@ textarea {
 	width: 17vw;
 	height: 17vw;
 	position: relative;
-	background: no-repeat center/40% url(/resources/assets/img/photo_name.png);
+	background: #FFF no-repeat center/40% url(/resources/assets/img/photo_name.png);
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
 	display: flex;
 	align-items: center;
@@ -372,9 +372,10 @@ select {
 .photos img {
 	width: 50px;
 	border-radius: 50%;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
 	padding: 3px;
 	border: 3px solid #FFF;
+	background: #FFF;
 }
 
 .default-photos {
@@ -382,9 +383,23 @@ select {
 	width: 50%;
 }
 
-.carousel button {
-	color: #4E4E4E;
-	padding-right: 10px;
+.photos {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	height: 100%;
+}
+
+.carousel {
+	width: 100%;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+	filter: invert(50%);
+	width: 50%;
+	height: 50%;
 }
 
 
@@ -412,5 +427,6 @@ select {
 	margin-right: 8%;
 	font-size: 1.2rem;
 }
+
 
 

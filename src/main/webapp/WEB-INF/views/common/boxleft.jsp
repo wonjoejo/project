@@ -57,4 +57,5 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 
+
 </html>

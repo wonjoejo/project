@@ -111,6 +111,7 @@ public class ProductController {
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
 		rttrs.addAttribute("result", result);
+
 		// Category insert
 		CategoryVO categoryVO = new CategoryVO(
 				null,

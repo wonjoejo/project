@@ -1,9 +1,7 @@
 let menus = document.querySelectorAll(".menu-item");
 
-// menus.forEach()
-
-menus.addEventListener('click', function (e){
-    console.log(e.target);
+menus.forEach(function(item,index){
+	item.addEventListener("click",function(){
+		item.classList.add("active");
+	});
 });
-
-console.log("연결");

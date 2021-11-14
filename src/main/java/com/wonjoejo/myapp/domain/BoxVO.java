@@ -25,4 +25,5 @@ public class BoxVO {
         this.box_photo_path = box_photo_path;
         this.reg_date = reg_date;
     }
+
 } // end class
