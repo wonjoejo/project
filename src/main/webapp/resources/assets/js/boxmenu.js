@@ -18,6 +18,7 @@ menus.forEach(function(item,index){
 	});
 });
 
+
 if(window.location.pathname.indexOf('list')!==-1) {
 	list.classList.remove("inactive");
 	list.classList.add("active");
@@ -28,8 +29,5 @@ if(window.location.pathname.indexOf('list')!==-1) {
 	qna.classList.remove("inactive");
 	qna.classList.add("active");
 }
-
-
-
 
 
