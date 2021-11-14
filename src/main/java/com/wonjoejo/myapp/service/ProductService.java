@@ -39,7 +39,7 @@ public interface ProductService {
 	
 
     // 물품 리스트 페이지처리
-    public abstract List<ProductVO> getListPerPage(Criteria cri);
+    public abstract List<ProductCategoryVO> getListPerPage(Criteria cri);
 
 	//총 레코드 개수 반환 
 	public abstract Integer getTotalCount(Integer box_no);

@@ -133,11 +133,11 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 	
 	
 	@Override
-	public List<ProductVO> getListPerPage(Criteria cri) {
+	public List<ProductCategoryVO> getListPerPage(Criteria cri) {
 		log.debug("getListPerPage({}) invoked.",cri);
 		
 
-		List<ProductVO> list = this.mapper.getListPaging(cri);
+		List<ProductCategoryVO> list = this.mapper.getListPaging(cri);
 
 		list.forEach(log::info);
 

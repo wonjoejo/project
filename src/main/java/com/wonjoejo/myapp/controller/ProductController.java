@@ -49,7 +49,7 @@ public class ProductController {
 		log.debug("productListPerPage({}) invoked.", model);
 		
 		cri.setAmount(5);
- 		List<ProductVO> list = this.service.getListPerPage(cri);
+ 		List<ProductCategoryVO> list = this.service.getListPerPage(cri);
  		log.info("\t+ list size:{}",list.size());
  		model.addAttribute("list",list);
  		
@@ -111,7 +111,6 @@ public class ProductController {
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
 		rttrs.addAttribute("result", result);
-r
 		// Category insert
 		CategoryVO categoryVO = new CategoryVO(
 				null,
