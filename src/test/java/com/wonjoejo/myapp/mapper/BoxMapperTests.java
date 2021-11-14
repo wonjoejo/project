@@ -164,4 +164,17 @@ public class BoxMapperTests {
 		List<ProductVO> productList = this.mapper.getProductList(box_no);
 		log.info("\t+ productList: {}", productList);
 	}
+
+	@Test
+	public void testInsertGroup() {
+		log.debug("testInsertGroup() invoked.");
+
+		int box_no = 1182;
+		String member_id = "MEMBERid32";
+
+		int affectedLines = this.mapper.insertGroup(member_id,box_no);
+		log.info("\t+ affectedLines: {}", affectedLines);
+
+	}
+
 }

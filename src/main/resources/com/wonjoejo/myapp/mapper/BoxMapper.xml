@@ -74,12 +74,17 @@
     </delete>
 
     <select id="getTotalCount" resultType="int">
-        SELECT count(box_no) FROM BOX
+        SELECT count(box_no) FROM BOX WHERE MEMBER_ID = #{member_id}
     </select>
 
     <select id="getProductList" resultType="com.wonjoejo.myapp.domain.ProductVO">
         SELECT * FROM PRODUCT, BASE_CATEGORY, CATEGORY
         WHERE PRODUCT.BOX_NO = #{box_no} and PRODUCT.BOX_NO = BASE_CATEGORY.BOX_NO and CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
     </select>
+
+    <insert id="insertGroup">
+        INSERT INTO BOX_PERMISSION(MEMBER_ID, BOX_NO, WRITE_PER, EDIT_PER, DELETE_PER)
+        VALUES (#{member_id}, #{box_no}, 1,1,1)
+    </insert>
 
 </mapper>

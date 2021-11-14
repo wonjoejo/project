@@ -2,12 +2,17 @@ package com.wonjoejo.myapp.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
+import com.amazonaws.services.ec2.util.S3UploadPolicy;
 import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.util.S3Utils;
+import com.wonjoejo.myapp.util.UploadFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +37,9 @@ public class BoxController {
     @Setter(onMethod_ = {@Autowired})
     private BoxService service;
 
+    S3Utils s3 = new S3Utils();
+    String bucketName = "intobox";
+
     @GetMapping("/list")
     public void list(Model model, Criteria cri) {
 
@@ -43,26 +51,33 @@ public class BoxController {
         log.info("\t+ list.size:{}", list.size());
 
         model.addAttribute("list", list);
+        model.addAttribute("member_id",list.get(0).getMember_id());
 
         // paging
-        Integer totalAmount = this.service.getTotal();
+        Integer totalAmount = this.service.getTotal(list.get(0).getMember_id());
         PageDTO dto = new PageDTO(cri, totalAmount);
         model.addAttribute("pageMaker", dto);
+        model.addAttribute("cri", cri);
 
     } // getBoxList
 
     @PostMapping("/create")
-    public String create(BoxDTO box, RedirectAttributes rttrs, MultipartFile file) throws IOException {
+    public String create(BoxDTO box, RedirectAttributes rttrs, MultipartFile file) throws Exception {
 
         log.debug("create({},{}) invoked.", box,file);
 
-        String uploadDir = "/Users/heewonseo/temp/file_upload";
+        // upload 할 폴더 경로 지정
+        String uploadDir = "box";
 
         BoxVO boxVO;
 
             if(file.getSize()!=0) {
-                File targetPath = new File(uploadDir, Objects.requireNonNull(file.getOriginalFilename()));
-                file.transferTo(targetPath);
+
+                // 여기서 함수 불러와서 데이터 넣어줌 (리턴값은 uploadDir 이하 경로 + 파일이름 (/2021/11/14/8c47bd18-b475-4849-beec-a0d3d4d0bd7a_29325736.jpg)
+                String uploadedFileName = UploadFileUtils.uploadFile(uploadDir,file.getOriginalFilename(), file.getBytes());
+
+//                File targetPath = new File(uploadDir, );
+//                file.transferTo(targetPath);
 
                 boxVO = new BoxVO(
                         null,
@@ -70,7 +85,7 @@ public class BoxController {
                         box.getBox_mode(),
                         box.getBox_name(),
                         box.getBox_memo(),
-                        file.getOriginalFilename(),
+                        uploadedFileName,
                         uploadDir,
                         null
                 );
@@ -270,5 +285,16 @@ public class BoxController {
         model.addAttribute("productList",productList);
 
     } // get
+
+    @PostMapping("/join")
+    public String joinGroup(Integer box_no, String member_id, RedirectAttributes rttrs) {
+        log.debug("joinGroup({},{}) invoked.", box_no, member_id);
+
+        boolean result = this.service.joinBox(member_id,box_no);
+        log.info("\t +result: {}", result);
+        rttrs.addAttribute("member_id",member_id);
+
+        return "redirect:/box/list";
+    } // joinGroup
 
 } // end class
