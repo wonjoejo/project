@@ -5,4 +5,3 @@ menus.forEach(function(item,index){
 		item.classList.add("active");
 	});
 });
-

@@ -1,0 +1,151 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+    font-family: 'Wemakeprice-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Wemakeprice-SemiBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Wemakeprice-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.sub-content-wrap {
+    position: relative;
+    top: 80px;
+    width: 100%;
+    margin: 0 auto;
+    height: 85%;
+    background-color: white;
+    border-radius: 2rem;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+    padding: 5% 3%;
+}
+
+.cate-table-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'NEXON Lv1 Gothic OTF';
+    color: #4E4E4E;
+}
+
+.cate-table-header{
+    height: 55px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+    background-color: #F3F9FD;
+    display: flex;
+    align-items: center;
+
+}
+
+.cate-table-header div {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    padding-left: 6%;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.cate-ul {
+    padding: 0 !important;
+}
+
+.cate-list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 55px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+}
+
+.cate-name {
+    width: 79%;
+    padding-left: 6%;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+
+}
+
+.btn-wrap {
+    width: 20%;
+}
+
+.edit-btn {
+    margin-right: 2%;
+}
+
+.btn-style {
+    border: 1px solid #2C2C2C;
+    border-radius: 1rem;
+    width: 36%;
+    background: transparent;
+}
+
+.btn-style:hover {
+    background-color: #5a95f5;
+    border: none;
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+}
+
+.btn-style i {
+    margin-right: 3%;
+    font-size: 0.9rem;
+}
+.btn-style span {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.add-btn {
+    margin-left: 40%;
+}
+
+.none-cate-name {
+    color: #4E4E4E80;
+}
+
+.input-border {
+    border: none !important;
+    background-color: transparent !important;
+}
+

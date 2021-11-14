@@ -24,6 +24,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+
 </head>
 <body>
 
@@ -34,7 +35,7 @@
     <div class="main-container">
         <h1>나의 박스</h1>
         <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
-            <button class="btn btn-primary">박스 리스트</button>
+            <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
         </a>
 
         <div class="box-wrapper">

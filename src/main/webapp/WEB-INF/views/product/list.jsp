@@ -102,7 +102,6 @@
 
 
 
-			${list}
 			<div class="product-container">
 				<div id="product-list">
 					<c:forEach items="${list}" var="product"><br />
@@ -113,9 +112,9 @@
 						<c:out value='물품명: ${product.product_name}' />
 						<c:out value='박스번호: ${product.box_no}' />
 						<c:out value='수량: ${product.product_qtn}' />
-<%--						<c:out value='카테고리1: ${product.cate_name1} : ${product.cate_detail1}' />--%>
-<%--						<c:out value='카테고리2: ${product.cate_name2} : ${product.cate_detail2}' />--%>
-<%--						<c:out value='카테고리3: ${product.cate_name3} : ${product.cate_detail3}' />--%>
+						<c:out value='카테고리1: ${product.cate_name1} : ${product.cate_detail1}' />
+						<c:out value='카테고리2: ${product.cate_name2} : ${product.cate_detail2}' />
+						<c:out value='카테고리3: ${product.cate_name3} : ${product.cate_detail3}' />
 
 
 						<br />
