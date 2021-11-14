@@ -33,8 +33,8 @@ public class S3Utils {
     final private AmazonS3 conn;
 
 //    String bucketName = "intobox";
-    String accessKey = "AKIAZN6DLURI2JFERCOF";
-    String secretKey = "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";
+    String accessKey = "";
+    String secretKey = "";
 
     public S3Utils() {
         AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
