@@ -1,10 +1,7 @@
 package com.wonjoejo.myapp.service;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.*;
 
-import com.wonjoejo.myapp.domain.BoxVO;
-import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;

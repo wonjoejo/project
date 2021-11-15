@@ -81,27 +81,6 @@ li {
   justify-content: space-between;
 }
 
-.side-menu {
-  /* Left */
-  width: 15vw;
-  height: 80vh;
-  padding: 30px;
-  margin-right: 10px;
-
-  background: rgba(255, 255, 255, 0.66);
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
-  border-radius: 50px;
-}
-
-a {
-  text-decoration: none;
-  color: #4e4e4e;
-}
-
-a:hover {
-  color: #5a95f5;
-}
-
 .main-container {
   /* Right */
   width: 80vw;
@@ -124,65 +103,6 @@ a:hover {
   font-size: 2.3rem;
   line-height: 54px;
   float: left;
-}
-
-/* Grow */
-.hvr-grow {
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-
-.hvr-grow:hover,
-.hvr-grow:focus,
-.hvr-grow:active {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-.name {
-  font-family: "Noto Sans KR", serif;
-  color: #5a95f5;
-  font-weight: 500;
-  margin-top: 5px;
-}
-
-.menu {
-  font-family: "Noto Sans KR", serif;
-  font-size: 1rem;
-  color: #4e4e4e;
-  margin-top: 10px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0;
-}
-
-.menu-item {
-  margin-bottom: 2rem;
-}
-
-.menu-item i {
-  margin-right: 12px;
 }
 
 /* ====== 상단 검색 / 글쓰기  ====== */

@@ -18,3 +18,5 @@ src/main/.DS_Store
 myapp.iml
 
 .classpath
+
+src/main/java/com/wonjoejo/myapp/util/S3Utils.java

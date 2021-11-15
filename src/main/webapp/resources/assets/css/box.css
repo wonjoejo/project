@@ -1,3 +1,55 @@
+/* Reset CSS */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
 /* ====== font ====== */
 
 /* noto sans */
@@ -50,6 +102,7 @@
 body {
 	/* gradient */
 	background: linear-gradient(26.81deg, #E2E3FC 65.34%, #D7F1F8 90.6%);
+	font-family: 'Noto Sans KR', sans-serif !important;
 }
 
 .container {
@@ -63,6 +116,8 @@ body {
 }
 
 .main-container {
+	display: flex;
+	flex-direction: column;
 	/* Right */
 	width: 80vw;
 	height: 80vh;
@@ -78,6 +133,7 @@ body {
 
 .main-container h1 {
 	font-family: 'Wemakeprice-Bold', serif;
+	float: left;
 	color: #5A95F5;
 	font-weight: 500;
 	font-size: 2.3rem;
@@ -88,6 +144,9 @@ body {
 	display: flex;
 	justify-content: center;
 	align-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
 }
 
 .box-container {
@@ -100,6 +159,7 @@ body {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	margin: 0 auto;
 }
 
 .box {
@@ -347,6 +407,36 @@ select {
 	width: 50%;
 	height: 50%;
 }
+
+
+/* 박스리스트 버튼 */
+
+
+
+/* 박스리스트 버튼 */
+.box-list-btn {
+	float: right;
+	width: 14%;
+	height: 43px;
+	border: none;
+	border-radius: 1.4rem;
+	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+	color: white;
+	font-size: 0.9rem;
+	letter-spacing: 0.4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.list-icon {
+	margin-right: 8%;
+	font-size: 1.2rem;
+}
+
+
+
+
 
 
 

@@ -54,7 +54,7 @@ public class MemberControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/member/register");
 
-        reqBuilder.param("member_id","contest");
+        reqBuilder.param("member_id","contest3");
         reqBuilder.param("member_type","0");
         reqBuilder.param("member_status","0");
         reqBuilder.param("name","등록");
