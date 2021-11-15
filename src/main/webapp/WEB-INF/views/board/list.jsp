@@ -63,24 +63,17 @@
     </script>
     
     <style>
-  	
-  	.noticeimg{
-  		width: 18px;
-  		height: 18px;
-  		
-  	}
-  	
-  	.searchimg {
-	width: 20px;
-	height: 20px;
-}
-  	
+    	.replyicon{
+    		width: 20px;
+    		height: 20px;
+    	}
     </style>
-
+    
 </head>
 <body>
 
 <div class="container">
+
 	<jsp:include page="../common/left.jsp"/>
 
 	<div class="main-container">		
@@ -135,11 +128,16 @@
 				<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고 
 						목록을 만들어 줘야 합니다 -->
 					<c:forEach items="${list}" var="board">
+					
 						<div class="boardlistcontainer">     
 							<div class="item">
 								<c:out value="${board.board_idx}" />
-							</div>			
+							</div>	
+							
 							<div class="item">
+								<c:if test="${board.depth > 0}">
+									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">
+								</c:if>
 								<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
 								<c:out value="${board.title}" />
 								</a>

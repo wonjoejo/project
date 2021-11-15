@@ -52,5 +52,7 @@ public interface BoardService {
 	//답글 삭제 
 	public abstract boolean deleteReply(Integer board_idx);
 
+	//답글 목록
+    public abstract List<BoardVO> getreplyList(Criteria cri);
 
 }//end interface

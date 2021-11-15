@@ -40,43 +40,13 @@
         }); //onclick
       }); //.jq
     </script>
-    
-    <style>
-  	.writeid {
-		width: 100%;
-		margin: 0 auto;
-		height: 40px;
-		border: none;
-		border-radius: 30px;
-		margin-top: 80px;
-		font-size: 14px;
-		padding: 20px;
-		box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
-		
-	}
-	.writetitle{
-		margin-top: 20px;
-	}
-	
-	
-    </style>
-	
+
 </head>
 <body>
 
 <div class="container">
-	<div class="side-menu">
-		<div class="profile">
-			<img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
-			<p class="name">name</p>
-		</div>
-		<div class="menu">
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/box/listPerPage?member_id=${member_id}"><i class="far fa-list-alt"></i>박스 리스트</a></span>
-			<span class="menu-item"><a href="#"><i class="far fa-plus-square"></i> 박스 생성</a></span>
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/board/listPerPage?member_id=${member_id}"><i class="far fa-question-circle"></i> Q&A</a></span>
-			<span class="menu-item"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
-		</div>
-	</div>
+
+	<jsp:include page="../common/left.jsp"/>
 
 	<div class="main-container">		
 		<div class="wrapper">
