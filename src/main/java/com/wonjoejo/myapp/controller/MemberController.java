@@ -66,8 +66,7 @@ public class MemberController {
 	
 	// 로그인
 	@PostMapping("/loginPost")
-	public void loginPost(
-			LoginDTO dto, Model model, HttpSession session) throws Exception {
+	public void loginPost(LoginDTO dto, Model model, HttpSession session) throws Exception {
 		log.debug("loginPost({}) invoked.", dto);
 		
 		MemberVO member=this.service.login(dto);
