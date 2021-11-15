@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wonjoejo.myapp.domain.LoginDTO;
@@ -22,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @NoArgsConstructor
 
-@RequestMapping("/member")
+@RequestMapping(value="/member", method= {RequestMethod.GET, RequestMethod.POST})
 @Controller
 public class MemberController {
 	
@@ -33,7 +36,8 @@ public class MemberController {
 	private MemberService service;
 	
 	// 회원가입
-	@PostMapping("/register")
+	
+	@PostMapping("/registerPost")
 	public String register(MemberDTO member, RedirectAttributes rttrs) {
 		log.debug("register({}) invoked.",member);
 
@@ -62,7 +66,7 @@ public class MemberController {
 	
 	// 로그인
 	@PostMapping("/loginPost")
-	public String loginPost(LoginDTO dto, Model model, RedirectAttributes rttrs, HttpSession session) throws Exception {
+	public String loginPost(LoginDTO dto, Model model, HttpSession session) throws Exception {
 		log.debug("loginPost({}) invoked.", dto);
 		
 		MemberVO member=this.service.login(dto);
@@ -70,8 +74,20 @@ public class MemberController {
 		
 		if(member!=null) {
 			model.addAttribute(MemberController.authKey, member);
-			rttrs.addAttribute("member_id",member.getMember_id());
-			session.setAttribute("member_id",member.getMember_id());
+		
+			//자동 로그인 처리 추가 (rememberMe)
+			if(dto.getRememberMe()) { // on
+				
+				String member_id=dto.getMember_id();				
+				String session_id=session.getId();
+
+				long now=System.currentTimeMillis();
+				
+				long timeAmount=60*60*24*7*1000; // 일주일..
+				Date rememberAge=new Date(now + timeAmount);
+				
+				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);	
+			} // if
 
 		} // if
 
@@ -136,6 +152,11 @@ public class MemberController {
 
 	@GetMapping("/login")
 	public void login() {
+
+	}
+	
+	@GetMapping("/register")
+	public void register() {
 
 	}
 

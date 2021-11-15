@@ -7,7 +7,7 @@
     <!-- 회원가입 -->
     <insert id="insertMember">
 
-        INSERT INTO MEMBER (MEMBER_ID, MEMBER_TYPE, MEMBER_STATUS, NAME, PASSWORD, EMAIL, PHONE_NUMBER, PHOTO_NAME, PHOTO_PATH, COMPANY_NAME)
+        INSERT INTO member (member_id, member_type, member_status, name, password, email, phone_number, photo_name, photo_path, company_name)
         VALUES (#{member_id}, #{member_type}, #{member_status}, #{name}, #{password}, #{email}, #{phone_number}, #{photo_name}, #{photo_path}, #{company_name})
 
     </insert>
@@ -18,10 +18,10 @@
         <![CDATA[
 
         SELECT *
-        FROM MEMBER
+        FROM member
         WHERE 
-            MEMBER_ID=#{member_id}
-            AND PASSWORD=#{password}
+            member_id=#{member_id}
+            AND password=#{password}
 
         ]]>
 
@@ -33,21 +33,21 @@
         <![CDATA[
 
         SELECT *
-        FROM MEMBER
+        FROM member
         WHERE
-            REMEMBERME = #{rememberMe}
-            AND REMEMBERAGE > sysdate
+            rememberme = #{rememberme}
+            AND rememberage > sysdate
 
         ]]>
 
     </select>
 
     <update id="updateMemberWithRememberMe">
-        UPDATE MEMBER 
+        UPDATE member 
         SET
-        REMEMBERAGE = #{rememberme},
-        REMEMBERAGE = #{rememberage}
-        WHERE MEMBER_ID=#{member_id}
+        rememberme = #{rememberme},
+        rememberage = #{rememberage}
+        WHERE member_id=#{member_id}
     </update>
 
 
@@ -55,9 +55,9 @@
     <select id="selectId" resultType="com.wonjoejo.myapp.domain.MemberVO">
         <![CDATA[
 
-            SELECT MEMBER_ID 
-            FROM MEMBER 
-            WHERE EMAIL=#{email}
+            SELECT member_id 
+            FROM member 
+            WHERE email=#{email}
 
         ]]>
         
@@ -65,30 +65,30 @@
 
     <!-- 비밀번호 변경 -->
     <update id="updatePwd">
-        UPDATE MEMBER 
+        UPDATE member 
         SET
-        PASSWORD = #{password}
-        WHERE EMAIL = #{email}
+        password = #{password}
+        WHERE email = #{email}
     </update>
 
     <!-- 회원 정보 수정 -->
     <update id="updateMember">
-        UPDATE MEMBER 
+        UPDATE member 
         SET
-        NAME = #{name},
-        PASSWORD = #{password},
-        EMAIL = #{email},
-        PHONE_NUMBER = #{phone_number},
-        PHOTO_NAME = #{photo_name},
-        PHOTO_PATH = #{photo_path}
-        WHERE MEMBER_ID = #{member_id}
+        name = #{name},
+        password = #{password},
+        email = #{email},
+        phone_number = #{phone_number},
+        photo_name = #{photo_name},
+        photo_path = #{photo_path}
+        WHERE member_id = #{member_id}
     </update>
 
     <!-- 회원 탈퇴 -->
     <delete id="deleteMember">
         DELETE
-        FROM MEMBER 
-        WHERE MEMBER_ID = #{member_id}
+        FROM member 
+        WHERE member_id = #{member_id}
     </delete>
 
 </mapper>

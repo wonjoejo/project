@@ -1,5 +1,6 @@
 package com.wonjoejo.myapp.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,8 @@ import lombok.extern.log4j.Log4j2;
 @Component
 public class LoginInterceptor 
 	implements HandlerInterceptor {
+	
+	public static final String rememberMeKey="__REMEMBER_ME__";
 	
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler)
@@ -53,7 +56,24 @@ public class LoginInterceptor
 		
 		if(member != null) {
 			session.setAttribute(MemberController.authKey, member);
-
+			
+			
+			String rememberMe=req.getParameter("rememberMe");
+			if(rememberMe != null) { // 자동로그인 옵션이 ON이면
+				String sessionId=session.getId();
+				
+				Cookie rememberMeCookie=new Cookie(LoginInterceptor.rememberMeKey, sessionId);
+				
+				rememberMeCookie.setMaxAge(60*60*24*7);
+				rememberMeCookie.setPath("/");
+				
+				res.addCookie(rememberMeCookie);
+				
+				log.info("\t+ 자동로그인 쿠키를 응답 문서에 담아서 전송");
+						
+			} // if
+				
+			
 			String originRequestURI=(String) session.getAttribute(AuthInterceptor.requestURIKey);
 			String originQueryString=(String) session.getAttribute(AuthInterceptor.queryStringKey);
 			
