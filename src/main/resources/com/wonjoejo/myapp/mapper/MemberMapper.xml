@@ -35,7 +35,7 @@
         SELECT *
         FROM member
         WHERE
-            rememberme = #{rememberme}
+            rememberme = #{rememberMe}
             AND rememberage > sysdate
 
         ]]>
@@ -45,8 +45,8 @@
     <update id="updateMemberWithRememberMe">
         UPDATE member 
         SET
-        rememberme = #{rememberme},
-        rememberage = #{rememberage}
+        rememberme = #{rememberMe},
+        rememberage = #{rememberAge}
         WHERE member_id=#{member_id}
     </update>
 

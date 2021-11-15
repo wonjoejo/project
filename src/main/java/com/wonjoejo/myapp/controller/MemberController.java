@@ -66,17 +66,19 @@ public class MemberController {
 	
 	// 로그인
 	@PostMapping("/loginPost")
-	public String loginPost(LoginDTO dto, Model model, HttpSession session) throws Exception {
+	public void loginPost(
+			LoginDTO dto, Model model, HttpSession session) throws Exception {
 		log.debug("loginPost({}) invoked.", dto);
 		
 		MemberVO member=this.service.login(dto);
 		log.info("\t+ member: {}", member);
 		
 		if(member!=null) {
+
 			model.addAttribute(MemberController.authKey, member);
 		
 			//자동 로그인 처리 추가 (rememberMe)
-			if(dto.getRememberMe()) { // on
+			if(dto.getRememberMe()!=null) { // on
 				
 				String member_id=dto.getMember_id();				
 				String session_id=session.getId();
@@ -89,12 +91,9 @@ public class MemberController {
 				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);	
 			} // if
 
-			rttrs.addAttribute("member_id",member.getMember_id());
-			session.setAttribute("member_id",member.getMember_id());
+			log.info("여기왔나");
 
 		} // if
-
-		return "redirect:/box/list";
 	} // loginPost
 	
 	// 로그아웃

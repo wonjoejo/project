@@ -28,7 +28,7 @@
     justify-content: center;
     align-items: center;
     font-family: 'Noto Sans KR', sans-serif;
-    border-image-source: repeating-linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    border-image-source: repeating-linear-gradient(90deg, #4776E6 0%, #8E54E9 100%) !important;
     border-image-width: 5px;
     border-image-slice: 1;
     border-style: solid;

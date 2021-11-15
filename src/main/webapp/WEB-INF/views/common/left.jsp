@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: heewonseo
@@ -24,7 +25,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
-
+<c:set var="member_id" value="${sessionScope.member_id}"/>
 <div class="side-menu">
     <div class="profile">
         <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
