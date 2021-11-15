@@ -17,6 +17,9 @@ public interface MemberMapper {
 	public abstract MemberVO selectMemberWithRemberMe(String rememberMe) throws Exception;
 	public abstract Integer updateMemberWithRememberMe(String member_id, String rememberMe, Date rememberAge) throws Exception;	 
 	
+	public abstract MemberVO selectUserByRememberMe(String remeberMe) throws Exception;
+	
+	
 	// 아이디 찾기
 	public abstract MemberVO selectId(String email);
 	

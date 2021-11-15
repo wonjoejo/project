@@ -1,0 +1,329 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+  font-family: "Wemakeprice-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Wemakeprice-SemiBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Wemakeprice-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* header */
+
+#headerwrap {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  /*background-color: rgba(249, 250, 253, 0);*/
+  /*background-color: white;*/
+  background-image: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) -6%,
+    rgba(219, 219, 250, 0.01) -5%,
+    rgb(255, 255, 255) 86.46%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  transition: none 0s ease 0s;
+  backdrop-filter: blur(10px);
+  padding: 0.8rem;
+  z-index: 1030;
+  border-bottom: 1px solid ghostwhite;
+}
+
+.nav-shadow {
+  box-shadow: 0px 5px 21px rgba(0, 0, 0, 0.25);
+}
+
+.main-logo {
+  width: 11%;
+  float: left;
+}
+
+.main-logo img {
+  width: 130%;
+  padding-top: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.top-right {
+  float: right;
+  vertical-align: middle;
+  line-height: 77px;
+}
+.login-btn {
+  margin-left: 8px;
+}
+.join-btn,
+.login-btn {
+  font-family: "Wemakeprice-Bold";
+  /*border: 1px solid #ADADAD;*/
+  border: 1px solid #4e4e4e;
+  border-radius: 0.7rem;
+  padding: 8px;
+  transition: all 0.3s ease 0s;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #4e4e4e;
+  letter-spacing: 0.5px;
+}
+
+.join-btn:hover,
+.login-btn:hover {
+  background-color: #5a95f5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  transform: translateY(-10px);
+  border: 1px solid #5a95f5;
+}
+
+/* join */
+
+#join-section {
+  display: flex;
+  padding: 15% 9% 3% 9%;
+}
+
+.register-image {
+  display: flex;
+  float: left;
+  width: 41%;
+  margin: -4%;
+}
+
+.title1 {
+  width: 100%;
+  display: block;
+  font-family: "NEXON Lv1 Gothic OTF Bold";
+  font-size: 30px;
+  color: #444b59;
+  line-height: 1.2;
+}
+
+.title2 {
+  padding: 1% 0 4% 0;
+}
+
+.txt2 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  color: #444b59;
+  line-height: 1.5;
+}
+
+/* multi form */
+/* * {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+p {
+  color: grey;
+} */
+
+/* #heading {
+  text-transform: uppercase;
+  color: #673ab7;
+  font-weight: normal;
+} */
+
+#msform {
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-card {
+  text-align: left;
+}
+
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+#msform input,
+#msform textarea {
+  padding: 8px 15px 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 25px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2c3e50;
+  background-color: #eceff1;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+#msform input:focus,
+#msform textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #673ab7;
+  outline-width: 0;
+}
+
+#msform .action-button {
+  width: 100px;
+  background: #673ab7;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 0px 10px 5px;
+  float: right;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+  background-color: #311b92;
+}
+
+#msform .action-button-previous {
+  width: 100px;
+  background: #616161;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px 10px 0px;
+  float: right;
+}
+
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+  background-color: #000000;
+}
+
+.card {
+  z-index: 0;
+  border: none;
+  position: relative;
+}
+
+.fs-title {
+  font-size: 25px;
+  color: #673ab7;
+  margin-bottom: 15px;
+  font-weight: normal;
+  text-align: left;
+}
+
+.purple-text {
+  color: #673ab7;
+  font-weight: normal;
+}
+
+.steps {
+  font-size: 25px;
+  color: gray;
+  margin-bottom: 10px;
+  font-weight: normal;
+  text-align: right;
+}
+
+.fieldlabels {
+  color: gray;
+  text-align: left;
+}
+
+.fit-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* 유형 */
+.member-type {
+  margin-bottom: 3rem;
+  display: flex;
+}
+.member-type__link {
+  text-decoration: none;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.12);
+  border-radius: 0.5rem;
+  height: 5.5rem;
+  width: 5.5rem;
+  transition: 0.2s linear all;
+}
+.member-type__link:hover {
+  transform: scale(1.05) translateY(-0.3rem);
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08);
+}
+.member-type__link:not(:last-child) {
+  margin-right: 1.5rem;
+}

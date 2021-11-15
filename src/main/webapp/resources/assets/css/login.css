@@ -1,0 +1,368 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+  font-family: "Wemakeprice-Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Wemakeprice-SemiBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Wemakeprice-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NEXON Lv1 Gothic OTF Light";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* header */
+
+#headerwrap {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  /*background-color: rgba(249, 250, 253, 0);*/
+  /*background-color: white;*/
+  background-image: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0) -6%,
+    rgba(219, 219, 250, 0.01) -5%,
+    rgb(255, 255, 255) 86.46%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  transition: none 0s ease 0s;
+  backdrop-filter: blur(10px);
+  padding: 0.8rem;
+  z-index: 1030;
+  border-bottom: 1px solid ghostwhite;
+}
+
+.nav-shadow {
+  box-shadow: 0px 5px 21px rgba(0, 0, 0, 0.25);
+}
+
+.main-logo {
+  width: 11%;
+  float: left;
+}
+
+.main-logo img {
+  width: 130%;
+  padding-top: 6px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.top-right {
+  float: right;
+  vertical-align: middle;
+  line-height: 77px;
+}
+.login-btn {
+  margin-left: 8px;
+}
+.join-btn,
+.login-btn {
+  font-family: "Wemakeprice-Bold";
+  /*border: 1px solid #ADADAD;*/
+  border: 1px solid #4e4e4e;
+  border-radius: 0.7rem;
+  padding: 8px;
+  transition: all 0.3s ease 0s;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #4e4e4e;
+  letter-spacing: 0.5px;
+}
+
+.join-btn:hover,
+.login-btn:hover {
+  background-color: #5a95f5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  transform: translateY(-10px);
+  border: 1px solid #5a95f5;
+}
+
+/* login */
+
+#login-section {
+  /* width: 100%; */
+  display: flex;
+  padding: 12% 9% 3% 9%;
+}
+
+.login-image {
+  display: flex;
+  float: right;
+  width: 59% !important;
+  margin: -4%;
+}
+
+.title1 {
+  width: 100%;
+  display: block;
+  font-family: "NEXON Lv1 Gothic OTF Bold";
+  font-size: 30px;
+  color: #444b59;
+  line-height: 1.2;
+}
+
+.title2 {
+  padding: 1% 0 4% 0;
+}
+
+.loginform .group .label {
+  color: #444b59;
+  font-size: 17px;
+  margin: 10px 0 11px 14px;
+  font-weight: 500;
+}
+
+.group {
+  margin-bottom: 15px;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 15px 20px;
+  border-radius: 30px;
+  color: #5a95f5;
+  width: 436px;
+  height: 55px;
+  border: solid 2px;
+}
+
+/* .txt1 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.5;
+} */
+
+.label {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  color: #444b59;
+  line-height: 1.5;
+}
+
+.txt2 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  color: #444b59;
+  line-height: 1.5;
+}
+
+.join-txt {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  background: #4776e6;
+  background: -webkit-linear-gradient(left, #4776e6, #8e54e9);
+  background: -moz-linear-gradient(right, #4776e6, #8e54e9);
+  background: -o-linear-gradient(right, #4776e6, #8e54e9);
+  background: linear-gradient(to right, #4776e6, #8e54e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.5;
+}
+
+.login2 {
+  margin: 25px 0 30px 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+/* Customize the label (the container) */
+.container2 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 17px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container2 input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container2 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container2 .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.login-trigger {
+  color: #adadad;
+  margin-right: 46%;
+  font-size: 17px;
+}
+
+.login-submit {
+  color: #fff;
+  font-weight: 500;
+  font-family: "Wemakeprice-Bold";
+  width: 436px;
+  height: 55px;
+  background: #5a95f5;
+  /* box-shadow: 0 5px 10px rgba(149, 149, 149, 0.2); */
+  border-radius: 30px;
+  border: none;
+  margin-right: 5px;
+}
+
+.division {
+  float: none;
+  margin: 3% 0 2% 0;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 436px;
+}
+.division .line {
+  border-top: 1px solid #5a95f5;
+  position: absolute;
+  top: 10px;
+  width: 28%;
+}
+.division .line.l {
+  left: 22px;
+}
+.division .line.r {
+  right: 22px;
+}
+.division span {
+  color: #444b59;
+  font-size: 17px;
+}
+
+.social-image {
+  width: 80px;
+  padding: 13px 25px 13px 25px;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px 36px;
+  position: static;
+  width: 436px;
+  /* height: 80px; */
+}
+
+.social-login__link {
+  text-decoration: none;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.12); */
+  /* border-radius: 0.5rem; */
+  /* height: 5.5rem;
+  width: 5.5rem; */
+  /* transition: 0.2s linear all; */
+  border: 2px solid #789ade;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.social-login__link:hover {
+  transform: scale(1.05) translateY(-0.3rem);
+  /* box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08); */
+}
+
+/* Modal */
