@@ -227,7 +227,7 @@
 }
 
 .menu__list--animate .menu__list__item {
-    animation: drop 0.9s;
+    animation: drop 0.5s;
     animation-fill-mode: forwards;
     opacity: 1;
 }
@@ -353,4 +353,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.share {
+    font-family: "NEXON Lv1 Gothic OTF";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13px;
+
+}
+
+.share img{
+    width: 14%;
+    margin-right:4%;
 }
