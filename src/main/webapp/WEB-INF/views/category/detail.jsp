@@ -72,7 +72,7 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name2}">
-                                    <input type="text" class="cate-name input-border" value="${baseCategory.cate_name2}"
+                                    <input type="text" id class="cate-name input-border" value="${baseCategory.cate_name2}"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style edit-btn" id="editBtn2">
