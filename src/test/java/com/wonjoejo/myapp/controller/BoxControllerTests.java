@@ -76,7 +76,7 @@ public class BoxControllerTests {
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/box/create");
 
         reqBuilder.param("member_id","MEMBERid32");
-        reqBuilder.param("box_mode","0");
+        reqBuilder.param("box_mode","1");
         reqBuilder.param("box_name","namename");
         reqBuilder.param("box_memo","memomemo");
         reqBuilder.param("box_photo_name","photo_name");
