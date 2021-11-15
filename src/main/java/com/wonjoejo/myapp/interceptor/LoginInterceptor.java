@@ -54,10 +54,13 @@ public class LoginInterceptor
 		MemberVO member=(MemberVO) modelMap.get(MemberController.authKey);
 		log.info("\t+ member: {}", member);
 		
-		if(member != null) {
+		if(member != null) { // 로그인 성공
 			session.setAttribute(MemberController.authKey, member);
-			
-			
+			session.setAttribute("member_id",member.getMember_id());
+
+			log.info("==== 로그인 성공 : {} ====", member.getMember_id());
+
+			// 자동 로그인
 			String rememberMe=req.getParameter("rememberMe");
 			if(rememberMe != null) { // 자동로그인 옵션이 ON이면
 				String sessionId=session.getId();
@@ -79,10 +82,10 @@ public class LoginInterceptor
 			
 			if(originRequestURI != null) { // 원래의 요청 URI가 있다면
 				
-				String originRequest="originRequestURI";
+				String originRequest = originRequestURI;
 				
 				if(originQueryString != null) { // 전송파라미터도 있다면
-					originRequest+='?'+originQueryString;
+					originRequest +='?'+originQueryString;
 				} else { // 전송파라미터가 없다면
 					;; 
 				} // if-else
@@ -91,7 +94,7 @@ public class LoginInterceptor
 				res.sendRedirect(originRequest);
 				
 			} else { // 원래의 요청 URI가 없다면
-				res.sendRedirect("/box/list"); // 로그인 -> 박스리스트로 이동 => 아이디 값 줘야 함
+				res.sendRedirect("/box/list?member_id="+member.getMember_id()); // 로그인 -> 박스리스트로 이동 => 아이디 값 줘야 함
 			} // if-else
 				
 			} else { // 로그인 실패
