@@ -76,6 +76,38 @@ body {
 	border-radius: 50px;
 }
 
+
+.search {
+	position: relative;
+	width: 160px;
+	height: 30px;
+	margin-left: 20px;
+  
+	background: none;
+	border: 1px solid #5a95f5;
+	box-sizing: border-box;
+	border-radius: 40px;
+  }
+
+  
+.searchimg {
+	width: auto; height: auto;
+    max-width: 25px;
+    max-height: 25px;
+}
+  	
+.searchbtn {
+  width: 75px;
+  height: 30px;
+  margin-top:8px;
+
+  background: #5a95f5;
+  box-shadow: inset 0px 5px 10px rgba(149, 149, 149, 0.2);
+  border-radius: 24px;
+  border: none;
+  color: #ffffff;
+}
+
 .main-container h1 {
 	font-family: 'Wemakeprice-Bold', serif;
 	color: #5A95F5;
@@ -94,28 +126,46 @@ body {
 
 .product-container {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	width: 80%;
-	height: 90%;
-	padding: 10px;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	/* width: 80%; */
+	padding: 3px;
 	justify-content: center;
 	align-content: center;
 	align-items: center;
 }
 
-/* 
 
-#product-list {
+.product-list-container {
 	align-self: auto;
-	width: 80%;
+	width: 95%;
 	border: 1px solid;
-	padding: 10px;
-	display: flexbox;
-	flex-direction: column;
+	padding: 1px;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: center;
 
 	font-family: 'NEXON Lv1 Gothic OTF Bold',sans-serif;
 
-} */
+}
 
+#product-img {
+	width: auto; height: auto;
+    max-width: 50px;
+    max-height: 50px;
+}
 
+#product-name {
+	width: 160px;
+}
+
+#product-cate {
+	width: 500px;
+}
+
+#product-qtn {
+	width: 80px
+}

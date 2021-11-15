@@ -17,7 +17,6 @@ import com.wonjoejo.myapp.service.ProductService;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Log4j2
@@ -50,7 +49,7 @@ public class ProductController {
 		log.debug("productListPerPage({}) invoked.", model);
 		
 		cri.setAmount(5);
- 		List<ProductVO> list = this.service.getListPerPage(cri);
+ 		List<ProductCategoryVO> list = this.service.getListPerPage(cri);
  		log.info("\t+ list size:{}",list.size());
  		model.addAttribute("list",list);
  		
@@ -62,7 +61,7 @@ public class ProductController {
  		model.addAttribute("pageMaker",pageDTO);
  		
  		
- 		
+
  		return "/product/list";
 
 	} // productListPerPage
@@ -107,7 +106,7 @@ public class ProductController {
 				product.getProduct_photo_path(),
 				product.getBarcode(),
 				product.getReg_date()
-        );
+		);
 
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
@@ -159,7 +158,7 @@ public class ProductController {
 				product.getProduct_photo_path(),
 				product.getBarcode(),
 				product.getReg_date()
-        );
+		);
 
         boolean result = this.service.editProduct(productVO);
         log.info("\t +result: {}", result);

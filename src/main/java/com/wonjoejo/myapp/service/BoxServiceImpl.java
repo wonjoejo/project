@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.wonjoejo.myapp.mapper.BoxMapper;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
-import javax.servlet.http.HttpSession;
 
 @Log4j2
 @NoArgsConstructor
@@ -87,10 +84,10 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 	} // deleteBox
 
 	@Override
-	public Integer getTotal() {
+	public Integer getTotal(String member_id) {
 		log.debug("getTotal() invoked.");
 
-		return this.mapper.getTotalCount();
+		return this.mapper.getTotalCount(member_id);
 	} // getTotal
 
 	@Override
@@ -110,6 +107,25 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 		return affectedLines == 1;
 	} // grantMasterPermission
+
+	@Override
+	public List<ProductVO> getProductList(Integer box_no) {
+		log.debug("getProductList({}) invoked.",box_no);
+
+		List<ProductVO> productList = this.mapper.getProductList(box_no);
+		log.info("\t+ productList: {}",productList);
+
+		return productList;
+	} // getProductList
+
+	@Override
+	public boolean joinBox(String member_id, Integer box_no) {
+		log.debug("joinBox({},{}) invoked.",box_no,member_id);
+
+		int affectedLines = this.mapper.insertGroup(member_id,box_no);
+
+		return affectedLines == 1;
+	}
 
 
 } // end class

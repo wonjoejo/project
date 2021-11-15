@@ -96,9 +96,6 @@
 						</div>
 					</div>
 				
-				
-					<button id="replyBtn" type="button">답글</button>
-						
 					<div>
 						<button type="button" id="editBtn">수정</button>
 		                <button type="button" id="deleteBtn">삭제</button>

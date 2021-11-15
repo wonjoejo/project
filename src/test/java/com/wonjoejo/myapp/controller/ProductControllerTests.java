@@ -54,9 +54,13 @@ public class ProductControllerTests {
 
         MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
         MockMvc mockMvc = builder.build();
-        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/product/list");
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/product/listPerPage");
 
-        reqBuilder.param("box_no", "1005");
+        reqBuilder.param("currPage", "1");
+        reqBuilder.param("amount", "5");
+        reqBuilder.param("pagesPerPage", "5");
+
+        reqBuilder.param("box_no", "1330");
 
         ModelMap modelMap = Objects.requireNonNull(mockMvc.
                         perform(reqBuilder).
@@ -91,7 +95,7 @@ public class ProductControllerTests {
     
 
     @Test
-    public void testProductInsert() throws Exception {
+    public void TESTPRODUCTINSERT() throws Exception {
         log.debug("testProductInsert() invoked.");
 
         MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
@@ -99,7 +103,7 @@ public class ProductControllerTests {
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/insert");
 
         reqBuilder.param("product_no", "");
-        reqBuilder.param("box_no", "1331");
+        reqBuilder.param("box_no", "1330");
         reqBuilder.param("product_name","product_name");
         reqBuilder.param("product_memo","insertTest");
         reqBuilder.param("product_qtn","20");
@@ -110,8 +114,8 @@ public class ProductControllerTests {
         // category insert
         reqBuilder.param("product_no", "");
         reqBuilder.param("cate_detail1", "주황색");
-        reqBuilder.param("cate_detail2", "");
-        reqBuilder.param("cate_detail3", "");
+        reqBuilder.param("cate_detail2", "1");
+        reqBuilder.param("cate_detail3", "2");
         reqBuilder.param("cate_detail4", "");
         reqBuilder.param("cate_detail5", "");
 

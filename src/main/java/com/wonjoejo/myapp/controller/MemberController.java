@@ -89,6 +89,9 @@ public class MemberController {
 				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);	
 			} // if
 
+			rttrs.addAttribute("member_id",member.getMember_id());
+			session.setAttribute("member_id",member.getMember_id());
+
 		} // if
 
 		return "redirect:/box/list";

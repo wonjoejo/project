@@ -2,7 +2,6 @@ package com.wonjoejo.myapp.domain;
 
 import java.util.Date;
 
-import lombok.Data;
 import lombok.Value;
 
 @Value
@@ -16,9 +15,10 @@ public class ProductVO {
     private String product_photo_path;
     private Integer barcode;
     private Date reg_date;
+
     
 	public ProductVO(Integer product_no, Integer box_no, String product_name, String product_memo, Integer product_qtn,
-			String product_photo_name, String product_photo_path, Integer barcode, Date reg_date) {
+					 String product_photo_name, String product_photo_path, Integer barcode, Date reg_date) {
 		this.product_no = product_no;
 		this.box_no = box_no;
 		this.product_name = product_name;
@@ -28,6 +28,6 @@ public class ProductVO {
 		this.product_photo_path = product_photo_path;
 		this.barcode = barcode;
 		this.reg_date = reg_date;
-	} // ProductVO constructor    
+	} // ProductVO constructor
     
 } // end class

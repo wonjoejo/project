@@ -1,11 +1,12 @@
 package com.wonjoejo.myapp.service;
 
+
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.BoardVO;
-import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.domain.*;
+
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,9 +50,9 @@ public class ProductServiceTests {
     public void testGetBoxList() {
     	log.debug("testProductxList() invoked.");
 
-		Integer box_no = 1005;
+		Integer box_no = 1330;
 
-		List<ProductVO> list = this.service.getProductList(box_no);
+		List<ProductCategoryVO> list = this.service.getProductList(box_no);
 		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
 		list.forEach(log::info);
 
@@ -100,8 +101,7 @@ public class ProductServiceTests {
 				product_name,
 				product_memo,
 				product_qtn,
-				null, null, null, null				
-				);
+				null, null, null, null);
 
         boolean isSuccess = this.service.insertProduct(product);
         log.info("Product created successfully: {}",isSuccess);
@@ -146,8 +146,7 @@ public class ProductServiceTests {
 				null,
                 null,
                 null,
-                null
-        );
+                null);
 
         boolean isSuccess = this.service.editProduct(product);
         log.info("product edited successfully: {}", isSuccess);
@@ -190,12 +189,14 @@ public class ProductServiceTests {
     @Test(timeout=1000)
 	public void testGetListPerPage() {
 		log.debug("testGetListPerPage() invoked.");
-				
+
+        int box_no = 1330;
 		Criteria cri = new Criteria();
 		cri.setCurrPage(1);
-		cri.setAmount(3);
+		cri.setAmount(6);
+        cri.setBox_no(box_no);
 		
-		List<ProductVO> product = this.service.getListPerPage(cri);
+		List<ProductCategoryVO> product = this.service.getListPerPage(cri);
 		
 		assert product != null;
 		
@@ -203,9 +204,11 @@ public class ProductServiceTests {
 	}//testGetListPerPage
     
     @Test(timeout=1000)
-	public void testGetTotal(Integer box_no) {
+	public void testGetTotal() {
 		log.debug("testGetTotal() invoked.");
-				
+
+        int box_no = 1330;
+
 		int totalCount = this.service.getTotalCount(box_no);		
 		log.info("\t+ totalCount: {}",totalCount);
 	}//testGetTotal

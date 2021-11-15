@@ -1,26 +1,24 @@
 package com.wonjoejo.myapp.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.service.BoxService;
+import com.wonjoejo.myapp.service.GroupService;
+import com.wonjoejo.myapp.util.S3Utils;
+import com.wonjoejo.myapp.util.UploadFileUtils;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.wonjoejo.myapp.service.BoxService;
-
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -29,50 +27,84 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class BoxController {
 
+    S3Utils s3 = new S3Utils();
+    String bucketName = "intobox";
     @Setter(onMethod_ = {@Autowired})
     private BoxService service;
+    @Setter(onMethod_ = {@Autowired})
+    private GroupService groupService;
 
     @GetMapping("/list")
-    public void list(Model model, Criteria cri) {
+    public void list(Model model, Criteria cri, HttpSession session) {
 
         log.debug("list({},{}) invoked.", model, cri);
+
+        cri.setAmount(6);
 
         List<BoxVO> list = this.service.getBoxList(cri);
         log.info("\t+ list.size:{}", list.size());
 
         model.addAttribute("list", list);
+        model.addAttribute("member_id", session.getAttribute("member_id"));
 
         // paging
-        Integer totalAmount = this.service.getTotal();
+        Integer totalAmount = this.service.getTotal((String) session.getAttribute("member_id"));
         PageDTO dto = new PageDTO(cri, totalAmount);
         model.addAttribute("pageMaker", dto);
+        model.addAttribute("cri", cri);
 
     } // getBoxList
 
     @PostMapping("/create")
-    public String create(BoxDTO box, RedirectAttributes rttrs, MultipartFile file) throws IOException {
+    public String create(BoxDTO box, RedirectAttributes rttrs, MultipartFile file) throws Exception {
 
-        log.debug("create({}) invoked.", box);
+        log.debug("create({},{}) invoked.", box, file);
 
-        String uploadDir = "/Users/heewonseo/temp/file_upload";
+        // upload 할 폴더 경로 지정
+        String uploadDir = "box";
 
+        BoxVO boxVO;
 
-            File targetPath = new File(uploadDir, Objects.requireNonNull(file.getOriginalFilename()));
-            file.transferTo(targetPath);
+        if (file.getSize() != 0) {
 
-            BoxVO boxVO = new BoxVO(
+            // 여기서 함수 불러와서 데이터 넣어줌 (리턴값은 uploadDir 이하 경로 + 파일이름 (/2021/11/14/8c47bd18-b475-4849-beec-a0d3d4d0bd7a_29325736.jpg)
+            String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
+
+//                File targetPath = new File(uploadDir, );
+//                file.transferTo(targetPath);
+
+            boxVO = new BoxVO(
                     null,
                     box.getMember_id(),
                     box.getBox_mode(),
                     box.getBox_name(),
                     box.getBox_memo(),
-                    file.getOriginalFilename(),
+                    uploadedFileName,
                     uploadDir,
                     null
             );
 
             boolean result = this.service.createBox(boxVO);
             log.info("\t +result: {}", result);
+
+        } else {
+
+            boxVO = new BoxVO(
+                    null,
+                    box.getMember_id(),
+                    box.getBox_mode(),
+                    box.getBox_name(),
+                    box.getBox_memo(),
+                    box.getBox_photo_name(),
+                    "/resources/assets/img/",
+                    null
+            );
+
+            boolean result = this.service.createBox(boxVO);
+            log.info("\t +result: {}", result);
+
+        }
+
 
 //		BaseCategory insert
         BaseCategoryVO basecategoryVO = null;
@@ -165,25 +197,24 @@ public class BoxController {
                 log.info("\t +category Result:{}", result2);
                 break;
         }
-      
-      		// 박스 마스터권한 부여
-		BoxPermissionVO permissionVo = new BoxPermissionVO(
-				null,
-				boxVO.getMember_id(),
-				boxVO.getBox_no(),
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
-		);
-		boolean result3 = this.service.grantMasterPermission(permissionVo);
-		log.info("\t +Permission Result:{}",result3);
 
-		rttrs.addAttribute("result",result);
-        rttrs.addAttribute("member_id",box.getMember_id());
+        // 박스 마스터권한 부여
+        BoxPermissionVO permissionVo = new BoxPermissionVO(
+                null,
+                boxVO.getMember_id(),
+                boxVO.getBox_no(),
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+        );
+        boolean result3 = this.service.grantMasterPermission(permissionVo);
+        log.info("\t +Permission Result:{}", result3);
 
+//		rttrs.addAttribute("result",result);
+        rttrs.addAttribute("member_id", box.getMember_id());
 
 
         return "redirect:/box/list";
@@ -224,10 +255,50 @@ public class BoxController {
 
         return "/box/list";
     } // delete
-  
-  	@GetMapping("/createview")
-	public void createView() {
-		log.debug("createView() invoked.");
-	} // createview
+
+    @GetMapping("/createview")
+    public void createView() {
+        log.debug("createView() invoked.");
+    } // createview
+
+    @GetMapping("/get")
+    public void get(Integer box_no, Model model) {
+        log.debug("get({}) invoked.", box_no);
+
+        BoxVO box = this.service.getBox(box_no);
+        log.info("\t +box: {}", box);
+
+        // Product List 4개까지 표시
+        List<ProductVO> productList = this.service.getProductList(box_no);
+        log.info("\t+ productList: {}", productList);
+
+        model.addAttribute("box", box);
+        model.addAttribute("productList", productList);
+
+    } // get
+
+    @PostMapping("/join")
+    public String joinGroup(Integer box_no, String member_id, RedirectAttributes rttrs) {
+        log.debug("joinGroup({},{}) invoked.", box_no, member_id);
+
+        // 같은 박스에 같은 회원이 이미 존재하는지 중복 검사하는 로직 추가해야 함
+        // 박스에 있는 회원 리스트 조회 -> member_id 있는지 확인 -> 있으면 처리하지 않음
+        List<MemberVO> groupList = this.groupService.selectGroupMemberList(box_no);
+        for (MemberVO member : groupList) {
+            log.info("\t+ member_id: {}", member.getMember_id());
+            if (member_id.equals(member.getMember_id())) {
+                return "redirect:/box/list";
+                // alert 띄우고 싶은데...
+            } else {
+                break;
+            } // if-else
+        } // for
+
+        boolean result = this.service.joinBox(member_id, box_no);
+        log.info("\t +result: {}", result);
+        rttrs.addAttribute("member_id", member_id);
+
+        return "redirect:/box/list";
+    } // joinGroup
 
 } // end class

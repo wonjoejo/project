@@ -20,64 +20,30 @@
 
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-    <script>
-    $(function name() {
-        console.clear();
-        console.log('jquery started...');
-        
-        $('#addBtn').click(function () {
-            console.log('click event triggered..');
 
-            self.location = '/board/noticePage';
-          }); //onclick
-
-        // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
-        $('#writeBtn').on('click', function () {
-            console.log('onclicked on writeBtn...');
-
-            self.location = '/board/write?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        });//onclick
-
-        //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
-        $('a.prev, a.next').on('click',function(e){
-            e.preventDefault();
-
-            var paginationForm=$('#paginationForm')
-            paginationForm.attr('action','/board/listPerPage')
-            paginationForm.attr('method','GET')
-
-            //Criteria 3개 전송파라미터를 설정 
-            paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-            paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-            paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
-
-            paginationForm.submit();
-        });  
-
-      }); //.jq
-    </script>
+    <style>
+  	
+  	.noticeimg{
+  		width: 18px;
+  		height: 18px;
+  		
+  	}
+  	
+  	.searchimg {
+	width: 20px;
+	height: 20px;
+}
+  	
+    </style>
 
 </head>
 <body>
 
 <div class="container">
-	<div class="side-menu">
-		<div class="profile">
-			<img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
-			<p class="name">name</p>
-		</div>
-		<div class="menu">
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i>박스 리스트</a></span>
-			<span class="menu-item"><a href="#"><i class="far fa-plus-square"></i> 박스 생성</a></span>
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/board/listPerPage?member_id=${member_id}"><i class="far fa-question-circle"></i> Q&A</a></span>
-			<span class="menu-item"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
-		</div>
-	</div>
+	<jsp:include page="../common/left.jsp"/>
 
 	<div class="main-container">		
 		<div class="wrapper">
@@ -86,9 +52,9 @@
 				<h1 class="title">Q&A</h1>
 				
 				<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything"/>
-				<button class="searchbtn">검색</button>
+				<button class="searchbtn"><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 						
-				<button id="writeBtn" type="button">글 작성</button>
+				<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
 			</div>
 			
 			<div class="noticewrapper" >
@@ -96,21 +62,20 @@
 				<div id="notice">
 				
 					<c:forEach items="${noticeList}" var="board">
-						<div class="noticelist">     
-							<%-- <div class="item">
-								<c:out value="${board.board_idx}" />
-							</div>	 --%>		
-							<div class="item">
-								<a href="/board/detail?bno=${board.board_idx}">
-								<c:out value="${board.title}" />
-								</a>
-							</div>					
-							<div class="item">
-								<c:out value="${board.member_id}" />
-							</div>						
+						<div class="noticelist">      	
+											
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div>            
+							</div> 
+							<div class="item">
+								<c:out value="${board.member_id}" />
+							</div>	 
+							<div class="item">
+								<a href="/board/noticedetail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+								<c:out value="${board.title}" />
+								</a>
+							</div>	  
+							&nbsp;&nbsp;&nbsp;&nbsp;<img class="noticeimg" src="${pageContext.request.contextPath}/resources/assets/img/warning.png" />        
 						</div>
 			
 						
@@ -119,7 +84,7 @@
 				<button id="addBtn" type="button">더보기</button>
 			</div>
 			
-			<div id="boardtable">
+			<div id="boardtable" >
 
 				<div id="boardtitlenone" class="boardlistcontainer">
 					<div class="item">No</div>
@@ -151,40 +116,46 @@
 					</c:forEach>
 				</div>		
 			</div>
-			
-			<!-- 현재화면 하단부에 , 페이징 처리기준에 맞게 , 페이지번호목록 표시 -->
-		      <div id="pagination">
-		
-		        <form action="#" id="paginationForm">
-		          <input type="hidden" name="currPage">
-		          <input type="hidden" name="amount">
-		          <input type="hidden" name="pagesPerPage">
-		
-		          <ul class="pagination">
-		            <!-- 1. 이전, 이동여부표시(prev) -->
-		            <c:if test="${pageMaker.prev}">
-		              <li class="prev"><a class="prev" href="${pageMaker.startPage - 1}">Prev</a></li>
-		            </c:if>
-		
-		            <!-- 페이지번호목록 표시   -->
-		            <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-		              <li><a class="page" href="/board/listPerPage?currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a></li>
-		            </c:forEach>
-		
-		            <!-- 2. 이후, 이동여부표시(next) -->
-		            <c:if test="${pageMaker.next}">
-		              <li class="next"><a class="next" href="${pageMaker.endPage + 1}">Next</a></li>
-		            </c:if>
-		          </ul>
-		
-		        </form>
-		
-		      </div>
+
+			<!-- 페이징 처리 -->
+			<div id="pagination">
+
+				<form action="#" id="paginationForm">
+					<!-- 1. 이전 이동 여부 표시 (prev) -->
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li class="page-item"><a class="page-link" href="/board/listPerPage?currPage=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}&pagesPerPage=${cri.pagesPerPage}"><i class="fas fa-angle-left"></i></a></li>
+						</c:if>
+
+						<!-- 페이지 번호 목록 표시 -->
+						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+							<c:set var="cp" value="${pageMaker.cri.currPage}" />
+
+							<c:choose>
+								<c:when test="${pageNum == cp}">
+									<li class="page-item active"><a class="page-link" href="#">${pageNum}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link" href="/board/listPerPage?currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+
+						<!-- 2. 다음 이동 여부 표시 (next) -->
+						<c:if test="${pageMaker.next}">
+							<li class="page-item"><a class="page-link" href="/board/listPerPage?currPage=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><i class="fas fa-angle-right"></i></a></li>
+						</c:if>
+					</ul>
+				</form>
+			</div>
 			
 		</div>
 	</div>
 </div>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=3"></script>
+
 </html>
-				

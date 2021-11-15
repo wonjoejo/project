@@ -1,6 +1,7 @@
 package com.wonjoejo.myapp.mapper;
 
 import com.wonjoejo.myapp.domain.*;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,12 +17,16 @@ public interface BoxMapper {
 
 	public abstract int deleteBox(Integer box_no);
 
-	// BaseCategory insert
+	// BaseCategory insert (박스 생성 시)
 	public abstract int insertCategory(BaseCategoryVO baseCategory);
 
+	// Master Permission insert  (박스 생성 시)
 	public abstract int insertMasterPermission(BoxPermissionVO boxPermission);
 
-	public abstract Integer getTotalCount();
+	public abstract Integer getTotalCount(String member_id);
 
+	public abstract List<ProductVO> getProductList(Integer box_no);
+
+	public abstract int insertGroup(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
 } // end interface

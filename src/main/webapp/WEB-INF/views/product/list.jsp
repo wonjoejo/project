@@ -19,7 +19,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=16">
 
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
@@ -58,61 +58,132 @@
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="../common/left.jsp" />
+		<jsp:include page="../common/boxleft.jsp" />
 		<div class="main-container">
-			<h1>ProductList</h1>
+			<div id="top_content">
+				<h1 class="title">ProductList</h1>
 
-			<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything" />
-			<button class="searchbtn">검색</button>
+				<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything" />
+				<button class="searchbtn">
+				<img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
+			</div> <!-- top_content -->
 
 
-			
-			<!-- 현재화면 하단부에 , 페이징 처리기준에 맞게 , 페이지번호목록 표시 -->
-			<div id="pagination">
-				<form action="#" id="paginationForm">
-					<input type="hidden" name="currPage">
-					<input type="hidden" name="amount">
-					<input type="hidden" name="pagesPerPage">
-					<input type="hidden" name="box_no">
+<!-- 페이징 처리 -->
+<div id="pagination">
 
-					<ul class="pagination">
-						<!-- 1. 이전, 이동여부표시(prev) -->
-						<c:if test="${pageMaker.prev}">
-							<li class="prev"><a class="prev" href="${pageMaker.startPage - 1}">Prev</a></li>
-						</c:if>
+	<form action="#" id="paginationForm">
+		<input type="hidden" name="currPage">
+		<input type="hidden" name="amount">
+		<input type="hidden" name="pagesPerPage">
+		<input type="hidden" name="box_no">
+		<!-- 1. 이전 이동 여부 표시 (prev) -->
+		<ul class="pagination">
+			<c:if test="${pageMaker.prev}">
+				<li class="page-item"><a class="page-link" href="/product/listPerPage?
+													currPage=${pageMaker.startPage-1}
+													&amount=${pageMaker.cri.amount}
+													&pagesPerPage=${cri.pagesPerPage}
+													&box_no=${pageMaker.cri.box_no}"><i class="fas fa-angle-left"></i></a></li>
+			</c:if>
 
-						<!-- 페이지번호목록 표시   -->
-						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-							<li><a class="page" href="/product/listPerPage?
-									currPage=${pageNum}
-									&amount=${pageMaker.cri.amount}
-									&pagesPerPage=${pageMaker.cri.pagesPerPage}
-									&box_no=${pageMaker.cri.box_no}">${pageNum}</a>
-							</li> &nbsp&nbsp
-						</c:forEach>
+			<!-- 페이지 번호 목록 표시 -->
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+				<c:set var="cp" value="${pageMaker.cri.currPage}" />
 
-						<!-- 2. 이후, 이동여부표시(next) -->
-						<c:if test="${pageMaker.next}">
-							<li class="next"><a class="next" href="${pageMaker.endPage + 1}">Next</a></li>
-						</c:if>
-					</ul>
-			</div> <!-- pagination -->
+				<c:choose>
+					<c:when test="${pageNum == cp}">
+						<li class="page-item active"><a class="page-link" href="#">${pageNum}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page" href="/product/listPerPage?
+														currPage=${pageNum}
+														&amount=${pageMaker.cri.amount}
+														&pagesPerPage=${pageMaker.cri.pagesPerPage}
+														&box_no=${pageMaker.cri.box_no}">${pageNum}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+
+
+
+			<!-- 2. 다음 이동 여부 표시 (next) -->
+			<c:if test="${pageMaker.next}">
+				<li class="page-item"><a class="page-link"
+						href="/board/listPerPage?currPage=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><i
+							class="fas fa-angle-right"></i></a></li>
+			</c:if>
+		</ul>
+	</form>
+</div>
+
+
+
 
 
 
 
 			<div class="product-container">
-				<div id="product-list">
-					<c:forEach items="${list}" var="product"><br />
-						<img id="product_img"
-							src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true"
-							style="width: 50px;">
-						<c:out value='물품명: ${product.product_name}' />
-						<c:out value='박스번호: ${product.box_no}' />
-						<c:out value='수량: ${product.product_qtn}' /> <br />
-					</c:forEach><br />
-				</div><br />
+				<c:forEach items="${list}" var="product"><br />
+					<div class="product-list-container" id="product-list">
+						<div class="item" id="product-img">
+							<img id="product-img"
+								src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
+						</div> <!-- product-img -->
+
+						<div class="item" id="product-name">
+							<c:out value='물품번호: ${product.product_no}' />
+							<!-- <c:out value='물품명: ${product.product_name}' /> -->
+							<!-- <c:out value='박스번호: ${product.box_no}' /> -->
+						</div> <!-- product-name -->
+
+						<div class="item" id="product-cate">
+							<c:out value='${product.cate_name1}: ${product.cate_detail1}' />
+							<c:out value='${product.cate_name2}: ${product.cate_detail2}' />
+							<c:out value='${product.cate_name3}: ${product.cate_detail3}' />
+						</div> <!-- product-cate -->
+
+						<div class="item" id="product-qtn">
+							<c:out value='수량: ${product.product_qtn}' />
+						</div> <!-- product-qtn-->
+
+					</div>	<!-- product-list -->
+				</c:forEach>
 			</div> <!-- product-container -->
+
+
+
+<!-- 현재화면 하단부에 , 페이징 처리기준에 맞게 , 페이지번호목록 표시 -->
+<div id="pagination">
+	<form action="#" id="paginationForm">
+		<input type="hidden" name="currPage">
+		<input type="hidden" name="amount">
+		<input type="hidden" name="pagesPerPage">
+		<input type="hidden" name="box_no">
+
+		<ul class="pagination">
+			<!-- 1. 이전, 이동여부표시(prev) -->
+			<c:if test="${pageMaker.prev}">
+				<li class="prev"><a class="prev" href="${pageMaker.startPage - 1}">Prev</a></li>
+			</c:if>
+
+			<!-- 페이지번호목록 표시   -->
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+				<li><a class="page" href="/product/listPerPage?
+												currPage=${pageNum}
+												&amount=${pageMaker.cri.amount}
+												&pagesPerPage=${pageMaker.cri.pagesPerPage}
+												&box_no=${pageMaker.cri.box_no}">${pageNum}</a>
+				</li> &nbsp&nbsp
+			</c:forEach>
+
+			<!-- 2. 이후, 이동여부표시(next) -->
+			<c:if test="${pageMaker.next}">
+				<li class="next"><a class="next" href="${pageMaker.endPage + 1}">Next</a></li>
+			</c:if>
+		</ul>
+	</form>
+</div> <!-- pagination -->
 
 
 

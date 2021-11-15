@@ -2,15 +2,12 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.domain.*;
 
 public interface ProductService {
 
 	// box 번호로 해당되는 물품 리스트 조회
-	public abstract List<ProductVO> getProductList(Integer box_no);
+	public abstract List<ProductCategoryVO> getProductList(Integer box_no);
 	
     // 물품 한건 상세보기
 	public abstract ProductVO getProduct(Integer product_no);
@@ -42,7 +39,7 @@ public interface ProductService {
 	
 
     // 물품 리스트 페이지처리
-    public abstract List<ProductVO> getListPerPage(Criteria cri);
+    public abstract List<ProductCategoryVO> getListPerPage(Criteria cri);
 
 	//총 레코드 개수 반환 
 	public abstract Integer getTotalCount(Integer box_no);

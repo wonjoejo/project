@@ -14,7 +14,7 @@
     $('a.prev, a.next').on('click',function(e){
         e.preventDefault();
 
-        var paginationForm=$('#paginationForm')
+        const paginationForm=$('#paginationForm')
         paginationForm.attr('action','/board/listPerPage')
         paginationForm.attr('method','GET')
 
@@ -27,5 +27,4 @@
     });  
 
   }); //.jq
-  
-  
+

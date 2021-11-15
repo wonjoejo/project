@@ -22,7 +22,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=11">
 </head>
 <body>
 
@@ -41,34 +41,34 @@
                     <div class="box-photos">
                         <div class="product-photo">
                         <input type="file" name="file" id="box-photo">
+                        <input type="hidden" name="box_photo_name" id="default">
+                        <input type="hidden" name="box_photo_path" value="${pageContext.request.contextPath}/resources/assets/img/">
                         </div>
-                        <div class="default-photos carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-<%--                        <div class="photos">--%>
+                        <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false" data-bs-interval="false" id="carousel">
+                        <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <div class="row photos">
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/food.png"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/pill.png"></div>
+                                <div class="photos">
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/food.png" class="default-img"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png" class="default-img"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/pill.png" class="default-img"></div>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <div class="row photos">
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/goods.png"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"></div>
+                                <div class="photos">
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/clothes.png" class="default-img"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/goods.png" class="default-img"></div>
+                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png" class="default-img"></div>
                             </div>
                             </div>
-<%--                        </div>--%>
                         </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                     </div>
                     </div>
 
@@ -99,7 +99,7 @@
 
             <div class="buttons">
                 <input class="submit-btn hvr-float" type="submit" value="생성하기">
-                <input class="cancel-btn hvr-float" type="button" value="취소">
+                <a href="${pageContext.request.contextPath}/box/list?${sessionScope.member_id}"><input class="cancel-btn hvr-float" type="button" value="취소"></a>
             </div>
 
             </form>
@@ -111,5 +111,5 @@
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=1"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=3"></script>
 </html>
