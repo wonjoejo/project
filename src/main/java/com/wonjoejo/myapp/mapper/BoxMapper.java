@@ -23,7 +23,7 @@ public interface BoxMapper {
 	// Master Permission insert  (박스 생성 시)
 	public abstract int insertMasterPermission(BoxPermissionVO boxPermission);
 
-	public abstract Integer getTotalCount(String memeber_id);
+	public abstract Integer getTotalCount(String member_id);
 
 	public abstract List<ProductVO> getProductList(Integer box_no);
 

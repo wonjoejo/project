@@ -45,7 +45,7 @@ public class BoxMapperTests {
 		String member_id = "MEMBERid32";
 		Criteria cri = new Criteria();
 		cri.setCurrPage(1);
-		cri.setAmount(5);
+		cri.setAmount(10);
 		cri.setMember_id(member_id);
 
 		List<BoxVO> list = this.mapper.selectBoxList(cri);
