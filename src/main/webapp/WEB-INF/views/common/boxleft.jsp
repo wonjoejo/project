@@ -27,11 +27,11 @@
 <div class="side-menu">
     <div class="profile">
         <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
-        <p class="name">name</p>
+        <p class="name">${sessionScope.member_id}</p>
     </div>
     <div class="menu">
         <span class="menu-item active"><a
-                href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}"><i
+                href="${pageContext.request.contextPath}/box/get?${box.box_no}"><i
                 class="far fa-list-alt"></i> 나의 박스</a></span>
         <span class="menu-item inactive"><a
                 href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box.box_no}"><i
