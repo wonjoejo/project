@@ -63,6 +63,7 @@
 <body>
 
 <div class="container">
+
 	<jsp:include page="../common/left.jsp"/>
 
 	<div class="main-container">		

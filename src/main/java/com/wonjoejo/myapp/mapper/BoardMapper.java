@@ -57,4 +57,7 @@ public interface BoardMapper {
 	
 	//답변 삭제  
 	public abstract Integer deleteReply(Integer board_idx);
+	
+	//답글 목록  
+	public abstract List<BoardVO> getreplyList(Criteria cri); 
 }//end interface

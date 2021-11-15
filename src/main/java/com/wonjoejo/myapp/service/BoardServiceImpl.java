@@ -187,6 +187,17 @@ public class BoardServiceImpl
 		
 		return affectedRows==1;
 	}//deleteReply
+	
+	//답글 목록 
+	@Override
+	public List<BoardVO> getreplyList(Criteria cri) {
+		log.debug("getListPerPage({}) invoked.",cri);
+		
+		List<BoardVO> list = this.mapper.getnoticePage(cri);
+		log.info("\t+ list size:{} ",list.size());
+		
+		return list;
+	}//getreplyList
 
 	
 	@Override
@@ -202,5 +213,6 @@ public class BoardServiceImpl
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
 	}//afterPropertiesSet
+
 
 }//end class 

@@ -91,19 +91,19 @@
 		height: 20px;
 	}
   	
-  	#noticelistBtn {
-	  position: absolute;
-      bottom: 150px;
-      right: 90px;
-	  width: 90px;
-	  height: 37px;
-	  color: #5a95f5;
-	  border: none;
-	  margin-right: 30px;
+ 	#noticelistBtn {
+	    position: absolute;
+	    bottom: 150px;
+	    right: 250px;
+	    width: 90px;
+	    height: 37px;
+	    color: #5a95f5;
+	    border: none;
+	    margin-right: 30px;
 	
-	  background: #ffffff;
-	  border: 1px solid #5a95f5;
-	  border-radius: 24px;
+	    background: #ffffff;
+	    border: 1px solid #5a95f5;
+  		border-radius: 24px;
 	}
 	
 	#noticelistBtn:hover {
@@ -121,18 +121,9 @@
 <body>
 
 <div class="container">
-	<div class="side-menu">
-		<div class="profile">
-			<img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
-			<p class="name">name</p>
-		</div>
-		<div class="menu">
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i>박스 리스트</a></span>
-			<span class="menu-item"><a href="#"><i class="far fa-plus-square"></i> 박스 생성</a></span>
-			<span class="menu-item"><a href="${pageContext.request.contextPath}/board/listPerPage?member_id=${member_id}"><i class="far fa-question-circle"></i> Q&A</a></span>
-			<span class="menu-item"><a href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
-		</div>
-	</div>
+	
+	<jsp:include page="../common/left.jsp"/>
+	
 
 	<div class="main-container">		
 		<div class="wrapper">
@@ -143,7 +134,7 @@
 				<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything"/>
 				<button class="searchbtn"><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 						
-				<button id="writeBtn" type="button"> + 글 작성</button>
+				<button id="writeBtn" type="button"> + 공지작성</button>
 			</div>
 			
 			<div class="noticewrapper" >

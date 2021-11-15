@@ -71,8 +71,10 @@
             SELECT
                 /*+ index_desc(qna_board) */ *
             FROM qna_board WHERE notice=0
+            order by ref desc, depth asc
             OFFSET (#{currPage} - 1) * #{amount} ROWS 
             FETCH NEXT #{amount} ROWS ONLY
+            
         ]]>
     </select>
     
@@ -91,10 +93,10 @@
     </select>
     
      <!-- 새로운 게시물 등록 -->
-    <select id="insert">
-        INSERT INTO qna_board (member_id,title,content)
-		VALUES (#{member_id},#{title},#{content})
-    </select>
+    <insert id="insert">
+        INSERT INTO qna_board (member_id,title,content,ref)
+		VALUES (#{member_id},#{title},#{content},(select nvl(max(ref),0)+1 from qna_board))
+    </insert>
     
     <insert id="insertSelectKey">
         <selectKey keyProperty="board_idx" order="BEFORE" resultType="int">
@@ -125,7 +127,8 @@
 	<!-- 답글 작성 -->
     <insert id="insertReply">
         INSERT INTO QNA_BOARD (MEMBER_ID,TITLE,CONTENT,REF,DEPTH,STEP)
-        VALUES (#{member_id},#{title},#{content},#{ref},#{depth},#{step})
+      	VALUES (#{member_id},#{title},#{content},#{ref},1,1) 
+        <!-- VALUES ('MEMBERid99','답글','답글내용',99,1,1) -->
     </insert>
     
     <!-- 답글 수정 -->
@@ -142,5 +145,16 @@
     <delete id="deleteReply">
         DELETE FROM qna_board WHERE ref=#{ref} and depth=1
     </delete>
+    
+    <!-- 답글 목록조회 -->
+    <select id="getreplyList" resultType="com.wonjoejo.myapp.domain.BoardVO">
+        <![CDATA[ 
+            SELECT
+                /*+ index_desc(qna_board) */ *
+            FROM qna_board WHERE depth=1
+            OFFSET (#{currPage} - 1) * #{amount} ROWS 
+            FETCH NEXT #{amount} ROWS ONLY
+        ]]>
+    </select>
  
 </mapper>

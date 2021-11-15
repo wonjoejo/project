@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-	<title>Q&AEdit</title>
+	<title>Q&AWrite</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -21,7 +21,7 @@
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
 	
-	<script type="text/javascript" src=""${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
@@ -30,25 +30,6 @@
       $(function () {
         console.clear();
         console.log('JQuery stared...');
-        
-      //delete 버튼에 대한 이벤트 등록 처리
-        $('#deleteBtn').click(function () {
-          console.log('click event triggered..');
-
-          var formObj = $('form');
-          formObj.attr('method', 'POST');
-          formObj.attr('action', '/board/delete');
-
-          formObj.submit();
-        }); //onclick
-        
-        
-       //edit 버튼에 대한 이벤트 등록 처리
-        $('#editBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/edit?board_idx=${board.board_idx}';
-        }); //onclick
 
         //list 버튼에 대한 이벤트 등록 처리
         //$(#listBtn).on('click',function(){
@@ -59,7 +40,16 @@
         }); //onclick
       }); //.jq
     </script>
-	
+    
+    <style>
+    	.writetitle{
+    		background-image : url("${pageContext.request.contextPath}/resources/assets/img/reply.png"); 
+    		background-position:top left;
+ 			background-repeat:no-repeat;
+ 			background-size: 40px;
+    	}
+    </style>
+    
 </head>
 <body>
 
@@ -69,48 +59,39 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-			<div id="detailtop">
-			
-				<h1 class="title">Q&A</h1>						
+			<div id="top_content">
+				<h1 class="title">Q&A</h1>
+						
 				<button id="listBtn" type="button">돌아가기</button>
-			
 			</div>
 			
-			<div id="detailcontent" >
 			
-				<form action="/board/edit" method="post">
-					<input type="hidden" name="board_idx" value="${board.board_idx}" />
-					<div class="detailwrapper">
-					
-						<div class="detailtitle">
-							<input class="noline" type="text" name="title" value="${board.title}" />
-						</div>
-						
-						<div class="detailid">
-							<input class="noline editfix" type="text" name="member_id" value="${board.member_id}" readonly />
-						</div>
-						
-						<div class="detaildate">
-							<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-						</div>            
-						
-						<div class="detailcontent">
-							<textarea class="noline detailcon" name="content" cols="50" rows="10" >${board.content}</textarea>
-						</div>
-						
-					</div>
-						
-						
-					<button id="replyBtn" type="button">답글</button>
-						
-					
-					<button type="submit" id="editBtn">완료</button>
-	                <button type="button" id="deleteBtn">삭제</button>
-					
-				</form>		
-			</div>
-			
-		
+		<form action="/board/replywrite" method="post">
+			<input type="hidden" name="ref" value="${param.board_idx}" />
+	        <div class="write_wrapper">
+	        	<div>
+	        		<h3 class="write_title">답글 쓰기</h3>
+	        		   
+	        	</div>
+	        	<%-- <div>
+	            	<input class="writeid" type="hidden" name="ref" value="${param.board_idx}"/>
+	            </div>  --%>
+	        	<div>
+	            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
+	            </div> 
+	        	
+	        	<div>
+	            	<input class="writetitle" type="text" name="title" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${param.title} 답글"/>
+	            </div> 
+	         	<div>
+	                <textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>
+	            </div>
+	        	<div>         
+	                <button class="writeBtn" type="submit">등록</button>
+	            </div>         
+	        </div>
+     	 </form>
+
 			
 			
 		</div>
@@ -119,3 +100,4 @@
 
 </body>
 </html>
+				

@@ -129,13 +129,13 @@ public class BoardController {
 		log.debug("write({}) invoked.",board);
 		
 		BoardVO vo = new BoardVO(
-				null,
+				board.getBoard_idx(),
 				board.getMember_id(),
 				board.getTitle(),
 				board.getContent(),
 				board.getNotice(),
 				null,
-				null,null,null
+				board.getRef(),null,null
 		);
 		
 		boolean result = this.service.write(vo);
@@ -214,6 +214,13 @@ public class BoardController {
     
     
     //-------- 답글 ----------------------------------------//
+    @GetMapping("/replywrite")
+	public void replyregister(@ModelAttribute("cri") Criteria cri) {
+		log.debug("replyregister() invoked.");
+		
+		log.info("\t+ cri:{}", cri);
+		
+	}//replywrite
     
 	//게시글 답글 작성 
 	@PostMapping("/replywrite")
@@ -221,11 +228,11 @@ public class BoardController {
 		log.debug("replyWrite({},{}) invoked.",board,rttrs);
 
 		BoardVO vo = new BoardVO(
-				null,
+				board.getBoard_idx(),
 				board.getMember_id(),
 				board.getTitle(),
 				board.getContent(),
-				null,
+				board.getNotice(),
 				null,
 				board.getRef(),1,1
 		);
@@ -233,9 +240,46 @@ public class BoardController {
 		boolean result = this.service.writeReply(vo);
 		rttrs.addAttribute("result",result);
 
-		return "redirect:/board/list";
+		return "redirect:/board/listPerPage";
 			
 	}//replyWrite
+    
+  //-------- 답글 ----------------------------------------//
+//    @GetMapping("/replywrite")
+//	public void replyregister(@ModelAttribute("cri") Criteria cri, Integer board_idx, String title ) {
+//		log.debug("replyregister() invoked.");
+//		
+//		log.info("\t+ cri:{}", cri);
+//		
+//	}//replywrite
+//    
+//	//게시글 답글 작성 
+//	@PostMapping("/replywrite")
+//	public String replyWrite(BoardDTO board, RedirectAttributes rttrs, Integer board_idx, String title) {
+//		log.debug("replyWrite({},{}) invoked.",board,rttrs);
+//		log.info("\t+ Board:{}", board );
+//		System.out.println(board);
+//		
+//		BoardVO vo = new BoardVO(
+//				board.getBoard_idx(),
+//				board.getMember_id(),
+//				board.getTitle(),
+//				board.getContent(),
+//				board.getNotice(),
+//				null,
+//				board.getRef(),1,1
+//		);
+//		log.info("\t+ vo:{}", vo );
+//
+//		
+//		boolean result = this.service.writeReply(vo, board_idx, title);
+//		rttrs.addAttribute("result",result);
+//
+//		return "redirect:/board/listPerPage";
+//			
+//	}//replyWrite
+    
+    
 	
 	//게시글 답글 수정  
 	@PostMapping("/replyedit")
@@ -258,7 +302,7 @@ public class BoardController {
 		
 		rttrs.addAttribute("result",result);
 		
-		return "redirect:/board/list";
+		return "redirect:/board/listPerPage";
 	}//replyedit
 	
 	//게시글 답글 삭제  
@@ -271,7 +315,40 @@ public class BoardController {
 			boolean result = this.service.delete(board_idx);
 			rttrs.addAttribute("result",result);
 			
-			return "redirect:/board/list";		
+			return "redirect:/board/listPerPage";		
 	}//replydelete
+	
+	//답글 목록   
+	@GetMapping("/replylist")
+ 	public String replylist(
+ 			@ModelAttribute("cri") Criteria cri, 
+ 			Model model) {	
+ 		log.debug("replylist({}) invoked.",model);
+ 		
+ 		//비지니스 로직 처리 결과 데이터 --> Model 이라고 부른다.
+ 		List<BoardVO> list = this.service.getListPerPage(cri);
+ 		log.info("\t+ list size:{}",list.size());
+ 		
+ 		model.addAttribute("list",list);
+ 		
+ 		List<BoardVO> replylist = this.service.getnoticeList(cri);
+ 		log.info("\t+ list size:{}",list.size());
+ 		
+ 		model.addAttribute("replylist",replylist);
+ 		
+ 		
+ 		//--------------------------------------------//
+ 		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
+ 		//--------------------------------------------//
+ 		Integer totalAmount = this.service.getTotal();
+ 		
+ 		
+ 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+ 		
+ 		model.addAttribute("pageMaker",pageDTO);
+ 		
+ 		//list.jsp 그대로 사용 
+ 		return "/board/list";
+ 	}//replylist
 
 }//end class

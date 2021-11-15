@@ -40,31 +40,12 @@
         }); //onclick
       }); //.jq
     </script>
-    
-    <style>
-  	.writeid {
-		width: 100%;
-		margin: 0 auto;
-		height: 40px;
-		border: none;
-		border-radius: 30px;
-		margin-top: 80px;
-		font-size: 14px;
-		padding: 20px;
-		box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
-		
-	}
-	.writetitle{
-		margin-top: 20px;
-	}
-	
-	
-    </style>
-	
+
 </head>
 <body>
 
 <div class="container">
+
 	<jsp:include page="../common/left.jsp"/>
 
 	<div class="main-container">		
