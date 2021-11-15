@@ -22,13 +22,13 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=1">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
 
 <div class="side-menu">
     <div class="profile">
         <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
-        <p class="name">name</p>
+        <p class="name">${member_id}</p>
     </div>
     <div class="menu">
         <span class="menu-item active boxlist"><a href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i class="far fa-list-alt"></i> 박스 리스트</a></span>
@@ -56,6 +56,6 @@
     </div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
-<script type="application/javascript" src="${pageContext.request.contextPath}/resources/assets/js/modal.js"></script>
+<script type="application/javascript" src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>
 
 </html>

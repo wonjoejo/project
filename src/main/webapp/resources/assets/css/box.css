@@ -116,6 +116,8 @@ body {
 }
 
 .main-container {
+	display: flex;
+	flex-direction: column;
 	/* Right */
 	width: 80vw;
 	height: 80vh;
@@ -142,6 +144,9 @@ body {
 	display: flex;
 	justify-content: center;
 	align-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
 }
 
 .box-container {
@@ -154,6 +159,7 @@ body {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+	margin: 0 auto;
 }
 
 .box {

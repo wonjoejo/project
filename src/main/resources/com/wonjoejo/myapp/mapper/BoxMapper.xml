@@ -7,16 +7,15 @@
     <select id="selectBoxList" resultType="com.wonjoejo.myapp.domain.BoxVO">
 
         <![CDATA[
-
-            SELECT
-            /*+ index_desc(BOX) */
-            *
-            FROM BOX
-            WHERE member_id = #{member_id}
-            OFFSET (#{currPage} - 1) * #{amount} ROWS
-                FETCH NEXT #{amount} ROWS ONLY
-
-        ]]>
+        SELECT
+        BOX.BOX_NO, BOX.MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH, REG_DATE
+        FROM BOX
+            right outer join (SELECT * FROM BOX_PERMISSION ORDER BY NO DESC) BOX_PERMISSION on BOX.BOX_NO = BOX_PERMISSION.BOX_NO
+        WHERE BOX_PERMISSION.MEMBER_ID = #{member_id} and BOX_PERMISSION.NO > 0
+        order by no desc
+        OFFSET (#{currPage} - 1) * #{amount} ROWS
+            FETCH NEXT #{amount} ROWS ONLY
+            ]]>
 
     </select>
 
@@ -74,7 +73,7 @@
     </delete>
 
     <select id="getTotalCount" resultType="int">
-        SELECT count(box_no) FROM BOX WHERE MEMBER_ID = #{member_id}
+        SELECT count(box_no) FROM BOX_PERMISSION WHERE MEMBER_ID = #{member_id}
     </select>
 
     <select id="getProductList" resultType="com.wonjoejo.myapp.domain.ProductVO">
