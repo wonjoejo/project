@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
 <body>
+<c:set var="box_no" value="${product.box_no}"/>
 
 
 <div class="container">
@@ -34,7 +35,9 @@
             <div class="wrapper">
                 <div class="hamburger">
                     <ul class="menu__list">
-                        <li class="menu__list__item"><a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}"><i class="fas fa-pencil-alt i-style"></i></a></li>
+                        <li class="menu__list__item"><a
+                                href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}"><i
+                                class="fas fa-pencil-alt i-style"></i></a></li>
                         <li class="menu__list__item"><a href="#"><i class="fas fa-trash-alt i-style"></i></a></li>
                         <li class="menu__list__item"><a href="#"><i class="far fa-list-alt i-style"></i></a></li>
                     </ul>
@@ -140,7 +143,7 @@
                         <div class="title">메모</div>
                         <div class="detail">
                             ${product.product_memo}
-                                <span class="more">
+                            <span class="more">
                                     <a href="#" id="more">더보기</a>
                                 </span>
                         </div>
@@ -167,29 +170,28 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#nav-icon3').click(function () {
-            $(this).toggleClass('open');
-        });
+	$(document).ready(function () {
+		$('#nav-icon3').click(function () {
+			$(this).toggleClass('open');
+		});
 
-        document.querySelector('.button').addEventListener('click', () => {
-            document.querySelector('.menu__list')
-                .classList.toggle('menu__list--animate');
-        });
+		document.querySelector('.button').addEventListener('click', () => {
+			document.querySelector('.menu__list')
+				.classList.toggle('menu__list--animate');
+		});
 
-        $('#nav-icon4').click(function () {
-            $(this).toggleClass('open');
-        });
+		$('#nav-icon4').click(function () {
+			$(this).toggleClass('open');
+		});
 
-        // sweetalert
-        $('#more').click(function (){
-           swal({
-              text: "${product.product_memo}"
-           });
-        });
+		// sweetalert
+		$('#more').click(function () {
+			swal({
+				text: "${product.product_memo}"
+			});
+		});
 
 
-
-    });
+	});
 </script>
 </html>

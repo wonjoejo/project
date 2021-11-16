@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
 <body>
+<c:set var="box_no" value="${product.box_no}"/>
 
 
 <div class="container">
@@ -132,7 +133,9 @@
                                 <input type="text" name="cate_detail5" value="${category.cate_detail5}" class="detail">
                             </li>
                         </c:if>
-                        <a href="${pageContext.request.contextPath}/category/detail?box_no=${product.box_no}"><div class="to-category">+ 상세 카테고리 추가하기</div></a>
+                        <a href="${pageContext.request.contextPath}/category/detail?box_no=${product.box_no}">
+                            <div class="to-category">+ 상세 카테고리 추가하기</div>
+                        </a>
                         <li>
                             <div class="title">메모</div>
                             <textarea name="product_memo" class="detail detail-memo"></textarea>
@@ -168,28 +171,28 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#nav-icon3').click(function () {
-            $(this).toggleClass('open');
-        });
+	$(document).ready(function () {
+		$('#nav-icon3').click(function () {
+			$(this).toggleClass('open');
+		});
 
-        document.querySelector('.button').addEventListener('click', () => {
-            document.querySelector('.menu__list')
-                .classList.toggle('menu__list--animate');
-        });
+		document.querySelector('.button').addEventListener('click', () => {
+			document.querySelector('.menu__list')
+				.classList.toggle('menu__list--animate');
+		});
 
-        $('#nav-icon4').click(function () {
-            $(this).toggleClass('open');
-        });
+		$('#nav-icon4').click(function () {
+			$(this).toggleClass('open');
+		});
 
-        // sweetalert
-        $('#more').click(function () {
-            swal({
-                text: "${product.product_memo}"
-            });
-        });
+		// sweetalert
+		$('#more').click(function () {
+			swal({
+				text: "${product.product_memo}"
+			});
+		});
 
 
-    });
+	});
 </script>
 </html>

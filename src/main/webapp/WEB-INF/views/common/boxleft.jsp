@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
 
@@ -31,13 +32,16 @@
     </div>
     <div class="menu">
         <span class="menu-item active"><a
-                href="${pageContext.request.contextPath}/box/get?${box.box_no}"><i class="fas fa-box-open"></i> 나의 박스</a></span>
+                href="${pageContext.request.contextPath}/box/get?box_no=${box_no}"><i
+                class="fas fa-box-open"></i> 나의 박스</a></span>
         <span class="menu-item inactive"><a
-                href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}"><i class="fas fa-clipboard-list"></i> 물품 리스트</a></span>
+                href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}"><i
+                class="fas fa-clipboard-list"></i> 물품 리스트</a></span>
         <span class="menu-item inactive"><a
-                href="${pageContext.request.contextPath}/category/detail?box_no=${box.box_no}"><i class="fas fa-table"></i> 카테고리</a></span>
-        <span class="menu-item inactive"><a 
-        		href="${pageContext.request.contextPath}/group/grouplist?box_no=${box.box_no}"><i class="fas fa-user-friends"></i> 그룹</a></span>
+                href="${pageContext.request.contextPath}/category/detail?box_no=${box_no}"><i class="fas fa-table"></i> 카테고리</a></span>
+        <span class="menu-item inactive"><a
+                href="${pageContext.request.contextPath}/group/grouplist?box_no=${box_no}"><i
+                class="fas fa-user-friends"></i> 그룹</a></span>
         <span class="menu-item inactive"><a href="#"><i class="far fa-chart-bar"></i> 차트</a></span>
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/board/listPerPage"><i
                 class="far fa-question-circle"></i> Q&A</a></span>
