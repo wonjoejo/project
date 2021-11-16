@@ -127,4 +127,16 @@ public class GroupMapperTest {
 			this.mapper.deleteMember(boxPermission);
 			log.info("\t+ boxPermission:{}",boxPermission);
 		}//testdeletMember
+		
+		@Test
+		public void testCheckMaster() {
+			log.debug("testCheckMaster() invoked.");
+			
+			String member_id = "MEMBERid98";
+			Integer box_no = 1097;
+			
+			BoxPermissionVO vo = this.mapper.checkMaster(member_id, box_no);
+			
+			log.info("\t+ vo: {}",vo);
+		}
 }

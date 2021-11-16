@@ -18,6 +18,12 @@
 	
 	</select>
 	
+	<select id="checkMaster" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO">
+	SELECT *
+	FROM BOX_PERMISSION
+	WHERE member_id = #{member_id} and box_no = #{box_no}
+	</select>
+	
 	<!--그룹원 권한 조회  -->
 	
 		<select id="selectGroupPermission" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO" >

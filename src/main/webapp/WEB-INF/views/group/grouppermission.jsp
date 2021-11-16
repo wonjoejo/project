@@ -51,7 +51,7 @@ table td {
 <body>
 
 <div class="container">
-	<jsp:include page="../common/groupleft.jsp"/>
+	<jsp:include page="../common/boxleft.jsp" />
 
 <div class="main-container">
 	<div class="name" >
@@ -64,6 +64,8 @@ table td {
 	  </div>
 
 	<div class="group-wrapper2">
+	         <form method="post" action="/group/grouppermission" enctype="multipart/form-data">
+                <input type="hidden" name="box_no" value="${sessionScope.box_no}">
 	<div class="group-container">
 	<table id="pertable">
 		<thead style ="margin-bottom:10px;">
@@ -137,8 +139,9 @@ table td {
 
 	</table>
 	</div>
-
+</form>
 	</div>
+
 </div>
 
 </div>
