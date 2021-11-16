@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%--
   Created by IntelliJ IDEA.
   User: heewonseo
@@ -38,22 +39,34 @@
             <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
         </a>
 
-        <div class="box-wrapper">
-            <form method="post" action="/box/create" enctype="multipart/form-data">
+        <div class="list-wrapper">
+            <div class="box-info-container">
+            <form method="post" action="/box/edit" enctype="multipart/form-data">
                 <input type="hidden" name="member_id" value="${sessionScope.member_id}">
-            <div class="form-container">
+        <div class="box-information">
 
-                    <div class="box-photos">
-                        <div class="product-photo">
-                        <img src="${box.box_photo_path}/${box.box_photo_name}"/>
-                        </div>
+                <div class="box-img">
+                <c:set var="path" value="${box.box_photo_path}"/>
+                <c:choose>
+                    <c:when test="${fn:contains(path,'resource')}">
+                        <img src="${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}"/>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
+                    </c:otherwise>
+                </c:choose>
                         ${box.box_name}
-                        </div>
-                <div class="box-memo">
-                    ${box.box_memo}
                 </div>
-            </div>
+                <div class="box-memo">
+                    <div class="title">
+                    MEMO
+                    </div>
+                    <div class="memo">
+                    ${box.box_memo}
+                    </div>
             </form>
+            </div>
+                </div>
 
         </div>
 
@@ -64,6 +77,7 @@
                 ${product.product_name}
 
             </c:forEach>
+        </div>
         </div>
     </div>
 
