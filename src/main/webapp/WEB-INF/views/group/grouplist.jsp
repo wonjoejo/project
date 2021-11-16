@@ -24,7 +24,7 @@
 <body>
 
 <div class="container">
-	<jsp:include page="../common/groupleft.jsp"/>
+	<<jsp:include page="../common/boxleft.jsp" />
 
 <div class="main-container">
 	<div class="name" >
@@ -32,7 +32,7 @@
 	</div>
 	
 	  <div class="buttons"> 
-	  <input class="submit-btn hvr-float" type="button" value="권한 설정">
+	  <input class="submit-btn hvr-float" id= "grouppermission" type="button" value="권한 설정">
 	  <input class="submit-btn hvr-float" type="button" value="그룹 초대">
 	  <input class="submit-btn hvr-float" type="button" value="그룹 탈퇴">
 	  </div>
@@ -55,6 +55,19 @@
 </div>
 
 
-
 </body>
+			<script>
+				//권한 설정페이지로 이동
+				$(document).ready(function () {
+					$("#grouppermission").click(function () {
+						location.href = "${pageContext.request.contextPath}/group/permissionlist?box_no=${box_no}";
+
+					})
+
+				})
+
+
+
+			</script>
+
 </html>
