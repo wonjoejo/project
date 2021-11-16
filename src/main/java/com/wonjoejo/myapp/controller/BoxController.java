@@ -261,6 +261,11 @@ public class BoxController {
         log.debug("createView() invoked.");
     } // createview
 
+    @GetMapping("/editview")
+    public void editView() {
+        log.debug("editView() invoked.");
+    } // editview
+
     @GetMapping("/get")
     public void get(Integer box_no, Model model) {
         log.debug("get({}) invoked.", box_no);

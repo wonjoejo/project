@@ -24,7 +24,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=4">
 
 </head>
 <body>
@@ -43,8 +43,8 @@
             <div class="box-info-container">
             <form method="post" action="/box/edit" enctype="multipart/form-data">
                 <input type="hidden" name="member_id" value="${sessionScope.member_id}">
-        <div class="box-information">
 
+        <div class="box-information">
                 <div class="box-img">
                 <c:set var="path" value="${box.box_photo_path}"/>
                 <c:choose>
@@ -64,9 +64,13 @@
                     <div class="memo">
                     ${box.box_memo}
                     </div>
-            </form>
+                    <div class="buttons">
+                    <button class="btn" onclick="location.href='/box/editview'"><i class="fas fa-pencil-alt"></i> 수정</button>
+                    <button class="btn delete-btn"><i class="fas fa-trash"></i> 삭제</button>
+                    </div>
             </div>
                 </div>
+            </form>
 
         </div>
 
@@ -85,6 +89,33 @@
 
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=1"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=2"></script>
+<script>
+    const deleteBtn = document.querySelector(".delete-btn");
+
+	deleteBtn.addEventListener("click",function (e) {
+		e.preventDefault();
+		Swal.fire({
+			title: '정말 삭제하시겠습니까?',
+			text: "한 번 삭제된 박스는 복구가 불가능합니다",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#5A95F5',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제',
+            cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire(
+					'삭제 완료',
+					'박스가 삭제되었습니다',
+					'success'
+				)
+			}
+		})
+	})
+
+</script>
 </html>

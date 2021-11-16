@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
+import org.apache.ibatis.annotations.Param;
 
 public interface MemberMapper {
 
@@ -15,7 +16,7 @@ public interface MemberMapper {
 	
 	// 자동 로그인
 	public abstract MemberVO selectMemberWithRemberMe(String rememberMe) throws Exception;
-	public abstract Integer updateMemberWithRememberMe(String member_id, String rememberMe, Date rememberAge) throws Exception;	 
+	public abstract Integer updateMemberWithRememberMe(@Param("member_id") String member_id, @Param("rememberme") String rememberMe, @Param("rememberage") Date rememberAge) throws Exception;
 	
 	public abstract MemberVO selectUserByRememberMe(String remeberMe) throws Exception;
 	
