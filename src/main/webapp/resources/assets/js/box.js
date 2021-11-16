@@ -10,7 +10,12 @@ file.addEventListener("change",function (f) {
 		let dataUrl = reader.result;
 		const productPhoto = document.querySelector(".product-photo");
 
-		productPhoto.style.backgroundImage = "url(" + dataUrl + ")";
+		if(productPhoto!=null) {
+			productPhoto.style.backgroundImage = "url(" + dataUrl + ")";
+		} else {
+			productPhotoEdit.style.backgroundImage = "url(" + dataUrl + ")";
+		}
+
 
 	}
 
@@ -20,14 +25,25 @@ file.addEventListener("change",function (f) {
 
 let images = document.querySelectorAll(".default-img");
 let productPhoto = document.querySelector(".product-photo");
+let productPhotoEdit = document.querySelector(".product-photo-edit");
 let defaultInput = document.querySelector("#default");
 
 images.forEach(function (item,number) {
 
 	item.addEventListener("click",function () {
-		productPhoto.style.backgroundImage = "url(" + this.src + ")";
+		if(productPhoto!=null) {
+			productPhoto.style.backgroundImage = "url(" + this.src + ")";
+		} else {
+			productPhotoEdit.style.backgroundImage = "url(" + this.src + ")";
+		}
+
 		let result = this.src.split("img/");
 		defaultInput.setAttribute("value",result[1]);
 	});
 
 });
+
+
+// enable tooltip
+
+

@@ -524,6 +524,29 @@ select {
 	margin-right: 8px;
 }
 
+/*edit view*/
+
+.product-photo-edit {
+	width: 17vw;
+	height: 17vw;
+	position: relative;
+	background: #FFF;
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: rgb(155, 153, 169);
+	cursor: pointer;
+	border-radius: 50px;
+	background-size: cover;
+}
+
+.product-photo-edit img {
+	width: 250px;
+	height: 250px;
+}
+
 
 
 
