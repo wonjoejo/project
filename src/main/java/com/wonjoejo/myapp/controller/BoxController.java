@@ -333,6 +333,7 @@ public class BoxController {
 
         model.addAttribute("box", box);
         model.addAttribute("productList", productList);
+        model.addAttribute("box_no", box_no);
 
     } // get
 

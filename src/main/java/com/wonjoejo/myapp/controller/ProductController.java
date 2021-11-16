@@ -18,6 +18,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
+import javax.servlet.http.HttpSession;
+
 
 @Log4j2
 @NoArgsConstructor
@@ -45,21 +47,22 @@ public class ProductController {
 	
 	
 	@GetMapping("/listPerPage")
-	public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model) {
+	public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model, HttpSession session) {
 		log.debug("productListPerPage({}) invoked.", model);
 		
 		cri.setAmount(5);
  		List<ProductCategoryVO> list = this.service.getListPerPage(cri);
  		log.info("\t+ list size:{}",list.size());
  		model.addAttribute("list",list);
- 		
- 		
- 		// --- 페이지 처리 --- //
+		model.addAttribute("member_id", session.getAttribute("member_id"));
+
+
+		// --- 페이지 처리 --- //
  		
  		Integer totalAmount = this.service.getTotalCount(box_no); 
  		PageDTO pageDTO = new PageDTO(cri,totalAmount);
  		model.addAttribute("pageMaker",pageDTO);
- 		
+ 		model.addAttribute("box_no", box_no);
  		
 
  		return "/product/list";
@@ -69,7 +72,7 @@ public class ProductController {
 	
 
 	@GetMapping("/detail")
-	public void productDetail(Integer product_no, Integer box_no, Model model) {
+	public void productDetail(Integer product_no, Integer box_no, Model model, HttpSession session) {
 		log.debug("productDetail() invoked.");
 
 		ProductVO product = this.service.getProduct(product_no);
@@ -86,11 +89,12 @@ public class ProductController {
 		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
 		log.info("\t+ baseCategory: {}", baseCategory);
 		model.addAttribute("baseCategory", baseCategory);
+		model.addAttribute("box_no", box_no);
 
 	} // productDetail
 
 	@GetMapping("/edit")
-	public void productEdit(Integer product_no, Integer box_no, Model model) {
+	public void productEdit(Integer product_no, Integer box_no, Model model, HttpSession session) {
 		log.debug("productEdit() invoked.");
 
 		ProductVO product = this.service.getProduct(product_no);
@@ -107,7 +111,8 @@ public class ProductController {
 		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
 		log.info("\t+ baseCategory: {}", baseCategory);
 		model.addAttribute("baseCategory", baseCategory);
-
+		model.addAttribute("member_id", session.getAttribute("member_id"));
+		model.addAttribute("box_no", box_no);
 	} // productEdit
 
 	
@@ -147,23 +152,25 @@ public class ProductController {
 
 		boolean result2 = this.service.insertCategory(categoryVO);
 		log.info("\t+ category result2: {}", result2);
-		rttrs.addAttribute("result2", result2);
+		rttrs.addAttribute("box_no", product.getBox_no());
 
-		return "/product/list";
+		return "redirect:/product/listPerPage";
 	} // productInsert
 	
 	
 	@GetMapping("/insertview")	// 물품 작성페이지
-	public void productInsertView(Integer box_no, Model model) {
+	public void productInsertView(Integer box_no, Model model, HttpSession session) {
 		log.debug("productInsertView() invoked.");
 
 		// BaseCategory Detail
 		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
 		log.info("\t+ baseCategory: {}", baseCategory);
 		model.addAttribute("baseCategory", baseCategory);
+		model.addAttribute("member_id", session.getAttribute("member_id"));
+		model.addAttribute("box_no", box_no);
 
 	} //productInsertView
-	
+
 	
 	@PostMapping("/edit")
 	public String productEdit(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
