@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.mapper.GroupMapper;
@@ -37,9 +38,9 @@ public class GroupServiceImpl implements GroupService{
 
 	//그룹원 권한 조회
 	@Override
-	public List<BoxPermissionVO> selectGroupPermissionList(Integer box_no) {
+	public List<BoxPermissionMemberVO> selectGroupPermissionList(Integer box_no) {
 		
-		List<BoxPermissionVO> list = this.mapper.selectGroupPermissionList(box_no);
+		List<BoxPermissionMemberVO> list = this.mapper.selectGroupPermissionList(box_no);
 		
 		list.forEach(log::info);
 		

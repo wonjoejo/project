@@ -32,8 +32,10 @@
                 <span class="menu-item inactive"><a href="#"><i class="far fa-envelope"></i> 박스 참여</a></span>
                 <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/group/grouplist?box_no=${box_no}"><i
                             class="far fa-plus-square"></i>그룹원 리스트</a></span>
-                <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/group/permissionlist"><i
-                            class="far fa-plus-square"></i> 그룹 권한설정</a></span>
+                <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/group/permissionlist?box_no=${box_no}"><i
+                            class="far fa-plus-square"></i> 그룹 권한 리스트</a></span>
+                    <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/group/grouppermission?box_no=${box_no}"><i
+                            class="far fa-plus-square"></i> 권한 설정</a></span>
                 <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/board/list"><i
                             class="far fa-question-circle"></i> Q&A</a></span>
                 <span class="menu-item inactive"><a href="/member/logout"><i class="fas fa-sign-out-alt"></i>
