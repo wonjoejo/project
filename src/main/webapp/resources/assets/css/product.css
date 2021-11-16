@@ -239,7 +239,6 @@ body {
 .product-list-container {
 	align-self: auto;
 	border-bottom: 0.5px solid rgba(90, 149, 245, 0.5);
-
 	padding: 13px 0px;
 	display: flex;
 	flex-direction: row;
@@ -263,6 +262,16 @@ body {
 	margin: 0 5px;
 }
 
+/* 이미지 없을 경우 대체 */
+#product-none-img {
+	width: 50px;
+	height: 50px;
+	margin: 0 5px;
+	border-radius: 15px;
+	background-color: #5A95F5;
+}
+
+
 #product-name {
 	width: 150px;
 	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
@@ -283,6 +292,7 @@ body {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* 둥근테두리 박스들 */
 #product-cate>div, #product-qtn {
 	display: block;
 	white-space: nowrap;
