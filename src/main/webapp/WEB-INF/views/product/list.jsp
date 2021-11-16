@@ -5,7 +5,7 @@
 			<html>
 
 			<head>
-				<title>ProductList</title>
+				<title>물품 리스트</title>
 
 				<!-- favicon -->
 				<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
@@ -68,10 +68,11 @@
 					<jsp:include page="../common/boxleft.jsp" />
 					<div class="main-container">
 						<div id="top-content">
-							<h1 class="title">ProductList</h1>
+							<h1 class="title">물품 리스트</h1>
 						</div> <!-- top_content -->
 
 						<div class="product-main-container">
+
 							<div id="top-search">
 								<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything" />
 								<button class="searchbtn">
@@ -83,14 +84,23 @@
 							<div class="product-container">
 								<c:forEach items="${list}" var="product">
 									<div class="product-list-container" id="product-list">
-										<div class="item" id="product-img">
-											<img id="product-img"
-												src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
-										</div> <!-- product-img -->
+
+										<!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
+										<c:if test="${product.product_photo_name != null && product.product_photo_path != null}">
+											<div class="item" id="product-img">
+												<img id="product-img"
+													src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
+											</div> <!-- product-img -->
+										</c:if>
+
+										<!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
+										<c:if test="${product.product_photo_name == null || product.product_photo_path == null}">
+											<div class="item" id="product-none-img">
+											</div> <!-- product-img -->
+										</c:if>
+
 
 										<div class="item" id="product-name">
-											<!-- <c:out value='물품번호: ${product.product_no}' /> -->
-											<!-- <c:out value='박스번호: ${product.box_no}' /> -->
 											<c:out value='${product.product_name}' />
 										</div> <!-- product-name -->
 
