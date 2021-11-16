@@ -243,43 +243,6 @@ public class BoardController {
 		return "redirect:/board/listPerPage";
 			
 	}//replyWrite
-    
-  //-------- 답글 ----------------------------------------//
-//    @GetMapping("/replywrite")
-//	public void replyregister(@ModelAttribute("cri") Criteria cri, Integer board_idx, String title ) {
-//		log.debug("replyregister() invoked.");
-//		
-//		log.info("\t+ cri:{}", cri);
-//		
-//	}//replywrite
-//    
-//	//게시글 답글 작성 
-//	@PostMapping("/replywrite")
-//	public String replyWrite(BoardDTO board, RedirectAttributes rttrs, Integer board_idx, String title) {
-//		log.debug("replyWrite({},{}) invoked.",board,rttrs);
-//		log.info("\t+ Board:{}", board );
-//		System.out.println(board);
-//		
-//		BoardVO vo = new BoardVO(
-//				board.getBoard_idx(),
-//				board.getMember_id(),
-//				board.getTitle(),
-//				board.getContent(),
-//				board.getNotice(),
-//				null,
-//				board.getRef(),1,1
-//		);
-//		log.info("\t+ vo:{}", vo );
-//
-//		
-//		boolean result = this.service.writeReply(vo, board_idx, title);
-//		rttrs.addAttribute("result",result);
-//
-//		return "redirect:/board/listPerPage";
-//			
-//	}//replyWrite
-    
-    
 	
 	//게시글 답글 수정  
 	@PostMapping("/replyedit")

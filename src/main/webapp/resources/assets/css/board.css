@@ -77,8 +77,8 @@ li {
   align-items: center;
   display: flex;
   flex-direction: row;
-  width: 90vw;
-  justify-content: space-between;
+  width: 90px;
+  justify-content:flex-start;
 }
 
 .main-container {
@@ -337,6 +337,11 @@ ul {
 	padding: 20px;
 	box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
 	
+	background-image : url("${pageContext.request.contextPath}/resources/assets/img/reply.png"); 
+	background-position:top left;
+	background-repeat:no-repeat;
+	background-size: 40px;
+	
 }
 
 .writecon{
@@ -513,6 +518,9 @@ ul {
   	bottom: 120px;
 }
 
+.noticemainlist{
+	height: 70%;
+}
 /* ====== reply css  ====== */
 
 #replyform {      
@@ -583,4 +591,10 @@ ul {
 	
 	margin-top: 20px;
 	margin-left: 75px;
+}
+
+.replyicon {
+	width: 20px;
+	height: 20px;
+	
 }

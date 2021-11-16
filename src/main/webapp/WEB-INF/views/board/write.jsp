@@ -63,9 +63,6 @@
 	        		<h3 class="write_title">글 쓰기</h3>   
 	        	</div>
 	        	<div>
-	            	<input class="writeid" type="text" name="ref" value="${param.board_idx}"/>
-	            </div> 
-	        	<div>
 	            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
 	            </div> 
 	        	

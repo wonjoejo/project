@@ -69,7 +69,7 @@
     <select id="getListWithPaging" resultType="com.wonjoejo.myapp.domain.BoardVO">     
         <![CDATA[ 
             SELECT
-                /*+ index_desc(qna_board) */ *
+               *
             FROM qna_board WHERE notice=0
             order by ref desc, depth asc
             OFFSET (#{currPage} - 1) * #{amount} ROWS 
@@ -83,7 +83,7 @@
         <![CDATA[ 
             SELECT count(board_idx)
             FROM qna_board
-            WHERE board_idx > 0
+             WHERE notice = 0
         ]]>
     </select>
     
@@ -95,7 +95,7 @@
      <!-- 새로운 게시물 등록 -->
     <insert id="insert">
         INSERT INTO qna_board (member_id,title,content,ref)
-		VALUES (#{member_id},#{title},#{content},(select nvl(max(ref),0)+1 from qna_board))
+		VALUES (#{member_id},#{title},#{content},(select nvl(max(ref,0)+1 from qna_board))
     </insert>
     
     <insert id="insertSelectKey">
@@ -103,8 +103,8 @@
             SELECT ISEQ$$_61790.nextval          
             FROM dual
         </selectKey>
-        INSERT INTO qna_board (board_idx,member_id,title,content)
-        VALUES(#{board_idx},#{member_id},#{title},#{content})
+        INSERT INTO qna_board (board_idx,member_id,title,content,ref)
+        VALUES(#{board_idx},#{member_id},#{title},#{content},(select nvl(max(ref),0)+1 from qna_board))
     </insert>
     
     <!-- 게시글 수정 -->

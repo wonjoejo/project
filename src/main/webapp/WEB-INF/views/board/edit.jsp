@@ -69,17 +69,18 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-			<div id="detailtop">
 			
+			<div id="detailtop">		
 				<h1 class="title">Q&A</h1>						
-				<button id="listBtn" type="button">돌아가기</button>
-			
-			</div>
+				<button id="listBtn" type="button">돌아가기</button>			
+			</div><!-- detailtop -->
 			
 			<div id="detailcontent" >
 			
 				<form action="/board/edit" method="post">
+					
 					<input type="hidden" name="board_idx" value="${board.board_idx}" />
+					
 					<div class="detailwrapper">
 					
 						<div class="detailtitle">
@@ -98,24 +99,19 @@
 							<textarea class="noline detailcon" name="content" cols="50" rows="10" >${board.content}</textarea>
 						</div>
 						
-					</div>
-						
+					</div><!-- detailwrapper -->
 						
 					<button id="replyBtn" type="button">답글</button>
-						
 					
 					<button type="submit" id="editBtn">완료</button>
 	                <button type="button" id="deleteBtn">삭제</button>
 					
 				</form>		
-			</div>
-			
-		
-			
-			
-		</div>
-	</div>
-</div>
+			</div><!-- detailcontent -->
+	
+		</div><!-- wrapper -->
+	</div><!-- main-container -->
+</div><!-- container -->
 
 </body>
 </html>
