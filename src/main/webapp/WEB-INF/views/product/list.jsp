@@ -63,6 +63,7 @@
 			</head>
 
 			<body>
+
 				<div class="container">
 					<jsp:include page="../common/boxleft.jsp" />
 					<div class="main-container">

@@ -27,7 +27,7 @@
 
     <div class="main-container">
         <div class="top-content">
-            <h1>물품리스트</h1>
+            <h1>물품 상세보기</h1>
 
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                 <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
