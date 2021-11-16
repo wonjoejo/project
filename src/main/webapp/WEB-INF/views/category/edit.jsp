@@ -13,6 +13,7 @@
     <title>CategoryDetail</title>
 </head>
 <body>
+<c:set var="box_no" value="${param.box_no}"/>
 <h1>CategoryEdit</h1>
 
 
@@ -43,18 +44,17 @@ ${baseCategory}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script>
 
-    $(function(){
-        console.clear();
-        console.log('Jquery started...');
+	$(function () {
+		console.clear();
+		console.log('Jquery started...');
 
-        $('#listBtn').click(function(){
-            console.log('click event triggered...');
-            self.location = '/category/detail';
-        }); // listBtn
+		$('#listBtn').click(function () {
+			console.log('click event triggered...');
+			self.location = '/category/detail';
+		}); // listBtn
 
 
-
-    }); // jq.
+	}); // jq.
 
 </script>
 </html>

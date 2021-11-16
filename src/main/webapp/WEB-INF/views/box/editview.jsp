@@ -38,58 +38,76 @@
         <div class="box-wrapper">
             <form method="post" action="/box/edit" enctype="multipart/form-data">
                 <input type="hidden" name="member_id" value="${sessionScope.member_id}">
-            <div class="form-container">
+                <input type="hidden" name="box_no" value="${box.box_no}">
+                <div class="form-container">
 
                     <div class="box-photos">
                         <div class="product-photo-edit">
-                        <input type="file" name="file" id="box-photo">
-                        <input type="hidden" name="box_photo_name" id="default" value="${box.box_photo_name}">
-                        <input type="hidden" name="box_photo_path" value="${pageContext.request.contextPath}/resources/assets/img/">
+                            <input type="file" name="file" id="box-photo">
+                            <input type="hidden" name="box_photo_name" id="default" value="${box.box_photo_name}">
+                            <input type="hidden" name="box_photo_path"
+                                   value="${pageContext.request.contextPath}/resources/assets/img/">
                         </div>
-                        <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false" data-bs-interval="false" id="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="photos">
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/food.png" class="default-img"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png" class="default-img"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/pill.png" class="default-img"></div>
+                        <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
+                             data-bs-interval="false" id="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="photos">
+                                        <div class="cell hvr-grow"><img
+                                                src="${pageContext.request.contextPath}/resources/assets/img/food.png"
+                                                class="default-img"></div>
+                                        <div class="cell hvr-grow"><img
+                                                src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"
+                                                class="default-img"></div>
+                                        <div class="cell hvr-grow"><img
+                                                src="${pageContext.request.contextPath}/resources/assets/img/pill.png"
+                                                class="default-img"></div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="photos">
+                                        <div class="cell hvr-grow"><img
+                                                src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"
+                                                class="default-img"></div>
+                                        <div class="cell hvr-grow"><img
+                                                src="${pageContext.request.contextPath}/resources/assets/img/goods.png"
+                                                class="default-img"></div>
+                                        <div class="cell hvr-grow"><img
+                                                src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"
+                                                class="default-img"></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <div class="photos">
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/clothes.png" class="default-img"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/goods.png" class="default-img"></div>
-                        <div class="cell hvr-grow"><img src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png" class="default-img"></div>
-                            </div>
-                            </div>
-                        </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                                    data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel"
+                                    data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
-                    </div>
+                        </div>
                     </div>
 
                     <div class="inputs">
                         <div class="input-container">
-                        <div class="box-name">
-                        <span class="label">박스 이름</span>
-                    <input type="text" name="box_name" value="${box.box_name}">
-                        </div>
+                            <div class="box-name">
+                                <span class="label">박스 이름</span>
+                                <input type="text" name="box_name" value="${box.box_name}">
+                            </div>
                         </div>
                         <span class="label">박스 메모</span>
-                    <textarea rows="5" cols="10" name="box_memo">${box.box_memo}</textarea>
+                        <textarea rows="5" cols="10" name="box_memo">${box.box_memo}</textarea>
                     </div>
-            </div>
+                </div>
 
-            <div class="buttons">
-                <input class="submit-btn hvr-float" type="submit" value="수정하기">
-                <a href="${pageContext.request.contextPath}/box/get?box_no=${box.box_no}"><input class="cancel-btn hvr-float" type="button" value="취소"></a>
-            </div>
+                <div class="buttons">
+                    <input class="submit-btn hvr-float" type="submit" value="수정하기">
+                    <a href="${pageContext.request.contextPath}/box/get?box_no=${box.box_no}"><input
+                            class="cancel-btn hvr-float" type="button" value="취소"></a>
+                </div>
 
             </form>
 
@@ -99,21 +117,20 @@
 
 </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=6"></script>
 <script>
-    // const productPhotoEdit = document.querySelector(".product-photo-edit");
-    const photoPath = "${box.box_photo_path}";
-    console.log(photoPath);
+	// const productPhotoEdit = document.querySelector(".product-photo-edit");
+	const photoPath = "${box.box_photo_path}";
+	console.log(photoPath);
 
-    if(photoPath.indexOf("resources")!==-1) {
-	    productPhotoEdit.style.backgroundImage = "url('${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}')";
-    } else {
-	    productPhotoEdit.style.backgroundImage = "url('https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}')";
-    }
-
-
-
+	if (photoPath.indexOf("resources") !== -1) {
+		productPhotoEdit.style.backgroundImage = "url('${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}')";
+	} else {
+		productPhotoEdit.style.backgroundImage = "url('https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}')";
+	}
 
 
 </script>

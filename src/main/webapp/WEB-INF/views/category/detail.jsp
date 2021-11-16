@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/baseCategory.css?ver=1">
 </head>
 <body>
-
+<c:set var="box_no" value="${box_no}"/>
 
 
 <div class="container">
@@ -45,7 +45,8 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name1}">
-                                    <input type="text" id="input1" class="cate-name input-border" value="${baseCategory.cate_name1}"
+                                    <input type="text" id="input1" class="cate-name input-border"
+                                           value="${baseCategory.cate_name1}"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style edit-btn" id="editBtn1">
@@ -73,7 +74,8 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name2}">
-                                    <input type="text" id class="cate-name input-border" value="${baseCategory.cate_name2}"
+                                    <input type="text" id class="cate-name input-border"
+                                           value="${baseCategory.cate_name2}"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style edit-btn" id="editBtn2">

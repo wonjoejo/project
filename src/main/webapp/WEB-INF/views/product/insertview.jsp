@@ -21,8 +21,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
 <body>
-
-
 <div class="container">
 	<jsp:include page="../common/boxleft.jsp"/>
 

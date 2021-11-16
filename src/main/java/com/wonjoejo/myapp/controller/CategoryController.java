@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class CategoryController {
 
-    @Setter(onMethod_={@Autowired})
+    @Setter(onMethod_ = {@Autowired})
     private BaseCategoryService service;
 
     @GetMapping({"/detail", "/edit"})
@@ -42,17 +42,17 @@ public class CategoryController {
     } // categoryDetail
 
     @PostMapping("/edit")
-    public String editBaseCategory(BaseCategoryDTO baseCategory, RedirectAttributes rttrs){
+    public String editBaseCategory(BaseCategoryDTO baseCategory, RedirectAttributes rttrs) {
         log.debug("editBaseCategory({}, {}) invoked", baseCategory, rttrs);
 
         BaseCategoryVO baseCategoryVO = new BaseCategoryVO(
-              baseCategory.getCategory_no(),
-              baseCategory.getCate_name1(),
-              baseCategory.getCate_name2(),
-              baseCategory.getCate_name3(),
-              baseCategory.getCate_name4(),
-              baseCategory.getCate_name5(),
-              baseCategory.getBox_no()
+                baseCategory.getCategory_no(),
+                baseCategory.getCate_name1(),
+                baseCategory.getCate_name2(),
+                baseCategory.getCate_name3(),
+                baseCategory.getCate_name4(),
+                baseCategory.getCate_name5(),
+                baseCategory.getBox_no()
         );
 
         boolean result = this.service.editBaseCategory(baseCategoryVO);
@@ -61,8 +61,6 @@ public class CategoryController {
 
         return "redirect:/category/detail";
     } //editBaseCategory
-
-
 
 
 } // CategoryController
