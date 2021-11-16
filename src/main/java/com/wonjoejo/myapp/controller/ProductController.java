@@ -68,7 +68,7 @@ public class ProductController {
 	
 	
 
-	@GetMapping({"/detail", "/edit"})
+	@GetMapping("/detail")
 	public void productDetail(Integer product_no, Integer box_no, Model model) {
 		log.debug("productDetail() invoked.");
 
@@ -88,7 +88,28 @@ public class ProductController {
 		model.addAttribute("baseCategory", baseCategory);
 
 	} // productDetail
-	
+
+	@GetMapping("/edit")
+	public void productEdit(Integer product_no, Integer box_no, Model model) {
+		log.debug("productEdit() invoked.");
+
+		ProductVO product = this.service.getProduct(product_no);
+		log.info("\t+ 물품이름: {}", product.getProduct_name());
+
+		model.addAttribute("product", product);
+
+		// Category Detail
+		CategoryVO category = this.service.getCategory(product_no);
+		log.info("\t+ category: {}" , category);
+		model.addAttribute("category", category);
+
+		// BaseCategory Detail
+		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}", baseCategory);
+		model.addAttribute("baseCategory", baseCategory);
+
+	} // productEdit
+
 	
 	
 	@PostMapping("/insert")

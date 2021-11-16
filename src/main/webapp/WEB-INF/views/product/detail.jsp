@@ -17,7 +17,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
 <body>
 
@@ -25,6 +25,8 @@
 <div class="container">
     <jsp:include page="../common/boxleft.jsp"/>
 
+    <input type="hidden" name="product_no" value="${product.product_no}">
+    <input type="hidden" name="box_no" value="${product.box_no}">
     <div class="main-container">
         <div class="top-content">
             <h1>물품리스트</h1>
@@ -32,7 +34,7 @@
             <div class="wrapper">
                 <div class="hamburger">
                     <ul class="menu__list">
-                        <li class="menu__list__item"><a href="#"><i class="fas fa-pencil-alt i-style"></i></a></li>
+                        <li class="menu__list__item"><a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}"><i class="fas fa-pencil-alt i-style"></i></a></li>
                         <li class="menu__list__item"><a href="#"><i class="fas fa-trash-alt i-style"></i></a></li>
                         <li class="menu__list__item"><a href="#"><i class="far fa-list-alt i-style"></i></a></li>
                     </ul>
@@ -77,7 +79,7 @@
                                     <div class="detail">${category.cate_detail1}</div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="detail"><i class="fas fa-minus"></i></div>
+                                    <div class="detail">-</div>
                                 </c:otherwise>
                             </c:choose>
                         </li>
@@ -90,7 +92,7 @@
                                     <div class="detail">${category.cate_detail2}</div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="detail"><i class="fas fa-minus"></i></div>
+                                    <div class="detail">-</div>
                                 </c:otherwise>
                             </c:choose>
                         </li>
@@ -103,7 +105,7 @@
                                     <div class="detail">${category.cate_detail3}</div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="detail"><i class="fas fa-minus"></i></div>
+                                    <div class="detail">-</div>
                                 </c:otherwise>
                             </c:choose>
                         </li>
@@ -116,7 +118,7 @@
                                     <div class="detail">${category.cate_detail4}</div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="detail"><i class="fas fa-minus"></i></div>
+                                    <div class="detail">-</div>
                                 </c:otherwise>
                             </c:choose>
                         </li>
@@ -129,20 +131,24 @@
                                     <div class="detail">${category.cate_detail5}</div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="detail"><i class="fas fa-minus"></i></div>
+                                    <div class="detail">-</div>
                                 </c:otherwise>
                             </c:choose>
                         </li>
                     </c:if>
                     <li>
                         <div class="title">메모</div>
-                        <div class="detail">${product.product_memo}</div>
+                        <div class="detail">
+                            ${product.product_memo}
+                                <span class="more">
+                                    <a href="#" id="more">더보기</a>
+                                </span>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-
 
 </div>
 </body>
@@ -154,7 +160,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
+
+<%--detail JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
+<%-- sweet alert --%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -170,6 +180,15 @@
         $('#nav-icon4').click(function () {
             $(this).toggleClass('open');
         });
+
+        // sweetalert
+        $('#more').click(function (){
+           swal({
+              text: "${product.product_memo}"
+           });
+        });
+
+
 
     });
 </script>
