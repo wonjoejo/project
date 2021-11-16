@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+
 
 @Log4j2
 @NoArgsConstructor
@@ -27,13 +29,14 @@ public class CategoryController {
     private BaseCategoryService service;
 
     @GetMapping({"/detail", "/edit"})
-    public void categoryDetail(Integer box_no, Model model) {
+    public void categoryDetail(Integer box_no, Model model, HttpSession session){
         log.debug("categoryDetail({} ,{})", box_no, model);
 
         BaseCategoryVO baseCategory = this.service.getBaseCategoryList(box_no);
         log.info("\t+ baseCategory: {}", baseCategory);
 
         model.addAttribute("baseCategory", baseCategory);
+        model.addAttribute("member_id", session.getAttribute("member_id"));
         model.addAttribute("box_no", box_no);
 
     } // categoryDetail

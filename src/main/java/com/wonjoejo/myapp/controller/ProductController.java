@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 
 @Log4j2
 @NoArgsConstructor
@@ -40,142 +42,149 @@ public class ProductController {
 //		model.addAttribute("list",list);
 //
 //	} // ProductList
+	
+	@GetMapping("/listPerPage")
+	public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model, HttpSession session) {
+		log.debug("productListPerPage({}) invoked.", model);
+		
+		cri.setAmount(5);
+ 		List<ProductCategoryVO> list = this.service.getListPerPage(cri);
+ 		log.info("\t+ list size:{}",list.size());
+ 		model.addAttribute("list",list);
+		model.addAttribute("member_id", session.getAttribute("member_id"));
 
 
-    @GetMapping("/listPerPage")
-    public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model) {
-        log.debug("productListPerPage({}) invoked.", model);
+		// --- 페이지 처리 --- //
+ 		
+ 		Integer totalAmount = this.service.getTotalCount(box_no); 
+ 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+ 		model.addAttribute("pageMaker",pageDTO);
+ 		model.addAttribute("box_no", box_no);
+ 		
 
-        cri.setAmount(5);
-        List<ProductCategoryVO> list = this.service.getListPerPage(cri);
-        log.info("\t+ list size:{}", list.size());
-        model.addAttribute("list", list);
+ 		return "/product/list";
 
+	} // productListPerPage
+	
+	
 
-        // --- 페이지 처리 --- //
+	@GetMapping("/detail")
+	public void productDetail(Integer product_no, Integer box_no, Model model, HttpSession session) {
+		log.debug("productDetail() invoked.");
 
-        Integer totalAmount = this.service.getTotalCount(box_no);
-        PageDTO pageDTO = new PageDTO(cri, totalAmount);
-        model.addAttribute("pageMaker", pageDTO);
-        model.addAttribute("box_no", box_no);
+		ProductVO product = this.service.getProduct(product_no);
+		log.info("\t+ 물품이름: {}", product.getProduct_name());
 
+		model.addAttribute("product", product);
 
-        return "/product/list";
+		// Category Detail
+		CategoryVO category = this.service.getCategory(product_no);
+		log.info("\t+ category: {}" , category);
+		model.addAttribute("category", category);
 
-    } // productListPerPage
+		// BaseCategory Detail
+		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}", baseCategory);
+		model.addAttribute("baseCategory", baseCategory);
+		model.addAttribute("box_no", box_no);
 
+	} // productDetail
 
-    @GetMapping("/detail")
-    public void productDetail(Integer product_no, Integer box_no, Model model) {
-        log.debug("productDetail() invoked.");
+	@GetMapping("/edit")
+	public void productEdit(Integer product_no, Integer box_no, Model model, HttpSession session) {
+		log.debug("productEdit() invoked.");
 
-        ProductVO product = this.service.getProduct(product_no);
-        log.info("\t+ 물품이름: {}", product.getProduct_name());
+		ProductVO product = this.service.getProduct(product_no);
+		log.info("\t+ 물품이름: {}", product.getProduct_name());
 
-        model.addAttribute("product", product);
+		model.addAttribute("product", product);
 
-        // Category Detail
-        CategoryVO category = this.service.getCategory(product_no);
-        log.info("\t+ category: {}", category);
-        model.addAttribute("category", category);
+		// Category Detail
+		CategoryVO category = this.service.getCategory(product_no);
+		log.info("\t+ category: {}" , category);
+		model.addAttribute("category", category);
 
-        // BaseCategory Detail
-        BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
-        log.info("\t+ baseCategory: {}", baseCategory);
-        model.addAttribute("baseCategory", baseCategory);
+		// BaseCategory Detail
+		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}", baseCategory);
+		model.addAttribute("baseCategory", baseCategory);
+		model.addAttribute("member_id", session.getAttribute("member_id"));
+		model.addAttribute("box_no", box_no);
+	} // productEdit
 
-    } // productDetail
+	
+	
+	@PostMapping("/insert")
+	public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
 
-    @GetMapping("/edit")
-    public void productEdit(Integer product_no, Integer box_no, Model model) {
-        log.debug("productEdit() invoked.");
-
-        ProductVO product = this.service.getProduct(product_no);
-        log.info("\t+ 물품이름: {}", product.getProduct_name());
-
-        model.addAttribute("product", product);
-
-        // Category Detail
-        CategoryVO category = this.service.getCategory(product_no);
-        log.info("\t+ category: {}", category);
-        model.addAttribute("category", category);
-
-        // BaseCategory Detail
-        BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
-        log.info("\t+ baseCategory: {}", baseCategory);
-        model.addAttribute("baseCategory", baseCategory);
-
-    } // productEdit
-
-
-    @PostMapping("/insert")
-    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
-
-        log.debug("productInsert() invoked.");
-
-        ProductVO productVO = new ProductVO(
-                null,
-                product.getBox_no(),
-                product.getProduct_name(),
-                product.getProduct_memo(),
-                product.getProduct_qtn(),
-                product.getProduct_photo_name(),
-                product.getProduct_photo_path(),
-                product.getBarcode(),
-                product.getReg_date()
-        );
+		log.debug("productInsert() invoked.");
+		
+		ProductVO productVO = new ProductVO(
+				null,
+				product.getBox_no(),
+				product.getProduct_name(),
+				product.getProduct_memo(),
+				product.getProduct_qtn(),
+				product.getProduct_photo_name(),
+				product.getProduct_photo_path(),
+				product.getBarcode(),
+				product.getReg_date()
+		);
 
         boolean result = this.service.insertProduct(productVO);
         log.info("\t +result: {}", result);
-        rttrs.addAttribute("result", result);
+		rttrs.addAttribute("result", result);
 
-        // Category insert
-        CategoryVO categoryVO = new CategoryVO(
-                null,
-                null,
-                productVO.getProduct_no(),
-                category.getCate_detail1(),
-                category.getCate_detail2(),
-                category.getCate_detail3(),
-                category.getCate_detail4(),
-                category.getCate_detail5()
-        );
+		// Category insert
+		CategoryVO categoryVO = new CategoryVO(
+				null,
+				null,
+				productVO.getProduct_no(),
+				category.getCate_detail1(),
+				category.getCate_detail2(),
+				category.getCate_detail3(),
+				category.getCate_detail4(),
+				category.getCate_detail5()
+		);
 
-        boolean result2 = this.service.insertCategory(categoryVO);
-        log.info("\t+ category result2: {}", result2);
-        rttrs.addAttribute("result2", result2);
+		boolean result2 = this.service.insertCategory(categoryVO);
+		log.info("\t+ category result2: {}", result2);
+		rttrs.addAttribute("box_no", product.getBox_no());
 
-        return "/product/list";
-    } // productInsert
+		return "redirect:/product/listPerPage";
+	} // productInsert
+	
+	
+	@GetMapping("/insertview")	// 물품 작성페이지
+	public void productInsertView(Integer box_no, Model model, HttpSession session) {
+		log.debug("productInsertView() invoked.");
 
+		// BaseCategory Detail
+		BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+		log.info("\t+ baseCategory: {}", baseCategory);
+		model.addAttribute("baseCategory", baseCategory);
+		model.addAttribute("member_id", session.getAttribute("member_id"));
+		model.addAttribute("box_no", box_no);
 
-    @GetMapping("/insertview")    // 물품 작성페이지
-    public void productInsertView(Integer box_no, Model model) {
-        log.debug("productInsertView() invoked.");
+	} //productInsertView
 
-        // BaseCategory Detail
-        BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
-        log.info("\t+ baseCategory: {}", baseCategory);
-        model.addAttribute("baseCategory", baseCategory);
+	
+	@PostMapping("/edit")
+	public String productEdit(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
+		log.debug("productEdit() invoked.");
+		
+		ProductVO productVO = new ProductVO(
+				product.getProduct_no(),
+				product.getBox_no(),
+				product.getProduct_name(),
+				product.getProduct_memo(),
+				product.getProduct_qtn(),
+				product.getProduct_photo_name(),
+				product.getProduct_photo_path(),
+				product.getBarcode(),
+				product.getReg_date()
+		);
 
-    } //productInsertView
-
-
-    @PostMapping("/edit")
-    public String productEdit(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
-        log.debug("productEdit() invoked.");
-
-        ProductVO productVO = new ProductVO(
-                product.getProduct_no(),
-                product.getBox_no(),
-                product.getProduct_name(),
-                product.getProduct_memo(),
-                product.getProduct_qtn(),
-                product.getProduct_photo_name(),
-                product.getProduct_photo_path(),
-                product.getBarcode(),
-                product.getReg_date()
-        );
 
         boolean result = this.service.editProduct(productVO);
         log.info("\t +result: {}", result);

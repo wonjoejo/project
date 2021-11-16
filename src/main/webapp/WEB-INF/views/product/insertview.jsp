@@ -1,98 +1,169 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>ProductInsert</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+	<title>소중한 물건들을 모아, 인투박스</title>
 
-    <script>
-		$(function () {
-			console.clear();
-			console.log('jquery started...');
-			$('#listBtn').click(function () {
-				console.log('click event triggered......');
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
 
-				self.location = '/product/list';
-			}); // onclick
-		}); // .jp
-    </script>
+	<!-- bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<!-- font awesome -->
+	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
+
+	<!-- box.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+	<!-- productDetail.css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
-
 <body>
-<c:set var="box_no" value="${baseCategory.box_no}"/>
-<h1>
-    ProductInsert
-</h1>
+<div class="container">
+	<jsp:include page="../common/boxleft.jsp"/>
 
-<p>물품 등록하기~</p>
+	<div class="main-container">
+		<div class="top-content">
+			<h1>물품 등록</h1>
 
-<form action="/product/insert" method="POST">
-    <table>
+			<a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
+				<button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
+			</a>
+		</div>
 
-        <tr>
-            <td>박스번호(Box_no)</td>
-            <td><input type="text" name="box_no" value="${baseCategory.box_no}"></td>
-        </tr>
-        <tr>
-            <td>물품이름(Product_name)</td>
-            <td><input type="text" name="product_name"></td>
-        </tr>
-        <tr>
-            <td>물품메모(Product_memo)</td>
-            <td><input type="text" name="product_memo"></td>
-        </tr>
-        <tr>
-            <td>수량(Product_qtn)</td>
-            <td><input type="text" name="product_qtn"></td>
-        </tr>
-        <tr>
-            <td>물품사진이름(Product_photo_name)</td>
-            <td><input type="text" name="product_photo_name" value=""></td>
-        </tr>
-        <tr>
-            <td>물품사진경로(Product_photo_path)</td>
-            <td><input type="text" name="product_photo_path" value=""></td>
-        </tr>
-        <tr>
-            <td>바코드(Barcode)</td>
-            <td><input type="text" name="barcode" value=""></td>
-        </tr>
-        <tr>
-            <td>카테고리1: ${baseCategory.cate_name1}</td>
-            <td><input type="text" name="cate_detail1"></td>
-        </tr>
-        <tr>
-            <td>카테고리2: ${baseCategory.cate_name2}</td>
-            <td><input type="text" name="cate_detail2"></td>
-        </tr>
-        <tr>
-            <td>카테고리3: ${baseCategory.cate_name3}</td>
-            <td><input type="text" name="cate_detail3"></td>
-        </tr>
-        <tr>
-            <td>카테고리4: ${baseCategory.cate_name4}</td>
-            <td><input type="text" name="cate_detail4"></td>
-        </tr>
-        <tr>
-            <td>카테고리5: ${baseCategory.cate_name5}</td>
-            <td><input type="text" name="cate_detail5"></td>
-        </tr>
-        <tr>
-            <td><input type="text" name="product_no" value="${product.product_no}"></td>
-            <td><input type="text" name="category_no" value="${baseCategory.category_no}"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="전송전송"></td>
-            <td><input type="button" id="listBtn" value="목록목록"></td>
-        </tr>
+		<form method="POST" action="/product/insert" enctype="multipart/form-data">
+			<input type="hidden" name="member_id" value="${sessionScope.member_id}">
+			<input type="hidden" name="box_no" value="${product.box_no}">
+			<input type="hidden" name="product_no" value="${product.product_no}">
+			<div class="product-detail-wrap">
+				<div class="left-box" id="left-box">
+					<div class="photo">
+						<input type="file" name="file" id="box-photo">
+						<input type="hidden" name="product_photo_name" id="default">
+						<input type="hidden" name="product_photo_path"
+							   value="${pageContext.request.contextPath}/resources/assets/img/">
+						<span><i class="fas fa-upload"></i>파일 업로드</span>
+					</div>
+					<div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
+						 data-bs-interval="false" id="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="photos">
+									<div class="cell hvr-grow"><img
+											src="${pageContext.request.contextPath}/resources/assets/img/food.png"
+											class="default-img"></div>
+									<div class="cell hvr-grow"><img
+											src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"
+											class="default-img"></div>
+									<div class="cell hvr-grow"><img
+											src="${pageContext.request.contextPath}/resources/assets/img/pill.png"
+											class="default-img"></div>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<div class="photos">
+									<div class="cell hvr-grow"><img
+											src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"
+											class="default-img"></div>
+									<div class="cell hvr-grow"><img
+											src="${pageContext.request.contextPath}/resources/assets/img/goods.png"
+											class="default-img"></div>
+									<div class="cell hvr-grow"><img
+											src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"
+											class="default-img"></div>
+								</div>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+								data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carousel"
+								data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
 
+					<div class="qtn">
+                    <span>수량
+                        <div class="bar"></div>
+                        <input type="number" name="product_qtn" value="${product.product_qtn}">
+                    </span>
+					</div>
 
-    </table>
-</form>
-${baseCategory}
+				</div>
+				<div class="right-box">
+					<ul>
+						<li>
+							<div class="title">이름</div>
+							<input type="text" name="product_name" value="${product.product_name}" class="detail">
+						</li>
+						<c:if test="${not empty baseCategory.cate_name1}">
+							<li>
+								<div class="title">${baseCategory.cate_name1}</div>
+								<input type="text" name="cate_detail1" value="${category.cate_detail1}" class="detail">
+							</li>
+						</c:if>
+						<c:if test="${not empty baseCategory.cate_name2}">
+							<li>
+								<div class="title">${baseCategory.cate_name2}</div>
+								<input type="text" name="cate_detail2" value="${category.cate_detail2}" class="detail">
+							</li>
+						</c:if>
+						<c:if test="${not empty baseCategory.cate_name3}">
+							<li>
+								<div class="title">${baseCategory.cate_name3}</div>
+								<input type="text" name="cate_detail3" value="${category.cate_detail3}" class="detail">
+							</li>
+						</c:if>
+						<c:if test="${not empty baseCategory.cate_name4}">
+							<li>
+								<div class="title">${baseCategory.cate_name4}</div>
+								<input type="text" name="cate_detail4" value="${category.cate_detail4}" class="detail">
+							</li>
+						</c:if>
+						<c:if test="${not empty baseCategory.cate_name5}">
+							<li>
+								<div class="title">${baseCategory.cate_name5}</div>
+								<input type="text" name="cate_detail5" value="${category.cate_detail5}" class="detail">
+							</li>
+						</c:if>
+						<a href="${pageContext.request.contextPath}/category/detail?box_no=${product.box_no}"><div class="to-category">+ 상세 카테고리 추가하기</div></a>
+						<li>
+							<div class="title">메모</div>
+							<textarea name="product_memo" class="detail detail-memo"></textarea>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="buttons btn-product">
+				<button class="submit-btn hvr-float" type="submit">완료</button>
+				<a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${product.box_no}"><input
+						class="cancel-btn hvr-float" type="button" value="취소"></a>
+			</div>
+		</form>
+	</div>
 
+</div>
 </body>
+<!-- bootstrap js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+
+
+<%--boxmenu JS--%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
+<%-- productEdit JS--%>
+<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=1"></script>
+
+
 </html>
