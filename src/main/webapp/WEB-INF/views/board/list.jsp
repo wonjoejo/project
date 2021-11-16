@@ -19,18 +19,30 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=20">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
-	
 
+    <script>
+    $(function name() {
+        console.clear();
+        console.log('jquery started...');
+        
+        $('#addBtn').click(function () {
+            console.log('click event triggered..');
 
-    <style>
-    	.replyicon{
-    		width: 20px;
-    		height: 20px;
-    	}
-    </style>
-    
+            self.location = '/board/noticePage';
+          }); //onclick
+
+        // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
+        $('#writeBtn').on('click', function () {
+            console.log('onclicked on writeBtn...');
+
+            self.location = '/board/write?board_idx=${board.board_idx}&currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        });//onclick
+
+      }); //.jq
+    </script>
+   
 </head>
 <body>
 
@@ -98,7 +110,7 @@
 							
 							<div class="item">
 								<c:if test="${board.depth > 0}">
-									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">
+									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
 								<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
 								<c:out value="${board.title}" />

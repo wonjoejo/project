@@ -19,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=11">
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
 	
@@ -41,15 +41,6 @@
       }); //.jq
     </script>
     
-    <style>
-    	.writetitle{
-    		background-image : url("${pageContext.request.contextPath}/resources/assets/img/reply.png"); 
-    		background-position:top left;
- 			background-repeat:no-repeat;
- 			background-size: 40px;
-    	}
-    </style>
-    
 </head>
 <body>
 
@@ -67,21 +58,18 @@
 			
 			
 		<form action="/board/replywrite" method="post">
-			<input type="hidden" name="ref" value="${param.board_idx}" />
+			<input type="hidden" name="ref" value="${param.ref}" />
 	        <div class="write_wrapper">
 	        	<div>
 	        		<h3 class="write_title">답글 쓰기</h3>
 	        		   
 	        	</div>
-	        	<%-- <div>
-	            	<input class="writeid" type="hidden" name="ref" value="${param.board_idx}"/>
-	            </div>  --%>
 	        	<div>
 	            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
 	            </div> 
 	        	
 	        	<div>
-	            	<input class="writetitle" type="text" name="title" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${param.title} 답글"/>
+	            	<input class="writetitle" type="text" name="title" value="${param.title} 답글"/>
 	            </div> 
 	         	<div>
 	                <textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>

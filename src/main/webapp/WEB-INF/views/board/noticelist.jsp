@@ -19,7 +19,8 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=10">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -62,60 +63,6 @@
       }); //.jq
     </script>
     
-    <style>
-    #noticelist	{
-	    position: absolute;
-	    width: 100%;
-	    margin: 0 auto;
-	   
-	    background: #fff;
-	    box-shadow: 0px 4px 40px rgb(0 0 0 / 10%);
-	    border-radius: 40px;
-	    overflow: hidden;
-    }
-    
-  	.noticelistcontainer {
-  		width: 98%;
-  		margin: 0 auto;
-  		padding-left: 40px;
-  	}
-  	
-  	.noticeimg{
-  		width: 18px;
-  		height: 18px;
-  		
-  	}
-  	
-  	.searchimg {
-		width: 20px;
-		height: 20px;
-	}
-  	
- 	#noticelistBtn {
-	    position: absolute;
-	    bottom: 150px;
-	    right: 250px;
-	    width: 90px;
-	    height: 37px;
-	    color: #5a95f5;
-	    border: none;
-	    margin-right: 30px;
-	
-	    background: #ffffff;
-	    border: 1px solid #5a95f5;
-  		border-radius: 24px;
-	}
-	
-	#noticelistBtn:hover {
-		color: #ffffff;	
-		background: #5a95f5;	
-	}
-	
-	.noticepage{
-		position: absolute;
-   		bottom: 120px;
-	}
-    </style>
 
 </head>
 <body>
@@ -137,7 +84,7 @@
 				<button id="writeBtn" type="button"> + 공지작성</button>
 			</div>
 			
-			<div class="noticewrapper" >
+			<div class="noticewrapper noticemainlist" >
 				<h2 class="notice"><img class="noticeimg" src="${pageContext.request.contextPath}/resources/assets/img/warning.png" />&nbsp;&nbsp;공지사항</h2>
 				
 				<div id="boardtitlenone" class="boardlistcontainer noticelistcontainer">
@@ -166,8 +113,6 @@
 								<c:out value="${board.board_idx}" />
 							</div>	
 						</div>
-			
-						
 					</c:forEach>
 				</div>
 			</div>

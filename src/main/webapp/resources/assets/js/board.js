@@ -2,6 +2,40 @@
   $(function name() {
     console.clear();
     console.log('jquery started...');
+    
+   // 답글 작성 
+    $('#replyWriteBtn').on('click', function () {
+        console.log('onclicked on writeBtn...');
+
+        self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}';
+    });//onclick
+    
+   //delete 버튼에 대한 이벤트 등록 처리
+    $('#deleteBtn').click(function () {
+      console.log('click event triggered..');
+
+      var formObj = $('form');
+      formObj.attr('method', 'POST');
+      formObj.attr('action', '/board/delete');
+
+      formObj.submit();
+    }); //onclick
+    
+   //edit 버튼에 대한 이벤트 등록 처리
+    $('#editBtn').click(function () {
+      console.log('click event triggered..');
+
+      self.location = '/board/edit?board_idx=${board.board_idx}';
+    }); //onclick
+
+    //list 버튼에 대한 이벤트 등록 처리
+    //$(#listBtn).on('click',function(){
+    $('#listBtn').click(function () {
+      console.log('click event triggered..');
+
+      self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+    }); //onclick
+        
 
     // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
     $('#writeBtn').on('click', function () {
