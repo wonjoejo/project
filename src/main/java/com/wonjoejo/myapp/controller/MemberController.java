@@ -88,7 +88,7 @@ public class MemberController {
 				long timeAmount=60*60*24*7*1000; // 일주일..
 				Date rememberAge=new Date(now + timeAmount);
 				
-				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);	
+				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);
 			} // if
 
 			log.info("여기왔나");
