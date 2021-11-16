@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 
@@ -61,7 +62,7 @@ public class GroupServiceTests {
 		Integer box_no = 1098;
 		
 
-		List<BoxPermissionVO> list = this.service.selectGroupPermissionList(box_no);
+		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
 		list.forEach(log::info);
 	}
 	//그룹 가입 
