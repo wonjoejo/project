@@ -34,14 +34,14 @@
     <jsp:include page="../common/boxleft.jsp"/>
 
     <div class="main-container">
-        <h1>나의 박스</h1>
-        <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
-            <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
-        </a>
-
+        <div class="title-container">
+            <h1>나의 박스</h1>
+            <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
+                <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
+            </a>
+        </div>
         <div class="list-wrapper">
             <div class="box-info-container">
-
         <div class="box-information">
                 <div class="box-img">
                 <c:set var="path" value="${box.box_photo_path}"/>
@@ -81,19 +81,48 @@
 
             </div>
                 </div>
+                <form method="post" action="/box/edit" enctype="multipart/form-data">
+                    <input type="hidden" name="member_id" value="${sessionScope.member_id}">
+                    <div class="box-information">
+
+                        <div class="box-img">
+                            <c:set var="path" value="${box.box_photo_path}"/>
+                            <c:choose>
+                                <c:when test="${fn:contains(path,'resource')}">
+                                    <img src="${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
+                                </c:otherwise>
+                            </c:choose>
+                            ${box.box_name}
+                        </div>
+                        <div class="box-memo">
+                            <div class="title">
+                                MEMO
+                            </div>
+                            <div class="memo">
+                                ${box.box_memo}
+                            </div>
+
+
+
+                </form>
+            </div>
         </div>
 
-        <div class="product-list">
-            product!!
-            <c:forEach var="product" items="${productList}">
-
-                ${product.product_name}
-
-            </c:forEach>
-        </div>
-        </div>
     </div>
 
+    <div class="product-list">
+        product!!
+        <c:forEach var="product" items="${productList}">
+
+            ${product.product_name}
+
+        </c:forEach>
+    </div>
+</div>
+</div>
 
 
 </div>
