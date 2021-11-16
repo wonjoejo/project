@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%--
   Created by IntelliJ IDEA.
   User: heewonseo
@@ -23,7 +24,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=4">
 
 </head>
 <body>
@@ -38,23 +39,48 @@
             <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
         </a>
 
-        <div class="box-wrapper">
-            <form method="post" action="/box/create" enctype="multipart/form-data">
-                <input type="hidden" name="member_id" value="${sessionScope.member_id}">
-            <div class="form-container">
+        <div class="list-wrapper">
+            <div class="box-info-container">
 
-                    <div class="box-photos">
-                        <div class="product-photo">
-                        <img src="${box.box_photo_path}/${box.box_photo_name}"/>
-                        </div>
+        <div class="box-information">
+                <div class="box-img">
+                <c:set var="path" value="${box.box_photo_path}"/>
+                <c:choose>
+                    <c:when test="${fn:contains(path,'resource')}">
+                        <img src="${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}"/>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
+                    </c:otherwise>
+                </c:choose>
                         ${box.box_name}
-                        </div>
-                <div class="box-memo">
-                    ${box.box_memo}
                 </div>
-            </div>
-            </form>
+                <div class="box-memo">
+                    <div class="title">
+                    MEMO
+                    </div>
+                    <div class="memo">
+                    ${box.box_memo}
+                    </div>
+                    <c:set var="session_id" value="${sessionScope.member_id}"/>
+                    <c:set var="member_id" value="${box.member_id}"/>
+                    <c:choose>
+                        <c:when test="${session_id==member_id}">
+                            <div class="buttons">
+                                <button class="btn" onclick="location.href='/box/editview?box_no=${box.box_no}'"><i class="fas fa-pencil-alt"></i> 수정</button>
+                                <button class="btn delete-btn"><i class="fas fa-trash"></i> 삭제</button>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="buttons">
+                                <button class="btn" onclick="location.href='/box/editview?box_no=${box.box_no}'" disabled data-bs-toggle="tooltip" data-bs-placement="top" title="박스 수정은 박스 마스터만 가능합니다"><i class="fas fa-pencil-alt"></i> 수정</button>
+                                <button class="btn delete-btn" disabled data-bs-toggle="tooltip" data-bs-placement="top" title="박스 삭제는 박스 마스터만 가능합니다"><i class="fas fa-trash"></i> 삭제</button>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
 
+            </div>
+                </div>
         </div>
 
         <div class="product-list">
@@ -65,12 +91,49 @@
 
             </c:forEach>
         </div>
+        </div>
     </div>
 
 
 
 </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha512-nnzkI2u2Dy6HMnzMIkh7CPd1KX445z38XIu4jG1jGw7x5tSL3VBjE44dY4ihMU1ijAQV930SPM12cCFrB18sVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=2"></script>
+<script>
+
+	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+	const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		return new bootstrap.Tooltip(tooltipTriggerEl)
+	});
+
+    const deleteBtn = document.querySelector(".delete-btn");
+
+	deleteBtn.addEventListener("click",function (e) {
+		e.preventDefault();
+		Swal.fire({
+			title: '정말 삭제하시겠습니까?',
+			text: "한 번 삭제된 박스는 복구가 불가능합니다",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#5A95F5',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '삭제',
+            cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire(
+					'삭제 완료',
+					'박스가 삭제되었습니다',
+					'success'
+				)
+			}
+		})
+	})
+
+</script>
 </html>

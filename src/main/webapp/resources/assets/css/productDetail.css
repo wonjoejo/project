@@ -227,7 +227,7 @@
 }
 
 .menu__list--animate .menu__list__item {
-    animation: drop 0.9s;
+    animation: drop 0.5s;
     animation-fill-mode: forwards;
     opacity: 1;
 }
@@ -282,7 +282,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: white;
+    background: #FFF no-repeat center/40% url(/resources/assets/img/food.png);
+    cursor: pointer;
+}
+
+#box-photo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
 }
 
 
@@ -340,6 +351,10 @@
     border-radius: 1.5rem;
 }
 
+.detail:active {
+    border: 1px solid #5a95f5 !important;
+}
+
 .bar {
     width: 1%;
     height: 15px;
@@ -354,3 +369,96 @@
     align-items: center;
     justify-content: center;
 }
+.share {
+    font-family: "NEXON Lv1 Gothic OTF";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13px;
+
+}
+
+.share img{
+    width: 14%;
+    margin-right:4%;
+}
+
+.more {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: absolute;
+    left: 87%;
+}
+.more a{
+     color: #5A95F5;
+
+ }
+
+.photo span {
+    color: #5A95F5;
+    margin-top: 150px;
+    font-size: 0.8rem;
+}
+.photo span i {
+    margin-right: 7px;
+}
+
+.qtn span input {
+    width: 30%;
+    border: 1px solid #5a95f5;
+}
+
+.right-box li input {
+    border: none;
+}
+
+.to-category {
+    text-align: right;
+    margin: 10px 1.5%;
+}
+
+textarea {
+    width: 100%;
+    height: 6.25em;
+    border: none;
+    resize: none !important;
+}
+
+.btn-product {
+    margin-top:65px;
+}
+
+
+
+
+
+
+/* sweet alert */
+.swal-modal {
+    border-image-source: repeating-linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    border-image-width: 5px;
+    border-image-slice: 1;
+    border-style: solid;
+    color: black;
+}
+
+.swal-overlay {
+    background-color: rgba(255, 255, 255, 0.3);;
+}
+
+.swal-text {
+    font-family: "Noto Sans KR", sans-serif;
+    color: black;
+    font-size: 1.1rem;
+}
+
+.swal-button {
+    background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    box-shadow: inset 0 5px 10px rgba(149, 149, 149, 0.2);
+    border-radius: 24px;
+    border: none;
+    color: #FFF;
+
+}
+

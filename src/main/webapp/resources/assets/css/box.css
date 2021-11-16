@@ -15,7 +15,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
-	border: 0;
+	/*border: 0;*/
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
@@ -408,11 +408,6 @@ select {
 	height: 50%;
 }
 
-
-/* 박스리스트 버튼 */
-
-
-
 /* 박스리스트 버튼 */
 .box-list-btn {
 	float: right;
@@ -432,6 +427,124 @@ select {
 .list-icon {
 	margin-right: 8%;
 	font-size: 1.2rem;
+}
+
+/* box detail page */
+
+.list-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.box-info-container {
+	width: 90%;
+	height: 50%;
+	margin-bottom: 20px;
+	color: #4E4E4E;
+	cursor: pointer;
+
+	background: #FFFFFF;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 50px;
+
+	font-family: 'NEXON Lv1 Gothic OTF',sans-serif;
+	padding-left: 40px;
+}
+
+.box-information {
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+}
+
+.product-list {
+	padding: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	width: 90%;
+	height: 70%;
+	color: #4E4E4E;
+	cursor: pointer;
+
+	background: #FFFFFF;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 50px;
+
+	font-family: 'NEXON Lv1 Gothic OTF',sans-serif;
+}
+
+.box-img {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+	margin-right: 10%;
+	justify-content: center;
+	align-items: center;
+}
+
+.box-img img {
+	width: 10vw;
+	height: 10vw;
+}
+
+.box-memo {
+	display: flex;
+	flex-direction: column;
+}
+
+.memo {
+	/* Primary / Light * 300 */
+
+	background: #FBFBFB;
+	/* Dark / Variant * 200 */
+
+	width: 20vw;
+	height:10vw;
+
+	border: 1px solid #D6E4EC;
+	box-sizing: border-box;
+	border-radius: 8px;
+
+	padding: 10px;
+}
+
+.buttons > button {
+	border: none;
+	border-radius: 1.4rem;
+	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+	color: white;
+	margin-right: 8px;
+}
+
+/*edit view*/
+
+.product-photo-edit {
+	width: 17vw;
+	height: 17vw;
+	position: relative;
+	background: #FFF;
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: rgb(155, 153, 169);
+	cursor: pointer;
+	border-radius: 50px;
+	background-size: cover;
+}
+
+.product-photo-edit img {
+	width: 250px;
+	height: 250px;
 }
 
 

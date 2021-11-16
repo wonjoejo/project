@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wonjoejo.myapp.domain.BoxPermissionDTO;
+import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.GroupService;
@@ -49,7 +50,7 @@ public class GroupController {
 		
 		log.debug("permissionlist({},{}) invoked.",model,box_no);
 			
-		List<BoxPermissionVO> list = this.service.selectGroupPermissionList(box_no);
+		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
 		
 		log.info("\t+list.size{}",list.size());
 		
@@ -84,9 +85,19 @@ public class GroupController {
 	
 	//그룹원 권한 설정 
 	@GetMapping("/grouppermission")
-	public String grouppermission(BoxPermissionDTO boxPermission, RedirectAttributes rttrs) {
+	public String grouppermission(BoxPermissionDTO boxPermission, RedirectAttributes rttrs, Model model, Integer box_no) {
+		
+		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
+		
+		log.info("\t+list.size{}",list.size());
+		
+		model.addAttribute("list",list);
+		
+		
 		
 		log.debug("grouppermission({}) invoked.", boxPermission);
+		
+		
 		
 		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
 				boxPermission.getNo(),

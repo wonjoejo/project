@@ -44,7 +44,6 @@ public class AuthInterceptor
 		log.info("\t+ member: {}", member);
 		
 		if(member == null) {
-
 			String originReqURI=req.getRequestURI();
 			String originQueryString=req.getQueryString();
 			
@@ -60,14 +59,13 @@ public class AuthInterceptor
 				member=this.service.findMemberByRemberMe(rememberMe);
 				if(member != null) {
 					session.setAttribute(MemberController.authKey, member);
-					
 					return true;
 				} // if	
 			} // if		
 
 			res.sendRedirect("/member/login");
 			return false;
-		} // if
+		} // member==null if
 		
 		return true;
 	} // preHandle

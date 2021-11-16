@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Log4j2
@@ -221,27 +222,73 @@ public class BoxController {
     } // create
 
     @PostMapping("/edit")
-    public String edit(BoxDTO box, RedirectAttributes rttrs) {
+    public String edit(BoxDTO box, MultipartFile file, RedirectAttributes rttrs) throws Exception {
 
         log.debug("edit({}) invoked.", box);
 
+        // upload 할 폴더 경로 지정
+        String uploadDir = "box";
 
-        BoxVO boxVO = new BoxVO(
-                box.getBox_no(),
-                box.getMember_id(),
-                box.getBox_mode(),
-                box.getBox_name(),
-                box.getBox_memo(),
-                box.getBox_photo_name(),
-                box.getBox_photo_path(),
-                null
-        );
+        BoxVO boxVO;
 
-        boolean result = this.service.editBox(boxVO);
-        log.info("\t +result: {}", result);
-        rttrs.addAttribute("result", result);
+        if (file.getSize() != 0) {
 
-        return "/box/list";
+            // 여기서 함수 불러와서 데이터 넣어줌 (리턴값은 uploadDir 이하 경로 + 파일이름 (/2021/11/14/8c47bd18-b475-4849-beec-a0d3d4d0bd7a_29325736.jpg)
+            String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
+
+//                File targetPath = new File(uploadDir, );
+//                file.transferTo(targetPath);
+
+            boxVO = new BoxVO(
+                    null,
+                    box.getMember_id(),
+                    box.getBox_mode(),
+                    box.getBox_name(),
+                    box.getBox_memo(),
+                    uploadedFileName,
+                    uploadDir,
+                    null
+            );
+
+            boolean result = this.service.editBox(boxVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+        } else if (box.getBox_photo_path().contains("resources/assets/img")){
+
+            boxVO = new BoxVO(
+                    null,
+                    box.getMember_id(),
+                    box.getBox_mode(),
+                    box.getBox_name(),
+                    box.getBox_memo(),
+                    box.getBox_photo_name(),
+                    "/resources/assets/img/",
+                    null
+            );
+
+            boolean result = this.service.editBox(boxVO);
+            log.info("\t +result: {}", result);
+
+        } else {
+
+            boxVO = new BoxVO(
+                    null,
+                    box.getMember_id(),
+                    box.getBox_mode(),
+                    box.getBox_name(),
+                    box.getBox_memo(),
+                    box.getBox_photo_name(),
+                    box.getBox_photo_path(),
+                    null
+            );
+            boolean result = this.service.editBox(boxVO);
+            log.info("\t +result: {}", result);
+
+        } // if-else if-else
+
+        rttrs.addAttribute("box_no",box.getBox_no());
+
+        return "redirect:/box/get";
     } // edit
 
     @PostMapping("/delete")
@@ -260,6 +307,18 @@ public class BoxController {
     public void createView() {
         log.debug("createView() invoked.");
     } // createview
+
+    @GetMapping("/editview")
+    public void editView(Integer box_no, Model model) {
+
+        log.debug("editView() invoked.");
+
+        BoxVO box = this.service.getBox(box_no);
+        log.info("\t +box: {}", box);
+
+        model.addAttribute("box", box);
+
+    } // editview
 
     @GetMapping("/get")
     public void get(Integer box_no, Model model) {

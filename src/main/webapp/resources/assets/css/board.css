@@ -87,13 +87,21 @@ li {
   height: 80vh;
   padding: 30px;
  /*  overflow: hidden; */
-  overflow: auto; 
+  overflow-y: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
 
   /* background */
 
   background: rgba(255, 255, 255, 0.66);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
   border-radius: 50px;
+}
+
+.main-container::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
+
 }
 
 .main-container h1 {
@@ -104,6 +112,8 @@ li {
   line-height: 54px;
   float: left;
 }
+
+.main-container::-webkit-scrollbar-track{ background-color: rgba(0,0,0,0); }
 
 /* ====== 상단 검색 / 글쓰기  ====== */
 
@@ -597,4 +607,7 @@ ul {
 	width: 20px;
 	height: 20px;
 	
+::-webkit-scrollbar {
+	display: none;
+
 }
