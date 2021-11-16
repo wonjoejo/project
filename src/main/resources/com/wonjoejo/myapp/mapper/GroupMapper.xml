@@ -20,16 +20,31 @@
 	
 	<!--그룹원 권한 조회  -->
 	
-		<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO" >
+		<select id="selectGroupPermission" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO" >
 		<![CDATA[
 		
 			 SELECT 
 			 *
-			 FROM BOX_PERMISSION
+			 FROM BOX_PERMISSION p
+			 INNER JOIN MEMBER m ON p.member_id = m.member_id
 			 WHERE BOX_NO = #{box_no}
 		]]>	
 	
 	</select>
+	
+	<!-- 그룹원 권한 조회 2 -->
+	<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionMemberVO" >
+	<![CDATA[
+
+		 SELECT
+		 no, p.member_id, box_no, master_per, write_per, read_per, edit_per, delete_per, member_stat, name, email, phone_number, photo_name, photo_path
+		 FROM BOX_PERMISSION p
+		 INNER JOIN MEMBER m ON p.member_id = m.member_id
+		 WHERE BOX_NO = #{box_no}
+	]]>
+
+</select>
+	
 
 	<!--그룹 가입-->
 	<insert id="insertMember"> 

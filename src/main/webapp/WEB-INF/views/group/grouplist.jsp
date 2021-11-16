@@ -41,7 +41,7 @@
 	<div class="group-container">
 	<c:forEach items="${list}" var="group">
 		<div class="group hvr-grow">
-		<img id="product_img" src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true" style="width: 65%;">
+		<img id="profile_img" src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true" style="width: 65%;">
 		<c:out value="${group.member_id}"/><br/>
 		<c:out value="${group.name}"/><br/>
 		<c:out value="${group.phone_number}"/><br/>

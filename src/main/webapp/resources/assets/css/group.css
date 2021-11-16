@@ -74,6 +74,9 @@ body {
 	background: rgba(255, 255, 255, 0.66);
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
 	border-radius: 50px;
+	
+	/*scroll  */
+	
 }
 
 .name {
@@ -95,6 +98,15 @@ body {
 	align-content: center;
 	margin-top : 1%;
 }
+.group-wrapper2 {
+	display: flex;
+	width :100%;
+	justify-content: center;
+	align-content: center;
+	margin-top : 1%;
+	background: white;
+	border-radius : 10px;
+}
 
 .group-container {
 	display: flex;
@@ -107,6 +119,7 @@ body {
 	justify-content: center;
 	align-content: center;
 	align-items: center;
+
 }
 
 .group {

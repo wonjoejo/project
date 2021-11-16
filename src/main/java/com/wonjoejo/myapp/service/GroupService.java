@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 
@@ -11,7 +12,7 @@ public interface GroupService {
 	public abstract List<MemberVO> selectGroupMemberList(Integer box_no);
 	
 	//권한 설정을 위한 리스트
-	public abstract List<BoxPermissionVO> selectGroupPermissionList(Integer box_no);
+	public abstract List<BoxPermissionMemberVO> selectGroupPermissionList(Integer box_no);
 	
 	//그룹원 초대
 	public abstract boolean joinGroup(BoxPermissionVO boxPermission);

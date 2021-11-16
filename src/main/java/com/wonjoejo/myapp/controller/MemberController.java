@@ -66,7 +66,9 @@ public class MemberController {
 	
 	// 로그인
 	@PostMapping("/loginPost")
-	public void loginPost(LoginDTO dto, Model model, HttpSession session) throws Exception {
+	public void loginPost(
+			LoginDTO dto, Model model, HttpSession session) throws Exception {
+
 		log.debug("loginPost({}) invoked.", dto);
 		
 		MemberVO member=this.service.login(dto);
@@ -87,7 +89,7 @@ public class MemberController {
 				long timeAmount=60*60*24*7*1000; // 일주일..
 				Date rememberAge=new Date(now + timeAmount);
 				
-				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);	
+				this.service.editMemberWithRememberMe(member_id, session_id, rememberAge);
 			} // if
 
 			log.info("여기왔나");
