@@ -1,18 +1,6 @@
 /* Reset CSS */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	/*border: 0;*/
@@ -20,15 +8,18 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -36,20 +27,20 @@ ol, ul {
 a {
 	text-decoration: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before, blockquote:after, q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-
 
 /* ====== font ====== */
 
@@ -123,13 +114,11 @@ body {
 .main-container {
 	display: flex;
 	flex-direction: column;
-
 	/* Right */
 	width: 80vw;
 	height: 80vh;
-	padding: 0px;
+	padding: 30px;
 	overflow: hidden;
-
 	/* background */
 	background: rgba(255, 255, 255, 0.66);
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
@@ -147,31 +136,35 @@ body {
 
 .product-main-container {
 	display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
-
 
 /* search */
 
 #top-search {
 	width: 100%;
-	margin: 0 auto;
-	align-items: center;
-	align-content: center;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+	justify-content: center;
+    align-items: flex-end;
+	align-content: space-around;
 }
 
 .search {
 	position: relative;
 	width: 70%;
 	height: 30px;
-	margin-left: 20px;
+	margin: 0px 20px;
+
 	background: none;
 	border: 1px solid #5a95f5;
 	box-sizing: border-box;
 	border-radius: 40px;
-	padding-left: 15px;
 }
 
 .searchimg {
@@ -192,13 +185,12 @@ body {
 	color: #ffffff;
 }
 
-
 /* page */
 
-#pagination{
+#pagination {
 	width: 95%;
-    margin: 0 auto;
-    margin-top: 80px; 	
+	margin: 0 auto;
+	margin-top: 80px;
 }
 
 .pagination {
@@ -209,18 +201,15 @@ body {
 	margin: 0 auto;
 }
 
-#pagination li{
+#pagination li {
 	float: left;
-	
 	width: 60px;
 	height: 30px;
-	
 	list-style: none;
 	text-align: center;
 	line-height: 30px;
 	/* border: 1px solid black; */
 }
-
 
 /* 물품 리스트 */
 
@@ -239,7 +228,7 @@ body {
 	/* flex-direction: column;
 	flex-wrap: wrap; */
 	width: 90%;
-	height: 65%;
+	height: 60%;
 	padding: 3px;
 	justify-content: center;
 	align-content: center;
@@ -249,60 +238,101 @@ body {
 
 .product-list-container {
 	align-self: auto;
-	border: 1px solid;
-	padding: 1px;
+	border-bottom: 0.5px solid rgba(90, 149, 245, 0.5);
+
+	padding: 13px 0px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-around;
 	align-items: center;
-	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
+
 }
+
+.product-container > div:last-child {
+	border: none;
+}
+
+
 
 #product-img {
 	width: auto;
 	height: auto;
 	max-width: 50px;
 	max-height: 50px;
+	margin: 0 5px;
 }
 
 #product-name {
-	width: 160px;
+	width: 150px;
+	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
+	margin: 5px;
+
+	/* 내용이 길어지면 길어진 부분을 자르고 말줄임표 처리 */
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
+
+/* product list - 카테고리 */
 
 #product-cate {
 	display: flex;
-	width: 500px;
+	width: 600px;
 	flex-wrap: nowrap;
-    justify-content: flex-start;
+	justify-content: flex-start;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
+#product-cate>div, #product-qtn {
+	display: block;
+	white-space: nowrap;
+
+	/* 카테고리 공통 부분 */
+	display: inline-block;
+	padding: 2px 10px;
+	margin: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 7px;
+
+	/* 내용이 길어지면 길어진 부분을 자르고 말줄임표 처리 */
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 .product-cate-1 {
-	display:inline-block;
-	padding:2px 10px;
-	margin-right: 12px;
-	cursor:pointer;
-	
-	/* font */
-	color:#FC5569;
-	text-decoration:none;	
-	
-	/* background*/
-	background-color:#FEE5DD;
-	border-radius:7px;
+	color: #FC5569;
+	background-color: #FEE5DD;
 }
 
-.product-cate-1:hover {
-	background-color:#fff7f7;
+.product-cate-2 {
+	color: #1473E6;;
+	background-color: #DAE9FC;
 }
 
-.product-cate-1:active {
-	position:relative;
-	top:1px;
+.product-cate-3 {
+	color: #EF5DA8;
+	background-color: #FCDDEC;
 }
 
+.product-cate-4 {
+	color: #39952A;
+	background-color: #D3F7CD;
+}
+
+.product-cate-1:hover, .product-cate-2:hover, .product-cate-3:hover, .product-cate-4:hover {
+	background-color: #fff7f7;
+}
+
+.product-cate-1:active, .product-cate-2:active, .product-cate-3:active, .product-cate-4:active {
+	position: relative;
+	top: 1px;
+}
 
 #product-qtn {
-	width: 80px
+	font-family: 'NEXON Lv1 Gothic OTF bold', sans-serif;
+    width: 60px;
+    background-color: #EDEDED;
+    color: #261D1D;
+    text-align: center;
 }
