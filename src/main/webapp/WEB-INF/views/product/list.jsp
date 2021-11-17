@@ -87,20 +87,17 @@
                     <div class="product-list-container" id="product-list">
 
                         <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
-                        <c:if test="${product.product_photo_name != null && product.product_photo_path != null}">
+                        <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
                             <div class="item" id="product-img">
-                                <img id="product-img"
-                                     src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
+								<img src="${product.product_photo_path}/${product.product_photo_name}">
                             </div>
-                            <!-- product-img -->
-                        </c:if>
+                        </c:if> <!-- product-img -->
 
                         <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
-                        <c:if test="${product.product_photo_name == null || product.product_photo_path == null}">
-                            <div class="item" id="product-none-img">
+                        <c:if test="${empty product.product_photo_name || empty product.product_photo_path}">
+                            <div class="item" id="product-none-img">                	
                             </div>
-                            <!-- product-img -->
-                        </c:if>
+                        </c:if> <!-- product-none-img -->
 
 
                         <div class="item" id="product-name">
@@ -108,25 +105,25 @@
                         </div> <!-- product-name -->
 
                         <div class="item" id="product-cate">
-                            <c:if test="${product.cate_detail1 != null}">
+                            <c:if test="${not empty product.cate_detail1}">
                                 <div class="product-cate-1">
                                     <c:out value='${product.cate_name1}│ ${product.cate_detail1}'/>
                                 </div>
                             </c:if>
 
-                            <c:if test="${product.cate_detail2 != null}">
+                            <c:if test="${not empty product.cate_detail2}">
                                 <div class="product-cate-2">
                                     <c:out value='${product.cate_name2}│ ${product.cate_detail2}'/>
                                 </div>
                             </c:if>
 
-                            <c:if test="${product.cate_detail3 != null}">
+                            <c:if test="${not empty product.cate_detail3}">
                                 <div class="product-cate-3">
                                     <c:out value='${product.cate_name3}│ ${product.cate_detail3}'/>
                                 </div>
                             </c:if>
 
-                            <c:if test="${product.cate_detail4 != null}">
+                            <c:if test="${not empty product.cate_detail4}">
                                 <div class="product-cate-4">
                                     <c:out value='${product.cate_name4}│ ${product.cate_detail4}'/>
                                 </div>
