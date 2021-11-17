@@ -60,7 +60,8 @@
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="cate-name none-cate-name">카테고리1</div>
+                                    <input type="text" id="cate1" class="cate-name none-cate-name" value="카테고리1"
+                                           disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
@@ -199,5 +200,15 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js"></script>
+
+<script>
+
+	document.querySelector('.add-btn').addEventListener("click", function (e) {
+		e.preventDefault();
+		$('#cate1').attr("disabled", false);
+	})
+
+
+</script>
 
 </html>

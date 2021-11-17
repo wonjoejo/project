@@ -12,13 +12,34 @@
     <!-- /*+ index_asc(tbl_board pk_board) */ *
         /*+ index desc(tbl_board pk_board) */* -->
 
-	<!-- product list 조회 -->
+    <!-- product list 조회 -->
     <select id="selectProductList" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
         <![CDATA[
         SELECT
-        /*+ index_desc(PRODUCT) */
-            *
-        FROM PRODUCT, CATEGORY, BASE_CATEGORY
+            /*+ index_desc(PRODUCT) */
+            PRODUCT.PRODUCT_NO,
+            BASE_CATEGORY.BOX_NO,
+            PRODUCT_NAME,
+            PRODUCT_MEMO,
+            PRODUCT_QTN,
+            PRODUCT_PHOTO_NAME,
+            PRODUCT_PHOTO_PATH,
+            BARCODE,
+            REG_DATE,
+            BASE_CATEGORY.CATEGORY_NO,
+            CATE_NAME1,
+            CATE_NAME2,
+            CATE_NAME3,
+            CATE_NAME4,
+            CATE_NAME5,
+            CATE_DETAIL1,
+            CATE_DETAIL2,
+            CATE_DETAIL3,
+            CATE_DETAIL4,
+            CATE_DETAIL5
+        FROM PRODUCT,
+             CATEGORY,
+             BASE_CATEGORY
         WHERE PRODUCT.BOX_NO = #{box_no}
           AND CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
           AND PRODUCT.PRODUCT_NO = CATEGORY.PRODUCT_NO
@@ -145,8 +166,7 @@
         WHERE CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
           AND PRODUCT.PRODUCT_NO = CATEGORY.PRODUCT_NO
           AND PRODUCT.BOX_NO = #{box_no}
-        OFFSET (#{currPage} - 1) * #{amount} ROWS
-        FETCH NEXT #{amount} ROWS ONLY
+        OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
         ]]>
 
     </select>
