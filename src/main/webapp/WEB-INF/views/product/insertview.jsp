@@ -37,7 +37,6 @@
         <form method="POST" action="/product/insert" enctype="multipart/form-data">
             <input type="hidden" name="member_id" value="${sessionScope.member_id}">
             <input type="hidden" name="box_no" value="${box_no}">
-            <input type="hidden" name="product_no" value="${product.product_no}">
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
                     <div class="photo">
@@ -92,7 +91,7 @@
                     <div class="qtn">
                     <span>수량
                         <div class="bar"></div>
-                        <input type="number" name="product_qtn" value="${product.product_qtn}">
+                        <input type="number" name="product_qtn">
                     </span>
                     </div>
 
@@ -101,36 +100,36 @@
                     <ul>
                         <li>
                             <div class="title">이름</div>
-                            <input type="text" name="product_name" value="${product.product_name}" class="detail">
+                            <input type="text" name="product_name" class="detail">
                         </li>
                         <c:if test="${not empty baseCategory.cate_name1}">
                             <li>
                                 <div class="title">${baseCategory.cate_name1}</div>
-                                <input type="text" name="cate_detail1" value="${category.cate_detail1}" class="detail">
+                                <input type="text" name="cate_detail1" class="detail">
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name2}">
                             <li>
                                 <div class="title">${baseCategory.cate_name2}</div>
-                                <input type="text" name="cate_detail2" value="${category.cate_detail2}" class="detail">
+                                <input type="text" name="cate_detail2" class="detail">
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name3}">
                             <li>
                                 <div class="title">${baseCategory.cate_name3}</div>
-                                <input type="text" name="cate_detail3" value="${category.cate_detail3}" class="detail">
+                                <input type="text" name="cate_detail3" class="detail">
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name4}">
                             <li>
                                 <div class="title">${baseCategory.cate_name4}</div>
-                                <input type="text" name="cate_detail4" value="${category.cate_detail4}" class="detail">
+                                <input type="text" name="cate_detail4" class="detail">
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name5}">
                             <li>
                                 <div class="title">${baseCategory.cate_name5}</div>
-                                <input type="text" name="cate_detail5" value="${category.cate_detail5}" class="detail">
+                                <input type="text" name="cate_detail5" class="detail">
                             </li>
                         </c:if>
                         <a href="${pageContext.request.contextPath}/category/detail?box_no=${param.box_no}">

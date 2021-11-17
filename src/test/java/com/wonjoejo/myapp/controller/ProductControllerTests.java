@@ -60,7 +60,7 @@ public class ProductControllerTests {
         reqBuilder.param("amount", "5");
         reqBuilder.param("pagesPerPage", "5");
 
-        reqBuilder.param("box_no", "1330");
+        reqBuilder.param("box_no", "1349");
 
         ModelMap modelMap = Objects.requireNonNull(mockMvc.
                         perform(reqBuilder).
