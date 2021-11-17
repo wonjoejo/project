@@ -104,7 +104,9 @@
 
 
                         <div class="item" id="product-name">
-                            <c:out value='${product.product_name}'/>
+                            <a href="${pageContext.request.contextPath}/product/detail?product_no=${product.product_no}&box_no=${product.box_no}">
+                                <c:out value='${product.product_name}'/>
+                            </a>
                         </div> <!-- product-name -->
 
                         <div class="item" id="product-cate">

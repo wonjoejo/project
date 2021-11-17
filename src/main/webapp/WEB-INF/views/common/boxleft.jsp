@@ -48,7 +48,7 @@
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/member/logout"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
 
         <div class="product-create-btn">
-            <a href="${pageContext.request.contextPath}/product/insertview?box_no=${box.box_no}">
+            <a href="${pageContext.request.contextPath}/product/insertview?box_no=${box_no}">
                 <span>
                     <i class="fas fa-plus"></i>
                     물품 등록

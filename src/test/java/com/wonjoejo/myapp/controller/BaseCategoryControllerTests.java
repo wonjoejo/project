@@ -70,9 +70,9 @@ public class BaseCategoryControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/category/edit");
 
-        reqBuilder.param("category_no", "95895");
+        reqBuilder.param("category_no", "95919");
         reqBuilder.param("cate_name1", "");
-        reqBuilder.param("cate_name2", "");
+        reqBuilder.param("cate_name2", "색상");
         reqBuilder.param("cate_name3", "");
         reqBuilder.param("cate_name4", "");
         reqBuilder.param("cate_name5", "");

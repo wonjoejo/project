@@ -58,13 +58,13 @@ public class BaseCategoryMapperTests {
         log.debug("testUpdateBaseCategory() invoked.");
 
         BaseCategoryVO baseCategory = new BaseCategoryVO(
-                95895,
+                95919,
                 "색상",
                 null,
                 null,
                 null,
                 null,
-                1096
+                1330
         );
 
         this.mapper.updateBaseCategory(baseCategory);
