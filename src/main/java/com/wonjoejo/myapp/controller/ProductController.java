@@ -42,7 +42,8 @@ public class ProductController {
 //		model.addAttribute("list",list);
 //
 //	} // ProductList
-	
+
+
 	@GetMapping("/listPerPage")
 	public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model, HttpSession session) {
 		log.debug("productListPerPage({}) invoked.", model);

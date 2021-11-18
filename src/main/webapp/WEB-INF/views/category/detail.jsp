@@ -352,12 +352,15 @@
             console.log(item.parentElement.previousElementSibling);
             console.log(item.previousElementSibling);
 
-            item.parentElement.previousElementSibling.disabled = true;
-            item.parentElement.previousElementSibling.style.border = "none"
-            item.style.display = "none";
-            item.previousElementSibling.style.display = "none";
-            item.previousElementSibling.previousElementSibling.style.display = "inline-block";
-            item.previousElementSibling.previousElementSibling.previousElementSibling.style.display = "inline-block";
+            location.href="/category/detail?box_no=${box_no}";
+            // item.parentElement.previousElementSibling.disabled = true;
+            // item.parentElement.previousElementSibling.style.border = "none"
+            // item.parentElement.previousElementSibling.value = "";
+            //
+            // item.style.display = "none";
+            // item.previousElementSibling.style.display = "none";
+            // item.previousElementSibling.previousElementSibling.style.display = "inline-block";
+            // item.previousElementSibling.previousElementSibling.previousElementSibling.style.display = "inline-block";
 
         });
     });
