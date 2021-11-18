@@ -78,13 +78,60 @@
         ]]>
     </select>
     
-     <!-- 게시판 총 목록개수 반환  -->
+    <!-- 페이징 처리된 검색 목록조회 -->
+    <select id="getsearchPage" resultType="com.wonjoejo.myapp.domain.BoardVO">  
+    <![CDATA[ 
+         SELECT * FROM 
+         	(SELECT /*+ index_desc(qna_board) */ *
+   		 FROM qna_board            
+          WHERE (title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%')            	
+        	OFFSET (#{currPage} - 1) * #{amount} ROWS 
+            FETCH NEXT #{amount} ROWS ONLY)
+        ]]>
+    </select>
+    
+    <!-- 페이징 처리된 게시판 목록조회 
+    <select id="getListWithPaging" resultType="com.wonjoejo.myapp.domain.BoardVO">  
+    
+        SELECT * FROM 
+        	(SELECT /*+ index_desc(qna_board) */ *	
+  		 FROM qna_board            
+         WHERE  
+
+        <choose>
+		<when test="type=='T'.toString()">
+		    (title like '%' || #{keyword} || '%')
+		</when>
+		<when test="type=='C'.toString()">
+		    (content like '%' || #{keyword} || '%')
+		</when>
+		<when test="type=='W'.toString()">
+		    (member_id like '%' || #{keyword} || '%')
+		</when>
+		</choose>
+    	     	
+       	OFFSET (#{currPage} - 1) * #{amount} ROWS 
+        FETCH NEXT #{amount} ROWS ONLY)      
+       
+    </select>-->
+    
+     <!-- 게시판 qna 목록개수 반환  -->
      <select id="getTotalCount" resultType="int">
         <![CDATA[ 
             SELECT count(board_idx)
             FROM qna_board
-             WHERE notice = 0
+            WHERE notice = 0
         ]]>
+    </select>
+    
+    <!-- 검색용 총 목록개수 반환  -->
+     <select id="getSearchCount" resultType="int">
+        <![CDATA[ 
+            SELECT count(board_idx)
+            FROM qna_board
+            WHERE (title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%')  
+       		
+	]]>
     </select>
     
     <!-- 게시물 상세 조회 -->

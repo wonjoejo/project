@@ -118,6 +118,9 @@ li {
 
 /* ====== 상단 검색 / 글쓰기  ====== */
 
+#searchForm{
+	display: contents;
+}
 .search {
 	background: none;
 	border: 1px solid #5A95F5;

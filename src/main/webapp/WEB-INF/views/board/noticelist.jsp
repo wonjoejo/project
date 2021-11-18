@@ -21,49 +21,7 @@
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=10">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
-	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
     
-    <script>
-    $(function name() {
-        console.clear();
-        console.log('jquery started...');
-        
-        $('#writeBtn').on('click', function () {
-            console.log('onclicked on writeBtn...');
-
-            self.location = '/board/noticewrite?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        });//onclick
-
-        
-        //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
-        $('a.prev, a.next').on('click',function(e){
-            e.preventDefault();
-
-            var paginationForm=$('#paginationForm')
-            paginationForm.attr('action','/board/noticePage')
-            paginationForm.attr('method','GET')
-
-            //Criteria 3개 전송파라미터를 설정 
-            paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-            paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-            paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
-
-            paginationForm.submit();
-        });  
-        
-        $('#noticelistBtn').click(function () {
-            console.log('click event triggered..');
-
-            self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-          }); //onclick
-
-      }); //.jq
-    </script>
-    
-
 </head>
 <body>
 
@@ -78,8 +36,16 @@
 			<div id="top_content">
 				<h1 class="title">Q&A</h1>
 				
-				<input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything"/>
-				<button class="searchbtn"><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
+				<form id="searchForm" action="/board/searchlist" method='get'>
+		
+			        <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+			        
+			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
+			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+			        <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
+			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
+			     </form>
+				
 						
 				<button id="writeBtn" type="button"> + 공지작성</button>
 			</div>
@@ -150,10 +116,37 @@
 			</div>
 		      
 		      <button id="noticelistBtn" type="button">돌아가기</button>
-			
+		
 		</div>
 	</div>
 </div>
 
 </body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+
+	<script>
+    $(function name() {
+        console.clear();
+        console.log('jquery started...');
+        
+        //공지작성 
+        $('#writeBtn').on('click', function () {
+            console.log('onclicked on writeBtn...');
+
+            self.location = '/board/noticewrite?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        });//onclick
+        
+        //돌아가기 
+        $('#noticelistBtn').click(function () {
+            console.log('click event triggered..');
+
+            self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+          }); //onclick
+
+      }); //.jq
+    </script>
+    
 </html>

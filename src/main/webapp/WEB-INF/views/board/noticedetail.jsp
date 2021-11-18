@@ -20,45 +20,7 @@
 
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
-	
-	<script type="text/javascript" src=""${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-    <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-        
-       //delete 버튼에 대한 이벤트 등록 처리
-        $('#deleteBtn').click(function () {
-          console.log('click event triggered..');
-
-          var formObj = $('form');
-          formObj.attr('method', 'POST');
-          formObj.attr('action', '/board/delete');
-
-          formObj.submit();
-        }); //onclick
-        
-       //edit 버튼에 대한 이벤트 등록 처리
-        $('#editBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/edit?board_idx=${board.board_idx}';
-        }); //onclick
-
-        //list 버튼에 대한 이벤트 등록 처리
-        //$(#listBtn).on('click',function(){
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-      }); //.jq
-    </script>
-	
 </head>
 <body>
 
@@ -102,14 +64,36 @@
 		                <button type="button" id="deleteBtn">삭제</button>
 					</div>	
 				</form>		
-			</div>
-			
-		
-			
-			
+			</div>		
 		</div>
 	</div>
 </div>
 
 </body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+    
+    <script>
+      $(function () {
+        console.clear();
+        console.log('JQuery stared...');
+ 
+       //edit 버튼에 대한 이벤트 등록 처리
+        $('#editBtn').click(function () {
+          console.log('click event triggered..');
+
+          self.location = '/board/edit?board_idx=${board.board_idx}';
+        }); //onclick
+
+        //list 버튼에 대한 이벤트 등록 처리
+        $('#listBtn').click(function () {
+          console.log('click event triggered..');
+
+          self.location = '/board/noticePage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        }); //onclick
+      }); //.jq
+    </script>
+    
 </html>

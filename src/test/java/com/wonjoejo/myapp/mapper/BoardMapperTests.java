@@ -225,6 +225,37 @@ public class BoardMapperTests {
 	}//testDelete
     
     
+    //검색 
+    @Test
+    public void testSearch() {
+    	
+	    Criteria cri = new Criteria();
+	   	cri.setKeyword("공지사항");
+	   //cri.setType("T");
+    	
+    	List<BoardVO> list = mapper.getListWithPaging(cri);
+    	
+    	list.forEach(board -> log.info(board));
+    }
+    
+    //총 게시물 개수를 반환 
+    @Test
+	public void testGetSearchTotalCount() {
+    	
+    	Criteria cri = new Criteria();
+ 	   	cri.setKeyword("공지사항");
+ 	   	
+ 	   	List<BoardVO> list = mapper.getListWithPaging(cri);
+   	
+ 	   	list.forEach(board -> log.info(board));
+    	
+		log.debug("testGetSearchTotalCount() invoked.");
+		
+		int totalCount = this.mapper.getSearchCount(cri);
+		log.info("\t+ testGetSearchTotalCount: {}",totalCount);
+		
+	}//testGetTotalCount
+    
     @After
     public void tearReplyDawn() {
         log.debug("tearDawn() invoked.");
