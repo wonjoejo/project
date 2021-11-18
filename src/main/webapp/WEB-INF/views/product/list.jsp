@@ -96,26 +96,26 @@
                                 </div>
                             </c:if>
 
-                            <c:if test="${not empty product.cate_detail3}">
-                                <div class="product-cate-3">
-                                    <c:out value='${product.cate_name3}│ ${product.cate_detail3}'/>
-                                </div>
-                            </c:if>
+                                <c:if test="${not empty product.cate_detail3}">
+                                    <div class="product-cate-3">
+                                        <c:out value='${product.cate_name3}│ ${product.cate_detail3}'/>
+                                    </div>
+                                </c:if>
 
-                            <c:if test="${not empty product.cate_detail4}">
-                                <div class="product-cate-4">
-                                    <c:out value='${product.cate_name4}│ ${product.cate_detail4}'/>
-                                </div>
-                            </c:if>
-                        </div> <!-- product-cate -->
+                                <c:if test="${not empty product.cate_detail4}">
+                                    <div class="product-cate-4">
+                                        <c:out value='${product.cate_name4}│ ${product.cate_detail4}'/>
+                                    </div>
+                                </c:if>
+                            </div> <!-- product-cate -->
 
-                        <div class="item" id="product-qtn">
-                            <c:out value='${product.product_qtn}'/>
-                        </div> <!-- product-qtn-->
+                            <div class="item" id="product-qtn">
+                                <c:out value='${product.product_qtn}'/>
+                            </div> <!-- product-qtn-->
 
-                    </div>
-                    <!-- product-list -->
-                </c:forEach>
+                        </div>
+                        <!-- product-list -->
+                    </c:forEach>
             </div> <!-- product-container -->
 
             <!-- 페이징 처리 -->
@@ -170,6 +170,7 @@
                 </form>
             </div> <!-- page -->
 
+            <button type="button" id="excel-btn">EXCEL</button>
         </div> <!-- product-main-container -->
     </div> <!-- main-container -->
 </div> <!-- container -->
@@ -180,34 +181,41 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
 <script>
-	$(function name() {
-		console.clear();
-		console.log('jquery started...');
+    $(function name() {
+        console.clear();
+        console.log('jquery started...');
 
-		// 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
-		$('#regBtn').on('click', function () {
-			console.log('onclicked on regBtn...');
+        // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
+        $('#regBtn').on('click', function () {
+            console.log('onclicked on regBtn...');
 
-			self.location = '/product/register?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-		});
+            self.location = '/product/register?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        });
 
-		//페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리
-		$('a.prev, a.next').on('click', function (e) {
-			e.preventDefault();
+        // excel 버튼
+        $('#excel-btn').on('click', function () {
+            console.log('onclicked on regBtn...');
 
-			var paginationForm = $('#paginationForm')
-			paginationForm.attr('action', '/product/listPerPage')
-			paginationForm.attr('method', 'GET')
+            self.location = '/product/excel?box_no=${box_no}';
+        });
 
-			//Criteria 3개 전송파라미터를 설정
-			paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-			paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-			paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
+        //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리
+        $('a.prev, a.next').on('click', function (e) {
+            e.preventDefault();
 
-			paginationForm.submit();
-		});
+            var paginationForm = $('#paginationForm')
+            paginationForm.attr('action', '/product/listPerPage')
+            paginationForm.attr('method', 'GET')
 
-	}); //.jq
+            //Criteria 3개 전송파라미터를 설정
+            paginationForm.find('input[name=currPage]').val($(this).attr('href'));
+            paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
+            paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
+
+            paginationForm.submit();
+        });
+
+    }); //.jq
 
 </script>
 
@@ -218,91 +226,91 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 
-	$.widget("ui.autocomplete", $.ui.autocomplete, {
+    $.widget("ui.autocomplete", $.ui.autocomplete, {
 
-		_renderMenu: function (ul, items) {
-			var that = this;
-			ul.attr("class", "nav nav-pills nav-stacked  bs-autocomplete-menu");
-			$.each(items, function (index, item) {
-				that._renderItemData(ul, item);
-			});
-		},
+        _renderMenu: function (ul, items) {
+            var that = this;
+            ul.attr("class", "nav nav-pills nav-stacked  bs-autocomplete-menu");
+            $.each(items, function (index, item) {
+                that._renderItemData(ul, item);
+            });
+        },
 
-		_resizeMenu: function () {
-			var ul = this.menu.element;
-			ul.outerWidth(Math.min(
-				// Firefox wraps long text (possibly a rounding bug)
-				// so we add 1px to avoid the wrapping (#7513)
-				ul.width("").outerWidth() + 1,
-				this.element.outerWidth()
-			));
-		}
+        _resizeMenu: function () {
+            var ul = this.menu.element;
+            ul.outerWidth(Math.min(
+                // Firefox wraps long text (possibly a rounding bug)
+                // so we add 1px to avoid the wrapping (#7513)
+                ul.width("").outerWidth() + 1,
+                this.element.outerWidth()
+            ));
+        }
 
-	});
+    });
 
-	let ajaxData = [];
+    let ajaxData = [];
 
-	$.ajax({
-		url: "/product/json"
-		, type: "GET"
-		, data: {
-			"box_no": ${box_no}
-		},
-		dataType: "json",
-		success: function (data) {
-			$.map(data, function (item) {
-				ajaxData.push({
-					label: item,
-					value: item,
-					idx: item
-				})
-			})
-			$('.search').autocomplete({
-				source: function (request, response) {
-					response(
-						$.ui.autocomplete.filter(
-							ajaxData, request.term.split(/,\s*/).pop()
-						)
-					)
-				},
-				open: function (event, ui) {
-					$(this).autocomplete("widget").css({
-						"width": 400,
-						"border-radius": "20px",
-						"color": "#4E4E4E"
-					});
-				},
-				select: function (event, ui) {
-					let terms = this.value.split(/,\s*/);
-					// remove the current input
-					terms.pop();
-					// add the selected item
-					terms.push(ui.item.value);
-					// add placeholder to get the comma-and-space at the end
-					terms.push("");
-					this.value = terms.join(", ");
-					return false;
-				},
-				focus: function (event, ui) {
-					return false;
-				},
-				minLength: 1,
-				autoFocus: true,
-				classes: {
-					'ui-autocomplete': 'highlight'
-				},
-				delay: 500,
-				disable: false,
-				position: {
-					my: 'right top',
-					at: 'right bottom'
-				},
-				close: function (e) {
-					console.log(e);
-				}
-			});
-		}
-	});
+    $.ajax({
+        url: "/product/json"
+        , type: "GET"
+        , data: {
+            "box_no": ${box_no}
+        },
+        dataType: "json",
+        success: function (data) {
+            $.map(data, function (item) {
+                ajaxData.push({
+                    label: item,
+                    value: item,
+                    idx: item
+                })
+            })
+            $('.search').autocomplete({
+                source: function (request, response) {
+                    response(
+                        $.ui.autocomplete.filter(
+                            ajaxData, request.term.split(/,\s*/).pop()
+                        )
+                    )
+                },
+                open: function (event, ui) {
+                    $(this).autocomplete("widget").css({
+                        "width": 400,
+                        "border-radius": "20px",
+                        "color": "#4E4E4E"
+                    });
+                },
+                select: function (event, ui) {
+                    let terms = this.value.split(/,\s*/);
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push(ui.item.value);
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                },
+                focus: function (event, ui) {
+                    return false;
+                },
+                minLength: 1,
+                autoFocus: true,
+                classes: {
+                    'ui-autocomplete': 'highlight'
+                },
+                delay: 500,
+                disable: false,
+                position: {
+                    my: 'right top',
+                    at: 'right bottom'
+                },
+                close: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+    });
 
 </script>
 </html>

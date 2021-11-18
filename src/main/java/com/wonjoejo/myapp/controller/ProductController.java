@@ -1,5 +1,16 @@
 package com.wonjoejo.myapp.controller;
 
+import com.google.gson.Gson;
+import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.service.ProductService;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +26,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.Console;
+import java.io.IOException;
+import java.util.*;
 
 import com.google.gson.Gson;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
@@ -79,6 +96,130 @@ public class ProductController {
         return "/product/list";
 
     } // productListPerPage
+
+//    excel test
+
+    @GetMapping("/excel")
+    public void excelDownload(HttpServletResponse response, Integer box_no) throws IOException{
+        log.info("excelDownload() invoked.");
+        Workbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet("첫번째 시트");
+        Row row = null;
+        Cell cell = null;
+        int rowNum = 0;
+        List<ProductCategoryVO> list = this.service.getProductList(box_no);
+        BaseCategoryVO baseCategory = this.service.getBaseCategory(box_no);
+
+
+        int cellNum = 0;
+
+        // header
+        row = sheet.createRow(rowNum++);
+        List<String> valueList = new ArrayList<>();
+        valueList.add("물품명");
+        valueList.add(baseCategory.getCate_name1());
+        valueList.add(baseCategory.getCate_name2());
+        valueList.add(baseCategory.getCate_name3());
+        valueList.add(baseCategory.getCate_name4());
+        valueList.add(baseCategory.getCate_name5());
+        valueList.add("수량");
+        valueList.add("메모");
+        valueList.add("등록날짜");
+
+        log.info("카테고리5555 : {}",baseCategory.getCate_name5() );
+
+//        valueList.removeAll(Arrays.asList("",null));
+
+        List<Integer> temp = new ArrayList<>();
+        List<Integer> listNo = new ArrayList<>();
+
+        for (int i=0; i < valueList.size(); i++){
+            if(valueList.get(i)!= null) {
+                listNo.add(i);
+            }else if (valueList.get(i) == null) {
+                temp.add(i);
+            }
+        }
+        for (int i = 0; i < listNo.size(); i++){
+            cell = row.createCell(i);
+            cell.setCellValue(valueList.get(listNo.get(i)));
+
+        }
+
+        log.info("listnosize: {}", listNo.size());
+
+        for (ProductCategoryVO product : list){
+            List<String> cellValue = new ArrayList<>(
+                    Arrays.asList(product.getProduct_name(),
+                                    product.getCate_detail1(),
+                                    product.getCate_detail2(),
+                                    product.getCate_detail3(),
+                                    product.getCate_detail4(),
+                                    product.getCate_detail5(),
+                                    product.getProduct_qtn().toString(),
+                                    product.getProduct_memo(),
+                                    product.getReg_date().toString()
+                            ));
+
+//            Map<Integer, String> cellValue = new HashMap<>();
+//            cellValue.put(0_1,product.getProduct_name());
+//            cellValue.put(0_2,product.getCate_detail1());
+//            cellValue.put(0_3,product.getCate_detail2());
+//            cellValue.put(0_4,product.getCate_detail3());
+//            cellValue.put(0_5,product.getCate_detail4());
+//            cellValue.put(1,product.getCate_detail5());
+//            cellValue.put(1,product.get);
+//            cellValue.put(1,product.getCate_detail5());
+//            cellValue.put(1,product.getCate_detail5());
+
+
+            row = sheet.createRow(rowNum++);
+
+
+            for (Integer nonum:temp){
+                cellValue.remove(nonum);
+            }
+
+
+            for (int i = 0; i < cellValue.size(); i++){
+
+                    cell = row.createCell(i);
+                    cell.setCellValue(cellValue.get(i));
+
+            }
+
+
+
+//            cell = row.createCell(0);
+//            cell.setCellValue(product.getProduct_name());
+//            cell = row.createCell(1);
+//            cell.setCellValue(product.getCate_detail1());
+//            cell = row.createCell(2);
+//            cell.setCellValue(product.getCate_detail2());
+//            cell = row.createCell(3);
+//            cell.setCellValue(product.getCate_detail3());
+//            cell = row.createCell(4);
+//            cell.setCellValue(product.getCate_detail4());
+//            cell = row.createCell(5);
+//            cell.setCellValue(product.getCate_detail5());
+//            cell = row.createCell(6);
+//            cell.setCellValue(product.getProduct_qtn());
+//            cell = row.createCell(7);
+//            cell.setCellValue(product.getProduct_memo());
+//            cell = row.createCell(8);
+//            cell.setCellValue(product.getReg_date());
+////            cell = row.createCell(9);
+////            cell.setCellValue(product.getBarcode());
+
+        }
+
+        response.setContentType("ms-vnd/excel");
+        response.setHeader("Content-Disposition", "attachment;filename=list.xlsx");
+
+        wb.write(response.getOutputStream());
+        wb.close();
+
+    } // excelDownload
 
     @GetMapping("/json")
     @ResponseBody
