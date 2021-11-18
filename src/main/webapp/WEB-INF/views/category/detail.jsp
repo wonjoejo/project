@@ -144,7 +144,7 @@
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="cate-name none-cate-name">카테고리4</div>
+                                    <input class="cate-name none-cate-name" value="카테고리4" disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
@@ -203,10 +203,24 @@
 
 <script>
 
-	document.querySelector('.add-btn').addEventListener("click", function (e) {
-		e.preventDefault();
-		$('#cate1').attr("disabled", false);
+	const addBtns = document.querySelectorAll('.add-btn');
+
+	addBtns.forEach(function (item, index) {
+
+		item.addEventListener("click", function (e) {
+			e.preventDefault();
+			console.log(item);
+			console.log(index);
+			console.log(item.parentElement.previousSibling.previousSibling);
+			item.parentElement.previousSibling.previousSibling.disabled = false;
+		})
+
 	})
+
+	// document.querySelector('.add-btn').addEventListener("click", function (e) {
+	// 	e.preventDefault();
+	// 	$('#cate1').attr("disabled", false);
+	// })
 
 
 </script>
