@@ -22,12 +22,16 @@ let images = document.querySelectorAll(".default-img");
 let productPhoto = document.querySelector(".photo");
 let defaultInput = document.querySelector("#default");
 
-images.forEach(function (item,number) {
+images.forEach(function (item, number) {
 
-    item.addEventListener("click",function () {
+    item.addEventListener("click", function () {
         productPhoto.style.backgroundImage = "url(" + this.src + ")";
         let result = this.src.split("img/");
-        defaultInput.setAttribute("value",result[1]);
+        defaultInput.setAttribute("value", result[1]);
     });
 
 });
+
+
+
+
