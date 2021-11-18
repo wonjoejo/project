@@ -272,7 +272,8 @@
     align-items: center;
     padding: 0;
 }
-.photo {
+
+.photo{
     width: 14vw;
     height: 13vw;
     position: relative;
@@ -282,8 +283,30 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #FFF no-repeat center/40% url(/resources/assets/img/food.png);
     cursor: pointer;
+}
+
+#photo-default{
+    max-width: 14vh;
+	align-items: center;
+	align-content: center;
+    background: #FFF no-repeat center/40%;
+}
+
+#photo-upload {
+    max-width: 14vh;
+	align-items: center;
+	align-content: center;
+}
+
+/* 이미지 없을 경우 대체 */
+#photo-none-img {
+	width: 14vh;
+	height: 14vh;
+
+	border-radius: 25px;
+	background-color: #1473E6;
+	opacity: 0.2;
 }
 
 #box-photo {
@@ -461,4 +484,3 @@ textarea {
     color: #FFF;
 
 }
-
