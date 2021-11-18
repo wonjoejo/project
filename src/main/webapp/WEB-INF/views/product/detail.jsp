@@ -61,7 +61,7 @@
                         ${product.product_qtn}
                     </span>
                 </div>
-                <a href="#">
+                <a href="javascript:sendLink()">
                     <div class="share">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
                         공유하기
@@ -168,30 +168,86 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <%-- sweet alert --%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<%-- kakao sdk --%>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-<script>
-	$(document).ready(function () {
-		$('#nav-icon3').click(function () {
-			$(this).toggleClass('open');
-		});
+<script type="text/javascript">
+    $(document).ready(function () {
 
-		document.querySelector('.button').addEventListener('click', () => {
-			document.querySelector('.menu__list')
-				.classList.toggle('menu__list--animate');
-		});
+        $('#nav-icon3').click(function () {
+            $(this).toggleClass('open');
+        });
 
-		$('#nav-icon4').click(function () {
-			$(this).toggleClass('open');
-		});
+        document.querySelector('.button').addEventListener('click', () => {
+            document.querySelector('.menu__list')
+                .classList.toggle('menu__list--animate');
+        });
 
-		// sweetalert
-		$('#more').click(function () {
-			swal({
-				text: "${product.product_memo}"
-			});
-		});
+        $('#nav-icon4').click(function () {
+            $(this).toggleClass('open');
+        });
+
+        // sweetalert
+        $('#more').click(function () {
+            swal({
+                text: "${product.product_memo}"
+            });
+        });
+
+    }); // document.ready
+
+    // 카카오 공유하기
+    Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
+
+    <%--const cateDetail1 = "";--%>
+    <%--if(${category.cate_detail1} != null){--%>
+    <%--    cateDetail1 = ${category.cate_detail1};--%>
+    <%--}--%>
+
+    let detailList = [];
+    if ('${category.cate_detail1}' != ""){
+        detailList.push('#${category.cate_detail1}');
+    }
+    if ('${category.cate_detail2}' != ""){
+        detailList.push('#${category.cate_detail2}');
+    }
+    if ('${category.cate_detail3}' != ""){
+        detailList.push('#${category.cate_detail3}');
+    }
+    if ('${category.cate_detail4}' != ""){
+        detailList.push('#${category.cate_detail4}');
+    }
+    if ('${category.cate_detail5}' != ""){
+        detailList.push('#${category.cate_detail5}');
+    }
 
 
-	});
+    console.log(detailList);
+
+    function sendLink() {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '${product.product_name}',
+                description: detailList.toString(),
+                imageUrl:
+                    'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                link: {
+                    mobileWebUrl: 'https://developers.kakao.com',
+                    webUrl: 'https://developers.kakao.com',
+                },
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+
+            ],
+        })
+    }
 </script>
 </html>
