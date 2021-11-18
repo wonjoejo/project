@@ -197,7 +197,7 @@
 				//권한 설정페이지로 이동
 				$(document).ready(function () {
 					$("#grouppermission").click(function () {
-						location.href = "${pageContext.request.contextPath}/group/grouppermission?box_no=${box_no}";
+						location.href = "${pageContext.request.contextPath}/group/permissiongroup?box_no=${box_no}";
 
 					})
 

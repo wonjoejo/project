@@ -77,7 +77,7 @@ public class GroupServiceImpl implements GroupService{
 		return affectedRows == 1;
 	} //permissionGroup
 
-
+	// 마스터 권한 체크 
 	@Override
 	public boolean checkMaster(String member_id, Integer box_no) {
 		
