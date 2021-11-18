@@ -261,6 +261,8 @@ body {
 	max-width: 50px;
 	max-height: 50px;
 	margin: 0 5px;
+	align-items: center;
+	align-content: center;
 }
 
 /* 이미지 없을 경우 대체 */

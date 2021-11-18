@@ -91,7 +91,7 @@
                     <div class="qtn">
                     <span>수량
                         <div class="bar"></div>
-                        <input type="number" name="product_qtn">
+                        <input type="number" name="product_qtn" value="0">
                     </span>
                     </div>
 
