@@ -43,7 +43,7 @@
 		        		<h3 class="write_title">글 쓰기</h3>   
 		        	</div>
 		        	<div>
-		            	<input class="writeid" type="text" name="member_id" value="${sessionScope.member_id}"/>
+		            	<input class="writeid" type="text" name="member_id" value="${member_id}" readonly/>
 		            </div> 
 		        	
 		        	<div>

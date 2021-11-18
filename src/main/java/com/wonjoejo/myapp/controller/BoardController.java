@@ -2,6 +2,9 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.wonjoejo.myapp.domain.BoardDTO;
 import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
+import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.domain.PageDTO;
 import com.wonjoejo.myapp.service.BoardService;
 
@@ -37,13 +41,21 @@ public class BoardController {
  	@GetMapping("/listPerPage")
  	public String listPerPage(
  			@ModelAttribute("cri") Criteria cri, 
- 			Model model) {	
+ 			Model model, HttpServletRequest req) {	
+ 		
+ 		HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+ 		
  		log.debug("listPerPage({}) invoked.",model);
  		
  		//비지니스 로직 처리 결과 데이터 --> Model 이라고 부른다.
  		List<BoardVO> list = this.service.getListPerPage(cri);
  		log.info("\t+ list size:{}",list.size());
  		
+ 		model.addAttribute("member_id",member_id);
  		model.addAttribute("list",list);
  		
  		List<BoardVO> noticeList = this.service.getnoticeList(cri);
@@ -68,12 +80,20 @@ public class BoardController {
     
     //특정 게시물 상세조회 화면 요청 
     @GetMapping({"/detail","/edit"})
-    public void boarddetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model) {
+    public void boarddetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model, HttpServletRequest req) {
+    	
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+    	
     	log.debug("detail({},{},{}) invoked.",cri,board_idx,model);
     
     	BoardVO board = this.service.detail(board_idx);
 		log.info("\t+ board: {}",board);
 		
+		model.addAttribute("member_id",member_id);
 		model.addAttribute("board", board);
     }
     
@@ -116,10 +136,19 @@ public class BoardController {
     
     //게시글 작성 
     @GetMapping("/write")
-	public void register(@ModelAttribute("cri") Criteria cri) {
+	public void register(@ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest req) {
+    	
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+    	
 		log.debug("register() invoked.");
 		
 		log.info("\t+ cri:{}", cri);
+		
+		model.addAttribute("member_id",member_id);
 		
 	}//register
     
@@ -150,12 +179,20 @@ public class BoardController {
     @GetMapping("/noticePage")
     public String noticePage(
     		@ModelAttribute("cri") Criteria cri, 
- 			Model model) {	
+ 			Model model, HttpServletRequest req) {	
+    	
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+    	
  		log.debug("noticePage({}) invoked.",model);
 
  		List<BoardVO> noticeList = this.service.getnoticePage(cri);
  		log.info("\t+ noticeList size:{}",noticeList.size());
  		
+ 		model.addAttribute("member_id",member_id);
  		model.addAttribute("noticeList",noticeList);
  		
  		Integer totalAmount = this.service.getnoticeTotal();
@@ -172,10 +209,19 @@ public class BoardController {
     
     //공지사항 작성 
     @GetMapping("/noticewrite")
-	public void noticeWrite(@ModelAttribute("cri") Criteria cri) {
+	public void noticeWrite(@ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest req) {
+    	
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+    	
 		log.debug("noticewrite() invoked.");
 		
 		log.info("\t+ cri:{}", cri);
+		
+		model.addAttribute("member_id",member_id);
 		
 	}//noticewrite
     
@@ -215,10 +261,18 @@ public class BoardController {
     
     //-------- 답글 ----------------------------------------//
     @GetMapping("/replywrite")
-	public void replyregister(@ModelAttribute("cri") Criteria cri) {
-		log.debug("replyregister() invoked.");
+	public void replyregister(@ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest req) {
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+    	
+    	log.debug("replyregister() invoked.");
 		
 		log.info("\t+ cri:{}", cri);
+		
+		model.addAttribute("member_id",member_id);
 		
 	}//replywrite
     

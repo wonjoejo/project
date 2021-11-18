@@ -17,7 +17,7 @@
 	                        
 	searchForm.submit();
 	});
-  
+ 
   $(function () {
         console.clear();
         console.log('JQuery stared...');
@@ -103,7 +103,7 @@
             paginationForm.submit();
         });  
         
-       //공지사항 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+       //검색 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
         $('a.prev, a.next').on('click',function(e){
             e.preventDefault();
 
