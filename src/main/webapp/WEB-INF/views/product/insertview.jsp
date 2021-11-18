@@ -91,7 +91,7 @@
                     <div class="qtn">
                     <span>수량
                         <div class="bar"></div>
-                        <input type="number" name="product_qtn">
+                        <input type="number" name="product_qtn" value="0">
                     </span>
                     </div>
 
@@ -138,6 +138,10 @@
                         <li>
                             <div class="title">메모</div>
                             <textarea name="product_memo" class="detail detail-memo"></textarea>
+                            <ul class="suggestions">
+                                <li>Filter for a city</li>
+                                <li>or a state</li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -167,5 +171,49 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=1"></script>
 
+<script>
+
+	console.log("Product insert page");
+	console.log("${param.box_no}")
+
+	const members = [];
+
+	fetch("/group/json", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8"
+		},
+		body: JSON.stringify({
+			box_no: '${param.box_no}'
+		})
+	}).then((response) => response.json())
+		.then((data) => {
+
+			members.push(...data);
+		});
+
+	// console.log(members);
+
+	<%--$.ajax({--%>
+	<%--	url: "/group/grouplist"--%>
+	<%--	, type: "GET"--%>
+	<%--	, data: {--%>
+	<%--		"box_no": ${box_no}--%>
+	<%--	},--%>
+	<%--	dataType: "json",--%>
+	<%--	success: function (data) {--%>
+
+	<%--		fetch(data)--%>
+	<%--			.then((blob) => blob.json())--%>
+	<%--			.then((data) => members.push(...data));--%>
+
+	<%--	}--%>
+	// })
+	// ;
+
+</script>
+<%-- mention 기능 실험중 --%>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js"></script>
 
 </html>

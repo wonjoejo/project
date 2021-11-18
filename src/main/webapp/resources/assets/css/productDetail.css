@@ -272,7 +272,8 @@
     align-items: center;
     padding: 0;
 }
-.photo {
+
+.photo{
     width: 14vw;
     height: 13vw;
     position: relative;
@@ -282,8 +283,30 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #FFF no-repeat center/40% url(/resources/assets/img/food.png);
     cursor: pointer;
+}
+
+#photo-default{
+    max-width: 14vh;
+	align-items: center;
+	align-content: center;
+    background: #FFF no-repeat center/40%;
+}
+
+#photo-upload {
+    max-width: 14vh;
+	align-items: center;
+	align-content: center;
+}
+
+/* 이미지 없을 경우 대체 */
+#photo-none-img {
+	width: 14vh;
+	height: 14vh;
+
+	border-radius: 25px;
+	background-color: #1473E6;
+	opacity: 0.2;
 }
 
 #box-photo {
@@ -455,10 +478,42 @@ textarea {
 
 .swal-button {
     background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
-    box-shadow: inset 0 5px 10px rgba(149, 149, 149, 0.2);
-    border-radius: 24px;
     border: none;
-    color: #FFF;
+    border-radius: 24px;
+    box-shadow: inset 0 5px 10px rgba(149, 149, 149, 0.2);
+    color: #FFFFFF;
 
+}
+
+/* mention */
+
+.suggestions {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /*perspective: 20px;*/
+}
+
+.suggestions li {
+    background: white;
+    border-bottom: 1px solid #D8D8D8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    text-transform: capitalize;
+    transition: background 0.2s;
+}
+
+.suggestions li:nth-child(even) {
+    background: linear-gradient(to bottom, #FFFFFF 0%, #EFEFEF 100%);
+    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+}
+
+.suggestions li:nth-child(odd) {
+    background: linear-gradient(to top, #FFFFFF 0%, #EFEFEF 100%);
+    transform: perspective(100px) rotateX(-3deg) translateY(3px);
 }
 

@@ -11,10 +11,20 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +32,22 @@ import javax.servlet.http.HttpSession;
 import java.io.Console;
 import java.io.IOException;
 import java.util.*;
+
+import com.google.gson.Gson;
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.CategoryDTO;
+import com.wonjoejo.myapp.domain.CategoryVO;
+import com.wonjoejo.myapp.domain.Criteria;
+import com.wonjoejo.myapp.domain.PageDTO;
+import com.wonjoejo.myapp.domain.ProductCategoryVO;
+import com.wonjoejo.myapp.domain.ProductDTO;
+import com.wonjoejo.myapp.domain.ProductVO;
+import com.wonjoejo.myapp.service.ProductService;
+import com.wonjoejo.myapp.util.UploadFileUtils;
+
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 
 
 @Log4j2
@@ -275,25 +301,53 @@ public class ProductController {
 
 
     @PostMapping("/insert")
-    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
+    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file) throws Exception {
 
-        log.debug("productInsert() invoked.");
+        log.debug("productInsert({}, {}) invoked.", product, file);
+        
+        // upload 할 폴더 경로 지정
+        String uploadDir = "product";
 
-        ProductVO productVO = new ProductVO(
-                null,
-                product.getBox_no(),
-                product.getProduct_name(),
-                product.getProduct_memo(),
-                product.getProduct_qtn(),
-                product.getProduct_photo_name(),
-                product.getProduct_photo_path(),
-                product.getBarcode(),
-                product.getReg_date()
-        );
+        ProductVO productVO;
+        
+        if (file.getSize() !=0) {
+        	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
-        boolean result = this.service.insertProduct(productVO);
-        log.info("\t +result: {}", result);
-        rttrs.addAttribute("result", result);
+            productVO = new ProductVO(
+                    null,
+                    product.getBox_no(),
+                    product.getProduct_name(),
+                    product.getProduct_memo(),
+                    product.getProduct_qtn(),
+                    uploadedFileName,
+                    uploadDir,
+                    product.getBarcode(),
+                    product.getReg_date()
+            );
+
+            boolean result = this.service.insertProduct(productVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+            
+        } else {
+            productVO = new ProductVO(
+                    null,
+                    product.getBox_no(),
+                    product.getProduct_name(),
+                    product.getProduct_memo(),
+                    product.getProduct_qtn(),
+                    product.getProduct_photo_name(),
+                    "/resources/assets/img/",
+                    product.getBarcode(),
+                    product.getReg_date()
+            );
+
+            boolean result = this.service.insertProduct(productVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+        }
+        
+        
 
         // Category insert
         CategoryVO categoryVO = new CategoryVO(
@@ -313,6 +367,7 @@ public class ProductController {
 
         return "redirect:/product/listPerPage";
     } // productInsert
+    
 
 
     @GetMapping("/insertview")    // 물품 작성페이지
@@ -330,24 +385,50 @@ public class ProductController {
 
 
     @PostMapping("/edit")
-    public String productEdit(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs) {
+    public String productEdit(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file) throws Exception  {
         log.debug("productEdit() invoked.");
+        
+        // upload 할 폴더 경로 지정
+        String uploadDir = "product";
 
-        ProductVO productVO = new ProductVO(
-                product.getProduct_no(),
-                product.getBox_no(),
-                product.getProduct_name(),
-                product.getProduct_memo(),
-                product.getProduct_qtn(),
-                product.getProduct_photo_name(),
-                product.getProduct_photo_path(),
-                product.getBarcode(),
-                product.getReg_date()
-        );
+        ProductVO productVO;
+        
+        if (file.getSize() !=0) {
+        	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
+            productVO = new ProductVO(
+                    null,
+                    product.getBox_no(),
+                    product.getProduct_name(),
+                    product.getProduct_memo(),
+                    product.getProduct_qtn(),
+                    uploadedFileName,
+                    uploadDir,
+                    product.getBarcode(),
+                    product.getReg_date()
+            );
 
-        boolean result = this.service.editProduct(productVO);
-        log.info("\t +result: {}", result);
+            boolean result = this.service.editProduct(productVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+            
+        } else {
+            productVO = new ProductVO(
+                    null,
+                    product.getBox_no(),
+                    product.getProduct_name(),
+                    product.getProduct_memo(),
+                    product.getProduct_qtn(),
+                    product.getProduct_photo_name(),
+                    "/resources/assets/img/",
+                    product.getBarcode(),
+                    product.getReg_date()
+            );
+
+            boolean result = this.service.editProduct(productVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+        }
 
         // Category 수정
         CategoryVO categoryVO = new CategoryVO(
