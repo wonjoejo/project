@@ -60,4 +60,10 @@ public interface BoardMapper {
 	
 	//답글 목록  
 	public abstract List<BoardVO> getreplyList(Criteria cri); 
+	
+	//검색    
+	public abstract List<BoardVO> getsearchPage(Criteria cri);
+	
+	//총 게시물 개수를 반환 
+	public abstract Integer getSearchCount(Criteria cri);
 }//end interface

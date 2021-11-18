@@ -1,4 +1,4 @@
-package com.wonjoejo.myapp.service;
+    package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
@@ -198,7 +198,24 @@ public class BoardServiceImpl
 		
 		return list;
 	}//getreplyList
+	
+	//검색 페이지 
+	@Override
+	public List<BoardVO> getsearchPage(Criteria cri) {
+		log.debug("getListPerPage({}) invoked.",cri);
+		
+		List<BoardVO> list = this.mapper.getsearchPage(cri);
+		log.info("\t+ list size:{} ",list.size());
+		
+		return list;
+	}//getsearchPage
 
+	//검색 총 개수 
+	@Override
+	public Integer getsearchTotal(Criteria cri) {
+		log.debug("getTotal() invoked.");	
+		return this.mapper.getSearchCount(cri);
+	}//getsearchTotal
 	
 	@Override
 	public void destroy() throws Exception {
@@ -212,6 +229,7 @@ public class BoardServiceImpl
 		
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
+		
 	}//afterPropertiesSet
 
 

@@ -117,16 +117,19 @@ li {
 
 /* ====== 상단 검색 / 글쓰기  ====== */
 
+#searchForm{
+	display: contents;
+}
 .search {
-  position: relative;
-  width: 160px;
-  height: 30px;
-  margin-left: 20px;
-
-  background: none;
-  border: 1px solid #5a95f5;
-  box-sizing: border-box;
-  border-radius: 40px;
+	position: relative;
+	width: 160px;
+	height: 30px;
+	margin-left: 20px;
+	
+	background: none;
+	border: 1px solid #5a95f5;
+	box-sizing: border-box;
+	border-radius: 40px;
 }
 
 .searchimg {

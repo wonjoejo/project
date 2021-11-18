@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+html{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	width: 100%;
+	height: 100%;
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+
+div{
+	display: grid;
+    align-content: stretch;
+    justify-content: center;
+    align-items: baseline;
+    justify-items: center;
+}
+
+#wrap{
+	 padding-top: 60px; 
+	
+}
+
+#errorimg {
+	width: 400px;
+	margin: 0 auto;
+}
+

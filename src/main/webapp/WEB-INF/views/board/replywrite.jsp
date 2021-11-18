@@ -20,26 +20,6 @@
 
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=11">
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-
-    <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-
-        //list 버튼에 대한 이벤트 등록 처리
-        //$(#listBtn).on('click',function(){
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-      }); //.jq
-    </script>
     
 </head>
 <body>
@@ -57,35 +37,51 @@
 			</div>
 			
 			
-		<form action="/board/replywrite" method="post">
-			<input type="hidden" name="ref" value="${param.ref}" />
-	        <div class="write_wrapper">
-	        	<div>
-	        		<h3 class="write_title">답글 쓰기</h3>
-	        		   
-	        	</div>
-	        	<div>
-	            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
-	            </div> 
-	        	
-	        	<div>
-	            	<input class="writetitle" type="text" name="title" value="${param.title} 답글"/>
-	            </div> 
-	         	<div>
-	                <textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>
-	            </div>
-	        	<div>         
-	                <button class="writeBtn" type="submit">등록</button>
-	            </div>         
-	        </div>
-     	 </form>
-
-			
-			
+			<form action="/board/replywrite" method="post">
+				<input type="hidden" name="ref" value="${param.ref}" />
+		        <div class="write_wrapper">
+		        	<div>
+		        		<h3 class="write_title">답글 쓰기</h3>
+		        		   
+		        	</div>
+		        	<div>
+		            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
+		            </div> 
+		        	
+		        	<div>
+		            	<input class="writetitle" type="text" name="title" value="${param.title} 답글"/>
+		            </div> 
+		         	<div>
+		                <textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>
+		            </div>
+		        	<div>         
+		                <button class="writeBtn" type="submit">등록</button>
+		            </div>         
+		        </div>
+	     	 </form>		
 		</div>
 	</div>
 </div>
 
 </body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+
+    <script>
+      $(function () {
+        console.clear();
+        console.log('JQuery stared...');
+
+        //list 버튼에 대한 이벤트 등록 처리
+        $('#listBtn').click(function () {
+          console.log('click event triggered..');
+
+          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        }); //onclick
+      }); //.jq
+    </script>
+    
 </html>
 				

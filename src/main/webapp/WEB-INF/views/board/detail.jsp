@@ -20,52 +20,7 @@
 
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
-	
-	<script type="text/javascript" src=""${pageContext.request.contextPath}/resources/assets/js/board.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-
-    <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-   
-     	// 답글 작성 버튼 
-        $('#replyWriteBtn').on('click', function () {
-            console.log('onclicked on writeBtn...');
-
-            self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}';
-        });//onclick
-        
-       // 삭제 버튼에 대한 이벤트 등록 처리
-        $('#deleteBtn').click(function () {
-          console.log('click event triggered..');
-
-          var formObj = $('form');
-          formObj.attr('method', 'POST');
-          formObj.attr('action', '/board/delete');
-
-          formObj.submit();
-        }); //onclick
-        
-       // 수정 버튼에 대한 이벤트 등록 처리
-        $('#editBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/edit?board_idx=${board.board_idx}';
-        }); //onclick
-
-        //돌아가기 버튼에 대한 이벤트 등록 처리
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-    
-      }); //.jq
-    </script>
-    
+ 
 </head>
 <body>
 
@@ -121,5 +76,38 @@
 </div><!-- container -->
 
 </body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+
+	<script>
+      $(function () {
+        console.clear();
+        console.log('JQuery stared...');
+   
+     	// 답글 작성 버튼 
+        $('#replyWriteBtn').on('click', function () {
+            console.log('onclicked on writeBtn...');
+
+            self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}';
+        });//onclick      
+        
+       // 수정 버튼에 대한 이벤트 등록 처리
+        $('#editBtn').click(function () {
+          console.log('click event triggered..');
+
+          self.location = '/board/edit?board_idx=${board.board_idx}';
+        }); //onclick
+
+        //돌아가기 버튼에 대한 이벤트 등록 처리
+        $('#listBtn').click(function () {
+          console.log('click event triggered..');
+
+          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        }); //onclick */
+    
+      }); //.jq
+    </script> 
 </html>
 
