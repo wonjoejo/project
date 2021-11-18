@@ -149,12 +149,13 @@
 							'삭제 완료',
 							'박스가 삭제되었습니다',
 							'success'
-						);
-						location.href = "/box/list?member_id=${sessionScope.member_id}";
+						).then((result) => {
+							if (result.isConfirmed) {
+								location.href = "/box/list?member_id=${sessionScope.member_id}";
+							}
+						})
 					}
 				})
-				;
-
 			}
 		})
 	})

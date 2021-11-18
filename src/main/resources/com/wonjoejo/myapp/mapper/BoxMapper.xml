@@ -81,9 +81,12 @@
     </update>
 
     <select id="getTotalCount" resultType="int">
-        SELECT count(box_no)
-        FROM BOX_PERMISSION
-        WHERE MEMBER_ID = #{member_id}
+        SELECT count(BOX_PERMISSION.box_no)
+        FROM BOX_PERMISSION,
+             BOX
+        WHERE BOX_PERMISSION.MEMBER_ID = #{member_id}
+          and BOX_STATUS = 0
+          and BOX.BOX_NO = BOX_PERMISSION.BOX_NO
     </select>
 
     <select id="getProductList" resultType="com.wonjoejo.myapp.domain.ProductVO">

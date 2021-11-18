@@ -15,13 +15,11 @@
     <select id="selectBaseCategoryList" resultType="com.wonjoejo.myapp.domain.BaseCategoryVO">
 
         <![CDATA[
-
-            SELECT
+        SELECT
             /*+ index_desc(BASE_CATEGORY) */
             *
-            FROM BASE_CATEGORY
-            WHERE box_no = #{box_no}
-
+        FROM BASE_CATEGORY
+        WHERE box_no = #{box_no}
         ]]>
 
     </select>
@@ -30,13 +28,11 @@
     <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.CategoryVO">
 
         <![CDATA[
-
         SELECT
             /*+ index_desc(CATEGORY) */
             *
         FROM CATEGORY
         WHERE category_no = #{category_no}
-
         ]]>
 
     </select>
@@ -45,7 +41,7 @@
     <insert id="insertCategory">
 
         INSERT INTO BASE_CATEGORY(BOX_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
-        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3},#{cate_name4}, #{cate_name5})
+        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3}, #{cate_name4}, #{cate_name5})
 
     </insert>
 
@@ -67,7 +63,6 @@
             <if test="cate_name5 != null">
                 CATE_NAME5 = #{cate_name5}
             </if>
-
         WHERE CATEGORY_NO = #{category_no}
 
     </update>
@@ -75,12 +70,12 @@
     <!--  category 삭제(edit) baseCategory 삭제시 ..    -->
     <update id="deleteCategory">
 
-        UPDATE BASE_CATEGORY SET
-        CATE_NAME1 = #{cate_name1},
-        CATE_NAME2 = #{cate_name2},
-        CATE_NAME3 = #{cate_name3},
-        CATE_NAME4 = #{cate_name4},
-        CATE_NAME5 = #{cate_name5}
+        UPDATE BASE_CATEGORY
+        SET CATE_NAME1 = #{cate_name1},
+            CATE_NAME2 = #{cate_name2},
+            CATE_NAME3 = #{cate_name3},
+            CATE_NAME4 = #{cate_name4},
+            CATE_NAME5 = #{cate_name5}
         WHERE CATEGORY_NO = #{category_no}
 
     </update>
