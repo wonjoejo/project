@@ -37,13 +37,13 @@
 			</div>
 			
 			
-			<form action="/board/noticewrite" method="post">
+			<form id="noticeForm" action="/board/noticewrite" method="post">
 		        <div class="write_wrapper">
 		        	<div>
 		        		<h3 class="write_title">글 쓰기</h3>   
 		        	</div>
 		        	<div>
-		            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
+		            	<input class="writeid" type="text" name="member_id" value="${member_id}" readonly/>
 		            </div> 
 		        	
 		        	<div>
@@ -65,7 +65,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=20"></script>
 	
     <script>
       $(function () {
@@ -77,7 +77,7 @@
           console.log('click event triggered..');
 
           self.location = '/board/noticePage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
+        }); //onclick       
       }); //.jq
     </script>
 </html>

@@ -62,8 +62,10 @@
 					</div><!-- detailwrapper -->
 					
 					<div>
-						<c:if test="${board.depth == 0}">
-							<button id="replyWriteBtn" type="button">답글작성</button>
+						<c:if test="${member_id == 'admin'}">	
+							<c:if test="${board.depth == 0}">					
+								<button id="replyWriteBtn" type="button">답글작성</button>
+							</c:if>
 						</c:if>
 						<button type="button" id="editBtn">수정</button>
 		                <button type="button" id="deleteBtn">삭제</button>

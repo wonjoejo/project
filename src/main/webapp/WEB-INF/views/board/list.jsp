@@ -47,14 +47,14 @@
 			     </form>
 				
 				<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
-			</div>
+			</div> 	
 			
 			<div class="noticewrapper" >
 				<h2 class="notice">공지사항</h2>
 				<div id="notice">
 				
 					<c:forEach items="${noticeList}" var="board">
-						<div class="noticelist">      	
+						<div class="noticelist">   
 											
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
@@ -63,7 +63,9 @@
 								<c:out value="${board.member_id}" />
 							</div>	 
 							<div class="item">
+							
 								<a href="/board/noticedetail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+								
 								<c:out value="${board.title}" />
 								</a>
 							</div>	  
@@ -99,7 +101,21 @@
 								<c:if test="${board.depth > 0}">
 									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
-								<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+								
+								<c:choose>
+									<c:when test="${member_id == board.member_id}">
+										<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+									</c:when>
+									
+									<c:when test="${member_id == 'admin'}">
+										<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+									</c:when>
+									
+									<c:otherwise>
+                                         <a href="#" ></a>
+                                     </c:otherwise>		
+								</c:choose>
+								
 								<c:out value="${board.title}" />
 								</a>
 							</div>					
