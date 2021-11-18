@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: heewonseo
+  Date: 2021/11/17
+  Time: 18:32
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
 
@@ -6,8 +14,9 @@
     <title>소중한 물건들을 모아, 인투박스</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="resources/assets/img/favicon-72x72.png" sizes="16x16">
-    <link rel="icon" href="resources/assets/img/favicon-72x72.png" sizes="16x16">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon-72x72.png"
+          sizes="16x16">
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon-72x72.png" sizes="16x16">
 
     <!-- bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,8 +26,8 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="resources/assets/css/main.css">
-    <link rel="stylesheet" href="resources/assets/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css">
 
 </head>
 
@@ -31,12 +40,21 @@
                 <img src="resources/assets/img/main_logo.png" alt="메인로고">
             </a>
             <div class="top-right">
-                <a href="#">
-                    <span class="join-btn btn-scroll-up">JOIN</span>
-                </a>
-                <a href="/member/login">
-                    <span class="login-btn btn-scroll-up">LOGIN</span>
-                </a>
+                <c:choose>
+                    <c:when test="${sessionScope.member_id!=null}">
+                        <a href="/box/list?member_id=${sessionScope.member_id}">
+                            <span class="join-btn btn-scroll-up">내 박스 리스트</span>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#">
+                            <span class="join-btn btn-scroll-up">JOIN</span>
+                        </a>
+                        <a href="/member/login">
+                            <span class="login-btn btn-scroll-up">LOGIN</span>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </nav>
@@ -45,7 +63,7 @@
 <!-- home -->
 <section id="home">
     <div class="main-container">
-        <img class="main-image" src="resources/assets/img/maincat.png">
+        <img class="main-image" src="${pageContext.request.contextPath}/resources/assets/img/maincat.png">
         <!-- 지현, 21.11.06 -->
         <div class="pointfont">소중한 물건들을 모아,
             <p class="boxfont">인투박스</p>
@@ -97,5 +115,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-<script src="resources/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/index.js"></script>
 </html>
+
