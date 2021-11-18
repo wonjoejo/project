@@ -42,13 +42,6 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/assets/css/login.css"
     />
-
-    <script
-      type="text/javascript"
-      src="${pageContext.request.contextPath}/resources/assets/js/login.js"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
   </head>
   <body>
     <!-- header -->
@@ -79,13 +72,8 @@ pageEncoding="UTF-8"%>
 
     <!-- login section -->
     <section id="login-section">
+    <div class="form-wrap">
       <form class="loginform" action="/member/loginPost" method="POST">
-        <div class="img-container">
-          <img
-            class="login-image"
-            src="${pageContext.request.contextPath}/resources/assets/img/login.png"
-          />
-        </div>
 
         <span class="title1"> 반갑습니다! </span>
 
@@ -153,8 +141,21 @@ pageEncoding="UTF-8"%>
             />
           </a>
         </div>
+        </div>
+        <div class="img-container">
+          <img
+            class="login-image"
+            src="${pageContext.request.contextPath}/resources/assets/img/login.png"
+          />
+        </div>
       </form>
     </section>
 
   </body>
+  <script
+      type="text/javascript"
+      src="${pageContext.request.contextPath}/resources/assets/js/login.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 </html>

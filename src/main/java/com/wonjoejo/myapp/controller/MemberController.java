@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wonjoejo.myapp.domain.LoginDTO;
@@ -36,32 +37,74 @@ public class MemberController {
 	private MemberService service;
 	
 	// 회원가입
-	
 	@PostMapping("/registerPost")
-	public String register(MemberDTO member, RedirectAttributes rttrs) {
-		log.debug("register({}) invoked.",member);
-
-		MemberVO memberVO = new MemberVO(
-				member.getMember_id(),
-				member.getMember_type(),
-				member.getMember_status(),
-				member.getName(),
-				member.getPassword(),
-				member.getEmail(),
-				member.getPhone_number(),
-				member.getPhoto_name(),
-				member.getPhoto_path(),
-				member.getCompany_name(),
-				null,
-				null,
-				null
-		);
-
+	public String register(MemberDTO member, RedirectAttributes rttrs, MultipartFile file) {
+		log.debug("register({}, {}) invoked.",member, file);
+		
+		MemberVO memberVO;
+//		MemberVO memberVO = new MemberVO(
+//				member.getMember_id(),
+//				member.getMember_type(),
+//				0,
+//				member.getName(),
+//				member.getPassword(),
+//				member.getEmail(),
+//				member.getPhone_number(),
+//				member.getPhoto_name(),
+//				member.getPhoto_path(),
+//				member.getCompany_name(),
+//				null,
+//				null,
+//				null
+//		);
+		
+		// 0 : 개인, 1 : 기업
+		if(member.getMember_type()==0) { // 개인
+			memberVO = new MemberVO(
+					member.getMember_id(),
+					0,
+					0,
+					member.getName(),
+					member.getPassword(),
+					member.getEmail(),
+					member.getPhone_number(),
+					member.getPhoto_name(),
+					member.getPhoto_path(),
+					null,
+					null,
+					null,
+					null
+			);
+			
 		boolean result = this.service.register(memberVO);
 		log.info("\t +result: {}",result);
 		rttrs.addAttribute("result",result);
-
-		return "/member/login";
+		
+		} else { // 기업
+			memberVO = new MemberVO(
+					member.getMember_id(),
+					1,
+					0,
+					member.getName(),
+					member.getPassword(),
+					member.getEmail(),
+					member.getPhone_number(),
+					member.getPhoto_name(),
+					member.getPhoto_path(),
+					member.getCompany_name(),
+					null,
+					null,
+					null
+			);
+			
+		boolean result = this.service.register(memberVO);
+		log.info("\t +result: {}",result);
+		rttrs.addAttribute("result",result);
+		
+			
+		} // if-else
+		
+		return "/member/loginIndex";
 	} // register
 	
 	// 로그인
@@ -141,7 +184,8 @@ public class MemberController {
 		return "/member/mypage";
 	} // edit
 	
-	// 회원 탈퇴
+	
+	// 회원 탈퇴 -> memberstatus : 1
 	@PostMapping("/delete")
 	public String delete(String member_id, RedirectAttributes rttrs) {
 		log.debug("delete({}) invoked.",member_id);
@@ -158,10 +202,11 @@ public class MemberController {
 
 	}
 	
-	@GetMapping("/register")
+	@GetMapping(value = {"/register", "/loginIndex"})
 	public void register() {
 
 	}
+	
 
     
 } // end class
