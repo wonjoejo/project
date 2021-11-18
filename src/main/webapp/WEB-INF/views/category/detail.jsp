@@ -39,17 +39,18 @@
                 <div class="cate-table-header">
                     <div>Name</div>
                 </div>
-                <form method="POST">
-                    <input type="hidden" value="${baseCategory.box_no}">
+                <form action="/category/edit" method="POST">
+                    <input type="hidden" name="category_no" value="${baseCategory.category_no}">
+                    <input type="hidden" name="box_no" value="${param.box_no}">
                     <ul class="cate-ul">
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name1}">
-                                    <input type="text" id="input1" class="cate-name input-border"
+                                    <input type="text" name="cate_name1" class="cate-name input-border"
                                            value="${baseCategory.cate_name1}"
                                            disabled>
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn" id="editBtn1">
+                                        <button type="button" class="btn-style edit-btn">
                                             <i class="fas fa-pencil-alt"></i>
                                             <span>수정</span>
                                         </button>
@@ -57,15 +58,32 @@
                                             <i class="fas fa-trash-alt"></i>
                                             <span>삭제</span>
                                         </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn2">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
+                                        </button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <input type="text" id="cate1" class="cate-name none-cate-name" value="카테고리1"
+                                    <input type="text" name="cate_name1" id="cate1"
+                                           class="cate-name none-cate-name cate-input" placeholder="카테고리1"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
                                             <span>추가</span>
+                                        </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
                                         </button>
                                     </div>
                                 </c:otherwise>
@@ -75,11 +93,11 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name2}">
-                                    <input type="text" id class="cate-name input-border"
+                                    <input type="text" name="cate_name2" class="cate-name input-border"
                                            value="${baseCategory.cate_name2}"
                                            disabled>
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn" id="editBtn2">
+                                        <button type="button" class="btn-style edit-btn">
                                             <i class="fas fa-pencil-alt"></i>
                                             <span>수정</span>
                                         </button>
@@ -87,14 +105,32 @@
                                             <i class="fas fa-trash-alt"></i>
                                             <span>삭제</span>
                                         </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn2">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
+                                        </button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="cate-name none-cate-name">카테고리2</div>
+                                    <input type="text" name="cate_name2" id="cate2"
+                                           class="cate-name none-cate-name cate-input" placeholder="카테고리2"
+                                           disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
                                             <span>추가</span>
+                                        </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
                                         </button>
                                     </div>
                                 </c:otherwise>
@@ -103,7 +139,7 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name3}">
-                                    <input type="text" class="cate-name input-border" value="${baseCategory.cate_name3}"
+                                    <input type="text" name="cate_name3" class="cate-name input-border" value="${baseCategory.cate_name3}"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style edit-btn">
@@ -114,14 +150,32 @@
                                             <i class="fas fa-trash-alt"></i>
                                             <span>삭제</span>
                                         </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn2">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
+                                        </button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="cate-name none-cate-name">카테고리3</div>
+                                    <input type="text" name="cate_name3" id="cate3"
+                                           class="cate-name none-cate-name cate-input" placeholder="카테고리3"
+                                           disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
                                             <span>추가</span>
+                                        </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
                                         </button>
                                     </div>
                                 </c:otherwise>
@@ -130,7 +184,7 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name4}">
-                                    <input type="text" class="cate-name input-border" value="${baseCategory.cate_name4}"
+                                    <input type="text" name="cate_name4" class="cate-name input-border" value="${baseCategory.cate_name4}"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style edit-btn">
@@ -141,14 +195,32 @@
                                             <i class="fas fa-trash-alt"></i>
                                             <span>삭제</span>
                                         </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn2">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
+                                        </button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <input class="cate-name none-cate-name" value="카테고리4" disabled>
+                                    <input type="text" name="cate_name4" id="cate4"
+                                           class="cate-name none-cate-name cate-input" placeholder="카테고리4"
+                                           disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
                                             <span>추가</span>
+                                        </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
                                         </button>
                                     </div>
                                 </c:otherwise>
@@ -157,7 +229,7 @@
                         <li class="cate-list">
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name5}">
-                                    <input type="text" class="cate-name input-border" value="${baseCategory.cate_name5}"
+                                    <input type="text" name="cate_name5" class="cate-name input-border" value="${baseCategory.cate_name5}"
                                            disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style edit-btn">
@@ -168,14 +240,32 @@
                                             <i class="fas fa-trash-alt"></i>
                                             <span>삭제</span>
                                         </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn2">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
+                                        </button>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="cate-name none-cate-name">카테고리5</div>
+                                    <input type="text" name="cate_name5" id="cate5"
+                                           class="cate-name none-cate-name cate-input" placeholder="카테고리5"
+                                           disabled>
                                     <div class="btn-wrap">
                                         <button type="button" class="btn-style add-btn">
                                             <i class="fas fa-plus"></i>
                                             <span>추가</span>
+                                        </button>
+                                        <button type="submit" class="btn-style modify-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>완료</span>
+                                        </button>
+                                        <button type="reset" class="btn-style modify-cancel-btn">
+                                            <i class="fas fa-check"></i>
+                                            <span>취소</span>
                                         </button>
                                     </div>
                                 </c:otherwise>
@@ -198,31 +288,81 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
+<%-- boxmenu JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
+<%-- baseCateogy JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js"></script>
 
 <script>
 
-	const addBtns = document.querySelectorAll('.add-btn');
+    const addBtns = document.querySelectorAll('.add-btn');
 
-	addBtns.forEach(function (item, index) {
+    addBtns.forEach(function (item, index) {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            console.log(item);
+            console.log(index);
+            console.log(item.nextElementSibling.nextElementSibling);
+            console.log(item.parentElement.previousElementSibling);
+            item.parentElement.previousElementSibling.disabled = false;
+            item.parentElement.previousElementSibling.style.border = "1px solid #ADADAD";
+            item.style.display = "none";
+            item.nextElementSibling.style.display = "inline-block";
+            item.nextElementSibling.nextElementSibling.style.display = "inline-block";
+        })
+    })
 
-		item.addEventListener("click", function (e) {
-			e.preventDefault();
-			console.log(item);
-			console.log(index);
-			console.log(item.parentElement.previousSibling.previousSibling);
-			item.parentElement.previousSibling.previousSibling.disabled = false;
-		})
+    const modifyCancelBtn = document.querySelectorAll(".modify-cancel-btn");
+    modifyCancelBtn.forEach(function (item, idex) {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            console.log(item)
+            console.log(item.parentElement.previousElementSibling);
 
-	})
+            item.parentElement.previousElementSibling.disabled = true;
+            item.parentElement.previousElementSibling.style.border = "none";
+            item.parentElement.previousElementSibling.value = "";
+            item.style.display = "none";
+            item.previousElementSibling.style.display = "none";
+            item.previousElementSibling.previousElementSibling.style.display = "inline-block";
 
-	// document.querySelector('.add-btn').addEventListener("click", function (e) {
-	// 	e.preventDefault();
-	// 	$('#cate1').attr("disabled", false);
-	// })
+        });
+    });
+
+    const editBtn = document.querySelectorAll(".edit-btn");
+    editBtn.forEach(function (item, index){
+       item.addEventListener("click", function (e){
+            e.preventDefault();
+            console.log(item.parentElement.previousElementSibling);
+            console.log(item.nextElementSibling);
+
+           item.parentElement.previousElementSibling.disabled = false;
+           item.parentElement.previousElementSibling.style.border = "1px solid #ADADAD";
+           item.style.display = "none";
+           item.nextElementSibling.style.display = "none";
+           item.nextElementSibling.nextElementSibling.style.display = "inline-block";
+           item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
+       });
+    });
+
+    const modifyCancelBtn2 = document.querySelectorAll(".modify-cancel-btn2");
+    modifyCancelBtn2.forEach(function (item, idex) {
+        item.addEventListener("click", function (e) {
+            e.preventDefault();
+            console.log(item.parentElement.previousElementSibling);
+            console.log(item.previousElementSibling);
+
+            item.parentElement.previousElementSibling.disabled = true;
+            item.parentElement.previousElementSibling.style.border = "none"
+            item.style.display = "none";
+            item.previousElementSibling.style.display = "none";
+            item.previousElementSibling.previousElementSibling.style.display = "inline-block";
+            item.previousElementSibling.previousElementSibling.previousElementSibling.style.display = "inline-block";
+
+        });
+    });
+
 
 
 </script>
-
 </html>

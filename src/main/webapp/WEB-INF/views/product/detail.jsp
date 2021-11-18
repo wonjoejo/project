@@ -30,7 +30,7 @@
     <input type="hidden" name="box_no" value="${product.box_no}">
     <div class="main-container">
         <div class="top-content">
-            <h1>물품리스트</h1>
+            <h1>물품 상세보기</h1>
 
             <div class="wrapper">
                 <div class="hamburger">

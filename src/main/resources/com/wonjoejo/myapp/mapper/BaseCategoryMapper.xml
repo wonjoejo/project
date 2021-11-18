@@ -47,23 +47,22 @@
 
     <update id="updateBaseCategory">
 
-        UPDATE BASE_CATEGORY
-        SET
-        <if test="cate_name1 != null">
-            CATE_NAME1 = #{cate_name1}
-        </if>
-        <if test="cate_name2 != null">
-            CATE_NAME2 = #{cate_name2}
-        </if>
-        <if test="cate_name3 != null">
-            CATE_NAME3 = #{cate_name3}
-        </if>
-        <if test="cate_name4 != null">
-            CATE_NAME4 = #{cate_name4}
-        </if>
-        <if test="cate_name5 != null">
-            CATE_NAME5 = #{cate_name5}
-        </if>
+        UPDATE BASE_CATEGORY SET
+            <if test="cate_name1 != null">
+                CATE_NAME1 = #{cate_name1}
+            </if>
+            <if test="cate_name2 != null">
+                CATE_NAME2 = #{cate_name2}
+            </if>
+            <if test="cate_name3 != null">
+                CATE_NAME3 = #{cate_name3}
+            </if>
+            <if test="cate_name4 != null">
+                CATE_NAME4 = #{cate_name4}
+            </if>
+            <if test="cate_name5 != null">
+                CATE_NAME5 = #{cate_name5}
+            </if>
         WHERE CATEGORY_NO = #{category_no}
 
     </update>

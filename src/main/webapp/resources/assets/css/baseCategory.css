@@ -102,15 +102,19 @@
 }
 
 .cate-name {
-    width: 79%;
-    padding-left: 6%;
+    width: 25%;
+    padding-left: 1%;
+    margin-left: 5%;
     font-size: 1.05rem;
     letter-spacing: 1px;
+    border: none;
+    background-color: transparent;
 
 }
 
 .btn-wrap {
     width: 20%;
+    margin-left: 50%;
 }
 
 .edit-btn {
@@ -141,15 +145,33 @@
 }
 
 .add-btn {
+    display: inline-block;
     margin-left: 40%;
 }
 
-.none-cate-name {
+.modify-btn {
+    display: none;
+    background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+    border: none;
+    color: white;
+}
+
+.modify-cancel-btn , .modify-cancel-btn2 {
+    display: none;
+    background-color: #ADADAD;
+    border: none;
+    color: white;
+
+}
+
+.modify-cancel-btn:hover , .modify-cancel-btn2:hover {
+    display: none;
+    background-color: #ADADAD;
+    border: none;
+}
+
+.none-cate-name::placeholder {
     color: #4E4E4E80;
 }
 
-.input-border {
-    border: none !important;
-    background-color: transparent !important;
-}
 
