@@ -1,27 +1,25 @@
 package com.wonjoejo.myapp.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.BoxPermissionDTO;
 import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.GroupService;
-
 import lombok.NoArgsConstructor;
-
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -30,43 +28,64 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class GroupController {
 
-	@Setter(onMethod_= {@Autowired})
+	@Setter(onMethod_ = {@Autowired})
 	private GroupService service;
-	
+
 	//그룹원 목록
 	@GetMapping("/grouplist")
 	public void grouplist(Model model, Integer box_no) {
-		
-		log.debug("grouplist({},{}) invoked.",model,box_no);
-			
+
+		log.debug("grouplist({},{}) invoked.", model, box_no);
+
 		List<MemberVO> list = this.service.selectGroupMemberList(box_no);
-		
-		log.info("\t+list.size{}",list.size());
-		
-		model.addAttribute("list",list);
-		model.addAttribute("box_no",box_no);
-		
-	}//grouplist 
-	
+
+		log.info("\t+list.size{}", list.size());
+
+		model.addAttribute("list", list);
+		model.addAttribute("box_no", box_no);
+
+	}//grouplist
+
+	// groupList json
+	@PostMapping(value = "/json", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String json(@RequestBody String data) {
+
+		log.info("json({}) invoked.", data);
+
+		JsonParser parser = new JsonParser();
+		JsonElement element = parser.parse(data);
+		Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
+
+		List<MemberVO> list = this.service.selectGroupMemberList(box_no);
+
+		Gson gson = new Gson();
+		String result = gson.toJson(list);
+
+		log.info("result: " + result);
+
+		return result;
+	}
+
 	//그룹원 권한 목록
 	@GetMapping("/permissionlist")
 	public void permissionlist(Model model, Integer box_no, HttpServletRequest req) {
-		
-		log.debug("permissionlist({},{}) invoked.",model,box_no);
-			
+
+		log.debug("permissionlist({},{}) invoked.", model, box_no);
+
 		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
-		
-		HttpSession session=req.getSession();
-		MemberVO member=(MemberVO) session.getAttribute(MemberController.authKey);
-		
+
+		HttpSession session = req.getSession();
+		MemberVO member = (MemberVO) session.getAttribute(MemberController.authKey);
+
 		boolean isMaster = this.service.checkMaster(member.getMember_id(), box_no);
-		
-		log.info("\t+list.size{}",list.size());
-		
-		model.addAttribute("list",list);
-		model.addAttribute("isMaster",isMaster);
-		model.addAttribute("box_no",box_no);
-		
+
+		log.info("\t+list.size{}", list.size());
+
+		model.addAttribute("list", list);
+		model.addAttribute("isMaster", isMaster);
+		model.addAttribute("box_no", box_no);
+
 	}//permissionlist 
 
 	//그룹원 가입
