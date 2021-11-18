@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
     <title>소중한 물건들을 모아, 인투박스</title>
@@ -17,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=4">
 </head>
 <body>
 <c:set var="box_no" value="${product.box_no}"/>
@@ -53,7 +54,26 @@
         <div class="product-detail-wrap">
             <div class="left-box">
                 <div class="photo">
-                    <%-- 사진 넣는 란 --%>
+                        <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
+                        <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
+                            <div class="item" id="product-img">
+                                <c:set var="path" value="${product.product_photo_path}"/>
+                                <c:choose>
+                                    <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->
+                                        <img  id="photo-default" src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}"/>
+                                    </c:when>
+                                    <c:otherwise> <!-- 업로드 이미지 사용 -->
+                                        <img  id="photo-upload" src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </c:if> <!-- product-img -->
+
+                        <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
+                        <c:if test="${empty product.product_photo_name || empty product.product_photo_path}">
+                            <div class="item" id="photo-none-img">
+                            </div>
+                        </c:if> <!-- product-none-img -->
                 </div>
                 <div class="qtn">
                     <span>수량
@@ -61,7 +81,7 @@
                         ${product.product_qtn}
                     </span>
                 </div>
-                <a href="#">
+                <a href="javascript:sendLink()">
                     <div class="share">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
                         공유하기
@@ -168,30 +188,86 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <%-- sweet alert --%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<%-- kakao sdk --%>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-<script>
-	$(document).ready(function () {
-		$('#nav-icon3').click(function () {
-			$(this).toggleClass('open');
-		});
+<script type="text/javascript">
+    $(document).ready(function () {
 
-		document.querySelector('.button').addEventListener('click', () => {
-			document.querySelector('.menu__list')
-				.classList.toggle('menu__list--animate');
-		});
+        $('#nav-icon3').click(function () {
+            $(this).toggleClass('open');
+        });
 
-		$('#nav-icon4').click(function () {
-			$(this).toggleClass('open');
-		});
+        document.querySelector('.button').addEventListener('click', () => {
+            document.querySelector('.menu__list')
+                .classList.toggle('menu__list--animate');
+        });
 
-		// sweetalert
-		$('#more').click(function () {
-			swal({
-				text: "${product.product_memo}"
-			});
-		});
+        $('#nav-icon4').click(function () {
+            $(this).toggleClass('open');
+        });
+
+        // sweetalert
+        $('#more').click(function () {
+            swal({
+                text: "${product.product_memo}"
+            });
+        });
+
+    }); // document.ready
+
+    // 카카오 공유하기
+    Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
+
+    <%--const cateDetail1 = "";--%>
+    <%--if(${category.cate_detail1} != null){--%>
+    <%--    cateDetail1 = ${category.cate_detail1};--%>
+    <%--}--%>
+
+    let detailList = [];
+    if ('${category.cate_detail1}' != ""){
+        detailList.push('#${category.cate_detail1}');
+    }
+    if ('${category.cate_detail2}' != ""){
+        detailList.push('#${category.cate_detail2}');
+    }
+    if ('${category.cate_detail3}' != ""){
+        detailList.push('#${category.cate_detail3}');
+    }
+    if ('${category.cate_detail4}' != ""){
+        detailList.push('#${category.cate_detail4}');
+    }
+    if ('${category.cate_detail5}' != ""){
+        detailList.push('#${category.cate_detail5}');
+    }
 
 
-	});
+    console.log(detailList);
+
+    function sendLink() {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: '${product.product_name}',
+                description: detailList.toString(),
+                imageUrl:
+                    'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                link: {
+                    mobileWebUrl: 'https://developers.kakao.com',
+                    webUrl: 'https://developers.kakao.com',
+                },
+            },
+            buttons: [
+                {
+                    title: '웹으로 보기',
+                    link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                    },
+                },
+
+            ],
+        })
+    }
 </script>
 </html>

@@ -54,5 +54,11 @@ public interface BoardService {
 
 	//답글 목록
     public abstract List<BoardVO> getreplyList(Criteria cri);
+    
+    //검색 목록 
+    public abstract List<BoardVO> getsearchPage(Criteria cri);
+    
+    //검색 총 레코드 개수 반환 
+    public abstract Integer getsearchTotal(Criteria cri);
 
 }//end interface

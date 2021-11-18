@@ -151,7 +151,7 @@ public class BoardController {
     public String noticePage(
     		@ModelAttribute("cri") Criteria cri, 
  			Model model) {	
- 		log.debug("listPerPage({}) invoked.",model);
+ 		log.debug("noticePage({}) invoked.",model);
 
  		List<BoardVO> noticeList = this.service.getnoticePage(cri);
  		log.info("\t+ noticeList size:{}",noticeList.size());
@@ -313,5 +313,32 @@ public class BoardController {
  		//list.jsp 그대로 사용 
  		return "/board/list";
  	}//replylist
-
+	
+	// 검색 목록화면 요청 
+	 	@GetMapping("/searchlist")
+	 	public String searchList(
+	 			@ModelAttribute("cri") Criteria cri, 
+	 			Model model) {	
+	 		log.debug("searchList({}) invoked.",model);
+	 		
+	 		List<BoardVO> searchList = this.service.getsearchPage(cri);
+	 		log.info("\t+ list size:{}",searchList.size());
+	 		
+	 		model.addAttribute("searchList",searchList);
+	 		
+	 		
+	 		//--------------------------------------------//
+	 		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
+	 		//--------------------------------------------//
+	 		Integer totalAmount = this.service.getsearchTotal(cri);
+	 		
+	 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+	 		
+	 		model.addAttribute("pageMaker",pageDTO);
+	 		
+	 		//list.jsp 그대로 사용 
+	 		return "/board/searchlist";
+	 	}//searchList
+	 	
+	 	
 }//end class

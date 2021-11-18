@@ -1,7 +1,13 @@
 package com.wonjoejo.myapp.domain;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@ToString
+@Setter
+@Getter
 
 @Data //DTO 
 public class Criteria {
@@ -20,6 +26,25 @@ public class Criteria {
 	
 	// 박스번호
 	private Integer box_no;
+	
+	
+	//검색 추가 내용 
+//	private String type;
+	private String keyword;
+	
+	public Criteria() {	}
+	
+	public Criteria(Integer currPage, Integer amount, Integer pagesPerPage,String keyword) {
+		this.currPage = currPage;
+		this.amount = amount;
+		this.pagesPerPage = pagesPerPage;
+		this.keyword = keyword;
+	}
+
+//	public String[] getTypeArr() {
+//		return type == null? new String[] {}: type.split("");
+//	}
+	
 	
 	
 }//end class 
