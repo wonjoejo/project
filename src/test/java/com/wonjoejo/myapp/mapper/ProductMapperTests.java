@@ -1,12 +1,9 @@
 package com.wonjoejo.myapp.mapper;
 
-import java.util.List;
-
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductCategoryVO;
-
+import com.wonjoejo.myapp.domain.*;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,11 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.wonjoejo.myapp.domain.ProductVO;
-
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -47,7 +40,7 @@ public class ProductMapperTests {
     public void testProductList() {
         log.debug("testProductList() invoked.");
 
-        Integer box_no = 1330;
+        Integer box_no = 1349;
         Criteria cri = new Criteria();
         cri.setCurrPage(1);
         cri.setAmount(5);

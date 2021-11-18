@@ -7,15 +7,23 @@
     <select id="selectBoxList" resultType="com.wonjoejo.myapp.domain.BoxVO">
 
         <![CDATA[
-        SELECT
-        BOX.BOX_NO, BOX.MEMBER_ID, BOX_MODE, BOX_NAME, BOX_MEMO, BOX_PHOTO_NAME, BOX_PHOTO_PATH, REG_DATE
+        SELECT BOX.BOX_NO,
+               BOX.MEMBER_ID,
+               BOX_MODE,
+               BOX_NAME,
+               BOX_MEMO,
+               BOX_PHOTO_NAME,
+               BOX_PHOTO_PATH,
+               REG_DATE
         FROM BOX
-            right outer join (SELECT * FROM BOX_PERMISSION ORDER BY NO DESC) BOX_PERMISSION on BOX.BOX_NO = BOX_PERMISSION.BOX_NO
-        WHERE BOX_PERMISSION.MEMBER_ID = #{member_id} and BOX_PERMISSION.NO > 0
+                 right outer join (SELECT * FROM BOX_PERMISSION ORDER BY NO DESC) BOX_PERMISSION
+                                  on BOX.BOX_NO = BOX_PERMISSION.BOX_NO
+        WHERE BOX_PERMISSION.MEMBER_ID = #{member_id}
+          and BOX_PERMISSION.NO > 0
+          and BOX_STATUS = 0
         order by no desc
-        OFFSET (#{currPage} - 1) * #{amount} ROWS
-            FETCH NEXT #{amount} ROWS ONLY
-            ]]>
+        OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
+        ]]>
 
     </select>
 
@@ -34,7 +42,7 @@
     <insert id="insertCategory">
 
         INSERT INTO BASE_CATEGORY(BOX_NO, CATE_NAME1, CATE_NAME2, CATE_NAME3, CATE_NAME4, CATE_NAME5)
-        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3},#{cate_name4}, #{cate_name5})
+        VALUES (#{box_no}, #{cate_name1}, #{cate_name2}, #{cate_name3}, #{cate_name4}, #{cate_name5})
 
     </insert>
 
@@ -48,42 +56,52 @@
 
     <select id="selectBox" resultType="com.wonjoejo.myapp.domain.BoxVO">
         <![CDATA[
-
         SELECT
             /*+ index_desc(BOX) */
             *
         FROM BOX
         WHERE BOX_NO = #{box_no}
-
         ]]>
 
     </select>
 
     <update id="updateBox">
-        UPDATE BOX SET
-        BOX_NAME = #{box_name},
-        BOX_MEMO = #{box_memo},
-        BOX_PHOTO_NAME = #{box_photo_name},
-        BOX_PHOTO_PATH = #{box_photo_path}
+        UPDATE BOX
+        SET BOX_NAME       = #{box_name},
+            BOX_MEMO       = #{box_memo},
+            BOX_PHOTO_NAME = #{box_photo_name},
+            BOX_PHOTO_PATH = #{box_photo_path}
         WHERE BOX_NO = #{box_no}
     </update>
 
-    <delete id="deleteBox">
-        DELETE FROM BOX WHERE BOX_NO = #{box_no}
-    </delete>
+    <update id="deleteBox">
+        UPDATE BOX
+        SET BOX_STATUS = 1
+        WHERE BOX_NO = #{box_no}
+    </update>
 
     <select id="getTotalCount" resultType="int">
-        SELECT count(box_no) FROM BOX_PERMISSION WHERE MEMBER_ID = #{member_id}
+        SELECT count(BOX_PERMISSION.box_no)
+        FROM BOX_PERMISSION,
+             BOX
+        WHERE BOX_PERMISSION.MEMBER_ID = #{member_id}
+          and BOX_STATUS = 0
+          and BOX.BOX_NO = BOX_PERMISSION.BOX_NO
     </select>
 
     <select id="getProductList" resultType="com.wonjoejo.myapp.domain.ProductVO">
-        SELECT * FROM PRODUCT, BASE_CATEGORY, CATEGORY
-        WHERE PRODUCT.BOX_NO = #{box_no} and PRODUCT.BOX_NO = BASE_CATEGORY.BOX_NO and CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
+        SELECT *
+        FROM PRODUCT,
+             BASE_CATEGORY,
+             CATEGORY
+        WHERE PRODUCT.BOX_NO = #{box_no}
+          and PRODUCT.BOX_NO = BASE_CATEGORY.BOX_NO
+          and CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
     </select>
 
     <insert id="insertGroup">
         INSERT INTO BOX_PERMISSION(MEMBER_ID, BOX_NO, WRITE_PER, EDIT_PER, DELETE_PER)
-        VALUES (#{member_id}, #{box_no}, 1,1,1)
+        VALUES (#{member_id}, #{box_no}, 1, 1, 1)
     </insert>
 
 </mapper>

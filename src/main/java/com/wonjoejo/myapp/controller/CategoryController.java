@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+
 
 @Log4j2
 @NoArgsConstructor
@@ -23,32 +25,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class CategoryController {
 
-    @Setter(onMethod_={@Autowired})
+    @Setter(onMethod_ = {@Autowired})
     private BaseCategoryService service;
 
     @GetMapping({"/detail", "/edit"})
-    public void categoryDetail(Integer box_no, Model model){
+    public void categoryDetail(Integer box_no, Model model, HttpSession session){
         log.debug("categoryDetail({} ,{})", box_no, model);
 
         BaseCategoryVO baseCategory = this.service.getBaseCategoryList(box_no);
         log.info("\t+ baseCategory: {}", baseCategory);
 
         model.addAttribute("baseCategory", baseCategory);
+        model.addAttribute("member_id", session.getAttribute("member_id"));
+        model.addAttribute("box_no", box_no);
 
     } // categoryDetail
 
     @PostMapping("/edit")
-    public String editBaseCategory(BaseCategoryDTO baseCategory, RedirectAttributes rttrs){
+    public String editBaseCategory(BaseCategoryDTO baseCategory, RedirectAttributes rttrs) {
         log.debug("editBaseCategory({}, {}) invoked", baseCategory, rttrs);
 
         BaseCategoryVO baseCategoryVO = new BaseCategoryVO(
-              baseCategory.getCategory_no(),
-              baseCategory.getCate_name1(),
-              baseCategory.getCate_name2(),
-              baseCategory.getCate_name3(),
-              baseCategory.getCate_name4(),
-              baseCategory.getCate_name5(),
-              baseCategory.getBox_no()
+                baseCategory.getCategory_no(),
+                baseCategory.getCate_name1(),
+                baseCategory.getCate_name2(),
+                baseCategory.getCate_name3(),
+                baseCategory.getCate_name4(),
+                baseCategory.getCate_name5(),
+                baseCategory.getBox_no()
         );
 
         boolean result = this.service.editBaseCategory(baseCategoryVO);
@@ -57,8 +61,6 @@ public class CategoryController {
 
         return "redirect:/category/detail";
     } //editBaseCategory
-
-
 
 
 } // CategoryController

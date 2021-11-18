@@ -76,5 +76,18 @@ public class GroupServiceImpl implements GroupService{
 		
 		return affectedRows == 1;
 	} //permissionGroup
+
+
+	@Override
+	public boolean checkMaster(String member_id, Integer box_no) {
+		
+		log.debug("checkMaster({},{}) invoked",member_id,box_no);
+		
+		BoxPermissionVO vo = this.mapper.checkMaster(member_id, box_no);		
+		
+		return vo.getMaster_per()==0;
+		
+		// true면, master / false면, master 아님
+	} 
 	
 } // end class

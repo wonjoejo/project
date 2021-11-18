@@ -15,12 +15,8 @@ file.addEventListener("change",function (f) {
 		} else {
 			productPhotoEdit.style.backgroundImage = "url(" + dataUrl + ")";
 		}
-
-
 	}
-
 	reader.readAsDataURL(input.files[0]);
-
 });
 
 let images = document.querySelectorAll(".default-img");

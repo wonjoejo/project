@@ -248,6 +248,7 @@ body {
 
 }
 
+/* 마지막 줄에는 border bottom 라인 제거 */
 .product-container > div:last-child {
 	border: none;
 }
@@ -267,8 +268,10 @@ body {
 	width: 50px;
 	height: 50px;
 	margin: 0 5px;
-	border-radius: 15px;
-	background-color: #5A95F5;
+	
+	border-radius: 25px;
+	background-color: #1473E6;
+	opacity: 0.2;
 }
 
 
@@ -331,7 +334,7 @@ body {
 }
 
 .product-cate-1:hover, .product-cate-2:hover, .product-cate-3:hover, .product-cate-4:hover {
-	background-color: #fff7f7;
+	background-color: #C8EBFA
 }
 
 .product-cate-1:active, .product-cate-2:active, .product-cate-3:active, .product-cate-4:active {
@@ -340,9 +343,144 @@ body {
 }
 
 #product-qtn {
+	background-color: #EDEDED;
+	color: #261D1D;
 	font-family: 'NEXON Lv1 Gothic OTF bold', sans-serif;
-    width: 60px;
-    background-color: #EDEDED;
-    color: #261D1D;
-    text-align: center;
+	text-align: center;
+	width: 60px;
+}
+
+/* auto complete */
+
+.form-autocomplete-list {
+	background-color: #FFFFFF;
+}
+
+/*.form-autocomplete-list-item:hover {*/
+/*	background-color: #A9BFF9*/
+/*}*/
+
+.form-autocomplete-list-item {
+	padding: 5px;
+}
+
+.ui-menu-item-wrapper:hover {
+	background-color: #5A95F5 !important;
+	border: none !important;
+}
+
+.ui-menu-item-wrapper {
+	border-radius: 20px;
+	color: #4E4E4E;
+}
+
+ul.bs-autocomplete-menu {
+	background-color: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	border-radius: 4px;
+	box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.4);
+	left: 0;
+	max-height: 200px;
+	overflow: auto;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+ul.bs-autocomplete-menu a {
+	color: #333333;
+	font-weight: normal;
+}
+
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.ui-state-active,
+.ui-state-focus {
+	background-color: #EEEEEE;
+	color: #23527C;
+}
+
+.bs-autocomplete-feedback {
+	height: 1.5em;
+	margin-right: .5em;
+	margin-top: .5em;
+	overflow: hidden;
+	width: 1.5em;
+}
+
+.loader {
+	-webkit-animation: load3 1.4s infinite linear;
+	animation: load3 1.4s infinite linear;
+	background: #333333;
+	background: -moz-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+	background: -webkit-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+	background: -o-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+	background: -ms-linear-gradient(left, #333333 10%, rgba(255, 255, 255, 0) 42%);
+	background: linear-gradient(to right, #333333 10%, rgba(255, 255, 255, 0) 42%);
+	border-radius: 50%;
+	font-size: 10px;
+	height: 1.5em;
+	position: relative;
+	text-indent: -9999em;
+	-ms-transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	width: 1.5em;
+}
+
+.loader:before {
+	background: #333333;
+	border-radius: 100% 0 0 0;
+	content: '';
+	height: 50%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 50%;
+}
+
+.loader:after {
+	background: #FFFFFF;
+	border-radius: 50%;
+	bottom: 0;
+	content: '';
+	height: 75%;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 75%;
+}
+
+@-webkit-keyframes load3 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes load3 {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
 }

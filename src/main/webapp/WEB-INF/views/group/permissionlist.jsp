@@ -73,7 +73,7 @@
 			<body>
 
 				<div class="container">
-					<jsp:include page="../common/groupleft.jsp" />
+					<jsp:include page="../common/boxleft.jsp" />
 
 					<div class="main-container">
 						<div class="name">
@@ -82,10 +82,10 @@
 
 						<div class="buttons">
 
-							<%-- <c:if test="${sessionScope.master_per == 1}">
-								<!-- 임시  --> --%>
+							<c:if test="${isMaster==true}">
+								<!-- 임시  --> 
 								<input class="submit-btn hvr-float" id="grouppermission" type="button" value="권한 설정">
-								<%-- </c:if> --%>
+							 </c:if> 
 									<input class="submit-btn hvr-float" type="button" value="그룹 초대">
 									<button class="submit-btn hvr-float" type="button" onclick="alert('정말?')">그룹
 										탈퇴</button>
@@ -115,7 +115,7 @@
 														<td><img id="profile_img"
 																src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
 														</td>
-														<td>최자영</td>
+														<td><c:out value="${group.name}"/></td>
 														<td>
 															<c:out value="${group.member_id}" />
 														</td>

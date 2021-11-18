@@ -2,6 +2,9 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,20 +44,28 @@ public class GroupController {
 		log.info("\t+list.size{}",list.size());
 		
 		model.addAttribute("list",list);
+		model.addAttribute("box_no",box_no);
 		
 	}//grouplist 
 	
 	//그룹원 권한 목록
 	@GetMapping("/permissionlist")
-	public void permissionlist(Model model, Integer box_no) {
+	public void permissionlist(Model model, Integer box_no, HttpServletRequest req) {
 		
 		log.debug("permissionlist({},{}) invoked.",model,box_no);
 			
 		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
 		
+		HttpSession session=req.getSession();
+		MemberVO member=(MemberVO) session.getAttribute(MemberController.authKey);
+		
+		boolean isMaster = this.service.checkMaster(member.getMember_id(), box_no);
+		
 		log.info("\t+list.size{}",list.size());
 		
 		model.addAttribute("list",list);
+		model.addAttribute("isMaster",isMaster);
+		model.addAttribute("box_no",box_no);
 		
 	}//permissionlist 
 
