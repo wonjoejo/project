@@ -114,7 +114,7 @@ public class GroupController {
 	}// join 
 	
 	//그룹원 권한 설정 
-	@GetMapping("/grouppermission")
+	@GetMapping("/permissiongroup")
 	public String grouppermission(BoxPermissionDTO boxPermission, RedirectAttributes rttrs, Model model, Integer box_no) {
 		
 		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
@@ -124,13 +124,12 @@ public class GroupController {
 		model.addAttribute("list",list);
 		
 		
-		
 		log.debug("grouppermission({}) invoked.", boxPermission);
 		
 		
 		
 		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
-				boxPermission.getNo(),
+				null,
 				boxPermission.getMember_id(),
 				boxPermission.getBox_no(), 
 				boxPermission.getMaster_per(), 
@@ -143,10 +142,11 @@ public class GroupController {
 		
 		boolean result = this.service.permissionGroup(boxPermissionVO);
 		log.info("\t +result: {}",result);
+		model.addAttribute("box_no",box_no);
 		rttrs.addAttribute("result",result);
 		
-		return "/group/permissionlist";
-	}//groupout
+		return "/group/permissiongroup";
+	}//permissiongroup
 	
 	//그룹원 탈퇴
 	@GetMapping("/groupout")
