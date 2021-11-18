@@ -40,6 +40,7 @@
                 <img src="resources/assets/img/main_logo.png" alt="메인로고">
             </a>
             <div class="top-right">
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/index.jsp
                 <c:choose>
                     <c:when test="${sessionScope.member_id!=null}">
                         <a href="/box/list?member_id=${sessionScope.member_id}">
@@ -55,6 +56,14 @@
                         </a>
                     </c:otherwise>
                 </c:choose>
+=======
+                <a href="/member/register">
+                    <span class="join-btn btn-scroll-up">JOIN</span>
+                </a>
+                <a href="/member/login">
+                    <span class="login-btn btn-scroll-up">LOGIN</span>
+                </a>
+>>>>>>> jisu:src/main/webapp/index.html
             </div>
         </div>
     </nav>
