@@ -61,8 +61,6 @@
   top: 0;
   right: 0;
   left: 0;
-  /*background-color: rgba(249, 250, 253, 0);*/
-  /*background-color: white;*/
   background-image: linear-gradient(
     270deg,
     rgba(255, 255, 255, 0) -6%,
@@ -127,59 +125,87 @@
 }
 
 /* join */
-
 #join-section {
+  /* display: flex; */
+  font-family: "Noto Sans KR", sans-serif;
+  padding: 8% 9% 3% 9%;
+}
+
+.form-wrap {
   display: flex;
-  padding: 15% 9% 3% 9%;
+  width: 34%;
+  flex-direction: column;
+  padding-left: 14%;
 }
 
 .register-image {
   display: flex;
   float: left;
-  width: 41%;
-  margin: -4%;
+  width: 43%;
+  padding: 1% 0 0 1%;
 }
 
+.pointfont {
+  float: left;
+  margin-top: 33%;
+  font-family: "NEXON Lv1 Gothic OTF Light";
+  font-size: 21px;
+  display: flex;
+  flex-direction: column;
+  margin-left: -27%;
+}
+
+.boxfont {
+  font-family: "Wemakeprice-Bold";
+  font-size: 30px;
+  margin-top: 8px;
+  margin-left: 22%;
+}
+
+.blue {
+  color: #5a95f5;
+}
+
+/* form-wrap */
 .title1 {
   width: 100%;
   display: block;
   font-family: "NEXON Lv1 Gothic OTF Bold";
-  font-size: 30px;
+  font-size: 25px;
   color: #444b59;
   line-height: 1.2;
+  text-align: left;
 }
 
 .title2 {
   padding: 1% 0 4% 0;
+  text-align: right;
+  display: block;
+  width: 370px;
 }
 
 .txt2 {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 17px;
+  font-size: 15px;
   color: #444b59;
   line-height: 1.5;
 }
 
+.join-txt {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  background: #4776e6;
+  background: -webkit-linear-gradient(left, #4776e6, #8e54e9);
+  background: -moz-linear-gradient(right, #4776e6, #8e54e9);
+  background: -o-linear-gradient(right, #4776e6, #8e54e9);
+  background: linear-gradient(to right, #4776e6, #8e54e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.5;
+}
+
 /* multi form */
-/* * {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  height: 100%;
-}
-
-p {
-  color: grey;
-} */
-
-/* #heading {
-  text-transform: uppercase;
-  color: #673ab7;
-  font-weight: normal;
-} */
-
 #msform {
   text-align: center;
   position: relative;
@@ -199,26 +225,11 @@ p {
 
 .form-card {
   text-align: left;
+  width: 370px;
 }
 
 #msform fieldset:not(:first-of-type) {
   display: none;
-}
-
-#msform input,
-#msform textarea {
-  padding: 8px 15px 8px 15px;
-  border: 1px solid #ccc;
-  border-radius: 0px;
-  margin-bottom: 25px;
-  margin-top: 2px;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: montserrat;
-  color: #2c3e50;
-  background-color: #eceff1;
-  font-size: 16px;
-  letter-spacing: 1px;
 }
 
 #msform input:focus,
@@ -226,44 +237,76 @@ p {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid #673ab7;
+  border: 2px solid #8e54e9;
   outline-width: 0;
 }
 
 #msform .action-button {
-  width: 100px;
-  background: #673ab7;
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: 0px;
-  cursor: pointer;
-  padding: 10px 5px;
-  margin: 10px 0px 10px 5px;
-  float: right;
+  color: #fff;
+  font-weight: 500;
+  font-family: "Wemakeprice-Bold";
+  width: 370px;
+  height: 55px;
+  background: #5a95f5;
+  border-radius: 30px;
+  border: none;
+  margin-top: 6.5%;
 }
 
-#msform .action-button:hover,
-#msform .action-button:focus {
-  background-color: #311b92;
+.action-button-previous {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -37px;
+  left: -10%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: none;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  background: transparent;
 }
-
-#msform .action-button-previous {
-  width: 100px;
-  background: #616161;
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: 0px;
-  cursor: pointer;
-  padding: 10px 5px;
-  margin: 10px 5px 10px 0px;
-  float: right;
+.action-button-previous .arrow-wrap {
+  left: -50%;
 }
-
-#msform .action-button-previous:hover,
-#msform .action-button-previous:focus {
-  background-color: #000000;
+.action-button-previous:hover {
+  background: #5a95f5;
+}
+.action-button-previous:hover .arrow-wrap span {
+  background: #fff;
+}
+.action-button-previous .arrow-wrap {
+  display: block;
+  position: absolute;
+  height: 70%;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease;
+}
+.action-button-previous .arrow-wrap span {
+  height: 1px;
+  left: 0;
+  top: 50%;
+  background: #5a95f5;
+  position: absolute;
+  display: block;
+  transition: background 0.3s ease;
+}
+.action-button-previous .arrow-wrap .arrow-part-1 {
+  width: 100%;
+  transform: translate(0, -50%);
+}
+.action-button-previous .arrow-wrap .arrow-part-2 {
+  width: 60%;
+  transform: rotate(-45deg);
+  transform-origin: 0 0;
+}
+.action-button-previous .arrow-wrap .arrow-part-3 {
+  width: 60%;
+  transform: rotate(45deg);
+  transform-origin: 0 0;
 }
 
 .card {
@@ -273,57 +316,274 @@ p {
 }
 
 .fs-title {
-  font-size: 25px;
-  color: #673ab7;
-  margin-bottom: 15px;
-  font-weight: normal;
-  text-align: left;
+  font-size: 15px;
+  color: #444b59;
+  margin-top: 3%;
+  margin-bottom: 6px;
+  text-align: center;
+  width: 370px;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
 }
-
+/* 
 .purple-text {
   color: #673ab7;
   font-weight: normal;
-}
+} */
 
-.steps {
-  font-size: 25px;
-  color: gray;
-  margin-bottom: 10px;
-  font-weight: normal;
-  text-align: right;
-}
-
-.fieldlabels {
-  color: gray;
-  text-align: left;
-}
-
+/* 
 .fit-image {
   width: 100%;
   object-fit: cover;
-}
+} */
 
-/* 유형 */
+/* 페이지1 */
+
+/* 오각형 */
+/* #pentagon {
+  position: relative;
+  width: 54px;
+  box-sizing: content-box;
+  border-width: 50px 18px 0;
+  border-style: solid;
+  border-color: pink transparent;
+  background: linear-gradient(90deg, #4776e6 0%, #8e54e9 100%);
+}
+#pentagon:before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -85px;
+  left: -18px;
+  border-width: 0 45px 35px;
+  border-style: solid;
+  border-color: transparent transparent pink;
+} */
 .member-type {
-  margin-bottom: 3rem;
+  margin-bottom: 5%;
   display: flex;
+  flex-direction: column;
+  margin-top: 8%;
+  align-items: center;
 }
 .member-type__link {
+  text-decoration: none;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 10%);
+  border-radius: 0.5rem;
+  height: 100px;
+  width: 430px;
+  transition: 0.2s linear all;
+  padding: 10px 5px 10px 32px;
+  background: white !important;
+  border: none !important;
+}
+.member-type__link:hover {
+  transform: scale(1.05) translateY(-0.3rem) !important;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.personal {
+  background: #f5f9ff;
+  border: 1px solid #5a95f5;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+}
+
+.company {
+  background: #f5f9ff;
+  border: 1px solid #5a95f5;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+}
+
+/* .member-type__link:active {
+  background: #f5f9ff;
+  border: 1px solid #5a95f5;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+} */
+
+.type {
+  display: flex;
+  flex-direction: column;
+  padding: 6%;
+}
+.type-title {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 17px;
+  color: #000000;
+  font-weight: 500;
+  text-align: left;
+}
+
+.type-text {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  color: #8692a6;
+  font-weight: 300;
+  padding-top: 9px;
+}
+
+.far {
+  background: #4776e6;
+  background: -webkit-linear-gradient(left, #4776e6, #8e54e9);
+  background: -moz-linear-gradient(right, #4776e6, #8e54e9);
+  background: -o-linear-gradient(right, #4776e6, #8e54e9);
+  background: linear-gradient(to right, #4776e6, #8e54e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.5;
+}
+
+#company_name {
+  display: none;
+}
+
+.member_input {
+  visibility: hidden;
+}
+
+/* 페이지2 */
+
+.division {
+  float: none;
+  margin: 4% 0 2% 0;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 370px;
+}
+.division .line {
+  border-top: 1px solid #5a95f5;
+  position: absolute;
+  top: 10px;
+  width: 28%;
+}
+.division .line.l {
+  left: 22px;
+}
+.division .line.r {
+  right: 22px;
+}
+.division span {
+  color: #444b59;
+  font-size: 14px;
+}
+
+.social-image {
+  width: 75px;
+  padding: 13px 25px 13px 25px;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 9px 36px;
+  position: static;
+  width: 370px;
+}
+
+.social-login__link {
   text-decoration: none;
   font-size: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.12);
-  border-radius: 0.5rem;
-  height: 5.5rem;
-  width: 5.5rem;
-  transition: 0.2s linear all;
+  border: 2px solid #789ade;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
-.member-type__link:hover {
+.social-login__link:hover {
   transform: scale(1.05) translateY(-0.3rem);
-  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08);
 }
-.member-type__link:not(:last-child) {
-  margin-right: 1.5rem;
+
+.group .label {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #444b59;
+  font-size: 15px;
+  margin: 8px 0 10px 14px;
+  font-weight: 500;
+}
+
+.group {
+  margin-bottom: 8px;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 15px 20px;
+  border-radius: 30px;
+  color: #5a95f5;
+  width: 370px;
+  height: 44px;
+  border: solid 2px;
+}
+
+/* 3페이지 */
+/* profile image */
+#profile-upload {
+  background-image: url("");
+  background-size: cover;
+  background-position: center;
+  height: 118px;
+  width: 118px;
+  background-color: lightgrey;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+#profile-upload:hover input.upload {
+  display: block;
+}
+#profile-upload:hover {
+  border: 1px solid gray;
+}
+#profile-upload:hover .profile-img {
+  opacity: 1;
+}
+.profile-img {
+  opacity: 0.3;
+}
+
+#profile-upload input.upload {
+  z-index: 1;
+  left: 0;
+  margin: 0;
+  bottom: 0;
+  top: 0;
+  padding: 0;
+  opacity: 0;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+
+  width: 100%;
+  display: none;
+}
+
+.register-submit {
+  color: #fff;
+  font-weight: 500;
+  font-family: "Wemakeprice-Bold";
+  width: 370px;
+  height: 55px;
+  background: #5a95f5;
+  border-radius: 30px;
+  border: none;
+  margin-top: 6.5%;
 }
