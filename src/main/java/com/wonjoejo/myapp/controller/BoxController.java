@@ -54,6 +54,7 @@ public class BoxController {
         model.addAttribute("pageMaker", dto);
         model.addAttribute("cri", cri);
         model.addAttribute("result", box_no);
+        log.info("boxno: {}", box_no);
 
     } // getBoxList
 
@@ -216,7 +217,7 @@ public class BoxController {
         log.info("\t +Permission Result:{}", result3);
 
 //        rttrs.addAttribute("result", result3);
-        rttrs.addFlashAttribute("result", boxVO.getBox_no().toString());
+        rttrs.addAttribute("result", boxVO.getBox_no().toString());
         rttrs.addAttribute("member_id", box.getMember_id());
 
 
