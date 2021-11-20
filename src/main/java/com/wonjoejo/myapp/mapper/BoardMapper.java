@@ -2,6 +2,8 @@ package com.wonjoejo.myapp.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
 
@@ -66,4 +68,6 @@ public interface BoardMapper {
 	
 	//총 게시물 개수를 반환 
 	public abstract Integer getSearchCount(Criteria cri);
+	
+	public abstract BoardVO replyread(@Param("ref") Integer ref, @Param("member_id") String member_id);
 }//end interface

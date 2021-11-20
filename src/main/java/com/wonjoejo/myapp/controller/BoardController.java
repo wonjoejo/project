@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.wonjoejo.myapp.domain.BoardDTO;
 import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.domain.PageDTO;
 import com.wonjoejo.myapp.service.BoardService;
 
@@ -95,6 +94,43 @@ public class BoardController {
 		
 		model.addAttribute("member_id",member_id);
 		model.addAttribute("board", board);
+    }
+    
+  //답글 상세조회 화면 요청 
+    @GetMapping("/replydetail")
+    public String replydetail(@ModelAttribute("cri") Criteria cri,@ModelAttribute("ref") String ref, Model model, HttpServletRequest req, RedirectAttributes rttrs) {
+    	
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	
+    	log.info("loginId========: {}", member_id);
+    	
+    	log.debug("detail({},{},{}) invoked.",cri,ref,model);
+    
+    	BoardVO board = this.service.replydetail(Integer.parseInt(ref),member_id);
+		log.info("\t+ board: {}",board);
+		
+		if(!member_id.equals(board.getMember_id())) {
+			rttrs.addAttribute("member_id",member_id);
+			
+			
+			//return "redirect:/board/listPerPage";
+			
+			model.addAttribute("msg", "메시지"); 
+			model.addAttribute("url", "saveok.jsp"); 
+
+			return "redirect"; 
+
+
+			
+		} else {
+			model.addAttribute("member_id",member_id);
+			model.addAttribute("board", board);
+			
+			return "/board/replydetail";
+		}
+			
     }
     
     //게시물 삭제 
@@ -237,7 +273,7 @@ public class BoardController {
 				board.getContent(),
 				1,
 				null,
-				null,null,null
+				board.getRef(),null,null
 		);
 		log.info("Board VO {}", vo);
 		
@@ -369,30 +405,33 @@ public class BoardController {
  	}//replylist
 	
 	// 검색 목록화면 요청 
-	 	@GetMapping("/searchlist")
-	 	public String searchList(
-	 			@ModelAttribute("cri") Criteria cri, 
-	 			Model model) {	
-	 		log.debug("searchList({}) invoked.",model);
-	 		
-	 		List<BoardVO> searchList = this.service.getsearchPage(cri);
-	 		log.info("\t+ list size:{}",searchList.size());
-	 		
-	 		model.addAttribute("searchList",searchList);
-	 		
-	 		
-	 		//--------------------------------------------//
-	 		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
-	 		//--------------------------------------------//
-	 		Integer totalAmount = this.service.getsearchTotal(cri);
-	 		
-	 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
-	 		
-	 		model.addAttribute("pageMaker",pageDTO);
-	 		
-	 		//list.jsp 그대로 사용 
-	 		return "/board/searchlist";
-	 	}//searchList
-	 	
-	 	
+		@GetMapping("/searchlist")
+		public String searchList(@ModelAttribute("cri") Criteria cri,Model model) {
+			log.debug("searchList({}) invoked.", model);
+			String keyword = cri.getKeyword();
+			log.info("\t + keyword: {}", keyword);
+
+			cri.setKeyword(keyword.replace(" ", ""));
+			log.info("\t + cri.keyword: {}", cri.getKeyword());
+
+
+			List<BoardVO> searchList = this.service.getsearchPage(cri);
+			log.info("\t+ list size:{}", searchList.size());
+
+			model.addAttribute("searchList", searchList);
+
+
+			//--------------------------------------------//
+			//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다
+			//--------------------------------------------//
+			Integer totalAmount = this.service.getsearchTotal(cri);
+
+			PageDTO pageDTO = new PageDTO(cri, totalAmount);
+
+			model.addAttribute("pageMaker", pageDTO);
+
+			//list.jsp 그대로 사용
+			return "/board/searchlist";
+		}//searchList
+		 	
 }//end class

@@ -37,8 +37,7 @@
 			</div><!-- detailtop -->
 			
 			<div id="detailcontent" >
-				<form action="/board/edit" method="post">
-					<input type="hidden" name="board_idx" value="${board.board_idx}" />
+				<form action="/board/replydetail" method="post">
 			
 					<div class="detailwrapper">
 						<div class="detailtitle">

@@ -47,6 +47,8 @@ public class BoardServiceImpl
 		
 		return board;
 	}//detail
+	
+	
  
 	
 	//기존 게시물 삭제 
@@ -230,6 +232,18 @@ public class BoardServiceImpl
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
 		
+	}
+
+
+	@Override
+	public BoardVO replydetail(Integer ref, String member_id) {
+		
+		log.debug("ref({}) invoked.", ref);
+		
+		BoardVO board = this.mapper.replyread(ref,member_id);
+		log.info("\t+ board: {}", board);
+		
+		return board;
 	}//afterPropertiesSet
 
 

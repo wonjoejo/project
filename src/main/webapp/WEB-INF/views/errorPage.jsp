@@ -12,9 +12,9 @@
 <body>
 
 <div id="wrap">
-	<img id="errorimg" src="${pageContext.request.contextPath}/resources/assets/img/error.png">
+	<img id="errorimg" src="${pageContext.request.contextPath}/resources/assets/img/error2.png">
 	
-	<h1>Awww...Don't Cry.</h1>
+	<h1>Oops!</h1>
 	<p>잠시 시스템에 문제가 발생했습니다. 잠시 후에 다시 시도하여 주세요.</p>
 	<h5>exception: ${exception}</h5>
 </div>
