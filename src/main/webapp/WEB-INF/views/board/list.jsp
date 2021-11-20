@@ -103,22 +103,30 @@
 									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
 								
+								
 								<c:choose>
-									<c:when test="${member_id == board.member_id}">
-										<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+									<c:when test="${member_id != null}">
+										<c:choose>
+											<c:when test="${member_id == board.member_id}">
+												<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+											</c:when>
+											
+											<c:when test="${member_id == 'admin'}">
+												<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+											</c:when>
+											
+											<c:when test="${member_id != 'admin'}">
+												<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+											</c:when>
+											
+											<c:otherwise>
+		                                         <a href="#" id="detailcheck">
+		                                     </c:otherwise>		
+										</c:choose> 
 									</c:when>
-									
-									<c:when test="${member_id == 'admin'}">
-										<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-									</c:when>
-									
-									<c:when test="${member_id != 'admin'}">
-										<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-									</c:when>
-									
-									<c:otherwise>
-                                         <a href="#" id="detailcheck">
-                                     </c:otherwise>		
+									<c:otherwise>    
+										<a href="#" id="detailcheck">
+                                     </c:otherwise>	
 								</c:choose> 
 								
 								<c:out value="${board.title}" />
@@ -126,6 +134,7 @@
 							</div>					
 							<div class="item">
 								<c:out value="${board.member_id}" />
+								
 							</div>						
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
