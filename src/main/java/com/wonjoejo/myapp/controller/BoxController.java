@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,7 +36,7 @@ public class BoxController {
     private GroupService groupService;
 
     @GetMapping("/list")
-    public void list(Model model, Criteria cri, HttpSession session) {
+    public void list(Model model, Criteria cri, HttpSession session, @RequestParam(value = "result", required = false, defaultValue = "") String box_no) {
 
         log.debug("list({},{}) invoked.", model, cri);
 
@@ -52,6 +53,7 @@ public class BoxController {
         PageDTO dto = new PageDTO(cri, totalAmount);
         model.addAttribute("pageMaker", dto);
         model.addAttribute("cri", cri);
+        model.addAttribute("result", box_no);
 
     } // getBoxList
 
@@ -213,7 +215,8 @@ public class BoxController {
         boolean result3 = this.service.grantMasterPermission(permissionVo);
         log.info("\t +Permission Result:{}", result3);
 
-//		rttrs.addAttribute("result",result);
+//        rttrs.addAttribute("result", result3);
+        rttrs.addFlashAttribute("result", boxVO.getBox_no().toString());
         rttrs.addAttribute("member_id", box.getMember_id());
 
 
@@ -296,7 +299,7 @@ public class BoxController {
         log.info("\t +result: {}", result);
         rttrs.addAttribute("\t+ result: {}", result);
 
-        return "/box/list";
+        return "redirect:/box/list";
     } // delete
 
     @GetMapping("/createview")

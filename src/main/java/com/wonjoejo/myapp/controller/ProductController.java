@@ -88,7 +88,8 @@ public class ProductController {
 
         CellStyle style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER);
-        style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
+        style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.index);
+        style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.index);
 
 
         List<ProductCategoryVO> list = this.service.getProductList(box_no);
@@ -121,6 +122,7 @@ public class ProductController {
 
         for (int i = 0; i < listNo.size(); i++) {
             cell = row.createCell(i);
+            cell.setCellStyle(style);
             cell.setCellValue(valueList.get(listNo.get(i)));
         }
 
