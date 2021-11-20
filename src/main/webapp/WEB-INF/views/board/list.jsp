@@ -19,9 +19,9 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=40">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=70">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
-
+	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 <body>
 
@@ -38,7 +38,7 @@
 				 
 				 <form id="searchForm" action="/board/searchlist" method='get'>
 		
-			        <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 			        
 			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
 			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
@@ -53,7 +53,7 @@
 				<h2 class="notice">공지사항</h2>
 				<div id="notice">
 				
-					<c:forEach items="${noticeList}" var="board">
+					<c:forEach items="${noticeList}" var="board" begin="0" end="2">
 						<div class="noticelist">   
 											
 							<div class="item">
@@ -97,7 +97,8 @@
 								<c:out value="${board.board_idx}" />
 							</div>	
 							
-							<div class="item">
+							<div class="item titleitem">
+								<a>
 								<c:if test="${board.depth > 0}">
 									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
@@ -111,10 +112,14 @@
 										<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
 									</c:when>
 									
+									<c:when test="${member_id != 'admin'}">
+										<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+									</c:when>
+									
 									<c:otherwise>
-                                         <a href="#" ></a>
+                                         <a href="#" id="detailcheck">
                                      </c:otherwise>		
-								</c:choose>
+								</c:choose> 
 								
 								<c:out value="${board.title}" />
 								</a>
@@ -169,6 +174,8 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=7"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=30"></script>
 
 </html>

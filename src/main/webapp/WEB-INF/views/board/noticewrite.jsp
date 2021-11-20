@@ -38,6 +38,7 @@
 			
 			
 			<form id="noticeForm" action="/board/noticewrite" method="post">
+				<input type="hidden" name="ref" value="${param.ref}" />
 		        <div class="write_wrapper">
 		        	<div>
 		        		<h3 class="write_title">글 쓰기</h3>   

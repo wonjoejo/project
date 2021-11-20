@@ -29,7 +29,6 @@ public class Criteria {
 	
 	
 	//검색 추가 내용 
-//	private String type;
 	private String keyword;
 	
 	public Criteria() {	}
@@ -39,12 +38,7 @@ public class Criteria {
 		this.amount = amount;
 		this.pagesPerPage = pagesPerPage;
 		this.keyword = keyword;
+		
 	}
-
-//	public String[] getTypeArr() {
-//		return type == null? new String[] {}: type.split("");
-//	}
-	
-	
 	
 }//end class 

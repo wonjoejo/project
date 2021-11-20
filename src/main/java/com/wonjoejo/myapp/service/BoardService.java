@@ -2,6 +2,8 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
 
@@ -60,5 +62,7 @@ public interface BoardService {
     
     //검색 총 레코드 개수 반환 
     public abstract Integer getsearchTotal(Criteria cri);
+
+	public abstract BoardVO replydetail(@Param("ref") Integer ref, @Param("member_id")String member_id);
 
 }//end interface

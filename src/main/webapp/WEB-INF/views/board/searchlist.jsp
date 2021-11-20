@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <html>
 <head>
 	<title>Q&ABoardList</title>
@@ -19,9 +20,9 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=50">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=60">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
-
+	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 <body>
 
@@ -37,7 +38,7 @@
 				
 			    <form id="searchForm" action="/board/searchlist" method='get'>
 		
-			        <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 			        
 			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
 			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
@@ -53,7 +54,7 @@
 
 				<div id="boardtitlenone" class="boardlistcontainer">
 					<div class="item">No</div>
-					<div class="item">Title</div>
+					<div class="item titleitem">Title</div>
 					<div class="item">written by</div>
 					<div class="item">Register date</div> 
 				</div>
@@ -68,7 +69,7 @@
 								<c:out value="${board.board_idx}" />
 							</div>	
 							
-							<div class="item">
+							<div class="item titleitem"> 
 								<c:if test="${board.depth > 0}">
 									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
@@ -126,6 +127,8 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=7"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=40"></script>
 
 </html>

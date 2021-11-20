@@ -39,6 +39,8 @@
 			
 			<form action="/board/replywrite" method="post">
 				<input type="hidden" name="ref" value="${param.ref}" />
+				
+				<c:out value="${board.member_id}" />
 		        <div class="write_wrapper">
 		        	<div>
 		        		<h3 class="write_title">답글 쓰기</h3>

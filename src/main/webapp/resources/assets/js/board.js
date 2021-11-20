@@ -1,4 +1,4 @@
-	
+
 	let searchForm = $("#searchForm");
 	
 	$("#searchForm button").on("click", function(e) {
@@ -8,7 +8,10 @@
 	}
 	     */                    
 	if(!searchForm.find("input[name='keyword']").val()) {
-	     alert("키워드를 입력하세요");
+	    Swal.fire({ icon: 'warning', 
+       			   //title: 'Alert가 실행되었습니다.', 
+       			   text: '키워드를 입력하세요.', 
+       });
 	     return false;
 	}
 	                        
@@ -21,6 +24,14 @@
   $(function () {
         console.clear();
         console.log('JQuery stared...');
+  	
+  	$('#detailcheck' ).click(function () {
+       Swal.fire({ icon: 'info', 
+       			   //title: 'Alert가 실행되었습니다.', 
+       			   text: '본인이 작성한 글만 확인이 가능합니다.', 
+       });
+
+    }); //onclick
   
     //notice 더보기 버튼 
     $('#addBtn').click(function () {
