@@ -28,7 +28,7 @@
   	$('#detailcheck' ).click(function () {
        Swal.fire({ icon: 'info', 
        			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '본인이 작성한 글만 확인이 가능합니다.', 
+       			   text: '본인이 작성한 글만 확인이 가능합니다.' 
        });
 
     }); //onclick
