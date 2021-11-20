@@ -119,14 +119,7 @@ public class BoardController {
 			rttrs.addAttribute("member_id",member_id);
 			
 			
-			//return "redirect:/board/listPerPage";
-			
-			model.addAttribute("msg", "메시지"); 
-			model.addAttribute("url", "saveok.jsp"); 
-
-			return "redirect"; 
-
-
+			return "redirect:/board/listPerPage";
 			
 		} else {
 			model.addAttribute("member_id",member_id);
