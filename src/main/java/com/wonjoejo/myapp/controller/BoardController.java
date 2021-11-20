@@ -20,10 +20,14 @@ import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.PageDTO;
 import com.wonjoejo.myapp.service.BoardService;
-
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Log4j2
@@ -403,8 +407,9 @@ public class BoardController {
  		//list.jsp 그대로 사용 
  		return "/board/list";
  	}//replylist
-	
+
 	// 검색 목록화면 요청 
+
 		@GetMapping("/searchlist")
 		public String searchList(@ModelAttribute("cri") Criteria cri,Model model) {
 			log.debug("searchList({}) invoked.", model);
@@ -433,5 +438,5 @@ public class BoardController {
 			//list.jsp 그대로 사용
 			return "/board/searchlist";
 		}//searchList
-		 	
+
 }//end class
