@@ -46,8 +46,9 @@
 			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 			     </form>
 				
-						
-				<button id="writeBtn" type="button"> + 공지작성</button>
+				<c:if test="${member_id == 'admin'}">		
+					<button id="writeBtn" type="button"> + 공지작성</button>
+				</c:if>
 			</div>
 			
 			<div class="noticewrapper noticemainlist" >

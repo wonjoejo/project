@@ -45,7 +45,7 @@
 		        		   
 		        	</div>
 		        	<div>
-		            	<input class="writeid" type="text" name="member_id" value="MEMBERid99"/>
+		            	<input class="writeid" type="text" name="member_id" value="${member_id}"/>
 		            </div> 
 		        	
 		        	<div>
