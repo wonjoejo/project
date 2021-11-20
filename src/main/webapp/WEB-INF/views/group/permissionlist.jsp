@@ -48,6 +48,11 @@
 				.type2::-webkit-scrollbar-track {
 					background-color: rgba(142, 200, 248, 0.288);
 				}
+				
+				.but {
+					display: flex;
+					justify-content: flex-end;
+				}
 			</style>
 
 			<head>
@@ -65,9 +70,13 @@
 
 				<!-- font awesome -->
 				<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
-
+				
+				<!-- sweet alert -->
+				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+				<link rel="stylesheet" href="sweetalert2.min.css">
+					
 				<!-- stylesheets -->
-				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=1">
+				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=4">
 			</head>
 
 			<body>
@@ -78,17 +87,16 @@
 					<div class="main-container">
 						<div class="name">
 							<h1>권한 리스트</h1>
-						</div>
 
-						<div class="buttons">
+							<div class="but">
 
 							<c:if test="${isMaster==true}">
 								<!-- 임시  --> 
-								<input class="submit-btn hvr-float" id="grouppermission" type="button" value="권한 설정">
+									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
 							 </c:if> 
-									<input class="submit-btn hvr-float" type="button" value="그룹 초대">
-									<button class="submit-btn hvr-float" type="button" onclick="alert('정말?')">그룹
-										탈퇴</button>
+									<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
+									<button class="submit-btn hvr-float" type="button" onclick="alert('정말?')">그룹탈퇴</button>
+							</div>
 						</div>
 
 						<div class="group-wrapper2">
@@ -200,7 +208,11 @@
 						location.href = "${pageContext.request.contextPath}/group/permissiongroup?box_no=${box_no}";
 
 					})
-
+					
+					$("#groupcode").click(function(){
+							Swal.fire('초대 번호 "${box_no}" 입니다.')							
+					})
+					
 				})
 
 
