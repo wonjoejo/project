@@ -16,7 +16,6 @@
     <select id="selectProductList" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
         <![CDATA[
         SELECT
-            /*+ index_desc(PRODUCT) */
             PRODUCT.PRODUCT_NO,
             BASE_CATEGORY.BOX_NO,
             PRODUCT_NAME,
@@ -43,6 +42,7 @@
         WHERE PRODUCT.BOX_NO = #{box_no}
           AND CATEGORY.CATEGORY_NO = BASE_CATEGORY.CATEGORY_NO
           AND PRODUCT.PRODUCT_NO = CATEGORY.PRODUCT_NO
+        ORDER BY PRODUCT.PRODUCT_NO DESC
         ]]>
     </select>
 
