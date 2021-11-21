@@ -3,64 +3,17 @@
 		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 			<%@ page session="false" %>
 
-				<!DOCTYPE html>
 				<html>
-<style>
-				#per {
-					width: 25%;
-				}
-
-				#pertable {
-					text-align: center;
-					width: 100%;
-					margin: 1%;
-					border-collapse: separate;
-					border-spacing: 0 10px;
-				}
+				<style>
+					.but {
+						display: flex;
+						justify-content: flex-end;
+					}
+				</style>
 
 
-				table td {
-					width: 100px;
-				}
-
-				#profile_img {
-					width: 65%;
-				}
-
-				.scroll {
-					overflow-y: auto;
-					overflow-x: hidden;
-					width: 100%;
-					height: 350px;
-				}
-
-				/* 스크롤바 설정*/
-				.type2::-webkit-scrollbar {
-					width: 8px;
-				}
-
-				/* 스크롤바 막대 설정*/
-				.type2::-webkit-scrollbar-thumb {
-					height: 17%;
-					background-color: rgb(72, 75, 218);
-					border-radius: 10px;
-				}
-
-				/* 스크롤바 뒷 배경 설정*/
-				.type2::-webkit-scrollbar-track {
-					background-color: rgba(142, 200, 248, 0.288);
-				}
-				
-				.but {
-					display: flex;
-					justify-content: flex-end;
-				}
-			</style>
-
-
-
-				<head>
-					<title>GroupList</title>
+			<head>
+				<title>GroupList</title>
 
 				<!-- favicon -->
 				<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
@@ -81,7 +34,8 @@
 					
 				<!-- stylesheets -->
 				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=4">
-					</head>
+			</head>
+
 
 				<body>
 
@@ -114,7 +68,10 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
+
+
 				</body>
 
 			
