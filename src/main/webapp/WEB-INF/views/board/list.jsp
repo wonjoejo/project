@@ -46,7 +46,9 @@
 			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 			     </form>
 				
-				<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
+				<c:if test="${member_id != null}">
+					<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
+				</c:if>
 			</div> 	
 			
 			<div class="noticewrapper" >
@@ -103,32 +105,16 @@
 									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
 								
+								<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+									
+								<c:if test="${member_id == 'admin'}">
+									<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+								</c:if>
 								
-								<c:choose>
-									<c:when test="${member_id != null}">
-										<c:choose>
-											<c:when test="${member_id == board.member_id}">
-												<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-											</c:when>
-											
-											<c:when test="${member_id == 'admin'}">
-												<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-											</c:when>
-											
-											<c:when test="${member_id != 'admin'}">
-												<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-											</c:when>
-											
-											<c:otherwise>
-		                                         <a href="#" id="detailcheck">
-		                                     </c:otherwise>		
-										</c:choose> 
-									</c:when>
-									<c:otherwise>    
-										<a href="#" id="detailcheck">
-                                     </c:otherwise>	
-								</c:choose> 
-								
+								<c:if test="${member_id == null}">
+									<a href="#" class="gojoinpage">
+								</c:if>
+									
 								<c:out value="${board.title}" />
 								</a>
 							</div>					
@@ -185,6 +171,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=30"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=40"></script>
+
+<script>
+	const result = '${result}';
+	if (result !== '') {
+		console.log("???");
+		alert("되나????" + result);
+	} else {
+		console.log("else문 탐");
+	}
+	
+</script>
 
 </html>

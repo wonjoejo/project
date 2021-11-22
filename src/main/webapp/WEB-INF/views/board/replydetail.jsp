@@ -19,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=70">
  
 </head>
 <body>
@@ -66,8 +66,12 @@
 								<button id="replyWriteBtn" type="button">답글작성</button>
 							</c:if>
 						</c:if>
-						<button type="button" id="editBtn">수정</button>
-		                <button type="button" id="deleteBtn">삭제</button>
+						<c:if test="${member_id == board.member_id}">
+							<button type="button" id="editBtn">수정</button>
+			                <button type="button" id="replydeleteBtn">삭제</button>
+			            </c:if>
+		                <input type="hidden" name="board_idx" value="${board.board_idx}" >
+		                 <input type="hidden" name="ref" value="${board.ref}" >
 					</div>	
 				</form>	
 				
@@ -76,12 +80,14 @@
 	</div><!-- main-container -->
 </div><!-- container -->
 
-</body>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</body>
 
+	
 	<script>
       $(function () {
         console.clear();
@@ -107,7 +113,7 @@
 
           self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
         }); //onclick */
-    
+        
       }); //.jq
     </script> 
 </html>

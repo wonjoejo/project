@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,45 +42,46 @@ public class BoardController {
     private BoardService service;
 
     // 페이징 처리된 게시판 목록화면 요청 
- 	@GetMapping("/listPerPage")
- 	public String listPerPage(
- 			@ModelAttribute("cri") Criteria cri, 
- 			Model model, HttpServletRequest req) {	
- 		
- 		HttpSession session = req.getSession();
-    	
-    	String member_id = (String)session.getAttribute("member_id");
-    	
-    	log.info("loginId========: {}", member_id);
- 		
- 		log.debug("listPerPage({}) invoked.",model);
- 		
- 		//비지니스 로직 처리 결과 데이터 --> Model 이라고 부른다.
- 		List<BoardVO> list = this.service.getListPerPage(cri);
- 		log.info("\t+ list size:{}",list.size());
- 		
- 		model.addAttribute("member_id",member_id);
- 		model.addAttribute("list",list);
- 		
- 		List<BoardVO> noticeList = this.service.getnoticeList(cri);
- 		log.info("\t+ list size:{}",list.size());
- 		
- 		model.addAttribute("noticeList",noticeList);
- 		
- 		
- 		//--------------------------------------------//
- 		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
- 		//--------------------------------------------//
- 		Integer totalAmount = this.service.getTotal();
- 		
- 		
- 		PageDTO pageDTO = new PageDTO(cri,totalAmount);
- 		
- 		model.addAttribute("pageMaker",pageDTO);
- 		
- 		//list.jsp 그대로 사용 
- 		return "/board/list";
- 	}//listPerPage
+ // 페이징 처리된 게시판 목록화면 요청 
+  	@GetMapping("/listPerPage")
+  	public String listPerPage(
+  			@ModelAttribute("cri") Criteria cri, 
+  			Model model, HttpServletRequest req) {	
+  		
+  		HttpSession session = req.getSession();
+     	
+     	String member_id = (String)session.getAttribute("member_id");
+     	
+     	log.info("loginId========: {}", member_id);
+  		
+  		log.debug("listPerPage({}) invoked.",model);
+  		
+  		//비지니스 로직 처리 결과 데이터 --> Model 이라고 부른다.
+  		List<BoardVO> list = this.service.getListPerPage(cri);
+  		log.info("\t+ list size:{}",list.size());
+  		
+  		model.addAttribute("member_id",member_id);
+  		model.addAttribute("list",list);
+  		
+  		List<BoardVO> noticeList = this.service.getnoticeList(cri);
+  		log.info("\t+ list size:{}",list.size());
+  		
+  		model.addAttribute("noticeList",noticeList);
+  		
+  		
+  		//--------------------------------------------//
+  		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
+  		//--------------------------------------------//
+  		Integer totalAmount = this.service.getTotal();
+  		
+  		
+  		PageDTO pageDTO = new PageDTO(cri,totalAmount);
+  		
+  		model.addAttribute("pageMaker",pageDTO);
+  		
+  		//list.jsp 그대로 사용 
+  		return "/board/list";
+  	}//listPerPage
     
     //특정 게시물 상세조회 화면 요청 
     @GetMapping({"/detail","/edit"})
@@ -102,7 +104,7 @@ public class BoardController {
     
   //답글 상세조회 화면 요청 
     @GetMapping("/replydetail")
-    public String replydetail(@ModelAttribute("cri") Criteria cri,@ModelAttribute("ref") String ref, Model model, HttpServletRequest req, RedirectAttributes rttrs) {
+    public String replydetail(@ModelAttribute("cri") Criteria cri, Integer board_idx ,@ModelAttribute("ref") String ref, Model model, HttpServletRequest req, RedirectAttributes rttrs) {
     	
     	HttpSession session = req.getSession();
     	
@@ -112,15 +114,24 @@ public class BoardController {
     	
     	log.debug("detail({},{},{}) invoked.",cri,ref,model);
     
-    	BoardVO board = this.service.replydetail(Integer.parseInt(ref),member_id);
+    	
+    	BoardVO board = this.service.replydetail(board_idx,Integer.parseInt(ref),member_id);
 		log.info("\t+ board: {}",board);
 		
 		if(!member_id.equals(board.getMember_id())) {
 			rttrs.addAttribute("member_id",member_id);
+					
+			return "response.setContentType(\"text/html; charset=UTF-8\");\n"
+					+ "            PrintWriter out = response.getWriter();\n"
+					+ "            out.println(\"<script>alert('본인 글만 확인이 가능합니다.'); history.go(-1);</script>\");\n"
+					+ "            out.flush();\n"
+					+ "\n"
+					+ "\n"
+					;
 			
+			//return "redirect:/board/listPerPage";	
 			
-			return "redirect:/board/listPerPage";
-			
+
 		} else {
 			model.addAttribute("member_id",member_id);
 			model.addAttribute("board", board);
@@ -132,13 +143,15 @@ public class BoardController {
     
     //게시물 삭제 
     @PostMapping("/delete")
-    public String delete(@RequestParam("board_idx") Integer board_idx, 
+    public String delete(@ModelAttribute("board_idx") Integer board_idx, 
 			RedirectAttributes rttrs)  
 	{
 		log.debug("delete({}) invoked.",board_idx);
 		
 		boolean result = this.service.delete(board_idx);
 		rttrs.addAttribute("result",result);
+		
+		
 		
 		return "redirect:/board/listPerPage";		
 	}//delete
@@ -431,5 +444,18 @@ public class BoardController {
 			//list.jsp 그대로 사용
 			return "/board/searchlist";
 		}//searchList
+		
+		 //게시물 본글 답글 삭제 
+	    @PostMapping("/alldelete")
+	    public String alldelete(@RequestParam("board_idx") Integer board_idx,@ModelAttribute("ref") Integer ref, 
+				RedirectAttributes rttrs)  
+		{
+			log.debug("delete({},{}) invoked.",board_idx,ref);
+			
+			boolean result = this.service.alldelete(board_idx,ref);
+			rttrs.addAttribute("result",result);
+			
+			return "redirect:/board/listPerPage";		
+		}//delete
 
 }//end class

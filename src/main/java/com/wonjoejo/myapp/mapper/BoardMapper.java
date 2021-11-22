@@ -69,5 +69,9 @@ public interface BoardMapper {
 	//총 게시물 개수를 반환 
 	public abstract Integer getSearchCount(Criteria cri);
 	
-	public abstract BoardVO replyread(@Param("ref") Integer ref, @Param("member_id") String member_id);
+	//본인 답글 상세보기 
+	public abstract BoardVO replyread(Integer board_idx,@Param("ref") Integer ref, @Param("member_id") String member_id);
+
+	//답글 본글 삭제 
+	public abstract Integer alldelete(Integer board_idx,Integer ref);
 }//end interface

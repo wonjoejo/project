@@ -67,8 +67,10 @@
 								<button id="replyWriteBtn" type="button">답글작성</button>
 							</c:if>
 						</c:if>
-						<button type="button" id="editBtn">수정</button>
-		                <button type="button" id="deleteBtn">삭제</button>
+						<c:if test="${member_id == board.member_id}">	
+							<button type="button" id="editBtn">수정</button>
+			                <button type="button" id="deleteBtn">삭제</button>
+			            </c:if>
 					</div>	
 				</form>	
 				
