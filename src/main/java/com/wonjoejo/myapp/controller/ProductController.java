@@ -361,7 +361,7 @@ public class ProductController {
         	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
             productVO = new ProductVO(
-                    null,
+            		product.getProduct_no(),
                     product.getBox_no(),
                     product.getProduct_name(),
                     product.getProduct_memo(),
@@ -378,7 +378,7 @@ public class ProductController {
             
         } else {
             productVO = new ProductVO(
-                    null,
+            		product.getProduct_no(),
                     product.getBox_no(),
                     product.getProduct_name(),
                     product.getProduct_memo(),

@@ -37,11 +37,14 @@
             <div class="wrapper">
                 <div class="hamburger">
                     <ul class="menu__list">
-                        <li class="menu__list__item"><a
-                                href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}"><i
-                                class="fas fa-pencil-alt i-style"></i></a></li>
-                        <li class="menu__list__item"><a href="#"><i class="fas fa-trash-alt i-style"></i></a></li>
-                        <li class="menu__list__item"><a href="#"><i class="far fa-list-alt i-style"></i></a></li>
+                        <li class="menu__list__item">
+                            <a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}">
+                            <i class="fas fa-pencil-alt i-style"></i></a></li>
+                        <li class="menu__list__item">
+                            <i class="fas fa-trash-alt i-style" id="delete-btn"></i></a></li>
+                        <li class="menu__list__item">
+                            <a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
+                            <i class="far fa-list-alt i-style"></i></a></li>
                     </ul>
                 </div>
                 <div class="button" id="nav-icon4">
@@ -162,7 +165,7 @@
                     </c:if>
                     <li>
                         <div class="title">메모</div>
-                        <div class="detail">
+                        <div class="detail" id="detail-memo">
                             ${product.product_memo}
                             <span class="more">
                                     <a href="#" id="more">더보기</a>
@@ -265,5 +268,7 @@
             ],
         })
     }
-</script>
+
+    </script>
+
 </html>
