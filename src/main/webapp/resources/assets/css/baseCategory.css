@@ -118,6 +118,12 @@
 }
 
 .edit-btn {
+    display: inline-block;
+    margin-right: 2%;
+}
+
+.no-name-edit-btn{
+    display: none;
     margin-right: 2%;
 }
 
@@ -144,19 +150,29 @@
     letter-spacing: 1px;
 }
 
-.add-btn {
+.no-name-add-btn {
     display: inline-block;
     margin-left: 40%;
 }
 
-.modify-btn {
+.add-btn {
+    display: none;
+    margin-left: 40%;
+}
+
+.modify-btn , .no-name-modify-btn {
     display: none;
     background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
     border: none;
     color: white;
 }
 
-.modify-cancel-btn , .modify-cancel-btn2 {
+.no-name-del-btn {
+    display: none;
+}
+
+
+.modify-cancel-btn , .no-name-modify-cancel-btn {
     display: none;
     background-color: #ADADAD;
     border: none;
@@ -164,7 +180,7 @@
 
 }
 
-.modify-cancel-btn:hover , .modify-cancel-btn2:hover {
+.modify-cancel-btn:hover , .no-name-modify-cancel-btn2:hover {
     display: none;
     background-color: #ADADAD;
     border: none;

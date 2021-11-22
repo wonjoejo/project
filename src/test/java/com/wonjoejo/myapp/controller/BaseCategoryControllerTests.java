@@ -54,7 +54,7 @@ public class BaseCategoryControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.get("/category/detail");
 
-        reqBuilder.param("box_no" , "1331");
+        reqBuilder.param("box_no" , "1339");
 
         String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
 
@@ -80,9 +80,29 @@ public class BaseCategoryControllerTests {
 
         String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
         log.info("\t+ viewName: {} ", viewName);
-
-
     } // testEdit
+
+    @Test
+    public void testDelete() throws Exception {
+        log.debug("testDelete() invoked.");
+
+        MockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(ctx);
+        MockMvc mockMvc = builder.build();
+        MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/category/delete");
+
+        reqBuilder.param("category_no", "95924");
+        reqBuilder.param("cate_name5", "");
+
+        reqBuilder.param("box_no", "1339");
+
+        reqBuilder.param("category_no","95924");
+        reqBuilder.param("cate_detail5","");
+
+
+        String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();
+        log.info("\t+ viewName: {} ", viewName);
+
+    } // testDelete
 
 
 
