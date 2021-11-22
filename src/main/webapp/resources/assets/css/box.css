@@ -429,56 +429,56 @@ select {
 	font-size: 1.2rem;
 }
 
+
 /* box detail page */
 
 .list-wrapper {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
+	height: 90%;
 }
 
 .box-info-container {
-	width: 90%;
-	height: 50%;
-	margin-bottom: 20px;
-	color: #4E4E4E;
-	cursor: pointer;
-
 	background: #FFFFFF;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	border-radius: 50px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	color: #4E4E4E;
 
-	font-family: 'NEXON Lv1 Gothic OTF',sans-serif;
+	font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+	height: 35%;
+	margin-bottom: 20px;
+
 	padding-left: 40px;
+	/*width: 90%;*/
 }
 
 .box-information {
 
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
+	/*align-content: center;*/
+	/*align-items: center;*/
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*justify-content: flex-start;*/
+	overflow: hidden;
 
 }
 
 .product-list {
-	padding: 30px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: flex-start;
-	width: 90%;
-	height: 70%;
-	color: #4E4E4E;
-	cursor: pointer;
-
 	background: #FFFFFF;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	border-radius: 50px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	color: #4E4E4E;
+	/*width: 90%;*/
+	/*display: flex;*/
+	/*flex-direction: column;*/
 
-	font-family: 'NEXON Lv1 Gothic OTF',sans-serif;
+	font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+	height: 50%;
+	/*justify-content: center;*/
+
+	padding: 30px;
 }
 
 .box-img {
@@ -496,8 +496,8 @@ select {
 }
 
 .box-memo {
-	display: flex;
-	flex-direction: column;
+	/*display: flex;*/
+	/*flex-direction: column;*/
 }
 
 .memo {
@@ -506,14 +506,14 @@ select {
 	background: #FBFBFB;
 	/* Dark / Variant * 200 */
 
-	width: 20vw;
-	height:10vw;
-
 	border: 1px solid #D6E4EC;
-	box-sizing: border-box;
 	border-radius: 8px;
 
+	box-sizing: border-box;
+	height: 10vw;
 	padding: 10px;
+
+	/*width: 25vw;*/
 }
 
 .buttons > button {

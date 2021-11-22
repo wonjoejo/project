@@ -1,6 +1,9 @@
 package com.wonjoejo.myapp.mapper;
 
-import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -158,8 +161,8 @@ public class BoxMapperTests {
         BoxVO box = this.mapper.selectBox(box_no);
         log.info("\t+ box:{}", box);
 
-        List<ProductVO> productList = this.mapper.getProductList(box_no);
-        log.info("\t+ productList: {}", productList);
+//        List<ProductVO> productList = this.mapper.getProductList(box_no);
+//        log.info("\t+ productList: {}", productList);
     }
 
     @Test

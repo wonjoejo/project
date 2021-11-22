@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wonjoejo.myapp.mapper.AdminMapper">
+	
+	<!-- 전체 회원 목록 -->
+    <select id="selectMemberList" resultType="com.wonjoejo.myapp.domain.MemberVO">
+
+        <![CDATA[
+
+            SELECT
+            /*+ index_desc(MEMBER) */
+            *
+            FROM MEMBER
+
+        ]]>
+
+    </select>
+
+    <!-- 특정 회원 상세조회 -->
+    <select id="readMember" resultType="com.wonjoejo.myapp.domain.MemberVO">
+        <![CDATA[
+
+            SELECT 
+            * 
+            FROM MEMBER 
+            WHERE MEMBER_ID=#{member_id}
+
+        ]]>
+        
+    </select>
+
+    <!-- 회원 검색 -->
+    <select id="selectMember" resultType="com.wonjoejo.myapp.domain.MemberVO">
+        <![CDATA[
+
+        SELECT
+            /*+ index_desc(MEMBER) */
+            *
+        FROM MEMBER
+        WHERE MEMBER_ID=#{member_id}
+        OR
+        NAME=#{name} 
+
+        ]]>
+
+    </select>
+
+</mapper>
