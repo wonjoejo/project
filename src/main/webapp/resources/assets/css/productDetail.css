@@ -300,6 +300,12 @@
 	align-content: center;
 }
 
+#img-file-upload{
+    border-radius: 7px;
+    padding: 2px 10px;
+	background-color: #ffffff;
+}
+
 /* 이미지 없을 경우 대체 */
 #photo-none-img {
 	width: 14vh;
@@ -373,6 +379,11 @@
     background-color: white;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
+}
+
+#detail-memo {
+    overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .detail:active {

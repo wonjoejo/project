@@ -44,7 +44,7 @@
                         <input type="hidden" name="product_photo_name" id="default">
                         <input type="hidden" name="product_photo_path"
                                 value="${pageContext.request.contextPath}/resources/assets/img/">
-                        <span><i class="fas fa-upload"></i>파일 업로드</span>
+                        <span id="img-file-upload"><i class="fas fa-upload"></i>파일 업로드</span>
                     </div>
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                             data-bs-interval="false" id="carousel">

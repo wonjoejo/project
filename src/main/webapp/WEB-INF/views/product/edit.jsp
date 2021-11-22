@@ -40,15 +40,15 @@
             <input type="hidden" name="box_no" value="${product.box_no}">
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
-                    <div class="product-img">
+                    <div class="photo" style="background-image: url(${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name});">
                         <input type="file" name="file" id="box-photo">
                         <input type="hidden" name="product_photo_name" id="default">
                         <input type="hidden" name="product_photo_path"
-                               value="${pageContext.request.contextPath}/resources/assets/img/">
+                                value="${pageContext.request.contextPath}/resources/assets/img/">
                         <span><i class="fas fa-upload"></i>파일 업로드</span>
                     </div>
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
-                         data-bs-interval="false" id="carousel">
+                            data-bs-interval="false" id="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="photos">
@@ -138,7 +138,7 @@
                         </a>
                         <li>
                             <div class="title">메모</div>
-                            <textarea name="product_memo" class="detail detail-memo"></textarea>
+                            <textarea name="product_memo" class="detail detail-memo">${product.product_memo}</textarea>
                         </li>
                     </ul>
                 </div>
