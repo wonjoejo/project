@@ -20,3 +20,7 @@ myapp.iml
 .classpath
 
 src/main/java/com/wonjoejo/myapp/util/S3Utils.java
+
+src/main/webapp/WEB-INF/classes/
+
+src/main/webapp/WEB-INF/lib/
