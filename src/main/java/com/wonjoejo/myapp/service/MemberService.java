@@ -24,6 +24,9 @@ public interface MemberService {
 	// 비밀번호 변경
 	public abstract MemberVO changePwd(String email);
 	
+	// 회원 정보 가져오기
+	public abstract MemberVO getMember(String member_id);
+	
 	// 회원 정보 수정
 	public abstract boolean editMember(MemberVO member);
 	

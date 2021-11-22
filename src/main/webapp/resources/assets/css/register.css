@@ -141,7 +141,7 @@
 .register-image {
   display: flex;
   float: left;
-  width: 43%;
+  width: 42%;
   padding: 1% 0 0 1%;
 }
 
@@ -325,17 +325,6 @@
   font-weight: 500;
   font-family: "Noto Sans KR";
 }
-/* 
-.purple-text {
-  color: #673ab7;
-  font-weight: normal;
-} */
-
-/* 
-.fit-image {
-  width: 100%;
-  object-fit: cover;
-} */
 
 /* 페이지1 */
 
@@ -455,7 +444,7 @@
 
 .division {
   float: none;
-  margin: 4% 0 2% 0;
+  margin: 3.5% 0 1.5% 0;
   overflow: hidden;
   position: relative;
   text-align: center;

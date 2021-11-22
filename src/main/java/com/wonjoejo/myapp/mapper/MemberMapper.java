@@ -20,12 +20,14 @@ public interface MemberMapper {
 	
 	public abstract MemberVO selectUserByRememberMe(String remeberMe) throws Exception;
 	
-	
 	// 아이디 찾기
 	public abstract MemberVO selectId(String email);
 	
 	// 비밀번호 변경
 	public abstract MemberVO updatePwd(String email);
+	
+	// 회원 정보 가져오기
+	public abstract MemberVO selectMemberInfo(String member_id);
 	
 	// 회원 정보 수정
 	public abstract Integer updateMember(MemberVO member);

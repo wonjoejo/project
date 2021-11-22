@@ -42,21 +42,6 @@ public class MemberController {
 		log.debug("register({}, {}) invoked.",member, file);
 		
 		MemberVO memberVO;
-//		MemberVO memberVO = new MemberVO(
-//				member.getMember_id(),
-//				member.getMember_type(),
-//				0,
-//				member.getName(),
-//				member.getPassword(),
-//				member.getEmail(),
-//				member.getPhone_number(),
-//				member.getPhoto_name(),
-//				member.getPhoto_path(),
-//				member.getCompany_name(),
-//				null,
-//				null,
-//				null
-//		);
 		
 		// 0 : 개인, 1 : 기업
 		if(member.getMember_type()==0) { // 개인
@@ -158,30 +143,81 @@ public class MemberController {
 	
 	// 회원 정보 수정
 	@PostMapping("/edit")
-	public String edit(MemberDTO member, RedirectAttributes rttrs) {
+	public String edit(MemberDTO member, RedirectAttributes rttrs) throws Exception {
 		log.debug("edit({}) invoked.",member);
-
-		MemberVO memberVO = new MemberVO(
-				member.getMember_id(),
-				null,
-				null,
-				member.getName(),
-				member.getPassword(),
-				member.getEmail(),
-				member.getPhone_number(),
-				member.getPhoto_name(),
-				member.getPhoto_path(),
-				null,
-				null,
-				null,
-				null
-		);
-
+		
+		
+//		MemberVO memberVO = new MemberVO(
+//				member.getMember_id(),
+//				null,
+//				null,
+//				member.getName(),
+//				member.getPassword(),
+//				member.getEmail(),
+//				member.getPhone_number(),
+//				member.getPhoto_name(),
+//				member.getPhoto_path(),
+//				member.getCompany_name(),
+//				null,
+//				null,
+//				null
+//		);
+//
+//		boolean result = this.service.editMember(memberVO);
+//		log.info("\t +result: {}",result);
+//		rttrs.addAttribute("result",result);
+//		
+//		
+		MemberVO memberVO;
+		
+		// 0 : 개인, 1 : 기업
+		if(member.getMember_type()==0) { // 개인
+			memberVO = new MemberVO(
+					member.getMember_id(),
+					0,
+					0,
+					member.getName(),
+					member.getPassword(),
+					member.getEmail(),
+					member.getPhone_number(),
+					member.getPhoto_name(),
+					member.getPhoto_path(),
+					null,
+					null,
+					null,
+					null
+			);
+			
 		boolean result = this.service.editMember(memberVO);
 		log.info("\t +result: {}",result);
-		rttrs.addAttribute("result",result);
-
-		return "/member/mypage";
+		rttrs.addAttribute("member_id",member.getMember_id());
+		
+		return "redirect:/member/myPage";
+		} else { // 기업
+			memberVO = new MemberVO(
+					member.getMember_id(),
+					1,
+					0,
+					member.getName(),
+					member.getPassword(),
+					member.getEmail(),
+					member.getPhone_number(),
+					member.getPhoto_name(),
+					member.getPhoto_path(),
+					member.getCompany_name(),
+					null,
+					null,
+					null
+			);
+			
+		boolean result = this.service.editMember(memberVO);
+		log.info("\t +result: {}",result);
+		rttrs.addAttribute("member_id",member.getMember_id());
+		
+		return "redirect:/member/myPage";
+			
+		} // if-else
+		
 	} // edit
 	
 	
@@ -194,7 +230,7 @@ public class MemberController {
 		log.info("\t +result: {}",result);
 		rttrs.addAttribute("\t+ result: {}",result);
 
-		return "/";
+		return "redirect:/";
 	} // delete
 
 	@GetMapping("/login")
@@ -205,6 +241,18 @@ public class MemberController {
 	@GetMapping(value = {"/register", "/loginIndex"})
 	public void register() {
 
+	}
+
+	
+	@GetMapping("/myPage")
+	public void edit(String member_id, Model model) {
+		log.debug("myPage invoked.");
+		
+		MemberVO member = this.service.getMember(member_id);
+		log.info("\t+ member: {}", member);
+		
+		model.addAttribute("member",member);
+		
 	}
 	
 
