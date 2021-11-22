@@ -110,6 +110,7 @@
                                         <c:out value='${product.cate_name4}│ ${product.cate_detail4}' />
                                     </div>
                                 </c:if>
+
                             </div> <!-- product-cate -->
 
                             <div class="item" id="product-qtn">

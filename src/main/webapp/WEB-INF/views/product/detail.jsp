@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=1">
 
 </head>
 <body>
@@ -191,7 +191,7 @@
 <%--detail JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <%-- sweet alert --%>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%-- kakao sdk --%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
@@ -213,7 +213,7 @@
 
         // sweetalert
         $('#more').click(function () {
-            swal({
+            swal.fire({
                 text: "${product.product_memo}"
             });
         });
