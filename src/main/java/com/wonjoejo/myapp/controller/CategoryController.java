@@ -79,17 +79,17 @@ public class CategoryController {
     @PostMapping(value = "/deleteCategory", produces = "application/json; charset=utf8")
     @ResponseBody
     public String deleteCategory(@RequestBody String data){
-        log.debug("deleteCategory({}) invoked.", data.toString());
+        log.debug("deleteCategory({}) invoked.", data);
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(data);
 
         DeleteCategoryVO categoryVO = new DeleteCategoryVO(
-                element.getAsJsonObject().get("category_no").getAsInt(),
-                element.getAsJsonObject().get("cate_name1").getAsString(),
-                element.getAsJsonObject().get("cate_name2").getAsString(),
-                element.getAsJsonObject().get("cate_name3").getAsString(),
-                element.getAsJsonObject().get("cate_name4").getAsString(),
-                element.getAsJsonObject().get("cate_name5").getAsString()
+                        element.getAsJsonObject().get("category_no").getAsInt(),
+                        element.getAsJsonObject().get("cate_detail1").getAsString(),
+                        element.getAsJsonObject().get("cate_detail2").getAsString(),
+                        element.getAsJsonObject().get("cate_detail3").getAsString(),
+                        element.getAsJsonObject().get("cate_detail4").getAsString(),
+                        element.getAsJsonObject().get("cate_detail5").getAsString()
         );
 
 
