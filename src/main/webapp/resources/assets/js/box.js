@@ -33,7 +33,7 @@ images.forEach(function (item,number) {
 			productPhotoEdit.style.backgroundImage = "url(" + this.src + ")";
 		}
 
-		let result = this.src.split("img/");
+		let result = this.src.split("default/");
 		defaultInput.setAttribute("value",result[1]);
 	});
 
