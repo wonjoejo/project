@@ -3,6 +3,7 @@ package com.wonjoejo.myapp.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.*;
 import com.wonjoejo.myapp.service.BaseCategoryService;
@@ -15,8 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Log4j2
@@ -45,6 +51,18 @@ public class CategoryController {
         model.addAttribute("allCategory", allCategory);
 
     } // categoryDetail
+
+    // 비동기 취소 버튼시 ..
+    @GetMapping(value = "/detailList")
+    @ResponseBody
+    public BaseCategoryVO detailList(Integer box_no) {
+
+        BaseCategoryVO baseCategory = this.service.getBaseCategoryList(box_no);
+
+        HashMap<String,Object> map = new HashMap<>();
+
+        return baseCategory;
+    }
 
     @PostMapping(value = "/edit", produces = "application/json; charset=utf8")
     @ResponseBody
