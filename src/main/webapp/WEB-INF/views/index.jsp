@@ -43,7 +43,7 @@
 
                 <c:choose>
                     <c:when test="${sessionScope.member_id!=null}">
-                        <a href="/box/list?member_id=${sessionScope.member_id}">
+                        <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                             <span class="join-btn btn-scroll-up">내 박스 리스트</span>
                         </a>
                     </c:when>
@@ -51,7 +51,7 @@
                         <a href="#">
                             <span class="join-btn btn-scroll-up">JOIN</span>
                         </a>
-                        <a href="/member/login">
+                        <a href="${pageContext.request.contextPath}/member/login">
                             <span class="login-btn btn-scroll-up">LOGIN</span>
                         </a>
                     </c:otherwise>
