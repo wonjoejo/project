@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=4">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=5">
 </head>
 <body>
 <c:set var="box_no" value="${product.box_no}"/>
@@ -251,7 +251,7 @@
                 title: '${product.product_name}',
                 description: detailList.toString(),
                 imageUrl:
-                    'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                    'http://localhost:8090/resources/assets/img/cosmetic.png',
                 link: {
                     mobileWebUrl: 'https://developers.kakao.com',
                     webUrl: 'https://developers.kakao.com',
