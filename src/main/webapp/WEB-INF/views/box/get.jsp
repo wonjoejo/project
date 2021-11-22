@@ -25,7 +25,9 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=4">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=5">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=1">
 
 </head>
 <body>
@@ -42,9 +44,9 @@
             </a>
         </div>
         <div class="list-wrapper">
-            <div class="box-info-container">
-                <div class="box-information">
-                    <div class="box-img">
+            <div class="box-info-container col-md-11">
+                <div class="box-information col-md-11">
+                    <div class="box-img col-md-4">
                         <c:set var="path" value="${box.box_photo_path}"/>
                         <c:choose>
                             <c:when test="${fn:contains(path,'resource')}">
@@ -56,7 +58,7 @@
                         </c:choose>
                         ${box.box_name}
                     </div>
-                    <div class="box-memo">
+                    <div class="box-memo col-md-6">
                         <div class="title">
                             MEMO
                         </div>
@@ -92,12 +94,72 @@
                 </div>
             </div>
 
-            <div class="product-list">
-                product!!
-                <c:forEach var="product" items="${productList}">
+            <div class="product-list col-md-11">
+                <c:forEach items="${productList}" var="product">
+                    <div class="product-list-container" id="product-list">
 
-                    ${product.product_name}
+                        <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
+                        <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
+                            <div class="item" id="product-img">
+                                <c:set var="path" value="${product.product_photo_path}"/>
+                                <c:choose>
+                                    <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->
+                                        <img id="product-img"
+                                             src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}"/>
+                                    </c:when>
+                                    <c:otherwise> <!-- 업로드 이미지 사용 -->
+                                        <img id="product-img"
+                                             src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </c:if> <!-- product-img -->
 
+                        <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
+                        <c:if test="${empty product.product_photo_name || empty product.product_photo_path}">
+                            <div class="item" id="product-none-img">
+                            </div>
+                        </c:if> <!-- product-none-img -->
+
+
+                        <div class="item" id="product-name">
+                            <a href="${pageContext.request.contextPath}/product/detail?product_no=${product.product_no}&box_no=${product.box_no}">
+                                <c:out value='${product.product_name}'/>
+                            </a>
+                        </div> <!-- product-name -->
+
+                        <div class="item" id="product-cate">
+                            <c:if test="${not empty product.cate_detail1}">
+                                <div class="product-cate-1">
+                                    <c:out value='${product.cate_name1}│ ${product.cate_detail1}'/>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty product.cate_detail2}">
+                                <div class="product-cate-2">
+                                    <c:out value='${product.cate_name2}│ ${product.cate_detail2}'/>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty product.cate_detail3}">
+                                <div class="product-cate-3">
+                                    <c:out value='${product.cate_name3}│ ${product.cate_detail3}'/>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty product.cate_detail4}">
+                                <div class="product-cate-4">
+                                    <c:out value='${product.cate_name4}│ ${product.cate_detail4}'/>
+                                </div>
+                            </c:if>
+                        </div> <!-- product-cate -->
+
+                        <div class="item" id="product-qtn">
+                            <c:out value='${product.product_qtn}'/>
+                        </div> <!-- product-qtn-->
+
+                    </div>
+                    <!-- product-list -->
                 </c:forEach>
             </div>
         </div>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wonjoejo.myapp.mapper.GroupMapper">
+
+	<!--그룹원 목록  -->
+	<select id="selectGroupMemberList" resultType="com.wonjoejo.myapp.domain.MemberVO">
+		<![CDATA[
+	
+		SELECT 
+		*
+		FROM MEMBER m
+		INNER JOIN BOX_PERMISSION p ON p.member_id = m.member_id
+		WHERE p.BOX_NO = #{box_no}
+		
+		]]>	
+	
+	</select>
+	
+	<select id="checkMaster" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO">
+	SELECT *
+	FROM BOX_PERMISSION
+	WHERE member_id = #{member_id} and box_no = #{box_no}
+	</select>
+	
+	<!--그룹원 권한 조회  -->
+	
+		<select id="selectGroupPermission" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO" >
+		<![CDATA[
+		
+			 SELECT 
+			 *
+			 FROM BOX_PERMISSION p
+			 INNER JOIN MEMBER m ON p.member_id = m.member_id
+			 WHERE BOX_NO = #{box_no}
+		]]>	
+	
+	</select>
+	
+	<!-- 그룹원 권한 조회 2 -->
+	<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionMemberVO" >
+	<![CDATA[
+
+		 SELECT
+		 no, p.member_id, box_no, master_per, write_per, read_per, edit_per, delete_per, member_stat, name, email, phone_number, photo_name, photo_path
+		 FROM BOX_PERMISSION p
+		 INNER JOIN MEMBER m ON p.member_id = m.member_id
+		 WHERE BOX_NO = #{box_no}
+	]]>
+
+</select>
+	
+
+	<!--그룹 가입-->
+	<insert id="insertMember"> 
+
+		INSERT INTO BOX_PERMISSION(NO, BOX_NO, MEMBER_ID, MASTER_PER, WRITE_PER, READ_PER, EDIT_PER, DELETE_PER,MEMBER_STAT)
+		VALUES (#{no}, #{box_no}, #{member_id}, #{master_per}, #{write_per}, #{read_per}, #{edit_per}, #{delete_per}, #{member_stat})
+		
+	</insert>
+
+
+	<!--그룹 권한 변경-->
+	<update id="updateMember">
+		UPDATE BOX_PERMISSION SET
+		MASTER_PER = #{master_per},
+		WRITE_PER = #{write_per},
+		READ_PER = #{read_per},
+		EDIT_PER = #{edit_per},
+		DELETE_PER = #{delete_per},
+		MEMBER_STAT = #{member_stat}
+		WHERE BOX_NO = #{box_no} AND MEMBER_ID= #{member_id}
+	</update>	
+	
+	
+	
+	<!-- 그룹 탈퇴 -->
+	<update id="deleteMember">
+		UPDATE BOX_PERMISSION SET
+		MEMBER_STAT= #{member_stat}
+		WHERE BOX_NO = #{box_no} AND MEMBER_ID= #{member_id}
+	</update>
+
+
+
+</mapper>

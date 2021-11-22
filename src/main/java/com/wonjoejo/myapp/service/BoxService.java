@@ -1,8 +1,11 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.List;
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.Criteria;
 
-import com.wonjoejo.myapp.domain.*;
+import java.util.List;
 
 public interface BoxService {
 
@@ -22,8 +25,6 @@ public interface BoxService {
 	public abstract boolean insertCategory(BaseCategoryVO baseCategory);
 
 	public abstract boolean grantMasterPermission(BoxPermissionVO boxPermission);
-
-	public abstract List<ProductVO> getProductList(Integer box_no);
 
 	public abstract boolean joinBox(String member_id, Integer box_no);
 

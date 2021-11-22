@@ -1,18 +1,19 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.List;
-
-import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.Criteria;
+import com.wonjoejo.myapp.mapper.BoxMapper;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wonjoejo.myapp.mapper.BoxMapper;
-
-import lombok.extern.log4j.Log4j2;
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -107,16 +108,6 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 		return affectedLines == 1;
 	} // grantMasterPermission
-
-	@Override
-	public List<ProductVO> getProductList(Integer box_no) {
-		log.debug("getProductList({}) invoked.",box_no);
-
-		List<ProductVO> productList = this.mapper.getProductList(box_no);
-		log.info("\t+ productList: {}",productList);
-
-		return productList;
-	} // getProductList
 
 	@Override
 	public boolean joinBox(String member_id, Integer box_no) {

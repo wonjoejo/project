@@ -1,6 +1,9 @@
 package com.wonjoejo.myapp.mapper;
 
-import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.Criteria;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,8 +27,6 @@ public interface BoxMapper {
 	public abstract int insertMasterPermission(BoxPermissionVO boxPermission);
 
 	public abstract Integer getTotalCount(String member_id);
-
-	public abstract List<ProductVO> getProductList(Integer box_no);
 
 	public abstract int insertGroup(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 

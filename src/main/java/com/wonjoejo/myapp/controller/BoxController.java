@@ -3,6 +3,7 @@ package com.wonjoejo.myapp.controller;
 import com.wonjoejo.myapp.domain.*;
 import com.wonjoejo.myapp.service.BoxService;
 import com.wonjoejo.myapp.service.GroupService;
+import com.wonjoejo.myapp.service.ProductService;
 import com.wonjoejo.myapp.util.S3Utils;
 import com.wonjoejo.myapp.util.UploadFileUtils;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -34,6 +36,8 @@ public class BoxController {
     private BoxService service;
     @Setter(onMethod_ = {@Autowired})
     private GroupService groupService;
+    @Setter(onMethod_ = {@Autowired})
+    private ProductService productService;
 
     @GetMapping("/list")
     public void list(Model model, Criteria cri, HttpSession session, @RequestParam(value = "result", required = false, defaultValue = "") String box_no) {
@@ -328,11 +332,16 @@ public class BoxController {
         log.info("\t +box: {}", box);
 
         // Product List 4개까지 표시
-        List<ProductVO> productList = this.service.getProductList(box_no);
-        log.info("\t+ productList: {}", productList);
+        List<ProductCategoryVO> productList = this.productService.getProductList(box_no);
+        List<ProductCategoryVO> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            list.add(productList.get(i));
+        }
+
+//        log.info("\t+ productList: {}", productList);
 
         model.addAttribute("box", box);
-        model.addAttribute("productList", productList);
+        model.addAttribute("productList", list);
         model.addAttribute("box_no", box_no);
 
     } // get
