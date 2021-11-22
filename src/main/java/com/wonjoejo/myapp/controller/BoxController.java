@@ -72,6 +72,7 @@ public class BoxController {
 
         BoxVO boxVO;
 
+        // 커스텀 이미지 업로드
         if (file.getSize() != 0) {
 
             // 여기서 함수 불러와서 데이터 넣어줌 (리턴값은 uploadDir 이하 경로 + 파일이름 (/2021/11/14/8c47bd18-b475-4849-beec-a0d3d4d0bd7a_29325736.jpg)
@@ -94,7 +95,7 @@ public class BoxController {
             boolean result = this.service.createBox(boxVO);
             log.info("\t +result: {}", result);
 
-        } else {
+        } else { // 디폴트 이미지 업로드
 
             boxVO = new BoxVO(
                     null,
@@ -103,7 +104,7 @@ public class BoxController {
                     box.getBox_name(),
                     box.getBox_memo(),
                     box.getBox_photo_name(),
-                    "/resources/assets/img/",
+                    "https://intobox.s3.ap-northeast-2.amazonaws.com/default/",
                     null
             );
 
@@ -334,9 +335,14 @@ public class BoxController {
         // Product List 4개까지 표시
         List<ProductCategoryVO> productList = this.productService.getProductList(box_no);
         List<ProductCategoryVO> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add(productList.get(i));
+        if (productList.size() <= 4) {
+            list.addAll(productList);
+        } else {
+            for (int i = 0; i < 4; i++) {
+                list.add(productList.get(i));
+            }
         }
+
 
 //        log.info("\t+ productList: {}", productList);
 

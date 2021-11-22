@@ -49,8 +49,8 @@
                     <div class="box-img col-md-4">
                         <c:set var="path" value="${box.box_photo_path}"/>
                         <c:choose>
-                            <c:when test="${fn:contains(path,'resource')}">
-                                <img src="${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}"/>
+                            <c:when test="${fn:contains(path,'default')}">
+                                <img src="${box.box_photo_path}${box.box_photo_name}"/>
                             </c:when>
                             <c:otherwise>
                                 <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
