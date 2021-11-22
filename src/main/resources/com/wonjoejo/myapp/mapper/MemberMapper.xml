@@ -71,7 +71,22 @@
         password = #{password}
         WHERE email = #{email}
     </update>
+	
+	
+	<!-- 회원 정보 가져오기 -->
+    <select id="selectMemberInfo" resultType="com.wonjoejo.myapp.domain.MemberVO">
 
+        <![CDATA[
+
+        SELECT *
+        FROM member
+        WHERE 
+            member_id=#{member_id}
+
+        ]]>
+
+    </select>
+	
     <!-- 회원 정보 수정 -->
     <update id="updateMember">
         UPDATE member 

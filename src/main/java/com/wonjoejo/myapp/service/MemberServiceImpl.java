@@ -80,6 +80,12 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
         return null;
     }
     
+    // 회원 정보 가져오기
+    @Override
+	public MemberVO getMember(String member_id) {
+    	return this.mapper.selectMemberInfo(member_id);
+	} // getMember
+    
     // 회원 정보 수정
     @Override
     public boolean editMember(MemberVO member) {
@@ -113,4 +119,6 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		log.debug("afterPropertiesSet({}) invoked.");
 		
 	} // afterPropertiesSet
+
+	
 } // end class
