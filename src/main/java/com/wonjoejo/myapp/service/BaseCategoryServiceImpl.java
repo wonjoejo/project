@@ -61,7 +61,7 @@ public class BaseCategoryServiceImpl implements BaseCategoryService, Initializin
 
         int affectedLines = this.mapper.deleteCategory(category);
 
-        return affectedLines == 1;
+        return affectedLines != 0;
     }
 
 
