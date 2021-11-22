@@ -53,35 +53,62 @@
 	
 
 	<!--그룹 가입-->
-	<insert id="insertMember"> 
+	<insert id="insertMember">
 
-		INSERT INTO BOX_PERMISSION(NO, BOX_NO, MEMBER_ID, MASTER_PER, WRITE_PER, READ_PER, EDIT_PER, DELETE_PER,MEMBER_STAT)
-		VALUES (#{no}, #{box_no}, #{member_id}, #{master_per}, #{write_per}, #{read_per}, #{edit_per}, #{delete_per}, #{member_stat})
-		
+		INSERT INTO BOX_PERMISSION(NO, BOX_NO, MEMBER_ID, MASTER_PER, WRITE_PER, READ_PER, EDIT_PER, DELETE_PER,
+								   MEMBER_STAT)
+		VALUES (#{no}, #{box_no}, #{member_id}, #{master_per}, #{write_per}, #{read_per}, #{edit_per}, #{delete_per},
+				#{member_stat})
+
 	</insert>
 
 
 	<!--그룹 권한 변경-->
 	<update id="updateMember">
-		UPDATE BOX_PERMISSION SET
-		MASTER_PER = #{master_per},
-		WRITE_PER = #{write_per},
-		READ_PER = #{read_per},
-		EDIT_PER = #{edit_per},
-		DELETE_PER = #{delete_per},
-		MEMBER_STAT = #{member_stat}
-		WHERE BOX_NO = #{box_no} AND MEMBER_ID= #{member_id}
-	</update>	
-	
-	
-	
-	<!-- 그룹 탈퇴 -->
-	<update id="deleteMember">
-		UPDATE BOX_PERMISSION SET
-		MEMBER_STAT= #{member_stat}
-		WHERE BOX_NO = #{box_no} AND MEMBER_ID= #{member_id}
+		UPDATE BOX_PERMISSION
+		SET MASTER_PER  = #{master_per},
+			WRITE_PER   = #{write_per},
+			READ_PER    = #{read_per},
+			EDIT_PER    = #{edit_per},
+			DELETE_PER  = #{delete_per},
+			MEMBER_STAT = #{member_stat}
+		WHERE BOX_NO = #{box_no}
+		  AND MEMBER_ID = #{member_id}
 	</update>
 
+
+	<!-- 그룹 탈퇴 -->
+	<update id="deleteMember">
+		UPDATE BOX_PERMISSION
+		SET MEMBER_STAT= #{member_stat}
+		WHERE BOX_NO = #{box_no}
+		  AND MEMBER_ID = #{member_id}
+	</update>
+
+	<select id="findMember" resultType="String">
+		SELECT MEMBER_ID
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+	</select>
+
+	<update id="updateMaster">
+		UPDATE BOX_PERMISSION
+		<choose>
+			<when test="master_per==0">
+				SET
+				MASTER_PER=#{master_per},
+				READ_PER=0,
+				WRITE_PER=0,
+				EDIT_PER=0,
+				DELETE_PER=0
+			</when>
+			<otherwise>
+				SET MASTER_PER=#{master_per}
+			</otherwise>
+		</choose>
+		WHERE MEMBER_ID = #{member_id}
+		and BOX_NO = #{box_no}
+	</update>
 
 
 </mapper>

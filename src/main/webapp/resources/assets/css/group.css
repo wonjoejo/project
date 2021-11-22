@@ -419,3 +419,81 @@ select {
 }
 
 
+/*edit view*/
+
+#per {
+	width: 25%;
+}
+
+#pertable {
+
+	align-items: center;
+	border-collapse: separate;
+	border-spacing: 0 10px;
+	margin: 1%;
+	text-align: center;
+	width: 100%;
+}
+
+
+table td {
+	width: 100px;
+}
+
+#profile_img {
+	width: 65%;
+}
+
+.scroll {
+	height: 350px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+}
+
+/* 스크롤바 설정*/
+.type2::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* 스크롤바 막대 설정*/
+.type2::-webkit-scrollbar-thumb {
+	background-color: rgb(72, 75, 218);
+	border-radius: 10px;
+	height: 17%;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.type2::-webkit-scrollbar-track {
+	background-color: rgba(142, 200, 248, 0.288);
+}
+
+.form-switch {
+	display: flex;
+	justify-content: center;
+
+}
+
+
+.groupout {
+
+	background: crimson;
+	border: none;
+	border-radius: 50px;
+	color: white;
+	margin: 0;
+	padding: 0.5rem 0.5rem;
+
+}
+
+#permission_o {
+	height: 22px;
+	width: 45px;
+}
+
+#permission_x {
+	height: 22px;
+	width: 45px;
+}
+
+
