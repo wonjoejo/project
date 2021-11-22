@@ -1,18 +1,16 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.mapper.GroupMapper;
-
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -80,14 +78,36 @@ public class GroupServiceImpl implements GroupService{
 	// 마스터 권한 체크 
 	@Override
 	public boolean checkMaster(String member_id, Integer box_no) {
-		
-		log.debug("checkMaster({},{}) invoked",member_id,box_no);
-		
-		BoxPermissionVO vo = this.mapper.checkMaster(member_id, box_no);		
-		
-		return vo.getMaster_per()==0;
-		
+
+		log.debug("checkMaster({},{}) invoked", member_id, box_no);
+
+		BoxPermissionVO vo = this.mapper.checkMaster(member_id, box_no);
+
+		return vo.getMaster_per() == 0;
+
 		// true면, master / false면, master 아님
-	} 
-	
+	}
+
+	@Override
+	public String findMember(String keyword) {
+
+		log.debug("findMember({}) invoked.", keyword);
+
+		String member_id = this.mapper.findMember(keyword);
+		assert member_id != null;
+
+
+		return member_id;
+	}
+
+	@Override
+	public boolean updateMaster(String member_id, Integer box_no, Integer master_per) {
+
+		log.debug("updateMaster({},{}) invoked.", member_id, box_no);
+
+		int affectedRows = this.mapper.updateMaster(member_id, box_no, master_per);
+
+		return affectedRows == 1;
+	}
+
 } // end class

@@ -1,9 +1,9 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.Date;
-
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
+
+import java.util.Date;
 
 public interface MemberService {
 
@@ -29,5 +29,6 @@ public interface MemberService {
 	
 	// 회원 탈퇴
 	public abstract boolean deleteAccount(String member_id);
+
 
 } // end interface
