@@ -63,6 +63,10 @@ public interface BoardService {
     //검색 총 레코드 개수 반환 
     public abstract Integer getsearchTotal(Criteria cri);
 
-	public abstract BoardVO replydetail(@Param("ref") Integer ref, @Param("member_id")String member_id);
+	//본인 답글 상세보기 
+    public abstract BoardVO replydetail(Integer board_idx,@Param("ref") Integer ref, @Param("member_id")String member_id);
 
+	//답글 본글 삭제 
+    public abstract boolean alldelete(Integer board_idx,Integer ref);
+	
 }//end interface

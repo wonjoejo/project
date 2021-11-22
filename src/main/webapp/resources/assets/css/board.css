@@ -465,7 +465,7 @@ ul {
 
 /* ====== edit css  ====== */
 
-#editBtn, #deleteBtn {
+#editBtn, #deleteBtn, #replydeleteBtn {
 	background: #5A95F5;
 	border: none;
 	border-radius: 24px;

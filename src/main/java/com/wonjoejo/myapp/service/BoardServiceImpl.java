@@ -232,19 +232,30 @@ public class BoardServiceImpl
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
 		
+	}//afterPropertiesSet
+
+
+	@Override
+	public BoardVO replydetail(Integer board_idx,Integer ref, String member_id) {
+		
+		log.debug("ref({}) invoked.", ref);
+		
+		BoardVO board = this.mapper.replyread(board_idx,ref,member_id);
+		log.info("\t+ board: {}", board);
+		
+		return board;
 	}
 
 
 	@Override
-	public BoardVO replydetail(Integer ref, String member_id) {
+	public boolean alldelete(Integer board_idx,Integer ref) {
+		log.debug("deleteReplye({},{}) invoked.", board_idx,ref);
 		
-		log.debug("ref({}) invoked.", ref);
+		int affectedRows = this.mapper.alldelete(board_idx,ref);
+		log.info("\t+ affectedRows: {}", affectedRows);
 		
-		BoardVO board = this.mapper.replyread(ref,member_id);
-		log.info("\t+ board: {}", board);
-		
-		return board;
-	}//afterPropertiesSet
+		return affectedRows==1;	
+	}
 
 
 }//end class 

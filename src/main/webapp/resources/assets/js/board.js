@@ -1,12 +1,42 @@
-
+	
+	 $('form').on('submit',function(e){
+    	if($('.writetitle').val() == ''){
+    		e.preventDefault();
+    		 Swal.fire({ icon: 'error', 
+       			   //title: 'Alert가 실행되었습니다.', 
+       			   text: '제목을 입력하세요.', 
+      		});
+       
+       console.log("sweet alert");
+    	}else if($('.writecon').val() == ''){
+    		e.preventDefault();
+    		Swal.fire({ icon: 'error', 
+       			   //title: 'Alert가 실행되었습니다.', 
+       			   text: '내용을 입력하세요.', 
+      		});
+    	}
+    });
+        
+    $('form').on('submit',function(e){
+    	if($('.edittitle').val() == ''){
+    		e.preventDefault();
+    		Swal.fire({ icon: 'error', 
+       			   //title: 'Alert가 실행되었습니다.', 
+       			   text: '제목을 입력하세요.', 
+      		});
+    	}else if($('.editcon').val() == ''){
+    		e.preventDefault();
+    		Swal.fire({ icon: 'error', 
+       			   //title: 'Alert가 실행되었습니다.', 
+       			   text: '내용을 입력하세요.', 
+      		});
+    	}
+    });
+	
 	let searchForm = $("#searchForm");
 	
 	$("#searchForm button").on("click", function(e) {
-	/* if(!searchForm.find("option:selected").val()) {
-	      alert("검색 종류를 선택하세요");
-	    return false;
-	}
-	     */                    
+	                  
 	if(!searchForm.find("input[name='keyword']").val()) {
 	    Swal.fire({ icon: 'warning', 
        			   //title: 'Alert가 실행되었습니다.', 
@@ -25,13 +55,22 @@
         console.clear();
         console.log('JQuery stared...');
   	
-  	$('#detailcheck' ).click(function () {
+  	$('.detailcheck' ).click(function () {
        Swal.fire({ icon: 'info', 
        			   //title: 'Alert가 실행되었습니다.', 
        			   text: '본인이 작성한 글만 확인이 가능합니다.' 
        });
 
     }); //onclick
+    
+    $('.gojoinpage').click(function () {
+       Swal.fire({ icon: 'info', 
+       			  // title: '로그인 정보가 없습니다.', 
+       			   text: '로그인 후 이용 가능합니다.',
+       			   footer: '<a href="/member/login">로그인 페이지로 이동</a>' 
+       });
+
+    }); //onclick*/
   
     //notice 더보기 버튼 
     $('#addBtn').click(function () {
@@ -49,13 +88,24 @@
         
     
    //delete 버튼에 대한 이벤트 등록 처리
-    $('#deleteBtn').click(function () {
+   $('#deleteBtn').click(function () {
       console.log('click event triggered..');
 
       var formObj = $('form');
       formObj.attr('method', 'POST');
       formObj.attr('action', '/board/delete');
+     
+      formObj.submit();
+    }); //onclick
+    
+    //delete 버튼에 대한 이벤트 등록 처리
+   $('#replydeleteBtn').click(function () {
+      console.log('click event triggered..');
 
+      var formObj = $('form');
+      formObj.attr('method', 'POST');
+      formObj.attr('action', '/board/alldelete');
+     
       formObj.submit();
     }); //onclick
     

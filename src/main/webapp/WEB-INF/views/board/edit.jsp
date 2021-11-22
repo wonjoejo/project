@@ -45,7 +45,7 @@
 					<div class="detailwrapper">
 					
 						<div class="detailtitle">
-							<input class="noline" type="text" name="title" value="${board.title}" />
+							<input class="noline edittitle" type="text" name="title" value="${board.title}" />
 						</div>
 						
 						<div class="detailid">
@@ -57,12 +57,12 @@
 						</div>            
 						
 						<div class="detailcontent">
-							<textarea class="noline detailcon" name="content" cols="50" rows="10" >${board.content}</textarea>
+							<textarea class="noline detailcon editcon" name="content" cols="50" rows="10" >${board.content}</textarea>
 						</div>
 						
 					</div><!-- detailwrapper -->
 					
-					<button type="submit" id="editBtn">완료</button>
+					<button type="submit" id="editBtn" onclick="check_onclick()">완료</button>
 	                <button type="button" id="deleteBtn">삭제</button>
 					
 				</form>		
@@ -75,6 +75,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
     
     <script>
       $(function () {

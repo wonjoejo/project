@@ -51,10 +51,11 @@
     <![CDATA[ 
          SELECT * FROM 
          	(SELECT /*+ index_desc(qna_board) */ *
-   		 FROM qna_board            
-          WHERE (replace(title,' ','') like '%'||#{keyword}||'%' or replace(content,' ','') like '%'||#{keyword}||'%')            	
-        	OFFSET (#{currPage} - 1) * #{amount} ROWS 
-            FETCH NEXT #{amount} ROWS ONLY)
+   		FROM qna_board            
+        WHERE (replace(title,' ','') like '%'||#{keyword}||'%' or replace(content,' ','') like '%'||#{keyword}||'%')            	
+       	order by ref desc, depth asc
+       	OFFSET (#{currPage} - 1) * #{amount} ROWS 
+        FETCH NEXT #{amount} ROWS ONLY)
         ]]>
     </select>
     
@@ -136,6 +137,10 @@
         DELETE FROM qna_board WHERE board_idx=#{board_idx}
     </delete>
     
+    <!-- 게시글 삭제 -->
+    <delete id="alldelete">
+        DELETE FROM qna_board WHERE ref=#{ref}
+    </delete>  
 
 	<!-- 답글 작성 -->
     <insert id="insertReply">
