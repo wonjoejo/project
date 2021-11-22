@@ -19,6 +19,7 @@
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+
 </head>
 <body>
 <c:set var="box_no" value="${product.box_no}"/>
