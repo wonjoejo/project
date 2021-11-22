@@ -1,6 +1,8 @@
 package com.wonjoejo.myapp.mapper;
 
 
+import com.wonjoejo.myapp.domain.AllCategoryVO;
+import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.CategoryVO;
 import lombok.NoArgsConstructor;
@@ -39,18 +41,22 @@ public class BaseCategoryMapperTests {
     public void testGetBaseCategoryList() {
         log.debug("testGetBaseCategoryList() invoked.");
 
-        Integer box_no = 1331;
+        Integer box_no = 1339;
         BaseCategoryVO baseCategory = this.mapper.selectBaseCategoryList(box_no);
         log.info("\t+ baseCategory: {}", baseCategory);
 
-
-        // Category detail
-        Integer category_no = 95920;
-        List<CategoryVO> category = this.mapper.selectCategory(category_no);
-        log.info("\t+ category: {}", category);
-
     } // testGetBaseCategoryList
 
+    @Test
+    public void testGetAllCategoryList(){
+        log.debug("testGetAllCategoryList() invoked.");
+
+        Integer box_no = 1339;
+        List<AllCategoryVO> category = this.mapper.selectCategory(box_no);
+        log.info("\t+ category: {}", category);
+
+
+    } // testGetAllCategoryList
     @Test
     public void testUpdateBaseCategory() {
         log.debug("testUpdateBaseCategory() invoked.");
@@ -74,19 +80,29 @@ public class BaseCategoryMapperTests {
         log.debug("testDeleteBaseCategory() invoked.");
 
         BaseCategoryVO baseCategory = new BaseCategoryVO(
-                95926,
-                "색상1",
-                "테스트1",
+                95924,
+                null,
+                "사이즈",
                 null,
                 null,
                 null,
-                1341
+                1339
         );
 
         this.mapper.updateBaseCategory(baseCategory);
         log.info("\t+ baseCategory: {}", baseCategory);
 
+        DeleteCategoryVO allcategory = new DeleteCategoryVO(
+                95924,
+                "test",
+                null,
+                null,
+                "test",
+                null
+        );
 
+        this.mapper.deleteCategory(allcategory);
+        log.info("\t+ category : {}", allcategory);
     } //testDeleteBaseCategory
 
 

@@ -43,7 +43,7 @@
                             <input type="file" name="file" id="box-photo">
                             <input type="hidden" name="box_photo_name" id="default">
                             <input type="hidden" name="box_photo_path"
-                                   value="${pageContext.request.contextPath}/resources/assets/img/">
+                                   value="https://intobox.s3.ap-northeast-2.amazonaws.com/default/">
                         </div>
                         <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                              data-bs-interval="false" id="carousel">
@@ -51,26 +51,26 @@
                                 <div class="carousel-item active">
                                     <div class="photos">
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/food.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/food.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/cosmetic.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/pill.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
                                                 class="default-img"></div>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <div class="photos">
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/clothes.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/goods.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/goods.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
                                                 class="default-img"></div>
                                     </div>
                                 </div>

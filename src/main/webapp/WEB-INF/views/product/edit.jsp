@@ -40,7 +40,7 @@
             <input type="hidden" name="box_no" value="${product.box_no}">
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
-                    <div class="photo">
+                    <div class="product-img">
                         <input type="file" name="file" id="box-photo">
                         <input type="hidden" name="product_photo_name" id="default">
                         <input type="hidden" name="product_photo_path"

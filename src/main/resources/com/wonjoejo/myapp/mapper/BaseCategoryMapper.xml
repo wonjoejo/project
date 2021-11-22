@@ -25,15 +25,25 @@
     </select>
 
     <!-- Category 상세보기 -->
-    <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.CategoryVO">
+    <select id="selectCategory" resultType="com.wonjoejo.myapp.domain.AllCategoryVO">
 
-        <![CDATA[
         SELECT
             /*+ index_desc(CATEGORY) */
-            *
-        FROM CATEGORY
-        WHERE category_no = #{category_no}
-        ]]>
+            BASE_CATEGORY.CATEGORY_NO,
+            CATE_NAME1,
+            CATE_NAME2,
+            CATE_NAME3,
+            CATE_NAME4,
+            CATE_NAME5,
+            BASE_CATEGORY.BOX_NO,
+            CATE_DETAIL1,
+            CATE_DETAIL2,
+            CATE_DETAIL3,
+            CATE_DETAIL4,
+            CATE_DETAIL5
+        FROM CATEGORY, BASE_CATEGORY
+        WHERE base_category.box_no = #{box_no}
+        AND category.category_no = base_category.category_no
 
     </select>
 
@@ -48,30 +58,7 @@
     <update id="updateBaseCategory">
 
         UPDATE BASE_CATEGORY SET
-            <if test="cate_name1 != null">
-                CATE_NAME1 = #{cate_name1}
-            </if>
-            <if test="cate_name2 != null">
-                CATE_NAME2 = #{cate_name2}
-            </if>
-            <if test="cate_name3 != null">
-                CATE_NAME3 = #{cate_name3}
-            </if>
-            <if test="cate_name4 != null">
-                CATE_NAME4 = #{cate_name4}
-            </if>
-            <if test="cate_name5 != null">
-                CATE_NAME5 = #{cate_name5}
-            </if>
-        WHERE CATEGORY_NO = #{category_no}
-
-    </update>
-
-    <!--  category 삭제(edit) baseCategory 삭제시 ..    -->
-    <update id="deleteCategory">
-
-        UPDATE BASE_CATEGORY
-        SET CATE_NAME1 = #{cate_name1},
+            CATE_NAME1 = #{cate_name1},
             CATE_NAME2 = #{cate_name2},
             CATE_NAME3 = #{cate_name3},
             CATE_NAME4 = #{cate_name4},
@@ -80,13 +67,37 @@
 
     </update>
 
-    <!--    UPDATE CATEGORY c-->
-    <!--    SET-->
-    <!--    c.cate_detail1 = (SELECT b.cate_name1 from base_category b where c.category_no = b.category_no and c.cate_detail1 is not null),-->
-    <!--    c.cate_detail2 = (SELECT b.cate_name2 from base_category b where c.category_no = b.category_no and c.cate_detail2 is not null),-->
-    <!--    c.cate_detail3 = (SELECT b.cate_name3 from base_category b where c.category_no = b.category_no and c.cate_detail3 is not null),-->
-    <!--    c.cate_detail4 = (SELECT b.cate_name4 from base_category b where c.category_no = b.category_no and c.cate_detail4 is not null),-->
-    <!--    c.cate_detail5 = (SELECT b.cate_name5 from base_category b where c.category_no = b.category_no and c.cate_detail5 is not null)-->
+    <!--  category 삭제(edit) baseCategory 삭제시 ..    -->
+    <update id="deleteCategory">
+
+        UPDATE CATEGORY SET
+            CATE_DETAIL1 = #{cate_detail1},
+            CATE_DETAIL2 = #{cate_detail2},
+            CATE_DETAIL3 = #{cate_detail3},
+            CATE_DETAIL4 = #{cate_detail4},
+            CATE_DETAIL5 = #{cate_detail5}
+        WHERE CATEGORY_NO = #{category_no}
+
+    </update>
+
+    <!--    <update id="deleteBaseCategory">-->
+    <!--        UPDATE BASE_CATEGORY-->
+    <!--        SET CATE_NAME1 = #{cate_name1},-->
+    <!--            CATE_NAME2 = #{cate_name2},-->
+    <!--            CATE_NAME3 = #{cate_name3},-->
+    <!--            CATE_NAME4 = #{cate_name4},-->
+    <!--            CATE_NAME5 = #{cate_name5}-->
+    <!--        WHERE CATEGORY_NO = #{category_no}-->
+    <!--    </update>-->
+
+
+    <!--        UPDATE CATEGORY c-->
+    <!--        SET-->
+    <!--        c.cate_detail1 = (SELECT b.cate_name1 from base_category b where c.category_no = b.category_no and c.cate_detail1 is not null),-->
+    <!--        c.cate_detail2 = (SELECT b.cate_name2 from base_category b where c.category_no = b.category_no and c.cate_detail2 is not null),-->
+    <!--        c.cate_detail3 = (SELECT b.cate_name3 from base_category b where c.category_no = b.category_no and c.cate_detail3 is not null),-->
+    <!--        c.cate_detail4 = (SELECT b.cate_name4 from base_category b where c.category_no = b.category_no and c.cate_detail4 is not null),-->
+    <!--        c.cate_detail5 = (SELECT b.cate_name5 from base_category b where c.category_no = b.category_no and c.cate_detail5 is not null)-->
 
 
 </mapper>

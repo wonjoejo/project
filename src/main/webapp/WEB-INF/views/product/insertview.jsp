@@ -19,7 +19,7 @@
     <!-- box.css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <!-- productDetail.css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
 </head>
 <body>
 <div class="container">
@@ -43,11 +43,11 @@
                         <input type="file" name="file" id="box-photo">
                         <input type="hidden" name="product_photo_name" id="default">
                         <input type="hidden" name="product_photo_path"
-                               value="${pageContext.request.contextPath}/resources/assets/img/">
+                                value="${pageContext.request.contextPath}/resources/assets/img/">
                         <span><i class="fas fa-upload"></i>파일 업로드</span>
                     </div>
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
-                         data-bs-interval="false" id="carousel">
+                            data-bs-interval="false" id="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="photos">

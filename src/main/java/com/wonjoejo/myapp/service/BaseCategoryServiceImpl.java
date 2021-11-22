@@ -1,10 +1,12 @@
 package com.wonjoejo.myapp.service;
 
+import com.wonjoejo.myapp.domain.AllCategoryVO;
+import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.CategoryVO;
 import com.wonjoejo.myapp.mapper.BaseCategoryMapper;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -42,6 +44,25 @@ public class BaseCategoryServiceImpl implements BaseCategoryService, Initializin
 
         return affectedLines == 1;
     } // editBaseCategory
+
+    @Override
+    public List<AllCategoryVO> getCategoryList(Integer box_no) {
+        log.debug("editBaseCategory({}) invoked.", box_no);
+
+        List<AllCategoryVO> list = this.mapper.selectCategory(box_no);
+        list.forEach(log::info);
+
+        return list;
+    } //getCategoryList
+
+    @Override
+    public Boolean deleteCategory(DeleteCategoryVO category) {
+        log.debug("deleteCategory({}) invoked.", category);
+
+        int affectedLines = this.mapper.deleteCategory(category);
+
+        return affectedLines != 0;
+    }
 
 
     @Override

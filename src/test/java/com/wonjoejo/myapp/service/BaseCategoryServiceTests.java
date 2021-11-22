@@ -1,17 +1,20 @@
 package com.wonjoejo.myapp.service;
 
 
+import com.wonjoejo.myapp.domain.AllCategoryVO;
+import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.hamcrest.core.IsSame;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -51,6 +54,17 @@ public class BaseCategoryServiceTests {
     } // testGetBaseCategoryList
 
     @Test(timeout = 1000)
+    public void testAllBaseCategoryList(){
+        log.debug("testAllBaseCategoryList() invoked");
+
+        int box_no = 1339;
+        List<AllCategoryVO> category = this.service.getCategoryList(box_no);
+
+        assert category != null;
+        log.info("\t+ allCategory: {}", category);
+    } // testAllBaseCategoryList
+
+    @Test(timeout = 1000)
     public void testEditBaseCategory(){
         log.debug("editBaseCategory() invoked.");
 
@@ -68,6 +82,39 @@ public class BaseCategoryServiceTests {
         log.info("BaseCategory edited successfully: {}", isSuccess);
 
     } // editBaseCategory
+
+
+
+    @Test(timeout =  1000)
+    public void testDeleteCategory(){
+        log.debug("testDeleteCategory() invoked.");
+
+        BaseCategoryVO baseCategory = new BaseCategoryVO(
+                95924,
+                "",
+                null,
+                null,
+                null,
+                null,
+                1339
+        );
+
+        boolean isSuccess =  this.service.editBaseCategory(baseCategory);
+        log.info("BaseCategory edited succssfully: {}", isSuccess);
+
+        DeleteCategoryVO category = new DeleteCategoryVO(
+                95924,
+                null,
+                null,
+                null,
+                "test",
+                null
+        );
+
+        boolean isSuccess2 = this.service.deleteCategory(category);
+        log.info("Category edited successfully : {}", isSuccess2);
+
+    }
 
 
 

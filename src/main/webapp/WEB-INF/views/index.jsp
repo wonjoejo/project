@@ -27,7 +27,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=1">
 
 </head>
 
@@ -40,7 +40,6 @@
                 <img src="resources/assets/img/main_logo.png" alt="메인로고">
             </a>
             <div class="top-right">
-
                 <c:choose>
                     <c:when test="${sessionScope.member_id!=null}">
                         <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
@@ -117,6 +116,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/resources/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/index.js?ver=1"></script>
 </html>
 
