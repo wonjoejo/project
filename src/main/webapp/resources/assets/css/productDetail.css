@@ -284,6 +284,8 @@
     justify-content: center;
     flex-direction: column;
     cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 #photo-default{

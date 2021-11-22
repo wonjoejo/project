@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=4">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
 <body>
 <c:set var="box_no" value="${product.box_no}"/>
@@ -219,11 +219,6 @@
     // 카카오 공유하기
     Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
 
-    <%--const cateDetail1 = "";--%>
-    <%--if(${category.cate_detail1} != null){--%>
-    <%--    cateDetail1 = ${category.cate_detail1};--%>
-    <%--}--%>
-
     let detailList = [];
     if ('${category.cate_detail1}' != ""){
         detailList.push('#${category.cate_detail1}');
@@ -251,10 +246,10 @@
                 title: '${product.product_name}',
                 description: detailList.toString(),
                 imageUrl:
-                    'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+                    'https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}',
                 link: {
-                    mobileWebUrl: 'https://developers.kakao.com',
-                    webUrl: 'https://developers.kakao.com',
+                    mobileWebUrl: window.location.href,
+                    webUrl: window.location.href,
                 },
             },
             buttons: [
