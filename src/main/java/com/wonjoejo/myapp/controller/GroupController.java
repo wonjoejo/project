@@ -114,38 +114,51 @@ public class GroupController {
 	}// join 
 	
 	//그룹원 권한 설정 
-	@GetMapping("/permissiongroup")
-	public String grouppermission(BoxPermissionDTO boxPermission, RedirectAttributes rttrs, Model model, Integer box_no) {
+	@GetMapping("/editview")
+	public void editView(Integer box_no, Model model) {
 		
 		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
 		
 		log.info("\t+list.size{}",list.size());
 		
 		model.addAttribute("list",list);
-		
-		
-		log.debug("grouppermission({}) invoked.", boxPermission);
-		
-		
-		
-		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
-				null,
-				boxPermission.getMember_id(),
-				boxPermission.getBox_no(), 
-				boxPermission.getMaster_per(), 
-				boxPermission.getWrite_per(), 
-				boxPermission.getRead_per(),
-				boxPermission.getEdit_per(), 
-				boxPermission.getDelete_per(), 
-				boxPermission.getMember_stat()
-				);
-		
-		boolean result = this.service.permissionGroup(boxPermissionVO);
-		log.info("\t +result: {}",result);
 		model.addAttribute("box_no",box_no);
-		rttrs.addAttribute("result",result);
 		
-		return "/group/permissiongroup";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute("BoxPermissionDTO") List<BoxPermissionDTO> boxPermissionList, RedirectAttributes rttrs, Model model, Integer box_no) {
+		
+		log.debug("grouppermission({}) invoked.", boxPermissionList);
+		log.info("listsize: {}", boxPermissionList.size());
+		
+		int size = boxPermissionList.size();
+		
+		log.info(".....? : {}",boxPermissionList.get(0).getMember_id());
+		
+		if (size>1) {
+			for(BoxPermissionDTO boxPermission : boxPermissionList) {
+				
+				BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
+						null,
+						boxPermission.getMember_id(),
+						boxPermission.getBox_no(), 
+						boxPermission.getMaster_per(), 
+						boxPermission.getWrite_per(), 
+						boxPermission.getRead_per(),
+						boxPermission.getEdit_per(), 
+						boxPermission.getDelete_per(), 
+						null
+						);
+				this.service.permissionGroup(boxPermissionVO);
+			}
+		}
+		 
+//		log.info("\t +result: {}",result);
+		rttrs.addAttribute("box_no",box_no);
+//		rttrs.addAttribute("result",result);
+		
+		return "redirect:/group/permissionlist";
 	}//permissiongroup
 	
 	//그룹원 탈퇴

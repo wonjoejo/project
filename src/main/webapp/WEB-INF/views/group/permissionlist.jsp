@@ -70,10 +70,6 @@
 
 				<!-- font awesome -->
 				<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
-				
-				<!-- sweet alert -->
-				<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-				<link rel="stylesheet" href="sweetalert2.min.css">
 					
 				<!-- stylesheets -->
 				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=4">
@@ -201,11 +197,12 @@
 				</div>
 
 			</body>
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
 			<script>
 				//권한 설정페이지로 이동
 				$(document).ready(function () {
 					$("#grouppermission").click(function () {
-						location.href = "${pageContext.request.contextPath}/group/permissiongroup?box_no=${box_no}";
+						location.href = "${pageContext.request.contextPath}/group/editview?box_no=${box_no}";
 
 					})
 					

@@ -112,7 +112,7 @@
 						<div class="name">
 							<h1>그룹 설정</h1>
 						</div>
-						<form id = "permissionform">
+						<form id = "permissionform" action="/group/edit" method="post">
 							<div class="buttons">
 								<input class="submit-btn hvr-float" type="submit" onclick="submitpermission" value="저장 ">
 
@@ -141,6 +141,7 @@
 											<c:forEach items="${list}" var="group">
 												<c:if test="${group.member_stat != 1}">
 													<tbody>
+													<input type="hidden" name="box_no"  value="${box_no}">
 														<tr>
 															<td><img id="profile_img"
 																	src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
@@ -150,21 +151,22 @@
 															</td>
 															<td>
 																<c:out value="${group.member_id}" />
+																<input type="hidden" name="member_id" value="${group.member_id}">
 															</td>
 															<td>
 																<c:choose>
 																	<c:when test="${group.read_per == 0}">
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="read_per"
 																				type="checkbox" id="permission_o"
-																				checked="0" value="">
+																				checked="0" value="0">
 																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="read_per"
 																				type="checkbox" id="permission_x"
-																				value="">
+																				value="1">
 																		</div>
 																	</c:otherwise>
 																</c:choose>
@@ -173,14 +175,14 @@
 																<c:choose>
 																	<c:when test="${group.write_per == 0}">
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="write_per"
 																				type="checkbox" id="permission_o"
 																				checked="0" value="0">
 																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="write_per"
 																				type="checkbox" id="permission_x"
 																				value="1">
 																		</div>
@@ -191,14 +193,14 @@
 																<c:choose>
 																	<c:when test="${group.edit_per == 0}">
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="edit_per"
 																				type="checkbox" id="permission_o"
 																				checked="0" value="0">
 																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="edit_per"
 																				type="checkbox" id="permission_x"
 																				value="1">
 																		</div>
@@ -209,14 +211,14 @@
 																<c:choose>
 																	<c:when test="${group.delete_per == 0}">
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="delete_per"
 																				type="checkbox" id="permission_o"
 																				checked="0" value="0">
 																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="delete_per"
 																				type="checkbox" id="permission_x"
 																				value="1">
 																		</div>
@@ -227,14 +229,14 @@
 																<c:choose>
 																	<c:when test="${group.master_per == 0}">
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="master_per"
 																				type="checkbox" id="permission_o"
 																				checked="0" value="0">
 																		</div>
 																	</c:when>
 																	<c:otherwise>
 																		<div class="form-switch">
-																			<input class="form-check-input" name="permissioncheak"
+																			<input class="form-check-input" name="master_per"
 																				type="checkbox" id="permission_x"
 																				value="1">
 																		</div>
