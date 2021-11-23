@@ -159,7 +159,26 @@
         <![CDATA[
         SELECT
             /*+ index_desc(PRODUCT) */
-            *
+            PRODUCT.PRODUCT_NO,
+            BASE_CATEGORY.BOX_NO,
+            PRODUCT_NAME,
+            PRODUCT_MEMO,
+            PRODUCT_QTN,
+            PRODUCT_PHOTO_NAME,
+            PRODUCT_PHOTO_PATH,
+            BARCODE,
+            REG_DATE,
+            BASE_CATEGORY.CATEGORY_NO,
+            CATE_NAME1,
+            CATE_NAME2,
+            CATE_NAME3,
+            CATE_NAME4,
+            CATE_NAME5,
+            CATE_DETAIL1,
+            CATE_DETAIL2,
+            CATE_DETAIL3,
+            CATE_DETAIL4,
+            CATE_DETAIL5
         FROM PRODUCT,
              CATEGORY,
              BASE_CATEGORY
