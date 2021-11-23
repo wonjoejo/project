@@ -64,9 +64,9 @@ public interface BoardService {
     public abstract Integer getsearchTotal(Criteria cri);
 
 	//본인 답글 상세보기 
-    public abstract BoardVO replydetail(Integer board_idx,@Param("ref") Integer ref, @Param("member_id")String member_id);
+    public abstract List<BoardVO> replydetail(Integer board_idx,@Param("ref") Integer ref, @Param("member_id")String member_id, @Param("depth") Integer depth);
 
-	//답글 본글 삭제 
+	//답글 답글, 본글 삭제 
     public abstract boolean alldelete(Integer board_idx,Integer ref);
 	
 }//end interface
