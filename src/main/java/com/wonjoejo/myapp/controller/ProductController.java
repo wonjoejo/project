@@ -420,7 +420,8 @@ public class ProductController {
     @PostMapping("/delete")
     public String productDelete(Integer product_no, ProductDTO product, RedirectAttributes rttrs) {
         log.debug("productDelete({}) invoked.", product_no);
-
+        
+        rttrs.addAttribute("box_no", product.getBox_no());
 
         // category 삭제
         boolean result1 = this.service.deleteCategory(product_no);
@@ -430,10 +431,7 @@ public class ProductController {
         boolean result2 = this.service.deleteProduct(product_no);
         log.info("\t +result2: {}", result2);
 
-
-        rttrs.addAttribute("box_no", product.getBox_no());
-
-        return "redirect:/product/list";
+        return "redirect:/product/listPerPage";
     } // productDelete
 
     @PostMapping(value = "/search", produces = "application/json; charset=utf8")

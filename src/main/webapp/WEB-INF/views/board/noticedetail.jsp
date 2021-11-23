@@ -59,10 +59,12 @@
 						</div>
 					</div>
 				
-					<div>
-						<button type="button" id="editBtn">수정</button>
-		                <button type="button" id="deleteBtn">삭제</button>
-					</div>	
+					<c:if test="member_id=='admin'">
+						<div>
+							<button type="button" id="editBtn">수정</button>
+			                <button type="button" id="deleteBtn">삭제</button>
+						</div>	
+					</c:if>
 				</form>		
 			</div>		
 		</div>

@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
+import com.wonjoejo.myapp.domain.AdminCriteria;
 import com.wonjoejo.myapp.domain.MemberVO;
 
 public interface AdminService {
@@ -14,5 +15,11 @@ public interface AdminService {
 	
 	// 특정 회원 검색
 	public abstract List<MemberVO> searchMember(String member_id, String name);
+	
+	// 목록 페이징 처리
+	public abstract List<MemberVO> getMemberList(AdminCriteria mcri);
+	
+	// 총 레코드 개수
+	public abstract Integer getTotalCount(String member_id);
 
 } // end interface

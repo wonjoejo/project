@@ -11,7 +11,7 @@
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
@@ -41,7 +41,12 @@
                             <a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}">
                             <i class="fas fa-pencil-alt i-style"></i></a></li>
                         <li class="menu__list__item">
-                            <i class="fas fa-trash-alt i-style" id="delete-btn"></i></a></li>
+                            <form method="POST" action="/product/delete">
+                                <input type="hidden" name="product_no" value="${product.product_no}">
+                                <input type="hidden" name="box_no" value="${product.box_no}">
+                                <button type="submit"><i class="fas fa-trash-alt i-style" id="delete-btn"></i></button>
+                            </form>
+                        </li>
                         <li class="menu__list__item">
                             <a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
                             <i class="far fa-list-alt i-style"></i></a></li>
@@ -60,7 +65,7 @@
                 <div class="photo">
                         <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
                         <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
-                            <div class="item" id="product-img">
+                            <div class="item">
                                 <c:set var="path" value="${product.product_photo_path}"/>
                                 <c:choose>
                                     <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->

@@ -42,7 +42,7 @@
                 <div class="left-box" id="left-box">
                     <div class="photo" style="background-image: url(${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name});">
                         <input type="file" name="file" id="box-photo">
-                        <input type="hidden" name="product_photo_name" id="default">
+                        <input type="hidden" name="product_photo_name" id="default" value="${product.product_photo_name}">
                         <input type="hidden" name="product_photo_path"
                                 value="${pageContext.request.contextPath}/resources/assets/img/">
                         <span><i class="fas fa-upload"></i>파일 업로드</span>

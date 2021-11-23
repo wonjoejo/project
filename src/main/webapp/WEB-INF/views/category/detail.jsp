@@ -17,7 +17,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/baseCategory.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/baseCategory.css?ver=1">
 </head>
 <body>
 <c:set var="box_no" value="${box_no}"/>
@@ -401,6 +401,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 </div>

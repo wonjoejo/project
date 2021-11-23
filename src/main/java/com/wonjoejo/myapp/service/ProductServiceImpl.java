@@ -159,15 +159,18 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
         log.debug("searchProduct({},{}) invoked.", keyword, box_no);
 
         List<ProductCategoryVO> list = this.mapper.searchProduct(keyword, box_no);
-
-        return list;
+              
+      return list;
     } // searchProduct
+	
+	@Override
+	public Boolean deleteCategory(Integer product_no) {		
+		log.debug("deleteCategory({}) invoked",product_no);
 
+		int affectedLines = this.mapper.deleteCategory(product_no);
 
-    @Override
-    public Boolean deleteCategory(Integer product_no) {
-        return null;
-    } // deleteCategory
+		return affectedLines == 1;
+	} // deleteCategory
 
 
 } // end class

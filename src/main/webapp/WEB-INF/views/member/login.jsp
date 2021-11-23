@@ -35,11 +35,11 @@ pageEncoding="UTF-8"%>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/main.css"
+      href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/login.css"
+      href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=3"
     />
   </head>
   <body>
