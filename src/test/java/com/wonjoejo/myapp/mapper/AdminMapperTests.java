@@ -40,7 +40,7 @@ public class AdminMapperTests {
 	@Test
 	public void testSelectMemberList() {
 		log.debug("testSelectMemberList() invoked.");
-
+		
 		List<MemberVO> list = this.mapper.selectMemberList();
 		list.forEach(log::info);
 

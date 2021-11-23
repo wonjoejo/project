@@ -46,5 +46,27 @@
         ]]>
 
     </select>
+	
+	
+	<!-- 페이징 처리된 회원 리스트 조회 -->
+    <select id="getListPaging" resultType="com.wonjoejo.myapp.domain.MemberVO">
+        <![CDATA[
+        SELECT
+            /*+ index_desc(MEMBER) */
+            *
+        FROM MEMBER
+        OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
+        ]]>
 
+    </select>
+	
+	
+	<!-- 총 레코드 수 반환  -->
+    <select id="getTotalCount" resultType="int">
+        <![CDATA[
+        SELECT count(member_id)
+        FROM MEMBER
+        ]]>
+    </select>
+	
 </mapper>

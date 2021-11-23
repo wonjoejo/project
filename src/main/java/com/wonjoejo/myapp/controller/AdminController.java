@@ -2,13 +2,19 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wonjoejo.myapp.domain.AdminCriteria;
 import com.wonjoejo.myapp.domain.MemberVO;
+import com.wonjoejo.myapp.domain.PageDTO;
 import com.wonjoejo.myapp.service.AdminService;
 
 import lombok.NoArgsConstructor;
@@ -26,16 +32,29 @@ public class AdminController {
 	private AdminService service;
 	
 	// 회원 목록 요청
-	@GetMapping("/list")
-	public void list(Model model) {
+	@GetMapping("/listPerPage")
+	public String list(@ModelAttribute("mcri") AdminCriteria mcri, 
+ 			Model model, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
 		
 		log.debug("list({}) invoked.",model);
 		
-		List<MemberVO> list = this.service.viewMemberList();
+		List<MemberVO> list = this.service.getMemberList(mcri);
 		log.info("\t+ list size: {}",list.size());
 		
 		model.addAttribute("list",list);
+		model.addAttribute("member_id", session.getAttribute("member_id"));
 		
+		String member_id = (String)session.getAttribute("member_id");
+		
+		// 페이지 처리
+		Integer totalAmount = this.service.getTotalCount(member_id);
+	    PageDTO pageDTO = new PageDTO(mcri, totalAmount);
+ 		model.addAttribute("pageMaker",pageDTO);
+ 		
+		
+		return "/admin/list";
 	} // viewMemberList
 	
 	// 특정 회원 상세조회 요청 
