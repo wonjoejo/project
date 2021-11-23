@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
 <head>
 
@@ -27,7 +28,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=10">
 
 </head>
 
@@ -99,11 +100,57 @@
     <div class="section3_wrap">
         <div class="sec3-title">
             <h1>인투박스 이용 방법</h1>
-            <h3>문의사항은 Q&A 게시판을 이용해주세요.</h3>
-        </div>
-    </div>
+            <h3>문의사항은 <a href="${pageContext.request.contextPath}/board/listPerPage">Q&A 게시판</a> 을 이용해주세요.</h3>
+		</div><!-- class="sec3-title" -->
+		
+    <div id="tabbar">
+		<div class="title">
+			<h3 class="active">사용방법 1</h3>
+			<h3 class="">사용방법 2</h3>
+			<h3 class="">사용방법 3</h3>
+		</div>
 
+		<div class="description">
+			<div class="active">
+				<ul>
+					<li>
+						<img src="http://placehold.it/500x500" />
+						<p>
+							사용방법 1							
+						</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="">
+				<ul>
+					<li>
+						<img src="http://placehold.it/500x500" />
+						<p>
+							사용방법2 
+						</p>
+					</li>
+				</ul>
+			</div>
+			
+			<div>
+				<ul>
+					<li>
+						<img src="http://placehold.it/500x500" />
+						<p>
+							사용방법3
+						</p>
+					</li>
+				</ul>
+			</div>		
+        </div><!-- description -->     
+    </div><!-- section3_wrap -->
 </section>
+
+<footer>
+	<p>All rights Reserved © 2021</p>
+
+</footer>
 
 
 </body>
@@ -116,6 +163,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/resources/assets/js/index.js?ver=1"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/index.js?ver=10"></script>
 </html>
 

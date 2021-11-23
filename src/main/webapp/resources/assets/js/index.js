@@ -14,3 +14,17 @@ document.addEventListener('scroll',function (){
     });
 
 });
+
+$(function(){
+	$("#tabbar > .title > h3").click(function(){
+		var index=$(this).index();
+		$("#tabbar > .title > h3").removeClass("active");
+		$(this).addClass("active");
+
+		$("#tabbar > .description > div").removeClass("active");
+		$("#tabbar > .description > div").eq(index).addClass("active");
+	});
+});
+
+
+
