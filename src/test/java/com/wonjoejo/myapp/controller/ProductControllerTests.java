@@ -169,7 +169,7 @@ public class ProductControllerTests {
         MockMvc mockMvc = builder.build();
         MockHttpServletRequestBuilder reqBuilder = MockMvcRequestBuilders.post("/product/delete");
 
-        reqBuilder.param("product_no","373");
+        reqBuilder.param("product_no","340");
 
 
         String viewName = mockMvc.perform(reqBuilder).andReturn().getModelAndView().getViewName();

@@ -162,7 +162,7 @@ public class ProductMapperTests {
     public void testProductDelete() {
         log.debug("testProductDelete() invoked.");
 
-        Integer product_no = 366;
+        Integer product_no = 398;
 
         // Category 삭제
         // product 하위라 category 먼저 지워줘야함
