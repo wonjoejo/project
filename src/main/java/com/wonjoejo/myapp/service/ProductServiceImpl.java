@@ -1,18 +1,16 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.List;
-
 import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.mapper.ProductMapper;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wonjoejo.myapp.mapper.ProductMapper;
-
-import lombok.AllArgsConstructor;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
+import java.util.List;
 
 @Log4j2
 @AllArgsConstructor
@@ -146,25 +144,30 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		log.info("\t+ list size:{} ",list.size());
 		
 		return list;
-	} // getListPerPage
-	
-	
-
-	@Override
-	public Integer getTotalCount(Integer box_no) {
-		log.debug("getTotal() invoked.");
-		
-		return this.mapper.getTotalCount(box_no);
-	} // getTotalCount
-
-	
-	@Override
-	public Boolean deleteCategory(Integer product_no) {
-		return null;
-	} // deleteCategory
+    } // getListPerPage
 
 
+    @Override
+    public Integer getTotalCount(Integer box_no) {
+        log.debug("getTotal() invoked.");
 
+        return this.mapper.getTotalCount(box_no);
+    } // getTotalCount
+
+    @Override
+    public List<ProductCategoryVO> searchProduct(String keyword, Integer box_no) {
+        log.debug("searchProduct({},{}) invoked.", keyword, box_no);
+
+        List<ProductCategoryVO> list = this.mapper.searchProduct(keyword, box_no);
+
+        return list;
+    } // searchProduct
+
+
+    @Override
+    public Boolean deleteCategory(Integer product_no) {
+        return null;
+    } // deleteCategory
 
 
 } // end class

@@ -200,4 +200,51 @@
         ]]>
     </select>
 
+    <!-- 물품 검색  -->
+    <select id="searchProduct" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
+
+        SELECT
+        /*+ index_desc(PRODUCT) */
+        p.PRODUCT_NO,
+        BC.BOX_NO,
+        PRODUCT_NAME,
+        PRODUCT_MEMO,
+        PRODUCT_QTN,
+        PRODUCT_PHOTO_NAME,
+        PRODUCT_PHOTO_PATH,
+        BARCODE,
+        REG_DATE,
+        BC.CATEGORY_NO,
+        CATE_NAME1,
+        CATE_NAME2,
+        CATE_NAME3,
+        CATE_NAME4,
+        CATE_NAME5,
+        CATE_DETAIL1,
+        CATE_DETAIL2,
+        CATE_DETAIL3,
+        CATE_DETAIL4,
+        CATE_DETAIL5
+        FROM PRODUCT p JOIN CATEGORY c on p.PRODUCT_NO = c.PRODUCT_NO
+        JOIN BASE_CATEGORY BC on BC.CATEGORY_NO = c.CATEGORY_NO
+        WHERE
+        p.BOX_NO = #{box_no}
+        <if test='keyword != null and !keyword.equals("")'>
+            and (PRODUCT_NAME like '%'|| #{keyword} || '%'
+            or PRODUCT_MEMO like '%'|| #{keyword} || '%'
+            or CATE_NAME1 like '%' || #{keyword} || '%'
+            or CATE_NAME2 like '%' || #{keyword} || '%'
+            or CATE_NAME3 like '%' || #{keyword} || '%'
+            or CATE_NAME4 like '%' || #{keyword} || '%'
+            or CATE_NAME5 like '%' || #{keyword} || '%'
+            or CATE_DETAIL1 like '%' || #{keyword} || '%'
+            or CATE_DETAIL2 like '%' || #{keyword} || '%'
+            or CATE_DETAIL3 like '%' || #{keyword} || '%'
+            or CATE_DETAIL4 like '%' || #{keyword} || '%'
+            or CATE_DETAIL5 like '%' || #{keyword} || '%')
+        </if>
+
+    </select>
+
+
 </mapper>
