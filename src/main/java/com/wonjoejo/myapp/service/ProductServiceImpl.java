@@ -159,8 +159,12 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 	
 	@Override
-	public Boolean deleteCategory(Integer product_no) {
-		return null;
+	public Boolean deleteCategory(Integer product_no) {		
+		log.debug("deleteCategory({}) invoked",product_no);
+
+		int affectedLines = this.mapper.deleteCategory(product_no);
+
+		return affectedLines == 1;
 	} // deleteCategory
 
 
