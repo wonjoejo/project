@@ -15,7 +15,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=3">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>
@@ -23,14 +23,14 @@
     <div class="profile">
         <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
         <p class="name">${member_id}</p>
+        <p class="role">관리자</p>
     </div>
     <div class="menu">
-    	<span class="menu-item active mypage"><a
-                href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}"><i
-                class="far fa-user-circle"></i> 마이 페이지</a></span>
-        <span class="menu-item inactive boxlist"><a
-                href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i
-                class="far fa-list-alt"></i> 박스 리스트</a></span>
+    	<span class="menu-item active adminpage"><a
+                href="${pageContext.request.contextPath}/admin/listPerPage"><i
+                class="far fa-user-circle"></i>회원 관리</a></span>
+        <span class="menu-item inactive chart"><a
+                href="${pageContext.request.contextPath}/admin/chart"><i class="fas fa-chart-bar"></i>차트</a></span>
         <span class="menu-item inactive qnaboard"><a href="${pageContext.request.contextPath}/board/listPerPage"><i
                 class="far fa-question-circle"></i> Q&A</a></span>
         <span class="menu-item inactive logout"><a href="/member/logout"><i
@@ -39,7 +39,6 @@
 </div>
 
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
 <script type="application/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>
 
