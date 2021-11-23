@@ -179,7 +179,8 @@
     <select id="replyread" resultType="com.wonjoejo.myapp.domain.BoardVO">
        <!--  SELECT * FROM qna_board WHERE board_idx=#{board_idx}    -->
         SELECT * FROM QNA_BOARD
- 	    WHERE REF = #{ref} and DEPTH = 0 
+ 	    WHERE REF = #{ref}
+ 	    order by depth
     </select>
  
 </mapper>
