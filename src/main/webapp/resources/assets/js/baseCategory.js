@@ -1,9 +1,7 @@
-
-
 // 추가
-const  addBtn = document.querySelectorAll('.add-btn');
-addBtn.forEach(function (item){
-    item.addEventListener("click", function (e){
+const addBtn = document.querySelectorAll('.add-btn');
+addBtn.forEach(function (item) {
+    item.addEventListener("click", function (e) {
         e.preventDefault();
 
         item.parentElement.previousElementSibling.disabled = false;
@@ -54,8 +52,8 @@ modifyBtn.forEach(function (item, index) {
         if (item.parentElement.previousElementSibling.value == "") {
 
             Swal.fire({
-                text:'카테고리명을 입력해주세요',
-               icon:'warning'
+                text: '카테고리명을 입력해주세요',
+                icon: 'warning'
             });
 
         } else {
@@ -165,7 +163,6 @@ editBtn.forEach(function (item, index) {
 }); // editBtn forEach
 
 
-
 // ============= 비동기로 바꿔야함..
 // 수정 취소
 const modifyCancelBtn = document.querySelectorAll(".modify-cancel-btn");
@@ -174,22 +171,22 @@ modifyCancelBtn.forEach(function (item, idex) {
         e.preventDefault();
 
         $.ajax({
-           url:"/category/detailList",
-            method:"GET",
-            data:{
-               box_no: box_no
+            url: "/category/detailList",
+            method: "GET",
+            data: {
+                box_no: box_no
             },
-            success:function (data){
+            success: function (data) {
 
-               if (item.classList.contains('modify-cancel-btn1')){
-                   document.querySelector('#cate_name1').value = data.cate_name1;
-               }else if (item.classList.contains('modify-cancel-btn2')){
+                if (item.classList.contains('modify-cancel-btn1')) {
+                    document.querySelector('#cate_name1').value = data.cate_name1;
+                } else if (item.classList.contains('modify-cancel-btn2')) {
                     document.querySelector('#cate_name2').value = data.cate_name2;
-                }else if (item.classList.contains('modify-cancel-btn3')){
+                } else if (item.classList.contains('modify-cancel-btn3')) {
                     document.querySelector('#cate_name3').value = data.cate_name3;
-                }else if (item.classList.contains('modify-cancel-btn4')){
+                } else if (item.classList.contains('modify-cancel-btn4')) {
                     document.querySelector('#cate_name4').value = data.cate_name4;
-                }else if (item.classList.contains('modify-cancel-btn5')){
+                } else if (item.classList.contains('modify-cancel-btn5')) {
                     document.querySelector('#cate_name5').value = data.cate_name5;
                 } // else-if
 
@@ -197,7 +194,7 @@ modifyCancelBtn.forEach(function (item, idex) {
                 item.parentElement.previousElementSibling.disabled = true;
                 item.parentElement.previousElementSibling.style.border = "none";
 
-                if (item.classList.contains('no-name-modify-cancel-btn')){
+                if (item.classList.contains('no-name-modify-cancel-btn')) {
                     item.style.display = "none";
                     item.previousElementSibling.style.display = "none";
                     item.nextElementSibling.style.display = "inline-block";
@@ -243,77 +240,100 @@ deleteBtn.forEach(function (item, index) {
         console.log(item.parentElement.previousElementSibling);
         console.log(item.parentNode);
 
-        item.parentElement.previousElementSibling.value = "";
+        Swal.fire({
+            title: '삭제하시겠습니까?',
+            text: "해당 카테고리의 상세 카테고리 정보들이 초기화됩니다.",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '네, 삭제합니다.',
+            showLoaderOnConfirm: true,
+            preConfirm: function () {
+                return new Promise(function (resolve) {
+                    item.parentElement.previousElementSibling.value = "";
 
-        if (item.classList.contains('del-btn1')) {
-            document.querySelector('#cate-detail1').value = "";
-        } else if (item.classList.contains('del-btn2')) {
-            document.querySelector('#cate-detail2').value = "";
-        } else if (item.classList.contains('del-btn3')) {
-            document.querySelector('#cate-detail3').value = "";
-        } else if (item.classList.contains('del-btn4')) {
-            document.querySelector('#cate-detail4').value = "";
-        } else if (item.classList.contains('del-btn5')) {
-            document.querySelector('#cate-detail5').value = "";
-        } // if-else
+                    if (item.classList.contains('del-btn1')) {
+                        document.querySelector('#cate-detail1').value = "";
+                    } else if (item.classList.contains('del-btn2')) {
+                        document.querySelector('#cate-detail2').value = "";
+                    } else if (item.classList.contains('del-btn3')) {
+                        document.querySelector('#cate-detail3').value = "";
+                    } else if (item.classList.contains('del-btn4')) {
+                        document.querySelector('#cate-detail4').value = "";
+                    } else if (item.classList.contains('del-btn5')) {
+                        document.querySelector('#cate-detail5').value = "";
+                    } // if-else
 
-        // fetch
-        const data = {
-            category_no: document.querySelector("#category-no").value,
-            box_no: document.querySelector("#box-no").value,
-            cate_name1: document.querySelector("#cate_name1").value,
-            cate_name2: document.querySelector("#cate_name2").value,
-            cate_name3: document.querySelector("#cate_name3").value,
-            cate_name4: document.querySelector("#cate_name4").value,
-            cate_name5: document.querySelector("#cate_name5").value
-        };
+                    // fetch
+                    const data = {
+                        category_no: document.querySelector("#category-no").value,
+                        box_no: document.querySelector("#box-no").value,
+                        cate_name1: document.querySelector("#cate_name1").value,
+                        cate_name2: document.querySelector("#cate_name2").value,
+                        cate_name3: document.querySelector("#cate_name3").value,
+                        cate_name4: document.querySelector("#cate_name4").value,
+                        cate_name5: document.querySelector("#cate_name5").value
+                    };
 
-        console.log(data)
+                    console.log(data)
 
-        // cate_name
-        fetch('/category/edit', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
-            if (response) {
-                item.style.display = "none";
-                item.previousElementSibling.style.display = "none";
-                item.nextElementSibling.nextElementSibling.nextElementSibling.style.display="inline-block";
-            } else {
-                console.log(response.status);
-            }
-        }); // fetch
+                    // cate_name
+                    fetch('/category/edit', {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(function (response) {
+                            if (response) {
+                                Swal.fire('삭제되었습니다.', '', 'success');
 
-        // cate_detail
+                                item.style.display = "none";
+                                item.previousElementSibling.style.display = "none";
+                                item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
+                            } else {
+                                Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
+                                console.log(response.status);
+                            }
+                        })
+                        .catch(function (error) {
+                            Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
+                            console.log(error.status);
+                        }); // fetch
 
-        const data2 = {
-            category_no: document.querySelector("#category-no").value,
-            cate_detail1: document.querySelector("#cate-detail1").value,
-            cate_detail2: document.querySelector("#cate-detail2").value,
-            cate_detail3: document.querySelector("#cate-detail3").value,
-            cate_detail4: document.querySelector("#cate-detail4").value,
-            cate_detail5: document.querySelector("#cate-detail5").value
-        }
-        console.log(data2)
+                    // cate_detail
 
-        fetch('/category/deleteCategory', {
-            method: 'POST',
-            body: JSON.stringify(data2),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response) {
-            if (response) {
-                item.style.display = "none";
-                item.previousElementSibling.style.display = "none";
-                item.nextElementSibling.nextElementSibling.nextElementSibling.style.display="inline-block";
-            } else {
-                console.log(response.status);
-            }
-        }); // fetch
+                    const data2 = {
+                        category_no: document.querySelector("#category-no").value,
+                        cate_detail1: document.querySelector("#cate-detail1").value,
+                        cate_detail2: document.querySelector("#cate-detail2").value,
+                        cate_detail3: document.querySelector("#cate-detail3").value,
+                        cate_detail4: document.querySelector("#cate-detail4").value,
+                        cate_detail5: document.querySelector("#cate-detail5").value
+                    }
+                    console.log(data2)
+
+                    fetch('/category/deleteCategory', {
+                        method: 'POST',
+                        body: JSON.stringify(data2),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function (response) {
+                        if (response) {
+                            item.style.display = "none";
+                            item.previousElementSibling.style.display = "none";
+                            item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
+                        } else {
+                            console.log(response.status);
+                        }
+                    }); // fetch
+                });
+            },
+            allowOutsideClick: false
+        });
 
 
     }); // click
