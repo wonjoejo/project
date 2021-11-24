@@ -35,15 +35,7 @@
                 <c:forEach items="${list}" var="box">
                     <a href="${pageContext.request.contextPath}/box/get?box_no=${box.box_no}">
                         <div class="box hvr-grow">
-                            <c:set var="path" value="${box.box_photo_path}"/>
-                            <c:choose>
-                                <c:when test="${fn:contains(path,'default')}">
-                                    <img src="${box.box_photo_path}${box.box_photo_name}"/>
-                                </c:when>
-                                <c:otherwise>
-                                    <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
-                                </c:otherwise>
-                            </c:choose>
+                            <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
                                 ${box.box_name}
                         </div>
                     </a>
