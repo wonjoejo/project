@@ -19,7 +19,7 @@
     <!-- box.css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <!-- productDetail.css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=1">
 </head>
 <body>
 <div class="container">
@@ -37,42 +37,48 @@
         <form method="POST" action="/product/insert" enctype="multipart/form-data">
             <input type="hidden" name="member_id" value="${sessionScope.member_id}">
             <input type="hidden" name="box_no" value="${box_no}">
+ 
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
                     <div class="photo">
-                        <input type="file" name="file" id="box-photo">
-                        <input type="hidden" name="product_photo_name" id="default">
-                        <input type="hidden" name="product_photo_path"
-                                value="${pageContext.request.contextPath}/resources/assets/img/">
-                        <span id="img-file-upload"><i class="fas fa-upload"></i>파일 업로드</span>
+
+                        <div class="product-photo" id="photo-upload">
+                            <input type="file" name="file" id="box-photo">
+                            <input type="hidden" name="product_photo_name" id="default">
+                            <input type="hidden" name="product_photo_path"
+                                    value="default">
+                            <span id="img-file-upload"><i class="fas fa-upload"></i>파일 업로드</span>
+                        </div>
+
                     </div>
+
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                             data-bs-interval="false" id="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/food.png"
-                                            class="default-img"></div>
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/food.png"
+                                        class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"
-                                            class="default-img"></div>
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/cosmetic.png"
+                                        class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/pill.png"
-                                            class="default-img"></div>
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
+                                        class="default-img"></div>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"
-                                            class="default-img"></div>
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/clothes.png"
+                                        class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/goods.png"
-                                            class="default-img"></div>
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/goods.png"
+                                        class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"
-                                            class="default-img"></div>
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
+                                        class="default-img"></div>
                                 </div>
                             </div>
                         </div>
@@ -167,9 +173,7 @@
 
 <%--boxmenu JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
-<%-- productEdit JS--%>
-<script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=1"></script>
+
 
 <script>
 
@@ -212,7 +216,11 @@
 	// ;
 
 </script>
+
 <%-- mention 기능 실험중 --%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=3"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/mention.js"></script>
 

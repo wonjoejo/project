@@ -15,7 +15,7 @@
     // sweetalert
     $('#more').click(function () {
         swal.fire({
-            text: "${product.product_memo}"
+            text: "product_memo"
         });
     });
 
@@ -71,5 +71,49 @@ function sendLink() {
         ],
     })
 }
+
+
+
+const deleteBtn = document.querySelector("#delete-btn");
+
+deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: '삭제하시겠습니까?',
+        text: "삭제된 물품은 복구가 불가능합니다.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#5A95F5',
+        cancelButtonColor: '#DD3333',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log("product_no 확인: " + product_no);
+            $.ajax({
+                type: "POST",
+                url: "/product/delete",
+                data: {
+                    "product_no": product_no,
+                    "box_no":box_no
+                },
+                success: function (data) {
+                    Swal.fire(
+                        '삭제 완료',
+                        '삭제되었습니다.',
+                        'success'
+                    ).then((result) => {
+                        if (result.isConfirmed) {
+                            location.href = box_link;
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+}); // deleteBtn
+
 
 

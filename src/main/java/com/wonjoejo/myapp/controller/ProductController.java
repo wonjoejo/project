@@ -303,7 +303,7 @@ public class ProductController {
                     product.getProduct_memo(),
                     product.getProduct_qtn(),
                     product.getProduct_photo_name(),
-                    "/resources/assets/img/",
+                    "default/",
                     product.getBarcode(),
                     product.getReg_date()
             );
@@ -386,7 +386,7 @@ public class ProductController {
                     product.getProduct_memo(),
                     product.getProduct_qtn(),
                     product.getProduct_photo_name(),
-                    "/resources/assets/img/",
+                    "default/",
                     product.getBarcode(),
                     product.getReg_date()
             );
