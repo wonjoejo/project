@@ -80,25 +80,45 @@
 	  }); //onclick
     
    // 답글 작성 버튼 
-        $('#replyWriteBtn').on('click', function () {
-            console.log('onclicked on writeBtn...');
+    $('#replyWriteBtn').on('click', function () {
+        console.log('onclicked on writeBtn...');
 
-            self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}';
-        });//onclick
-        
-    
-   //delete 버튼에 대한 이벤트 등록 처리
-   $('#deleteBtn').click(function () {
+        self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}';
+    });//onclick
+  
+   /*//delete 버튼에 대한 이벤트 등록 처리
+  	$('#deleteBtn').click(function () {
       console.log('click event triggered..');
 
       var formObj = $('form');
       formObj.attr('method', 'POST');
       formObj.attr('action', '/board/delete');
-     
+ 
       formObj.submit();
-    }); //onclick
+    }); //onclick*/
     
-    //delete 버튼에 대한 이벤트 등록 처리
+    $('#deleteBtn').on('click',function(e){
+          
+   		Swal.fire({
+   		  title: '삭제 하시겠습니까?',
+   		  icon: 'warning',
+   		  showCancelButton: true,
+   		  confirmButtonColor: '#3085d6',
+   		  cancelButtonColor: '#d33',
+   		  confirmButtonText: '삭제',
+   		  cancelButtonText: '취소'
+   		}).then((result) => {
+   		  if (result.value) {
+   			var formObj = $('form');
+     	      formObj.attr('method', 'POST');
+     	      formObj.attr('action', '/board/delete');
+     	     formObj.submit();
+   		  }
+   		})
+   		
+  	}); 
+    
+   /* //delete 버튼에 대한 이벤트 등록 처리
    $('#replydeleteBtn').click(function () {
       console.log('click event triggered..');
 
@@ -107,7 +127,28 @@
       formObj.attr('action', '/board/alldelete');
      
       formObj.submit();
-    }); //onclick
+    }); //onclick */
+    
+    $('#replydeleteBtn').on('click',function(e){
+          
+   		Swal.fire({
+   		  title: '삭제 하시겠습니까?',
+   		  icon: 'warning',
+   		  showCancelButton: true,
+   		  confirmButtonColor: '#3085d6',
+   		  cancelButtonColor: '#d33',
+   		  confirmButtonText: '삭제',
+   		  cancelButtonText: '취소'
+   		}).then((result) => {
+   		  if (result.value) {
+   			var formObj = $('form');
+     	      formObj.attr('method', 'POST');
+     	      formObj.attr('action', '/board/alldelete');
+     	     formObj.submit();
+   		  }
+   		})
+   		
+  	}); 
     
    //edit 버튼에 대한 이벤트 등록 처리
     $('#editBtn').click(function () {
