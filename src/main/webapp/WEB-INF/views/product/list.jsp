@@ -60,10 +60,10 @@
                                 <div class="item" id="product-img">
                                     <c:set var="path" value="${product.product_photo_path}" />
                                     <c:choose>
-                                        <c:when test="${fn:contains(path,'resource')}">
+                                        <c:when test="${fn:contains(path,'default')}">
                                             <!-- 기본이미지 사용 -->
                                             <img id="product-img"
-                                                src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}" />
+                                                src="${product.product_photo_path}${product.product_photo_name}" />
                                         </c:when>
                                         <c:otherwise>
                                             <!-- 업로드 이미지 사용 -->

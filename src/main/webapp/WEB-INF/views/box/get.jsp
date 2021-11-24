@@ -194,7 +194,7 @@
         e.preventDefault();
         Swal.fire({
             title: '정말 삭제하시겠습니까?',
-            text: "한 번 삭제된 박스는 복구가 불가능합니다",
+            text: "한 번 삭제된 박스는 복구가 불가능합니다.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#5A95F5',
@@ -213,7 +213,7 @@
                     success: function (data) {
                         Swal.fire(
                             '삭제 완료',
-                            '박스가 삭제되었습니다',
+                            '박스가 삭제되었습니다.',
                             'success'
                         ).then((result) => {
                             if (result.isConfirmed) {

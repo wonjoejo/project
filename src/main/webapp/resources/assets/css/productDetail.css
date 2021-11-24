@@ -2,6 +2,7 @@
 
 /* noto sans */
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
 .notosanskr * {
     font-family: "Noto Sans KR", sans-serif;
 }
@@ -9,22 +10,21 @@
 /* 위메프 */
 @font-face {
     font-family: "Wemakeprice-Bold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff")
-    format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Wemakeprice-SemiBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff")
-    format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Wemakeprice-Regular";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff")
-    format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -33,28 +33,27 @@
 
 @font-face {
     font-family: "NEXON Lv1 Gothic OTF Bold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff")
-    format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "NEXON Lv1 Gothic OTF";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff")
-    format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "NEXON Lv1 Gothic OTF Light";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff")
-    format("woff");
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
 /* 햄버거 x */
-#nav-icon4{
+#nav-icon4 {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -136,6 +135,7 @@
     from {
         top: 0px;
     }
+
     /*70% {*/
     /*    top: 10px;*/
     /*    animation-timing-function: ease-in;*/
@@ -153,6 +153,7 @@
     margin: 10px auto;
     float: right;
 }
+
 .button {
     display: flex;
     position: absolute;
@@ -177,23 +178,28 @@
     height: 3px;
     border-radius: 25%;
 }
+
 .button__line:not(:first-child) {
     margin-top: 4px;
 }
+
 .hamburger {
     width: 100%;
 }
+
 .menu__list {
     text-align: center;
     width: 100%;
     padding-left: 0;
 }
+
 .menu__list__item {
     position: relative;
     list-style: none;
     padding-bottom: 15px;
     top: 0px;
 }
+
 .menu__list__item a {
     text-decoration: none;
     color: grey;
@@ -201,6 +207,7 @@
     font-size: 1.5em;
     font-family: 'Open Sans', sans-serif;
 }
+
 .menu__list__item {
     padding-bottom: 0px;
     display: flex;
@@ -231,9 +238,11 @@
     animation-fill-mode: forwards;
     opacity: 1;
 }
+
 .menu__list--animate .menu__list__item:nth-child(2) {
     animation-delay: 0.5s;
 }
+
 .menu__list--animate .menu__list__item:nth-child(3) {
     animation-delay: 1s;
 }
@@ -246,9 +255,9 @@
     font-size: 1.2rem;
     background: #4776E6;
     background: -webkit-linear-gradient(left, #4776E6, #8E54E9);
-    background:    -moz-linear-gradient(right, #4776E6, #8E54E9);
-    background:      -o-linear-gradient(right, #4776E6, #8E54E9);
-    background:         linear-gradient(to right, #4776E6, #8E54E9);
+    background: -moz-linear-gradient(right, #4776E6, #8E54E9);
+    background: -o-linear-gradient(right, #4776E6, #8E54E9);
+    background: linear-gradient(to right, #4776E6, #8E54E9);
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -256,7 +265,7 @@
 
 
 /* product detail */
-.product-detail-wrap{
+.product-detail-wrap {
     width: 100%;
     position: relative;
     display: flex;
@@ -264,6 +273,7 @@
     justify-content: center;
 
 }
+
 .left-box {
     width: min-content;
     display: flex;
@@ -273,7 +283,7 @@
     padding: 0;
 }
 
-.photo{
+.photo {
     width: 14vw;
     height: 13vw;
     position: relative;
@@ -287,33 +297,33 @@
     background-size: cover;
 }
 
-#photo-default{
+#photo-default {
     max-width: 14vh;
-	align-items: center;
-	align-content: center;
+    align-items: center;
+    align-content: center;
     background: #FFF no-repeat center/40%;
 }
 
 #photo-upload {
     max-width: 14vh;
-	align-items: center;
-	align-content: center;
+    align-items: center;
+    align-content: center;
 }
 
-#img-file-upload{
+#img-file-upload {
     border-radius: 7px;
     padding: 2px 10px;
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 /* 이미지 없을 경우 대체 */
 #photo-none-img {
-	width: 14vh;
-	height: 14vh;
+    width: 14vh;
+    height: 14vh;
 
-	border-radius: 25px;
-	background-color: #1473E6;
-	opacity: 0.2;
+    border-radius: 25px;
+    background-color: #1473E6;
+    opacity: 0.2;
 }
 
 #box-photo {
@@ -360,6 +370,7 @@
 .right-box ul li:not(:first-child) {
     margin-top: 5px;
 }
+
 .title {
     font-family: "NEXON Lv1 Gothic OTF";
     display: flex;
@@ -371,6 +382,7 @@
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
 }
+
 .detail {
     display: flex;
     align-items: center;
@@ -383,7 +395,7 @@
 
 #detail-memo {
     overflow: hidden;
-	text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
 .detail:active {
@@ -404,6 +416,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .share {
     font-family: "NEXON Lv1 Gothic OTF";
     display: flex;
@@ -413,9 +426,9 @@
 
 }
 
-.share img{
+.share img {
     width: 14%;
-    margin-right:4%;
+    margin-right: 4%;
 }
 
 .more {
@@ -425,16 +438,18 @@
     position: absolute;
     left: 87%;
 }
-.more a{
-     color: #5A95F5;
 
- }
+.more a {
+    color: #5A95F5;
+
+}
 
 .photo span {
     color: #5A95F5;
     margin-top: 150px;
     font-size: 0.8rem;
 }
+
 .photo span i {
     margin-right: 7px;
 }
@@ -461,15 +476,12 @@ textarea {
 }
 
 .btn-product {
-    margin-top:65px;
+    margin-top: 65px;
 }
 
 
 
-
-
-
-/* sweet alert */
+/* Sweet Alert */
 .swal2-show {
     border-image-source: repeating-linear-gradient(90deg, #4776E6 0%, #8E54E9 100%) !important;
     border-image-width: 5px !important;
@@ -494,8 +506,14 @@ textarea {
     border-radius: 24px !important;
     box-shadow: inset 0 5px 10px rgba(149, 149, 149, 0.2) !important;
     color: #FFFFFF !important;
-
 }
+
+.swal2-cancel {
+    border: none !important;
+    border-radius: 24px !important;
+    box-shadow: inset 0 5px 10px rgba(149, 149, 149, 0.2) !important;
+}
+
 
 /* mention */
 
@@ -528,4 +546,3 @@ textarea {
     background: linear-gradient(to top, #FFFFFF 0%, #EFEFEF 100%);
     transform: perspective(100px) rotateX(-3deg) translateY(3px);
 }
-
