@@ -202,10 +202,10 @@
                 </div> <!-- comment-box -->
 
             </div><!-- comment-wrap -->
-        </div>
-    </div>
+        </div><!-- scroll -->
+    </div> <!-- main-container -->
 
-</div>
+</div> <!-- container -->
 
 </body>
 
