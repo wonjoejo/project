@@ -65,15 +65,6 @@ public class GroupServiceImpl implements GroupService{
 		return affectedRows == 1;
 	} //permissionGroup
 	
-	//그룹원 탈퇴
-	@Override
-	public boolean outGroup(BoxPermissionVO boxPermission) {
-		log.debug("outGroup({}) invoked", boxPermission);
-		
-		int affectedRows = this.mapper.deleteMember(boxPermission);
-		
-		return affectedRows == 1;
-	} //permissionGroup
 
 	// 마스터 권한 체크 
 	@Override
@@ -88,6 +79,7 @@ public class GroupServiceImpl implements GroupService{
 		// true면, master / false면, master 아님
 	}
 
+	// 그룹 멤버 찾기
 	@Override
 	public String findMember(String keyword) {
 
@@ -100,6 +92,7 @@ public class GroupServiceImpl implements GroupService{
 		return member_id;
 	}
 
+	//그룹 마스터 권한 양도
 	@Override
 	public boolean updateMaster(String member_id, Integer box_no, Integer master_per) {
 
@@ -108,6 +101,17 @@ public class GroupServiceImpl implements GroupService{
 		int affectedRows = this.mapper.updateMaster(member_id, box_no, master_per);
 
 		return affectedRows == 1;
+	}
+
+	// 그룹 멤버 삭제(추방, 삭제 같이 사용)
+	@Override
+	public boolean deleteMember(String member_id, Integer box_no, Integer member_stat) {
+		
+		log.debug("deleteMember({},{}) invoked.", member_id, box_no);
+		
+		int affectedRows = this.mapper.deleteMember(member_id, box_no, member_stat);
+		
+		return affectedRows ==1;
 	}
 
 } // end class
