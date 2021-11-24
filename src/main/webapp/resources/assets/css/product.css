@@ -279,10 +279,12 @@ body {
 
 #product-name {
 	width: 150px;
+	height: ;
 	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
 	margin: 5px;
 
 	/* 내용이 길어지면 길어진 부분을 자르고 말줄임표 처리 */
+	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }

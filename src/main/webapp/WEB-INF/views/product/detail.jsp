@@ -64,23 +64,12 @@
                 <div class="photo">
                         <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
                         <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
-                            <div class="item">
-                                <c:set var="path" value="${product.product_photo_path}"/>
-                                <c:choose>
-                                    <c:when test="${fn:contains(path,'default')}"> <!-- 기본이미지 사용 -->
-                                        <img  id="photo-default" src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}"/>
-                                    </c:when>
-                                    <c:otherwise> <!-- 업로드 이미지 사용 -->
-                                        <img  id="photo-upload" src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div> <!-- item -->
+                            <img id="photo-upload" src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                         </c:if> <!-- product-img -->
 
                         <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
                         <c:if test="${empty product.product_photo_name || empty product.product_photo_path}">
-                            <div class="item" id="photo-none-img">
-                            </div>
+                            <div class="item" id="photo-none-img"> </div>
                         </c:if> <!-- product-none-img -->
                 </div> <!-- photo -->
 
@@ -193,8 +182,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-<%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=3"></script>
+
 <%-- detail JS --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=2"></script>
 <%-- sweet alert --%>
@@ -204,48 +192,13 @@
 
 
 <script>
-
-const deleteBtn = document.querySelector("#delete-btn");
-
-deleteBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    Swal.fire({
-        title: '삭제하시겠습니까?',
-        text: "삭제된 물품은 복구가 불가능합니다.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#5A95F5',
-        cancelButtonColor: '#DD3333',
-        confirmButtonText: '삭제',
-        cancelButtonText: '취소'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            console.log("product_no 확인: " + ${product.product_no});
-            $.ajax({
-                type: "POST",
-                url: "/product/delete",
-                data: {
-                    "product_no": ${product.product_no},
-                    "box_no": ${product.box_no}
-                },
-                success: function (data) {
-                    Swal.fire(
-                        '삭제 완료',
-                        '삭제되었습니다.',
-                        'success'
-                    ).then((result) => {
-                        if (result.isConfirmed) {
-                            location.href = "/product/listPerPage?box_no=${product.box_no}";
-                        }
-                    })
-                }
-            })
-        }
-    })
-
-}); // deleteBtn
-
+const product_memo = '${product.product_memo}';
+const product_no = '${product.product_no}';
+const box_no = '${product.box_no}';
+const box_link = '/product/listPerPage?box_no=${product.box_no}';
 </script>
+
+<%-- product JS --%>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=6"></script>
 
 </html>
