@@ -29,29 +29,41 @@ import java.util.List;
 @Controller
 public class GroupController {
 
-	@Setter(onMethod_ = {@Autowired})
+	@Setter(onMethod_ = { @Autowired })
 	private GroupService service;
 
-	//그룹원 목록
+	// 그룹원 목록
 	@GetMapping("/grouplist")
-	public void grouplist(Model model, Integer box_no) {
+	public void grouplist(Model model, Integer box_no, HttpServletRequest req) {
 
 		log.debug("grouplist({},{}) invoked.", model, box_no);
+		HttpSession session = req.getSession();
+		String loginId = (String) session.getAttribute("member_id");
 
 		List<MemberVO> list = this.service.selectGroupMemberList(box_no);
+
+		List<BoxPermissionMemberVO> permissionList = this.service.selectGroupPermissionList(box_no);
+
+		String masterId = "";
+
+		for (BoxPermissionMemberVO member : permissionList) {
+			if (member.getMaster_per()==0) {
+				masterId = member.getMember_id();
+			} 
+		}
 
 		log.info("\t+list.size{}", list.size());
 
 		model.addAttribute("list", list);
 		model.addAttribute("box_no", box_no);
+		model.addAttribute("master_id", masterId);
 
-	}//grouplist
+	}// grouplist
 
 	// groupList json
 	@PostMapping(value = "/json", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String
-	json(@RequestBody String data) {
+	public String json(@RequestBody String data) {
 
 		log.info("json({}) invoked.", data);
 
@@ -69,7 +81,7 @@ public class GroupController {
 		return result;
 	}
 
-	//그룹원 권한 목록
+	// 그룹원 권한 목록
 	@GetMapping("/permissionlist")
 	public void permissionlist(Model model, Integer box_no, HttpServletRequest req) {
 
@@ -88,44 +100,37 @@ public class GroupController {
 		model.addAttribute("isMaster", isMaster);
 		model.addAttribute("box_no", box_no);
 
-	}//permissionlist 
+	}// permissionlist
 
-	//그룹원 가입
+	// 그룹원 가입
 	@GetMapping("/join")
 	public String join(BoxPermissionDTO boxPermission, RedirectAttributes rttrs) {
-		
+
 		log.debug("join({}) invoked", boxPermission);
-		
-		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
-				null,
-				boxPermission.getMember_id(),
-				boxPermission.getBox_no(), 
-				boxPermission.getMaster_per(), 
-				boxPermission.getWrite_per(), 
-				boxPermission.getRead_per(),
-				boxPermission.getEdit_per(), 
-				boxPermission.getDelete_per(), 
-				boxPermission.getMember_stat()
-				);
-		
+
+		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(null, boxPermission.getMember_id(),
+				boxPermission.getBox_no(), boxPermission.getMaster_per(), boxPermission.getWrite_per(),
+				boxPermission.getRead_per(), boxPermission.getEdit_per(), boxPermission.getDelete_per(),
+				boxPermission.getMember_stat());
+
 		boolean result = this.service.joinGroup(boxPermissionVO);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("result",result);
-		
+		log.info("\t +result: {}", result);
+		rttrs.addAttribute("result", result);
+
 		return "/group/grouplist";
-	}// join 
-	
-	//그룹원 권한 설정 
+	}// join
+
+	// 그룹원 권한 설정
 	@GetMapping("/editview")
 	public void editView(Integer box_no, Model model) {
-		
+
 		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
-		
-		log.info("\t+list.size{}",list.size());
-		
-		model.addAttribute("list",list);
-		model.addAttribute("box_no",box_no);
-		
+
+		log.info("\t+list.size{}", list.size());
+
+		model.addAttribute("list", list);
+		model.addAttribute("box_no", box_no);
+
 	}
 
 	@PostMapping("/edit")
@@ -138,22 +143,17 @@ public class GroupController {
 
 		System.out.println("====size====" + array.size());
 
-
 		if (!array.isEmpty()) {
 			for (int i = 0; i < array.size(); i++) {
 
 				JsonElement element = array.get(i);
-				BoxPermissionVO vo = new BoxPermissionVO(
-						null,
-						element.getAsJsonObject().get("member_id").getAsString(),
+				BoxPermissionVO vo = new BoxPermissionVO(null, element.getAsJsonObject().get("member_id").getAsString(),
 						element.getAsJsonObject().get("box_no").getAsInt(),
 						element.getAsJsonObject().get("master_per").getAsInt(),
 						element.getAsJsonObject().get("write_per").getAsInt(),
 						element.getAsJsonObject().get("read_per").getAsInt(),
 						element.getAsJsonObject().get("edit_per").getAsInt(),
-						element.getAsJsonObject().get("delete_per").getAsInt(),
-						0
-				);
+						element.getAsJsonObject().get("delete_per").getAsInt(), 0);
 
 				boolean result = this.service.permissionGroup(vo);
 				log.info("result:=== {} ===", result);
@@ -161,36 +161,11 @@ public class GroupController {
 			}
 		}
 
-
 		log.info("=====element : {}", array.toString());
 
-	}//permissiongroup
-	
-	//그룹원 탈퇴
-	@GetMapping("/groupout")
-	public String groupout(BoxPermissionDTO boxPermission, RedirectAttributes rttrs) {
-	
-		log.debug("groupout({}) invoked.", boxPermission);
+	}// permissiongroup
 
-		BoxPermissionVO boxPermissionVO = new BoxPermissionVO(
-				boxPermission.getNo(),
-				boxPermission.getMember_id(),
-				boxPermission.getBox_no(),
-				boxPermission.getMaster_per(),
-				boxPermission.getWrite_per(),
-				boxPermission.getRead_per(),
-				boxPermission.getEdit_per(),
-				boxPermission.getDelete_per(),
-				boxPermission.getMember_stat()
-		);
-
-		boolean result = this.service.outGroup(boxPermissionVO);
-		log.info("\t +result: {}", result);
-		rttrs.addAttribute("result", result);
-
-		return "/group/grouplist";
-	}//groupout
-
+	// 그룹원 검색
 	@GetMapping("/find")
 	@ResponseBody
 	public String findMember(String keyword) {
@@ -210,6 +185,37 @@ public class GroupController {
 
 	} // findMember
 
+	// 그룹원 탈퇴
+	@PostMapping("/groupout")
+	public String deleteMember(String member_id, Integer box_no, HttpServletRequest req, RedirectAttributes rttrs) {
+
+		log.debug("groupout({}) invoked.", member_id, box_no);
+		// member_id는 view단에서 넘겨준 id (-> 그룹 탈퇴를 눌렀을 경우에는,
+		// 내 아이디이고 마스터가 회원 추방을 눌렀을 경우에는 그룹 회원의 아이디)
+
+		HttpSession session = req.getSession();
+		// 로그인 한 아이디
+		String loginId = (String) session.getAttribute("member_id");
+
+		// 박스 넘버와 로그인한 아이디로 마스터인지 확인
+		boolean isMaster = this.service.checkMaster(loginId, box_no);
+
+		// 만약에 마스터면서 탈퇴 버튼을 눌렀을 경우
+		if (!isMaster && member_id.equals(loginId)) { // 마스터가 아니면서 로그인한 아이디와 탈퇴 시킬 아이디가 같은 경우 (=탈퇴)
+			boolean result = this.service.deleteMember(member_id, box_no, 1);
+			rttrs.addAttribute("member_id", loginId);
+			return "redirect:/box/list";
+		} else if (!isMaster && !member_id.equals(loginId)) { // 마스터가 아니면서 로그인한 아이디와 탈퇴 시킬 아이디가 다른 경우 (=추방)
+			boolean result2 = this.service.deleteMember(member_id, box_no, 1);
+			rttrs.addAttribute("box_no", box_no);
+			return "redirect:/group/editview";
+		}
+
+		return "redirect:/group/editview";
+
+	}// groupout
+
+	// 그룹 마스터 양도
 	@GetMapping("/master")
 	@ResponseBody
 	public String updateMaster(String member_id, Integer box_no, HttpServletRequest req) {
@@ -219,18 +225,27 @@ public class GroupController {
 		HttpSession session = req.getSession();
 		String loginId = (String) session.getAttribute("member_id");
 
+		if (member_id.equals(loginId)) {
+			return "false";
+		}
+
+		// 양도 받는 회원 아이디로 업데이트
 		boolean result = this.service.updateMaster(member_id, box_no, 0);
 
+		// 위 업데이트가 됐으면 다음으로 실행
 		if (result) {
+			// 원래 마스터를 일반 회원으로 업데이트
 			boolean result2 = this.service.updateMaster(loginId, box_no, 1);
 			log.info("\t+ result: {} / result2: {}", result, result2);
+			// 둘다 성공이면
 			if (result2) {
 				return "true";
 			}
+			// 둘다 성공이 아니면 실패
 		} else {
 			return "false";
 		}
 		return "false";
 	} // updateMaster
 
-}//end class
+}// end class
