@@ -72,20 +72,13 @@ $.ajax({
 			},
 			select: function (event, ui) {
 				let terms = this.value.split(/,\s*/);
-				// remove the current input
 				terms.pop();
-				// add the selected item
 				terms.push(ui.item.value);
-				// // add placeholder to get the comma-and-space at the end
-				// terms.push("");
-				// this.value = terms.join(", ");
 
 				const jsonData = {
 					keyword: ui.item.value,
 					box_no: boxNo
 				}
-
-				console.log(jsonData);
 
 				fetch('search', {
 					method: 'POST',
@@ -108,76 +101,21 @@ $.ajax({
 						const totalAmount = data.length;
 						const dataPerPage = 5;
 						let curr = 1;
-						let endNum = Math.ceil((curr) / dataPerPage) * dataPerPage;
+						let endNum = Math.ceil(curr / dataPerPage) * dataPerPage;
 
-						const startNum = endNum - (dataPerPage - 1);
+						let startNum = endNum - (dataPerPage - 1);
 						const realEndNum = Math.ceil(totalAmount / dataPerPage);
-						let offset = 0;
-						let prev = false;
-						let next = false;
-
-						let start = (curr - 1) * dataPerPage
-
-						console.log("startNum: " + startNum);
-						console.log("endNum: " + endNum);
-						console.log("realEndNum: " + realEndNum);
 
 						if (realEndNum < endNum) {
 							endNum = realEndNum;
 						}
 
-						prev = startNum > 1;
-						next = endNum < realEndNum;
-						offset = (curr - 1) * dataPerPage;
+						let prev = startNum > 1;
+						let next = endNum < realEndNum;
+						let offset = (curr - 1) * dataPerPage;
 
-						console.log("prev: " + prev);
-						console.log("next: " + next);
-						console.log("offset: " + offset);
-
-						if (prev) {
-							let li = document.createElement("li");
-							li.classList.add("page-item");
-							let a = document.createElement("a");
-							a.classList.add("page-link");
-							a.innerHTML = '<i class="fas fa-angle-left"></i>';
-							li.appendChild(a);
-							pagination.appendChild(li);
-						}
-
-						for (let i = startNum; i <= endNum; i++) {
-							if (i === curr) {
-								let li = document.createElement("li");
-								li.classList.add("page-item");
-								li.classList.add("active");
-								let a = document.createElement("a");
-								a.classList.add("page-link");
-								a.innerHTML = `${i}`;
-								li.appendChild(a);
-								pagination.appendChild(li);
-							} else {
-								let li = document.createElement("li");
-								li.classList.add("page-item");
-								let a = document.createElement("a");
-								a.classList.add("page-link");
-								a.innerHTML = `${i}`;
-								li.appendChild(a);
-								pagination.appendChild(li);
-							}
-						}
-
-						if (next) {
-							let li = document.createElement("li");
-							li.classList.add("page-item");
-							let a = document.createElement("a");
-							a.classList.add("page-link");
-							a.innerHTML = '<i class="fas fa-angle-right"></i>';
-							li.appendChild(a);
-							pagination.appendChild(li);
-						}
-
-
-						printList(start, dataPerPage, data);
-
+						pageMaker(prev, next, startNum, endNum, curr);
+						printList(offset, dataPerPage, data);
 
 					});
 
@@ -203,7 +141,6 @@ $.ajax({
 		});
 	}
 });
-
 
 
 
@@ -240,11 +177,16 @@ $.ajax({
 
 function printList(startNum, dataPerPage, data) {
 
-	for (let i = startNum; i < dataPerPage; i++) {
+	console.log(data.length);
+
+	let endNo = startNum + dataPerPage;
+
+	for (let i = startNum; i < endNo; i++) {
+
+		console.log(startNum);
+		console.log(endNo);
 
 		let div = document.createElement("div");
-
-		console.log(data[i].product_photo_path);
 
 		div.classList.add("product-list-container");
 		div.id = 'product-list';
@@ -333,8 +275,111 @@ function printList(startNum, dataPerPage, data) {
 		div.appendChild(div6);
 
 		productContainer.append(div);
+	}
+
+	const pageItem = document.querySelectorAll('.page-item');
+	pageItem.forEach(function (item) {
+		item.addEventListener('click', function (e) {
+			e.preventDefault();
+
+			console.log(item.getAttribute("id"));
+
+			if (item.firstChild.firstChild.nodeName === "I") {
+				// 이전 페이지
+				console.log("이전, 다음페이지");
+
+				let curr;
+
+				if (item.getAttribute("id") === "prev") {
+					curr = parseInt(item.nextElementSibling.firstChild.textContent) - 1;
+				} else {
+					curr = parseInt(item.previousElementSibling.firstChild.textContent) + 1;
+				}
+
+				console.log(curr);
+				let offset = (curr - 1) * dataPerPage;
+				let endNum = Math.ceil((curr) / dataPerPage) * dataPerPage;
+				console.log("endNum: " + endNum);
+				let startNum = endNum - (dataPerPage - 1);
+
+				const totalAmount = data.length;
+
+				const realEndNum = Math.ceil(totalAmount / dataPerPage);
+				if (realEndNum < endNum) {
+					endNum = realEndNum;
+				}
+				console.log("realEndNum: " + realEndNum);
+
+				let prev = startNum > 1;
+				let next = endNum < realEndNum;
+
+				$('.pagination').empty();
+				pageMaker(prev, next, startNum, endNum, curr);
+
+				$('.product-container').empty();
+				printList(offset, dataPerPage, data);
 
 
+			} else {
+				pageItem.forEach(function (i) {
+					i.classList.remove("active");
+				})
+				item.classList.add("active");
+				let curr = item.firstChild.textContent;
+				let offset = (curr - 1) * dataPerPage;
+
+				console.log(offset);
+
+				$('.product-container').empty();
+				printList(offset, dataPerPage, data);
+			}
+		})
+	})
+}
+
+function pageMaker(prev, next, startNum, endNum, curr) {
+
+	if (prev) {
+		let li = document.createElement("li");
+		li.classList.add("page-item");
+		li.id = "prev";
+		let a = document.createElement("a");
+		a.classList.add("page-link");
+		a.innerHTML = '<i class="fas fa-angle-left"></i>';
+		li.appendChild(a);
+		pagination.appendChild(li);
+	}
+
+	for (let i = startNum; i <= endNum; i++) {
+		if (i === curr) {
+			let li = document.createElement("li");
+			li.classList.add("page-item");
+			li.classList.add("active");
+			let a = document.createElement("a");
+			a.classList.add("page-link");
+			a.innerHTML = `${i}`;
+			li.appendChild(a);
+			pagination.appendChild(li);
+		} else {
+			let li = document.createElement("li");
+			li.classList.add("page-item");
+			let a = document.createElement("a");
+			a.classList.add("page-link");
+			a.innerHTML = `${i}`;
+			li.appendChild(a);
+			pagination.appendChild(li);
+		}
+	}
+
+	if (next) {
+		let li = document.createElement("li");
+		li.classList.add("page-item");
+		li.id = "next";
+		let a = document.createElement("a");
+		a.classList.add("page-link");
+		a.innerHTML = '<i class="fas fa-angle-right"></i>';
+		li.appendChild(a);
+		pagination.appendChild(li);
 	}
 }
 
