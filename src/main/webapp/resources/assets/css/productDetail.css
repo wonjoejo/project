@@ -287,7 +287,7 @@
     width: 14vw;
     height: 13vw;
     position: relative;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     display: flex;
     align-items: center;
@@ -379,7 +379,7 @@
     width: 29%;
     background-color: white;
     margin-right: 2%;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
 }
 
@@ -389,7 +389,7 @@
     padding-left: 3%;
     width: 80%;
     background-color: white;
-    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
 }
 
@@ -422,8 +422,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 13px;
-
+    margin: 13px 0;
 }
 
 .share img {
@@ -545,4 +544,153 @@ textarea {
 .suggestions li:nth-child(odd) {
     background: linear-gradient(to top, #FFFFFF 0%, #EFEFEF 100%);
     transform: perspective(100px) rotateX(-3deg) translateY(3px);
+}
+
+/* scroll */
+.scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 98%;
+    padding: 15px 0;
+}
+
+/* 스크롤바 설정*/
+.type2::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* 스크롤바 막대 설정*/
+.type2::-webkit-scrollbar-thumb {
+    height: 17%;
+    background-color: rgb(72, 75, 218);
+    border-radius: 10px;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.type2::-webkit-scrollbar-track {
+    background-color: rgba(142, 200, 248, 0.288);
+}
+
+
+/* 댓글 */
+.comment-wrap {
+    padding: 10px 0;
+    width: 94%;
+    background-color: #fff;
+    border-radius: 25px;
+    margin: 0 auto;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+
+}
+
+/* search */
+
+#search {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.search {
+    position: relative;
+    width: 83%;
+    height: 35px;
+    background: none;
+    border: 1px solid #707070;
+    box-sizing: border-box;
+    border-radius: 40px;
+    margin-right: 2%;
+    padding: 0 1%;
+}
+
+.searchbtn {
+    width: 85px;
+    height: 35px;
+    background: #707070;
+    box-shadow: inset 0px 5px 10px rgba(149, 149, 149, 0.2);
+    border-radius: 24px;
+    border: none;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.searchbtn i {
+    margin-right: 3px;
+}
+
+#comment-box {
+    font-family: "Noto Sans KR", sans-serif;
+    padding: 0 3%;
+}
+
+.comment {
+    align-self: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 13px 0;
+    font-size: 0.95rem;
+}
+
+.member-id {
+    width: 7%;
+    font-weight: 600;
+}
+
+.comment-content {
+    width: 63%;
+}
+
+.reg-date {
+    font-size: 0.9rem;
+    width: 14%;
+}
+
+.comment-button {
+    width: 7%;
+}
+
+
+
+.no-comment {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.list {
+    background-color: transparent;
+    border: none;
+}
+.comment-button i {
+    font-size: 1.2rem;
+}
+
+.comment-modify i {
+    margin-right: 30%;
+
+}
+
+.comment-modify {
+    display: inline;
+}
+
+.comment-delete {
+    display: inline;
+}
+
+.comment-modify-complete {
+    display: none;
+}
+
+.comment-modify-complete i {
+    margin-right: 30%;
+}
+
+.comment-modify-cancel {
+    display: none;
 }

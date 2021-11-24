@@ -26,6 +26,9 @@ public class Criteria {
 	
 	// 박스번호
 	private Integer box_no;
+
+	// 물품 번호
+	private Integer product_no;
 	
 	
 	//검색 추가 내용 

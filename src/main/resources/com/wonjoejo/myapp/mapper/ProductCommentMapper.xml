@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wonjoejo.myapp.mapper.ProductCommentMapper">
+
+    <!-- 댓글 리스트 -->
+    <select id="getList" resultType="com.wonjoejo.myapp.domain.ProductCommentVO">
+        <![CDATA[
+
+        SELECT
+            /*+ index_desc(product_comment) */
+            comment_no,
+            member_id,
+               product_no,
+               comment_content,
+               reg_date
+        FROM product_comment
+        where product_no = #{product_no}
+
+        ]]>
+    </select>
+
+    <!-- 댓글 수 조회 -->
+    <select id="getTotalCount" resultType="int">
+        SELECT count(*)
+        FROM product_comment
+        WHERE product_no = #{product_no}
+    </select>
+
+    <!-- 댓글 등록 -->
+    <insert id="insertComment">
+        INSERT INTO product_comment (COMMENT_NO,MEMBER_ID,PRODUCT_NO,COMMENT_CONTENT)
+        VALUES (#{comment_no},#{member_id},#{product_no},#{comment_content})
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="updateComment">
+        UPDATE product_comment
+        SET COMMENT_CONTENT = #{comment_content}
+        WHERE COMMENT_NO = #{comment_no}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment">
+        DELETE FROM product_comment WHERE COMMENT_NO =#{comment_no}
+    </delete>
+
+</mapper>
