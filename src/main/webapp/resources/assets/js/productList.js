@@ -1,28 +1,32 @@
-
 // page, buttons
 // 물품 검색 (autocomplete)
 
-	$.widget("ui.autocomplete", $.ui.autocomplete, {
+const productContainer = document.querySelector('.product-container');
+const pagination = document.querySelector('.pagination');
+const ctx = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 
-		_renderMenu: function (ul, items) {
-			const that = this;
-			ul.attr("class", "nav nav-pills nav-stacked  bs-autocomplete-menu");
-			$.each(items, function (index, item) {
-				that._renderItemData(ul, item);
-			});
-		},
 
-		_resizeMenu: function () {
-			const ul = this.menu.element;
-			ul.outerWidth(Math.min(
-				// Firefox wraps long text (possibly a rounding bug)
-				// so we add 1px to avoid the wrapping (#7513)
-				ul.width("").outerWidth() + 1,
-				this.element.outerWidth()
-			));
-		}
+$.widget("ui.autocomplete", $.ui.autocomplete, {
 
-	});
+	_renderMenu: function (ul, items) {
+		const that = this;
+		ul.attr("class", "nav nav-pills nav-stacked  bs-autocomplete-menu");
+		$.each(items, function (index, item) {
+			that._renderItemData(ul, item);
+		});
+	},
+
+	_resizeMenu: function () {
+		const ul = this.menu.element;
+		ul.outerWidth(Math.min(
+			// Firefox wraps long text (possibly a rounding bug)
+			// so we add 1px to avoid the wrapping (#7513)
+			ul.width("").outerWidth() + 1,
+			this.element.outerWidth()
+		));
+	}
+
+});
 
 let ajaxData = [];
 
@@ -97,7 +101,84 @@ $.ajax({
 					}
 				})
 					.then(data => {
-						console.log(data);
+
+						$('.product-container').empty();
+						$('.pagination').empty();
+
+						const totalAmount = data.length;
+						const dataPerPage = 5;
+						let curr = 1;
+						let endNum = Math.ceil((curr) / dataPerPage) * dataPerPage;
+
+						const startNum = endNum - (dataPerPage - 1);
+						const realEndNum = Math.ceil(totalAmount / dataPerPage);
+						let offset = 0;
+						let prev = false;
+						let next = false;
+
+						let start = (curr - 1) * dataPerPage
+
+						console.log("startNum: " + startNum);
+						console.log("endNum: " + endNum);
+						console.log("realEndNum: " + realEndNum);
+
+						if (realEndNum < endNum) {
+							endNum = realEndNum;
+						}
+
+						prev = startNum > 1;
+						next = endNum < realEndNum;
+						offset = (curr - 1) * dataPerPage;
+
+						console.log("prev: " + prev);
+						console.log("next: " + next);
+						console.log("offset: " + offset);
+
+						if (prev) {
+							let li = document.createElement("li");
+							li.classList.add("page-item");
+							let a = document.createElement("a");
+							a.classList.add("page-link");
+							a.innerHTML = '<i class="fas fa-angle-left"></i>';
+							li.appendChild(a);
+							pagination.appendChild(li);
+						}
+
+						for (let i = startNum; i <= endNum; i++) {
+							if (i === curr) {
+								let li = document.createElement("li");
+								li.classList.add("page-item");
+								li.classList.add("active");
+								let a = document.createElement("a");
+								a.classList.add("page-link");
+								a.innerHTML = `${i}`;
+								li.appendChild(a);
+								pagination.appendChild(li);
+							} else {
+								let li = document.createElement("li");
+								li.classList.add("page-item");
+								let a = document.createElement("a");
+								a.classList.add("page-link");
+								a.innerHTML = `${i}`;
+								li.appendChild(a);
+								pagination.appendChild(li);
+							}
+						}
+
+						if (next) {
+							let li = document.createElement("li");
+							li.classList.add("page-item");
+							let a = document.createElement("a");
+							a.classList.add("page-link");
+							a.innerHTML = '<i class="fas fa-angle-right"></i>';
+							li.appendChild(a);
+							pagination.appendChild(li);
+						}
+
+
+						printList(start, dataPerPage, data);
+
+
 					});
 
 				return true;
@@ -121,21 +202,6 @@ $.ajax({
 			}
 		});
 	}
-});
-
-// 검색 버튼
-const searchBtn = document.querySelector(".searchbtn");
-const keyword = document.querySelector("#search").value;
-
-// document.querySelector("#search").addEventListener("change",function () {
-// 	console.log(keyword);
-// })
-
-searchBtn.addEventListener("click",function (e) {
-	e.preventDefault();
-	console.log(keyword);
-	// location.href=`/product/search?keyword='${keyword}'`;
-
 });
 
 
@@ -172,6 +238,105 @@ searchBtn.addEventListener("click",function (e) {
 	});
 
 
+function printList(startNum, dataPerPage, data) {
+
+	for (let i = startNum; i < dataPerPage; i++) {
+
+		let div = document.createElement("div");
+
+		console.log(data[i].product_photo_path);
+
+		div.classList.add("product-list-container");
+		div.id = 'product-list';
+
+		let div2 = document.createElement("div");
+
+		div2.classList.add("item");
+		div2.id = 'product-img';
+
+		let img = document.createElement("img");
+
+		if (data[i].product_photo_path === null || data[i].product_photo_path === "" || data[i].product_photo_path === undefined) {
+			img.id = 'product-none-img';
+		} else if (data[i].product_photo_path.includes('resource')) {
+			img.id = 'product-img'
+			img.src = `${ctx}${data[i].product_photo_path}${data[i].product_photo_name}`;
+		} else {
+			img.id = 'product-img'
+			img.src = `https://intobox.s3.ap-northeast-2.amazonaws.com/${data[i].product_photo_path}${data[i].product_photo_name}`;
+		}
+
+		div2.appendChild(img);
+		div.appendChild(div2);
+
+		let div3 = document.createElement("div");
+		let a = document.createElement("a");
+
+		div3.classList.add("item");
+		div3.id = "product-name";
+
+		a.href = `${ctx}/detail?product_no=${data[i].product_no}&box_no=${data[i].box_no}`;
+		a.innerHTML = data[i].product_name;
+
+		div3.appendChild(a);
+
+		div.appendChild(div3);
+
+		let div4 = document.createElement("div");
+
+		div4.classList.add("item");
+		div4.id = "product-cate";
+
+		if (data[i].cate_detail1 !== undefined) {
+			let div5 = document.createElement("div");
+			div5.classList.add("product-cate-1");
+			div5.innerHTML = `${data[i].cate_name1} │ ${data[i].cate_detail1}`;
+			div4.appendChild(div5);
+		}
+
+		if (data[i].cate_detail2 !== undefined) {
+			let div5 = document.createElement("div");
+			div5.classList.add("product-cate-2");
+			div5.innerHTML = `${data[i].cate_name2} │ ${data[i].cate_detail2}`;
+			div4.appendChild(div5);
+		}
+
+		if (data[i].cate_detail3 !== undefined) {
+			let div5 = document.createElement("div");
+			div5.classList.add("product-cate-3");
+			div5.innerHTML = `${data[i].cate_name3} │ ${data[i].cate_detail3}`;
+			div4.appendChild(div5);
+		}
+
+		if (data[i].cate_detail4 !== undefined) {
+			let div5 = document.createElement("div");
+			div5.classList.add("product-cate-4");
+			div5.innerHTML = `${data[i].cate_name4} │ ${data[i].cate_detail4}`;
+			div4.appendChild(div5);
+		}
+
+		if (data[i].cate_detail5 !== undefined) {
+			let div5 = document.createElement("div");
+			div5.classList.add("product-cate-5");
+			div5.innerHTML = `${data[i].cate_name5} │ ${data[i].cate_detail5}`;
+			div4.appendChild(div5);
+		}
+
+		div.appendChild(div4);
+
+		let div6 = document.createElement("div");
+
+		div6.classList.add("item");
+		div6.id = "product-qtn";
+		div6.innerHTML = data[i].product_qtn;
+
+		div.appendChild(div6);
+
+		productContainer.append(div);
+
+
+	}
+}
 
 
 

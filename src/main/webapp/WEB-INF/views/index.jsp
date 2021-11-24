@@ -11,6 +11,8 @@
 <html lang="en">
 <head>
 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <meta charset="UTF-8">
     <title>소중한 물건들을 모아, 인투박스</title>
 
@@ -28,7 +30,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=10">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=70">
 
 </head>
 
@@ -64,30 +66,66 @@
 
 <!-- home -->
 <section id="home">
-    <div class="main-container">
-        <img class="main-image" src="${pageContext.request.contextPath}/resources/assets/img/maincat.png">
-        <!-- 지현, 21.11.06 -->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      	<img src="${pageContext.request.contextPath}/resources/assets/img/slide1.png" class="d-block slide1" alt="...">
+     	<div class="carousel-caption d-md-block">
         <div class="pointfont">소중한 물건들을 모아,
-            <p class="boxfont">인투박스</p>
-            <a href="#"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
+	        <p class="boxfont">인투박스</p>
+	        <a href="#"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
         </div>
-        <!--            <h2 class="boxfont">인투박스</h2>-->
+      </div>
     </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/resources/assets/img/slide2.png" class="d-block slide1" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+      <div class="slidegroub">
+      		<p class="groubpoint">그룹 관리,</p>
+	        <p>초대는 쉽게 권한은 필요한 만큼만</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/resources/assets/img/slide3.png" class="d-block slide1" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <div class="slidegroub">
+       		<p class="groubpoint">물품 리스트,</p>
+	        <p>댓글 기능, 멘션 기능으로 상황 공유</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
 </section>
 
 
 <!-- section2 -->
 <section id="section2">
     <div class="section2_wrap">
-        <div class="content con1">
+        <div class="content con1 fadeinleft">
             <p class="title1">너는 왜 맨날 똑같은 옷만 사? 👚</p>
             <p class="title1-1">있는 거 또 사고 환불하러 가지 마세요</p>
         </div>
-        <div class="content con2">
+        <div class="content con2 fadeinright">
             <p class="title2">복잡한 재고 관리 프로그램, 엑셀과는 안녕 👋</p>
             <p class="title2-2">우리 매장 재고 관리로 클릭 한 번으로 관리하세요<br><span>입고, 출고</span>도 한 번에 처리하세요</p>
         </div>
-        <div class="content con3">
+        <div class="content con3 fadeinleft2">
             <p class="title3">고등어 사놨다 구워먹어라 🐟</p>
             <p class="title3-3">쇼핑 리스트를 바로 바로 <span>가족</span>들과 <span>공유</span>하세요<br>
                 <span>댓글 및 공유</span> 기능으로 가족, 친구, 동료들과 소통하세요</p>
@@ -105,9 +143,9 @@
 		
     <div id="tabbar">
 		<div class="title">
-			<h3 class="active">사용방법 1</h3>
-			<h3 class="">사용방법 2</h3>
-			<h3 class="">사용방법 3</h3>
+			<h3 class="active">회원가입</h3>
+			<h3 class="">박스생성 & 물품등록</h3>
+			<h3 class="">그룹초대</h3>
 		</div>
 
 		<div class="description">
@@ -116,7 +154,7 @@
 					<li>
 						<img src="http://placehold.it/500x500" />
 						<p>
-							사용방법 1							
+							개인 / 기업 					
 						</p>
 					</li>
 				</ul>
@@ -127,7 +165,8 @@
 					<li>
 						<img src="http://placehold.it/500x500" />
 						<p>
-							사용방법2 
+							1.박스 생성 방법 
+							2.물품 등록 방법 
 						</p>
 					</li>
 				</ul>
@@ -138,7 +177,7 @@
 					<li>
 						<img src="http://placehold.it/500x500" />
 						<p>
-							사용방법3
+							그룹 초대 
 						</p>
 					</li>
 				</ul>
@@ -159,7 +198,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
+        
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 

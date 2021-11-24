@@ -50,7 +50,8 @@ public class GroupController {
 	// groupList json
 	@PostMapping(value = "/json", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String json(@RequestBody String data) {
+	public String
+	json(@RequestBody String data) {
 
 		log.info("json({}) invoked.", data);
 

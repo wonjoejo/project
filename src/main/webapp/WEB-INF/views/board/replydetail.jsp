@@ -80,7 +80,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=200"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
@@ -111,7 +111,6 @@
 
           self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
         }); //onclick */
-        
       }); //.jq
     </script> 
 </html>
