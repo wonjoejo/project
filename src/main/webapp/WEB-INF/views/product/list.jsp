@@ -193,5 +193,5 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <%-- product list js 파일 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=8"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=9"></script>
 </html>
