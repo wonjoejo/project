@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 
 </head>
 <body>
@@ -28,7 +28,7 @@
 <div class="container">
     <jsp:include page="../common/boxleft.jsp"/>
 
-    <input type="hidden" name="product_no" value="${product.product_no}">
+    <input type="hidden" id="productNo" name="product_no" value="${product.product_no}">
     <input type="hidden" name="box_no" value="${product.box_no}">
     <div class="main-container">
         <div class="top-content">
@@ -39,12 +39,12 @@
                     <ul class="menu__list">
                         <li class="menu__list__item">
                             <a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}">
-                            <i class="fas fa-pencil-alt i-style"></i></a></li>
+                                <i class="fas fa-pencil-alt i-style"></i></a></li>
                         <li class="menu__list__item">
-                            <i class="fas fa-trash-alt i-style" id="delete-btn"></i></a></li>
+                            <i class="fas fa-trash-alt i-style" id="delete-btn"></i></li>
                         <li class="menu__list__item">
                             <a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
-                            <i class="far fa-list-alt i-style"></i></a></li>
+                                <i class="far fa-list-alt i-style"></i></a></li>
                     </ul>
                 </div>
                 <div class="button" id="nav-icon4">
@@ -55,19 +55,23 @@
             </div>
         </div>
 
-        <div class="product-detail-wrap">
-            <div class="left-box">
-                <div class="photo">
+        <div class="scroll type2">
+
+            <div class="product-detail-wrap">
+                <div class="left-box">
+                    <div class="photo">
                         <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
                         <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
                             <div class="item" id="product-img">
                                 <c:set var="path" value="${product.product_photo_path}"/>
                                 <c:choose>
                                     <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->
-                                        <img  id="photo-default" src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}"/>
+                                        <img id="photo-default"
+                                             src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}"/>
                                     </c:when>
                                     <c:otherwise> <!-- 업로드 이미지 사용 -->
-                                        <img  id="photo-upload" src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                        <img id="photo-upload"
+                                             src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -78,101 +82,120 @@
                             <div class="item" id="photo-none-img">
                             </div>
                         </c:if> <!-- product-none-img -->
-                </div>
-                <div class="qtn">
+                    </div>
+                    <div class="qtn">
                     <span>수량
                         <div class="bar"></div>
                         ${product.product_qtn}
                     </span>
-                </div>
-                <a href="javascript:sendLink()">
-                    <div class="share">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
-                        공유하기
                     </div>
-                </a>
-            </div>
-            <div class="right-box">
-                <ul>
-                    <li>
-                        <div class="title">이름</div>
-                        <div class="detail">${product.product_name}</div>
-                    </li>
-                    <c:if test="${not empty baseCategory.cate_name1}">
+                    <a href="javascript:sendLink()">
+                        <div class="share">
+                            <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png"
+                                 alt="카카오톡">
+                            공유하기
+                        </div>
+                    </a>
+                </div>
+                <div class="right-box">
+                    <ul>
                         <li>
-                            <div class="title">${baseCategory.cate_name1}</div>
-                            <c:choose>
-                                <c:when test="${not empty category.cate_detail1}">
-                                    <div class="detail">${category.cate_detail1}</div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="detail">-</div>
-                                </c:otherwise>
-                            </c:choose>
+                            <div class="title">이름</div>
+                            <div class="detail">${product.product_name}</div>
                         </li>
-                    </c:if>
-                    <c:if test="${not empty baseCategory.cate_name2}">
+                        <c:if test="${not empty baseCategory.cate_name1}">
+                            <li>
+                                <div class="title">${baseCategory.cate_name1}</div>
+                                <c:choose>
+                                    <c:when test="${not empty category.cate_detail1}">
+                                        <div class="detail">${category.cate_detail1}</div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="detail">-</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
+                        </c:if>
+                        <c:if test="${not empty baseCategory.cate_name2}">
+                            <li>
+                                <div class="title">${baseCategory.cate_name2}</div>
+                                <c:choose>
+                                    <c:when test="${not empty category.cate_detail2}">
+                                        <div class="detail">${category.cate_detail2}</div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="detail">-</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
+                        </c:if>
+                        <c:if test="${not empty baseCategory.cate_name3}">
+                            <li>
+                                <div class="title">${baseCategory.cate_name3}</div>
+                                <c:choose>
+                                    <c:when test="${not empty category.cate_detail3}">
+                                        <div class="detail">${category.cate_detail3}</div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="detail">-</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
+                        </c:if>
+                        <c:if test="${not empty baseCategory.cate_name4}">
+                            <li>
+                                <div class="title">${baseCategory.cate_name4}</div>
+                                <c:choose>
+                                    <c:when test="${not empty category.cate_detail4}">
+                                        <div class="detail">${category.cate_detail4}</div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="detail">-</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
+                        </c:if>
+                        <c:if test="${not empty baseCategory.cate_name5}">
+                            <li>
+                                <div class="title">${baseCategory.cate_name5}</div>
+                                <c:choose>
+                                    <c:when test="${not empty category.cate_detail5}">
+                                        <div class="detail">${category.cate_detail5}</div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="detail">-</div>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
+                        </c:if>
                         <li>
-                            <div class="title">${baseCategory.cate_name2}</div>
-                            <c:choose>
-                                <c:when test="${not empty category.cate_detail2}">
-                                    <div class="detail">${category.cate_detail2}</div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="detail">-</div>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:if>
-                    <c:if test="${not empty baseCategory.cate_name3}">
-                        <li>
-                            <div class="title">${baseCategory.cate_name3}</div>
-                            <c:choose>
-                                <c:when test="${not empty category.cate_detail3}">
-                                    <div class="detail">${category.cate_detail3}</div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="detail">-</div>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:if>
-                    <c:if test="${not empty baseCategory.cate_name4}">
-                        <li>
-                            <div class="title">${baseCategory.cate_name4}</div>
-                            <c:choose>
-                                <c:when test="${not empty category.cate_detail4}">
-                                    <div class="detail">${category.cate_detail4}</div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="detail">-</div>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:if>
-                    <c:if test="${not empty baseCategory.cate_name5}">
-                        <li>
-                            <div class="title">${baseCategory.cate_name5}</div>
-                            <c:choose>
-                                <c:when test="${not empty category.cate_detail5}">
-                                    <div class="detail">${category.cate_detail5}</div>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="detail">-</div>
-                                </c:otherwise>
-                            </c:choose>
-                        </li>
-                    </c:if>
-                    <li>
-                        <div class="title">메모</div>
-                        <div class="detail" id="detail-memo">
-                            ${product.product_memo}
-                            <span class="more">
+                            <div class="title">메모</div>
+                            <div class="detail" id="detail-memo">
+                                ${product.product_memo}
+                                <span class="more">
                                     <a href="#" id="more">더보기</a>
                                 </span>
-                        </div>
-                    </li>
-                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <%-- 댓글 --%>
+            <div class="comment-wrap">
+                <div id="search">
+                    <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
+                    <input name="comment_content" id="commentContent" class="search" type="text"
+                           placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
+                    <button id="insertBtn" class="searchbtn">
+                        <i class="fas fa-pencil-alt"></i>
+                        Write
+                    </button>
+                </div><!-- search -->
+                <div id="comment-box">
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -224,19 +247,19 @@
     Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
 
     let detailList = [];
-    if ('${category.cate_detail1}' != ""){
+    if ('${category.cate_detail1}' != "") {
         detailList.push('#${category.cate_detail1}');
     }
-    if ('${category.cate_detail2}' != ""){
+    if ('${category.cate_detail2}' != "") {
         detailList.push('#${category.cate_detail2}');
     }
-    if ('${category.cate_detail3}' != ""){
+    if ('${category.cate_detail3}' != "") {
         detailList.push('#${category.cate_detail3}');
     }
-    if ('${category.cate_detail4}' != ""){
+    if ('${category.cate_detail4}' != "") {
         detailList.push('#${category.cate_detail4}');
     }
-    if ('${category.cate_detail5}' != ""){
+    if ('${category.cate_detail5}' != "") {
         detailList.push('#${category.cate_detail5}');
     }
 
@@ -269,6 +292,183 @@
         })
     }
 
-    </script>
+
+    // 댓글 리스트
+    getCommentList();
+
+    function getCommentList() {
+
+        $.ajax({
+            url: "/comment/list",
+            type: "GET",
+            data: {
+                product_no: ${product.product_no}
+            },
+            dataType: 'json',
+            success: function (data) {
+                let comments = "";
+                if (data.length < 1) {
+                    comments = '<div class = "no-comment">등록된 댓글이 없습니다.</div>';
+                } else {
+                    $(data).each(function () {
+                        comments += '<div class="comment">';
+                        comments += '<input type="hidden" class="comment-no" name="comment_no" value="';
+                        comments += this.comment_no;
+                        comments += '">';
+                        comments += '<input type="text" class = "member-id list" name="member_id" value="';
+                        comments += this.member_id;
+                        comments += '" disabled>';
+                        comments += '<input type ="text" class = "comment-content list" name="member_id" value="';
+                        comments += this.comment_content;
+                        comments += '" disabled>';
+                        comments += '<div class="reg-date">';
+                        comments += this.reg_date;
+                        comments += '</div>';
+                        comments += '<div class = "comment-button">';
+                        comments += '<a href = "#" id="comment-modify" class = "comment-modify"><i class="fas fa-pencil-alt"></i></a>';
+                        comments += '<a href = "#" id="comment-delete" class = "comment-delete"><i class="fas fa-trash-alt"></i></a>';
+                        comments += '<a href = "#" id="comment-modify" class = "comment-modify-complete"><i class="fas fa-check"></i></a>';
+                        comments += '<a href = "#" id="comment-delete" class = "comment-modify-cancel"><i class="fas fa-times"></i></a>';
+                        comments += '</div>';
+                        comments += '</div>';
+                    });
+                }
+                ; // if-else
+
+                $("#comment-box").html(comments);
+
+
+
+                // 수정 버튼 클릭 시 수정 폼 변경
+                const modifyBtn = document.querySelectorAll('.comment-modify');
+                modifyBtn.forEach(function (item){
+                    item.addEventListener("click", function (e){
+                        e.preventDefault();
+                        console.log(item.parentElement.previousElementSibling.previousElementSibling);
+
+                        const checkBtn = item.nextElementSibling.nextElementSibling;
+                        const cancelBtn = item.nextElementSibling.nextElementSibling.nextElementSibling;
+                        const commentNo = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
+                        const memberId = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling;
+                        const commmentContent = item.parentElement.previousElementSibling.previousElementSibling;
+
+                        commmentContent.disabled = false;
+                        commmentContent.style.border = "1px solid #ADADAD";
+                        item.style.display = "none";
+                        item.nextElementSibling.style.display = "none";
+                        checkBtn.style.display = "inline";
+                        cancelBtn.style.display = "inline";
+
+                        // 취소 버튼
+                        cancelBtn.addEventListener("click", getCommentList);
+
+                        // 수정
+                        checkBtn.addEventListener("click", function (e){
+                            e.preventDefault();
+
+                            const data = {
+                                comment_no: commentNo.value,
+                                member_id: memberId.value,
+                                product_no: ${product.product_no},
+                                comment_content: commmentContent.value
+                            };
+
+                            console.log(data);
+
+                            fetch('/comment/edit',{
+                                method: 'POST',
+                                body:JSON.stringify(data),
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                                .then(function (response){
+                                    if(response) getCommentList();
+                                })
+
+                                .catch(function (error){
+                                    console.log(error)
+                                }); // fetch
+
+                        }); // click
+                    }); // click
+                }); // modifyBtn forEach
+
+                // 삭제
+                const deleteBtn = document.querySelectorAll('.comment-delete');
+                deleteBtn.forEach(function (item){
+                   item.addEventListener("click", function (e){
+                       e.preventDefault();
+
+                       const commentNo = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
+
+                       const data = {
+                           comment_no: commentNo.value
+                       };
+
+                       console.log(data);
+
+                       fetch('/comment/delete',{
+                           method: 'POST',
+                           body:JSON.stringify(data),
+                           headers: {
+                               'Content-Type': 'application/json'
+                           }
+                       })
+                           .then(function (response){
+                               if(response) getCommentList();
+                           })
+
+                           .catch(function (error){
+                               console.log(error)
+                           }); // fetch
+
+                   }); // click
+                }); // delete forEach
+
+
+            } // success
+
+        }); // ajax
+
+    }; // getCommentList
+
+
+    // 댓글 등록
+
+    document.querySelector('#insertBtn').addEventListener("click", insertComment);
+
+    function insertComment() {
+
+        const data = {
+            member_id: document.querySelector('#memberId').value,
+            product_no: document.querySelector('#productNo').value,
+            comment_content: document.querySelector('#commentContent').value
+        };
+
+        console.log(data);
+
+        fetch('/comment/insert', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                if (response) {
+                    getCommentList();
+                    document.querySelector('#commentContent').value = "";
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            }); // fetch
+
+    }; // insertComment
+
+
+
+</script>
 
 </html>
