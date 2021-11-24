@@ -424,7 +424,7 @@
 <%-- boxmenu JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <%-- baseCateogy JS--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js?ver=2"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js?ver=1"></script>
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

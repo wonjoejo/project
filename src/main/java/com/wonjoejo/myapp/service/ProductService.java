@@ -1,8 +1,9 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.List;
-
 import com.wonjoejo.myapp.domain.*;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ProductService {
 
@@ -35,16 +36,16 @@ public interface ProductService {
 
 	// BaseCategory 상세보기
 	public abstract BaseCategoryVO getBaseCategory(Integer box_no);
-	
-	
 
-    // 물품 리스트 페이지처리
-    public abstract List<ProductCategoryVO> getListPerPage(Criteria cri);
+
+	// 물품 리스트 페이지처리
+	public abstract List<ProductCategoryVO> getListPerPage(Criteria cri);
 
 	//총 레코드 개수 반환 
 	public abstract Integer getTotalCount(Integer box_no);
 
-
+	// 물품 전체 검색
+	public abstract List<ProductCategoryVO> searchProduct(@Param("keyword") String keyword, @Param("box_no") Integer box_no);
 
 
 } // ProductService

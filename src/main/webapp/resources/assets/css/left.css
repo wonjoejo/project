@@ -88,6 +88,13 @@ a:hover {
 	margin-top: 5px;
 }
 
+.role {
+	font-family: 'NEXON Lv1 Gothic OTF';
+	margin-top: -17px;
+	font-size: 15px;
+	color: #4E4E4E;
+}
+
 .menu {
 	font-family: 'Noto Sans KR', serif;
 	font-size: 1rem;

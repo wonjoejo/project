@@ -40,10 +40,7 @@
 				<form action="/board/replydetail" method="post">
 			
 					<div class="detailwrapper">
-						<div class="detailtitle">
-							<c:if test="${board.depth == 1}">
-								<img class="replyimg" src="${pageContext.request.contextPath}/resources/assets/img/reply.png" />
-							</c:if>
+						<div class="detailtitle">							
 							<input class="noline" type="text" name="title" value="${board.title}" readonly />
 						</div>
 						
@@ -66,10 +63,11 @@
 								<button id="replyWriteBtn" type="button">답글작성</button>
 							</c:if>
 						</c:if>
-						<c:if test="${member_id == board.member_id}">
+			            
+			            <c:if test="${member_id ==  board.member_id}">
 							<button type="button" id="editBtn">수정</button>
 			                <button type="button" id="replydeleteBtn">삭제</button>
-			            </c:if>
+			            </c:if> 
 		                <input type="hidden" name="board_idx" value="${board.board_idx}" >
 		                 <input type="hidden" name="ref" value="${board.ref}" >
 					</div>	

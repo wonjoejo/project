@@ -1,4 +1,4 @@
-    package com.wonjoejo.myapp.service;
+package com.wonjoejo.myapp.service;
 
 import java.util.List;
 
@@ -49,8 +49,6 @@ public class BoardServiceImpl
 	}//detail
 	
 	
- 
-	
 	//기존 게시물 삭제 
 	@Override
 	public boolean delete(Integer board_idx) {
@@ -85,6 +83,26 @@ public class BoardServiceImpl
 		
 		return affectedRows==1;
 	}//write
+	
+	//게시물 페이지 
+		@Override
+		public List<BoardVO> getListPerPage(Criteria cri) {
+			log.debug("getListPerPage({}) invoked.",cri);
+			
+			List<BoardVO> list = this.mapper.getListWithPaging(cri);
+			log.info("\t+ list size:{} ",list.size());
+			
+			return list;
+		}//getListPerPage
+		
+		
+		//총 레코드 개수 반환 
+		@Override
+		public Integer getTotal() {
+			log.debug("getTotal() invoked.");
+			
+			return this.mapper.getTotalCount();
+		}//getTotal
 
 	
 	//게시물 답글 작성 
@@ -97,27 +115,7 @@ public class BoardServiceImpl
 
 		return affectedRows==1;
 	}
-	
-	
-	//게시물 페이지 
-	@Override
-	public List<BoardVO> getListPerPage(Criteria cri) {
-		log.debug("getListPerPage({}) invoked.",cri);
-		
-		List<BoardVO> list = this.mapper.getListWithPaging(cri);
-		log.info("\t+ list size:{} ",list.size());
-		
-		return list;
-	}//getListPerPage
-	
-	
-	//총 레코드 개수 반환 
-	@Override
-	public Integer getTotal() {
-		log.debug("getTotal() invoked.");
-		
-		return this.mapper.getTotalCount();
-	}//getTotal
+
 	
 	//공지사항 리스트  
 	@Override
@@ -219,6 +217,29 @@ public class BoardServiceImpl
 		return this.mapper.getSearchCount(cri);
 	}//getsearchTotal
 	
+	//본인 답글만 상세보기 
+	@Override
+	public List<BoardVO> replydetail(Integer board_idx,Integer ref, String member_id, Integer depth) {
+		
+		log.debug("ref({}) invoked.", ref);
+		
+		List<BoardVO> board = this.mapper.replyread(board_idx,ref,member_id, depth);
+		log.info("\t+ board: {}", board);
+		
+		return board;
+	}
+
+	//답글 본글 전체 삭제 
+	@Override
+	public boolean alldelete(Integer board_idx,Integer ref) {
+		log.debug("deleteReplye({},{}) invoked.", board_idx,ref);
+		
+		int affectedRows = this.mapper.alldelete(board_idx,ref);
+		log.info("\t+ affectedRows: {}", affectedRows);
+		
+		return affectedRows==1;	
+	}
+	
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");
@@ -233,29 +254,5 @@ public class BoardServiceImpl
 		log.info("\t+ mapper:" + this.mapper);
 		
 	}//afterPropertiesSet
-
-
-	@Override
-	public BoardVO replydetail(Integer board_idx,Integer ref, String member_id) {
-		
-		log.debug("ref({}) invoked.", ref);
-		
-		BoardVO board = this.mapper.replyread(board_idx,ref,member_id);
-		log.info("\t+ board: {}", board);
-		
-		return board;
-	}
-
-
-	@Override
-	public boolean alldelete(Integer board_idx,Integer ref) {
-		log.debug("deleteReplye({},{}) invoked.", board_idx,ref);
-		
-		int affectedRows = this.mapper.alldelete(board_idx,ref);
-		log.info("\t+ affectedRows: {}", affectedRows);
-		
-		return affectedRows==1;	
-	}
-
 
 }//end class 

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +20,10 @@ import com.wonjoejo.myapp.domain.BoardVO;
 import com.wonjoejo.myapp.domain.Criteria;
 import com.wonjoejo.myapp.domain.PageDTO;
 import com.wonjoejo.myapp.service.BoardService;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Log4j2
@@ -41,8 +36,7 @@ public class BoardController {
     @Setter(onMethod_={@Autowired})
     private BoardService service;
 
-    // 페이징 처리된 게시판 목록화면 요청 
- // 페이징 처리된 게시판 목록화면 요청 
+    // 페이징 처리된 QNA 게시판 목록
   	@GetMapping("/listPerPage")
   	public String listPerPage(
   			@ModelAttribute("cri") Criteria cri, 
@@ -83,7 +77,7 @@ public class BoardController {
   		return "/board/list";
   	}//listPerPage
     
-    //특정 게시물 상세조회 화면 요청 
+    //특정 게시물 상세조회 화면 요청 > admin일때 
     @GetMapping({"/detail","/edit"})
     public void boarddetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model, HttpServletRequest req) {
     	
@@ -100,11 +94,11 @@ public class BoardController {
 		
 		model.addAttribute("member_id",member_id);
 		model.addAttribute("board", board);
-    }
+    }//boarddetail
     
-  //답글 상세조회 화면 요청 
+    //답글 상세조회 화면 요청 > 일반 회원 로그인 시
     @GetMapping("/replydetail")
-    public String replydetail(@ModelAttribute("cri") Criteria cri, Integer board_idx ,@ModelAttribute("ref") String ref, Model model, HttpServletRequest req, RedirectAttributes rttrs) {
+    public String replydetail(@ModelAttribute("cri") Criteria cri, Integer board_idx ,@ModelAttribute("ref") String ref, @ModelAttribute("depth") String depth, Model model, HttpServletRequest req, RedirectAttributes rttrs) {
     	
     	HttpSession session = req.getSession();
     	
@@ -115,31 +109,35 @@ public class BoardController {
     	log.debug("detail({},{},{}) invoked.",cri,ref,model);
     
     	
-    	BoardVO board = this.service.replydetail(board_idx,Integer.parseInt(ref),member_id);
-		log.info("\t+ board: {}",board);
-		
-		if(!member_id.equals(board.getMember_id())) {
-			rttrs.addAttribute("member_id",member_id);
-					
-			return "response.setContentType(\"text/html; charset=UTF-8\");\n"
-					+ "            PrintWriter out = response.getWriter();\n"
-					+ "            out.println(\"<script>alert('본인 글만 확인이 가능합니다.'); history.go(-1);</script>\");\n"
-					+ "            out.flush();\n"
-					+ "\n"
-					+ "\n"
-					;
-			
-			//return "redirect:/board/listPerPage";	
-			
-
-		} else {
-			model.addAttribute("member_id",member_id);
-			model.addAttribute("board", board);
+    	List<BoardVO> list = this.service.replydetail(board_idx,Integer.parseInt(ref),member_id,Integer.parseInt(depth));
+    	
+    	String writerId = list.get(0).getMember_id(); // 질문글 쓴 ID
+    	Integer depthNo = Integer.parseInt(depth);
+    	
+    	//xml 에서 order by 해준걸로 본인글 = 0 / 답글 = 1  
+    	if(depthNo==0 && (writerId.equals(member_id) || member_id.equals("admin"))) {
+    		model.addAttribute("member_id",member_id);
+			model.addAttribute("board", list.get(0));
 			
 			return "/board/replydetail";
-		}
 			
-    }
+    	} else if (depthNo==1 && (writerId.equals(member_id) || member_id.equals("admin"))) {
+    		model.addAttribute("member_id",member_id);
+			model.addAttribute("board", list.get(1));
+			
+			return "/board/replydetail";
+			
+    	} else {
+    		rttrs.addAttribute("member_id",member_id);
+
+			//본인 작성글 & 답글 아니면 alert 띄우기 
+			model.addAttribute("msg", "");
+			model.addAttribute("url", "/board/listPerPage");
+			
+			return "/board/alert";	
+    	}//if else
+    	
+    }//replydetail
     
     //게시물 삭제 
     @PostMapping("/delete")
@@ -150,9 +148,7 @@ public class BoardController {
 		
 		boolean result = this.service.delete(board_idx);
 		rttrs.addAttribute("result",result);
-		
-		
-		
+	
 		return "redirect:/board/listPerPage";		
 	}//delete
     
@@ -180,7 +176,7 @@ public class BoardController {
 		return "redirect:/board/listPerPage";
 	}//edit
     
-    //게시글 작성 
+    //게시글 작성 GET 
     @GetMapping("/write")
 	public void register(@ModelAttribute("cri") Criteria cri, Model model, HttpServletRequest req) {
     	
@@ -198,7 +194,7 @@ public class BoardController {
 		
 	}//register
     
-    //게시글 작성 
+    //게시글 작성 POST
     @PostMapping("/write")
 	public String write(BoardDTO board, RedirectAttributes rttrs) {
 		log.debug("write({}) invoked.",board);
@@ -383,10 +379,9 @@ public class BoardController {
 	
 	//답글 목록   
 	@GetMapping("/replylist")
- 	public String replylist(
- 			@ModelAttribute("cri") Criteria cri, 
- 			Model model) {	
- 		log.debug("replylist({}) invoked.",model);
+ 	public String replylist(@ModelAttribute("cri") Criteria cri, Model model) {	
+ 		
+		log.debug("replylist({}) invoked.",model);
  		
  		//비지니스 로직 처리 결과 데이터 --> Model 이라고 부른다.
  		List<BoardVO> list = this.service.getListPerPage(cri);
@@ -414,48 +409,48 @@ public class BoardController {
  		return "/board/list";
  	}//replylist
 
+	
 	// 검색 목록화면 요청 
+	@GetMapping("/searchlist")
+	public String searchList(@ModelAttribute("cri") Criteria cri,Model model) {
+		
+		log.debug("searchList({}) invoked.", model);
+		
+		String keyword = cri.getKeyword();
+		log.info("\t + keyword: {}", keyword);
 
-		@GetMapping("/searchlist")
-		public String searchList(@ModelAttribute("cri") Criteria cri,Model model) {
-			log.debug("searchList({}) invoked.", model);
-			String keyword = cri.getKeyword();
-			log.info("\t + keyword: {}", keyword);
+		cri.setKeyword(keyword.replace(" ", ""));
+		log.info("\t + cri.keyword: {}", cri.getKeyword());
 
-			cri.setKeyword(keyword.replace(" ", ""));
-			log.info("\t + cri.keyword: {}", cri.getKeyword());
+		List<BoardVO> searchList = this.service.getsearchPage(cri);
+		log.info("\t+ list size:{}", searchList.size());
 
+		model.addAttribute("searchList", searchList);
 
-			List<BoardVO> searchList = this.service.getsearchPage(cri);
-			log.info("\t+ list size:{}", searchList.size());
+		//--------------------------------------------//
+		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다
+		//--------------------------------------------//
+		Integer totalAmount = this.service.getsearchTotal(cri);
 
-			model.addAttribute("searchList", searchList);
+		PageDTO pageDTO = new PageDTO(cri, totalAmount);
 
-
-			//--------------------------------------------//
-			//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다
-			//--------------------------------------------//
-			Integer totalAmount = this.service.getsearchTotal(cri);
-
-			PageDTO pageDTO = new PageDTO(cri, totalAmount);
-
-			model.addAttribute("pageMaker", pageDTO);
+		model.addAttribute("pageMaker", pageDTO);
 
 			//list.jsp 그대로 사용
 			return "/board/searchlist";
 		}//searchList
 		
-		 //게시물 본글 답글 삭제 
-	    @PostMapping("/alldelete")
-	    public String alldelete(@RequestParam("board_idx") Integer board_idx,@ModelAttribute("ref") Integer ref, 
-				RedirectAttributes rttrs)  
-		{
-			log.debug("delete({},{}) invoked.",board_idx,ref);
-			
-			boolean result = this.service.alldelete(board_idx,ref);
-			rttrs.addAttribute("result",result);
-			
-			return "redirect:/board/listPerPage";		
-		}//delete
+	//게시물 본글 답글 전체 삭제 
+    @PostMapping("/alldelete")
+    public String alldelete(@RequestParam("board_idx") Integer board_idx,@ModelAttribute("ref") Integer ref, 
+		RedirectAttributes rttrs)  
+	{
+		log.debug("delete({},{}) invoked.",board_idx,ref);
+		
+		boolean result = this.service.alldelete(board_idx,ref);
+		rttrs.addAttribute("result",result);
+		
+		return "redirect:/board/listPerPage";		
+	}//delete
 
 }//end class

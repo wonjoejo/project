@@ -1,6 +1,8 @@
 package com.wonjoejo.myapp.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.*;
 import com.wonjoejo.myapp.service.ProductService;
 import com.wonjoejo.myapp.util.UploadFileUtils;
@@ -418,7 +420,8 @@ public class ProductController {
     @PostMapping("/delete")
     public String productDelete(Integer product_no, ProductDTO product, RedirectAttributes rttrs) {
         log.debug("productDelete({}) invoked.", product_no);
-
+        
+        rttrs.addAttribute("box_no", product.getBox_no());
 
         // category 삭제
         boolean result1 = this.service.deleteCategory(product_no);
@@ -428,11 +431,27 @@ public class ProductController {
         boolean result2 = this.service.deleteProduct(product_no);
         log.info("\t +result2: {}", result2);
 
-
-        rttrs.addAttribute("box_no", product.getBox_no());
-
-        return "redirect:/product/list";
+        return "redirect:/product/listPerPage";
     } // productDelete
+
+    @PostMapping(value = "/search", produces = "application/json; charset=utf8")
+    @ResponseBody
+    public String searchProduct(@RequestBody String data) {
+        log.debug("searchProduct({}) invoked.", data);
+
+        JsonElement element = JsonParser.parseString(data);
+
+        List<ProductCategoryVO> list = this.service.searchProduct(
+                element.getAsJsonObject().get("keyword").getAsString(),
+                element.getAsJsonObject().get("box_no").getAsInt());
+
+        list.forEach(log::info);
+
+        Gson gson = new Gson();
+
+
+        return gson.toJson(list);
+    }
 
 
 } // end class

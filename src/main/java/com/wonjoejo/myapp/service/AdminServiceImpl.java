@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wonjoejo.myapp.domain.AdminCriteria;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.mapper.AdminMapper;
 
@@ -54,7 +55,30 @@ public class AdminServiceImpl implements AdminService, InitializingBean, Disposa
     	
     	return list;
     } // searchMember
+    
+    // 페이징 처리
+    @Override
+	public List<MemberVO> getMemberList(AdminCriteria mcri) {
+    	log.debug("getMemberList({}) invoked.",mcri);
+		
 
+		List<MemberVO> list = this.mapper.getListPaging(mcri);
+
+		list.forEach(log::info);
+
+		log.info("\t+ list size:{} ",list.size());
+		
+		return list;
+	} // getMemberList
+    	
+    // 총 레코드 수
+	@Override
+		public Integer getTotalCount(String member_id) {
+		log.debug("getTotalCount({}) invoked.", member_id);
+		
+		return this.mapper.getTotalCount(member_id);
+		} // getTotalCount
+	
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");
@@ -68,4 +92,8 @@ public class AdminServiceImpl implements AdminService, InitializingBean, Disposa
 		assert this.mapper != null;
 		log.info("\t+ mapper:" + this.mapper);
 	} // afterPropertiesSet
+
+
+
+	
 } // end class

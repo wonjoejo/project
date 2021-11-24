@@ -46,7 +46,7 @@ public class AdminServiceTests {
     public void testViewMemberList() {
 
         log.debug("viewMemberList() invoked.");
-
+        
         List<MemberVO> list = this.service.viewMemberList();
 
         assert list != null;
