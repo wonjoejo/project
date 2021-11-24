@@ -37,28 +37,27 @@
             <div class="wrapper">
                 <div class="hamburger">
                     <ul class="menu__list">
+                        <!-- Edit -->
                         <li class="menu__list__item">
                             <a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}">
                             <i class="fas fa-pencil-alt i-style"></i></a></li>
+                        <!-- Delete -->
                         <li class="menu__list__item">
-                            <form method="POST" action="/product/delete">
-                                <input type="hidden" name="product_no" value="${product.product_no}">
-                                <input type="hidden" name="box_no" value="${product.box_no}">
-                                <button type="submit"><i class="fas fa-trash-alt i-style" id="delete-btn"></i></button>
-                            </form>
-                        </li>
+                            <i class="fas fa-trash-alt i-style" id="delete-btn" onclick="deletesubmit()"></i></li>
+                        <!-- List -->
                         <li class="menu__list__item">
                             <a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
                             <i class="far fa-list-alt i-style"></i></a></li>
                     </ul>
-                </div>
+                </div> <!-- hamburger -->
+                
                 <div class="button" id="nav-icon4">
                     <span class="button__line"></span>
                     <span class="button__line"></span>
                     <span class="button__line"></span>
-                </div>
-            </div>
-        </div>
+                </div> <!-- button -->
+            </div> <!-- wrapper -->
+        </div> <!-- top-content -->
 
         <div class="product-detail-wrap">
             <div class="left-box">
@@ -68,14 +67,14 @@
                             <div class="item">
                                 <c:set var="path" value="${product.product_photo_path}"/>
                                 <c:choose>
-                                    <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->
+                                    <c:when test="${fn:contains(path,'default')}"> <!-- 기본이미지 사용 -->
                                         <img  id="photo-default" src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}"/>
                                     </c:when>
                                     <c:otherwise> <!-- 업로드 이미지 사용 -->
                                         <img  id="photo-upload" src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                     </c:otherwise>
                                 </c:choose>
-                            </div>
+                            </div> <!-- item -->
                         </c:if> <!-- product-img -->
 
                         <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
@@ -83,20 +82,23 @@
                             <div class="item" id="photo-none-img">
                             </div>
                         </c:if> <!-- product-none-img -->
-                </div>
+                </div> <!-- photo -->
+
                 <div class="qtn">
                     <span>수량
                         <div class="bar"></div>
                         ${product.product_qtn}
                     </span>
-                </div>
+                </div> <!-- qtn -->
+
                 <a href="javascript:sendLink()">
                     <div class="share">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
                         공유하기
                     </div>
                 </a>
-            </div>
+            </div> <!-- left-box -->
+
             <div class="right-box">
                 <ul>
                     <li>
@@ -178,102 +180,72 @@
                         </div>
                     </li>
                 </ul>
-            </div>
-        </div>
-    </div>
-
-</div>
+            </div> <!--right-box -->
+        </div> <!-- product-detail-wrap -->
+    </div> <!-- main-container -->
+</div> <!-- container -->
 </body>
+
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-
-<%--detail JS--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
+<%-- product JS --%>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=3"></script>
+<%-- detail JS --%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=2"></script>
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%-- kakao sdk --%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
 
-        $('#nav-icon3').click(function () {
-            $(this).toggleClass('open');
-        });
+<script>
 
-        document.querySelector('.button').addEventListener('click', () => {
-            document.querySelector('.menu__list')
-                .classList.toggle('menu__list--animate');
-        });
+const deleteBtn = document.querySelector("#delete-btn");
 
-        $('#nav-icon4').click(function () {
-            $(this).toggleClass('open');
-        });
+deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-        // sweetalert
-        $('#more').click(function () {
-            swal.fire({
-                text: "${product.product_memo}"
-            });
-        });
-
-    }); // document.ready
-
-    // 카카오 공유하기
-    Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
-
-    let detailList = [];
-    if ('${category.cate_detail1}' != ""){
-        detailList.push('#${category.cate_detail1}');
-    }
-    if ('${category.cate_detail2}' != ""){
-        detailList.push('#${category.cate_detail2}');
-    }
-    if ('${category.cate_detail3}' != ""){
-        detailList.push('#${category.cate_detail3}');
-    }
-    if ('${category.cate_detail4}' != ""){
-        detailList.push('#${category.cate_detail4}');
-    }
-    if ('${category.cate_detail5}' != ""){
-        detailList.push('#${category.cate_detail5}');
-    }
-
-
-    console.log(detailList);
-
-    function sendLink() {
-        Kakao.Link.sendDefault({
-            objectType: 'feed',
-            content: {
-                title: '${product.product_name}',
-                description: detailList.toString(),
-                imageUrl:
-                    'https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}',
-                link: {
-                    mobileWebUrl: window.location.href,
-                    webUrl: window.location.href,
+    Swal.fire({
+        title: '삭제하시겠습니까?',
+        text: "삭제된 물품은 복구가 불가능합니다.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#5A95F5',
+        cancelButtonColor: '#DD3333',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log("product_no 확인: " + ${product.product_no});
+            $.ajax({
+                type: "POST",
+                url: "/product/delete",
+                data: {
+                    "product_no": ${product.product_no},
+                    "box_no": ${product.box_no}
                 },
-            },
-            buttons: [
-                {
-                    title: '웹으로 보기',
-                    link: {
-                        mobileWebUrl: window.location.href,
-                        webUrl: window.location.href,
-                    },
-                },
+                success: function (data) {
+                    Swal.fire(
+                        '삭제 완료',
+                        '삭제되었습니다.',
+                        'success'
+                    ).then((result) => {
+                        if (result.isConfirmed) {
+                            location.href = "/product/listPerPage?box_no=${product.box_no}";
+                        }
+                    })
+                }
+            })
+        }
+    })
 
-            ],
-        })
-    }
+}); // deleteBtn
 
-    </script>
+</script>
 
 </html>
