@@ -68,7 +68,7 @@
                                         </td>
                                         <td>
                                             <c:out value="${group.member_id}"/>
-                                            <input type="hidden" name="member_id"
+                                            <input class="member_id" type="hidden" name="member_id"
                                                    value="${group.member_id}">
                                         </td>
                                         <td>
@@ -177,10 +177,12 @@
                                         </td>
                                         <input type="hidden" name="master_per" value="${group.master_per}">
                                         <td>
+
                                         
 										<button class="groupout" name="master_per" type="button" id="groupout"
 												onclick="groupout" ><i
 												class="fas fa-user-times"></i></button>	
+
                                         </td>
 
                                     </tr>

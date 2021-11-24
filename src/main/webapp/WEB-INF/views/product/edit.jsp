@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=4">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 </head>
 <body>
@@ -28,7 +28,7 @@
 
     <div class="main-container">
         <div class="top-content">
-            <h1>물품 상세보기</h1>
+            <h1>물품 정보 수정</h1>
 
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                 <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
@@ -38,14 +38,18 @@
         <form method="POST" action="/product/edit" enctype="multipart/form-data">
             <input type="hidden" name="product_no" value="${product.product_no}">
             <input type="hidden" name="box_no" value="${product.box_no}">
+
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
-                    <div class="photo" style="background-image: url(${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name});">
-                        <input type="file" name="file" id="box-photo">
-                        <input type="hidden" name="product_photo_name" id="default" value="${product.product_photo_name}">
-                        <input type="hidden" name="product_photo_path"
-                                value="${pageContext.request.contextPath}/resources/assets/img/">
-                        <span><i class="fas fa-upload"></i>파일 업로드</span>
+                    <div class="photo">
+                        <div class = "product-photo" id="photo-upload"
+                            style="background-image: url(https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name});">  
+                            <input type="file" name="file" id="box-photo">
+                            <input type="hidden" name="product_photo_name" id="default" value="${product.product_photo_name}">
+                            <input type="hidden" name="product_photo_path"
+                                    value="${product.product_photo_path}">
+                            <span><i class="fas fa-upload"></i>파일 업로드</span>
+                        </div>
                     </div>
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                             data-bs-interval="false" id="carousel">
@@ -53,26 +57,26 @@
                             <div class="carousel-item active">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/food.png"
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/food.png"
                                             class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/cosmetic.png"
                                             class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/pill.png"
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
                                             class="default-img"></div>
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/clothes.png"
                                             class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/goods.png"
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/goods.png"
                                             class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                            src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
                                             class="default-img"></div>
                                 </div>
                             </div>
@@ -166,9 +170,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <%-- productEdit JS--%>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=1"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=2"></script>
 <%-- sweet alert --%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<%-- product JS --%>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/js/product.js"></script>
+
+
 
 <script>
 	$(document).ready(function () {

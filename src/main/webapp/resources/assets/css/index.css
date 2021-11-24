@@ -116,8 +116,7 @@
 /* section home*/
 
 #home {
-    background-color: #5A95F5;
-    height: 721px;
+    height: 820px;
 }
 
 .main-container {
@@ -126,8 +125,28 @@
     font-family: "Noto Sans KR Medium";
 }
 
+.slide1	{
+	width: 100%;
+	height: 820px;
+	margin: 0 auto;
+}
+
 .main-container img {
     float: left;
+}
+
+.slidegroub {
+	float: right;	
+	padding-bottom: 10%;
+	text-align: right;
+	font-size: 22px;
+}
+
+.groubpoint { 
+	font-size: 38px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: Wemakeprice-Bold;
 }
 
 .pointfont {
@@ -135,6 +154,7 @@
     margin-top: 11%;
     font-family: "NEXON Lv1 Gothic OTF Light";
     font-size: 38px;
+    padding-bottom: 10%;
 }
 
 .boxfont {
@@ -296,9 +316,9 @@
 	width: 33.33%; height: 40px;
 	text-align: center;
 	line-height: 40px;
-	color: #fff;
-	
+	color: #fff;	
 	border-radius: 1.2rem;
+	cursor: pointer;
 	
 	display: block;
 	white-space: nowrap; /*한줄처리*/
@@ -349,6 +369,28 @@
 #tabbar > .description ul > li:nth-of-type(2n){
 	padding-left: 5px;
 }
+
+/* fadein 효과 */
+.fadeinleft {
+	opacity: 0;
+	margin-left: -300px;
+	max-width: 100%;
+}
+
+.fadeinright {
+	opacity: 0;
+	margin-right: -300px;
+	max-width: 100%;
+}
+
+.fadeinleft2 {
+	opacity: 0;
+	margin-left: -300px;
+	max-width: 100%;
+}
+
+/* 슬라이드 */
+
 
 footer {
 	width: 100%;

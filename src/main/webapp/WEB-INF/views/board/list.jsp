@@ -19,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=70">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=100">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
@@ -80,7 +80,7 @@
 				<button id="addBtn" type="button">더보기</button>
 			</div>
 			
-			<div id="boardtable" >
+			<div id="boardtable">
 
 				<div id="boardtitlenone" class="boardlistcontainer">
 					<div class="item">No</div>
