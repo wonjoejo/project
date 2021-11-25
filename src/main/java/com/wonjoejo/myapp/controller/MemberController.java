@@ -1,5 +1,21 @@
 package com.wonjoejo.myapp.controller;
 
+import java.util.Date;
+
+import javax.management.ValueExp;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.google.gson.Gson;
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberDTO;
@@ -249,6 +265,22 @@ public class MemberController {
 		model.addAttribute("member", member);
 
 	}
+
+	// 아이디 찾기
+	@PostMapping(value ="/findId" ,produces = "application/json; charset=utf8")
+	@ResponseBody
+	public MemberVO findId(@Param("name") String name, @Param("email") String email) throws Exception{
+		log.debug("findId({} , {}) invoked.", name, email);
+
+		MemberVO member = this.service.findId(email, name);
+
+		log.info("========= member{}",member);
+
+
+		return member;
+	}
+	
+
 
 	@GetMapping(value = "/profile", produces = "application/json; charset=utf8")
 	@ResponseBody
