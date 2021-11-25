@@ -269,9 +269,9 @@
                         comments += '<input type="text" class = "member-id list" name="member_id" value="';
                         comments += this.member_id;
                         comments += '" disabled>';
-                        comments += '<input type ="text" class = "comment-content list" name="member_id" value="';
+                        comments += '<textarea type ="text" class = "comment-content list" name="member_id" rows="3" disabled>';
                         comments += this.comment_content;
-                        comments += '" disabled>';
+                        comments += '</textarea>';
                         comments += '<div class="reg-date">';
                         comments += this.reg_date;
                         comments += '</div>';

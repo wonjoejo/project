@@ -37,7 +37,8 @@ function findMatches(wordToMatch, members) {
 		const regex = new RegExp(wordToMatch, "gi");
 		return member.member_id.match(regex);
 	});
-}
+} //findMatches
+
 
 function displayMatches() {
 	let value = "";
@@ -70,7 +71,7 @@ function displayMatches() {
 
 	clickName();
 
-}
+} // displayMatches
 
 // 목록에서 선택 시 클릭한 id가 input 창에 반영
 function clickName() {
