@@ -71,6 +71,9 @@ $.ajax({
 				// remove the current input
 				terms.pop();
 				// add the selected item
+				
+
+
 				terms.push(ui.item.value);
 				// // add placeholder to get the comma-and-space at the end
 				// terms.push("");
@@ -81,7 +84,7 @@ $.ajax({
 					box_no: boxNo
 				}
 
-				console.log(jsonData);
+				console.log("jsonDate : " + jsonData);
 
 				fetch('search', {
 					method: 'POST',

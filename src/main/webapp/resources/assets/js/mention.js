@@ -6,11 +6,11 @@ function findMatches(wordToMatch, members) {
 		const regex = new RegExp(wordToMatch, "gi");
 		return member.name.match(regex);
 	});
-}
+} //findMatches
 
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+} //numberWithCommas
 
 function displayMatches() {
 	console.log(this.value);
@@ -31,7 +31,7 @@ function displayMatches() {
 			.join("");
 		suggestions.innerHTML = html;
 
-}
+} // displayMatches
 
 // window.addEventListener("keyup", (e) => console.log(e));
 

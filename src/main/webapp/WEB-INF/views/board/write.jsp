@@ -20,7 +20,7 @@
 
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
-    
+
 </head>
 <body>
 
@@ -28,64 +28,74 @@
 
 	<jsp:include page="../common/left.jsp"/>
 
-	<div class="main-container">		
+	<div class="main-container">
 		<div class="wrapper">
 			<div id="top_content">
 				<h1 class="title">Q&A</h1>
-						
+
 				<button id="listBtn" type="button">돌아가기</button>
 			</div>
-			
-			
+
+
 			<form action="/board/write" method="post" id="writeForm">
-		        <div class="write_wrapper">
-		        	<div>
-		        		<h3 class="write_title">글 쓰기</h3>   
-		        	</div>
-		        	<div>
-		            	<input class="writeid" type="text" name="member_id" value="${member_id}" readonly/>
-		            </div> 
-		        	
-		        	<div>
-		            	<input class="writetitle" type="text" name="title" placeholder="제목을 입력하세요 "/>
-		            </div> 
-		         	<div>
-		                <textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>
-		            </div>
-		        	<div>         
-		                <button class="writeBtn" type="submit">등록</button>
-		            </div>         
-		        </div>
-	     	 </form>
-		
+				<div class="write_wrapper">
+					<div>
+						<h3 class="write_title">글 쓰기</h3>
+					</div>
+					<div>
+						<input class="writeid" type="text" name="member_id" value="${member_id}" readonly/>
+					</div>
+
+					<div>
+						<input class="writetitle" type="text" name="title" placeholder="제목을 입력하세요 "/>
+					</div>
+					<div>
+						<textarea class="writecon" name="content" cols="10" rows="10" placeholder="내용을 입력하세요"></textarea>
+					</div>
+					<div>
+						<button class="writeBtn" type="submit">등록</button>
+					</div>
+				</div>
+			</form>
+
 		</div>
 	</div>
 </div>
 
 </body>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=20"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=90"></script>
 
-    <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
+<script>
+	$(function () {
+		console.clear();
+		console.log('JQuery stared...');
 
-        //list 버튼에 대한 이벤트 등록 처리
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
+		//list 버튼에 대한 이벤트 등록 처리
+		$('#listBtn').click(function () {
+			console.log('click event triggered..');
 
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-        
-       
-        
-        
-      }); //.jq
-    </script>
-    
+			self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+		}); //onclick
+
+		$('.writeBtn').click(function () {
+			const Toast = Swal.mixin({
+				toast: true,
+				position: 'middle',
+				showConfirmButton: false,
+				timer: 2000,
+			})
+
+			Toast.fire({
+				icon: 'success',
+				title: '글 등록 완료'
+			})
+		}); //onclick*/
+
+	}); //.jq
+</script>
+
 </html>
