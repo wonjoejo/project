@@ -11,14 +11,14 @@
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
 
 </head>
 <body>
@@ -163,17 +163,30 @@
                                 </c:choose>
                             </li>
                         </c:if>
-                        <li>
-                            <div class="title">메모</div>
-                            <div class="detail" id="detail-memo">
-                                ${product.product_memo}
-                                <span class="more">
+                    <li>
+                        <div class="title">메모</div>
+                        <div class="detail" id="detail-memo">
+                            <c:set var="memo" value="${product.product_memo}"/>
+                            <c:choose>
+                                <c:when test="${fn:contains(memo,'@')}">
+                                    <c:set var="mentions" value="${fn:split(product.product_memo,'@')}"/>
+                                    <c:forEach var="id" items="${mentions}" begin="0" end="${fn:length(mentions)}">
+                                        <span class="mention" id="${id}">
+                                                @${id}
+                                        </span>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    ${product.product_memo}
+                                </c:otherwise>
+                            </c:choose>
+                            <span class="more">
                                     <a href="#" id="more">더보기</a>
                                 </span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             </div>
 
             <%-- 댓글 --%>
@@ -228,6 +241,7 @@
 	const cate_detail5 = '${category.cate_detail5}';
 	const product_photo_name = '${product.product_photo_name}'
 	const product_photo_path = '${product.product_photo_path}';
+	const member_id = '${sessionScope.member_id}';
 
 
 	// 댓글 리스트
@@ -399,16 +413,18 @@
                 }
             })
             .catch(function (error) {
-                console.log(error);
+	            console.log(error);
             }); // fetch
 
     }; // insertComment
-
 
 
 </script>
 
 <%-- product JS --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=6"></script>
+
+<%-- mention JS 실험 중 --%>
+<script src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=7"></script>
 
 </html>

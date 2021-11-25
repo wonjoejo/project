@@ -114,13 +114,14 @@ masterBtn.addEventListener("click",function (e) {
 										timer: 1500
 									})
 									resolve()
-									location.href=`permissionlist?box_no=${boxNo}`;
+									location.href = `permissionlist?box_no=${boxNo}`;
 								}
-							})
+								})
 						} else {
 							resolve('일치 하는 회원이 없습니다')
 						}
 					})
 			})
 		}
-})});
+	})
+});
