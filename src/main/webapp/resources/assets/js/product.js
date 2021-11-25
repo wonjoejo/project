@@ -20,45 +20,42 @@
     });
 
 
+    // 카카오 공유하기
+    Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
+
+    let detailList = [];
+    if (cate_detail1 != "") {
+        detailList.push(`#${cate_detail1} `);
+    }
+    if (cate_detail2 != "") {
+        detailList.push(`#${cate_detail2} `);
+    }
+    if (cate_detail3 != "") {
+        detailList.push(`#${cate_detail3} `);
+    }
+    if (cate_detail4 != "") {
+        detailList.push(`#${cate_detail4} `);
+    }
+    if (cate_detail5 != "") {
+        detailList.push(`#${cate_detail5} `);
+    }
 
 
+    console.log(detailList);
 
-// 카카오 공유하기
-Kakao.init('bf8980d064e0888e1bf9f6692ff4951f'); // 초기화
-
-let detailList = [];
-if ('${category.cate_detail1}' != ""){
-    detailList.push('#${category.cate_detail1}');
-}
-if ('${category.cate_detail2}' != ""){
-    detailList.push('#${category.cate_detail2}');
-}
-if ('${category.cate_detail3}' != ""){
-    detailList.push('#${category.cate_detail3}');
-}
-if ('${category.cate_detail4}' != ""){
-    detailList.push('#${category.cate_detail4}');
-}
-if ('${category.cate_detail5}' != ""){
-    detailList.push('#${category.cate_detail5}');
-}
-
-
-console.log(detailList);
-
-function sendLink() {
-    Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-            title: '${product.product_name}',
-            description: detailList.toString(),
-            imageUrl:
-                'https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}',
-            link: {
-                mobileWebUrl: window.location.href,
-                webUrl: window.location.href,
+    function sendLink() {
+        Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: `${product_name}`,
+                description: detailList.toString(),
+                imageUrl:
+                    `https://intobox.s3.ap-northeast-2.amazonaws.com/${product_photo_path}${product_photo_name}`,
+                link: {
+                    mobileWebUrl: window.location.href,
+                    webUrl: window.location.href,
+                },
             },
-        },
         buttons: [
             {
                 title: '웹으로 보기',

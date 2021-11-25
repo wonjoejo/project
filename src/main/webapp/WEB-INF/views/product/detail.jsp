@@ -216,20 +216,28 @@
 
 <script>
 
-const product_memo = '${product.product_memo}';
-const product_no = '${product.product_no}';
-const box_no = '${product.box_no}';
-const box_link = '/product/listPerPage?box_no=${product.box_no}';
+	const product_memo = '${product.product_memo}';
+	const product_no = '${product.product_no}';
+	const box_no = '${product.box_no}';
+	const box_link = '/product/listPerPage?box_no=${product.box_no}';
+	const product_name = '${product.product_name}';
+	const cate_detail1 = '${category.cate_detail1}';
+	const cate_detail2 = '${category.cate_detail2}';
+	const cate_detail3 = '${category.cate_detail3}';
+	const cate_detail4 = '${category.cate_detail4}';
+	const cate_detail5 = '${category.cate_detail5}';
+	const product_photo_name = '${product.product_photo_name}'
+	const product_photo_path = '${product.product_photo_path}';
 
 
-    // 댓글 리스트
-    getCommentList();
+	// 댓글 리스트
+	getCommentList();
 
-    function getCommentList() {
+	function getCommentList() {
 
-        $.ajax({
-            url: "/comment/list",
-            type: "GET",
+		$.ajax({
+			url: "/comment/list",
+			type: "GET",
             data: {
                 product_no: ${product.product_no}
             },
