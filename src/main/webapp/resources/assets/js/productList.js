@@ -73,12 +73,15 @@ $.ajax({
 			select: function (event, ui) {
 				let terms = this.value.split(/,\s*/);
 				terms.pop();
+
 				terms.push(ui.item.value);
 
 				const jsonData = {
 					keyword: ui.item.value,
 					box_no: boxNo
 				}
+
+				console.log("jsonDate : " + jsonData);
 
 				fetch('search', {
 					method: 'POST',

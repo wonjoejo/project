@@ -646,7 +646,11 @@ textarea {
 }
 
 .comment-content {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
     width: 63%;
+    height: auto;
 }
 
 .reg-date {
