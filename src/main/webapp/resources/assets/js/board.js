@@ -33,6 +33,7 @@
     	}
     });
 	
+	//검색 
 	let searchForm = $("#searchForm");
 	
 	$("#searchForm button").on("click", function(e) {
@@ -51,6 +52,7 @@
 	searchForm.submit();
 	});
  
+  //본인 글만 확인 
   $(function () {
         console.clear();
         console.log('JQuery stared...');
@@ -63,6 +65,7 @@
 
     }); //onclick
     
+    //로그인페이지로 이동 
     $('.gojoinpage').click(function () {
        Swal.fire({ icon: 'info', 
        			  // title: '로그인 정보가 없습니다.', 
@@ -97,6 +100,7 @@
       formObj.submit();
     }); //onclick*/
     
+    //삭제버튼 
     $('#deleteBtn').on('click',function(e){
           
    		Swal.fire({
@@ -129,6 +133,7 @@
       formObj.submit();
     }); //onclick */
     
+    //답글 삭제 버튼 
     $('#replydeleteBtn').on('click',function(e){
           
    		Swal.fire({
