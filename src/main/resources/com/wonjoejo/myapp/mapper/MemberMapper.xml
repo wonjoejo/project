@@ -56,9 +56,11 @@
     <select id="selectId" resultType="com.wonjoejo.myapp.domain.MemberVO">
         <![CDATA[
 
-            SELECT member_id 
+            SELECT
+                /*+ index_desc(MEMBER) */
+                *
             FROM member 
-            WHERE email=#{email}
+            WHERE email = #{email} AND name = #{name}
 
         ]]>
         

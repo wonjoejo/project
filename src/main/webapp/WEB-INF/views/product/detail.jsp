@@ -269,8 +269,7 @@
                         comments += '</div>';
                         comments += '</div>';
                     });
-                }
-                ; // if-else
+                }; // if-else
 
                 $("#comment-box").html(comments);
 
