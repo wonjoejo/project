@@ -104,7 +104,7 @@ public class BoxController {
                     box.getBox_name(),
                     box.getBox_memo(),
                     box.getBox_photo_name(),
-                    "https://intobox.s3.ap-northeast-2.amazonaws.com/default/",
+                    "default/",
                     null
             );
 

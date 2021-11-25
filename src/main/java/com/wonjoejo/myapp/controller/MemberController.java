@@ -2,28 +2,44 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.Date;
 
+
 import javax.servlet.http.HttpServletRequest;
+
+import javax.management.ValueExp;
+
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.MemberService;
+
 import com.wonjoejo.myapp.util.UploadFileUtils;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Log4j2
 @NoArgsConstructor
@@ -325,19 +341,47 @@ public class MemberController {
 
 	}
 
-	
+
 	@GetMapping("/myPage")
 	public void edit(String member_id, Model model) {
 		log.debug("myPage invoked.");
-	
-	
+
 		MemberVO member = this.service.getMember(member_id);
 		log.info("\t+ member: {}", member);
-		
-		model.addAttribute("member",member);
-		
+
+		model.addAttribute("member", member);
+
+	}
+
+	// 아이디 찾기
+	@PostMapping(value ="/findId" ,produces = "application/json; charset=utf8")
+	@ResponseBody
+	public MemberVO findId(@Param("name") String name, @Param("email") String email) throws Exception{
+		log.debug("findId({} , {}) invoked.", name, email);
+
+		MemberVO member = this.service.findId(email, name);
+
+		log.info("========= member{}",member);
+
+
+		return member;
 	}
 	
 
-    
+
+	@GetMapping(value = "/profile", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String profile(String member_id) {
+		log.debug("profile({}) invoked.", member_id);
+
+		MemberVO member = this.service.getMember(member_id);
+		log.info("\t+ member: {}", member);
+
+		Gson gson = new Gson();
+
+		return gson.toJson(member);
+
+	} // profile
+
+
 } // end class

@@ -91,4 +91,16 @@ public class MemberMapperTests {
 		log.info("\t+ member_id:{}",member_id);
 	} // testDeleteMember
 
+	@Test
+	public void testFindId() {
+		log.debug("testFindId() invoked.");
+
+		String name = "지현";
+		String email = "j@naver.com";
+
+		MemberVO member = this.mapper.selectId(email, name);
+
+		log.info("\t+ member_id:{}",member);
+	} // testFindId
+
 } // end class

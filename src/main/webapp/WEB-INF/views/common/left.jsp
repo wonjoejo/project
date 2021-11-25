@@ -22,7 +22,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=10">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>
@@ -32,6 +32,7 @@
         <p class="name">${member_id}</p>
     </div>
     <div class="menu">
+    	<span class="menu-item inactive"><a href=""><i class="fal fa-home"></i>HOME</a></span>
         <span class="menu-item active boxlist"><a
                 href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i
                 class="far fa-list-alt"></i> 박스 리스트</a></span>

@@ -99,4 +99,16 @@ public class MemberServiceTests {
         log.info("Account deleted successfully: {}",isSuccess);
     } // testDeleteAccount
 
+    @Test(timeout=1000)
+    public void testfindId() {
+
+        log.debug("testfindId() invoked.");
+
+        String email = "j@naver.com";
+        String name = "지현";
+        MemberVO member = this.service.findId(email, name);
+
+        log.info("member: {}",member);
+    } // testfindId
+
 } // end class

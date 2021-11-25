@@ -59,8 +59,6 @@ public class CategoryController {
 
         BaseCategoryVO baseCategory = this.service.getBaseCategoryList(box_no);
 
-        HashMap<String,Object> map = new HashMap<>();
-
         return baseCategory;
     }
 

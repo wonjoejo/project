@@ -21,7 +21,7 @@ public interface MemberMapper {
 	public abstract MemberVO selectUserByRememberMe(String remeberMe) throws Exception;
 	
 	// 아이디 찾기
-	public abstract MemberVO selectId(String email);
+	public abstract MemberVO selectId(@Param("email") String email, @Param("name") String name);
 	
 	// 비밀번호 변경
 	public abstract MemberVO updatePwd(String email);

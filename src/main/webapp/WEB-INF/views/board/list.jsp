@@ -19,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=70">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=100">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
@@ -29,105 +29,105 @@
 
 	<jsp:include page="../common/left.jsp"/>
 
-	<div class="main-container">		
+	<div class="main-container">
 		<div class="wrapper">
-		
+
 			<div id="top_content">
 				<h1 class="title">Q&A</h1>
-				
-				 
-				 <form id="searchForm" action="/board/searchlist" method='get'>
-		
-			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-			        
-			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
-			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-			        <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
-			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
-			     </form>
-				
+
+
+				<form id="searchForm" action="/board/searchlist" method='get'>
+
+					<input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+
+					<input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+					<input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
+					<button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
+				</form>
+
 				<c:if test="${member_id != null}">
 					<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
 				</c:if>
-			</div> 	
-			
+			</div>
+
 			<div class="noticewrapper" >
 				<h2 class="notice">공지사항</h2>
 				<div id="notice">
-				
+
 					<c:forEach items="${noticeList}" var="board" begin="0" end="2">
-						<div class="noticelist">   
-											
+						<div class="noticelist">
+
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div> 
+							</div>
 							<div class="item">
 								<c:out value="${board.member_id}" />
-							</div>	 
+							</div>
 							<div class="item">
-							
+
 								<a href="/board/noticedetail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-								
-								<c:out value="${board.title}" />
+
+									<c:out value="${board.title}" />
 								</a>
-							</div>	  
-							&nbsp;&nbsp;&nbsp;&nbsp;<img class="noticeimg" src="${pageContext.request.contextPath}/resources/assets/img/warning.png" />        
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;<img class="noticeimg" src="${pageContext.request.contextPath}/resources/assets/img/warning.png" />
 						</div>
-			
-						
+
+
 					</c:forEach>
 				</div>
 				<button id="addBtn" type="button">더보기</button>
 			</div>
-			
-			<div id="boardtable" >
+
+			<div id="boardtable">
 
 				<div id="boardtitlenone" class="boardlistcontainer">
 					<div class="item">No</div>
 					<div class="item">Title</div>
 					<div class="item">written by</div>
-					<div class="item">Register date</div> 
+					<div class="item">Register date</div>
 				</div>
 
 				<div class="boardlist">
-				<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고 
-						목록을 만들어 줘야 합니다 -->
+					<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고
+                            목록을 만들어 줘야 합니다 -->
 					<c:forEach items="${list}" var="board">
-					
-						<div class="boardlistcontainer">     
+
+						<div class="boardlistcontainer">
 							<div class="item">
 								<c:out value="${board.board_idx}" />
-							</div>	
-							
+							</div>
+
 							<div class="item titleitem">
 								<a>
-								<c:if test="${board.depth > 0}">
+									<c:if test="${board.depth > 0}">
 									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
-								</c:if>
-								
-								<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}&depth=${board.depth}">
-									
-								<c:if test="${member_id == 'admin'}">
-									<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-								</c:if>
-								
-								<c:if test="${member_id == null}">
-									<a href="#" class="gojoinpage">
-								</c:if>
-									
-								<c:out value="${board.title}" />
-								</a>
-							</div>					
+									</c:if>
+
+									<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}&depth=${board.depth}">
+
+										<c:if test="${member_id == 'admin'}">
+										<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+											</c:if>
+
+											<c:if test="${member_id == null}">
+											<a href="#" class="gojoinpage">
+												</c:if>
+
+												<c:out value="${board.title}" />
+											</a>
+							</div>
 							<div class="item">
 								<c:out value="${board.member_id}" />
-								
-							</div>						
+
+							</div>
 							<div class="item">
 								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div>            
+							</div>
 						</div>
 					</c:forEach>
-				</div>		
+				</div>
 			</div>
 
 			<!-- 페이징 처리 -->
@@ -161,7 +161,7 @@
 					</ul>
 				</form>
 			</div>
-			
+
 		</div>
 	</div>
 </div>

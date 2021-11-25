@@ -150,3 +150,8 @@ a:hover {
   border-left: 6px solid transparent;
   color: #4e4e4e;
 }
+
+.homeimg {
+	width: 20px;
+	height: 20px;
+}

@@ -1,8 +1,9 @@
 package com.wonjoejo.myapp.mapper;
 
-import java.util.List;
-
 import com.wonjoejo.myapp.domain.*;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ProductMapper {
 
@@ -35,14 +36,15 @@ public interface ProductMapper {
 
 	// baseCategory 상세보기
 	public abstract BaseCategoryVO selectBaseCategory(Integer box_no);
-	
-    // 페이징 처리된 물품 리스트 조회
-    public abstract List<ProductCategoryVO> getListPaging(Criteria cri);
+
+	// 페이징 처리된 물품 리스트 조회
+	public abstract List<ProductCategoryVO> getListPaging(Criteria cri);
 
 	//총 물품 개수 반환 
 	public abstract Integer getTotalCount(Integer box_no);
 
-
+	//물품 전체 검색
+	public abstract List<ProductCategoryVO> searchProduct(@Param("keyword") String keyword, @Param("box_no") Integer box_no);
 
 
 } // end interface

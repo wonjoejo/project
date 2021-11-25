@@ -1,6 +1,8 @@
 package com.wonjoejo.myapp.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.*;
 import com.wonjoejo.myapp.service.ProductService;
 import com.wonjoejo.myapp.util.UploadFileUtils;
@@ -301,7 +303,7 @@ public class ProductController {
                     product.getProduct_memo(),
                     product.getProduct_qtn(),
                     product.getProduct_photo_name(),
-                    "/resources/assets/img/",
+                    "default/",
                     product.getBarcode(),
                     product.getReg_date()
             );
@@ -384,7 +386,7 @@ public class ProductController {
                     product.getProduct_memo(),
                     product.getProduct_qtn(),
                     product.getProduct_photo_name(),
-                    "/resources/assets/img/",
+                    "default/",
                     product.getBarcode(),
                     product.getReg_date()
             );
@@ -431,6 +433,25 @@ public class ProductController {
 
         return "redirect:/product/listPerPage";
     } // productDelete
+
+    @PostMapping(value = "/search", produces = "application/json; charset=utf8")
+    @ResponseBody
+    public String searchProduct(@RequestBody String data) {
+        log.debug("searchProduct({}) invoked.", data);
+
+        JsonElement element = JsonParser.parseString(data);
+
+        List<ProductCategoryVO> list = this.service.searchProduct(
+                element.getAsJsonObject().get("keyword").getAsString(),
+                element.getAsJsonObject().get("box_no").getAsInt());
+
+        list.forEach(log::info);
+
+        Gson gson = new Gson();
+
+
+        return gson.toJson(list);
+    }
 
 
 } // end class

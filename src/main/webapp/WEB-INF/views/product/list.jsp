@@ -26,7 +26,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=21">
+          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=22">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 
@@ -42,10 +42,10 @@
             <div class="product-main-container">
 
                 <div id="top-search">
-                    <input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything" />
+                    <input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything" id="search" value=""/>
                     <button class="searchbtn">
                         <img class="searchimg"
-                            src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색
+                            src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
                     </button>
                 </div> <!-- top-search -->
 
@@ -58,19 +58,8 @@
                             <c:if
                                 test="${not empty product.product_photo_name && not empty product.product_photo_path}">
                                 <div class="item" id="product-img">
-                                    <c:set var="path" value="${product.product_photo_path}" />
-                                    <c:choose>
-                                        <c:when test="${fn:contains(path,'resource')}">
-                                            <!-- 기본이미지 사용 -->
-                                            <img id="product-img"
-                                                src="${pageContext.request.contextPath}${product.product_photo_path}${product.product_photo_name}" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <!-- 업로드 이미지 사용 -->
-                                            <img id="product-img"
-                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}" />
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <img id="product-img"
+                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}" />
                                 </div>
                             </c:if> <!-- product-img -->
 
@@ -83,7 +72,7 @@
 
                             <div class="item" id="product-name">
                                 <a href="${pageContext.request.contextPath}/product/detail?product_no=${product.product_no}&box_no=${product.box_no}">
-                                    <c:out value='${product.product_name}' /> </a>
+                                    <c:out value='${product.product_name}'/> </a>
                             </div> <!-- product-name -->
 
                             <div class="item" id="product-cate">
@@ -181,138 +170,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-
 <script>
-    $(function name() {
-        console.clear();
-        console.log('jquery started...');
-
-        // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
-        $('#regBtn').on('click', function () {
-            console.log('onclicked on regBtn...');
-
-            self.location = '/product/register?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        });
-
-        // excel 버튼
-        $('#excel-btn').on('click', function () {
-            console.log('onclicked on regBtn...');
-
-            self.location = '/product/excel?box_no=${box_no}';
-        });
-
-        //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리
-        $('a.prev, a.next').on('click', function (e) {
-            e.preventDefault();
-
-            var paginationForm = $('#paginationForm')
-            paginationForm.attr('action', '/product/listPerPage')
-            paginationForm.attr('method', 'GET')
-
-            //Criteria 3개 전송파라미터를 설정
-            paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-            paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-            paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
-
-            paginationForm.submit();
-        });
-
-    }); //.jq
-
+	const boxNo = '${box_no}';
+	const currPage = '${cri.currPage}';
+	const amount = '${cri.amount}';
+	const pagesPerPage = '${cri.pagesPerPage}';
 </script>
-
-
-<%--자동완성 기능 실험중--%>
+<%-- autocomplete(자동완성) 기능 --%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
         integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
 
-    $.widget("ui.autocomplete", $.ui.autocomplete, {
-
-        _renderMenu: function (ul, items) {
-            var that = this;
-            ul.attr("class", "nav nav-pills nav-stacked  bs-autocomplete-menu");
-            $.each(items, function (index, item) {
-                that._renderItemData(ul, item);
-            });
-        },
-
-        _resizeMenu: function () {
-            var ul = this.menu.element;
-            ul.outerWidth(Math.min(
-                // Firefox wraps long text (possibly a rounding bug)
-                // so we add 1px to avoid the wrapping (#7513)
-                ul.width("").outerWidth() + 1,
-                this.element.outerWidth()
-            ));
-        }
-
-    });
-
-    let ajaxData = [];
-
-    $.ajax({
-        url: "/product/json"
-        , type: "GET"
-        , data: {
-            "box_no": ${box_no}
-        },
-        dataType: "json",
-        success: function (data) {
-            $.map(data, function (item) {
-                ajaxData.push({
-                    label: item,
-                    value: item,
-                    idx: item
-                })
-            })
-            $('.search').autocomplete({
-                source: function (request, response) {
-                    response(
-                        $.ui.autocomplete.filter(
-                            ajaxData, request.term.split(/,\s*/).pop()
-                        )
-                    )
-                },
-                open: function (event, ui) {
-                    $(this).autocomplete("widget").css({
-                        "width": 400,
-                        "border-radius": "20px",
-                        "color": "#4E4E4E"
-                    });
-                },
-                select: function (event, ui) {
-                    let terms = this.value.split(/,\s*/);
-                    // remove the current input
-                    terms.pop();
-                    // add the selected item
-                    terms.push(ui.item.value);
-                    // add placeholder to get the comma-and-space at the end
-                    terms.push("");
-                    this.value = terms.join(", ");
-                    return false;
-                },
-                focus: function (event, ui) {
-                    return false;
-                },
-                minLength: 1,
-                autoFocus: true,
-                classes: {
-                    'ui-autocomplete': 'highlight'
-                },
-                delay: 500,
-                disable: false,
-                position: {
-                    my: 'right top',
-                    at: 'right bottom'
-                },
-                close: function (e) {
-                    console.log(e);
-                }
-            });
-        }
-    });
-
-</script>
+<%-- product list js 파일 --%>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=5"></script>
 </html>

@@ -243,12 +243,14 @@ deleteBtn.forEach(function (item, index) {
         Swal.fire({
             title: '삭제하시겠습니까?',
             text: "해당 카테고리의 상세 카테고리 정보들이 초기화됩니다.",
+            icon: 'warning',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '네, 삭제합니다.',
+            confirmButtonText: '삭제',
             showLoaderOnConfirm: true,
+            cancelButtonText: '취소',
             preConfirm: function () {
                 return new Promise(function (resolve) {
                     item.parentElement.previousElementSibling.value = "";
