@@ -64,38 +64,38 @@
 
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=90"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=90"></script>
 
-<script>
-	$(function () {
-		console.clear();
-		console.log('JQuery stared...');
+    <script>
+      $(function () {
+        console.clear();
+        console.log('JQuery stared...');
 
-		//list 버튼에 대한 이벤트 등록 처리
-		$('#listBtn').click(function () {
-			console.log('click event triggered..');
+        //list 버튼에 대한 이벤트 등록 처리
+        $('#listBtn').click(function () {
+          console.log('click event triggered..');
 
-			self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-		}); //onclick
+          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
+        }); //onclick
+        
+        $('.writeBtn').click(function () {
+        	const Toast = Swal.mixin({
+        		  toast: true,
+        		  position: 'middle',
+        		  showConfirmButton: false,
+        		  timer: 2000,  
+        		})
 
-		$('.writeBtn').click(function () {
-			const Toast = Swal.mixin({
-				toast: true,
-				position: 'middle',
-				showConfirmButton: false,
-				timer: 2000,
-			})
-
-			Toast.fire({
-				icon: 'success',
-				title: '글 등록 완료'
-			})
-		}); //onclick*/
-
-	}); //.jq
-</script>
-
+        		Toast.fire({
+        		  icon: 'success',
+        		  title: '글 등록 완료'
+        		})
+         }); //onclick*/
+      
+      }); //.jq
+    </script>
+    
 </html>

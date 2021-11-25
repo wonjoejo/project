@@ -306,8 +306,10 @@
 
 #photo-upload {
     max-width: 14vh;
+    max-height: 14vh;
     align-items: center;
     align-content: center;
+    border-radius: 0;
 }
 
 #img-file-upload {
@@ -334,6 +336,7 @@
     left: 0;
     opacity: 0;
     cursor: pointer;
+    border-radius: 0;
 }
 
 

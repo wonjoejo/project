@@ -84,6 +84,20 @@
 
           self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
         }); //onclick
+        
+        $('.writeBtn').click(function () {
+        	const Toast = Swal.mixin({
+        		  toast: true,
+        		  position: 'middle',
+        		  showConfirmButton: false,
+        		  timer: 2000,  
+        		})
+
+        		Toast.fire({
+        		  icon: 'success',
+        		  title: '답글 등록 완료'
+        		})
+         }); //onclick*/
       }); //.jq
     </script>
     
