@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.MemberService;
+import com.wonjoejo.myapp.util.UploadFileUtils;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,63 +37,112 @@ public class MemberController {
 	
 	@Setter(onMethod_= { @Autowired })
 	private MemberService service;
-	
+
 	// 회원가입
 	@PostMapping("/registerPost")
-	public String register(MemberDTO member, RedirectAttributes rttrs, MultipartFile file) {
+	public String register(MemberDTO member, RedirectAttributes rttrs, MultipartFile file) throws Exception {
 		log.debug("register({}, {}) invoked.",member, file);
 		
+		// upload 할 폴더 경로 지정
+        String uploadDir = "profile";
 		MemberVO memberVO;
+		String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 		
-		// 0 : 개인, 1 : 기업
-		if(member.getMember_type()==0) { // 개인
-			memberVO = new MemberVO(
-					member.getMember_id(),
-					0,
-					0,
-					member.getName(),
-					member.getPassword(),
-					member.getEmail(),
-					member.getPhone_number(),
-					member.getPhoto_name(),
-					member.getPhoto_path(),
-					null,
-					null,
-					null,
-					null
-			);
+		// 멤버 타입
+		if(member.getMember_type()==0 ) { // 개인
+			if(file.getSize()!=0) { // 프로필 있음
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						0,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						uploadedFileName,
+	                    uploadDir,
+						null,
+						null,
+						null,
+						null
+				);
+					
+				boolean result = this.service.register(memberVO);
+				log.info("\t + 개인 프로필 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} else { // 디폴트
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						0,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						member.getPhoto_name(),
+						"https://intobox.s3.ap-northeast-2.amazonaws.com/default/",
+						null,
+						null,
+						null,
+						null
+				);
+				boolean result = this.service.register(memberVO);
+				log.info("\t +개인 디폴트 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			}	// photo if-else 
 			
-		boolean result = this.service.register(memberVO);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("result",result);
-		
 		} else { // 기업
-			memberVO = new MemberVO(
-					member.getMember_id(),
-					1,
-					0,
-					member.getName(),
-					member.getPassword(),
-					member.getEmail(),
-					member.getPhone_number(),
-					member.getPhoto_name(),
-					member.getPhoto_path(),
-					member.getCompany_name(),
-					null,
-					null,
-					null
-			);
+			if(file.getSize()!=0) { // 프로필 있음
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						1,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						uploadedFileName,
+						uploadDir,
+						member.getCompany_name(),
+						null,
+						null,
+						null
+				);
+				
+				boolean result = this.service.register(memberVO);
+				log.info("\t + 기업 프로필 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} else { // 디폴트
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						1,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						member.getPhoto_name(),
+						"https://intobox.s3.ap-northeast-2.amazonaws.com/default/",
+						member.getCompany_name(),
+						null,
+						null,
+						null
+				);
+				
+				boolean result = this.service.register(memberVO);
+				log.info("\t +기업 디폴트 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} // photo if-else
 			
-		boolean result = this.service.register(memberVO);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("result",result);
-		
-			
-		} // if-else
-		
+		} // member-type if-else
+
 		return "/member/loginIndex";
 	} // register
-	
+		
 	// 로그인
 	@PostMapping("/loginPost")
 	public void loginPost(
@@ -143,80 +194,111 @@ public class MemberController {
 	
 	// 회원 정보 수정
 	@PostMapping("/edit")
-	public String edit(MemberDTO member, RedirectAttributes rttrs) throws Exception {
+	public String edit(MemberDTO member, RedirectAttributes rttrs, MultipartFile file) throws Exception {
 		log.debug("edit({}) invoked.",member);
-		
-		
-//		MemberVO memberVO = new MemberVO(
-//				member.getMember_id(),
-//				null,
-//				null,
-//				member.getName(),
-//				member.getPassword(),
-//				member.getEmail(),
-//				member.getPhone_number(),
-//				member.getPhoto_name(),
-//				member.getPhoto_path(),
-//				member.getCompany_name(),
-//				null,
-//				null,
-//				null
-//		);
-//
-//		boolean result = this.service.editMember(memberVO);
-//		log.info("\t +result: {}",result);
-//		rttrs.addAttribute("result",result);
-//		
-//		
+
+		// upload 할 폴더 경로 지정
+        String uploadDir = "profile";
 		MemberVO memberVO;
+		String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 		
-		// 0 : 개인, 1 : 기업
-		if(member.getMember_type()==0) { // 개인
-			memberVO = new MemberVO(
-					member.getMember_id(),
-					0,
-					0,
-					member.getName(),
-					member.getPassword(),
-					member.getEmail(),
-					member.getPhone_number(),
-					member.getPhoto_name(),
-					member.getPhoto_path(),
-					null,
-					null,
-					null,
-					null
-			);
+		log.info(file.getOriginalFilename());
+		
+		// 멤버 타입
+		if(member.getMember_type()==0 ) { // 개인
+			if(file.getSize()!=0) { // 프로필 있음
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						0,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						uploadedFileName,
+	                    uploadDir,
+						null,
+						null,
+						null,
+						null
+				);
+					
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t + 개인 프로필 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} else { // 디폴트
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						0,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						member.getPhoto_name(),
+						member.getPhoto_path(),
+						null,
+						null,
+						null,
+						null
+				);
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t +개인 디폴트 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			}	// photo if-else 
 			
-		boolean result = this.service.editMember(memberVO);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("member_id",member.getMember_id());
-		
-		return "redirect:/member/myPage";
 		} else { // 기업
-			memberVO = new MemberVO(
-					member.getMember_id(),
-					1,
-					0,
-					member.getName(),
-					member.getPassword(),
-					member.getEmail(),
-					member.getPhone_number(),
-					member.getPhoto_name(),
-					member.getPhoto_path(),
-					member.getCompany_name(),
-					null,
-					null,
-					null
-			);
+			if(file.getSize()!=0) { // 프로필 있음
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						1,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						uploadedFileName,
+						uploadDir,
+						member.getCompany_name(),
+						null,
+						null,
+						null
+				);
+				
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t + 기업 프로필 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} else { // 디폴트
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						1,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						member.getPhoto_name(),
+						member.getPhoto_path(),
+						member.getCompany_name(),
+						null,
+						null,
+						null
+				);
+				
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t +기업 디폴트 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} // photo if-else
 			
-		boolean result = this.service.editMember(memberVO);
-		log.info("\t +result: {}",result);
+		} // member-type if-else
+		
 		rttrs.addAttribute("member_id",member.getMember_id());
 		
 		return "redirect:/member/myPage";
-			
-		} // if-else
 		
 	} // edit
 	
@@ -230,7 +312,7 @@ public class MemberController {
 		log.info("\t +result: {}",result);
 		rttrs.addAttribute("\t+ result: {}",result);
 
-		return "redirect:/";
+		return "redirect:/member/logout";
 	} // delete
 
 	@GetMapping("/login")
@@ -247,7 +329,8 @@ public class MemberController {
 	@GetMapping("/myPage")
 	public void edit(String member_id, Model model) {
 		log.debug("myPage invoked.");
-		
+	
+	
 		MemberVO member = this.service.getMember(member_id);
 		log.info("\t+ member: {}", member);
 		

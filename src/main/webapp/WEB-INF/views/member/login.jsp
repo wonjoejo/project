@@ -61,7 +61,7 @@ pageEncoding="UTF-8"%>
             <a href="/member/register">
               <span class="join-btn btn-scroll-up">JOIN</span>
             </a>
-            <a href="${pageContext.request.contextPath}/board/list">
+            <a href="${pageContext.request.contextPath}/board/listPerPage">
               <span class="login-btn btn-scroll-up">Q&A</span>
             </a>
           </div>

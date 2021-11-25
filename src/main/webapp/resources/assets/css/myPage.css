@@ -287,7 +287,7 @@ body {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 2px solid #B8B7F0;
+  border: 2px solid #b8b7f0;
   outline-width: 0;
   /* background: linear-gradient(90deg, #4776e6 0%, #8e54e9 100%); */
 }
@@ -357,19 +357,20 @@ body {
 }
 
 #profile-upload input.upload {
-  z-index: 1;
+  /* z-index: 1; */
   left: 0;
   margin: 0;
   bottom: 0;
   top: 0;
   padding: 0;
   opacity: 0;
-  outline: none;
-  cursor: pointer;
-  position: absolute;
-
+  /* outline: none; */
+  /* cursor: pointer; */
+  /* position: absolute; */
   width: 100%;
-  display: none;
+  height: 100%;
+
+  /* display: none; */
 }
 
 /* Float */

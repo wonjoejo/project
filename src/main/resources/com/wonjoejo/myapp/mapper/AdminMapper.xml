@@ -69,4 +69,39 @@
         ]]>
     </select>
 	
+	<!-- 개인 회원 검색 목록 조회 -->
+    <select id="getsearchPage0" resultType="com.wonjoejo.myapp.domain.MemberVO">  
+    <![CDATA[ 
+        SELECT 
+        	/*+ index_desc(MEMBER) */
+        	*
+   		FROM MEMBER           
+        WHERE member_type='0' and (replace(member_id,' ','') like '%'||#{keyword}||'%' or replace(name,' ','') like '%'||#{keyword}||'%')            	
+       	OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
+        ]]>
+    </select>
+	
+	<!-- 기업 회원 검색 목록 조회 -->
+    <select id="getsearchPage1" resultType="com.wonjoejo.myapp.domain.MemberVO">  
+    <![CDATA[ 
+        SELECT 
+        	/*+ index_desc(MEMBER) */
+        	*
+   		FROM MEMBER           
+        WHERE member_type='1' and (replace(member_id,' ','') like '%'||#{keyword}||'%' or replace(name,' ','') like '%'||#{keyword}||'%')            	
+       	OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
+        ]]>
+    </select>
+    
+    <!-- 검색용 총 목록개수 반환  -->
+     <select id="getSearchCount" resultType="int">
+     <![CDATA[ 
+         SELECT count(member_id)
+         FROM MEMBER
+         WHERE (replace(member_id,' ','') like '%'||#{keyword}||'%' or replace(name,' ','') like '%'||#{keyword}||'%') 
+    		
+	]]>
+    </select>
+	
+	
 </mapper>
