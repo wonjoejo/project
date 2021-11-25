@@ -1,7 +1,11 @@
 package com.wonjoejo.myapp.service;
 
-import java.util.List;
-
+import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.MemberVO;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,13 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
-import com.wonjoejo.myapp.domain.BoxPermissionVO;
-import com.wonjoejo.myapp.domain.MemberVO;
-
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j2;
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -125,7 +123,7 @@ public class GroupServiceTests {
 				);
 
 //		boolean isSuccess = this.service.outGroup(boxPermission);
-		
+
 //		log.info("Group out successfully: {}", isSuccess);
 	}
 

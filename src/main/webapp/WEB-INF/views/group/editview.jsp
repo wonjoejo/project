@@ -178,10 +178,10 @@
                                         <input type="hidden" name="master_per" value="${group.master_per}">
                                         <td>
 
-                                        
-										<button class="groupout" name="master_per" type="button" id="groupout"
-												onclick="groupout" ><i
-												class="fas fa-user-times"></i></button>	
+
+                                            <button class="groupout" name="master_per" type="button"
+                                                    id="${group.member_id}"><i
+                                                    class="fas fa-user-times"></i></button>
 
                                         </td>
 
@@ -210,7 +210,5 @@
 	const boxNo = '${box_no}';
 </script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/group.js"></script>
-
-
 
 </html>
