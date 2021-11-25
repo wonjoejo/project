@@ -33,14 +33,16 @@
                         src="${pageContext.request.contextPath}/resources/assets/img/main_logo.png"
                         alt="메인로고"/>
             </a>
+
             <div class="top-right">
                 <a href="/member/register">
                     <span class="join-btn btn-scroll-up">JOIN</span>
                 </a>
-                <a href="${pageContext.request.contextPath}/board/list">
+                <a href="${pageContext.request.contextPath}/board/listPerPage">
                     <span class="login-btn btn-scroll-up">Q&A</span>
                 </a>
             </div>
+
         </div>
     </nav>
 </header>

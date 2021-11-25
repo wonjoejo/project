@@ -19,7 +19,16 @@ public interface AdminMapper {
 	// 목록 페이징 처리
 	public abstract List<MemberVO> getListPaging(AdminCriteria mcri);
 	
-	// 총 레코드 수 반환
+	// 총 레코드 수
 	public abstract Integer getTotalCount(String member_id);
+	
+	// 개인 회원 검색    
+	public abstract List<MemberVO> getsearchPage0(AdminCriteria mcri);
+	
+	// 기업 회원 검색    
+	public abstract List<MemberVO> getsearchPage1(AdminCriteria mcri);
+	
+	//총 게시물 개수를 반환 
+	public abstract Integer getSearchCount(AdminCriteria mcri);
 
 } // end interface

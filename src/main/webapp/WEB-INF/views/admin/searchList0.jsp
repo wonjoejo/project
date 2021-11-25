@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
           
           
           
-          <form id="searchForm" name="searchForm" action="/admin/searchList1" method='get'>
+          <form id="searchForm" name="searchForm" action="/admin/searchList0" method='get'>
           <!-- 회원 유형 -->
           <div class="top-right">
           <select class="mode-select" name="member_type" onChange="typeselect()">
@@ -87,7 +87,7 @@ pageEncoding="UTF-8"%>
 
             <!-- 리스트 -->
             <div class="memberlist">
-                <c:forEach items="${list}" var="member">
+                <c:forEach items="${searchList}" var="member">
                 
                   <div class="tablecontainer">     
                     <div class="item">
@@ -134,8 +134,8 @@ pageEncoding="UTF-8"%>
               <!-- 1. 이전 이동 여부 표시 (prev) -->
               <ul class="pagination">
                 <c:if test="${pageMaker.prev}">
-                  <li class="page-item"><a class="page-link" href="/admin/listPerPage?currPage=${pageMaker.startPage-1}&amount=${pageMaker.mcri.amount}&pagesPerPage=${mcri.pagesPerPage}"><i class="fas fa-angle-left"></i></a></li>
-                </c:if>
+					<li class="page-item"><a class="page-link" href="/admin/searchList0?keyword=${pageMaker.mcri.keyword}&currPage=${pageMaker.startPage-1}&amount=${pageMaker.mcri.amount}&pagesPerPage=${mcri.pagesPerPage}"><i class="fas fa-angle-left"></i></a></li>
+				</c:if>
 
                 <!-- 페이지 번호 목록 표시 -->
                 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
@@ -146,57 +146,18 @@ pageEncoding="UTF-8"%>
                       <li class="page-item active"><a class="page-link" href="#">${pageNum}</a></li>
                     </c:when>
                     <c:otherwise>
-                      <li class="page-item"><a class="page-link" href="/admin/listPerPage?currPage=${pageNum}&amount=${pageMaker.mcri.amount}&pagesPerPage=${pageMaker.mcri.pagesPerPage}">${pageNum}</a></li>
+                      <li class="page-item"><a class="page-link" href="/admin/searchList0?keyword=${pageMaker.mcri.keyword}&currPage=${pageNum}&amount=${pageMaker.mcri.amount}&pagesPerPage=${pageMaker.mcri.pagesPerPage}">${pageNum}</a></li>
                     </c:otherwise>
                   </c:choose>
                 </c:forEach>
 
                 <!-- 2. 다음 이동 여부 표시 (next) -->
                 <c:if test="${pageMaker.next}">
-                  <li class="page-item"><a class="page-link" href="/admin/listPerPage?currPage=${pageMaker.endPage+1}&amount=${pageMaker.mcri.amount}&pagesPerPage=${pageMaker.mcri.pagesPerPage}"><i class="fas fa-angle-right"></i></a></li>
+                  <li class="page-item"><a class="page-link" href="/admin/searchList0?keyword=${pageMaker.mcri.keyword}&currPage=${pageMaker.endPage+1}&amount=${pageMaker.mcri.amount}&pagesPerPage=${pageMaker.mcri.pagesPerPage}"><i class="fas fa-angle-right"></i></a></li>
                 </c:if>
               </ul>
             </form>
           </div>
-          
-          <!-- Modal -->
-          <!-- <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
-            <c:forEach items="${list}" var="member">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="memberModalLabel">회원 상세정보</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                  </button>
-
-                </div>
-
-                <div class="modal-body">
-                  <div class="item">
-                    <c:out value="${member.member_id}" /> 
-                  </div>		
-
-                  <div class="item">
-                    <c:out value="${member.name}" /> 
-                  </div>
-                  
-                  <div class="item">
-                    <c:out value="${member.email}" /> 
-                  </div>
-                  
-                </div>
-
-
-              </div> 
-            </div>
-            </c:forEach> 
-          </div> -->
-
-             <!-- <div id="my_modal">
-             <iframe src="${pageContext.request.contextPath}/admin/detail" id="memberdetail">회원 상세정보</iframe>
-            
-            <a class="modal_close_btn">닫기</a>
-          </div>-->
       </div>  
     </div>
 
@@ -211,60 +172,7 @@ pageEncoding="UTF-8"%>
     type="application/javascript"
     src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"
   ></script>
-  <!-- <script>
-    function modal(id) {
-        var zIndex = 9999;
-        var modal = document.getElementById(id);
-    
-        // 모달 div 뒤에 희끄무레한 레이어
-        const bg = document.createElement('div');
-        bg.setStyle({
-            position: 'fixed',
-            zIndex: zIndex,
-            left: '0px',
-            top: '0px',
-            width: '100%',
-            height: '100%',
-            overflow: 'auto',
-            // 레이어 색갈은 여기서 바꾸면 됨
-            backgroundColor: 'rgba(0,0,0,0.4)'
-        });
-        document.body.append(bg);
-    
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-            bg.remove();
-            modal.style.display = 'none';
-        });
-    
-        modal.setStyle({
-            position: 'fixed',
-            display: 'block',
-            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    
-            // 시꺼먼 레이어 보다 한칸 위에 보이기
-            zIndex: zIndex + 1,
-    
-            // div center 정렬
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            msTransform: 'translate(-50%, -50%)',
-            webkitTransform: 'translate(-50%, -50%)'
-        });
-    }
-    
-    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-    Element.prototype.setStyle = function(styles) {
-        for (var k in styles) this.style[k] = styles[k];
-        return this;
-    };
-    
-    document.getElementById('detailmodal').addEventListener('click', function() {
-        // 모달창 띄우기
-        modal('my_modal');
-    });
-  </script> -->
+
   <script>
     function typeselect(){
     const i=document.searchForm.member_type.selectedIndex // 선택항목의 인덱스 번호

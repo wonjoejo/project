@@ -21,5 +21,15 @@ public interface AdminService {
 	
 	// 총 레코드 개수
 	public abstract Integer getTotalCount(String member_id);
+	
+	// 개인 회원 검색 목록 
+    public abstract List<MemberVO> getsearchPage0(AdminCriteria mcri);
+    
+    // 기업 회원 검색 목록
+    public abstract List<MemberVO> getsearchPage1(AdminCriteria mcri);
+    
+    // 검색 총 레코드 개수
+    public abstract Integer getsearchTotal(AdminCriteria mcri);
 
+	
 } // end interface

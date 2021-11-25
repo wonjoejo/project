@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
   <head>
@@ -35,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=50"
+      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=6"
     />
     <link
       rel="stylesheet"
@@ -49,21 +50,41 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <h1>마이 페이지</h1>
 
         <div class="page-wrapper">
-          <form id="myPageForm" action="/member/edit" method="POST">
+          <form
+            id="myPageForm"
+            action="/member/edit"
+            method="POST"
+            enctype="multipart/form-data"
+          >
             <!-- left -->
             <div class="my-wrapper1">
               <h2 class="fs-title" style="margin-top: -5px">프로필 이미지</h2>
 
-              <div id="profile-upload">
-                <div class="profile-img">
-                  <input
-                    type="file"
-                    name="photo_name"
-                    id="getval"
-                    class="upload"
-                  />
-                </div>
+              <div
+                id="profile-upload"
+                style="
+                  background-image: url('https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}');
+                "
+              >
+                <input
+                  type="file"
+                  name="file"
+                  id="profile-photo"
+                  class="upload"
+                />
+                <input
+                  type="hidden"
+                  name="photo_name"
+                  id="default"
+                  value="${member.photo_name}"
+                />
+                <input
+                  type="hidden"
+                  name="photo_path"
+                  value="${member.photo_path}"
+                />
               </div>
+
               <div class="member-type">
                 <c:choose>
                   <c:when test="${member.member_type==0}">
@@ -229,8 +250,24 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       </div>
     </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+  <script
+    type="application/javascript"
+    src="${pageContext.request.contextPath}/resources/assets/js/myPage.js?ver=3"
+  ></script>
   <script
     type="application/javascript"
     src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"
   ></script>
+  <script>
+    // const productPhotoEdit = document.querySelector(".product-photo-edit");
+    const photoPath = "${member.photo_path}";
+    console.log(photoPath);
+
+    if (photoPath.indexOf("resources") !== -1) {
+    	file.style.backgroundImage = "url('${pageContext.request.contextPath}${member.photo_path}${member.photo_name}')";
+    } else {
+    	file.style.backgroundImage = "url('https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}')";
+  </script>
 </html>
