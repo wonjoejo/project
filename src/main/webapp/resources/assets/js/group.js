@@ -188,27 +188,5 @@ outBtn.forEach(function (item) {
 
 			
 })
-//그룹 탈퇴하기
-const deletebtn =document.querySelector('.deletegroup');
 
-deletebtn.addEventListener("click",function(e){
-	e.preventDefault();
 
-	Swal.fire({
-		title: '해당 그룹에서 탈퇴하시겠습니까?',
-		text: "탈퇴하시는 경우 박스 또한 리스트에서 사라집니다.",
-		icon: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'YES'
-	  }).then((result) => {
-		if (result.isConfirmed) {
-		  Swal.fire(
-			'탈퇴되었습니다!',
-			'박스가 리스트에서 사라집니다.',
-			'성공'
-		  )
-		}
-	  })
-})

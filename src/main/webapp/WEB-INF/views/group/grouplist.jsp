@@ -47,7 +47,7 @@
 						<div class="main-container">
 							<div class="name">
 								<h1>그룹 리스트</h1>
-								${master_id}
+
 
 								<div class="but">
 									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
@@ -87,8 +87,6 @@
 					crossorigin="anonymous"></script>
 				<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
 				<script>
-					const boxNo = '${box_no}';
-					const memberId = '${sessionScope.member_id}';
 				</script>
 
 
@@ -107,14 +105,18 @@
 					})
 
 					//회원 탈퇴
+					const boxNo = '${box_no}';
+					const loginId = '${sessionScope.member_id}';
 					const deletebtn = document.querySelector('.deletegroup');
 					deletebtn.addEventListener("click", function (e) {
 						e.preventDefault();
 
-						console.log(memberId);
+
+						console.log(loginId);
+						console.log(boxNo);
 
 						let data = {
-							member_id: memberId, // 로그인한 아이디
+							member_id: loginId, // 로그인한 아이디
 							box_no: boxNo // 현재 박스 번호 
 						};
 
@@ -144,18 +146,18 @@
 									console.log(data);
 									if (data === "/box/list") {
 
-										location.href = `${data}?member_id=${memberId}`
+										location.href = `${data}?member_id=${loginId}`
 									} else {
 										Swal.fire(
-											'실패!',
-											'박스가 리스트에서 사라집니다.',
-											'성공'
+											'실패!'
 										)
 									}
 								})
 							}
 						})
 					})
+
+
 				</script>
 
 
