@@ -15,7 +15,7 @@
     // sweetalert
     $('#more').click(function () {
         swal.fire({
-            text: "product_memo"
+            text: product_memo
         });
     });
 

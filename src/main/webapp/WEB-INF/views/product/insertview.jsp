@@ -104,6 +104,16 @@
                 </div>
                 <div class="right-box">
                     <ul>
+                        <c:if test="${sessionScope.member_type >= 0.1}"> <!-- 기업회원(1), 개인회원(0) -->
+                            <li>
+                                <div class="title">바코드</div>
+                                <input type="text" name="barcode" class="detail">
+                                    <span class="more">
+                                        <a href="#" id="more">바코드 생성</a>
+                                    </span>
+                                </input>
+                            </li>
+                        </c:if>
                         <li>
                             <div class="title">이름</div>
                             <input type="text" name="product_name" class="detail">

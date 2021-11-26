@@ -55,8 +55,10 @@ public class LoginInterceptor
         if (member != null) { // 로그인 성공
             session.setAttribute(MemberController.authKey, member);
             session.setAttribute("member_id", member.getMember_id());
+            session.setAttribute("member_type", member.getMember_type());
 
             log.info("==== 로그인 성공 : {} ====", member.getMember_id());
+            log.info("==== 로그인 성공 : {} ====", member.getMember_type());
 
             // 자동 로그인
             String rememberMe = req.getParameter("rememberMe");
