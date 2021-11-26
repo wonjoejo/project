@@ -1,20 +1,5 @@
 package com.wonjoejo.myapp.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -24,10 +9,18 @@ import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.GroupService;
-
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -61,10 +54,12 @@ public class GroupController {
 
 		log.info("\t+list.size{}", list.size());
 		log.info("\t+masterId{}", masterId);
+		log.info("\t+loginId: {}", loginId);
 
 		model.addAttribute("list", list);
 		model.addAttribute("box_no", box_no);
 		model.addAttribute("master_id", masterId);
+
 
 	}// grouplist
 
@@ -257,9 +252,10 @@ public class GroupController {
 
 		// 양도 받는 회원 아이디로 업데이트
 		boolean result = this.service.updateMaster(member_id, box_no, 0);
+		boolean resultBox = this.service.updateBoxMasterInBox(member_id, box_no);
 
 		// 위 업데이트가 됐으면 다음으로 실행
-		if (result) {
+		if (result && resultBox) {
 			// 원래 마스터를 일반 회원으로 업데이트
 			boolean result2 = this.service.updateMaster(loginId, box_no, 1);
 			log.info("\t+ result: {} / result2: {}", result, result2);

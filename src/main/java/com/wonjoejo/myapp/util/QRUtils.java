@@ -75,8 +75,8 @@ public class QRUtils {
         String savePath = "product/qr";
         String uploadedFileName = UploadFileUtils.uploadFile(savePath, product_no.toString(), outputStream.toByteArray());
 
-        this.service.createBarcode(product_no,uploadedFileName);
-        log.info("uploadedBarcode: {}",uploadedFileName);
+//        this.service.createBarcode(product_no,uploadedFileName);
+//        log.info("uploadedBarcode: {}",uploadedFileName);
 
 
 //        // 파일은 저장하고 싶은대로 저장하면 된다.
@@ -95,7 +95,7 @@ public class QRUtils {
 
     // byteArray를 base64로 변환한 이유는 프론트에서 파일경로가 아닌 binary 형식으로 전송해서 보여주기 위해서다.
     // 이렇게 할 경우 DB에 이미지를 저장하지 않고 화면에 보여줄 수 있다.
-        return uploadedFileName;
+        return savePath + uploadedFileName;
 
     }
 

@@ -118,56 +118,15 @@ deleteBtn.addEventListener("click", function (e) {
     qrBtn.addEventListener("click", function (e) {
         e.preventDefault();
 
+        const url = `https://intobox.s3.ap-northeast-2.amazonaws.com/${barcode}`
+
         Swal.fire({
-            title: 'QR코드를 생성하시겠습니까?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085D6',
-            cancelButtonColor: '#DD3333',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                let data = {
-                    product_no: `${product_no}`,
-                    box_no: `${box_no}`
-                }
-
-
-                fetch('/product/qrcode', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(function (response) {
-                    console.log(response);
-                    if (response.status === 200) {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: '저장되었습니다',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    } else {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: '다시 시도해주세요',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                });
-
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }
+            title: 'QR코드',
+            imageUrl: url,
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'QR CODE',
+            footer: '<a href="' + url + '">다운로드</a>'
         })
     })
 

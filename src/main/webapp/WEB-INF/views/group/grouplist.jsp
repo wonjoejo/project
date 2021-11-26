@@ -1,32 +1,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-			<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="member_id" value="${sessionScope.member_id}"/>
 
-				<html>
-				<style>
-					.but {
-						display: flex;
-						justify-content: flex-end;
-					}
-				</style>
+<html>
+<style>
+	.but {
+		display: flex;
+		justify-content: flex-end;
+	}
+</style>
 
-				<head>
-					<title>GroupList</title>
+<head>
+	<title>GroupList</title>
 
-					<!-- favicon -->
-					<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
-						sizes="16x16">
-					<link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
-						sizes="16x16">
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
+		  sizes="16x16">
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
+		  sizes="16x16">
 
-					<!-- bootstrap -->
-					<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-						rel="stylesheet"
-						integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-						crossorigin="anonymous">
+	<!-- bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		  crossorigin="anonymous">
 
-					<!-- font awesome -->
+	<!-- font awesome -->
 					<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 					<!-- sweet alert -->
@@ -74,42 +74,43 @@
 										</div>
 									</c:forEach>
 								</div>
+							</div>
 						</div>
-					</div>
 
 				</div>
 
 
 				</body>
-				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-					integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-					crossorigin="anonymous"></script>
-				<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
-				<script>
-					const boxNo = '${box_no}';
-					const memberId = '${sessionScope.member_id}';
-				</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+<script>
+	const boxNo = '${box_no}';
+	const memberId = '${sessionScope.member_id}';
+	const memberId2 = '${member_id}';
+</script>
 
-				<script>
-					const loginId = '${sessionScope.member_id}';
+<script>
+	const loginId = '${sessionScope.member_id}';
 
-					console.log(loginId);
+	console.log(loginId);
 
-					//권한 설정페이지로 이동
-					$(document).ready(function () {
-						$("#grouppermission").click(function () {
-							location.href = "${pageContext.request.contextPath}/group/permissionlist?box_no=${box_no}";
-						})
+	//권한 설정페이지로 이동
+	$(document).ready(function () {
+		$("#grouppermission").click(function () {
+			location.href = "${pageContext.request.contextPath}/group/permissionlist?box_no=${box_no}";
+		})
 
-						$("#groupcode").click(function () {
-							Swal.fire('초대 번호 "${box_no}" 입니다.')
-						})
+		$("#groupcode").click(function () {
+			Swal.fire('초대 번호 "${box_no}" 입니다.')
+		})
 
-					})
+	})
 
-					//회원 탈퇴
-					const deletebtn = document.querySelector('.deletegroup');
-					deletebtn.addEventListener("click", function (e) {
+	//회원 탈퇴
+	const deletebtn = document.querySelector('.deletegroup');
+	deletebtn.addEventListener("click", function (e) {
 						e.preventDefault();
 
 						console.log(memberId);

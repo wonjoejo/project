@@ -15,7 +15,7 @@ public class ProductCategoryVO {
     private Integer product_qtn;
     private String product_photo_name;
     private String product_photo_path;
-    private Integer barcode;
+    private String barcode;
     private Date reg_date;
 
     // Base Category

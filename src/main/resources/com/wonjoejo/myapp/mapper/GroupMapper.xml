@@ -83,15 +83,19 @@
 		and BOX_NO = #{box_no}
 	</update>
 
-
+	<!--박스 테이블의 박스 소유자 ID 업데이트	-->
+	<update id="updateBoxMasterInBox">
+		UPDATE BOX
+		SET MEMBER_ID = #{memeber_id}
+		WHERE BOX_NO = #{box_no}
+	</update>
 
 
 	<!-- 그룹 탈퇴 -->
 	<update id="deleteMember">
 		UPDATE BOX_PERMISSION
-		SET
-		MEMBER_STAT= #{member_stat},
-		READ_PER=1,
+		SET MEMBER_STAT= #{member_stat},
+			READ_PER=1,
 		WRITE_PER=1,
 		EDIT_PER=1,
 		DELETE_PER=1
