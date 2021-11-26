@@ -654,8 +654,15 @@ break{
 
 
 
-
-
+/* 로딩*/
+#viewLoading {
+  display: none;
+  text-align: center;
+  padding-top: 70px;
+  background: #FFFFF0;
+  filter: alpha(opacity=60);
+  /*opacity: alpha*0.6;*/
+}
 
 
 

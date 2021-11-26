@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import java.util.Date;
 
+import org.apache.http.conn.MultihomePlainSocketFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,14 +78,27 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		MemberVO member = this.mapper.selectId(email, name);
         return member;
     } // findId
-    
-    // 비밀번호 변경
-    @Override
-    public MemberVO changePwd(String email) {
-        return null;
-    }
-    
-    // 회원 정보 가져오기
+
+	@Override
+	public MemberVO findPw(String member_id, String email) {
+		log.debug("findPw({}, {}) invoked.", member_id, email);
+
+		MemberVO member = this.mapper.selectPw(member_id, email);
+
+		return member;
+	} // findPw
+
+	@Override
+	public Boolean changePwd(String password, String member_id) {
+		log.debug("changePwd({}, {}) invoked.", password, member_id);
+
+		int affectedLines = this.mapper.updatePw(password, member_id);
+
+		return affectedLines == 1;
+	} // changePwd
+
+
+	// 회원 정보 가져오기
     @Override
 	public MemberVO getMember(String member_id) {
     	return this.mapper.selectMemberInfo(member_id);
