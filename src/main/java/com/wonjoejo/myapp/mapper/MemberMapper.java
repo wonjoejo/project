@@ -22,9 +22,12 @@ public interface MemberMapper {
 	
 	// 아이디 찾기
 	public abstract MemberVO selectId(@Param("email") String email, @Param("name") String name);
-	
+
+	// 비번체크
+	public abstract MemberVO selectPw(@Param("member_id") String member_id, @Param("email") String email);
+
 	// 비밀번호 변경
-	public abstract MemberVO updatePwd(String email);
+	public abstract Integer updatePw(@Param("password") String password, @Param("member_id") String member_id);
 	
 	// 회원 정보 가져오기
 	public abstract MemberVO selectMemberInfo(String member_id);
@@ -34,5 +37,10 @@ public interface MemberMapper {
 	
 	// 회원 탈퇴
 	public abstract Integer deleteMember(String member_id);
+
+
+	
+	// 아이디 중복체크
+	public abstract Integer selectIdCheck(String member_id);
 	
 } // end interface

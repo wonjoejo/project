@@ -68,28 +68,45 @@ $(document).ready(function () {
 
     document.querySelector("#company_name").style.display = "none";
     document.querySelector(".input").style.display = "none";
-    
-	document.querySelector("#arr1").style.display = "block"
-    
+
+    document.querySelector("#arr1").style.display = "block";
+
     document.querySelector("#arr2").style.display = "none";
 
     $("#personalBtn").toggleClass("personal");
     $("#companyBtn").removeClass("company");
-    
-   	$("#personal-img").attr("src", function(index, attr) {
-	if(attr.match("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png")) {
-		return attr.replace("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png","https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png");
-	} else {
-		return attr.replace("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png","https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png");
-	}
-	});
-	
-	$("#company-img").attr("src", function(index, attr) {
-	if(attr.match("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png")) {
-		return attr.replace("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png","https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png");
-	} 
-	});
-});
+
+    $("#personal-img").attr("src", function (index, attr) {
+      if (
+        attr.match(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png"
+        )
+      ) {
+        return attr.replace(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png",
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png"
+        );
+      } else {
+        return attr.replace(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png",
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png"
+        );
+      }
+    });
+
+    $("#company-img").attr("src", function (index, attr) {
+      if (
+        attr.match(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png"
+        )
+      ) {
+        return attr.replace(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png",
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png"
+        );
+      }
+    });
+  });
 
   // 기업 회원
   $("button[name='company']").click(function () {
@@ -103,25 +120,41 @@ $(document).ready(function () {
 
     $("#companyBtn").toggleClass("company");
     $("#personalBtn").removeClass("personal");
-    
+
     document.querySelector("#arr2").style.display = "block";
-    
+
     document.querySelector("#arr1").style.display = "none";
-    
-    $("#personal-img").attr("src", function(index, attr) {
-	if(attr.match("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png")) {
-		return attr.replace("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png","https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png");
-	} 
-	});
-	
-	$("#company-img").attr("src", function(index, attr) {
-	if(attr.match("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png")) {
-		return attr.replace("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png","https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png");
-	} else {
-		return attr.replace("https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png","https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png");
-	}
-	});
-	
+
+    $("#personal-img").attr("src", function (index, attr) {
+      if (
+        attr.match(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png"
+        )
+      ) {
+        return attr.replace(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png",
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png"
+        );
+      }
+    });
+
+    $("#company-img").attr("src", function (index, attr) {
+      if (
+        attr.match(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png"
+        )
+      ) {
+        return attr.replace(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png",
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png"
+        );
+      } else {
+        return attr.replace(
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_co.png",
+          "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png"
+        );
+      }
+    });
   });
 });
 
@@ -160,15 +193,3 @@ $(document).ready(function () {
     }
   });
 });
-
-// 이미지 클릭시 로테이션으로 변경하기
-// $("#type-img").on({
-//   click: function () {
-//     let src =
-//       $(this).attr("src") ===
-//       "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png"
-//         ? "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon.png"
-//         : "https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png";
-//     $(this).attr("src", src);
-//   },
-// });

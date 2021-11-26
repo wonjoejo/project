@@ -22,8 +22,11 @@ public interface MemberService {
 	// 아이디 찾기
 	public abstract MemberVO findId(@Param("email") String email, @Param("name") String name);
 	
+	// 비밀번호 체크
+	public abstract MemberVO findPw(@Param("member_id") String member_id, @Param("email") String email);
+
 	// 비밀번호 변경
-	public abstract MemberVO changePwd(String email);
+	public abstract Boolean changePwd(@Param("password") String password, @Param("member_id") String member_id);
 	
 	// 회원 정보 가져오기
 	public abstract MemberVO getMember(String member_id);
@@ -34,5 +37,7 @@ public interface MemberService {
 	// 회원 탈퇴
 	public abstract boolean deleteAccount(String member_id);
 
-
+	// 아이디 중복체크
+	public abstract Integer idCheck(String member_id);
+	
 } // end interface

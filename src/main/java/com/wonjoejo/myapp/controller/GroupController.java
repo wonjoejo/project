@@ -47,14 +47,15 @@ public class GroupController {
 		String masterId = "";
 
 		for (BoxPermissionMemberVO member : permissionList) {
-			if (member.getMaster_per()==0) {
+			if (member.getMaster_per() == 0) {
 				masterId = member.getMember_id();
-			} 
+			}
 		}
 
 		log.info("\t+list.size{}", list.size());
 		log.info("\t+masterId{}", masterId);
-		log.info("\t+loginId: {}", loginId);
+		log.info("\t+loginId{}", loginId);
+
 
 		model.addAttribute("list", list);
 		model.addAttribute("box_no", box_no);
@@ -197,23 +198,22 @@ public class GroupController {
 		// 내 아이디이고 마스터가 회원 추방을 눌렀을 경우에는 그룹 회원의 아이디)
 
 		JsonElement element = JsonParser.parseString(data);
-		
+
 		String member_id = element.getAsJsonObject().get("member_id").getAsString();
 		Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
-		
-		log.info("member_id({})",member_id);
-		log.info("boxNo({})",box_no);
-				
-		
+
+		log.info("member_id({})", member_id);
+		log.info("boxNo({})", box_no);
+
 		HttpSession session = req.getSession();
 		// 로그인 한 아이디
 		String loginId = (String) session.getAttribute("member_id");
 
 		// 박스 넘버와 로그인한 아이디로 마스터인지 확인
 		boolean isMaster = this.service.checkMaster(loginId, box_no);
-		
-		log.info("isMaster({})",isMaster);
-		
+
+		log.info("isMaster({})", isMaster);
+
 		Gson gson = new Gson();
 		String sendData = "";
 
@@ -229,11 +229,12 @@ public class GroupController {
 			sendData = gson.toJson("/group/editview");
 			return sendData;
 		}
+
 		
-		sendData = gson.toJson("/group/editview");
-
-		return sendData;
-
+		  sendData = gson.toJson("/box/list");
+		  
+		  return sendData;
+		 
 	}// groupout
 
 	// 그룹 마스터 양도

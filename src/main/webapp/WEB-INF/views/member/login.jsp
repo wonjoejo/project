@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=2"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=1"/>
 </head>
 <body>
 <!-- header -->
@@ -139,7 +139,7 @@
                                     <i class="fas fa-arrow-right" id="idArrow"></i>
                                 </p>
                             </div>
-                        <div class="col-4 col-sm-6 findPw findBox">
+                        <div class="col-4 col-sm-6 findPw findBox" data-bs-toggle="modal" data-bs-target="#findPwEmail">
                             <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_pw.png" alt="비밀번호 변경" class="findImg findPwImg">
                             <p class="findP">
                                 비밀번호 변경
@@ -180,34 +180,43 @@
 </div>
 
 <!-- 비밀번호 변경 -->
-<%--<div class="modal fade" id="findIdEmail" tabindex="-1" aria-labelledby="findIdEmailLabel" aria-hidden="true">--%>
-<%--    <div class="modal-dialog">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <h5 class="modal-title modal-title-style">아이디 찾기</h5>--%>
-<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--            </div>--%>
-<%--            <div class="line"></div>--%>
-<%--            <div class="modal-body">--%>
-<%--                <div class="container-fluid emailContentBox">--%>
-<%--                    <p>이메일 주소를 입력해 주세요.</p>--%>
-<%--                    <input type="text" name="email" class="emailInput" placeholder="이메일"></input>--%>
-<%--                    <div class="findIdBtn">--%>
-<%--                        <button type="button" class="confirm">확인</button>--%>
-<%--                        <button type="button" class="cancel" data-bs-dismiss="modal">취소</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<div class="modal fade" id="findPwEmail" tabindex="-1" aria-labelledby="findPwEmailLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title modal-title-style">비밀번호 찾기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="line"></div>
+            <div class="modal-body">
+                <div class="container-fluid emailContentBox">
+                    <p>아이디를 입력해 주세요.</p>
+                    <input type="text" id="idPw" name="id" class="emailInput" placeholder="아이디">
+
+                    <p class="emailP">이메일 주소를 입력해 주세요.</p>
+                    <input type="text" id="emailPw" name="email" class="emailInput" placeholder="이메일">
+
+                    <div class="findIdBtn">
+                        <button type="submit" class="confirm" id="findPwConfirm">확인</button>
+                        <button type="button" class="cancel" data-bs-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-- loading --%>
+<div id="viewLoading">
+    <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/ajax-loader.gif" />
+</div>
 
 </body>
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/login.js?ver=1"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/login.js?ver=2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
