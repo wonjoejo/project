@@ -70,15 +70,45 @@ public class AdminServiceImpl implements AdminService, InitializingBean, Disposa
 		
 		return list;
 	} // getMemberList
-    	
+    
     // 총 레코드 수
-	@Override
-		public Integer getTotalCount(String member_id) {
-		log.debug("getTotalCount({}) invoked.", member_id);
-		
-		return this.mapper.getTotalCount(member_id);
-		} // getTotalCount
-	
+ 	@Override
+ 	public Integer getTotalCount(String member_id) {
+ 	log.debug("getTotalCount({}) invoked.", member_id);
+ 	
+ 	return this.mapper.getTotalCount(member_id);
+ 	} // getTotalCount
+ 	
+    
+    // 개인 회원 검색 페이지 
+  	@Override
+  	public List<MemberVO> getsearchPage0(AdminCriteria mcri) {
+  		log.debug("getListPerPage({}) invoked.",mcri);
+  		
+  		List<MemberVO> list = this.mapper.getsearchPage0(mcri);
+  		log.info("\t+ list size:{} ",list.size());
+  		
+  		return list;
+  	}//getsearchPage0
+  	
+  	// 기업 회원 검색 페이지 
+   	@Override
+   	public List<MemberVO> getsearchPage1(AdminCriteria mcri) {
+   		log.debug("getListPerPage({}) invoked.",mcri);
+   		
+   		List<MemberVO> list = this.mapper.getsearchPage1(mcri);
+   		log.info("\t+ list size:{} ",list.size());
+   		
+   		return list;
+   	} // getsearchPage1
+
+  	// 검색 총 개수 
+  	@Override
+  	public Integer getsearchTotal(AdminCriteria mcri) {
+  		log.debug("getTotal() invoked.");	
+  		return this.mapper.getSearchCount(mcri);
+  	} // getsearchTotal
+    
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");

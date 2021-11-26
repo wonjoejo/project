@@ -178,10 +178,10 @@
                                         <input type="hidden" name="master_per" value="${group.master_per}">
                                         <td>
 
-
-                                            <button class="groupout" name="master_per" type="button"
-                                                    id="${group.member_id}"><i
-                                                    class="fas fa-user-times"></i></button>
+                                        
+										<button class="groupout" name="master_per" id="${group.member_id}"
+												><i
+												class="fas fa-user-times groupout"></i></button>	
 
                                         </td>
 
@@ -208,6 +208,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
 <script>
 	const boxNo = '${box_no}';
+	const memberId = '${sessionScope.member_id}';
 </script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/group.js"></script>
 

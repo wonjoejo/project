@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.EmitUtils;
 import org.springframework.stereotype.Service;
 
 import com.wonjoejo.myapp.domain.LoginDTO;
@@ -70,9 +71,12 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
     
     // 아이디 찾기
     @Override
-    public MemberVO findId(String email) {
-        return null;
-    }
+    public MemberVO findId(String email, String name) {
+		log.debug("findId({}, {}) invoked.", email, name);
+
+		MemberVO member = this.mapper.selectId(email, name);
+        return member;
+    } // findId
     
     // 비밀번호 변경
     @Override
