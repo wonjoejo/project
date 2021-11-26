@@ -106,6 +106,7 @@ function getPw() {
         data: data,
         dataType: 'json',
         success: function (data) {
+
             $(data).each(function (){
                 $.ajax({
                     url: "/member/newPassword",
@@ -116,6 +117,15 @@ function getPw() {
                     dataType: 'json',
                     success: function (data) {
 
+                        Swal.fire({
+                            icon: 'success',
+                            title: '이메일 전송 완료',
+                            html: '임시 비밀번호가 이메일로 전송 되었습니다.</br>' +
+                                '로그인 후 비밀번호를 변경 해 주세요.',
+                        }) .then(function (){
+                            location.href = "/member/login";
+                        });
+
                         $.ajax({
                             url: "/member/findPassword",
                             type: "POST",
@@ -123,23 +133,16 @@ function getPw() {
                                 member_id: data
                             },
                             dataType: 'json',
-                            beforeSend: function (){
-                                $('html').css("cursor", "wait");
-                                console.log("start");
-                            },
-                            complete: function (){
-                                $('html').css("cursor", "auto");
-                            },
+                            // beforeSend: function (){
+                            //     $('html').css("cursor", "wait");
+                            //     console.log("start");
+                            // },
+                            // complete: function (){
+                            //     $('html').css("cursor", "auto");
+                            // },
                             success: function (data) {
 
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: '이메일 전송 완료',
-                                    html: '임시 비밀번호가 이메일로 전송 되었습니다.</br>' +
-                                        '로그인 후 비밀번호를 변경 해 주세요.',
-                                }) .then(function (){
-                                    location.href = "/member/login";
-                                });
+                                console.log("완료");
 
                             }, error:function (error) {
                                 Swal.fire({
@@ -174,16 +177,16 @@ function getPw() {
 
 
 //AJAX 통신 시작
-$(document).ajaxStart(function() {
-    //마우스 커서를 로딩 중 커서로 변경
-    $('html').css("cursor", "wait");
-    console.log('start');
-});
-//AJAX 통신 종료
-$(document).ajaxStop(function() {
-    //마우스 커서를 원래대로 돌린다
-    $('html').css("cursor", "auto");
-    console.log('end');
-});
+// $(document).ajaxStart(function() {
+//     //마우스 커서를 로딩 중 커서로 변경
+//     $('html').css("cursor", "wait");
+//     console.log('start');
+// });
+// //AJAX 통신 종료
+// $(document).ajaxStop(function() {
+//     //마우스 커서를 원래대로 돌린다
+//     $('html').css("cursor", "auto");
+//     console.log('end');
+// });
 
 
