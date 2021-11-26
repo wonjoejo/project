@@ -30,7 +30,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=70">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=82">
 
 </head>
 
@@ -47,6 +47,9 @@
                     <c:when test="${sessionScope.member_id!=null}">
                         <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                             <span class="join-btn btn-scroll-up">내 박스 리스트</span>
+                        </a>
+                         <a href="${pageContext.request.contextPath}/member/logout">
+                            <span class="login-btn btn-scroll-up">LOGOUT</span>
                         </a>
                     </c:when>
                     <c:otherwise>
@@ -113,6 +116,44 @@
 
 </section>
 
+<!--  -->
+<section id="home_m">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      	<img src="${pageContext.request.contextPath}/resources/assets/img/slide1_m.png" class="d-block slide1" alt="...">
+     	<div class="carousel-caption d-md-block">
+        <div class="pointfont">소중한 물건들을 모아,
+	        <p class="boxfont">인투박스</p>
+	        <a href="#"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/resources/assets/img/slide2_m.png" class="d-block slide1" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="${pageContext.request.contextPath}/resources/assets/img/slide3_m.png" class="d-block slide1" alt="...">
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+</section>
+
 
 <!-- section2 -->
 <section id="section2">
@@ -144,7 +185,7 @@
     <div id="tabbar">
 		<div class="title">
 			<h3 class="active">회원가입</h3>
-			<h3 class="">박스생성 & 물품등록</h3>
+			<h3 class="">박스생성</h3>
 			<h3 class="">그룹초대</h3>
 		</div>
 
