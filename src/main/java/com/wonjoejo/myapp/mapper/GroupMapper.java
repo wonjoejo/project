@@ -28,4 +28,6 @@ public interface GroupMapper {
 	public abstract int updateMaster(@Param("member_id") String member_id, @Param("box_no") Integer box_no, @Param("master_per") Integer master_per);
 
 	public abstract int deleteMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no, @Param("member_stat") Integer member_stat);
+
+	public abstract int updateBoxMasterInBox(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 } //end interface

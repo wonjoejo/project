@@ -1,8 +1,8 @@
 package com.wonjoejo.myapp.domain;
 
-import java.util.Date;
-
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class ProductDTO {
@@ -13,7 +13,7 @@ public class ProductDTO {
     private Integer product_qtn;
     private String product_photo_name;
     private String product_photo_path;
-    private Integer barcode;
+    private String barcode;
     private Date reg_date;
     
 } // end class

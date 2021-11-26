@@ -20,10 +20,10 @@ public interface GroupService {
 
     //그룹원 권한 설정
     public abstract boolean permissionGroup(BoxPermissionVO boxPermission);
-    
+
     //그룹원 탈퇴
     public abstract boolean deleteMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no, @Param("member_stat") Integer member_stat);
-    
+
     //  그룹 마스터 확인
     public abstract boolean checkMaster(String member_id, Integer box_no);
 
@@ -32,7 +32,7 @@ public interface GroupService {
 
     public abstract boolean updateMaster(@Param("member_id") String member_id, @Param("box_no") Integer box_no, @Param("master_per") Integer master_per);
 
-
+    public abstract boolean updateBoxMasterInBox(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
 
 }

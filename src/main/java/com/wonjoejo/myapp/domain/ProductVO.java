@@ -1,24 +1,24 @@
 package com.wonjoejo.myapp.domain;
 
-import java.util.Date;
-
 import lombok.Value;
+
+import java.util.Date;
 
 @Value
 public class ProductVO {
-    private Integer product_no;
-    private Integer box_no;
-    private String product_name;
-    private String product_memo;
-    private Integer product_qtn;
-    private String product_photo_name;
-    private String product_photo_path;
-    private Integer barcode;
-    private Date reg_date;
+	private Integer product_no;
+	private Integer box_no;
+	private String product_name;
+	private String product_memo;
+	private Integer product_qtn;
+	private String product_photo_name;
+	private String product_photo_path;
+	private String barcode;
+	private Date reg_date;
 
-    
+
 	public ProductVO(Integer product_no, Integer box_no, String product_name, String product_memo, Integer product_qtn,
-					 String product_photo_name, String product_photo_path, Integer barcode, Date reg_date) {
+					 String product_photo_name, String product_photo_path, String barcode, Date reg_date) {
 		this.product_no = product_no;
 		this.box_no = box_no;
 		this.product_name = product_name;

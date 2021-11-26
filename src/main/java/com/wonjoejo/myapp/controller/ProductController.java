@@ -313,8 +313,15 @@ public class ProductController {
             log.info("\t +result: {}", result);
             rttrs.addAttribute("result", result);
         }
-        
-        
+
+        QRUtils qrUtils = new QRUtils();
+
+        String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
+        log.info("\t + barcodeName: {}", barcodeName);
+
+        Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
+
+        log.info("\t +barcode Success: {}", isSuccess);
 
         // Category insert
         CategoryVO categoryVO = new CategoryVO(

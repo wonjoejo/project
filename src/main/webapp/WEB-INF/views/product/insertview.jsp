@@ -195,6 +195,6 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=3"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=2"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=3"></script>
 
 </html>

@@ -103,15 +103,24 @@ public class GroupServiceImpl implements GroupService{
 		return affectedRows == 1;
 	}
 
+	@Override
+	public boolean updateBoxMasterInBox(String member_id, Integer box_no) {
+
+		log.debug("updateBoxMasterInBox({}, {}) invoked.", member_id, box_no);
+
+		int affectedRows = this.mapper.updateBoxMasterInBox(member_id, box_no);
+		return affectedRows == 1;
+	} // updateBoxMasterInBox
+
 	// 그룹 멤버 삭제(추방, 삭제 같이 사용)
 	@Override
 	public boolean deleteMember(String member_id, Integer box_no, Integer member_stat) {
-		
+
 		log.debug("deleteMember({},{}) invoked.", member_id, box_no);
-		
+
 		int affectedRows = this.mapper.deleteMember(member_id, box_no, member_stat);
-		
-		return affectedRows ==1;
+
+		return affectedRows == 1;
 	}
 
 } // end class

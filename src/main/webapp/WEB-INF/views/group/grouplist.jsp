@@ -28,6 +28,7 @@
 						crossorigin="anonymous">
 
 					<!-- font awesome -->
+
 					<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 					<!-- sweet alert -->

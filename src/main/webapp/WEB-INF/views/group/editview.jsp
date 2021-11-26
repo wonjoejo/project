@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>GroupList</title>
+    <c:set var="member_id" value="${sessionScope.member_id}"/>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
@@ -209,6 +210,7 @@
 <script>
 	const boxNo = '${box_no}';
 	const memberId = '${sessionScope.member_id}';
+	const memberId2 = '${member_id}';
 </script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/group.js"></script>
 
