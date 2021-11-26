@@ -122,9 +122,15 @@ public class GroupServiceTests {
 				0
 				);
 
+
 //		boolean isSuccess = this.service.outGroup(boxPermission);
 
 //		log.info("Group out successfully: {}", isSuccess);
+
+		boolean isSuccess = this.service.joinGroup(boxPermission);
+		
+		log.info("Group out successfully: {}", isSuccess);
+
 	}
 
 } // end class
