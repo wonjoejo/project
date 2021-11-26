@@ -89,16 +89,12 @@
 	<!-- 그룹 탈퇴 -->
 	<update id="deleteMember">
 		UPDATE BOX_PERMISSION
-		<choose>
-		<when test ="member_stat==0">
 		SET
 		MEMBER_STAT= #{member_stat},
 		READ_PER=1,
 		WRITE_PER=1,
 		EDIT_PER=1,
 		DELETE_PER=1
-		</when>
-		  </choose>
 		WHERE BOX_NO = #{box_no}
 		AND MEMBER_ID = #{member_id}
 	</update>
