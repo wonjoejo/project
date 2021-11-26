@@ -66,12 +66,26 @@
         
     </select>
 
+    <!-- 아이디 찾기 -->
+    <select id="selectPw" resultType="com.wonjoejo.myapp.domain.MemberVO">
+        <![CDATA[
+
+            SELECT
+                /*+ index_desc(MEMBER) */
+                *
+            FROM member
+            WHERE member_id = #{member_id} AND email = #{email}
+
+        ]]>
+
+    </select>
+
     <!-- 비밀번호 변경 -->
-    <update id="updatePwd">
+    <update id="updatePw">
         UPDATE member 
         SET
         password = #{password}
-        WHERE email = #{email}
+        WHERE member_id = #{member_id}
     </update>
 	
 	
