@@ -34,5 +34,7 @@ public interface MemberService {
 	// 회원 탈퇴
 	public abstract boolean deleteAccount(String member_id);
 
-
+	// 아이디 중복체크
+	public abstract Integer idCheck(String member_id);
+	
 } // end interface

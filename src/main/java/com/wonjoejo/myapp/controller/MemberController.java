@@ -351,8 +351,19 @@ public class MemberController {
 
 		model.addAttribute("member", member);
 
-	}
-
+	} // edit
+	
+	// 아이디 체크 // 21.11.26. 지수
+	@PostMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(String member_id){
+        log.debug("idCheck({}) invoked.", member_id);
+        
+        int cnt = this.service.idCheck(member_id);
+        
+        return cnt;
+    } // idCheck
+	
 	// 아이디 찾기
 	@PostMapping(value ="/findId" ,produces = "application/json; charset=utf8")
 	@ResponseBody
