@@ -123,5 +123,70 @@ masterBtn.addEventListener("click",function (e) {
 					})
 			})
 		}
+
 	})
 });
+
+
+//회원 추방
+const outBtn = document.querySelectorAll('.groupout');
+
+outBtn.forEach(function (item) {
+			item.addEventListener('click', function (e) {
+				e.preventDefault();
+				
+				let member_id = item.getAttribute("id"); //member_id를 가져온다
+				console.log(member_id);
+				
+				let data = {
+					member_id: member_id,
+					box_no: boxNo
+				};
+				
+				Swal.fire({
+						title: '진짜?',
+						text: "You won't be able to revert this!",
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonColor: '#3085D6',
+						cancelButtonColor: '#DD3333',
+						confirmButtonText: 'YES'
+					}).then((result) => {
+						if (result.isConfirmed) {
+									fetch(`/group/groupout`, {
+										method: 'POST',
+										body: JSON.stringify(data), 
+										headers: {
+											'Content-Type': 'application/json'
+										},
+										redirect: 'follow'
+									}).then(function (response) {
+										if (response.ok) {
+											// response가 ok인지, error인지 판별
+											return response.json();
+										} 
+					
+										
+									}).then(function (data) {
+										console.log(data);
+										if(data==="/box/list") {
+											location.href = `${data}?member_id=${memberId}`;
+										} else {
+											location.href = `${data}?box_no=${boxNo}&member_id=${memberId}`;
+										}
+										
+										// 요 안에서 return data 가지고 가공
+									})
+					
+					
+						}
+					})
+					
+					
+			})
+
+
+			
+})
+
+

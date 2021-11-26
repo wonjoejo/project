@@ -230,158 +230,173 @@ public class MemberController {
 
         // upload 할 폴더 경로 지정
         String uploadDir = "profile";
-        MemberVO memberVO;
-        String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
-        log.info(file.getOriginalFilename());
+      MemberVO memberVO;
+		String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
+		
+		log.info(file.getOriginalFilename());
+		
+		// 멤버 타입
+		if(member.getMember_type()==0 ) { // 개인
+			if(file.getSize()!=0) { // 프로필 있음
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						0,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						uploadedFileName,
+	                    uploadDir,
+						null,
+						null,
+						null,
+						null
+				);
+					
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t + 개인 프로필 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} else { // 디폴트
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						0,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						member.getPhoto_name(),
+						member.getPhoto_path(),
+						null,
+						null,
+						null,
+						null
+				);
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t +개인 디폴트 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			}	// photo if-else 
+			
+		} else { // 기업
+			if(file.getSize()!=0) { // 프로필 있음
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						1,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						uploadedFileName,
+						uploadDir,
+						member.getCompany_name(),
+						null,
+						null,
+						null
+				);
+				
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t + 기업 프로필 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} else { // 디폴트
+				memberVO = new MemberVO(
+						member.getMember_id(),
+						1,
+						0,
+						member.getName(),
+						member.getPassword(),
+						member.getEmail(),
+						member.getPhone_number(),
+						member.getPhoto_name(),
+						member.getPhoto_path(),
+						member.getCompany_name(),
+						null,
+						null,
+						null
+				);
+				
+				boolean result = this.service.editMember(memberVO);
+				log.info("\t +기업 디폴트 result: {}",result);
+				rttrs.addAttribute("result",result);
+				
+			} // photo if-else
+			
+		} // member-type if-else
+		
+		rttrs.addAttribute("member_id",member.getMember_id());
+		
+		return "redirect:/member/myPage";
+		
+	} // edit
+	
+	
+	// 회원 탈퇴 -> memberstatus : 1
+	@PostMapping("/delete")
+	public String delete(String member_id, RedirectAttributes rttrs) {
+		log.debug("delete({}) invoked.",member_id);
 
-        // 멤버 타입
-        if (member.getMember_type() == 0) { // 개인
-            if (file.getSize() != 0) { // 프로필 있음
-                memberVO = new MemberVO(
-                        member.getMember_id(),
-                        0,
-                        0,
-                        member.getName(),
-                        member.getPassword(),
-                        member.getEmail(),
-                        member.getPhone_number(),
-                        uploadedFileName,
-                        uploadDir,
-                        null,
-                        null,
-                        null,
-                        null
-                );
+		boolean result = this.service.deleteAccount(member_id);
+		log.info("\t +result: {}",result);
+		rttrs.addAttribute("\t+ result: {}",result);
 
-                boolean result = this.service.editMember(memberVO);
-                log.info("\t + 개인 프로필 result: {}", result);
-                rttrs.addAttribute("result", result);
+		return "redirect:/member/logout";
+	} // delete
 
-            } else { // 디폴트
-                memberVO = new MemberVO(
-                        member.getMember_id(),
-                        0,
-                        0,
-                        member.getName(),
-                        member.getPassword(),
-                        member.getEmail(),
-                        member.getPhone_number(),
-                        member.getPhoto_name(),
-                        member.getPhoto_path(),
-                        null,
-                        null,
-                        null,
-                        null
-                );
-                boolean result = this.service.editMember(memberVO);
-                log.info("\t +개인 디폴트 result: {}", result);
-                rttrs.addAttribute("result", result);
+	@GetMapping("/login")
+	public void login() {
 
-            }    // photo if-else
+	}
+	
+	@GetMapping(value = {"/register", "/loginIndex"})
+	public void register() {
 
-        } else { // 기업
-            if (file.getSize() != 0) { // 프로필 있음
-                memberVO = new MemberVO(
-                        member.getMember_id(),
-                        1,
-                        0,
-                        member.getName(),
-                        member.getPassword(),
-                        member.getEmail(),
-                        member.getPhone_number(),
-                        uploadedFileName,
-                        uploadDir,
-                        member.getCompany_name(),
-                        null,
-                        null,
-                        null
-                );
-
-                boolean result = this.service.editMember(memberVO);
-                log.info("\t + 기업 프로필 result: {}", result);
-                rttrs.addAttribute("result", result);
-
-            } else { // 디폴트
-                memberVO = new MemberVO(
-                        member.getMember_id(),
-                        1,
-                        0,
-                        member.getName(),
-                        member.getPassword(),
-                        member.getEmail(),
-                        member.getPhone_number(),
-                        member.getPhoto_name(),
-                        member.getPhoto_path(),
-                        member.getCompany_name(),
-                        null,
-                        null,
-                        null
-                );
-
-                boolean result = this.service.editMember(memberVO);
-                log.info("\t +기업 디폴트 result: {}", result);
-                rttrs.addAttribute("result", result);
-
-            } // photo if-else
-
-        } // member-type if-else
-
-        rttrs.addAttribute("member_id", member.getMember_id());
-
-        return "redirect:/member/myPage";
-
-    } // edit
+	}
 
 
-    // 회원 탈퇴 -> memberstatus : 1
-    @PostMapping("/delete")
-    public String delete(String member_id, RedirectAttributes rttrs) {
-        log.debug("delete({}) invoked.", member_id);
+	@GetMapping("/myPage")
+	public void edit(String member_id, Model model) {
+		log.debug("myPage invoked.");
 
-        boolean result = this.service.deleteAccount(member_id);
-        log.info("\t +result: {}", result);
-        rttrs.addAttribute("\t+ result: {}", result);
+		MemberVO member = this.service.getMember(member_id);
+		log.info("\t+ member: {}", member);
 
-        return "redirect:/member/logout";
-    } // delete
+		model.addAttribute("member", member);
 
-    @GetMapping("/login")
-    public void login() {
-
-    }
-
-    @GetMapping(value = {"/register", "/loginIndex"})
-    public void register() {
-
-    }
+	} // edit
+  
 
 
-    @GetMapping("/myPage")
-    public void edit(String member_id, Model model) {
-        log.debug("myPage invoked.");
+	@GetMapping(value = "/profile", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String profile(String member_id) {
+		log.debug("profile({}) invoked.", member_id);
 
-        MemberVO member = this.service.getMember(member_id);
-        log.info("\t+ member: {}", member);
+		MemberVO member = this.service.getMember(member_id);
+		log.info("\t+ member: {}", member);
 
-        model.addAttribute("member", member);
+		Gson gson = new Gson();
 
-    }
+		return gson.toJson(member);
 
-    @GetMapping(value = "/profile", produces = "application/json; charset=utf8")
-    @ResponseBody
-    public String profile(String member_id) {
-        log.debug("profile({}) invoked.", member_id);
-
-        MemberVO member = this.service.getMember(member_id);
-        log.info("\t+ member: {}", member);
-
-        Gson gson = new Gson();
-
-        return gson.toJson(member);
-
-    } // profile
-
+	} // profile
+  
+  
+  	// 아이디 체크 // 21.11.26. 지수
+	@PostMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(String member_id){
+        log.debug("idCheck({}) invoked.", member_id);
+        
+        int cnt = this.service.idCheck(member_id);
+        
+        return cnt;
+    } // idCheck
+  
     // 아이디 찾기
     @PostMapping(value = "/findId", produces = "application/json; charset=utf8")
     @ResponseBody
@@ -392,10 +407,9 @@ public class MemberController {
 
         log.info("========= member{}", member);
 
-
         return member;
-
-    }
+    } // findId
+  
     // 아이디, 이메일 일치 여부
     @PostMapping(value = "/findPw", produces = "application/json; charset=utf8")
     @ResponseBody
@@ -409,7 +423,7 @@ public class MemberController {
         return member;
     } // findPw
 
-    // 이메일 인증번호 받기
+    // 임시 비밀번호 설정
     @PostMapping(value = "/newPassword", produces = "application/json; charset=utf8")
     @ResponseBody
     public String newPassword(@Param("member_id") String member_id) throws IOException {
@@ -429,6 +443,7 @@ public class MemberController {
         return gson.toJson(member_id);
     } // newPassword
 
+  // 이메일 전송
     @PostMapping(value = "/findPassword" , produces = "application/json; charset=utf8")
     @ResponseBody
     public String findPasswordOK(String member_id, HttpSession session) throws Exception {
@@ -444,5 +459,5 @@ public class MemberController {
 
         Gson gson = new Gson();
         return gson.toJson("/login");
-    }
+    } //findPasswordOK
 } // end class

@@ -91,7 +91,6 @@
 									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
 							 </c:if> 
 									<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
-									<button class="submit-btn hvr-float" type="button" onclick="alert('정말?')">그룹탈퇴</button>
 							</div>
 						</div>
 

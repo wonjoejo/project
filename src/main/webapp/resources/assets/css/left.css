@@ -53,6 +53,12 @@
   font-style: normal;
 }
 
+@media screen and ( max-width: 767px){
+	.side-menu {
+		display: none;
+	}
+}
+
 .side-menu {
   /* Left */
   width: 15vw;

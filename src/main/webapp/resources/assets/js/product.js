@@ -15,7 +15,7 @@
     // sweetalert
     $('#more').click(function () {
         swal.fire({
-            text: "product_memo"
+            text: product_memo
         });
     });
 
@@ -111,6 +111,65 @@ deleteBtn.addEventListener("click", function (e) {
     })
 
 }); // deleteBtn
+
+    // QR코드 생성
+    const qrBtn = document.querySelector(".qr-btn");
+
+    qrBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'QR코드를 생성하시겠습니까?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085D6',
+            cancelButtonColor: '#DD3333',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let data = {
+                    product_no: `${product_no}`,
+                    box_no: `${box_no}`
+                }
+
+
+                fetch('/product/qrcode', {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '저장되었습니다',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: '다시 시도해주세요',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                });
+
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
+    })
 
 
 

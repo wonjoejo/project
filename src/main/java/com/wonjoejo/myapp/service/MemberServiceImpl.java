@@ -125,7 +125,17 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		
 		return affectedRows==1;
     } // deleteAccount
-
+	
+    // 아이디 중복체크
+	@Override
+	public Integer idCheck(String member_id) {
+		log.debug("idCheck({}) invoked.", member_id);
+		
+		int cnt=this.mapper.selectIdCheck(member_id);
+		
+		return  cnt;
+	}
+	
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");
@@ -137,6 +147,6 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		log.debug("afterPropertiesSet({}) invoked.");
 		
 	} // afterPropertiesSet
-
 	
+
 } // end class

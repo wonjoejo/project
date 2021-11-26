@@ -1,5 +1,20 @@
 package com.wonjoejo.myapp.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -9,18 +24,10 @@ import com.wonjoejo.myapp.domain.BoxPermissionMemberVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.GroupService;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -47,16 +54,19 @@ public class GroupController {
 		String masterId = "";
 
 		for (BoxPermissionMemberVO member : permissionList) {
-			if (member.getMaster_per()==0) {
+			if (member.getMaster_per() == 0) {
 				masterId = member.getMember_id();
-			} 
+			}
 		}
 
 		log.info("\t+list.size{}", list.size());
+		log.info("\t+masterId{}", masterId);
+		log.info("\t+loginId{}", loginId);
 
 		model.addAttribute("list", list);
 		model.addAttribute("box_no", box_no);
 		model.addAttribute("master_id", masterId);
+
 
 	}// grouplist
 
@@ -186,11 +196,20 @@ public class GroupController {
 
 	// 그룹원 탈퇴
 	@PostMapping("/groupout")
-	public String deleteMember(String member_id, Integer box_no, HttpServletRequest req, RedirectAttributes rttrs) {
+	@ResponseBody
+	public String deleteMember(@RequestBody String data, HttpServletRequest req, RedirectAttributes rttrs) {
 
-		log.debug("groupout({}) invoked.", member_id, box_no);
+		log.debug("groupout({}) invoked.", data);
 		// member_id는 view단에서 넘겨준 id (-> 그룹 탈퇴를 눌렀을 경우에는,
 		// 내 아이디이고 마스터가 회원 추방을 눌렀을 경우에는 그룹 회원의 아이디)
+
+		JsonElement element = JsonParser.parseString(data);
+
+		String member_id = element.getAsJsonObject().get("member_id").getAsString();
+		Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
+
+		log.info("member_id({})", member_id);
+		log.info("boxNo({})", box_no);
 
 		HttpSession session = req.getSession();
 		// 로그인 한 아이디
@@ -199,19 +218,29 @@ public class GroupController {
 		// 박스 넘버와 로그인한 아이디로 마스터인지 확인
 		boolean isMaster = this.service.checkMaster(loginId, box_no);
 
+		log.info("isMaster({})", isMaster);
+
+		Gson gson = new Gson();
+		String sendData = "";
+
 		// 만약에 마스터면서 탈퇴 버튼을 눌렀을 경우
 		if (!isMaster && member_id.equals(loginId)) { // 마스터가 아니면서 로그인한 아이디와 탈퇴 시킬 아이디가 같은 경우 (=탈퇴)
 			boolean result = this.service.deleteMember(member_id, box_no, 1);
 			rttrs.addAttribute("member_id", loginId);
-			return "redirect:/box/list";
-		} else if (!isMaster && !member_id.equals(loginId)) { // 마스터가 아니면서 로그인한 아이디와 탈퇴 시킬 아이디가 다른 경우 (=추방)
+			sendData = gson.toJson("/box/list");
+			return sendData;
+		} else if (isMaster && !member_id.equals(loginId)) { // 마스터면서 로그인한 아이디와 탈퇴 시킬 아이디가 다른 경우 (=추방)
 			boolean result2 = this.service.deleteMember(member_id, box_no, 1);
 			rttrs.addAttribute("box_no", box_no);
-			return "redirect:/group/editview";
+			sendData = gson.toJson("/group/editview");
+			return sendData;
 		}
 
-		return "redirect:/group/editview";
-
+		
+		  sendData = gson.toJson("/group/grouplist");
+		  
+		  return sendData;
+		 
 	}// groupout
 
 	// 그룹 마스터 양도

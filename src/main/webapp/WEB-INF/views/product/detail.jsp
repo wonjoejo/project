@@ -88,12 +88,20 @@
                     <div class="share">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
                         공유하기
+                        <button class="qr-btn">QR코드 생성</button>
                     </div>
                 </a>
-            </div> <!-- left-box -->
+                </div> <!-- left-box -->
 
             <div class="right-box">
                 <ul>
+                    <c:if test="${sessionScope.member_type >= 0.1}"> <!-- 기업회원(1), 개인회원(0) -->
+                        <li>
+                            <div class="title">바코드</div>
+                            <div class="detail">${product.barcode}
+                            </div>
+                        </li>
+                    </c:if>
                         <li>
                             <div class="title">이름</div>
                             <div class="detail">${product.product_name}</div>
@@ -421,7 +429,7 @@
 </script>
 
 <%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=6"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=7"></script>
 
 <%-- mention JS 실험 중 --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=7"></script>

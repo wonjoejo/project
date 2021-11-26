@@ -76,11 +76,35 @@
     float: left;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {	
+	.main-logo {
+	    width: 15%;
+	}	
+}
+
+@media screen and ( max-width: 767px){
+	.main-logo {
+	    width: 25%;
+	}	
+}
+
 .main-logo img {
     width: 130%;
     padding-top: 6px;
     display: inline-block;
     vertical-align: middle;
+}
+
+@media screen and ( max-width: 767px){
+	.main-logo img {
+	    padding-top: 10px;
+	}	
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {	
+	.main-logo img{
+	     padding-top: 10px;
+	}	
 }
 
 .top-right {
@@ -93,15 +117,15 @@
 }
 .join-btn, .login-btn {
     font-family: 'Wemakeprice-Bold';
-    /*border: 1px solid #ADADAD;*/
-    border: 1px solid #4E4E4E;
-    border-radius: 0.7rem;
-    padding: 8px;
+    border: 1px solid #5A95F5;
+    background: #fff;
+    color: #5A95F5;
+    border-radius: 1.0rem;
+    padding: 15px;
     transition: all 0.3s ease 0s;
     align-items: center;
     justify-content: center;
     font-size: 13px;
-    color: #4E4E4E;
     letter-spacing: 0.5px;
 }
 
@@ -117,6 +141,18 @@
 
 #home {
     height: 820px;
+}
+
+@media screen and ( max-width: 767px){
+	#home {
+   		display: none; 
+	}	
+}
+
+@media screen and ( min-width: 768px){
+	#home_m {
+   		display: none;
+	}	
 }
 
 .main-container {
@@ -142,6 +178,11 @@
 	font-size: 24px;
 }
 
+.slide2_p {
+	width: 90%;
+	margin: 0 auto;	
+}
+
 .groubpoint { 
 	font-size: 38px;
 	padding-top: 20px;
@@ -155,6 +196,12 @@
     font-family: "NEXON Lv1 Gothic OTF Light";
     font-size: 38px;
     padding-bottom: 10%;
+}
+
+@media screen and ( max-width: 767px){
+	.pointfont {
+		padding-bottom: 20%;
+	}
 }
 
 .boxfont {
@@ -175,6 +222,7 @@
     float: right;
     margin-top: 15px;
 }
+
 
 .fa-arrow-right {
     padding-left: 6%;
@@ -222,8 +270,18 @@
     margin-top: 210px;
     margin-bottom: 110px;
     float: right;
+}
 
+@media (min-width: 768px) and (max-width: 1024px) {	
+	.con2 {
+    	margin-top: 150px;
+	}
+}
 
+@media screen and ( max-width: 767px){	
+	.con2 {
+    	margin-top: 120px;
+	}	
 }
 
 .title2 {
@@ -286,6 +344,12 @@
     font-size: 2rem;
     font-weight: bold;
     padding-bottom: 30px;
+}
+
+@media screen and ( max-width: 767px){	
+	.section3_wrap h1 {
+		padding-top: 60px;
+	}
 }
 
 .section3_wrap a {
