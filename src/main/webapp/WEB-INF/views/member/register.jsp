@@ -124,11 +124,13 @@ pageEncoding="UTF-8"%>
                   name="personal"
                   id="personalBtn"
                 >
-                  
                   <!-- 기본 개인 이미지 -->
-                  <img id="personal-img" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png" />
+                  <img
+                    id="personal-img"
+                    src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png"
+                  />
                   <!-- <i class="far fa-user"></i> -->
-				  
+
                   <div class="type">
                     <span class="type-title">개인회원</span>
                     <span class="type-text"
@@ -146,7 +148,10 @@ pageEncoding="UTF-8"%>
                   id="companyBtn"
                 >
                   <!-- 기본 기업 이미지 -->
-                  <img id="company-img" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png" />
+                  <img
+                    id="company-img"
+                    src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png"
+                  />
                   <!-- <i class="far fa-building"></i> -->
 
                   <div class="type">
@@ -233,7 +238,14 @@ pageEncoding="UTF-8"%>
                   name="member_id"
                   placeholder="ID"
                   required
+                  oninput="checkId()"
                 />
+              </div>
+              <div class="alert alert-success" id="alert-success-id">
+                사용 가능한 아이디입니다.
+              </div>
+              <div class="alert alert-danger" id="alert-danger-id">
+                사용 불가한 아이디입니다.
               </div>
 
               <div class="pw">
@@ -385,5 +397,35 @@ pageEncoding="UTF-8"%>
         }
       });
     });
+  </script>
+  <script>
+    // 아이디 중복검사
+    function checkId() {
+      const member_id = $("#member_id").val(); //id값이 "id"인 입력란의 값을 저장
+      console.log(member_id);
+
+      //$("#alert-success-id").hide();
+      //$("#alert-danger-id").hide();
+
+      $.ajax({
+        url: "/member/idCheck",
+        type: "post",
+        data: { member_id: member_id },
+        success: function (cnt) {
+          if (cnt != 1) {
+            //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+             $("#alert-success-id").show();
+             $("#alert-danger-id").hide();
+             $(".register-submit").removeAttr("disabled");
+          } else {
+            // cnt가 1일 경우 -> 이미 존재하는 아이디
+             $("#alert-success-id").hide();
+             $("#alert-danger-id").show();
+             $(".register-submit").attr("disabled", "disabled");
+          }
+        },
+
+      });
+    }
   </script>
 </html>

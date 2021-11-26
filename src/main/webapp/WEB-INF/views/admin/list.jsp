@@ -41,10 +41,6 @@ pageEncoding="UTF-8"%>
       rel="stylesheet"
       href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=5"
     />
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=3"
-    />
    
   <body>
     <div class="container">
@@ -53,9 +49,7 @@ pageEncoding="UTF-8"%>
         <h1>회원 관리</h1>
 
         <div class="admin-container">
-          
-          
-          
+
           <form id="searchForm" name="searchForm" action="/admin/searchList1" method='get'>
           <!-- 회원 유형 -->
           <div class="top-right">
@@ -90,34 +84,42 @@ pageEncoding="UTF-8"%>
                 <c:forEach items="${list}" var="member">
                 
                   <div class="tablecontainer">     
-                    <div class="item">
-                      <div id="tprofile">
+                      
                         <c:choose>
                           <c:when test="${not empty member.photo_name}">
+                          <div class="item" id="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}">
                             <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"/>" width="60" height="60" style="border-radius: 7px">
+                            </div>	
                           </c:when>
                           <c:otherwise>
-                            <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>" width="60" height="60">    
+                          <div class="item" id="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png">
+                            <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>" width="60" height="60">  
+                            </div>	  
                           </c:otherwise>
                         </c:choose>
-                      </div> 
-                    </div>	
+             
+                    <div class="item" id="${member.member_type}" hidden>
+					</div>
                     	
-                    <div class="item">
+                    <div class="item" id="${member.member_id}">
                       <c:out value="${member.member_id}" /> 
                     </div>		
 
-                    <div class="item">
+                    <div class="item" id="${member.name}">
                       <c:out value="${member.name}" /> 
                     </div>
                     
-                    <div class="item">
+                    <div class="item" id="${member.email}">
                       <c:out value="${member.email}" /> 
                     </div>
                     
+                     <div class="item" id="${member.phone_number}" hidden>
+					</div>
+                    
+                    
                     <div class="item">
-                      <!-- <button type="button" class="detailbtn" data-bs-toggle="modal" data-bs-target="#memberModal">상세</button> -->
-                       <button type="button" id="detailmodal" class="detailbtn">상세</button>
+                      <button type="button" class="detailbtn" data-bs-toggle="modal" data-bs-target="#memberModal">상세</button>
+                       <!-- <button type="button" id="detailmodal" class="detailbtn">상세</button> -->
                     </div> 
 
                   </div>
@@ -160,8 +162,7 @@ pageEncoding="UTF-8"%>
           </div>
           
           <!-- Modal -->
-          <!-- <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
-            <c:forEach items="${list}" var="member">
+          <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -172,31 +173,39 @@ pageEncoding="UTF-8"%>
                 </div>
 
                 <div class="modal-body">
-                  <div class="item">
-                    <c:out value="${member.member_id}" /> 
-                  </div>		
-
-                  <div class="item">
-                    <c:out value="${member.name}" /> 
+                  <div class="modal-item">
+                    <img id="modal-profile" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+                    <div class="modal-input">
+                      <input id="modal-id" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                      <input id="modal-name" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                      <input id="modal-mail" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                      <input id="modal-phone" value="" readonly/>
+                    </div>
                   </div>
-                  
-                  <div class="item">
-                    <c:out value="${member.email}" /> 
-                  </div>
-                  
                 </div>
-
-
+                
+                <ul class="bg-bubbles">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
               </div> 
-            </div>
-            </c:forEach> 
-          </div> -->
+            </div> 
+          </div>
 
-             <!-- <div id="my_modal">
-             <iframe src="${pageContext.request.contextPath}/admin/detail" id="memberdetail">회원 상세정보</iframe>
-            
-            <a class="modal_close_btn">닫기</a>
-          </div>-->
       </div>  
     </div>
 
@@ -205,66 +214,9 @@ pageEncoding="UTF-8"%>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
   <script
     type="application/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/admin.js?ver=1"
+    src="${pageContext.request.contextPath}/resources/assets/js/admin.js?ver=2"
   ></script>
-  <script
-    type="application/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"
-  ></script>
-  <!-- <script>
-    function modal(id) {
-        var zIndex = 9999;
-        var modal = document.getElementById(id);
-    
-        // 모달 div 뒤에 희끄무레한 레이어
-        const bg = document.createElement('div');
-        bg.setStyle({
-            position: 'fixed',
-            zIndex: zIndex,
-            left: '0px',
-            top: '0px',
-            width: '100%',
-            height: '100%',
-            overflow: 'auto',
-            // 레이어 색갈은 여기서 바꾸면 됨
-            backgroundColor: 'rgba(0,0,0,0.4)'
-        });
-        document.body.append(bg);
-    
-        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-            bg.remove();
-            modal.style.display = 'none';
-        });
-    
-        modal.setStyle({
-            position: 'fixed',
-            display: 'block',
-            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    
-            // 시꺼먼 레이어 보다 한칸 위에 보이기
-            zIndex: zIndex + 1,
-    
-            // div center 정렬
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            msTransform: 'translate(-50%, -50%)',
-            webkitTransform: 'translate(-50%, -50%)'
-        });
-    }
-    
-    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-    Element.prototype.setStyle = function(styles) {
-        for (var k in styles) this.style[k] = styles[k];
-        return this;
-    };
-    
-    document.getElementById('detailmodal').addEventListener('click', function() {
-        // 모달창 띄우기
-        modal('my_modal');
-    });
-  </script> -->
+
   <script>
     function typeselect(){
     const i=document.searchForm.member_type.selectedIndex // 선택항목의 인덱스 번호
