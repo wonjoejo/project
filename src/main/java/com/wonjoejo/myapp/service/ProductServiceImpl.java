@@ -152,20 +152,29 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
         log.debug("getTotal() invoked.");
 
         return this.mapper.getTotalCount(box_no);
-    } // getTotalCount
+	} // getTotalCount
 
-    @Override
-    public List<ProductCategoryVO> searchProduct(String keyword, Integer box_no) {
-        log.debug("searchProduct({},{}) invoked.", keyword, box_no);
-
-        List<ProductCategoryVO> list = this.mapper.searchProduct(keyword, box_no);
-              
-      return list;
-    } // searchProduct
-	
 	@Override
-	public Boolean deleteCategory(Integer product_no) {		
-		log.debug("deleteCategory({}) invoked",product_no);
+	public List<ProductCategoryVO> searchProduct(String keyword, Integer box_no) {
+		log.debug("searchProduct({},{}) invoked.", keyword, box_no);
+
+		List<ProductCategoryVO> list = this.mapper.searchProduct(keyword, box_no);
+
+		return list;
+	} // searchProduct
+
+	@Override
+	public Boolean createBarcode(Integer product_no, String barcode) {
+		log.debug("createBarcode({},{}) invoked.", product_no, barcode);
+
+		int affectedLines = this.mapper.updateBarcode(product_no, barcode);
+
+		return affectedLines == 1;
+	}
+
+	@Override
+	public Boolean deleteCategory(Integer product_no) {
+		log.debug("deleteCategory({}) invoked", product_no);
 
 		int affectedLines = this.mapper.deleteCategory(product_no);
 

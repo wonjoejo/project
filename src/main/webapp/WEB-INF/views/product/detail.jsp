@@ -88,9 +88,10 @@
                     <div class="share">
                         <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
                         공유하기
+                        <button class="qr-btn">QR코드 생성</button>
                     </div>
                 </a>
-            </div> <!-- left-box -->
+                </div> <!-- left-box -->
 
             <div class="right-box">
                 <ul>

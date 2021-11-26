@@ -11,7 +11,6 @@
 					}
 				</style>
 
-
 				<head>
 					<title>GroupList</title>
 
@@ -41,8 +40,8 @@
 
 				<body>
 
-					<div class="container">
-						<jsp:include page="../common/boxleft.jsp" />
+				<div class="container">
+					<jsp:include page="../common/boxleft.jsp"/>
 
 						<div class="main-container">
 							<div class="name">
@@ -75,10 +74,10 @@
 										</div>
 									</c:forEach>
 								</div>
-							</div>
 						</div>
-
 					</div>
+
+				</div>
 
 
 				</body>
@@ -91,9 +90,11 @@
 					const memberId = '${sessionScope.member_id}';
 				</script>
 
-
-
 				<script>
+					const loginId = '${sessionScope.member_id}';
+
+					console.log(loginId);
+
 					//권한 설정페이지로 이동
 					$(document).ready(function () {
 						$("#grouppermission").click(function () {

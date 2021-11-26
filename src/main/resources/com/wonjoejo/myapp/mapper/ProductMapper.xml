@@ -247,5 +247,11 @@
 
     </select>
 
+    <update id="updateBarcode">
+        UPDATE PRODUCT
+        SET BARCODE = #{barcode}
+        WHERE PRODUCT_NO = #{product_no}
+    </update>
+
 
 </mapper>

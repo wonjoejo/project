@@ -21,16 +21,16 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
     <!-- bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
     />
 
     <!-- font awesome -->
     <script
-      src="https://kit.fontawesome.com/a959489452.js"
-      crossorigin="anonymous"
+            src="https://kit.fontawesome.com/a959489452.js"
+            crossorigin="anonymous"
     ></script>
 
     <!-- stylesheets -->
@@ -39,8 +39,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
       href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=6"
     />
     <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=3"
+            rel="stylesheet"
+            href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=3"
     />
   </head>
   <body>
@@ -114,7 +114,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                 </c:choose>
               </div>
 
-              <!-- 멤버 타입 숨기기 -->
+            <!-- 멤버 타입 숨기기 -->
               <div class="member_input" style="visibility: hidden; height: 1%">
                 <label for="member_type" class="label"> 멤버타입 </label
                 ><input

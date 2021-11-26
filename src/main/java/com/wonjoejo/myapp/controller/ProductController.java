@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.*;
 import com.wonjoejo.myapp.service.ProductService;
+import com.wonjoejo.myapp.util.QRUtils;
 import com.wonjoejo.myapp.util.UploadFileUtils;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -452,6 +453,19 @@ public class ProductController {
 
         return gson.toJson(list);
     }
+
+    @PostMapping("/qrcode")
+    @ResponseBody
+    public void makeQrcode(@RequestBody String data) throws Exception {
+        QRUtils qrUtils = new QRUtils();
+
+        JsonElement element = JsonParser.parseString(data);
+
+        String fileName = qrUtils.qrMaker(element.getAsJsonObject().get("product_no").getAsInt(), element.getAsJsonObject().get("box_no").getAsInt());
+
+        log.info("/t + fileName : {}", fileName);
+
+    } // makeQrcode
 
 
 } // end class

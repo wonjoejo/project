@@ -154,9 +154,9 @@
                         <li>
                             <div class="title">메모</div>
                             <textarea name="product_memo" class="detail detail-memo"></textarea>
-                            <ul class="suggestions">
-                            </ul>
                         </li>
+                        <ul class="suggestions">
+                        </ul>
                     </ul>
                 </div>
             </div>
@@ -195,6 +195,6 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=3"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=1"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=2"></script>
 
 </html>
