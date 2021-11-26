@@ -18,14 +18,38 @@ fetch("/group/json", {
 	.then((data) => {
 		members.push(...data);
 
-		memo.addEventListener("change", displayMatches);
-		memo.addEventListener("keyup", function (e) {
+		// memo.addEventListener("keydown", function (e) {
+		// 	const keyCode = e.keyCode;
+		// 	if (keyCode === 50) {
+		// 		console.log("keydown");
+		// 		memo.addEventListener("change", displayMatches);
+		// 	}
+		// });
+		memo.addEventListener("keyup", (e) => {
 			const keyCode = e.keyCode;
-			if (keyCode === 50) {
-				console.log("keyup");
-				displayMatches()
+			console.log("keyup");
+			if (keyCode === 50) { // @
+				memo.addEventListener("keyup", displayMatches);
 			}
-		});
+
+			if (memo.value.indexOf('@') === -1) {
+				$('.suggestions').empty();
+			} // @가 없을 경우 결과창 지우기
+
+			if (keyCode === 8) {
+				let taggedIds = memo.value.replace(" ", "").split('@');
+				console.log(taggedIds);
+				mentions = taggedIds;
+				console.log(mentions);
+
+				console.log(taggedIds.length);
+				if (taggedIds.length === 1) {
+					console.log("..?");
+					$('.suggestions').empty();
+				}
+			} // 이미 써있는거 대체
+		})
+
 
 	});
 
@@ -41,18 +65,13 @@ function findMatches(wordToMatch, members) {
 
 
 function displayMatches() {
-	let value = "";
+	console.log("displayMatches");
+
 	let tagedIds = this.value.replace(" ", "").split('@');
-
-	console.log(tagedIds.length);
-	console.log(tagedIds[tagedIds.length - 1]);
-
-	// if (this.value !== "" || typeof this.value !== 'undefined') {
-	// 	value = this.value.substr(1);
-	// }
 
 	const matchArray = findMatches(tagedIds[tagedIds.length - 1], members);
 	console.log(matchArray);
+
 	const html = matchArray
 		.map((member) => {
 			const regex = new RegExp(tagedIds[tagedIds.length - 1], "gi");
@@ -84,10 +103,18 @@ function clickName() {
 			let text = "";
 			console.log(mentions);
 			for (let i = 0; i < mentions.length; i++) {
+
+				if (mentions[i] === '') {
+					console.log("if문..?");
+					mentions.splice(i, 1);
+				}
+
 				text += `@${mentions[i]} `;
 			}
 			console.log(text);
 			memo.value = text;
+			memo.focus();
+			$('.suggestions').empty();
 		})
 	})
 }

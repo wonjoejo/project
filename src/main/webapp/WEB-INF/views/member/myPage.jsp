@@ -20,80 +20,79 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <!-- bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
     />
 
     <!-- font awesome -->
     <script
-      src="https://kit.fontawesome.com/a959489452.js"
-      crossorigin="anonymous"
+            src="https://kit.fontawesome.com/a959489452.js"
+            crossorigin="anonymous"
     ></script>
 
     <!-- stylesheets -->
     <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=50"
+            rel="stylesheet"
+            href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=2"
     />
     <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=3"
+            rel="stylesheet"
+            href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=3"
     />
   </head>
   <body>
-    <div class="container">
-      <jsp:include page="../common/myleft.jsp" />
-      <div class="main-container">
-        <h1>마이 페이지</h1>
+  <div class="container">
+    <jsp:include page="../common/myleft.jsp"/>
+    <div class="main-container">
+      <h1>마이 페이지</h1>
 
-        <div class="page-wrapper">
-          <form id="myPageForm" action="/member/edit" method="POST">
-            <!-- left -->
-            <div class="my-wrapper1">
-              <h2 class="fs-title" style="margin-top: -5px">프로필 이미지</h2>
+      <div class="page-wrapper">
+        <form id="myPageForm" action="/member/edit" method="POST">
+          <!-- left -->
+          <div class="my-wrapper1">
+            <h2 class="fs-title" style="margin-top: -5px">프로필 이미지</h2>
 
-              <div id="profile-upload">
-                <div class="profile-img">
-                  <input
-                    type="file"
-                    name="photo_name"
-                    id="getval"
-                    class="upload"
-                  />
-                </div>
-              </div>
-              <div class="member-type">
-                <c:choose>
-                  <c:when test="${member.member_type==0}">
-                    <button
-                      type="button"
-                      class="member-type__link personal"
-                      name="personal"
-                    >
-                      <i class="far fa-user"></i>
-                      <div class="type">
-                        <span class="type-title">개인회원</span>
-                      </div>
-                    </button>
-                  </c:when>
-                  <c:otherwise>
-                    <button
-                      type="button"
-                      class="member-type__link company"
-                      name="company"
-                    >
-                      <i class="far fa-building"></i>
-                      <div class="type">
-                        <span class="type-title">기업회원</span>
-                      </div>
-                    </button>
-                  </c:otherwise>
-                </c:choose>
-              </div>
+            <div id="profile-upload">
+              <%--                <div class="profile-img">--%>
+              <input
+                      type="file"
+                      name="file"
+                      class="upload"
+              />
+              <%--                </div>--%>
+            </div>
+            <div class="member-type">
+              <c:choose>
+                <c:when test="${member.member_type==0}">
+                  <button
+                          type="button"
+                          class="member-type__link personal"
+                          name="personal"
+                  >
+                    <i class="far fa-user"></i>
+                    <div class="type">
+                      <span class="type-title">개인회원</span>
+                    </div>
+                  </button>
+                </c:when>
+                <c:otherwise>
+                  <button
+                          type="button"
+                          class="member-type__link company"
+                          name="company"
+                  >
+                    <i class="far fa-building"></i>
+                    <div class="type">
+                      <span class="type-title">기업회원</span>
+                    </div>
+                  </button>
+                </c:otherwise>
+              </c:choose>
+            </div>
 
-              <!-- 멤버 타입 숨기기 -->
+            <!-- 멤버 타입 숨기기 -->
               <div class="member_input" style="visibility: hidden; height: 1%">
                 <label for="member_type" class="label"> 멤버타입 </label
                 ><input

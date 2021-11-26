@@ -36,10 +36,13 @@ images.forEach(function (item,number) {
 		}
 
 		let result = this.src.split("default/");
-		defaultInput.setAttribute("value",result[1]);
+		defaultInput.setAttribute("value", result[1]);
 	});
 
 });
+
+
+
 
 
 

@@ -47,6 +47,9 @@ public interface ProductService {
 	// 물품 전체 검색
 	public abstract List<ProductCategoryVO> searchProduct(@Param("keyword") String keyword, @Param("box_no") Integer box_no);
 
+	// 바코드 생성
+	public abstract Boolean createBarcode(@Param("product_no") Integer product_no, @Param("barcode") String barcode);
+
 
 } // ProductService
 
