@@ -35,12 +35,22 @@ pageEncoding="UTF-8"%>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/main.css"
+      href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=1"
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=10"
     />
+
+    <style>
+      .btn-click {
+        background: #f5f9ff;
+        border: 1px solid #5a95f5;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.04);
+        border-radius: 6px;
+      }
+    </style>
   </head>
   <body>
     <!-- header -->
@@ -82,226 +92,269 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
 
-    
       <!-- multi form -->
-          <div class="form-wrap">
-            <span class="title1"> 회원가입 </span>
-            <div class="title2">
-              <span class="txt2"> 이미 가입하셨나요? </span>
-              <a
-                href="${pageContext.request.contextPath}/member/login"
-                class="join-txt"
-              >
-                로그인
-              </a>
+      <div class="form-wrap">
+        <span class="title1"> 회원가입 </span>
+        <div class="title2">
+          <span class="txt2"> 이미 가입하셨나요? </span>
+          <a
+            href="${pageContext.request.contextPath}/member/login"
+            class="join-txt"
+          >
+            로그인
+          </a>
+        </div>
+
+        <form
+          id="msform"
+          action="/member/registerPost"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <!-- fieldsets -->
+          <!-- 1페이지 -->
+          <fieldset>
+            <div class="form-card">
+              <h2 class="fs-title">회원 유형 선택</h2>
+
+              <div class="member-type">
+                <button
+                  type="button"
+                  class="member-type__link test"
+                  name="personal"
+                  id="personalBtn"
+                >
+                  
+                  <!-- 기본 개인 이미지 -->
+                  <img id="personal-img" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke.png" />
+                  <!-- <i class="far fa-user"></i> -->
+				  
+                  <div class="type">
+                    <span class="type-title">개인회원</span>
+                    <span class="type-text"
+                      >다양한 개인 물품을 손쉽게 관리할 수 있습니다.</span
+                    >
+                  </div>
+                  <i id="arr1" class="fas fa-arrow-right"></i>
+                </button>
+                <br />
+
+                <button
+                  type="button"
+                  class="member-type__link"
+                  name="company"
+                  id="companyBtn"
+                >
+                  <!-- 기본 기업 이미지 -->
+                  <img id="company-img" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/polygon_stroke_co.png" />
+                  <!-- <i class="far fa-building"></i> -->
+
+                  <div class="type">
+                    <span class="type-title">기업회원</span
+                    ><span class="type-text"
+                      >입출고를 통한 기업용 재고 관리를 할 수 있습니다.</span
+                    >
+                  </div>
+                  <i id="arr2" class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+              <div class="group">
+                <label for="company_name" class="label" id="company_name">
+                  기업명 </label
+                ><input
+                  id="company_name"
+                  class="input"
+                  type="text"
+                  name="company_name"
+                  value=""
+                  placeholder="Company name"
+                />
+              </div>
             </div>
 
-            <form id="msform" action="/member/registerPost" method="POST">
-              <!-- fieldsets -->
-              <!-- 1페이지 -->
-              <fieldset>
-                <div class="form-card">
-                  
-                      <h2 class="fs-title">회원 유형 선택</h2>
-                    
-                  <div class="member-type">
-                    <button type="button" class="member-type__link personal" name="personal">
-                     
-                        <i class="far fa-user"></i>
-                    
-                      <div class="type">
-                        <span class="type-title">개인회원</span>
-                        <span class="type-text"
-                          >다양한 개인 물품을 손쉽게 관리할 수 있습니다.</span
-                        >
-                      </div>
-                    </button>
-                    <br />
+            <!-- 멤버 타입 숨기기 -->
+            <div class="member_input" style="visibility: hidden">
+              <label for="member_type" class="label"> 멤버타입 </label
+              ><input
+                id="member_type"
+                class="input"
+                type="number"
+                name="member_type"
+                value=""
+              />
+            </div>
 
-                    <button type="button" class="member-type__link company" name="company">
-                      
-                        <i class="far fa-building"></i>
-                      
-                      <div class="type">
-                        <span class="type-title">기업회원</span
-                        ><span class="type-text"
-                          >입출고를 통한 기업용 재고 관리를 할 수
-                          있습니다.</span
-                        >
-                      </div>
-                    </button>
-                  </div>
-                  <div class="group">
-                    <label for="company_name" class="label" id="company_name"> 기업명 </label
-                      ><input
-                        id="company_name"
-                        class="input"
-                        type="text"
-                        name="company_name" value=""
-                      />
-                  </div>
+            <button type="button" name="next" class="next action-button">
+              다음
+            </button>
+          </fieldset>
+
+          <!-- 2페이지 -->
+          <fieldset>
+            <div class="form-card">
+              <h2 class="fs-title">간편 회원가입</h2>
+
+              <div class="social-login">
+                <a
+                  href="#"
+                  class="social-login__link social-login__link--google"
+                  ><img
+                    class="social-image"
+                    src="${pageContext.request.contextPath}/resources/assets/img/btn_google.png"
+                  />
+                </a>
+                <a href="#" class="social-login__link social-login__link--naver"
+                  ><img
+                    class="social-image"
+                    src="${pageContext.request.contextPath}/resources/assets/img/btn_naver.png"
+                  />
+                </a>
+                <a href="#" class="social-login__link social-login__link--kakao"
+                  ><img
+                    class="social-image"
+                    src="${pageContext.request.contextPath}/resources/assets/img/btn_kakao.png"
+                  />
+                </a>
+              </div>
+              <div class="division">
+                <div class="line l"></div>
+                <span>혹은</span>
+                <div class="line r"></div>
+                <br />
+                <span>직접 입력</span>
+              </div>
+
+              <div class="group">
+                <label for="member_id" class="label"> 아이디 </label
+                ><input
+                  id="member_id"
+                  class="input"
+                  type="text"
+                  name="member_id"
+                  placeholder="ID"
+                  required
+                />
+              </div>
+
+              <div class="pw">
+                <div class="group">
+                  <label for="pwd" class="label"> 패스워드 </label
+                  ><input
+                    id="pwd"
+                    class="input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                  /><i id="pwd1" class="fas fa-eye active"></i>
                 </div>
 
-                <!-- 멤버 타입 숨기기 -->
-                <div class="member_input" style="visibility:hidden">
-                  <label for="member_type" class="label"> 멤버타입 </label
-                    ><input
-                      id="member_type"
-                      class="input"
-                      type="number"
-                      name="member_type"
-                      value=""
-                    />
+                <div class="group">
+                  <label for="pwdcheck" class="label"> 패스워드 확인 </label
+                  ><input
+                    id="pwdcheck"
+                    class="input"
+                    type="password"
+                    name="pwdcheck"
+                    placeholder="Confirm Password"
+                    required
+                  /><i id="pwd2" class="fas fa-eye"></i>
                 </div>
+              </div>
+              <div class="alert alert-success" id="alert-success">
+                패스워드가 일치합니다.
+              </div>
+              <div class="alert alert-danger" id="alert-danger">
+                패스워드가 일치하지 않습니다.
+              </div>
+            </div>
+            <button type="button" name="next" class="next action-button">
+              다음
+            </button>
 
-               
-                <button type="button" name="next" class="next action-button">
-                  다음
-                </button>
-              </fieldset>
+            <button
+              type="button"
+              name="previous"
+              class="previous action-button-previous"
+            >
+              <div class="arrow-wrap">
+                <span class="arrow-part-1"></span>
+                <span class="arrow-part-2"></span>
+                <span class="arrow-part-3"></span>
+              </div>
+            </button>
+          </fieldset>
 
-              <!-- 2페이지 -->
-              <fieldset>
-                <div class="form-card">
-                  <h2 class="fs-title">간편 회원가입</h2>
+          <!-- 3페이지 -->
+          <fieldset>
+            <div class="form-card">
+              <h2 class="fs-title" style="margin-top: -5px">프로필 이미지</h2>
+              <div id="profile-upload">
+                <input
+                  type="file"
+                  name="file"
+                  id="profile-photo"
+                  class="upload"
+                />
+                <input type="hidden" name="photo_name" id="default" />
+                <input
+                  type="hidden"
+                  name="photo_path"
+                  value="https://intobox.s3.ap-northeast-2.amazonaws.com/default/"
+                />
+              </div>
 
-                  <div class="social-login">
-                    <a
-                      href="#"
-                      class="social-login__link social-login__link--google"
-                      ><img
-                        class="social-image"
-                        src="${pageContext.request.contextPath}/resources/assets/img/btn_google.png"
-                      />
-                    </a>
-                    <a
-                      href="#"
-                      class="social-login__link social-login__link--naver"
-                      ><img
-                        class="social-image"
-                        src="${pageContext.request.contextPath}/resources/assets/img/btn_naver.png"
-                      />
-                    </a>
-                    <a
-                      href="#"
-                      class="social-login__link social-login__link--kakao"
-                      ><img
-                        class="social-image"
-                        src="${pageContext.request.contextPath}/resources/assets/img/btn_kakao.png"
-                      />
-                    </a>
-                  </div>
-                  <div class="division">
-                    <div class="line l"></div>
-                    <span>혹은</span>
-                    <div class="line r"></div>
-                    <br />
-                    <span>직접 입력</span>
-                  </div>
+              <div class="group">
+                <label for="name" class="label"> 이름 </label
+                ><input
+                  id="name"
+                  class="input"
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  required
+                />
+              </div>
 
-                  <div class="group">
-                    <label for="member_id" class="label"> 아이디 </label
-                    ><input
-                      id="member_id"
-                      class="input"
-                      type="text"
-                      name="member_id" required
-                    />
-                  </div>
+              <div class="group">
+                <label for="email" class="label"> 이메일 </label
+                ><input
+                  id="email"
+                  class="input"
+                  type="text"
+                  name="email"
+                  placeholder="example@mail.com"
+                  required
+                />
+              </div>
 
-                  <div class="group">
-                    <label for="pwd" class="label"> 패스워드 </label
-                    ><input
-                      id="pwd"
-                      class="input"
-                      type="password"
-                      name="password" required
-                    />
-                  </div>
-
-                  <div class="group">
-                    <label for="pwdcheck" class="label"> 패스워드 확인 </label
-                    ><input
-                      id="pwdcheck"
-                      class="input"
-                      type="password"
-                      name="password" required
-                    />
-                  </div>
-                </div>
-                <button type="button" name="next" class="next action-button">
-                  다음
-                </button>
-               
-                <button
-                  type="button"
-                  name="previous"
-                  class="previous action-button-previous"
-                >
-                  <div class="arrow-wrap">
-                    <span class="arrow-part-1"></span>
-                    <span class="arrow-part-2"></span>
-                    <span class="arrow-part-3"></span>
-                  </div>
-                </button>
-              </fieldset>
-
-              <!-- 3페이지 -->
-              <fieldset>
-                <div class="form-card">
-                  <h2 class="fs-title" style="margin-top: -5px;">프로필 이미지</h2>
-                  <div id="profile-upload">
-                    <div class="profile-img">
-                      <input
-                        type="file"
-                        name="photo_name"
-                        id="getval"
-                        class="upload"
-                      />
-                    </div>
-                  </div>
-
-                  <div class="group">
-                    <label for="name" class="label"> 이름 </label
-                    ><input
-                      id="name"
-                      class="input"
-                      type="text"
-                      name="name" required
-                    />
-                  </div>
-
-                  <div class="group">
-                    <label for="email" class="label"> 이메일 </label
-                    ><input id="email" class="input" type="text" name="email" required/>
-                  </div>
-
-                  <div class="group">
-                    <label for="phone_number" class="label"> 휴대전화 </label
-                    ><input
-                      id="phone_number"
-                      class="input"
-                      type="text"
-                      name="phone_number"
-                    />
-                  </div>
-                </div>
-                <div><button class="register-submit" type="submit">가입하기</button></div>
-                <button
-                  type="button"
-                  name="previous"
-                  class="previous action-button-previous"
-                >
-                  <div class="arrow-wrap">
-                    <span class="arrow-part-1"></span>
-                    <span class="arrow-part-2"></span>
-                    <span class="arrow-part-3"></span>
-                  </div>
-                </button>
-              </fieldset>
-            </form>
-          </div>
-        </div>
+              <div class="group">
+                <label for="phone_number" class="label"> 휴대전화 </label
+                ><input
+                  id="phone_number"
+                  class="input"
+                  type="text"
+                  name="phone_number"
+                  placeholder="01012345678"
+                />
+              </div>
+            </div>
+            <div>
+              <button class="register-submit" type="submit">가입하기</button>
+            </div>
+            <button
+              type="button"
+              name="previous"
+              class="previous action-button-previous"
+            >
+              <div class="arrow-wrap">
+                <span class="arrow-part-1"></span>
+                <span class="arrow-part-2"></span>
+                <span class="arrow-part-3"></span>
+              </div>
+            </button>
+          </fieldset>
+        </form>
       </div>
     </section>
   </body>
@@ -310,6 +363,27 @@ pageEncoding="UTF-8"%>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
   <script
     type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=3"
+    src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=10"
   ></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#alert-success").hide();
+      $("#alert-danger").hide();
+      $("input").keyup(function () {
+        const pwd = $("#pwd").val();
+        const pwdcheck = $("#pwdcheck").val();
+        if (pwd != "" || pwdcheck != "") {
+          if (pwd == pwdcheck) {
+            $("#alert-success").show();
+            $("#alert-danger").hide();
+            $(".register-submit").removeAttr("disabled");
+          } else {
+            $("#alert-success").hide();
+            $("#alert-danger").show();
+            $(".register-submit").attr("disabled", "disabled");
+          }
+        }
+      });
+    });
+  </script>
 </html>

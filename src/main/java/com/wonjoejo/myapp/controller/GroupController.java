@@ -67,8 +67,7 @@ public class GroupController {
 
 		log.info("json({}) invoked.", data);
 
-		JsonParser parser = new JsonParser();
-		JsonElement element = parser.parse(data);
+		JsonElement element = JsonParser.parseString(data);
 		Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
 
 		List<MemberVO> list = this.service.selectGroupMemberList(box_no);

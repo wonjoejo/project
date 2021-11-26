@@ -2,6 +2,7 @@ package com.wonjoejo.myapp.service;
 
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public interface MemberService {
 	
 	// 계정 찾기를 MemberVO 주는 게 맞나?
 	// 아이디 찾기
-	public abstract MemberVO findId(String email);
+	public abstract MemberVO findId(@Param("email") String email, @Param("name") String name);
 	
 	// 비밀번호 변경
 	public abstract MemberVO changePwd(String email);

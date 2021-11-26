@@ -328,27 +328,14 @@
 
 /* 페이지1 */
 
-/* 오각형 */
-/* #pentagon {
-  position: relative;
-  width: 54px;
-  box-sizing: content-box;
-  border-width: 50px 18px 0;
-  border-style: solid;
-  border-color: pink transparent;
-  background: linear-gradient(90deg, #4776e6 0%, #8e54e9 100%);
+#personal-img {
+  width: 46px;
 }
-#pentagon:before {
-  content: "";
-  position: absolute;
-  height: 0;
-  width: 0;
-  top: -85px;
-  left: -18px;
-  border-width: 0 45px 35px;
-  border-style: solid;
-  border-color: transparent transparent pink;
-} */
+
+#company-img {
+  width: 46px;
+}
+
 .member-type {
   margin-bottom: 5%;
   display: flex;
@@ -376,16 +363,16 @@
 }
 
 .personal {
-  background: #f5f9ff;
-  border: 1px solid #5a95f5;
+  background: #f5f9ff !important;
+  border: 1px solid #5a95f5 !important;
   box-sizing: border-box;
   box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.04);
   border-radius: 6px;
 }
 
 .company {
-  background: #f5f9ff;
-  border: 1px solid #5a95f5;
+  background: #f5f9ff !important;
+  border: 1px solid #5a95f5 !important;
   box-sizing: border-box;
   box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.04);
   border-radius: 6px;
@@ -438,6 +425,20 @@
 
 .member_input {
   visibility: hidden;
+}
+
+#arr1 {
+  font-size: 1rem;
+  margin-left: 5%;
+  color: #5a95f5;
+  display: none;
+}
+
+#arr2 {
+  font-size: 1rem;
+  margin-left: 1%;
+  color: #5a95f5;
+  display: none;
 }
 
 /* 페이지2 */
@@ -520,6 +521,20 @@
   border: solid 2px;
 }
 
+#pwd1 {
+  position: absolute;
+  top: 284px;
+  left: 332px;
+  color: #5a95f5;
+}
+
+#pwd2 {
+  position: absolute;
+  top: 369px;
+  left: 332px;
+  color: #5a95f5;
+}
+
 /* 3페이지 */
 /* profile image */
 #profile-upload {
@@ -536,6 +551,7 @@
   margin-top: 3%;
   margin-bottom: 3%;
 }
+
 #profile-upload:hover input.upload {
   display: block;
 }
@@ -550,19 +566,19 @@
 }
 
 #profile-upload input.upload {
-  z-index: 1;
+  /* z-index: 1; */
   left: 0;
   margin: 0;
   bottom: 0;
   top: 0;
   padding: 0;
   opacity: 0;
-  outline: none;
+  /* outline: none;
   cursor: pointer;
-  position: absolute;
-
+  position: absolute; */
   width: 100%;
-  display: none;
+  height: 100%;
+  /* display: none; */
 }
 
 .register-submit {
@@ -575,4 +591,29 @@
   border-radius: 30px;
   border: none;
   margin-top: 6.5%;
+}
+
+/* 유효성 검사 */
+.alert-danger {
+  font-family: "Noto Sans KR";
+  font-size: 13px;
+  width: 100%;
+  color: #fc3333;
+  margin-left: 164px;
+  margin-top: -93px;
+  margin-bottom: 43px;
+  background: none !important;
+  border: none !important;
+}
+
+.alert-success {
+  font-family: "Noto Sans KR";
+  font-size: 13px;
+  width: 100%;
+  color: #7b61ff;
+  margin-left: 204px;
+  margin-top: -93px;
+  margin-bottom: 43px;
+  background: none !important;
+  border: none !important;
 }
