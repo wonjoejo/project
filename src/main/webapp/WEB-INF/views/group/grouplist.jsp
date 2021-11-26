@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-			<%@ page session="false" %>
+			
 
 				<html>
 				<style>
@@ -10,6 +10,7 @@
 						justify-content: flex-end;
 					}
 				</style>
+
 
 				<head>
 					<title>GroupList</title>
@@ -40,8 +41,8 @@
 
 				<body>
 
-				<div class="container">
-					<jsp:include page="../common/boxleft.jsp"/>
+					<div class="container">
+						<jsp:include page="../common/boxleft.jsp" />
 
 						<div class="main-container">
 							<div class="name">
@@ -74,10 +75,10 @@
 										</div>
 									</c:forEach>
 								</div>
+							</div>
 						</div>
-					</div>
 
-				</div>
+					</div>
 
 
 				</body>
@@ -88,11 +89,9 @@
 				<script>
 				</script>
 
+
+
 				<script>
-					const loginId = '${sessionScope.member_id}';
-
-					console.log(loginId);
-
 					//권한 설정페이지로 이동
 					$(document).ready(function () {
 						$("#grouppermission").click(function () {
@@ -136,18 +135,21 @@
 									headers: {
 										'Content-Type': 'application/json'
 									},
-									body: JSON.stringify(data), // memberId와 boxNo
-									redirect: 'follow'
+									body: JSON.stringify(data) // memberId와 boxNo
+									
 
 								}).then(function (response) {
 									if (response.ok) {
+										console.log(response.ok);
 										return response.json();
 									}
 								}).then(function (data) {
+									
 									console.log(data);
+									
 									if (data === "/box/list") {
 
-										location.href = `${data}?member_id=${loginId}`
+										location.href = '/box/list?member_id='+ loginId;
 									} else {
 										Swal.fire(
 											'실패!'

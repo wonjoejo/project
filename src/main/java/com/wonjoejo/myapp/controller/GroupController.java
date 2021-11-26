@@ -237,7 +237,7 @@ public class GroupController {
 		}
 
 		
-		  sendData = gson.toJson("/group/grouplist");
+		  sendData = gson.toJson("/box/list");
 		  
 		  return sendData;
 		 
