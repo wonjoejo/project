@@ -176,7 +176,7 @@ public class MemberController {
 
     // 로그인
     @PostMapping("/loginPost")
-    public void loginPost(
+    public String loginPost(
             LoginDTO dto, Model model, HttpSession session) throws Exception {
 
         log.debug("loginPost({}) invoked.", dto);
@@ -204,7 +204,16 @@ public class MemberController {
 
             log.info("여기왔나");
 
-        } // if
+        } else { // 11.27 지수 -> 로그인 실패 alert 추가
+        	
+			model.addAttribute("msg", "");
+			model.addAttribute("url", "/member/login");
+			
+			return "/member/alert";
+    	}//if else
+        
+		return "/member/login";
+            
     } // loginPost
 
     // 로그아웃

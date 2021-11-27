@@ -221,7 +221,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/login.js?ver=2"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
