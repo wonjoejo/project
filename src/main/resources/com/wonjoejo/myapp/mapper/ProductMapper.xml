@@ -46,6 +46,44 @@
         ]]>
     </select>
 
+    <!-- chart 물품 top5 -->
+    <select id="selectProductTop" resultType="com.wonjoejo.myapp.domain.ProductVO">
+        <![CDATA[
+        SELECT
+            PRODUCT_NO,
+            BOX_NO,
+            PRODUCT_NAME,
+            PRODUCT_MEMO,
+            PRODUCT_QTN,
+            PRODUCT_PHOTO_NAME,
+            PRODUCT_PHOTO_PATH,
+            BARCODE,
+            REG_DATE
+        FROM PRODUCT
+        WHERE box_no = #{box_no}
+        ORDER BY PRODUCT_QTN DESC
+        ]]>
+    </select>
+
+    <!-- chart 최신 입고 물품 -->
+    <select id="selectProductDate" resultType="com.wonjoejo.myapp.domain.ProductVO">
+        <![CDATA[
+        SELECT
+            PRODUCT_NO,
+            BOX_NO,
+            PRODUCT_NAME,
+            PRODUCT_MEMO,
+            PRODUCT_QTN,
+            PRODUCT_PHOTO_NAME,
+            PRODUCT_PHOTO_PATH,
+            BARCODE,
+            REG_DATE
+        FROM PRODUCT
+        WHERE box_no = #{box_no}
+        ORDER BY REG_DATE DESC
+        ]]>
+    </select>
+
 
     <!-- product 1건 상세조회 -->
     <select id="selectProduct" resultType="com.wonjoejo.myapp.domain.ProductVO">

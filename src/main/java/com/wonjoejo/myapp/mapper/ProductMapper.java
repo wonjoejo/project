@@ -10,6 +10,12 @@ public interface ProductMapper {
 	// 물품 리스트 조회
 	public abstract List<ProductCategoryVO> selectProductList(Integer box_no);
 
+	// CHART 수량 TOP 5
+	public abstract List<ProductVO> selectProductTop(Integer box_no);
+
+	// CHART 수량 TOP 5
+	public abstract List<ProductVO> selectProductDate(Integer box_no);
+
 	// 물품 상세 조회
 	public abstract ProductVO selectProduct(Integer product_no);
 

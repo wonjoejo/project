@@ -1,5 +1,6 @@
 package com.wonjoejo.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Value;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class ProductVO {
 	private String product_photo_name;
 	private String product_photo_path;
 	private String barcode;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date reg_date;
 
 

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="box_no" value="${box_no}"/>
 <html>
 <head>
@@ -21,7 +22,7 @@
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <%-- chart css --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/chart.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/chart.css?ver=1">
 
 </head>
 <body>
@@ -55,17 +56,102 @@
                         <span>${box.box_name}</span>
                     </div>
                     <div class="col-md-9 top-right">
-
-
+                        <div class="box1 text-box">
+                            <p class="subject">총 개수</p>
+                            <div class="number">${totalAmount}</div>
+                        </div>
+                        <div class="box2 text-box">
+                            <p class="subject">오늘의 입고</p>
+                            <div class="number">+5</div>
+                        </div>
+                        <div class="box3 text-box">
+                            <p class="subject">오늘의 출고</p>
+                            <div class="number">-2</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row bottom-section">
                     <div class="col-md-5 bottom-left">
+                        <h3 class="top5-title">물품 수량 TOP 5</h3>
+                        <ul class="top5-list">
+                            <c:forEach items="${topProductList}" var="topList" varStatus="status">
+                                <li class="top5-list-container">
+                                    <div class="no">${status.count}</div>
+                                    <c:if test="${not empty topList.product_photo_name && not empty topList.product_photo_path}">
+                                        <div class="item" id="product-img">
+                                            <c:set var="path" value="${topList.product_photo_path}"/>
+                                            <c:choose>
+                                                <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->
+                                                    <img id="product-img"
+                                                         src="${pageContext.request.contextPath}${topList.product_photo_path}${topList.product_photo_name}"/>
+                                                </c:when>
+                                                <c:otherwise> <!-- 업로드 이미지 사용 -->
+                                                    <img id="product-img"
+                                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/${topList.product_photo_path}${topList.product_photo_name}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </c:if>
+
+                                    <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
+                                    <c:if test="${empty topList.product_photo_name || empty topList.product_photo_path}">
+                                        <div class="item" id="product-none-img"></div>
+                                    </c:if> <!-- product-none-img -->
+
+                                    <div class="item" id="product-name-top">
+                                        <a href="${pageContext.request.contextPath}/product/detail?product_no=${topList.product_no}&box_no=${topList.box_no}">
+                                            <c:out value='${topList.product_name}'/>
+                                        </a>
+                                    </div> <!-- product-name -->
+
+                                    <div class="item" id="product-qtn-top">
+                                        <c:out value='${topList.product_qtn}'/>개
+                                    </div> <!-- product-qtn-->
+                                </li>
+                            </c:forEach>
+                        </ul>
 
                     </div>
                     <div class="col-md-6 bottom-right">
+                        <h3 class="top5-title">최신 입고 물품</h3>
+                        <ul class="top5-list">
+                            <c:forEach items="${dateProductList}" var="dateList" varStatus="status">
+                                <li class="top5-list-container">
+                                    <div class="no">${status.count}</div>
+                                    <c:if test="${not empty dateList.product_photo_name && not empty dateList.product_photo_path}">
+                                        <div class="item" id="product-img">
+                                            <c:set var="path" value="${dateList.product_photo_path}"/>
+                                            <c:choose>
+                                                <c:when test="${fn:contains(path,'resource')}"> <!-- 기본이미지 사용 -->
+                                                    <img id="product-img"
+                                                         src="${pageContext.request.contextPath}${dateList.product_photo_path}${dateList.product_photo_name}"/>
+                                                </c:when>
+                                                <c:otherwise> <!-- 업로드 이미지 사용 -->
+                                                    <img id="product-img"
+                                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/${dateList.product_photo_path}${topList.product_photo_name}"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div>
+                                    </c:if>
 
+                                    <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
+                                    <c:if test="${empty dateList.product_photo_name || empty dateList.product_photo_path}">
+                                        <div class="item" id="product-none-img"></div>
+                                    </c:if> <!-- product-none-img -->
+
+                                    <div class="item" id="product-name-top">
+                                        <a href="${pageContext.request.contextPath}/product/detail?product_no=${dateList.product_no}&box_no=${topList.box_no}">
+                                            <c:out value='${dateList.product_name}'/>
+                                        </a>
+                                    </div> <!-- product-name -->
+
+                                    <div class="item" id="product-date">
+                                        <fmt:formatDate value="${dateList.reg_date}" pattern="yyyy-MM-dd"/>
+                                    </div> <!-- product-qtn-->
+                                </li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
 
