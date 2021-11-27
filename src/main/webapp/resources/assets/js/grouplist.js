@@ -1,5 +1,4 @@
-
-
+										
 					//회원 탈퇴
 					
 					const deletebtn = document.querySelector('.deletegroup');
