@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="permit" value="${sessionScope.permission}"/>
 			
 
 				<html>
@@ -42,26 +43,27 @@
 
 				<body>
 
-					<div class="container">
-						<jsp:include page="../common/boxleft.jsp" />
+				<div class="container">
+					<jsp:include page="../common/boxleft.jsp"/>
 
-						<div class="main-container">
-							<div class="name">
-								<h1>그룹 리스트</h1>
+					<div class="main-container">
+						<div class="name">
+							<h1>그룹 리스트</h1>
 
-
-								<div class="but">
-									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
-									<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
-									<c:if test="${master_id ne sessionScope.member_id}">
-										<button class="submit-btn hvr-float deletegroup"
+							<div class="but">
+								<c:if test="${permit.master_per eq 0}">
+									<button class="submit-btn hvr-float" id="grouppermission"><i>권한조회</i></button>
+								</c:if>
+								<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
+								<c:if test="${master_id ne sessionScope.member_id}">
+									<button class="submit-btn hvr-float deletegroup"
 											type="button"><i>그룹탈퇴</i></button>
-									</c:if>
-								</div>
+								</c:if>
 							</div>
+						</div>
 
-							<div class="group-wrapper">
-								<div class="group-container">
+						<div class="group-wrapper">
+							<div class="group-container">
 									<c:forEach items="${list}" var="group">
 										<div class="group hvr-grow">
 											<c:if test="${master_id eq group.member_id}">

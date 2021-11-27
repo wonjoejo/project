@@ -34,6 +34,8 @@ public interface GroupService {
 
     public abstract boolean updateBoxMasterInBox(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
+    public abstract BoxPermissionVO getPermission(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
+
 
 }
 

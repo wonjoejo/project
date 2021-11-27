@@ -92,8 +92,8 @@ public class ProductMapperTests {
                 null,
                 null,
                 null,
-                null
-        );
+                null,
+                null);
 
         this.mapper.insertProduct(product);
         log.info("\t+ product: {}", product);
@@ -135,8 +135,8 @@ public class ProductMapperTests {
                 null,
                 null,
                 null,
-                null
-        );
+                null,
+                null);
 
         this.mapper.updateProduct(product);
         log.info("\t+ product: {}", product);

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="permit" value="${sessionScope.permission}"/>
 <html>
 <head>
     <title>소중한 물건들을 모아, 인투박스</title>
@@ -57,26 +58,28 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn1">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn1">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn1">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn1">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -90,28 +93,31 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-
-                                        <button type="button" class="btn-style edit-btn" style="display: none">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn1" style="display: none">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn1">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn" style="display: inline-block">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
-
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn" style="display: none">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn1"
+                                                    style="display: none">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset"
+                                                    class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn1">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn"
+                                                    style="display: inline-block">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
@@ -130,26 +136,28 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn2">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn2">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn2">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn2">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -162,26 +170,31 @@
                                            value="${baseCategory.cate_name2}" disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn" style="display: none">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn2" style="display: none">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn2">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn" style="display: inline-block">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn" style="display: none">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn2"
+                                                    style="display: none">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset"
+                                                    class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn2">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn"
+                                                    style="display: inline-block">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
@@ -199,26 +212,28 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn3">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn3">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn3">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn3">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -232,26 +247,31 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn" style="display: none">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn3" style="display: none">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn3">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn" style="display: inline-block">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn" style="display: none">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn3"
+                                                    style="display: none">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset"
+                                                    class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn3">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn"
+                                                    style="display: inline-block">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
@@ -269,26 +289,28 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn4">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn4">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn4">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn4">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -302,26 +324,31 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn" style="display: none">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn4" style="display: none">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn4">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn" style="display: inline-block">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn" style="display: none">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn4"
+                                                    style="display: none">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset"
+                                                    class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn4">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn"
+                                                    style="display: inline-block">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
@@ -339,26 +366,28 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn5">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn5">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn5">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset" class="btn-style modify-cancel-btn modify-cancel-btn5">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
@@ -372,26 +401,31 @@
                                            disabled>
 
                                     <div class="btn-wrap">
-                                        <button type="button" class="btn-style edit-btn" style="display: none">
-                                            <i class="fas fa-pencil-alt"></i>
-                                            <span>수정</span>
-                                        </button>
-                                        <button type="submit" class="btn-style del-btn del-btn5" style="display: none">
-                                            <i class="fas fa-trash-alt"></i>
-                                            <span>삭제</span>
-                                        </button>
-                                        <button type="button" class="btn-style modify-btn">
-                                            <i class="fas fa-check"></i>
-                                            <span>완료</span>
-                                        </button>
-                                        <button type="reset" class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn5">
-                                            <i class="fas fa-check"></i>
-                                            <span>취소</span>
-                                        </button>
-                                        <button type="button" class="btn-style add-btn" style="display: inline-block">
-                                            <i class="fas fa-plus"></i>
-                                            <span>추가</span>
-                                        </button>
+                                        <c:if test="${permit.master_per eq 0}">
+                                            <button type="button" class="btn-style edit-btn" style="display: none">
+                                                <i class="fas fa-pencil-alt"></i>
+                                                <span>수정</span>
+                                            </button>
+                                            <button type="submit" class="btn-style del-btn del-btn5"
+                                                    style="display: none">
+                                                <i class="fas fa-trash-alt"></i>
+                                                <span>삭제</span>
+                                            </button>
+                                            <button type="button" class="btn-style modify-btn">
+                                                <i class="fas fa-check"></i>
+                                                <span>완료</span>
+                                            </button>
+                                            <button type="reset"
+                                                    class="btn-style modify-cancel-btn no-name-modify-cancel-btn modify-cancel-btn5">
+                                                <i class="fas fa-check"></i>
+                                                <span>취소</span>
+                                            </button>
+                                            <button type="button" class="btn-style add-btn"
+                                                    style="display: inline-block">
+                                                <i class="fas fa-plus"></i>
+                                                <span>추가</span>
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </c:otherwise>
                             </c:choose>
