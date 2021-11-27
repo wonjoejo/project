@@ -9,7 +9,13 @@ public interface ProductService {
 
 	// box 번호로 해당되는 물품 리스트 조회
 	public abstract List<ProductCategoryVO> getProductList(Integer box_no);
-	
+
+	// chart 수량 top 5
+	public abstract List<ProductVO> getTopProductList(Integer box_no);
+
+	// chart 최신 입고 물품
+	public abstract List<ProductVO> getDateProductList(Integer box_no);
+
     // 물품 한건 상세보기
 	public abstract ProductVO getProduct(Integer product_no);
 
@@ -49,6 +55,9 @@ public interface ProductService {
 
 	// 바코드 생성
 	public abstract Boolean createBarcode(@Param("product_no") Integer product_no, @Param("barcode") String barcode);
+	
+	// 회원 타입 조회(기업/일반)
+	public abstract Boolean checkMemberType(@Param("box_no") Integer box_no, @Param("product_no")Integer product_no);
 
 
 } // ProductService

@@ -134,7 +134,7 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		int cnt=this.mapper.selectIdCheck(member_id);
 		
 		return  cnt;
-	}
+	} // idCheck
 	
 	@Override
 	public void destroy() throws Exception {

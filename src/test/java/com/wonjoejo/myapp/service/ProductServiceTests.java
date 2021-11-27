@@ -51,7 +51,20 @@ public class ProductServiceTests {
 		list.forEach(log::info);
 
     } // testGetBoxList
-    
+
+
+    @Test(timeout=1000)	// chart 수량 top5
+    public void testGetTopProductList() {
+    	log.debug("testGetTopProductList() invoked.");
+
+		Integer box_no = 1417;
+
+		List<ProductVO> list = this.service.getDateProductList(box_no);
+		log.info("{} 박스 물품 리스트: ", box_no + list.get(0).getProduct_memo());
+		list.forEach(log::info);
+
+    } // testGetTopProductList
+
 
     @Test(timeout=1000)	// 해당 물품번호의 물품 상세조회
     public void testProductDetail() {

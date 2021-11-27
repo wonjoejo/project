@@ -42,7 +42,29 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 
 		return list;
 	} // getProductList
-	
+
+	// chart 수량 top5
+	@Override
+	public List<ProductVO> getTopProductList(Integer box_no) {
+		log.debug("getTopProductList() invoked.");
+
+		List<ProductVO> list = this.mapper.selectProductTop(box_no);
+		list.forEach(log::info);
+
+		return list;
+	} // getTopProductList
+
+	// chart 최신입고 물품
+	@Override
+	public List<ProductVO> getDateProductList(Integer box_no) {
+		log.debug("getDateProductList() invoked.");
+
+		List<ProductVO> list = this.mapper.selectProductDate(box_no);
+		list.forEach(log::info);
+
+		return list;
+	} //getDateProductList
+
 
 	@Override
 	public ProductVO getProduct(Integer product_no) {
@@ -179,7 +201,21 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		int affectedLines = this.mapper.deleteCategory(product_no);
 
 		return affectedLines == 1;
+	}
+
+	@Override
+	public Boolean checkMemberType(Integer box_no, Integer product_no) {
+		log.debug("checkMemberType({}, {}) invoked", box_no, product_no);
+		
+		int affectedLines = this.mapper.checkMemberType(box_no, product_no);
+		
+		return affectedLines == 1;
+		
 	} // deleteCategory
+	
+	
+	
+	
 
 
 } // end class

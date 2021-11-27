@@ -46,6 +46,44 @@
         ]]>
     </select>
 
+    <!-- chart 물품 top5 -->
+    <select id="selectProductTop" resultType="com.wonjoejo.myapp.domain.ProductVO">
+        <![CDATA[
+        SELECT
+            PRODUCT_NO,
+            BOX_NO,
+            PRODUCT_NAME,
+            PRODUCT_MEMO,
+            PRODUCT_QTN,
+            PRODUCT_PHOTO_NAME,
+            PRODUCT_PHOTO_PATH,
+            BARCODE,
+            REG_DATE
+        FROM PRODUCT
+        WHERE box_no = #{box_no}
+        ORDER BY PRODUCT_QTN DESC
+        ]]>
+    </select>
+
+    <!-- chart 최신 입고 물품 -->
+    <select id="selectProductDate" resultType="com.wonjoejo.myapp.domain.ProductVO">
+        <![CDATA[
+        SELECT
+            PRODUCT_NO,
+            BOX_NO,
+            PRODUCT_NAME,
+            PRODUCT_MEMO,
+            PRODUCT_QTN,
+            PRODUCT_PHOTO_NAME,
+            PRODUCT_PHOTO_PATH,
+            BARCODE,
+            REG_DATE
+        FROM PRODUCT
+        WHERE box_no = #{box_no}
+        ORDER BY REG_DATE DESC
+        ]]>
+    </select>
+
 
     <!-- product 1건 상세조회 -->
     <select id="selectProduct" resultType="com.wonjoejo.myapp.domain.ProductVO">
@@ -200,6 +238,7 @@
         WHERE box_no = #{box_no}
         ]]>
     </select>
+    
 
     <!-- 물품 검색  -->
     <select id="searchProduct" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
@@ -252,6 +291,23 @@
         SET BARCODE = #{barcode}
         WHERE PRODUCT_NO = #{product_no}
     </update>
+    
+    
+    <!-- 해당 물품의, 박스의, 멤버의, 멤버타입을 불러오기 -->
+    <select id="checkMemberType" resultType="int">
+	    SELECT 
+	    p.BOX_NO,
+	    b.MEMBER_ID,
+	    m.MEMBER_TYPE
+	
+		FROM MEMBER m
+		INNER JOIN BOX b
+			ON b.MEMBER_ID = m.MEMBER_ID
+		INNER JOIN PRODUCT p
+			ON p.BOX_NO = b.BOX_NO
+		
+		WHERE b.BOX_NO = #{box_no} and p.PRODUCT_NO = #{product_no}
+	</select>
 
 
 </mapper>

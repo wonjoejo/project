@@ -175,5 +175,20 @@ public class ProductMapperTests {
 
 
     } // testProductDelete
+    
+    
+//    
+//    @Test
+//    public void testMemberType() {
+//    	log.debug("testMemberType() invoked.");
+//    	
+//    	Integer product_no = 517;
+//    	Integer box_no = 1330;
+//    	
+//    	Integer checkMemberType = this.mapper.checkMemberType(box_no, product_no);
+//    	
+//    	log.info("\t+ checkMemberType: {} ", checkMemberType);
+//    	
+//    }
 
 } // end class

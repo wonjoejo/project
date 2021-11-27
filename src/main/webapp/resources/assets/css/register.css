@@ -614,36 +614,28 @@
 
 /* password */
 #alert-danger {
-  margin-left: 164px;
-  margin-top: -93px;
-  margin-bottom: 43px;
-  /* background: none !important;
-  border: none !important; */
+  position: absolute;
+  top: 315px;
+  left: 172px;
 }
 
 #alert-success {
-  margin-left: 204px;
-  margin-top: -93px;
-  margin-bottom: 43px;
-  /* background: none !important;
-  border: none !important; */
+  position: absolute;
+  top: 315px;
+  left: 205px;
 }
 
 /* id */
 #alert-danger-id {
-  margin-left: 197px;
-  margin-top: -93px;
-  margin-bottom: 43px;
-  /* background: none !important;
-  border: none !important; */
+  position: absolute;
+  top: 147px;
+  left: 188px;
   display: none;
 }
 
 #alert-success-id {
-  margin-left: 197px;
-  margin-top: -93px;
-  margin-bottom: 43px;
-  /* background: none !important;
-  border: none !important; */
+  position: absolute;
+  top: 147px;
+  left: 188px;
   display: none;
 }

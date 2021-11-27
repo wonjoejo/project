@@ -1,3 +1,55 @@
+/* ====== font ====== */
+
+/* noto sans */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 위메프 */
+@font-face {
+    font-family: 'Wemakeprice-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Wemakeprice-SemiBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Wemakeprice-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 넥슨 */
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
 .body-content {
     width: 96%;
     margin: 0 auto;
@@ -9,6 +61,8 @@
 }
 
 .top-left {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    letter-spacing: 1px;
     background-color: #fff;
     width: 22% !important;
     margin-right: 2.3%;
@@ -21,7 +75,7 @@
 }
 
 .top-left img {
-    width: 63%;
+    width: 50%;
     margin-bottom: 10px;
 }
 
@@ -29,6 +83,9 @@
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bottom-section {
@@ -36,23 +93,121 @@
 }
 
 .bottom-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
     width: 47.666% !important;
     margin-right: 2%;
+    padding: 30px 0;
 }
 
 .bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px 0;
+
 }
 
+.text-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.subject {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
 
+.number {
+    font-family: 'Wemakeprice-Bold';
+    font-size: 2.2rem;
+}
 
+.box1, .box2 {
+    margin-right: 60px;
+}
 
+.box1 .number {
+    color: #5A95F5;
+}
+
+.box2 .number {
+    color: #91DE85;
+}
+
+.box3 .number {
+    color: #DE8585;
+}
+
+.top5-list-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.top5-list-container:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.top5-title {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+#product-name-top {
+    width: 150px;
+    font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0px 15px;
+    /* 내용이 길어지면 길어진 부분을 자르고 말줄임표 처리 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#product-qtn-top {
+    background-color: #9DC0FA;
+    color: #fff;
+    text-align: center;
+    width: 60px;
+    border-radius: 7px;
+    /* 내용이 길어지면 길어진 부분을 자르고 말줄임표 처리 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.no {
+    font-family: 'Wemakeprice-Bold';
+    margin-right: 40px;
+}
+
+ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+#product-date{
+    background-color: #9DC0FA;
+    color: #fff;
+    text-align: center;
+    width: 105px;
+    border-radius: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
 

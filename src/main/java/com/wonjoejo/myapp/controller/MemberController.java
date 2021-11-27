@@ -330,7 +330,7 @@ public class MemberController {
 		
 		rttrs.addAttribute("member_id",member.getMember_id());
 		
-		return "redirect:/member/myPage";
+		return "redirect:/member/myPage?member_id={member_id}";
 		
 	} // edit
 	

@@ -10,6 +10,12 @@ public interface ProductMapper {
 	// 물품 리스트 조회
 	public abstract List<ProductCategoryVO> selectProductList(Integer box_no);
 
+	// CHART 수량 TOP 5
+	public abstract List<ProductVO> selectProductTop(Integer box_no);
+
+	// CHART 수량 TOP 5
+	public abstract List<ProductVO> selectProductDate(Integer box_no);
+
 	// 물품 상세 조회
 	public abstract ProductVO selectProduct(Integer product_no);
 
@@ -48,6 +54,9 @@ public interface ProductMapper {
 
 	//바코드 생성
 	public abstract Integer updateBarcode(@Param("product_no") Integer product_no, @Param("barcode") String barcode);
+	
+	// 회원 타입 조회(기업/일반)
+	public abstract Integer checkMemberType(@Param("box_no")Integer box_no, @Param("product_no")Integer product_no);
 
 
 } // end interface

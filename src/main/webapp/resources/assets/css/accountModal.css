@@ -19,8 +19,8 @@
 .modal-window {
   position: relative;
   background-color: #ffffff;
-  width: 20%;
-  height: 25%;
+  width: 450px !important;
+  height: 485px !important;
   margin: 10% auto;
   padding: 20px;
   display: flex;
@@ -74,8 +74,9 @@
   border-radius: 24px;
   border: none;
   color: #fff;
-  width: 100px;
-  height: 40px;
+  width: 105px !important;
+  height: 43px !important;
+  margin-right: 5px;
 }
 
 .modalbuttons {
@@ -91,4 +92,26 @@
 .modal .title {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.delete-btn {
+  background: #fc3333 !important;
+}
+
+#notice {
+  display: flex;
+  justify-content: center;
+  font-size: 90px;
+  color: #4776e6;
+}
+
+.delete-title {
+	margin: 3%;	
+    padding-top: 4%;
+}
+
+.delete-content {
+	font-size: 16px;
+	margin-top: 2%;
+    margin-bottom: 10%;
 }
