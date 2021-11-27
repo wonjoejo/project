@@ -267,6 +267,98 @@ public class ProductController {
     } // productEdit
 
 
+    
+    
+    
+    @PostMapping("/insert")
+    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file) throws Exception {
+
+        log.debug("productInsert({}, {}) invoked.", product, file);
+        
+        // upload 할 폴더 경로 지정
+        String uploadDir = "product";
+
+        ProductVO productVO;
+        MemberTypeVO memberTypeVO;
+        
+        
+        if (file.getSize() !=0) {
+        	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
+
+            productVO = new ProductVO(
+                    null,
+                    product.getBox_no(),
+                    product.getProduct_name(),
+                    product.getProduct_memo(),
+                    product.getProduct_qtn(),
+                    uploadedFileName,
+                    uploadDir,
+                    product.getBarcode(),
+                    product.getReg_date()
+            );
+
+            boolean result = this.service.insertProduct(productVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+            
+        } else {
+            productVO = new ProductVO(
+                    null,
+                    product.getBox_no(),
+                    product.getProduct_name(),
+                    product.getProduct_memo(),
+                    product.getProduct_qtn(),
+                    product.getProduct_photo_name(),
+                    "default/",
+                    product.getBarcode(),
+                    product.getReg_date()
+            );
+
+            boolean result = this.service.insertProduct(productVO);
+            log.info("\t +result: {}", result);
+            rttrs.addAttribute("result", result);
+        }
+
+        // QR코드 생성
+        QRUtils qrUtils = new QRUtils();
+
+        String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
+        log.info("\t + barcodeName: {}", barcodeName);
+
+        Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
+
+        log.info("\t +barcode Success: {}", isSuccess);
+        
+        
+        
+        
+        // 여기부터
+        log.info("\t +box_no: {} / product_no: {} 이렇게 떴당", productVO.getBox_no(), productVO.getProduct_no());
+        Boolean memberType = this.service.checkMemberType(productVO.getBox_no(), productVO.getProduct_no());
+        log.info("\t +member Type: {} 이렇게 떴당222222222", memberType);
+        
+
+        // Category insert
+        CategoryVO categoryVO = new CategoryVO(
+                null,
+                null,
+                productVO.getProduct_no(),
+                category.getCate_detail1(),
+                category.getCate_detail2(),
+                category.getCate_detail3(),
+                category.getCate_detail4(),
+                category.getCate_detail5()
+        );
+
+        boolean result2 = this.service.insertCategory(categoryVO);
+        log.info("\t+ category result2: {}", result2);
+        rttrs.addAttribute("box_no", product.getBox_no());
+
+        return "redirect:/product/listPerPage";
+    } // productInsert
+    
+    
+/*
     @PostMapping("/insert")
     public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file) throws Exception {
 
@@ -342,6 +434,7 @@ public class ProductController {
 
         return "redirect:/product/listPerPage";
     } // productInsert
+    */
     
 
 
