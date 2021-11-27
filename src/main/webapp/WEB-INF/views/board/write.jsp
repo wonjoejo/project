@@ -30,6 +30,9 @@
 
 	<div class="main-container">
 		<div class="wrapper">
+		
+			<jsp:include page="../common/leftmobile.jsp"/>
+			
 			<div id="top_content">
 				<h1 class="title">Q&A</h1>
 
@@ -45,7 +48,6 @@
 					<div>
 						<input class="writeid" type="text" name="member_id" value="${member_id}" readonly/>
 					</div>
-
 					<div>
 						<input class="writetitle" type="text" name="title" placeholder="제목을 입력하세요 "/>
 					</div>
@@ -67,35 +69,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=90"></script>
-
-    <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-
-        //list 버튼에 대한 이벤트 등록 처리
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-        
-        $('.writeBtn').click(function () {
-        	const Toast = Swal.mixin({
-        		  toast: true,
-        		  position: 'middle',
-        		  showConfirmButton: false,
-        		  timer: 2000,  
-        		})
-
-        		Toast.fire({
-        		  icon: 'success',
-        		  title: '글 등록 완료'
-        		})
-         }); //onclick*/
-      
-      }); //.jq
+	
+	<script>  
+	    const currPage = ${cri.currPage};
+		const amount = ${cri.amount};
+		const pagesPerPage = ${cri.pagesPerPage};   
     </script>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
     
 </html>

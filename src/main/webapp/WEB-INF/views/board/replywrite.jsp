@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-	<title>Q&AWrite</title>
+	<title>Q&AReplyWrite</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -30,12 +30,13 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-			<div id="top_content">
-				<h1 class="title">Q&A</h1>
-						
-				<button id="listBtn" type="button">돌아가기</button>
-			</div>
+		
+			<jsp:include page="../common/leftmobile.jsp"/>
 			
+			<div id="top_content">
+				<h1 class="title">Q&A</h1>					
+				<button id="listBtn" type="button">돌아가기</button>
+			</div>		
 			
 			<form action="/board/replywrite" method="post">
 				<input type="hidden" name="ref" value="${param.ref}" />
@@ -69,37 +70,15 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
 
-    <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-
-        //list 버튼에 대한 이벤트 등록 처리
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-        
-        $('.writeBtn').click(function () {
-        	const Toast = Swal.mixin({
-        		  toast: true,
-        		  position: 'middle',
-        		  showConfirmButton: false,
-        		  timer: 2000,  
-        		})
-
-        		Toast.fire({
-        		  icon: 'success',
-        		  title: '답글 등록 완료'
-        		})
-         }); //onclick*/
-      }); //.jq
+    <script>  
+	    const currPage = ${cri.currPage};
+		const amount = ${cri.amount};
+		const pagesPerPage = ${cri.pagesPerPage};   
     </script>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
     
 </html>
 				

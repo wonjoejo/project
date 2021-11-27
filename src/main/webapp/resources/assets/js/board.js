@@ -1,93 +1,90 @@
-	
-	 $('form').on('submit',function(e){
-    	if($('.writetitle').val() == ''){
-    		e.preventDefault();
-    		 Swal.fire({ icon: 'error', 
-       			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '제목을 입력하세요.', 
-      		});
-       
-       console.log("sweet alert");
-    	}else if($('.writecon').val() == ''){
-    		e.preventDefault();
-    		Swal.fire({ icon: 'error', 
-       			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '내용을 입력하세요.', 
-      		});
-    	}
-    });
-        
-    $('form').on('submit',function(e){
-    	if($('.edittitle').val() == ''){
-    		e.preventDefault();
-    		Swal.fire({ icon: 'error', 
-       			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '제목을 입력하세요.', 
-      		});
-    	}else if($('.editcon').val() == ''){
-    		e.preventDefault();
-    		Swal.fire({ icon: 'error', 
-       			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '내용을 입력하세요.', 
-      		});
-    	}
-    });
-	
-	//검색 
-	let searchForm = $("#searchForm");
-	
-	$("#searchForm button").on("click", function(e) {
-	                  
-	if(!searchForm.find("input[name='keyword']").val()) {
-	    Swal.fire({ icon: 'warning', 
-       			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '키워드를 입력하세요.', 
-       });
-	     return false;
+
+//게시글 내용 미입력 alert 창 	
+ $('form').on('submit',function(e){
+	if($('.writetitle').val() == ''){
+		e.preventDefault();
+		 Swal.fire({ icon: 'error', 
+   			   //title: 'Alert가 실행되었습니다.', 
+   			   text: '제목을 입력하세요.', 
+  		});
+   
+   console.log("sweet alert");
+	}else if($('.writecon').val() == ''){
+		e.preventDefault();
+		Swal.fire({ icon: 'error', 
+   			   //title: 'Alert가 실행되었습니다.', 
+   			   text: '내용을 입력하세요.', 
+  		});
 	}
-	                        
-	searchForm.find("input[name='currPage']").val("1");
-	e.preventDefault();
-	                        
-	searchForm.submit();
-	});
- 
-  //본인 글만 확인 
-  $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-  	
-  	$('.detailcheck' ).click(function () {
-       Swal.fire({ icon: 'info', 
-       			   //title: 'Alert가 실행되었습니다.', 
-       			   text: '본인이 작성한 글만 확인이 가능합니다.' 
-       });
+});
 
-    }); //onclick
-    
-    //로그인페이지로 이동 
-    $('.gojoinpage').click(function () {
-       Swal.fire({ icon: 'info', 
-       			  // title: '로그인 정보가 없습니다.', 
-       			   text: '로그인 후 이용 가능합니다.',
-       			   footer: '<a href="/member/login">로그인 페이지로 이동</a>' 
-       });
-
-    }); //onclick*/
-  
-    //notice 더보기 버튼 
-    $('#addBtn').click(function () {
-	    console.log('click event triggered..');
+//게시글 수정 내용 미입력 alert 창    
+$('form').on('submit',function(e){
+	if($('.edittitle').val() == ''){
+		e.preventDefault();
+		Swal.fire({ icon: 'error', 
+   			   //title: 'Alert가 실행되었습니다.', 
+   			   text: '제목을 입력하세요.', 
+  		});
+	}else if($('.editcon').val() == ''){
+		e.preventDefault();
+		Swal.fire({ icon: 'error', 
+   			   //title: 'Alert가 실행되었습니다.', 
+   			   text: '내용을 입력하세요.', 
+  		});
+	}
+});
 	
-	    self.location = '/board/noticePage';
-	  }); //onclick
-    
-   // 답글 작성 버튼 
-    $('#replyWriteBtn').on('click', function () {
-        console.log('onclicked on writeBtn...');
+//검색 
+let searchForm = $("#searchForm");
 
-        self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}';
-    });//onclick
+$("#searchForm button").on("click", function(e) {
+                  
+if(!searchForm.find("input[name='keyword']").val()) {
+    Swal.fire({ icon: 'warning', 
+   			   //title: 'Alert가 실행되었습니다.', 
+   			   text: '키워드를 입력하세요.', 
+   });
+     return false;
+}
+                        
+searchForm.find("input[name='currPage']").val("1");
+e.preventDefault();
+                        
+searchForm.submit();
+});
+ 
+//본인 게시글만 확인 alert 
+$(function () {  	
+	$('.detailcheck' ).click(function () {
+       Swal.fire({ icon: 'info', 
+       	   text: '본인이 작성한 글만 확인이 가능합니다.' 
+    });
+}); //onclick
+    
+//답글 작성 버튼 이벤트 
+$('#replyWriteBtn').on('click', function () {
+    console.log('onclicked on writeBtn...');
+
+    self.location = `/board/replywrite?ref=${ref}&title=${title}&member_id=${member_id}`;
+});//onclick      
+    
+//로그인 페이지로 이동 
+$('.gojoinpage').click(function () {
+   Swal.fire({ icon: 'info',  
+	   text: '로그인 후 이용 가능합니다.',
+	   footer: '<a href="/member/login">로그인 페이지로 이동</a>' 
+   });
+
+}); //onclick*/
+  
+//notice 더보기 버튼 
+$('#addBtn').click(function () {
+    console.log('click event triggered..');
+
+    self.location = '/board/noticePage';
+}); //onclick
+   
   
    /*//delete 버튼에 대한 이벤트 등록 처리
   	$('#deleteBtn').click(function () {
@@ -100,27 +97,27 @@
       formObj.submit();
     }); //onclick*/
     
-    //삭제버튼 
-    $('#deleteBtn').on('click',function(e){
-          
-   		Swal.fire({
-   		  title: '삭제 하시겠습니까?',
-   		  icon: 'warning',
-   		  showCancelButton: true,
-   		  confirmButtonColor: '#3085d6',
-   		  cancelButtonColor: '#d33',
-   		  confirmButtonText: '삭제',
-   		  cancelButtonText: '취소'
-   		}).then((result) => {
-   		  if (result.value) {
-   			var formObj = $('form');
-     	      formObj.attr('method', 'POST');
-     	      formObj.attr('action', '/board/delete');
-     	     formObj.submit();
-   		  }
-   		})
-   		
-  	}); 
+//삭제버튼 
+$('#deleteBtn').on('click',function(e){
+      
+	Swal.fire({
+	  title: '삭제 하시겠습니까?',
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '삭제',
+	  cancelButtonText: '취소'
+	}).then((result) => {
+	  if (result.value) {
+		var formObj = $('form');
+ 	      formObj.attr('method', 'POST');
+ 	      formObj.attr('action', '/board/delete');
+ 	     formObj.submit();
+	  }
+	})
+	
+}); 
     
    /* //delete 버튼에 대한 이벤트 등록 처리
    $('#replydeleteBtn').click(function () {
@@ -133,100 +130,149 @@
       formObj.submit();
     }); //onclick */
     
-    //답글 삭제 버튼 
-    $('#replydeleteBtn').on('click',function(e){
-          
-   		Swal.fire({
-   		  title: '삭제 하시겠습니까?',
-   		  icon: 'warning',
-   		  showCancelButton: true,
-   		  confirmButtonColor: '#3085d6',
-   		  cancelButtonColor: '#d33',
-   		  confirmButtonText: '삭제',
-   		  cancelButtonText: '취소'
-   		}).then((result) => {
-   		  if (result.value) {
-   			var formObj = $('form');
-     	      formObj.attr('method', 'POST');
-     	      formObj.attr('action', '/board/alldelete');
-     	     formObj.submit();
-   		  }
-   		})
-   		
-  	}); 
+//답글 삭제 버튼 
+$('#replydeleteBtn').on('click',function(e){
+      
+	Swal.fire({
+	  title: '삭제 하시겠습니까?',
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '삭제',
+	  cancelButtonText: '취소'
+	}).then((result) => {
+	  if (result.value) {
+		var formObj = $('form');
+ 	      formObj.attr('method', 'POST');
+ 	      formObj.attr('action', '/board/alldelete');
+ 	     formObj.submit();
+	  }
+	})
+	
+}); 
     
-   //edit 버튼에 대한 이벤트 등록 처리
-    $('#editBtn').click(function () {
-      console.log('click event triggered..');
+//edit 버튼에 대한 이벤트 등록 처리
+$('#editBtn').click(function () {
+  console.log('click event triggered..');
 
-      self.location = '/board/edit?board_idx=${board.board_idx}';
-    }); //onclick
+  self.location = `/board/edit?board_idx=${board_idx}`;
+}); //onclick
 
-    //list 버튼에 대한 이벤트 등록 처리
-    //$(#listBtn).on('click',function(){
-    $('#listBtn').click(function () {
-      console.log('click event triggered..');
+//edit 완료 alert
+$('#editcomplteBtn').click(function () {
+	const Toast = Swal.mixin({
+		  toast: true,
+		  position: 'middle',
+		  showConfirmButton: false,
+		  timer: 2000,  
+		})
 
-      self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-    }); //onclick
+		Toast.fire({
+		  icon: 'success',
+		  title: '수정 완료'
+		})
+ }); //onclick*/
+
+//list 버튼에 대한 이벤트 등록 처리
+$('#listBtn').click(function () {
+  console.log('click event triggered..');
+
+  self.location = `/board/listPerPage?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
+}); //onclick
         
+// 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
+$('#writeBtn').on('click', function () {
+  console.log('onclicked on writeBtn...');
 
-    // 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
-    $('#writeBtn').on('click', function () {
-          console.log('onclicked on writeBtn...');
+ self.location = `/board/write?board_idx=${board_idx}&currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
+});
 
-         self.location = '/board/write?board_idx=${board.board_idx}&currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        });
+//답글 완료 alert
+$('.writeBtn').click(function () {
+	const Toast = Swal.mixin({
+		  toast: true,
+		  position: 'middle',
+		  showConfirmButton: false,
+		  timer: 2000,  
+		})
 
-    //페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
-    $('a.prev, a.next').on('click',function(e){
-        e.preventDefault();
+		Toast.fire({
+		  icon: 'success',
+		  title: '답글 등록 완료'
+		})
+ }); //onclick*/
 
-        const paginationForm=$('#paginationForm')
-        paginationForm.attr('action','/board/listPerPage')
-        paginationForm.attr('method','GET')
+// 공지 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
+$('#noticewriteBtn').on('click', function () {
+  console.log('onclicked on noticewriteBtn...');
 
-        //Criteria 3개 전송파라미터를 설정 
-        paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-        paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-        paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
+   self.location = `/board/noticewrite?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
+});
 
-        paginationForm.submit();
-    });  
+//공지리스트로 돌아가기 버튼 
+$('#noticepagelistBtn').click(function () {
+  console.log('click event triggered..');
+
+  self.location = `/board/noticePage?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
+}); //onclick   
+
+//q&a 리스트로 돌아가기 
+$('#noticelistBtn').click(function () {
+  console.log('click event triggered..');
+
+  self.location = `/board/listPerPage?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
+}); //onclick    
+
+//페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+$('a.prev, a.next').on('click',function(e){
+    e.preventDefault();
+
+    const paginationForm=$('#paginationForm')
+    paginationForm.attr('action','/board/listPerPage')
+    paginationForm.attr('method','GET')
+
+    //Criteria 3개 전송파라미터를 설정 
+    paginationForm.find('input[name=currPage]').val($(this).attr('href'));
+    paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
+    paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
+
+    paginationForm.submit();
+});  
     
-    //공지사항 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
-        $('a.prev, a.next').on('click',function(e){
-            e.preventDefault();
+//공지사항 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+$('a.prev, a.next').on('click',function(e){
+    e.preventDefault();
 
-            var paginationForm=$('#paginationForm')
-            paginationForm.attr('action','/board/noticePage')
-            paginationForm.attr('method','GET')
+    var paginationForm=$('#paginationForm')
+    paginationForm.attr('action','/board/noticePage')
+    paginationForm.attr('method','GET')
 
-            //Criteria 3개 전송파라미터를 설정 
-            paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-            paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-            paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
+    //Criteria 3개 전송파라미터를 설정 
+    paginationForm.find('input[name=currPage]').val($(this).attr('href'));
+    paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
+    paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
 
-            paginationForm.submit();
-        });  
+    paginationForm.submit();
+});  
         
-       //검색 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
-        $('a.prev, a.next').on('click',function(e){
-            e.preventDefault();
+//검색 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+$('a.prev, a.next').on('click',function(e){
+    e.preventDefault();
 
-            var paginationForm=$('#paginationForm')
-            paginationForm.attr('action','/board/searchlist')
-            paginationForm.attr('method','GET')
+    var paginationForm=$('#paginationForm')
+    paginationForm.attr('action','/board/searchlist')
+    paginationForm.attr('method','GET')
 
-            //Criteria 3개 전송파라미터를 설정 
-            paginationForm.find('input[name=currPage]').val($(this).attr('href'));
-            paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
-            paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
+    //Criteria 3개 전송파라미터를 설정 
+    paginationForm.find('input[name=currPage]').val($(this).attr('href'));
+    paginationForm.find('input[name=amount]').val('${pageMaker.cri.amount}');
+    paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
 
-            paginationForm.submit();
-        });   
+    paginationForm.submit();
+});   
 
-  }); //.jq
+}); //.jq
 
 
 

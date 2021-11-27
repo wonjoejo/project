@@ -221,6 +221,12 @@
     text-align: center;
     float: right;
     margin-top: 15px;
+    font-weight: 600;
+}
+
+.home-box:hover {
+    color: #5A95F5;;
+    background: #fff;
 }
 
 
@@ -327,7 +333,7 @@
 /* section3 */
 #section3{
     background-color: #5A95F5;
-    height: 900px;
+   /*  height: 900px; */
 }
 
 .section3_wrap{
@@ -346,9 +352,13 @@
     padding-bottom: 30px;
 }
 
+.section3_wrap h3 {
+	font-size: 18px;
+}
+
 @media screen and ( max-width: 767px){	
 	.section3_wrap h1 {
-		padding-top: 60px;
+		padding-top: 10px;
 	}
 }
 
@@ -373,6 +383,7 @@
 #tabbar > .title{
 	width: 100%; 
 	overflow: hidden;
+	font-size: 20px;
 }
 
 #tabbar > .title > h3{
@@ -416,22 +427,159 @@
 	margin-top: 10px;
 	box-sizing: border-box;
 }
-#tabbar > .description ul > li > img{
-	float: left;
-	margin-top: 20px;
-}
-
-#tabbar > .description ul > li > p{
-	float: right;
-	margin-top: 220px;
-	color: #fff;
-}
 
 #tabbar > .description ul > li:nth-of-type(2n+1){
 	padding-right: 5px;
 }
 #tabbar > .description ul > li:nth-of-type(2n){
 	padding-left: 5px;
+}
+
+.joinimg {
+	width: 60%;
+	float: left;
+	margin-top: 100px;
+}
+
+.jointext {
+	float: right;
+	width: 35%;
+	font-size: 21px;
+	line-height: 35px;
+	margin-top: 150px;
+	color: #fff;
+}
+
+.jointext_p {
+	font-family: 'Wemakeprice-Regular';
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {	
+	.joinimg {
+		width: 70%;
+		margin-top: 150px;
+	}
+
+	.jointext {
+		width: 28%;
+		font-size: 18px;
+		margin-top: 150px;
+	}	
+}
+
+@media screen and ( max-width: 767px){
+	.joinimg {
+		width: 90%;
+		margin-top: 50px;
+		float: none;
+	}
+
+	.jointext {
+		width: 100%;
+		margin-top: 0px;
+		float: none;
+		text-align: center;
+	}	
+}
+
+.boxcreateimg {
+	width: 56%;
+	float: left;
+	margin-top: 100px;
+}
+
+.boxcreatetext {
+	float: right;
+	width: 35%;
+	font-size: 21px;
+	line-height: 35px;
+	margin-top: 150px;
+	color: #fff;
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {	
+	.boxcreateimg {
+		width: 70%;
+		margin-top: 150px;
+	}
+
+	.boxcreatetext {
+		width: 28%;
+		font-size: 18px;
+		line-height: 35px;
+		margin-top: 150px;
+		color: #fff;
+	}	
+}
+
+@media screen and ( max-width: 767px){
+	.boxcreateimg {
+		width: 90%;
+		margin-top: 50px;
+		float: none;
+	}
+
+	.boxcreatetext {
+		width: 100%;
+		margin-top: 0px;
+		float: none;
+		text-align: center;
+	}	
+}
+
+.boxcreatetext_p {
+	font-family: 'Wemakeprice-Regular';
+}
+
+.groupimg{
+	width: 56%;
+	float: left;
+	margin-top: 100px;
+}
+
+.grouptext {
+	float: right;
+	width: 35%;
+	font-size: 21px;
+	line-height: 35px;
+	margin-top: 150px;
+	color: #fff;
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {	
+	.groupimg {
+		width: 70%;
+		margin-top: 150px;
+	}
+
+	.grouptext {
+		width: 28%;
+		font-size: 18px;
+		line-height: 35px;
+		margin-top: 150px;
+		color: #fff;
+	}	
+}
+
+@media screen and ( max-width: 767px){
+	.groupimg  {
+		width: 90%;
+		margin-top: 50px;
+		float: none;
+	}
+
+	.grouptext {
+		width: 100%;
+		margin-top: 0px;
+		float: none;
+		text-align: center;
+	}	
+}
+
+.grouptext_p {
+	font-family: 'Wemakeprice-Regular';
 }
 
 /* fadein 효과 */
@@ -452,8 +600,6 @@
 	margin-left: -300px;
 	max-width: 100%;
 }
-
-/* 슬라이드 */
 
 
 footer {

@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-    <title>Q&ABoardList</title>
+    <title>Q&ANoticeList</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -32,11 +32,19 @@
 
     <div class="main-container">
         <div class="wrapper">
+        
+        	<jsp:include page="../common/leftmobile.jsp"/>
 
             <div id="top_content">
                 <h1 class="title">Q&A</h1>
 
-                <form id="searchForm" action="/board/searchlist" method='get'>
+                <c:if test="${member_id == 'admin'}">
+                    <button id="noticewriteBtn" type="button"> + 공지작성</button>
+                </c:if>
+            </div>
+            
+             <div class="search_pc">
+            	<form id="searchForm" action="/board/searchlist" method='get'>
 
                     <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 
@@ -45,10 +53,6 @@
                     <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
                     <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
                 </form>
-
-                <c:if test="${member_id == 'admin'}">
-                    <button id="writeBtn" type="button"> + 공지작성</button>
-                </c:if>
             </div>
 
             <div class="noticewrapper noticemainlist" >
@@ -126,28 +130,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
 
 <script>
-    $(function name() {
-        console.clear();
-        console.log('jquery started...');
-
-        //공지작성
-        $('#writeBtn').on('click', function () {
-            console.log('onclicked on writeBtn...');
-
-            self.location = '/board/noticewrite?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        });//onclick
-
-        //돌아가기
-        $('#noticelistBtn').click(function () {
-            console.log('click event triggered..');
-
-            self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-
-    }); //.jq
+	const currPage = ${cri.currPage};
+	const amount = ${cri.amount};
+	const pagesPerPage = ${cri.pagesPerPage};
 </script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=30"></script>
+
 
 </html>

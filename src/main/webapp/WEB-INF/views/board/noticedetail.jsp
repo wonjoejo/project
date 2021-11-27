@@ -5,7 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-	<title>Q&ADetail</title>
+	<title>Q&ANoticeDetail</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -19,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=1">
 
 </head>
 <body>
@@ -30,11 +30,12 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-			<div id="detailtop">
+		
+			<jsp:include page="../common/leftmobile.jsp"/>
 			
+			<div id="detailtop">			
 				<h1 class="title">Q&A</h1>						
-				<button id="listBtn" type="button">돌아가기</button>
-			
+				<button id="noticepagelistBtn" type="button">돌아가기</button>			
 			</div>
 			
 			<div id="detailcontent" >
@@ -58,8 +59,8 @@
 							<textarea class="noline detailcon" name="content" cols="50" rows="10" readonly>${board.content}</textarea>
 						</div>
 					</div>
-				
-					<c:if test="member_id=='admin'">
+			
+					<c:if test="${member_id == board.member_id}">
 						<div>
 							<button type="button" id="editBtn">수정</button>
 			                <button type="button" id="deleteBtn">삭제</button>
@@ -75,27 +76,15 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
-    
+	
     <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
- 
-       //edit 버튼에 대한 이벤트 등록 처리
-        $('#editBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/edit?board_idx=${board.board_idx}';
-        }); //onclick
-
-        //list 버튼에 대한 이벤트 등록 처리
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/noticePage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick
-      }); //.jq
+    	const board_idx = ${board.board_idx};
+		
+		const currPage = ${cri.currPage};
+		const amount = ${cri.amount};
+		const pagesPerPage = ${cri.pagesPerPage};
     </script>
     
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=10"></script>
+       
 </html>

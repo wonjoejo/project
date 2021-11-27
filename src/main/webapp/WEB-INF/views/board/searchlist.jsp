@@ -6,7 +6,7 @@
 
 <html>
 <head>
-	<title>Q&ABoardList</title>
+	<title>Q&ASearchList</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -33,10 +33,16 @@
 	<div class="main-container">		
 		<div class="wrapper">
 		
+			<jsp:include page="../common/leftmobile.jsp"/>
+		
 			<div id="top_content">
 				<h1 class="title">Q&A</h1>
 				
-			    <form id="searchForm" action="/board/searchlist" method='get'>
+				<button id="listBtn" type="button">돌아가기</button>					
+			</div>
+			
+			 <div class="search_pc">
+				<form id="searchForm" action="/board/searchlist" method='get'>
 		
 			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 			        
@@ -45,10 +51,7 @@
 			        <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
 			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 			     </form>
-					
-				<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
 			</div>
-			
 			
 			<div id="boardtable" >
 
@@ -129,6 +132,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+	const currPage = ${cri.currPage};
+	const amount = ${cri.amount};
+	const pagesPerPage = ${cri.pagesPerPage};
+</script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=40"></script>
 
 </html>
