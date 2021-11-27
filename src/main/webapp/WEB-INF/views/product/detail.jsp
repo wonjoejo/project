@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=7">
 
 </head>
 <body>
@@ -83,13 +83,27 @@
                     </span>
                 </div> <!-- qtn -->
 
-                <a href="javascript:sendLink()">
-                    <div class="share">
-                        <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
-                        공유하기
-                        <button class="qr-btn">QR코드 생성</button>
-                    </div> <!-- share -->
-                </a>
+
+
+							<!-- <a href="javascript:sendLink()"> -->
+								<div class="share">
+									<div class="kakao-btn" onclick="javascript:sendLink()">
+										<img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/kakao_icon.png" alt="카카오톡">
+										공유하기
+										<!-- 기업회원일 때만 QR 생성 / 기업회원(1), 개인회원(0) -->
+									</div>
+									<c:if test="${sessionScope.member_type >= 0.1}">
+										<div class="qr-btn"> 
+												<img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/QR_icon.png" alt="QR코드"> 
+												QR코드
+										</div>
+									</c:if>
+								</div>
+							<!-- </a> -->
+
+
+
+
                 </div> <!-- left-box -->
 
 			<div class="right-box">
@@ -496,7 +510,7 @@
 </script>
 
 <%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=9"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=2"></script>
 <%-- mention JS 실험 중 --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js"></script>
 

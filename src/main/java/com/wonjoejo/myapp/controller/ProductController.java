@@ -314,6 +314,7 @@ public class ProductController {
             rttrs.addAttribute("result", result);
         }
 
+        // QR코드 생성
         QRUtils qrUtils = new QRUtils();
 
         String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
