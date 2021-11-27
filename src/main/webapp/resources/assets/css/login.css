@@ -653,6 +653,9 @@ break{
   box-shadow: inset 0 5px 10px rgba(149, 149, 149, 0.2) !important;
 }
 
+.swal2-popup.swal2-toast .swal2-styled {
+    margin-top: 1rem !important;
+}
 
 
 /* 로딩*/

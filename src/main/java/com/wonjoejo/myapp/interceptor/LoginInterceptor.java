@@ -9,8 +9,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -108,11 +106,6 @@ public class LoginInterceptor
             } // if-else
 
         } else { // 로그인 실패
-        	res.setContentType("text/jsp; charset=utf-8");
-        	PrintWriter out=res.getWriter();
-        	out.print("<script>alert('아이디 혹은 비밀번호를 확인하세요'); location.href='/member/login';</script>");
-        	out.flush();
-        	out.close();
         	
             //res.sendRedirect("/member/login");
         } // if-else
