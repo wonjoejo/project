@@ -112,6 +112,15 @@ public class GroupServiceImpl implements GroupService{
 		return affectedRows == 1;
 	} // updateBoxMasterInBox
 
+	@Override
+	public BoxPermissionVO getPermission(String member_id, Integer box_no) {
+		log.debug("getPermission({}, {}) invoked.", member_id, box_no);
+
+		BoxPermissionVO vo = this.mapper.checkMaster(member_id, box_no);
+
+		return vo;
+	} // getPermission
+
 	// 그룹 멤버 삭제(추방, 삭제 같이 사용)
 	@Override
 	public boolean deleteMember(String member_id, Integer box_no, Integer member_stat) {

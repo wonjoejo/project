@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +41,12 @@ public class BoxController {
     private ProductService productService;
 
     @GetMapping("/list")
-    public void list(Model model, Criteria cri, HttpSession session, @RequestParam(value = "result", required = false, defaultValue = "") String box_no) {
+    public void list(Model model, Criteria cri, HttpServletRequest req, @RequestParam(value = "result", required = false, defaultValue = "") String box_no) {
 
         log.debug("list({},{}) invoked.", model, cri);
+
+        HttpSession session = req.getSession();
+        String loginId = (String) session.getAttribute("member_id");
 
         cri.setAmount(6);
 
@@ -50,15 +54,18 @@ public class BoxController {
         log.info("\t+ list.size:{}", list.size());
 
         model.addAttribute("list", list);
-        model.addAttribute("member_id", session.getAttribute("member_id"));
+        model.addAttribute("member_id", loginId);
 
         // paging
-        Integer totalAmount = this.service.getTotal((String) session.getAttribute("member_id"));
+        Integer totalAmount = this.service.getTotal(loginId);
         PageDTO dto = new PageDTO(cri, totalAmount);
         model.addAttribute("pageMaker", dto);
         model.addAttribute("cri", cri);
         model.addAttribute("result", box_no);
         log.info("boxno: {}", box_no);
+
+        // permission 내용 삭제
+        session.removeAttribute("permission");
 
     } // getBoxList
 
@@ -326,11 +333,14 @@ public class BoxController {
     } // editview
 
     @GetMapping("/get")
-    public void get(Integer box_no, Model model) {
+    public void get(Integer box_no, Model model, HttpServletRequest req) {
         log.debug("get({}) invoked.", box_no);
 
         BoxVO box = this.service.getBox(box_no);
         log.info("\t +box: {}", box);
+
+        HttpSession session = req.getSession();
+        String loginId = (String) session.getAttribute("member_id");
 
         // Product List 4개까지 표시
         List<ProductCategoryVO> productList = this.productService.getProductList(box_no);
@@ -343,8 +353,9 @@ public class BoxController {
             }
         }
 
-
-//        log.info("\t+ productList: {}", productList);
+        // 멤버 아이디, 박스 번호로 박스 권한 조회
+        BoxPermissionVO vo = this.groupService.getPermission(loginId, box_no);
+        session.setAttribute("permission", vo);
 
         model.addAttribute("box", box);
         model.addAttribute("productList", list);
@@ -357,6 +368,7 @@ public class BoxController {
         log.debug("joinGroup({},{}) invoked.", box_no, member_id);
 
         // 같은 박스에 같은 회원이 이미 존재하는지 중복 검사하는 로직 추가해야 함
+
         // 박스에 있는 회원 리스트 조회 -> member_id 있는지 확인 -> 있으면 처리하지 않음
         List<MemberVO> groupList = this.groupService.selectGroupMemberList(box_no);
         for (MemberVO member : groupList) {
@@ -376,4 +388,8 @@ public class BoxController {
         return "redirect:/box/list";
     } // joinGroup
 
+    @PostMapping("/check")
+    public String checkId(Integer box_no, String member_id, RedirectAttributes rttrs) {
+        return null;
+    }
 } // end class

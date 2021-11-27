@@ -17,10 +17,11 @@ public class ProductVO {
 	private String barcode;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date reg_date;
+	private Date update_date;
 
 
 	public ProductVO(Integer product_no, Integer box_no, String product_name, String product_memo, Integer product_qtn,
-					 String product_photo_name, String product_photo_path, String barcode, Date reg_date) {
+					 String product_photo_name, String product_photo_path, String barcode, Date reg_date, Date update_date) {
 		this.product_no = product_no;
 		this.box_no = box_no;
 		this.product_name = product_name;
@@ -30,6 +31,7 @@ public class ProductVO {
 		this.product_photo_path = product_photo_path;
 		this.barcode = barcode;
 		this.reg_date = reg_date;
+		this.update_date = update_date;
 	} // ProductVO constructor
     
 } // end class

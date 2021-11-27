@@ -15,5 +15,6 @@ public class ProductDTO {
     private String product_photo_path;
     private String barcode;
     private Date reg_date;
-    
+    private Date update_date;
+
 } // end class

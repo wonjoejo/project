@@ -1,13 +1,7 @@
 package com.wonjoejo.myapp.service;
 
 
-import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
-import com.wonjoejo.myapp.domain.Criteria;
-import com.wonjoejo.myapp.domain.ProductVO;
 import com.wonjoejo.myapp.domain.*;
-
-
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -109,12 +103,12 @@ public class ProductServiceTests {
 		Integer product_qtn = 2;
 		
 		ProductVO product = new ProductVO(
-				null,
-				box_no,
-				product_name,
-				product_memo,
-				product_qtn,
-				null, null, null, null);
+                null,
+                box_no,
+                product_name,
+                product_memo,
+                product_qtn,
+                null, null, null, null, null);
 
         boolean isSuccess = this.service.insertProduct(product);
         log.info("Product created successfully: {}",isSuccess);
@@ -144,29 +138,29 @@ public class ProductServiceTests {
     public void testProductEdit() {
         log.debug("testProductEdit() invoked");
 
-		Integer product_no = 358;
-		Integer box_no = null;
-		String product_name = "지현edit";
-		String product_memo = "edit";
-		Integer product_qtn = 100;
-		
-		ProductVO product = new ProductVO(
-				product_no, 
-				box_no,
-				product_name,
-				product_memo,
-				product_qtn,
-				null,
+        Integer product_no = 358;
+        Integer box_no = null;
+        String product_name = "지현edit";
+        String product_memo = "edit";
+        Integer product_qtn = 100;
+
+        ProductVO product = new ProductVO(
+                product_no,
+                box_no,
+                product_name,
+                product_memo,
+                product_qtn,
                 null,
                 null,
-                null);
+                null,
+                null, null);
 
         boolean isSuccess = this.service.editProduct(product);
         log.info("product edited successfully: {}", isSuccess);
 
         CategoryVO category = new CategoryVO(
-            null,
-            null,
+                null,
+                null,
             product_no,
             "지현update",
             "지현update",

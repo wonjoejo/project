@@ -381,8 +381,8 @@ public class ProductController {
                     uploadedFileName,
                     uploadDir,
                     product.getBarcode(),
-                    product.getReg_date()
-            );
+                    product.getReg_date(),
+                    null);
 
             boolean result = this.service.insertProduct(productVO);
             log.info("\t +result: {}", result);
@@ -398,8 +398,8 @@ public class ProductController {
                     product.getProduct_photo_name(),
                     "default/",
                     product.getBarcode(),
-                    product.getReg_date()
-            );
+                    product.getReg_date(),
+                    null);
 
             boolean result = this.service.insertProduct(productVO);
             log.info("\t +result: {}", result);
@@ -465,7 +465,7 @@ public class ProductController {
         	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
             productVO = new ProductVO(
-            		product.getProduct_no(),
+                    product.getProduct_no(),
                     product.getBox_no(),
                     product.getProduct_name(),
                     product.getProduct_memo(),
@@ -473,8 +473,8 @@ public class ProductController {
                     uploadedFileName,
                     uploadDir,
                     product.getBarcode(),
-                    product.getReg_date()
-            );
+                    product.getReg_date(),
+                    null);
 
             boolean result = this.service.editProduct(productVO);
             log.info("\t +result: {}", result);
@@ -482,7 +482,7 @@ public class ProductController {
             
         } else {
             productVO = new ProductVO(
-            		product.getProduct_no(),
+                    product.getProduct_no(),
                     product.getBox_no(),
                     product.getProduct_name(),
                     product.getProduct_memo(),
@@ -490,8 +490,8 @@ public class ProductController {
                     product.getProduct_photo_name(),
                     "default/",
                     product.getBarcode(),
-                    product.getReg_date()
-            );
+                    product.getReg_date(),
+                    null);
 
             boolean result = this.service.editProduct(productVO);
             log.info("\t +result: {}", result);

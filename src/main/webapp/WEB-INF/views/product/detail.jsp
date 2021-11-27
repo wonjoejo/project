@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="permit" value="${sessionScope.permission}"/>
 <html>
 <head>
     <title>소중한 물건들을 모아, 인투박스</title>
@@ -37,20 +38,24 @@
             <div class="wrapper">
                 <div class="hamburger">
                     <ul class="menu__list">
-                        <!-- Edit -->
-                        <li class="menu__list__item">
-                            <a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}">
-                            <i class="fas fa-pencil-alt i-style"></i></a></li>
-                        <!-- Delete -->
-                        <li class="menu__list__item">
-                            <i class="fas fa-trash-alt i-style" id="delete-btn" onclick="deletesubmit()"></i></li>
+                        <c:if test="${permit.edit_per eq 0}">
+                            <!-- Edit -->
+                            <li class="menu__list__item">
+                                <a href="${pageContext.request.contextPath}/product/edit?product_no=${product.product_no}&box_no=${product.box_no}">
+                                    <i class="fas fa-pencil-alt i-style"></i></a></li>
+                        </c:if>
+                        <c:if test="${permit.delete_per eq 0}">
+                            <!-- Delete -->
+                            <li class="menu__list__item">
+                                <i class="fas fa-trash-alt i-style" id="delete-btn" onclick="deletesubmit()"></i></li>
+                        </c:if>
                         <!-- List -->
                         <li class="menu__list__item">
                             <a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
                                 <i class="far fa-list-alt i-style"></i></a></li>
                     </ul>
                 </div> <!-- hamburger -->
-                
+
                 <div class="button" id="nav-icon4">
                     <span class="button__line"></span>
                     <span class="button__line"></span>
@@ -105,7 +110,6 @@
 
 
                 </div> <!-- left-box -->
-
 			<div class="right-box">
 				<ul>
 					<li>
@@ -184,34 +188,36 @@
 					</c:if>
 
 					<li>
-						<div class="title">메모</div>
-						<div class="detail" id="detail-memo">
-							<c:set var="memo" value="${product.product_memo}" />
-							<c:choose>
-								<c:when test="${fn:contains(memo,'@')}">
-									<c:set var="mentions" value="${fn:split(product.product_memo,' ')}" />
-									<c:forEach var="id" items="${mentions}" begin="0" end="${fn:length(mentions)}">
-										<c:choose>
-											<c:when test="${fn:startsWith(id,'@')}">
-												<span class="mention" id="${id}">
-													${id}
-												</span>
-											</c:when>
-											<c:otherwise>
-												<span class="text">
-													&nbsp;${id}
-												</span>
-											</c:otherwise>
-										</c:choose>			
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									${product.product_memo}
-								</c:otherwise>
-							</c:choose>
-							<span class="more">
-								<a href="#" id="more">더보기</a>
-							</span>
+						 <div class="title">메모</div>
+                        <div class="detail" id="detail-memo">
+                            <c:set var="memo" value="${product.product_memo}"/>
+                            <c:choose>
+                                <c:when test="${fn:contains(memo,'@')}">
+                                    <c:set var="mentions" value="${fn:split(product.product_memo,' ')}"/>
+                                    <c:forEach var="id" items="${mentions}" begin="0" end="${fn:length(mentions)}">
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(id,'@')}">
+                                                <span class="mention" id="${id}">
+                                                        ${id}
+                                                </span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="text">
+                                                    &nbsp;${id}
+                                                </span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    ${product.product_memo}
+                                </c:otherwise>
+                            </c:choose>
+                            <c:if test="${fn:length(product.product_memo) >= 15}">
+                            <span class="more">
+                                    <a href="#" id="more">더보기</a>
+                                </span>
+                            </c:if>
 						</div> <!-- detail-memo -->
 					</li>
 				</ul>
@@ -221,15 +227,34 @@
             <%-- 댓글 --%>
             <div class="comment-wrap">
                 <div id="search">
-                    <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
-                    <input name="comment_content" id="commentContent" class="search" type="text"
-                        placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
-                    <ul class="suggestions"></ul>
-                    <button id="insertBtn" class="searchbtn">
-                        <i class="fas fa-pencil-alt"></i>
-                        Write
-                    </button>
+                    <c:choose>
+                        <c:when test="${permit.write_per eq 0}">
+                            <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
+                            <input name="comment_content" id="commentContent" class="search" type="text"
+                                   placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
+                            <ul class="suggestions">
+                            </ul>
+                            <button id="insertBtn" class="searchbtn">
+                                <i class="fas fa-pencil-alt"></i>
+                                Write
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
+                            <input name="comment_content" id="commentContent" class="search" type="text"
+                                   placeholder="쓰기 권한이 있는 멤버만 댓글 쓰기가 가능합니다." readonly/>
+                            <ul class="suggestions">
+                            </ul>
+                            <button id="insertBtn" class="searchbtn" disabled>
+                                <i class="fas fa-pencil-alt"></i>
+                                Write
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div><!-- search -->
+
+
                 <div id="comment-box">
                 </div> <!-- comment-box -->
             </div><!-- comment-wrap -->
@@ -247,7 +272,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-
 <%-- detail JS --%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=2"></script>
 <%-- sweet alert --%>
@@ -255,9 +279,7 @@
 <%-- kakao sdk --%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-
 <script>
-
 	const product_memo = '${product.product_memo}';
 	const product_no = '${product.product_no}';
 	const box_no = '${product.box_no}';
@@ -272,241 +294,6 @@
 	const product_photo_path = '${product.product_photo_path}';
 	const member_id = '${sessionScope.member_id}';
 	const barcode = '${product.barcode}';
-
-
-	function clickMention() {
-		// 태그된 멘션 클릭 시 프로필 모달 팝업 띄움
-		let mentionList = document.querySelectorAll(".mention");
-		mentionList.forEach(function (item) {
-			item.addEventListener('click', function (e) {
-				e.preventDefault();
-				let id = item.getAttribute("id");
-				console.log(id);
-
-				fetch('/member/profile?member_id=' + id)
-					.then((response) => {
-						if (response.ok) {
-							return response.json();
-						}
-					})
-					.then((data) => {
-						console.log(data);
-						if (data.photo_path === null || data.photo_path === undefined) {
-							Swal.fire({
-								title: id,
-								html: '<i class="far fa-user-circle"></i>' + data.name + '<br><i class="far fa-envelope-open"></i>' + data.email + '<br><i class="fas fa-mobile-alt"></i>' + data.phone_number,
-								imageUrl: `https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png`,
-								imageWidth: 200,
-								imageHeight: 200,
-								imageAlt: 'Custom image',
-							})
-						} else {
-							Swal.fire({
-								title: id,
-								html: '<i class="far fa-user-circle"></i>' + data.name + '<br><i class="far fa-envelope-open"></i>' + data.email + '<br><i class="fas fa-mobile-alt"></i>' + data.phone_number,
-								imageUrl: 'https://intobox.s3.ap-northeast-2.amazonaws.com/' + data.photo_path + data.photo_name,
-								imageWidth: 200,
-								imageHeight: 200,
-								imageAlt: 'Custom image',
-							})
-
-						}
-
-					})
-
-
-			})
-		})
-	}
-
-
-	// 댓글 리스트
-	getCommentList();
-
-	function getCommentList() {
-
-		$.ajax({
-			url: "/comment/list",
-			type: "GET",
-			data: {
-				product_no: ${product.product_no}
-			},
-			dataType: 'json',
-			success: function (data) {
-				let comments = "";
-				if (data.length < 1) {
-					comments = '<div class = "no-comment">등록된 댓글이 없습니다.</div>';
-				} else {
-					$(data).each(function () {
-						comments += '<div class="comment">';
-						comments += '<input type="hidden" class="comment-no" name="comment_no" value="';
-						comments += this.comment_no;
-						comments += '">';
-						comments += '<input type="text" class = "member-id list" name="member_id" value="';
-						comments += this.member_id;
-						comments += '" disabled>';
-						comments += '<div class = "comment-content list" name="member_id">';
-
-						if (this.comment_content.indexOf('@') !== -1) {
-							const list = this.comment_content.split(' ');
-							for (let i = 0; i < list.length; i++) {
-								if (list[i].startsWith('@')) {
-									comments += '<span class="mention" id="' + this.member_id + '">' + list[i] + '</span>';
-								} else {
-									comments += '<span class="text">&nbsp;' + list[i] + '</span>';
-								}
-							}
-						}
-
-						comments += '</div>';
-						comments += '<div class="reg-date">';
-						comments += this.reg_date;
-						comments += '</div>';
-						comments += '<div class = "comment-button">';
-						comments += '<a href = "#" id="comment-modify" class = "comment-modify"><i class="fas fa-pencil-alt"></i></a>';
-						comments += '<a href = "#" id="comment-delete" class = "comment-delete"><i class="fas fa-trash-alt"></i></a>';
-						comments += '<a href = "#" id="comment-modify" class = "comment-modify-complete"><i class="fas fa-check"></i></a>';
-						comments += '<a href = "#" id="comment-delete" class = "comment-modify-cancel"><i class="fas fa-times"></i></a>';
-						comments += '</div>';
-						comments += '</div>';
-					});
-				}
-				; // if-else
-
-				$("#comment-box").html(comments);
-
-				clickMention();
-
-
-				// 수정 버튼 클릭 시 수정 폼 변경
-				const modifyBtn = document.querySelectorAll('.comment-modify');
-				modifyBtn.forEach(function (item) {
-					item.addEventListener("click", function (e) {
-						e.preventDefault();
-						console.log(item.parentElement.previousElementSibling.previousElementSibling);
-
-						const checkBtn = item.nextElementSibling.nextElementSibling;
-						const cancelBtn = item.nextElementSibling.nextElementSibling.nextElementSibling;
-						const commentNo = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
-						const memberId = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-						const commentContent = item.parentElement.previousElementSibling.previousElementSibling.children;
-
-						commentContent.commmentContent.disabled = false;
-						commmentContent.style.border = "1px solid #ADADAD";
-						item.style.display = "none";
-						item.nextElementSibling.style.display = "none";
-						checkBtn.style.display = "inline";
-						cancelBtn.style.display = "inline";
-
-						// 취소 버튼
-						cancelBtn.addEventListener("click", getCommentList);
-
-						// 수정
-						checkBtn.addEventListener("click", function (e) {
-							e.preventDefault();
-
-							const data = {
-								comment_no: commentNo.value,
-								member_id: memberId.value,
-								product_no: ${product.product_no},
-								comment_content: commmentContent.value
-							};
-
-							console.log(data);
-
-							fetch('/comment/edit', {
-								method: 'POST',
-								body: JSON.stringify(data),
-								headers: {
-									'Content-Type': 'application/json'
-								}
-							})
-								.then(function (response) {
-									if (response) getCommentList();
-								})
-
-								.catch(function (error) {
-									console.log(error)
-								}); // fetch
-
-						}); // click
-					}); // click
-				}); // modifyBtn forEach
-
-				// 삭제
-				const deleteBtn = document.querySelectorAll('.comment-delete');
-				deleteBtn.forEach(function (item) {
-					item.addEventListener("click", function (e) {
-						e.preventDefault();
-
-						const commentNo = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
-
-						const data = {
-							comment_no: commentNo.value
-						};
-
-						console.log(data);
-
-						fetch('/comment/delete', {
-							method: 'POST',
-							body: JSON.stringify(data),
-							headers: {
-								'Content-Type': 'application/json'
-							}
-						})
-							.then(function (response) {
-								if (response) getCommentList();
-							})
-
-							.catch(function (error) {
-								console.log(error)
-							}); // fetch
-
-					}); // click
-				}); // delete forEach
-
-
-			} // success
-
-		}); // ajax
-
-	}; // getCommentList
-
-
-	// 댓글 등록
-
-	document.querySelector('#insertBtn').addEventListener("click", insertComment);
-
-	function insertComment() {
-
-		const data = {
-			member_id: document.querySelector('#memberId').value,
-			product_no: document.querySelector('#productNo').value,
-			comment_content: document.querySelector('#commentContent').value
-		};
-
-		console.log(data);
-
-		fetch('/comment/insert', {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		})
-			.then(function (response) {
-				if (response) {
-					getCommentList();
-					document.querySelector('#commentContent').value = "";
-				}
-			})
-			.catch(function (error) {
-				console.log(error);
-			}); // fetch
-
-	}; // insertComment
-
-
 </script>
 
 <%-- product JS --%>

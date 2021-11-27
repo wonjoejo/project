@@ -8,6 +8,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="permit" value="${sessionScope.permission}"/>
 <html>
 
 
@@ -43,20 +44,21 @@
         <span class="menu-item inactive"><a
                 href="${pageContext.request.contextPath}/group/grouplist?box_no=${box_no}"><i
                 class="fas fa-user-friends"></i> 그룹</a></span>
-        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/chart/get?box_no=${box_no}"><i class="far fa-chart-bar"></i> 차트</a></span>
-        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/board/listPerPage"><i
-                class="far fa-question-circle"></i> Q&A</a></span>
+        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/chart/get?box_no=${box_no}"><i
+                class="far fa-chart-bar"></i> 차트</a></span>
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/member/logout"><i
                 class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
 
-        <div class="product-create-btn">
-            <a href="${pageContext.request.contextPath}/product/insertview?box_no=${box_no}">
+        <c:if test="${permit.write_per eq 0}">
+            <div class="product-create-btn">
+                <a href="${pageContext.request.contextPath}/product/insertview?box_no=${box_no}">
                 <span>
                     <i class="fas fa-plus"></i>
                     물품 등록
                 </span>
-            </a>
-        </div>
+                </a>
+            </div>
+        </c:if>
 
     </div>
 </div>
