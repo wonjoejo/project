@@ -10,7 +10,7 @@
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                 <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
             </a>
-        </div>
+        </div> <!-- top-content -->
 
         <form method="POST" action="/product/edit" enctype="multipart/form-data">
             <input type="hidden" name="product_no" value="${product.product_no}">
@@ -49,8 +49,9 @@
                             <input type="hidden" name="product_photo_path"
                                     value="${product.product_photo_path}">
                             <span><i class="fas fa-upload"></i>파일 업로드</span>
-                        </div>
-                    </div>
+                        </div> <!-- product-photo -->
+                    </div> <!-- photo -->
+
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                             data-bs-interval="false" id="carousel">
                         <div class="carousel-inner">
@@ -65,8 +66,9 @@
                                     <div class="cell hvr-grow"><img
                                             src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
                                             class="default-img"></div>
-                                </div>
-                            </div>
+                                </div> <!-- photos -->
+                            </div> <!-- carousel-item active -->
+
                             <div class="carousel-item">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
@@ -78,9 +80,10 @@
                                     <div class="cell hvr-grow"><img
                                             src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
                                             class="default-img"></div>
-                                </div>
-                            </div>
-                        </div>
+                                </div> <!-- photos-->
+                            </div> <!-- carousel-item -->
+                        </div> <!-- carousel-inner -->
+
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
                                 data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -91,28 +94,18 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                    </div>
+                    </div> <!-- default-photos carousel slide -->
 
                     <div class="qtn">
-                    <span>수량
-                        <div class="bar"></div>
-                        <input type="number" name="product_qtn" value="${product.product_qtn}">
-                    </span>
-                    </div>
+                        <span>수량
+                            <div class="bar"></div>
+                            <input type="number" name="product_qtn" value="${product.product_qtn}">
+                        </span>
+                    </div> <!-- qtn -->
+                </div> <!-- left-box -->
 
-                </div>
                 <div class="right-box">
                     <ul>
-                        <c:if test="${sessionScope.member_type >= 0.1}"> <!-- 기업회원(1), 개인회원(0) -->
-                            <li>
-                                <div class="title">바코드</div>
-                                <input type="text" name="barcode" value="${product.barcode}" class="detail">
-                                    <span class="more">
-                                        <a href="#" id="more">바코드 생성</a>
-                                    </span>
-                                </input>
-                            </li>
-                        </c:if>
                         <li>
                             <div class="title">이름</div>
                             <input type="text" name="product_name" value="${product.product_name}" class="detail">
@@ -155,17 +148,18 @@
                             <textarea name="product_memo" class="detail detail-memo">${product.product_memo}</textarea>
                         </li>
                     </ul>
-                </div>
-            </div>
+                </div> <!-- right-box -->
+            </div> <!-- product-detail-wrap -->
+
             <div class="buttons btn-product">
                 <button class="submit-btn hvr-float" type="submit">완료</button>
                 <a href="${pageContext.request.contextPath}/product/detail?product_no=${product.product_no}&box_no=${product.box_no}"><input
                         class="cancel-btn hvr-float" type="button" value="취소"></a>
-            </div>
+            </div> <!-- buttons btn-product -->
         </form>
-    </div>
+    </div> <!-- main-container -->
+</div> <!-- container -->
 
-</div>
 </body>
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

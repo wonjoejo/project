@@ -32,7 +32,7 @@
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                 <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
             </a>
-        </div>
+        </div> <!-- top-content -->
 
         <form method="POST" action="/product/insert" enctype="multipart/form-data">
             <input type="hidden" name="member_id" value="${sessionScope.member_id}">
@@ -48,9 +48,9 @@
                             <input type="hidden" name="product_photo_path"
                                     value="default">
                             <span id="img-file-upload"><i class="fas fa-upload"></i>파일 업로드</span>
-                        </div>
+                        </div> <!-- product-photo -->
 
-                    </div>
+                    </div> <!-- photo -->
 
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                             data-bs-interval="false" id="carousel">
@@ -66,8 +66,8 @@
                                     <div class="cell hvr-grow"><img
                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
                                         class="default-img"></div>
-                                </div>
-                            </div>
+                                </div> <!-- photos -->
+                            </div> <!-- carousel-item active -->
                             <div class="carousel-item">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
@@ -79,9 +79,10 @@
                                     <div class="cell hvr-grow"><img
                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
                                         class="default-img"></div>
-                                </div>
-                            </div>
-                        </div>
+                                </div> <!-- photos -->
+                            </div> <!-- carousel-item -->
+                        </div> <!-- carousel-inner -->
+
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
                                 data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -92,28 +93,18 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                    </div>
+                    </div> <!-- default-photos carousel slide -->
 
                     <div class="qtn">
-                    <span>수량
-                        <div class="bar"></div>
-                        <input type="number" name="product_qtn" value="0">
-                    </span>
-                    </div>
+                        <span>수량
+                            <div class="bar"></div>
+                            <input type="number" name="product_qtn" value="0">
+                        </span>
+                    </div> <!-- qtn -->
+                </div> <!-- left-box -->
 
-                </div>
                 <div class="right-box">
                     <ul>
-                        <c:if test="${sessionScope.member_type >= 0.1}"> <!-- 기업회원(1), 개인회원(0) -->
-                            <li>
-                                <div class="title">바코드</div>
-                                <input type="text" name="barcode" class="detail">
-                                    <span class="more">
-                                        <a href="#" id="more">바코드 생성</a>
-                                    </span>
-                                </input>
-                            </li>
-                        </c:if>
                         <li>
                             <div class="title">이름</div>
                             <input type="text" name="product_name" class="detail">
@@ -158,15 +149,16 @@
                         <ul class="suggestions">
                         </ul>
                     </ul>
-                </div>
-            </div>
+                </div> <!-- right-box -->
+            </div> <!-- product-detail-wrap -->
+
             <div class="buttons btn-product">
                 <button class="submit-btn hvr-float" type="submit">완료</button>
                 <a href="${pageContext.request.contextPath}/product/listPerPage?box_no=${param.box_no}"><input
                         class="cancel-btn hvr-float" type="button" value="취소"></a>
-            </div>
+            </div> <!-- buttons btn-product -->
         </form>
-    </div>
+    </div> <!-- main-container -->
 
 </div>
 </body>

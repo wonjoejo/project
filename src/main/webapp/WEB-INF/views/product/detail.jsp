@@ -61,21 +61,20 @@
 
         <div class="scroll type2">
 
-            <div class="product-detail-wrap">
-                <div class="left-box">
-                    <div class="photo">
-                        <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
-                        <c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
+			<div class="product-detail-wrap">
+				<div class="left-box">
+					<div class="photo">
+						<!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
+						<c:if test="${not empty product.product_photo_name && not empty product.product_photo_path}">
+							<img id="photo-upload"
+								src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}" />
+						</c:if> <!-- product-img -->
 
-                            <img id="photo-upload" src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
-
-                        </c:if> <!-- product-img -->
-
-                        <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
-                        <c:if test="${empty product.product_photo_name || empty product.product_photo_path}">
-                            <div class="item" id="photo-none-img"> </div>
-                        </c:if> <!-- product-none-img -->
-                </div> <!-- photo -->
+						<!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
+						<c:if test="${empty product.product_photo_name || empty product.product_photo_path}">
+							<div class="item" id="photo-none-img"> </div>
+						</c:if> <!-- product-none-img -->
+					</div> <!-- photo -->
 
                 <div class="qtn">
                     <span>수량
@@ -89,142 +88,136 @@
                         <img src="${pageContext.request.contextPath}/resources/assets/img/kakao_icon.png" alt="카카오톡">
                         공유하기
                         <button class="qr-btn">QR코드 생성</button>
-                    </div>
+                    </div> <!-- share -->
                 </a>
                 </div> <!-- left-box -->
 
-            <div class="right-box">
-                <ul>
-                    <c:if test="${sessionScope.member_type >= 0.1}"> <!-- 기업회원(1), 개인회원(0) -->
-                        <li>
-                            <div class="title">바코드</div>
-                            <div class="detail">${product.barcode}
-                            </div>
-                        </li>
-                    </c:if>
-                        <li>
-                            <div class="title">이름</div>
-                            <div class="detail">${product.product_name}</div>
-                        </li>
-                        <c:if test="${not empty baseCategory.cate_name1}">
-                            <li>
-                                <div class="title">${baseCategory.cate_name1}</div>
-                                <c:choose>
-                                    <c:when test="${not empty category.cate_detail1}">
-                                        <div class="detail">${category.cate_detail1}</div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="detail">-</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </li>
-                        </c:if>
-                        <c:if test="${not empty baseCategory.cate_name2}">
-                            <li>
-                                <div class="title">${baseCategory.cate_name2}</div>
-                                <c:choose>
-                                    <c:when test="${not empty category.cate_detail2}">
-                                        <div class="detail">${category.cate_detail2}</div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="detail">-</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </li>
-                        </c:if>
-                        <c:if test="${not empty baseCategory.cate_name3}">
-                            <li>
-                                <div class="title">${baseCategory.cate_name3}</div>
-                                <c:choose>
-                                    <c:when test="${not empty category.cate_detail3}">
-                                        <div class="detail">${category.cate_detail3}</div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="detail">-</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </li>
-                        </c:if>
-                        <c:if test="${not empty baseCategory.cate_name4}">
-                            <li>
-                                <div class="title">${baseCategory.cate_name4}</div>
-                                <c:choose>
-                                    <c:when test="${not empty category.cate_detail4}">
-                                        <div class="detail">${category.cate_detail4}</div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="detail">-</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </li>
-                        </c:if>
-                        <c:if test="${not empty baseCategory.cate_name5}">
-                            <li>
-                                <div class="title">${baseCategory.cate_name5}</div>
-                                <c:choose>
-                                    <c:when test="${not empty category.cate_detail5}">
-                                        <div class="detail">${category.cate_detail5}</div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <div class="detail">-</div>
-                                    </c:otherwise>
-                                </c:choose>
-                            </li>
-                        </c:if>
-                    <li>
-                        <div class="title">메모</div>
-                        <div class="detail" id="detail-memo">
-                            <c:set var="memo" value="${product.product_memo}"/>
-                            <c:choose>
-                                <c:when test="${fn:contains(memo,'@')}">
-                                    <c:set var="mentions" value="${fn:split(product.product_memo,' ')}"/>
-                                    <c:forEach var="id" items="${mentions}" begin="0" end="${fn:length(mentions)}">
-                                        <c:choose>
-                                            <c:when test="${fn:startsWith(id,'@')}">
-                                                <span class="mention" id="${id}">
-                                                        ${id}
-                                                </span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="text">
-                                                    &nbsp;${id}
-                                                </span>
-                                            </c:otherwise>
-                                        </c:choose>
+			<div class="right-box">
+				<ul>
+					<li>
+						<div class="title">이름</div>
+						<div class="detail">${product.product_name}</div>
+					</li>
 
+					<c:if test="${not empty baseCategory.cate_name1}">
+						<li>
+							<div class="title">${baseCategory.cate_name1}</div>
+							<c:choose>
+								<c:when test="${not empty category.cate_detail1}">
+									<div class="detail">${category.cate_detail1}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="detail">-</div>
+								</c:otherwise>
+							</c:choose>
+						</li>
+					</c:if>
 
-                                    </c:forEach>
-                                </c:when>
-                                <c:otherwise>
-                                    ${product.product_memo}
-                                </c:otherwise>
-                            </c:choose>
-                            <span class="more">
-                                    <a href="#" id="more">더보기</a>
-                                </span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            </div>
+					<c:if test="${not empty baseCategory.cate_name2}">
+						<li>
+							<div class="title">${baseCategory.cate_name2}</div>
+							<c:choose>
+								<c:when test="${not empty category.cate_detail2}">
+									<div class="detail">${category.cate_detail2}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="detail">-</div>
+								</c:otherwise>
+							</c:choose>
+						</li>
+					</c:if>
+
+					<c:if test="${not empty baseCategory.cate_name3}">
+						<li>
+							<div class="title">${baseCategory.cate_name3}</div>
+							<c:choose>
+								<c:when test="${not empty category.cate_detail3}">
+									<div class="detail">${category.cate_detail3}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="detail">-</div>
+								</c:otherwise>
+							</c:choose>
+						</li>
+					</c:if>
+
+					<c:if test="${not empty baseCategory.cate_name4}">
+						<li>
+							<div class="title">${baseCategory.cate_name4}</div>
+							<c:choose>
+								<c:when test="${not empty category.cate_detail4}">
+									<div class="detail">${category.cate_detail4}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="detail">-</div>
+								</c:otherwise>
+							</c:choose>
+						</li>
+					</c:if>
+
+					<c:if test="${not empty baseCategory.cate_name5}">
+						<li>
+							<div class="title">${baseCategory.cate_name5}</div>
+							<c:choose>
+								<c:when test="${not empty category.cate_detail5}">
+									<div class="detail">${category.cate_detail5}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="detail">-</div>
+								</c:otherwise>
+							</c:choose>
+						</li>
+					</c:if>
+
+					<li>
+						<div class="title">메모</div>
+						<div class="detail" id="detail-memo">
+							<c:set var="memo" value="${product.product_memo}" />
+							<c:choose>
+								<c:when test="${fn:contains(memo,'@')}">
+									<c:set var="mentions" value="${fn:split(product.product_memo,' ')}" />
+									<c:forEach var="id" items="${mentions}" begin="0" end="${fn:length(mentions)}">
+										<c:choose>
+											<c:when test="${fn:startsWith(id,'@')}">
+												<span class="mention" id="${id}">
+													${id}
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span class="text">
+													&nbsp;${id}
+												</span>
+											</c:otherwise>
+										</c:choose>			
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									${product.product_memo}
+								</c:otherwise>
+							</c:choose>
+							<span class="more">
+								<a href="#" id="more">더보기</a>
+							</span>
+						</div> <!-- detail-memo -->
+					</li>
+				</ul>
+			</div> <!-- right-box -->
+			</div> <!-- product-detail-wrap -->
 
             <%-- 댓글 --%>
             <div class="comment-wrap">
                 <div id="search">
                     <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
                     <input name="comment_content" id="commentContent" class="search" type="text"
-                           placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
-                    <ul class="suggestions">
-                    </ul>
+                        placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
+                    <ul class="suggestions"></ul>
                     <button id="insertBtn" class="searchbtn">
                         <i class="fas fa-pencil-alt"></i>
                         Write
                     </button>
                 </div><!-- search -->
                 <div id="comment-box">
-
                 </div> <!-- comment-box -->
-
             </div><!-- comment-wrap -->
         </div><!-- scroll -->
     </div> <!-- main-container -->
