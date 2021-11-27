@@ -231,6 +231,13 @@ textarea:focus {
   font-size: 20px;
 }
 
+#pwd1 {
+    position: relative;
+    bottom: 30px;
+    left: 330px;
+    color: #5a95f5;
+}
+
 /* Customize the label (the container) */
 .container2 {
   display: block;
@@ -379,12 +386,6 @@ textarea:focus {
   transform: scale(1.05) translateY(-0.3rem);
   /* box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08); */
 }
-
-
-/* Modal */
-
-
-
 
 /* loginIndex */
 
@@ -664,5 +665,7 @@ break{
   /*opacity: alpha*0.6;*/
 }
 
-
+#pw {
+	margin-bottom: -13px;
+}
 

@@ -21,26 +21,26 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
     <!-- bootstrap -->
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
     />
 
     <!-- font awesome -->
     <script
-            src="https://kit.fontawesome.com/a959489452.js"
-            crossorigin="anonymous"
+      src="https://kit.fontawesome.com/a959489452.js"
+      crossorigin="anonymous"
     ></script>
 
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=6"
+      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=9"
     />
     <link
-            rel="stylesheet"
-            href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=3"
+      rel="stylesheet"
+      href="${pageContext.request.contextPath}/resources/assets/css/accountModal.css?ver=4"
     />
   </head>
   <body>
@@ -60,30 +60,60 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
             <div class="my-wrapper1">
               <h2 class="fs-title" style="margin-top: -5px">프로필 이미지</h2>
 
-              <div
-                id="profile-upload"
-                style="
-                  background-image: url('https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}');
-                "
-              >
-                <input
-                  type="file"
-                  name="file"
-                  id="profile-photo"
-                  class="upload"
-                />
-                <input
-                  type="hidden"
-                  name="photo_name"
-                  id="default"
-                  value="${member.photo_name}"
-                />
-                <input
-                  type="hidden"
-                  name="photo_path"
-                  value="${member.photo_path}"
-                />
-              </div>
+              <c:choose>
+                <c:when test="${not empty member.photo_name}">
+                  <div
+                    id="profile-upload"
+                    style="
+                      background-image: url('https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}');
+                    "
+                  >
+                    <input
+                      type="file"
+                      name="file"
+                      id="profile-photo"
+                      class="upload"
+                    />
+                    <input
+                      type="hidden"
+                      name="photo_name"
+                      id="default"
+                      value="${member.photo_name}"
+                    />
+                    <input
+                      type="hidden"
+                      name="photo_path"
+                      value="${member.photo_path}"
+                    />
+                  </div>
+                </c:when>
+                <c:otherwise>
+                  <div
+                    id="profile-upload"
+                    style="
+                      background-image: url('https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png');
+                    "
+                  >
+                    <input
+                      type="file"
+                      name="file"
+                      id="profile-photo"
+                      class="upload"
+                    />
+                    <input
+                      type="hidden"
+                      name="photo_name"
+                      id="default"
+                      value="${member.photo_name}"
+                    />
+                    <input
+                      type="hidden"
+                      name="photo_path"
+                      value="${member.photo_path}"
+                    />
+                  </div>
+                </c:otherwise>
+              </c:choose>
 
               <div class="member-type">
                 <c:choose>
@@ -114,7 +144,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                 </c:choose>
               </div>
 
-            <!-- 멤버 타입 숨기기 -->
+              <!-- 멤버 타입 숨기기 -->
               <div class="member_input" style="visibility: hidden; height: 1%">
                 <label for="member_type" class="label"> 멤버타입 </label
                 ><input
@@ -155,7 +185,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
             <!-- right -->
             <div class="my-wrapper2">
-              <div class="group">
+              <div class="group" id="pw">
                 <label for="pwd" class="label"> 패스워드 </label>
                 <input
                   id="pwd"
@@ -164,8 +194,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                   name="password"
                   value="${member.password}"
                 />
-              </div>
-
+                <i id="pwd1" class="fas fa-eye active"></i>
+			  </div>
               <div class="group">
                 <label for="name" class="label"> 이름 </label
                 ><input
@@ -201,12 +231,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
             </div>
 
             <div class="buttons">
-              <!-- <input
-                class="submit-btn hvr-float"
-                type="submit"
-                value="정보 수정"
-              /> -->
-
+             
               <button class="submit-btn hvr-float" type="submit">
                 <i class="fas fa-pencil-alt"></i> 정보 수정
               </button>
@@ -220,13 +245,6 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                 <i class="fas fa-minus-circle"></i> 회원 탈퇴
               </button>
 
-              <!-- <button
-                class="cancel-btn hvr-float"
-                type="button"
-                onclick="location.href='/member/delete?member_id=${member.member_id}'"
-              >
-              <i class="fas fa-minus-circle"></i></i> 회원 탈퇴
-              </button> -->
             </div>
           </form>
         </div>
@@ -235,14 +253,21 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
     <div id="delete" class="modal">
       <div class="modal-window">
-        <div class="title">
-          <h5>탈퇴?😧😧😧</h5>
+      
+        <i id="notice" class="fas fa-exclamation-circle"></i>
+        <div class="delete-title">
+          <h4>잠깐! 정말 탈퇴하시겠어요?😧</h4>
+          <p>모든 개인정보 및 박스 데이터가 삭제됩니다.</p>
+        </div>
+        <div class="delete-content">
+	      <h5>탈퇴 전 유의사항</h5>
+	      <p>-탈퇴 후 같은 아이디, 이메일로 재가입이 불가합니다.</p>
         </div>
         <form id="deleteForm" action="/member/delete" method="post">
           <input type="hidden" name="member_id" value="${member_id}" />
           <div class="modalbuttons">
             <button class="delete-btn hvr-float" type="submit">
-              회원 탈퇴
+              <i class="fas fa-minus-circle"></i>&nbsp;회원 탈퇴
             </button>
             <button data-dismiss="modal">취소</button>
           </div>
@@ -253,21 +278,11 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
   <script
-    type="application/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/myPage.js?ver=3"
+    type="text/javascript"
+    src="${pageContext.request.contextPath}/resources/assets/js/myPage.js?ver=4"
   ></script>
   <script
-    type="application/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"
+    type="text/javascript"
+    src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=4"
   ></script>
-  <script>
-    // const productPhotoEdit = document.querySelector(".product-photo-edit");
-    const photoPath = "${member.photo_path}";
-    console.log(photoPath);
-
-    if (photoPath.indexOf("resources") !== -1) {
-    	file.style.backgroundImage = "url('${pageContext.request.contextPath}${member.photo_path}${member.photo_name}')";
-    } else {
-    	file.style.backgroundImage = "url('https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}')";
-  </script>
 </html>
