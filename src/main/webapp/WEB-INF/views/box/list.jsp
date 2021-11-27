@@ -49,7 +49,7 @@
                 <ul class="pagination">
                     <c:if test="${pageMaker.prev}">
                         <li class="page-item"><a class="page-link"
-                                                 href="/box/list?currPage=${pageMaker.startPage-1}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}"><i
+                                href="/box/list?currPage=${pageMaker.startPage-1}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}"><i
                                 class="fas fa-angle-left"></i></a></li>
                     </c:if>
 
