@@ -64,7 +64,7 @@
 
             <div class="group">
                 <label for="id" class="label"> 아이디 </label>
-                <input id="id" class="input" type="text" name="member_id"/>
+                <input id="id" class="input" type="text" name="member_id" required/>
             </div>
 
             <div class="group" id="pw">

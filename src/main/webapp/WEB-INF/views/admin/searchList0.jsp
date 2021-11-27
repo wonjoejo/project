@@ -72,7 +72,8 @@ pageEncoding="UTF-8"%>
           <!-- 회원 테이블 -->
           <div class="member-table">
             <div id="tablehead" class="tablecontainer">
-              <div id="timg" class="item">회원</div>
+              <div id="timg" class="item">회원</div>     
+              <div id="ttype" class="item">유형</div>
               <div id="tid" class="item">아이디</div>
               <div id="tname" class="item">이름</div>
               <div id="tmail" class="item">이메일</div>
@@ -100,7 +101,18 @@ pageEncoding="UTF-8"%>
                     	
                     <div class="item" id="${member.member_type}" hidden>
 					</div>
-                    	
+                    
+                     <div class="item">
+			          <c:choose>
+			            <c:when test="${member.member_type==0}">
+			              <div class="type-content">개인</div>
+			            </c:when>
+			            <c:otherwise>
+			             <div class="type-content">기업</div>
+			            </c:otherwise>
+			          </c:choose>
+						</div>
+                    
                     <div class="item" id="${member.member_id}">
                       <c:out value="${member.member_id}" /> 
                     </div>		
@@ -127,7 +139,7 @@ pageEncoding="UTF-8"%>
             </div>
 
           </div>
-
+</div>
           <!-- 페이징 처리 -->
           <div id="pagination">
 
@@ -205,7 +217,7 @@ pageEncoding="UTF-8"%>
             </div> 
           </div>
           
-      </div>  
+    
     </div>
 
     
@@ -225,11 +237,11 @@ pageEncoding="UTF-8"%>
     console.log(type);
     
     if(type=="1") {
-     document.searchForm.action="/admin/searchList0";
-     console.log("개인회원");
+        document.searchForm.action="/admin/searchList0";
+        console.log("개인회원");
     } else {
-      document.searchForm.action="/admin/searchList1";
-      console.log("기업회원");
+        document.searchForm.action="/admin/searchList1";
+        console.log("기업회원");
     }
   }
     </script>

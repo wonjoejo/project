@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -97,11 +99,22 @@ public class LoginInterceptor
 
             } else { // 원래의 요청 URI가 없다면
 //                res.sendRedirect("/");
-                res.sendRedirect("/box/list?member_id=" + member.getMember_id()); // 로그인 -> 박스리스트로 이동 => 아이디 값 줘야 함
+                if(member.getMember_type() == 2) { // 11.27 지수 -> 관리자 구분 
+                    res.sendRedirect("/admin/listPerPage");
+                } else {
+                    res.sendRedirect("/box/list?member_id=" + member.getMember_id()); // 로그인 -> 박스리스트로 이동 => 아이디 값 줘야 함
+                } //if-else
+
             } // if-else
 
         } else { // 로그인 실패
-            res.sendRedirect("/member/login");
+        	res.setContentType("text/jsp; charset=utf-8");
+        	PrintWriter out=res.getWriter();
+        	out.print("<script>alert('아이디 혹은 비밀번호를 확인하세요'); location.href='/member/login';</script>");
+        	out.flush();
+        	out.close();
+        	
+            //res.sendRedirect("/member/login");
         } // if-else
 
     } // postHandle

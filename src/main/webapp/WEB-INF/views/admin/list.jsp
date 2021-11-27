@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/admin.css?ver=7"
+      href="${pageContext.request.contextPath}/resources/assets/css/admin.css?ver=11"
     />
     <link
       rel="stylesheet"
@@ -73,6 +73,7 @@ pageEncoding="UTF-8"%>
           <div class="member-table">
             <div id="tablehead" class="tablecontainer">
               <div id="timg" class="item">회원</div>
+              <div id="ttype" class="item">유형</div>
               <div id="tid" class="item">아이디</div>
               <div id="tname" class="item">이름</div>
               <div id="tmail" class="item">이메일</div>
@@ -101,6 +102,17 @@ pageEncoding="UTF-8"%>
                     <div class="item" id="${member.member_type}" hidden>
 					</div>
                     	
+                     <div class="item">
+			          <c:choose>
+			            <c:when test="${member.member_type==0}">
+			              <div class="type-content">개인</div>
+			            </c:when>
+			            <c:otherwise>
+			             <div class="type-content">기업</div>
+			            </c:otherwise>
+			          </c:choose>
+						</div>
+					
                     <div class="item" id="${member.member_id}">
                       <c:out value="${member.member_id}" /> 
                     </div>		
@@ -128,7 +140,7 @@ pageEncoding="UTF-8"%>
             </div>
 
           </div>
-
+</div>
           <!-- 페이징 처리 -->
           <div id="pagination">
 
@@ -206,7 +218,7 @@ pageEncoding="UTF-8"%>
             </div> 
           </div>
 
-      </div>  
+    
     </div>
 
     
@@ -214,7 +226,7 @@ pageEncoding="UTF-8"%>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
   <script
     type="application/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/admin.js?ver=2"
+    src="${pageContext.request.contextPath}/resources/assets/js/admin.js?ver=4"
   ></script>
 
   <script>

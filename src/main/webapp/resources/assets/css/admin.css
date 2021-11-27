@@ -348,24 +348,50 @@ select:focus {
   font-size: 15px;
   height: 60px;
   margin: auto;
-  width: 95%;
+  width: 97%;
   font-weight: 500;
+}
+
+.memberlist {
+  margin-bottom: 8px;
+  margin-top: 4px;
 }
 
 .item {
   flex-grow: 1;
-  width: 25%;
+  width: 2%;
   /* white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; */
 }
 
+#timg {
+  margin-left: 3px;
+}
+
+#ttype {
+  margin-right: 2px;
+}
+
+#tid {
+  margin-right: 2px;
+}
+
 #tname {
-  margin-right: -1px;
+  margin-right: 3px;
 }
 
 #tmail {
-  margin-right: 28px;
+  margin-right: 69px;
+}
+
+.type-content {
+  font-family: "Wemakeprice-SemiBold";
+  background: linear-gradient(to right, #4776e6, #8e54e9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.5;
 }
 
 .detailbtn {
@@ -377,7 +403,7 @@ select:focus {
   background-color: #dae9fc;
   color: #7b61ff;
   border: none;
-  margin-right: 8%;
+  /* margin-right: 8%; */
   margin-left: 4%;
 }
 
@@ -531,7 +557,7 @@ select:focus {
   left: 20%;
   width: 80px;
   height: 80px;
-  animation-delay: 2s;
+  /*animation-delay: 2s;*/
   animation-duration: 17s;
 }
 .bg-bubbles li:nth-child(3) {
@@ -572,7 +598,7 @@ select:focus {
   left: 25%;
   width: 10px;
   height: 10px;
-  animation-delay: 2s;
+  /*animation-delay: 2s;*/
   animation-duration: 40s;
   background-color: rgba(255, 255, 255, 0.3);
 }
