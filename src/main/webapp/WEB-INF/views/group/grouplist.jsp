@@ -36,7 +36,7 @@
 
 					<!-- stylesheets -->
 					<link rel="stylesheet"
-						href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=4">
+						href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=5">
 				</head>
 
 
@@ -109,11 +109,5 @@
 				
 				</script>
 
-
-
-<<<<<<< Updated upstream
 				</html>
-=======
 
-				</html>
->>>>>>> Stashed changes

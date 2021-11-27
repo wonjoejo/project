@@ -2,58 +2,6 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 			<html>
 
-			<style>
-				#per {
-					width: 25%;
-				}
-
-				#pertable {
-					text-align: center;
-					width: 100%;
-					margin: 1%;
-					border-collapse: separate;
-					border-spacing: 0 10px;
-				}
-
-
-				table td {
-					width: 100px;
-				}
-
-				#profile_img {
-					width: 65%;
-				}
-
-				.scroll {
-					overflow-y: auto;
-					overflow-x: hidden;
-					width: 100%;
-					height: 350px;
-				}
-
-				/* 스크롤바 설정*/
-				.type2::-webkit-scrollbar {
-					width: 8px;
-				}
-
-				/* 스크롤바 막대 설정*/
-				.type2::-webkit-scrollbar-thumb {
-					height: 17%;
-					background-color: rgb(72, 75, 218);
-					border-radius: 10px;
-				}
-
-				/* 스크롤바 뒷 배경 설정*/
-				.type2::-webkit-scrollbar-track {
-					background-color: rgba(142, 200, 248, 0.288);
-				}
-				
-				.but {
-					display: flex;
-					justify-content: flex-end;
-				}
-			</style>
-
 			<head>
 				<title>GroupList</title>
 
@@ -90,6 +38,9 @@
 									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
 							 </c:if> 
 									<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
+        					    <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
+              						  <button class="box-list-btn hvr-float"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
+         						</a>
 							</div>
 						</div>
 
