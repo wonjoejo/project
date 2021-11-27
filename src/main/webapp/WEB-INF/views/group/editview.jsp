@@ -31,11 +31,11 @@
     <div class="main-container">
         <div class="name">
             <h1>그룹 설정</h1>
-        </div>
 
-        <div class="buttons">
+        <div class="but">
             <input class="submit-btn submit-permit hvr-float" type="submit" value="저장">
             <input class="submit-btn hvr-float master-btn" type="button" value="그룹 양도">
+        </div>
         </div>
 
         <div class="group-wrapper2">
