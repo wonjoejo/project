@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=11"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=13"
     />
 
     <style>
@@ -189,7 +189,12 @@ pageEncoding="UTF-8"%>
               />
             </div>
 
-            <button type="button" name="next" class="next action-button">
+            <button
+              type="button"
+              name="next"
+              class="next action-button"
+              id="next1"
+            >
               다음
             </button>
           </fieldset>
@@ -230,7 +235,8 @@ pageEncoding="UTF-8"%>
               </div>
 
               <div class="group">
-                <label for="member_id" class="label"> 아이디 </label
+                <label for="member_id" class="label">
+                  아이디<i class="fas fa-asterisk"></i> </label
                 ><input
                   id="member_id"
                   class="input"
@@ -247,10 +253,14 @@ pageEncoding="UTF-8"%>
               <div class="alert alert-danger" id="alert-danger-id">
                 사용 불가한 아이디입니다.
               </div>
+              <div class="alert alert-danger" id="alert-min-id">
+                영문 3글자 이상 입력하세요.
+              </div>
 
               <div class="pw">
                 <div class="group">
-                  <label for="pwd" class="label"> 패스워드 </label
+                  <label for="pwd" class="label">
+                    패스워드<i class="fas fa-asterisk"></i> </label
                   ><input
                     id="pwd"
                     class="input"
@@ -260,9 +270,15 @@ pageEncoding="UTF-8"%>
                     required
                   /><i id="pwd1" class="fas fa-eye active"></i>
                 </div>
-
+                <div class="alert alert-danger" id="alert-min-pw">
+                  영문 혹은 숫자로 4~12글자 이상 입력하세요.
+                </div>
+                <div class="alert alert-danger" id="alert-danger-pw">
+                  영문 혹은 숫자로 4~12글자 이상 입력하세요.
+                </div>
                 <div class="group">
-                  <label for="pwdcheck" class="label"> 패스워드 확인 </label
+                  <label for="pwdcheck" class="label">
+                    패스워드 확인<i class="fas fa-asterisk"></i> </label
                   ><input
                     id="pwdcheck"
                     class="input"
@@ -280,7 +296,12 @@ pageEncoding="UTF-8"%>
                 패스워드가 일치하지 않습니다.
               </div>
             </div>
-            <button type="button" name="next" class="next action-button">
+            <button
+              type="button"
+              name="next"
+              class="next action-button"
+              id="next2"
+            >
               다음
             </button>
 
@@ -317,19 +338,24 @@ pageEncoding="UTF-8"%>
               </div>
 
               <div class="group">
-                <label for="name" class="label"> 이름 </label
+                <label for="name" class="label">
+                  이름<i class="fas fa-asterisk"></i> </label
                 ><input
                   id="name"
                   class="input"
                   type="text"
                   name="name"
-                  placeholder="name"
+                  placeholder="임박스"
                   required
                 />
               </div>
+              <div class="alert alert-danger" id="alert-danger-name">
+                이름을 입력하세요.
+              </div>
 
               <div class="group">
-                <label for="email" class="label"> 이메일 </label
+                <label for="email" class="label">
+                  이메일<i class="fas fa-asterisk"></i> </label
                 ><input
                   id="email"
                   class="input"
@@ -338,6 +364,9 @@ pageEncoding="UTF-8"%>
                   placeholder="example@mail.com"
                   required
                 />
+              </div>
+              <div class="alert alert-danger" id="alert-danger-mail">
+                메일 주소를 입력하세요.
               </div>
 
               <div class="group">
@@ -350,7 +379,11 @@ pageEncoding="UTF-8"%>
                   placeholder="01012345678"
                 />
               </div>
+              <div class="alert alert-danger" id="alert-danger-phone">
+                -없이 숫자를 입력하세요.
+              </div>
             </div>
+
             <div>
               <button class="register-submit" type="submit">가입하기</button>
             </div>
@@ -378,54 +411,107 @@ pageEncoding="UTF-8"%>
     src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=10"
   ></script>
   <script type="text/javascript">
-    $(function () {
+  $(function () {
       $("#alert-success").hide();
       $("#alert-danger").hide();
-      $("input").keyup(function () {
-        const pwd = $("#pwd").val();
-        const pwdcheck = $("#pwdcheck").val();
-        if (pwd != "" || pwdcheck != "") {
-          if (pwd == pwdcheck) {
-            $("#alert-success").show();
-            $("#alert-danger").hide();
-            $(".register-submit").removeAttr("disabled");
-          } else {
-            $("#alert-success").hide();
-            $("#alert-danger").show();
-            $(".register-submit").attr("disabled", "disabled");
-          }
-        }
-      });
-    });
+      $("#alert-danger-pw").hide();
+      $("#alert-danger-name").hide();
+      $("#alert-danger-mail").hide();
+      $("#alert-danger-phone").hide();
+      
+      const nameJ = /^[가-힣a-zA-Z]+$/;
+      const mailJ =
+        /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      const phoneJ = /^010?([0-9]{4})?([0-9]{4})$/;
+      
+      const pwJ = /^[A-Za-z0-9]{4,12}$/;
+      
+        // 비밀번호 유효성 검사
+      	$("#pwd").keyup(function () {
+
+     	     if (pwJ.test($(this).val())){
+     	    	$("#alert-danger-pw").hide();
+     	    	$("#alert-min-pw").hide();				
+			 } else {
+				$("#alert-min-pw").hide();
+				$("#alert-danger-pw").show();
+			 } // if-else
+        }); // pwd input
+        
+		// 비밀번호 확인
+        $("#pwdcheck").keyup(function () {
+        	const pwd = $("#pwd").val();
+      		const pwdcheck = $("#pwdcheck").val();
+      		
+        	$("#alert-danger").show();
+        	
+        	if(pwd == pwdcheck) {
+				$("#alert-success").show();
+				$("#alert-danger").hide();
+				$(".register-submit").removeAttr("disabled");  
+      		} else {  
+      			$("#alert-success").hide();
+	            $("#alert-danger").show();
+	            $(".register-submit").attr("disabled", "disabled");
+      		}//if-else	
+        }); // pwdcheck input
+
+     	// 이름
+     	$("#name").keyup(function () {
+	        if (nameJ.test($(this).val())){
+	      	  $("#alert-danger-name").hide();
+	        } else {
+	          $("#alert-danger-name").show();
+	        } // nameJ
+     	}); // name input 
+     	
+      	// 메일
+      	$("#email").keyup(function () {
+	        if (mailJ.test($(this).val())){
+	      	  $("#alert-danger-mail").hide();
+	        } else {
+	            $("#alert-danger-mail").show();
+	        } // mailJ
+        }); // email input
+        
+	    // 폰번호
+	    $("#phone_number").keyup(function () {
+	        if (phoneJ.test($(this).val())){
+	      	  $("#alert-danger-phone").hide();
+	        }	else {
+	            $("#alert-danger-phone").show();
+	        } // phoneJ
+   	    }); // phone_number input
+ 
+    }); // function
+  
   </script>
+ 
   <script>
-    // 아이디 중복검사
-    function checkId() {
-      const member_id = $("#member_id").val(); //id값이 "id"인 입력란의 값을 저장
-      console.log(member_id);
-
-      //$("#alert-success-id").hide();
-      //$("#alert-danger-id").hide();
-
-      $.ajax({
-        url: "/member/idCheck",
-        type: "post",
-        data: { member_id: member_id },
-        success: function (cnt) {
-          if (cnt != 1) {
-            //cnt가 0일 경우 -> 사용 가능한 아이디
-             $("#alert-success-id").show();
-             $("#alert-danger-id").hide();
-             $(".register-submit").removeAttr("disabled");
-          } else {
-            // cnt가 1일 경우 -> 이미 존재하는 아이디
-             $("#alert-success-id").hide();
-             $("#alert-danger-id").show();
-             $(".register-submit").attr("disabled", "disabled");
-          }
-        },
-
-      });
-    }
+  // 아이디 중복검사
+  function checkId() {
+    const member_id = $("#member_id").val(); //id값이 "id"인 입력란의 값을 저장
+    console.log(member_id);
+    $.ajax({
+      url: "/member/idCheck",
+      type: "post",
+      data: { member_id: member_id },
+      success: function (cnt) {
+        if (cnt != 1 && member_id.length > 2) {
+          // cnt가 0일 경우 -> 사용 가능한 아이디
+           $("#alert-min-id").hide();
+           $("#alert-success-id").show();
+           $("#alert-danger-id").hide();
+           $(".register-submit").removeAttr("disabled");
+        } else {
+          // cnt가 1일 경우 -> 이미 존재하는 아이디
+           $("#alert-min-id").hide();
+           $("#alert-success-id").hide();
+           $("#alert-danger-id").show();
+           $(".register-submit").attr("disabled", "disabled");
+        }
+      },
+    });
+  }
   </script>
 </html>
