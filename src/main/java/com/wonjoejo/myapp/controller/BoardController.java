@@ -291,13 +291,18 @@ public class BoardController {
     
     //공지사항 상세조회 화면 요청 
     @GetMapping("/noticedetail")
-    public void noticedetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model) {
+    public void noticedetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model, HttpServletRequest req) {
     	log.debug("detail({},{},{}) invoked.",cri,board_idx,model);
-    
+    	
+    	HttpSession session = req.getSession();
+    	
+    	String member_id = (String)session.getAttribute("member_id");
+    	 
     	BoardVO board = this.service.noticedetail(board_idx);
 		log.info("\t+ board: {}",board);
 		
 		model.addAttribute("board", board);
+		model.addAttribute("member_id",member_id);
     }
     
     

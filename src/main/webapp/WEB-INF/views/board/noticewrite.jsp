@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-	<title>Q&AWrite</title>
+	<title>Q&ANoticeWrite</title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
@@ -29,18 +29,19 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-			<div id="top_content">
-				<h1 class="title">Q&A</h1>
-						
-				<button id="listBtn" type="button">돌아가기</button>
-			</div>
+		
+			<jsp:include page="../common/leftmobile.jsp"/>
 			
+			<div id="top_content">
+				<h1 class="title">Q&A</h1>						
+				<button id="noticepagelistBtn" type="button">돌아가기</button>
+			</div>
 			
 			<form id="noticeForm" action="/board/noticewrite" method="post">
 				<input type="hidden" name="ref" value="${param.ref}" />
 		        <div class="write_wrapper">
 		        	<div>
-		        		<h3 class="write_title">글 쓰기</h3>   
+		        		<h3 class="write_title">공지글 쓰기</h3>   
 		        	</div>
 		        	<div>
 		            	<input class="writeid" type="text" name="member_id" value="${member_id}" readonly/>
@@ -67,19 +68,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=20"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
 	
     <script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-
-        //돌아가기 
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/noticePage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick       
-      }); //.jq
+	    const currPage = ${cri.currPage};
+		const amount = ${cri.amount};
+		const pagesPerPage = ${cri.pagesPerPage};
     </script>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=70"></script>
 </html>

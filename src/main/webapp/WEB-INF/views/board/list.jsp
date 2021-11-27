@@ -18,7 +18,7 @@
 	<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 	<!-- stylesheets -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=113">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=115">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
@@ -39,24 +39,13 @@
 			
 				<h1 class="title">Q&A</h1>
 				
-				 <div class="search_pc">
-					 <form id="searchForm" action="/board/searchlist" method='get'>
-			
-				        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-				        
-				        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
-				        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-				        <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
-				        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
-				     </form>
-				  </div>
-				
 				<c:if test="${member_id != null}">
 					<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
 				</c:if>
+				
 			</div> 	
-			
-			<div class="search_m">
+				
+			 <div class="search_pc">
 				 <form id="searchForm" action="/board/searchlist" method='get'>
 		
 			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
@@ -67,7 +56,7 @@
 			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
 			     </form>
 			  </div>
-			
+		
 			<div class="noticewrapper" >
 				<h2 class="notice">공지사항</h2>
 				<div id="notice">
@@ -184,6 +173,7 @@
 </div>
 
 </body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>

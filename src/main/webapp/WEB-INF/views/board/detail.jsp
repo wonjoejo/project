@@ -29,6 +29,8 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
+		
+			<jsp:include page="../common/leftmobile.jsp"/>
 			
 			<div id="detailtop">		
 				<h1 class="title">Q&A</h1>						
@@ -41,9 +43,6 @@
 			
 					<div class="detailwrapper">
 						<div class="detailtitle">
-							<c:if test="${board.depth == 1}">
-								<img class="replyimg" src="${pageContext.request.contextPath}/resources/assets/img/reply.png" />
-							</c:if>
 							<input class="noline" type="text" name="title" value="${board.title}" readonly />
 						</div>
 						
@@ -82,35 +81,21 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=30"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>	
 
 	<script>
-      $(function () {
-        console.clear();
-        console.log('JQuery stared...');
-   
-     	// 답글 작성 버튼 
-        $('#replyWriteBtn').on('click', function () {
-            console.log('onclicked on writeBtn...');
-
-            self.location = '/board/replywrite?ref=${board.ref}&title=${board.title}&member_id=${board.member_id}';
-        });//onclick      
-        
-       // 수정 버튼에 대한 이벤트 등록 처리
-        $('#editBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/edit?board_idx=${board.board_idx}';
-        }); //onclick
-
-        //돌아가기 버튼에 대한 이벤트 등록 처리
-        $('#listBtn').click(function () {
-          console.log('click event triggered..');
-
-          self.location = '/board/listPerPage?currPage=${cri.currPage}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}';
-        }); //onclick */
-      }); //.jq
+		const ref = ${board.ref};
+		const title = '${board.title}';
+		const member_id ='${board.member_id}';
+		
+		const board_idx = ${board.board_idx};
+		
+		const currPage = ${cri.currPage};
+		const amount = ${cri.amount};
+		const pagesPerPage = ${cri.pagesPerPage};
     </script> 
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=54"></script>
+    
 </html>
 

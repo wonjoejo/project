@@ -30,7 +30,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=82">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=88">
 
 </head>
 
@@ -39,7 +39,7 @@
 <header>
     <nav id="headerwrap" class="" data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container">
-            <a href="#" class="main-logo">
+            <a href="${pageContext.request.contextPath}/" class="main-logo">
                 <img src="resources/assets/img/main_logo.png" alt="메인로고">
             </a>
             <div class="top-right">
@@ -53,7 +53,7 @@
                         </a>
                     </c:when>
                     <c:otherwise>
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/member/register">
                             <span class="join-btn btn-scroll-up">JOIN</span>
                         </a>
                         <a href="${pageContext.request.contextPath}/member/login">
@@ -79,20 +79,20 @@
     <div class="carousel-item active">
       	<img src="${pageContext.request.contextPath}/resources/assets/img/slide1.png" class="d-block slide1" alt="...">
      	<div class="carousel-caption d-md-block">
-        <div class="pointfont">소중한 물건들을 모아,
-	        <p class="boxfont">인투박스</p>
-	        <a href="#"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
-        </div>
-      </div>
+	        <div class="pointfont">소중한 물건들을 모아,
+		        <p class="boxfont">인투박스</p>
+		        <a href="${pageContext.request.contextPath}/member/register"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
+	        </div>
+      	</div>	
     </div>
     <div class="carousel-item">
       <img src="${pageContext.request.contextPath}/resources/assets/img/slide2.png" class="d-block slide1" alt="...">
       <div class="carousel-caption d-none d-md-block">
-      <div class="slidegroub">
+     	 <div class="slidegroub">
       		<p class="groubpoint">그룹 관리,</p>
 	        <p>초대는 쉽게 권한은 필요한 만큼만</p>
         </div>
-      </div>
+     </div>
     </div>
     <div class="carousel-item">
       <img src="${pageContext.request.contextPath}/resources/assets/img/slide3.png" class="d-block slide1" alt="...">
@@ -130,7 +130,7 @@
      	<div class="carousel-caption d-md-block">
         <div class="pointfont">소중한 물건들을 모아,
 	        <p class="boxfont">인투박스</p>
-	        <a href="#"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
+	        <a href="${pageContext.request.contextPath}/member/register"><p class="home-box">지금 무료로 시작<i class="fas fa-arrow-right"></i></p></a>
         </div>
       </div>
     </div>
@@ -142,14 +142,6 @@
       </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 
 </section>
@@ -193,10 +185,15 @@
 			<div class="active">
 				<ul>
 					<li>
-						<img src="http://placehold.it/500x500" />
-						<p>
-							개인 / 기업 					
-						</p>
+						<img class="joinimg" src="${pageContext.request.contextPath}/resources/assets/img/join.png" />
+						<div class="jointext">
+							<p>
+								<h1 class="jointext_p"><i class="fas fa-user"></i> 개인 / 기업 회원 <i class="fas fa-building"></i></h1>
+								이용 고객에 맞는 회원 종류로 가입 가능<br>
+								원하는 품목을 원하는 대로 정리<br>
+								기업회원은 바코드 생성 가능<br>				
+							</p>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -204,11 +201,15 @@
 			<div class="">
 				<ul>
 					<li>
-						<img src="http://placehold.it/500x500" />
-						<p>
-							1.박스 생성 방법 
-							2.물품 등록 방법 
-						</p>
+						<img class="boxcreateimg" src="${pageContext.request.contextPath}/resources/assets/img/box.png" />
+						<div class="boxcreatetext">
+							<p>
+								<h1 class="boxcreatetext_p"><i class="far fa-plus-square"></i> 박스생성 / 물품등록</h1>
+								1. 원하는 모드로 박스 생성<br>
+								2. 박스 , 물품 이미지 등록<br>  
+								3. 나만의 카테고리 생성<br> 												
+							</p>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -216,10 +217,14 @@
 			<div>
 				<ul>
 					<li>
-						<img src="http://placehold.it/500x500" />
-						<p>
-							그룹 초대 
-						</p>
+						<img class="groupimg" src="http://placehold.it/100x100" />
+						<div class="grouptext">
+							<p>
+								<h1 class="grouptext_p"><i class="fas fa-users"></i> 그룹 초대</h1>
+								참여 코드로 그룹 초대<br>
+								마스터 회원이 그룹 멤버에게 권한부여<br>  											
+							</p>
+						</div>
 					</li>
 				</ul>
 			</div>		

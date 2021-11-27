@@ -55,7 +55,7 @@
 			    </div>
 			 
 			   	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i class="fas fa-home"></i>HOME</a></span>
-			       <span class="menu-item active boxlist"><a
+			       <span class="menu-item boxlist"><a
 			               href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i
 			               class="far fa-list-alt"></i> 박스 리스트</a></span>
 			       <span class="menu-item inactive createview"><a href="${pageContext.request.contextPath}/box/createview"><i
