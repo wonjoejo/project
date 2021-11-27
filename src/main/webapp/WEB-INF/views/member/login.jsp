@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=1"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=5"/>
 </head>
 <body>
 <!-- header -->
@@ -67,9 +67,10 @@
                 <input id="id" class="input" type="text" name="member_id"/>
             </div>
 
-            <div class="group">
+            <div class="group" id="pw">
                 <label for="pwd" class="label"> 패스워드 </label>
-                <input id="pwd" class="input" type="password" name="password"/>
+                <input id="pwd" class="input" type="password" name="password" required/>
+                <i id="pwd1" class="fas fa-eye active"></i>
             </div>
 
             <div class="login2">
@@ -216,9 +217,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/login.js?ver=2"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/login.js?ver=2"></script>
 
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

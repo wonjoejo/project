@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=10"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=11"
     />
 
     <style>
@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
             <a href="/member/login">
               <span class="join-btn btn-scroll-up">LOGIN</span>
             </a>
-            <a href="${pageContext.request.contextPath}/board/list">
+            <a href="${pageContext.request.contextPath}/board/listPerPage">
               <span class="login-btn btn-scroll-up">Q&A</span>
             </a>
           </div>
@@ -413,7 +413,7 @@ pageEncoding="UTF-8"%>
         data: { member_id: member_id },
         success: function (cnt) {
           if (cnt != 1) {
-            //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+            //cnt가 0일 경우 -> 사용 가능한 아이디
              $("#alert-success-id").show();
              $("#alert-danger-id").hide();
              $(".register-submit").removeAttr("disabled");

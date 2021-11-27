@@ -32,24 +32,32 @@ contentType="text/html;charset=UTF-8" language="java" %>
     rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=3"
   />
-  <link
+  <!--  --><link
     rel="stylesheet"
     href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3"
   />
-
+  
+  
   <c:set var="member_id" value="${sessionScope.member_id}" />
   <div class="side-menu">
     <div class="profile">
-      <img
-        src="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"
-      />
+      <c:choose>
+        <c:when test="${not empty member.photo_name}">
+          <img
+            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"
+          />
+        </c:when>
+        <c:otherwise>
+          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+        </c:otherwise>
+      </c:choose>
       <p class="name">${member_id}</p>
     </div>
     <div class="menu">
       <span class="menu-item active mypage"
         ><a
-          href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}"
-          ><i class="far fa-user-circle"></i> 마이 페이지</a
+          href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <i class="far fa-user-circle"></i> 마이 페이지</a
         ></span
       >
       <span class="menu-item inactive boxlist"
