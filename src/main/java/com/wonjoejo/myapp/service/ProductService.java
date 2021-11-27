@@ -9,7 +9,13 @@ public interface ProductService {
 
 	// box 번호로 해당되는 물품 리스트 조회
 	public abstract List<ProductCategoryVO> getProductList(Integer box_no);
-	
+
+	// chart 수량 top 5
+	public abstract List<ProductVO> getTopProductList(Integer box_no);
+
+	// chart 최신 입고 물품
+	public abstract List<ProductVO> getDateProductList(Integer box_no);
+
     // 물품 한건 상세보기
 	public abstract ProductVO getProduct(Integer product_no);
 

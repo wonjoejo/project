@@ -11,6 +11,7 @@ import com.wonjoejo.myapp.util.UploadFileUtils;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+import org.apache.poi.hssf.record.LabelSSTRecord;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +48,49 @@ public class ChartController {
     public void chart(Integer box_no, Model model){
         log.debug("chart({}) invoked.", box_no);
 
+        // 박스 디테일
         BoxVO box = this.boxService.getBox(box_no);
         log.info("\t+ box: {}", box);
 
         model.addAttribute("box", box);
 
+        // 물품 총 개수
+        Integer totalAmount = this.productService.getTotalCount(box_no);
+        log.info("\t+ total: {}" , totalAmount);
+        model.addAttribute("totalAmount",totalAmount);
 
+        // Top5 물품 리스트
+        List<ProductVO> topProductList = this.productService.getTopProductList(box_no);
+        List<ProductVO> topList = new ArrayList<>();
 
+        if (topProductList.size() <= 5){
+            topList.addAll(topProductList);
+        } else {
+            for (int i = 0; i < 5; i++){
+                topList.add(topProductList.get(i));
+            } // for
+        } // if-else
+
+        model.addAttribute("topProductList", topList);
+
+        // 최신 입고 물품
+        List<ProductVO> dateProductList = this.productService.getDateProductList(box_no);
+        List<ProductVO> dateList = new ArrayList<>();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (dateProductList.size() <= 5){
+            dateList.addAll(dateProductList);
+        } else {
+            for (int i = 0; i < 5; i++){
+                dateList.add(dateProductList.get(i));
+            } // for
+        } // if-else
+
+        log.info("===================원래 리스트 {}",format.format(dateProductList.get(1).getReg_date()));
+        log.info("==================={}",dateList.get(1));
+
+        model.addAttribute("dateProductList", dateList);
 
 
     }; // chart
