@@ -179,7 +179,21 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		int affectedLines = this.mapper.deleteCategory(product_no);
 
 		return affectedLines == 1;
+	}
+
+	@Override
+	public Boolean checkMemberType(Integer box_no, Integer product_no) {
+		log.debug("checkMemberType({}, {}) invoked", box_no, product_no);
+		
+		int affectedLines = this.mapper.checkMemberType(box_no, product_no);
+		
+		return affectedLines == 1;
+		
 	} // deleteCategory
+	
+	
+	
+	
 
 
 } // end class

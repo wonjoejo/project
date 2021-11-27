@@ -200,6 +200,7 @@
         WHERE box_no = #{box_no}
         ]]>
     </select>
+    
 
     <!-- 물품 검색  -->
     <select id="searchProduct" resultType="com.wonjoejo.myapp.domain.ProductCategoryVO">
@@ -252,6 +253,23 @@
         SET BARCODE = #{barcode}
         WHERE PRODUCT_NO = #{product_no}
     </update>
+    
+    
+    <!-- 해당 물품의, 박스의, 멤버의, 멤버타입을 불러오기 -->
+    <select id="checkMemberType" resultType="int">
+	    SELECT 
+	    p.BOX_NO,
+	    b.MEMBER_ID,
+	    m.MEMBER_TYPE
+	
+		FROM MEMBER m
+		INNER JOIN BOX b
+			ON b.MEMBER_ID = m.MEMBER_ID
+		INNER JOIN PRODUCT p
+			ON p.BOX_NO = b.BOX_NO
+		
+		WHERE b.BOX_NO = #{box_no} and p.PRODUCT_NO = #{product_no}
+	</select>
 
 
 </mapper>

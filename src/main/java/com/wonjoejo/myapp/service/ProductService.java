@@ -49,6 +49,9 @@ public interface ProductService {
 
 	// 바코드 생성
 	public abstract Boolean createBarcode(@Param("product_no") Integer product_no, @Param("barcode") String barcode);
+	
+	// 회원 타입 조회(기업/일반)
+	public abstract Boolean checkMemberType(@Param("box_no") Integer box_no, @Param("product_no")Integer product_no);
 
 
 } // ProductService
