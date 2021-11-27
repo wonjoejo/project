@@ -426,11 +426,36 @@
     justify-content: center;
     align-items: center;
     margin: 13px 0;
+    cursor: pointer;
 }
 
 .share img {
-    width: 14%;
+    width: 20%;
     margin-right: 4%;
+}
+
+.kakao-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.kakao-btn:hover{
+    color: #5A95F5;
+    font-weight: bold;
+}
+
+.qr-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.qr-btn:hover {
+    color: #5A95F5;
+    font-weight: bold;
 }
 
 .more {
