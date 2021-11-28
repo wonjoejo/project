@@ -73,7 +73,7 @@ public class QRUtils {
 
         // 이제 만들어본 QRCode를 저장해보자
         String savePath = "product/qr";
-        String uploadedFileName = UploadFileUtils.uploadFile(savePath, product_no.toString(), outputStream.toByteArray());
+        String uploadedFileName = UploadFileUtils.uploadFile(savePath, (product_no.toString()+".png"), outputStream.toByteArray());
 
 //        this.service.createBarcode(product_no,uploadedFileName);
 //        log.info("uploadedBarcode: {}",uploadedFileName);
