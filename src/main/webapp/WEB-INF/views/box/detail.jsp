@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="box_no" value="${box.box_no}"/>
+<c:set var="permit" value="${sessionScope.permission}"/>
 <%--
   Created by IntelliJ IDEA.
   User: heewonseo
@@ -47,15 +48,7 @@
             <div class="list-wrapper">
                 <div class="box-info-container">
                     <div class="box-img">
-                        <c:set var="path" value="${box.box_photo_path}"/>
-                        <c:choose>
-                            <c:when test="${fn:contains(path,'default')}">
-                                <img src="${box.box_photo_path}${box.box_photo_name}"/>
-                            </c:when>
-                            <c:otherwise>
-                                <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
-                            </c:otherwise>
-                        </c:choose>
+                        <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
                         <span>${box.box_name}</span>
                     </div>
                     <div class="box-memo">
@@ -65,32 +58,15 @@
                         <div class="memo">
                             ${box.box_memo}
                         </div>
-                        <c:set var="session_id" value="${sessionScope.member_id}"/>
-                        <c:set var="member_id" value="${box.member_id}"/>
-                        <c:choose>
-                            <c:when test="${session_id==member_id}">
-                                <div class="buttons">
-                                    <button class="btn" onclick="location.href='/box/editview?box_no=${box.box_no}'"><i
-                                            class="fas fa-pencil-alt"></i> 수정
-                                    </button>
-                                    <button class="btn delete-btn"><i class="fas fa-trash"></i> 삭제</button>
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <div class="buttons">
-                                    <button class="btn box-get-btn"
-                                            onclick="location.href='/box/editview?box_no=${box.box_no}'"
-                                            disabled data-bs-toggle="tooltip" data-bs-placement="top"
-                                            title="박스 수정은 박스 마스터만 가능합니다"><i class="fas fa-pencil-alt"></i> 수정
-                                    </button>
-                                    <button class="btn delete-btn box-get-btn" disabled data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="박스 삭제는 박스 마스터만 가능합니다"><i
-                                            class="fas fa-trash"></i> 삭제
-                                    </button>
-                                </div>
-                            </c:otherwise>
-                        </c:choose>
-
+                        <%--  master만 박스 수정 삭제 가능   --%>
+                        <c:if test="${permit.master_per eq 0}">
+                            <div class="buttons">
+                                <button class="btn" onclick="location.href='/box/editview?box_no=${box.box_no}'"><i
+                                        class="fas fa-pencil-alt"></i> 수정
+                                </button>
+                                <button class="btn delete-btn"><i class="fas fa-trash"></i> 삭제</button>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

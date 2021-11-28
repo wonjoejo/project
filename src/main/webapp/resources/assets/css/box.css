@@ -116,19 +116,20 @@ body {
 }
 
 .main-container {
+	background: rgba(255, 255, 255, 0.66);
+	border-radius: 50px;
+	/* Right */
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
 	display: flex;
 	flex-direction: column;
-	/* Right */
-	width: 80vw;
 	height: 80vh;
-	padding: 30px;
-	overflow: hidden;
 
 	/* background */
 
-	background: rgba(255, 255, 255, 0.66);
-	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
-	border-radius: 50px;
+	overflow: hidden;
+	overflow-y: scroll;
+	padding: 30px;
+	width: 80vw;
 }
 
 .main-container h1 {
@@ -162,23 +163,23 @@ body {
 }
 
 .box {
-	padding: 30px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	width: 12vw;
-	height: 12vw;
-	margin-right: 60px;
-	margin-bottom: 20px;
+	background: #FFFFFF;
+	border-radius: 50px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 	color: #4E4E4E;
 	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
+	height: 160px;
+	justify-content: center;
+	margin-bottom: 20px;
 
-	background: #FFFFFF;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-	border-radius: 50px;
+	margin-right: 60px;
+	padding: 30px;
+	width: 160px;
 
-	font-family: 'NEXON Lv1 Gothic OTF Bold',sans-serif;
 
 }
 
@@ -269,22 +270,33 @@ textarea {
 	margin-top: 10px;
 }
 
+#box-photo {
+	border-radius: 0;
+	cursor: pointer;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
 .inputs {
 	display: flex;
 	flex-direction: column;
 }
 
 .submit-btn {
-	color: #fff;
-	font-weight: 500;
-	font-family: 'Noto Sans KR', sans-serif;
-	width: 102px;
-	height: 48px;
 	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
-	box-shadow: 0 5px 10px rgba(149, 149, 149, 0.2);
-	border-radius: 24px;
 	border: none;
+	border-radius: 24px;
+	box-shadow: 0 5px 10px rgba(149, 149, 149, 0.2);
+	color: #FFFFFF;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	height: 48px;
 	margin-right: 5px;
+	width: 102px;
 }
 
 .cancel-btn {
