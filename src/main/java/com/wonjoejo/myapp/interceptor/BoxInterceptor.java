@@ -48,7 +48,7 @@ public class BoxInterceptor
 
 			// 박스 그룹 회원이 아닐 시, Box List로 튕겨냄
 			if(permission == null) {
-				res.sendRedirect("/box/list?member_id="+member_id);
+				res.sendRedirect("/box/list?member_id=" + member_id);
 			} // if
 
 			log.info("\t+ permission: {}", permission);
@@ -58,17 +58,21 @@ public class BoxInterceptor
 
 			// Box 정보 확인해서 삭제된 박스인지 확인 (1. session에 있는 box, 2.parameter로 강제로 들어간 box)
 			BoxVO box = this.boxService.getBox(box_no);
-			BoxVO boxInParam = this.boxService.getBox(Integer.parseInt(boxParam));
+			Integer boxStatusOfBoxInParam = 0;
+			if (boxParam != null) {
+				BoxVO boxInParam = this.boxService.getBox(Integer.parseInt(boxParam));
+				boxStatusOfBoxInParam = boxInParam.getBox_status();
+			}
 			assert box != null;
 			Integer boxStatusOfBox = box.getBox_status();
-			Integer boxStatusOfBoxInParam = boxInParam.getBox_status();
 
-			log.info("===================입장한 박스: {} / 파라미터 박스: {}================",boxStatusOfBox,boxStatusOfBoxInParam);
+
+			log.info("===================입장한 박스: {} / 파라미터 박스: {}================", boxStatusOfBox, boxStatusOfBoxInParam);
 
 			// 삭제된 박스이면 박스 리스트로 튕겨냄
-			if(boxStatusOfBox==1 || boxStatusOfBoxInParam ==1) {
+			if (boxStatusOfBox == 1 || boxStatusOfBoxInParam == 1) {
 				log.info("==================삭제된 박스==================");
-				res.sendRedirect("/box/list?member_id="+member_id);
+				res.sendRedirect("/box/list?member_id=" + member_id);
 			} // if
 		} else {
 			res.sendRedirect("/member/login");
