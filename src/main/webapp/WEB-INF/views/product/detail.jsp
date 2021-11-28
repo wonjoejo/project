@@ -19,7 +19,9 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
+
 
 </head>
 <body>
@@ -213,7 +215,7 @@
                                     ${product.product_memo}
                                 </c:otherwise>
                             </c:choose>
-                            <c:if test="${fn:length(product.product_memo) >= 15}">
+                            <c:if test="${fn:length(product.product_memo) >= 10}">
                             <span class="more">
                                     <a href="#" id="more">더보기</a>
                                 </span>
@@ -226,7 +228,7 @@
 
             <%-- 댓글 --%>
             <div class="comment-wrap">
-                <div id="search">
+                <div id="search" class="comment-input">
                     <c:choose>
                         <c:when test="${permit.write_per eq 0}">
                             <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
@@ -236,7 +238,7 @@
                             </ul>
                             <button id="insertBtn" class="searchbtn">
                                 <i class="fas fa-pencil-alt"></i>
-                                Write
+                                등록
                             </button>
                         </c:when>
                         <c:otherwise>
@@ -247,7 +249,7 @@
                             </ul>
                             <button id="insertBtn" class="searchbtn" disabled>
                                 <i class="fas fa-pencil-alt"></i>
-                                Write
+                                등록
                             </button>
                         </c:otherwise>
                     </c:choose>

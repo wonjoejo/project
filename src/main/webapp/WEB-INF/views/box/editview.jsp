@@ -25,6 +25,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=12">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
 </head>
 <body>
 
@@ -33,8 +34,8 @@
     <jsp:include page="../common/left.jsp"/>
 
     <div class="main-container">
-    
-    	<jsp:include page="../common/boxleftmobile.jsp"/>
+
+        <jsp:include page="../common/boxleftmobile.jsp"/>
     	
         <h1>박스 수정</h1>
 
@@ -109,7 +110,7 @@
 
                 <div class="buttons">
                     <input class="submit-btn hvr-float" type="submit" value="수정하기">
-                    <a href="${pageContext.request.contextPath}/box/get?box_no=${box.box_no}"><input
+                    <a href="${pageContext.request.contextPath}/box/detail?box_no=${box.box_no}"><input
                             class="cancel-btn hvr-float" type="button" value="취소"></a>
                 </div>
 
