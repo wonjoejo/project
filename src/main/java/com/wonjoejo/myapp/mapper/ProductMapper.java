@@ -57,6 +57,9 @@ public interface ProductMapper {
 	
 	// 회원 타입 조회(기업/일반)
 	public abstract Integer checkMemberType(@Param("box_no")Integer box_no, @Param("product_no")Integer product_no);
+	
+	// 물품 댓글 삭제
+	public abstract Integer deleteProductComment(Integer product_no);
 
 
 } // end interface

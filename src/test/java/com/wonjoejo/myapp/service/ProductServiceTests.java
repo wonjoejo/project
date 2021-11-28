@@ -220,5 +220,18 @@ public class ProductServiceTests {
 		log.info("\t+ totalCount: {}",totalCount);
 	}//testGetTotal
     
+    
+    @Test(timeout=1000)
+	public void testDeleteProductComment() {
+		log.debug("testDeleteProductComment() invoked.");
+
+        int product_no = 588;
+
+		Boolean totalCount = this.service.deleteProductComment(product_no);		
+		log.info("\t+ totalCount: {}",totalCount);
+	}//testGetTotal
+    
+    
+    
 
 } // end class
