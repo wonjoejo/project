@@ -34,7 +34,7 @@
     </div>
     <div class="menu">
         <span class="menu-item active"><a
-                href="${pageContext.request.contextPath}/box/get?box_no=${box_no}"><i
+                href="${pageContext.request.contextPath}/box/detail?box_no=${box_no}"><i
                 class="fas fa-box-open"></i> 나의 박스</a></span>
         <span class="menu-item inactive"><a
                 href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}"><i

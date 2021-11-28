@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=2">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 </head>
 <body>
@@ -32,7 +32,7 @@
         <div class="box-wrapper">
             <div class="box-container">
                 <c:forEach items="${list}" var="box">
-                    <a href="${pageContext.request.contextPath}/box/get?box_no=${box.box_no}">
+                    <a href="${pageContext.request.contextPath}/box/detail?box_no=${box.box_no}">
                         <div class="box hvr-grow">
                             <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
                                 ${box.box_name}

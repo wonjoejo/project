@@ -1,7 +1,9 @@
 package com.wonjoejo.myapp.service;
 
-import com.wonjoejo.myapp.domain.*;
-
+import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.BoxPermissionVO;
+import com.wonjoejo.myapp.domain.BoxVO;
+import com.wonjoejo.myapp.domain.Criteria;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -82,8 +84,8 @@ public class BoxServiceTests {
                 "box_memo_new",
                 "photo_name",
                 "photo_path",
-                null
-        );
+                null,
+                null);
 
         boolean isSuccess = this.service.createBox(box);
         log.info("Box created successfully: {}",isSuccess);
@@ -156,8 +158,8 @@ public class BoxServiceTests {
                 "boxmemo",
                 "photoname",
                 "photopath",
-                null
-                );
+                null,
+                null);
 
         boolean isSuccess = this.service.editBox(box);
 
@@ -187,8 +189,8 @@ public class BoxServiceTests {
                 "box_memo_new",
                 "photo_name",
                 "photo_path",
-                null
-        );
+                null,
+                null);
 
         boolean isSuccess = this.service.createBox(box);
 

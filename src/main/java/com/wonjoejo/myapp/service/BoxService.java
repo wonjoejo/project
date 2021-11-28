@@ -9,8 +9,10 @@ import java.util.List;
 
 public interface BoxService {
 
+	// box list
 	public abstract List<BoxVO> getBoxList(Criteria cri);
 
+	// box detail
 	public abstract BoxVO getBox(Integer box_no);
 
 	public abstract boolean createBox(BoxVO box);
