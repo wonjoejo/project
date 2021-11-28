@@ -386,6 +386,39 @@ function pageMaker(prev, next, startNum, endNum, curr) {
 	}
 }
 
+const imgBtn = document.querySelector("#img-btn");
+
+imgBtn.addEventListener("click", (e) => {
+	e.preventDefault();
+	console.log("click!");
+	// document.querySelectorAll(".ball").forEach(value => {
+	// 	value.style.transform = "none";
+	// })
+	html2canvas(productContainer).then(function (canvas) {
+		saveAs(canvas.toDataURL(), 'mylist.png');
+	}, {
+		allowTaint: false,
+		useCORS: true
+	});
+	// document.querySelectorAll(".ball").forEach(value => {
+	// 	value.style.transform = `scale(${Math.random()})`;
+	// })
+});
+
+function saveAs(uri, filename) {
+	let link = document.createElement('a');
+	if (typeof link.download === 'string') {
+		link.href = uri;
+		link.download = filename;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	} else {
+		window.open(uri);
+	}
+}
+
+
 
 
 
