@@ -190,5 +190,16 @@ public class ProductMapperTests {
 //    	log.info("\t+ checkMemberType: {} ", checkMemberType);
 //    	
 //    }
+    
+    @Test(timeout=1000)
+ 	public void testDeleteProductComment() {
+ 		log.debug("testDeleteProductComment() invoked.");
+
+         int product_no = 588;
+
+  		Integer DeleteProductComment = this.mapper.deleteProductComment(product_no);		
+  		log.info("\t+ DeleteProductComment: {}",DeleteProductComment);
+
+ 	}//testDeleteProductComment
 
 } // end class

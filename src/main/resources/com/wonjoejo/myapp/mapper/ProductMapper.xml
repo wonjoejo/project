@@ -116,8 +116,7 @@
             PRODUCT_MEMO       = #{product_memo},
             PRODUCT_QTN        = #{product_qtn},
             PRODUCT_PHOTO_NAME = #{product_photo_name},
-            PRODUCT_PHOTO_PATH = #{product_photo_path},
-            BARCODE            = #{barcode}
+            PRODUCT_PHOTO_PATH = #{product_photo_path}
         WHERE PRODUCT_NO = #{product_no}
     </update>
 
@@ -309,5 +308,10 @@
 		WHERE b.BOX_NO = #{box_no} and p.PRODUCT_NO = #{product_no}
 	</select>
 
+    <!-- 물품 댓글 전체 삭제 -->
+    <delete id="deleteProductComment">
+        DELETE FROM product_comment 
+        WHERE PRODUCT_NO =#{product_no}
+    </delete>
 
 </mapper>
