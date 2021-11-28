@@ -23,7 +23,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=40">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=42">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>

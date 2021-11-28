@@ -482,7 +482,7 @@ select {
 /* 박스리스트 버튼 */
 .box-list-btn {
 	float: right;
-	width: 14%;
+	width: 120px;
 	height: 43px;
 	border: none;
 	border-radius: 1.4rem;
