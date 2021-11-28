@@ -28,7 +28,7 @@
             class=""
             data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container">
-            <a href="#" class="main-logo">
+            <a href="/" class="main-logo">
                 <img
                         src="${pageContext.request.contextPath}/resources/assets/img/main_logo.png"
                         alt="메인로고"/>

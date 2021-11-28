@@ -332,14 +332,15 @@
 
 /* section3 */
 #section3{
-    background-color: #5A95F5;
-   /*  height: 900px; */
+	background-color: #5A95F5;
+	/*  height: 900px; */
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
-.section3_wrap{
-    padding: 6% 9%;
-    color: white;
-    font-family: "Noto Sans KR Medium";
+.section3_wrap {
+	color: white;
+	font-family: "Noto Sans KR Medium", sans-serif;
+	padding: 6% 9%;
 }
 
 .sec3-title {
