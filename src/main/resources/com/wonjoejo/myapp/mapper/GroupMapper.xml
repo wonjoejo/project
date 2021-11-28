@@ -85,7 +85,7 @@
 	<!--박스 테이블의 박스 소유자 ID 업데이트	-->
 	<update id="updateBoxMasterInBox">
 		UPDATE BOX
-		SET MEMBER_ID = #{memeber_id}
+		SET MEMBER_ID = #{member_id}
 		WHERE BOX_NO = #{box_no}
 	</update>
 

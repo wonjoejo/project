@@ -12,10 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -96,8 +93,8 @@ public class BoxController {
                     box.getBox_memo(),
                     uploadedFileName,
                     uploadDir,
-                    null
-            );
+                    null,
+                    null);
 
             boolean result = this.service.createBox(boxVO);
             log.info("\t +result: {}", result);
@@ -112,8 +109,8 @@ public class BoxController {
                     box.getBox_memo(),
                     box.getBox_photo_name(),
                     "default/",
-                    null
-            );
+                    null,
+                    null);
 
             boolean result = this.service.createBox(boxVO);
             log.info("\t +result: {}", result);
@@ -259,13 +256,13 @@ public class BoxController {
                     box.getBox_memo(),
                     uploadedFileName,
                     uploadDir,
-                    null
-            );
+                    null,
+                    null);
 
             boolean result = this.service.editBox(boxVO);
             log.info("\t +result: {}", result);
             rttrs.addAttribute("result", result);
-        } else if (box.getBox_photo_path().contains("resources/assets/img")) {
+        } else if (box.getBox_photo_path().contains("default")) {
 
             boxVO = new BoxVO(
                     box.getBox_no(),
@@ -274,9 +271,9 @@ public class BoxController {
                     box.getBox_name(),
                     box.getBox_memo(),
                     box.getBox_photo_name(),
-                    "/resources/assets/img/",
-                    null
-            );
+                    "default/",
+                    null,
+                    null);
 
             boolean result = this.service.editBox(boxVO);
             log.info("\t +result: {}", result);
@@ -291,8 +288,8 @@ public class BoxController {
                     box.getBox_memo(),
                     box.getBox_photo_name(),
                     box.getBox_photo_path(),
-                    null
-            );
+                    null,
+                    null);
             boolean result = this.service.editBox(boxVO);
             log.info("\t +result: {}", result);
 
@@ -300,7 +297,7 @@ public class BoxController {
 
         rttrs.addAttribute("box_no", box.getBox_no());
 
-        return "redirect:/box/get";
+        return "redirect:/box/detail";
     } // edit
 
     @PostMapping("/delete")
@@ -312,7 +309,7 @@ public class BoxController {
         log.info("\t +result: {}", result);
         rttrs.addAttribute("\t+ result: {}", result);
 
-        return "redirect:/box/list";
+        return "/box/list";
     } // delete
 
     @GetMapping("/createview")
@@ -332,7 +329,7 @@ public class BoxController {
 
     } // editview
 
-    @GetMapping("/get")
+    @GetMapping("/detail")
     public void get(Integer box_no, Model model, HttpServletRequest req) {
         log.debug("get({}) invoked.", box_no);
 
@@ -389,7 +386,22 @@ public class BoxController {
     } // joinGroup
 
     @PostMapping("/check")
+    @ResponseBody
     public String checkId(Integer box_no, String member_id, RedirectAttributes rttrs) {
-        return null;
+        // 같은 박스에 같은 회원이 이미 존재하는지 중복 검사하는 로직 추가해야 함
+
+        // 박스에 있는 회원 리스트 조회 -> member_id 있는지 확인 -> 있으면 처리하지 않음
+        List<MemberVO> groupList = this.groupService.selectGroupMemberList(box_no);
+        for (MemberVO member : groupList) {
+            log.info("\t+ member_id: {}", member.getMember_id());
+            if (member_id.equals(member.getMember_id())) {
+                return "false";
+                // alert 띄우고 싶은데...
+            } else {
+                break;
+            } // if-else
+        } // for
+
+        return "true";
     }
 } // end class

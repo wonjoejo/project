@@ -488,3 +488,19 @@ ul.bs-autocomplete-menu a {
 		transform: rotate(360deg);
 	}
 }
+
+/* product list 엑셀 및 이미지 버튼 */
+
+.buttons button {
+	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+	border: none;
+	border-radius: 24px;
+	box-shadow: 0 5px 10px rgba(149, 149, 149, 0.2);
+	color: #FFFFFF;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 500;
+	height: 30px;
+	margin-right: 5px;
+	width: 102px;
+}
+

@@ -43,17 +43,17 @@ pageEncoding="UTF-8"%>
     />
   </head>
   <body>
-    <!-- header -->
-    <header>
-      <nav
-        id="headerwrap"
-        class=""
-        data-navbar-on-scroll="data-navbar-on-scroll"
-      >
-        <div class="container">
-          <a href="#" class="main-logo">
-            <img
-              src="${pageContext.request.contextPath}/resources/assets/img/main_logo.png"
+  <!-- header -->
+  <header>
+    <nav
+            id="headerwrap"
+            class=""
+            data-navbar-on-scroll="data-navbar-on-scroll"
+    >
+      <div class="container">
+        <a href="/" class="main-logo">
+          <img
+                  src="${pageContext.request.contextPath}/resources/assets/img/main_logo.png"
               alt="메인로고"
             />
           </a>

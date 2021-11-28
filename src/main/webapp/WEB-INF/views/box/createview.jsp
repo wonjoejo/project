@@ -31,19 +31,22 @@
     <jsp:include page="../common/left.jsp"/>
 
     <div class="main-container">
+    
+    	<jsp:include page="../common/leftmobile.jsp"/>
+    
         <h1>박스 생성</h1>
 
         <div class="box-wrapper">
-            <form method="post" action="/box/create" enctype="multipart/form-data">
+            <form class="boxcreateform" method="post" action="/box/create" enctype="multipart/form-data">
                 <input type="hidden" name="member_id" value="${sessionScope.member_id}">
                 <div class="form-container">
 
                     <div class="box-photos">
                         <div class="product-photo">
                             <input type="file" name="file" id="box-photo">
-                            <input type="hidden" name="box_photo_name" id="default">
-                            <input type="hidden" name="box_photo_path"
-                                   value="https://intobox.s3.ap-northeast-2.amazonaws.com/default/">
+                            <input type="hidden" name="box_photo_name" id="default-name" value="photo_name.png">
+                            <input type="hidden" name="box_photo_path" id="default-path"
+                                   value="default/">
                         </div>
                         <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                              data-bs-interval="false" id="carousel">
@@ -130,6 +133,4 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=3"></script>
-<script>
-</script>
 </html>

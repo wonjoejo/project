@@ -44,9 +44,10 @@
                     <div class="box-photos">
                         <div class="product-photo-edit">
                             <input type="file" name="file" id="box-photo">
-                            <input type="hidden" name="box_photo_name" id="default" value="${box.box_photo_name}">
-                            <input type="hidden" name="box_photo_path"
-                                   value="${pageContext.request.contextPath}/resources/assets/img/">
+                            <input type="hidden" name="box_photo_name" id="default-name" value="${box.box_photo_name}">
+                            <input type="hidden" name="box_photo_path" id="default-path"
+                                   value="${box.box_photo_path}">
+                            <span><i class="fas fa-upload"></i>파일 업로드</span>
                         </div>
                         <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
                              data-bs-interval="false" id="carousel">
@@ -54,26 +55,26 @@
                                 <div class="carousel-item active">
                                     <div class="photos">
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/food.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/food.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/cosmetic.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/cosmetic.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/pill.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
                                                 class="default-img"></div>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <div class="photos">
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/clothes.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/clothes.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/goods.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/goods.png"
                                                 class="default-img"></div>
                                         <div class="cell hvr-grow"><img
-                                                src="${pageContext.request.contextPath}/resources/assets/img/photo_name.png"
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
                                                 class="default-img"></div>
                                     </div>
                                 </div>
@@ -120,18 +121,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=6"></script>
 <script>
-	// const productPhotoEdit = document.querySelector(".product-photo-edit");
 	const photoPath = "${box.box_photo_path}";
-	console.log(photoPath);
-
-	if (photoPath.indexOf("resources") !== -1) {
-		productPhotoEdit.style.backgroundImage = "url('${pageContext.request.contextPath}${box.box_photo_path}${box.box_photo_name}')";
-	} else {
-		productPhotoEdit.style.backgroundImage = "url('https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}')";
-	}
-
-
+	const photoName = "${box.box_photo_name}";
 </script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=7"></script>
 </html>

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="box_no" value="${box_no}"/>
+<c:set var="box_no" value="${param.box_no}"/>
 <html>
 <head>
 
@@ -26,7 +26,7 @@
 
 </head>
 <body>
-<input type="text" value="${param.box_no}">
+<%--<input type="text" value="${param.box_no}">--%>
 
 <div class="container">
     <jsp:include page="../common/boxleft.jsp"/>
@@ -44,15 +44,13 @@
                 <!-- top box -->
                 <div class="row top-section">
                     <div class="col-md-2 top-left">
-                        <c:set var="path" value="${box.box_photo_path}"/>
-                        <c:choose>
-                            <c:when test="${fn:contains(path,'default')}">
-                                <img src="${box.box_photo_path}${box.box_photo_name}"/>
-                            </c:when>
-                            <c:otherwise>
-                                <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
-                            </c:otherwise>
-                        </c:choose>
+                        <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
+                        <!-- img 경로 불러오는거 최신 버전으로 수정 (희원) -->
+                        <c:if
+                                test="${not empty box.box_photo_path && not empty box.box_photo_name}">
+                            <img
+                                    src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
+                        </c:if> <!-- product-img -->
                         <span>${box.box_name}</span>
                     </div>
                     <div class="col-md-9 top-right">
@@ -128,8 +126,9 @@
                                                          src="${pageContext.request.contextPath}${dateList.product_photo_path}${dateList.product_photo_name}"/>
                                                 </c:when>
                                                 <c:otherwise> <!-- 업로드 이미지 사용 -->
+                                                    <!-- src 부분 오타 수정 (희원) -->
                                                     <img id="product-img"
-                                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/${dateList.product_photo_path}${topList.product_photo_name}"/>
+                                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/${dateList.product_photo_path}${dateList.product_photo_name}"/>
                                                 </c:otherwise>
                                             </c:choose>
                                         </div>
@@ -141,7 +140,7 @@
                                     </c:if> <!-- product-none-img -->
 
                                     <div class="item" id="product-name-top">
-                                        <a href="${pageContext.request.contextPath}/product/detail?product_no=${dateList.product_no}&box_no=${topList.box_no}">
+                                        <a href="${pageContext.request.contextPath}/product/detail?product_no=${dateList.product_no}&box_no=${box_no}">
                                             <c:out value='${dateList.product_name}'/>
                                         </a>
                                     </div> <!-- product-name -->

@@ -68,8 +68,8 @@ public class BoxMapperTests {
                 "mappertest",
                 "mapperimg",
                 "mapperpath",
-                null
-        );
+                null,
+                null);
 
         this.mapper.insertBox(box);
         log.info("\t+ box:{}", box);
@@ -135,8 +135,8 @@ public class BoxMapperTests {
                 "box-path-edit",
                 "photoname",
                 "photopath",
-                null
-        );
+                null,
+                null);
         this.mapper.updateBox(box);
         log.info("\t+ box:{}", box);
     }

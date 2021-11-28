@@ -40,11 +40,11 @@
 
             <div class="product-main-container">
 
-                <div id="top-search">
-                    <input class="search" type="text" placeholder="&nbsp;&nbsp;Search everything" id="search" value=""/>
+                <div id="top-search" data-html2canvas-ignore>
+                    <input class="search" type="text" placeholder="&nbsp;&nbsp;키워드를 입력하세요" id="search" value=""/>
                     <button class="searchbtn">
                         <img class="searchimg"
-                            src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
+                             src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
                     </button>
                 </div> <!-- top-search -->
 
@@ -55,10 +55,10 @@
 
                             <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
                             <c:if
-                                test="${not empty product.product_photo_name && not empty product.product_photo_path}">
-                                <div class="item" id="product-img">
-                                    <img id="product-img"
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}" />
+                                    test="${not empty product.product_photo_name && not empty product.product_photo_path}">
+                                <div class="item product-img">
+                                    <img id="product-img" crossorigin="anonymous"
+                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                 </div>
                             </c:if> <!-- product-img -->
 
@@ -111,7 +111,7 @@
                 </div> <!-- product-container -->
 
                 <!-- 페이징 처리 -->
-                <div id="pagination">
+                <div id="pagination" data-html2canvas-ignore>
                     <form action="#" id="paginationForm">
                         <input type="hidden" name="currPage">
                         <input type="hidden" name="amount">
@@ -159,8 +159,10 @@
                         </ul>
                     </form>
                 </div> <!-- page -->
-
-                <button type="button" id="excel-btn">EXCEL</button>
+                <div class="buttons" data-html2canvas-ignore>
+                    <button type="button" id="img-btn"><i class="far fa-file-image"></i> 다운로드</button>
+                    <button type="button" id="excel-btn"><i class="fas fa-file-excel"></i> 다운로드</button>
+                </div>
             </div> <!-- product-main-container -->
         </div> <!-- main-container -->
     </div> <!-- container -->
@@ -180,6 +182,9 @@
         integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<%-- img download 기능 --%>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 <%-- product list js 파일 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=5"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=7"></script>
 </html>

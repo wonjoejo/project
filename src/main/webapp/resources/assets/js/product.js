@@ -102,6 +102,7 @@ deleteBtn.addEventListener("click", function (e) {
                         'success'
                     ).then((result) => {
                         if (result.isConfirmed) {
+                            console.log("???");
                             location.href = box_link;
                         }
                     })

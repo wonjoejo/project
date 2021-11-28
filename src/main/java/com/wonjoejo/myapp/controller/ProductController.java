@@ -296,7 +296,7 @@ public class ProductController {
                     uploadDir,
                     product.getBarcode(),
                     product.getReg_date(),
-                    product.getUpdate_date()
+                    null
             );
 
             boolean result = this.service.insertProduct(productVO);
@@ -314,7 +314,7 @@ public class ProductController {
                     "default/",
                     product.getBarcode(),
                     product.getReg_date(),
-                    product.getUpdate_date()
+                    null
             );
 
             boolean result = this.service.insertProduct(productVO);
@@ -524,8 +524,10 @@ public class ProductController {
     @PostMapping("/delete")
     public String productDelete(Integer product_no, ProductDTO product, RedirectAttributes rttrs) {
         log.debug("productDelete({}) invoked.", product_no);
-        
+
         rttrs.addAttribute("box_no", product.getBox_no());
+
+        // comment 삭제 넣어야 함!!!!
 
         // category 삭제
         boolean result1 = this.service.deleteCategory(product_no);
