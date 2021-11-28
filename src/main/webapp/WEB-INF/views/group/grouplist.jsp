@@ -129,8 +129,7 @@
 			<script>
 				//권한 설정페이지로 이동
 				$(document).ready(function () {
-
-
+					
 					$("#grouppermission").click(function () {
 						location.href = "${pageContext.request.contextPath}/group/permissionlist?box_no=${box_no}";
 					})

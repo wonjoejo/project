@@ -52,6 +52,47 @@ if (productPhotoEdit != null) {
 	productPhotoEdit.style.backgroundImage = "url('https://intobox.s3.ap-northeast-2.amazonaws.com/" + photoPath + photoName + "')";
 }
 
+// 박스 삭제
+const deleteBtn = document.querySelector(".delete-btn");
+
+if (deleteBtn != null) {
+	deleteBtn.addEventListener("click", function (e) {
+		e.preventDefault();
+		Swal.fire({
+			title: '정말 삭제하시겠습니까?',
+			text: "한 번 삭제된 박스는 복구가 불가능합니다.",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#5A95F5',
+			cancelButtonColor: '#DD3333',
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				console.log("box_no확인: " + box_no);
+				$.ajax({
+					type: "POST",
+					url: "/box/delete",
+					data: {
+						"box_no": box_no
+					},
+					success: function (data) {
+						Swal.fire(
+							'삭제 완료',
+							'박스가 삭제되었습니다.',
+							'success'
+						).then((result) => {
+							if (result.isConfirmed) {
+								location.href = "/box/list?member_id=" + member_id;
+							}
+						})
+					}
+				})
+			}
+		})
+	})
+}
+
 
 // Swal.fire({
 // 	position: 'top-end',
