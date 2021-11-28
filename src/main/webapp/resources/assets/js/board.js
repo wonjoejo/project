@@ -199,7 +199,7 @@ $('.writeBtn').click(function () {
 
 		Toast.fire({
 		  icon: 'success',
-		  title: '답글 등록 완료'
+		  title: '글 등록 완료'
 		})
  }); //onclick*/
 

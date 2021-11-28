@@ -31,10 +31,13 @@
     <jsp:include page="../common/left.jsp"/>
 
     <div class="main-container">
+    
+    	<jsp:include page="../common/leftmobile.jsp"/>
+    
         <h1>박스 생성</h1>
 
         <div class="box-wrapper">
-            <form method="post" action="/box/create" enctype="multipart/form-data">
+            <form class="boxcreateform" method="post" action="/box/create" enctype="multipart/form-data">
                 <input type="hidden" name="member_id" value="${sessionScope.member_id}">
                 <div class="form-container">
 

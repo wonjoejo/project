@@ -127,9 +127,25 @@ body {
 	/* background */
 
 	overflow: hidden;
-	overflow-y: scroll;
 	padding: 30px;
 	width: 80vw;
+	
+	overflow-y: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.main-container::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
+
+}
+
+@media screen and (max-width: 767px){
+	.main-container {
+    width: 100%;
+    height: 98%;
+	}
 }
 
 .main-container h1 {
@@ -141,6 +157,12 @@ body {
 	line-height: 54px;
 }
 
+@media screen and ( max-width: 767px){
+	.main-container h1 {
+		margin-left: 70px;
+	}
+}
+
 .box-wrapper {
 	display: flex;
 	justify-content: center;
@@ -148,6 +170,12 @@ body {
 	align-items: center;
 	height: 100%;
 	width: 100%;
+}
+
+@media screen and ( max-width: 767px){
+	.boxcreateform{
+		height: 90%;
+	}
 }
 
 .box-container {
@@ -176,12 +204,24 @@ body {
 	justify-content: center;
 	margin-bottom: 20px;
 
-	margin-right: 60px;
+	margin: 30px;
 	padding: 30px;
 	width: 160px;
-
-
 }
+
+@media (min-width: 841px) and (max-width: 991px) {	
+	.box {
+		margin: 20px;
+	}
+}
+
+@media screen and ( max-width: 767px){
+	.box {
+		margin: 10px;
+	}
+}
+
+
 
 /* Grow */
 .hvr-grow {
@@ -212,6 +252,12 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+}
+
+@media screen and ( max-width: 991px){
+	.form-container {
+		display: inline;
+	}
 }
 
 .inputs input {
@@ -249,6 +295,14 @@ textarea {
 	background-size: cover;
 }
 
+@media screen and ( max-width: 767px){
+	.product-photo {
+		width: 30vw;
+		height: 30vw;
+		border-radius: 30px;
+	}
+}
+
 .product-photo input {
 	width: 100%;
 	height: 100%;
@@ -268,6 +322,13 @@ textarea {
 	padding: 0;
 	margin-right: 40px;
 	margin-top: 10px;
+}
+
+@media screen and ( max-width: 991px){
+	.box-photos {
+		margin-bottom: 20px;
+		
+	}
 }
 
 #box-photo {

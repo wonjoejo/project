@@ -33,12 +33,13 @@
         <p class="name">${sessionScope.member_id}</p>
     </div>
     <div class="menu">
+    	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i class="fas fa-home"></i>HOME</a></span>
         <span class="menu-item active"><a
-                href="${pageContext.request.contextPath}/box/detail?box_no=${box_no}"><i
-                class="fas fa-box-open"></i> 나의 박스</a></span>
+                href="${pageContext.request.contextPath}/box/detail?box_no=${box_no}">
+                <i class="fas fa-archive"></i> 나의 박스</a></span>
         <span class="menu-item inactive"><a
-                href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}"><i
-                class="fas fa-clipboard-list"></i> 물품 리스트</a></span>
+                href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
+                <i class="fas fa-list-alt"></i> 물품 리스트</a></span>
         <span class="menu-item inactive"><a
                 href="${pageContext.request.contextPath}/category/detail?box_no=${box_no}"><i class="fas fa-table"></i> 카테고리</a></span>
         <span class="menu-item inactive"><a
