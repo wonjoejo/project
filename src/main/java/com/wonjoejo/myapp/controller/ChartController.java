@@ -60,35 +60,31 @@ public class ChartController {
         model.addAttribute("totalAmount",totalAmount);
 
         // Top5 물품 리스트
-        List<ProductVO> topProductList = this.productService.getTopProductList(box_no);
-        List<ProductVO> topList = new ArrayList<>();
+        List<ProductVO> topproductList = this.productService.getTopProductList(box_no);
+        List<ProductVO> toplist = new ArrayList<>();
 
-        if (topProductList.size() <= 5){
-            topList.addAll(topProductList);
+        if (topproductList.size() <= 5) {
+            toplist.addAll(topproductList);
         } else {
-            for (int i = 0; i < 5; i++){
-                topList.add(topProductList.get(i));
-            } // for
-        } // if-else
+            for (int i = 0; i < 5; i++) {
+                toplist.add(topproductList.get(i));
+            }
+        }
 
-        model.addAttribute("topProductList", topList);
+        model.addAttribute("topProductList", toplist);
 
         // 최신 입고 물품
         List<ProductVO> dateProductList = this.productService.getDateProductList(box_no);
         List<ProductVO> dateList = new ArrayList<>();
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-        if (dateProductList.size() <= 5){
+        if (dateProductList.size() <= 5) {
             dateList.addAll(dateProductList);
         } else {
-            for (int i = 0; i < 5; i++){
+            for (int i = 0; i < 5; i++) {
                 dateList.add(dateProductList.get(i));
-            } // for
-        } // if-else
+            }
+        }
 
-        log.info("===================원래 리스트 {}",format.format(dateProductList.get(1).getReg_date()));
-        log.info("==================={}",dateList.get(1));
 
         model.addAttribute("dateProductList", dateList);
 

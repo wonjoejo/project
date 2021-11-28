@@ -19,7 +19,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
 
 </head>
 <body>
@@ -263,6 +263,11 @@
 
 </div> <!-- container -->
 
+<%--modal--%>
+<div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+
+</div>
+
 </body>
 
 <!-- bootstrap js -->
@@ -299,6 +304,6 @@
 <%-- product JS --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=2"></script>
 <%-- mention JS 실험 중 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=1"></script>
 
 </html>

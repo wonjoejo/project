@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/admin.css?ver=11"
+      href="${pageContext.request.contextPath}/resources/assets/css/admin.css?ver=1"
     />
     <link
       rel="stylesheet"
