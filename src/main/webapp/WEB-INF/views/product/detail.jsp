@@ -188,7 +188,7 @@
 					</c:if>
 
 					<li>
-						 <div class="title">메모</div>
+						<div class="title">메모</div>
                         <div class="detail" id="detail-memo">
                             <c:set var="memo" value="${product.product_memo}"/>
                             <c:choose>
@@ -231,7 +231,7 @@
                         <c:when test="${permit.write_per eq 0}">
                             <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
                             <input name="comment_content" id="commentContent" class="search" type="text"
-                                   placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
+                                placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
                             <ul class="suggestions">
                             </ul>
                             <button id="insertBtn" class="searchbtn">
@@ -242,7 +242,7 @@
                         <c:otherwise>
                             <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
                             <input name="comment_content" id="commentContent" class="search" type="text"
-                                   placeholder="쓰기 권한이 있는 멤버만 댓글 쓰기가 가능합니다." readonly/>
+                                placeholder="쓰기 권한이 있는 멤버만 댓글 쓰기가 가능합니다." readonly/>
                             <ul class="suggestions">
                             </ul>
                             <button id="insertBtn" class="searchbtn" disabled>
@@ -302,7 +302,7 @@
 </script>
 
 <%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=2"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=4"></script>
 <%-- mention JS 실험 중 --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=1"></script>
 
