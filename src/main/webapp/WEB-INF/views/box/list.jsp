@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 </head>
 <body>
@@ -27,6 +27,9 @@
     <jsp:include page="../common/left.jsp"/>
 
     <div class="main-container">
+    
+    	<jsp:include page="../common/leftmobile.jsp"/>
+        
         <h1>박스 리스트</h1>
 
         <div class="box-wrapper">
