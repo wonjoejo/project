@@ -109,88 +109,6 @@ function getCommentList() {
 
 			clickMention();
 
-
-			// 수정 버튼 클릭 시 수정 폼 변경 -> 수정 보류 (사유: 멘션 수정 불가)
-			// const modifyBtn = document.querySelectorAll('.comment-modify');
-			// modifyBtn.forEach(function (item) {
-			// 	item.addEventListener("click", function (e) {
-			// 		e.preventDefault();
-			// 		console.log(item.parentElement.previousElementSibling.previousElementSibling);
-			//
-			// 		const checkBtn = item.nextElementSibling.nextElementSibling;
-			// 		const cancelBtn = item.nextElementSibling.nextElementSibling.nextElementSibling;
-			// 		const commentNo = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
-			// 		const memberId = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-			// 		const commentContent = item.parentElement.previousElementSibling.previousElementSibling.children;
-			// 		const commentDiv = item.parentElement.previousElementSibling.previousElementSibling;
-			// 		const comment = document.querySelector(".comment");
-			//
-			//
-			// 		console.log(commentContent);
-			// 		let context = "";
-			//
-			// 		for (let i = 0; i < commentContent.length; i++) {
-			// 			context += commentContent[i].innerHTML;
-			// 		}
-			//
-			// 		console.log(context);
-			//
-			// 		commentDiv.remove();
-			//
-			// 		let input = document.createElement("input");
-			// 		input.type = "text";
-			// 		input.name = "comment_content";
-			// 		input.value = context;
-			// 		input.classList.add("commentContent");
-			// 		input.id = "commentContent"
-			// 		comment.appendChild(input);
-			//
-			//
-			// 		const commentInput = document.querySelector(".commentContent");
-			//
-			//
-			// 		// commentContent.commmentContent.disabled = false;
-			// 		commentInput.style.border = "1px solid #ADADAD";
-			// 		item.style.display = "none";
-			// 		item.nextElementSibling.style.display = "none";
-			// 		checkBtn.style.display = "inline";
-			// 		cancelBtn.style.display = "inline";
-			//
-			// 		// 취소 버튼
-			// 		cancelBtn.addEventListener("click", getCommentList);
-
-			// 		// 수정
-			// 		checkBtn.addEventListener("click", function (e) {
-			// 			e.preventDefault();
-			//
-			// 			const data = {
-			// 				comment_no: commentNo.value,
-			// 				member_id: memberId.value,
-			// 				product_no: product_no,
-			// 				comment_content: commentInput.value
-			// 			};
-			//
-			// 			console.log(data);
-			//
-			// 			fetch('/comment/edit', {
-			// 				method: 'POST',
-			// 				body: JSON.stringify(data),
-			// 				headers: {
-			// 					'Content-Type': 'application/json'
-			// 				}
-			// 			})
-			// 				.then(function (response) {
-			// 					if (response) getCommentList();
-			// 				})
-			//
-			// 				.catch(function (error) {
-			// 					console.log(error)
-			// 				}); // fetch
-			//
-			// 		}); // click
-			// 	}); // click
-			// }); // modifyBtn forEach
-
 			// 삭제
 			const deleteBtn = document.querySelectorAll('.comment-delete');
 			deleteBtn.forEach(function (item) {
@@ -264,10 +182,6 @@ function insertComment() {
 }
 ; // insertComment
 
-
-console.log("Product insert page");
-
-const searchInput = document.querySelector(".search");
 const suggestions = document.querySelector(".suggestions");
 const comment = document.querySelector("#commentContent");
 let mentions = [];

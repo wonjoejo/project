@@ -46,39 +46,39 @@
                             <input type="file" name="file" id="box-photo">
                             <input type="hidden" name="product_photo_name" id="default">
                             <input type="hidden" name="product_photo_path"
-                                    value="default">
+                                   value="default">
                             <span id="img-file-upload"><i class="fas fa-upload"></i>파일 업로드</span>
                         </div> <!-- product-photo -->
 
                     </div> <!-- photo -->
 
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
-                            data-bs-interval="false" id="carousel">
+                         data-bs-interval="false" id="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/food.png"
-                                        class="default-img"></div>
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/7ad6dbbb-cc54-453f-9cd0-8195cbe2f729_food.png"
+                                            class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/cosmetic.png"
-                                        class="default-img"></div>
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/3cf2e166-cfc6-493f-bedd-912c0523f34d_cosmetic.png"
+                                            class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/pill.png"
-                                        class="default-img"></div>
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/54f377cb-c909-4084-affe-ba178a14221e_pill.png"
+                                            class="default-img"></div>
                                 </div> <!-- photos -->
                             </div> <!-- carousel-item active -->
                             <div class="carousel-item">
                                 <div class="photos">
                                     <div class="cell hvr-grow"><img
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/clothes.png"
-                                        class="default-img"></div>
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/b7221ced-af23-4b74-aa45-721576e61034_clothes.png"
+                                            class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/goods.png"
-                                        class="default-img"></div>
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/5b151509-c695-4d76-951a-c788228e2456_goods.png"
+                                            class="default-img"></div>
                                     <div class="cell hvr-grow"><img
-                                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/photo_name.png"
-                                        class="default-img"></div>
+                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/a1338ab6-7cca-4d58-8f42-1aec03e36a3d_photo_name.png"
+                                            class="default-img"></div>
                                 </div> <!-- photos -->
                             </div> <!-- carousel-item -->
                         </div> <!-- carousel-inner -->

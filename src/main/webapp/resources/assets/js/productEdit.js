@@ -10,7 +10,6 @@ file.addEventListener("change",function (f) {
 
 		let dataUrl = reader.result;
 		const productPhoto = document.querySelector(".product-photo");
-        console.log('dataUrl: 잉잉' + dataUrl);
 
 		if(productPhoto!=null) {
 			productPhoto.style.backgroundImage = "url(" + dataUrl + ")";
