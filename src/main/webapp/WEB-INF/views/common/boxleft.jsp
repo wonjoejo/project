@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="permit" value="${sessionScope.permission}"/>
+<c:set var="box_no" value="${permit.box_no}"/>
 <html>
 
 
