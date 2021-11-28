@@ -20,19 +20,19 @@
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=115">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
-	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 </head>
 <body>
 
 <div class="container">
 
 	<jsp:include page="../common/left.jsp"/>
-	
 
-	<div class="main-container">		
+
+	<div class="main-container">
 		<div class="wrapper">
-		
-		<jsp:include page="../common/leftmobile.jsp"/>
+
+			<jsp:include page="../common/leftmobile.jsp"/>
 
 			<div id="top_content">
 
