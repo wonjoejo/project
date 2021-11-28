@@ -394,12 +394,18 @@ imgBtn.addEventListener("click", (e) => {
 	// document.querySelectorAll(".ball").forEach(value => {
 	// 	value.style.transform = "none";
 	// })
-	html2canvas(productContainer).then(function (canvas) {
-		saveAs(canvas.toDataURL(), 'mylist.png');
-	}, {
+
+	const container = document.querySelector(".main-container");
+
+	html2canvas(container, {
+		logging: true, letterRendering: 1,
 		allowTaint: false,
-		useCORS: true
-	});
+		useCORS: true,
+		proxy: '/etc/proxy_image',
+	}).then(function (canvas) {
+		saveAs(canvas.toDataURL('image/png'), 'mylist.png');
+	})
+
 	// document.querySelectorAll(".ball").forEach(value => {
 	// 	value.style.transform = `scale(${Math.random()})`;
 	// })
