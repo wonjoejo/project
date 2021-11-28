@@ -33,6 +33,9 @@
     <jsp:include page="../common/left.jsp"/>
 
     <div class="main-container">
+    
+    	<jsp:include page="../common/boxleftmobile.jsp"/>
+    	
         <h1>박스 수정</h1>
 
         <div class="box-wrapper">

@@ -25,7 +25,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=22">
+          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=24">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 
@@ -35,6 +35,9 @@
         <jsp:include page="../common/boxleft.jsp" />
         <div class="main-container">
             <div id="top-content">
+            
+            	<jsp:include page="../common/boxleftmobile.jsp"/>
+            
                 <h1 class="title">물품 리스트</h1>
             </div> <!-- top_content -->
 
