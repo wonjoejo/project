@@ -23,7 +23,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Log4j2
@@ -277,8 +280,7 @@ public class ProductController {
 
         ProductVO productVO;
         MemberTypeVO memberTypeVO;
-
-
+        
         
         
         if (file.getSize() !=0) {
@@ -328,7 +330,7 @@ public class ProductController {
         Boolean memberType = this.service.checkMemberType(productVO.getBox_no(), productVO.getProduct_no());
         log.info("\t +member Type: {}", memberType);
         
-        if (memberType == true) {
+        if (memberType) {
             // QR코드 생성
             QRUtils qrUtils = new QRUtils();
 
@@ -463,7 +465,6 @@ public class ProductController {
         String uploadDir = "product";
 
         ProductVO productVO;
-        Date date = new Date(System.currentTimeMillis());
         
         if (file.getSize() !=0) {
         	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
@@ -478,8 +479,7 @@ public class ProductController {
                     uploadDir,
                     product.getBarcode(),
                     product.getReg_date(),
-                    null
-            );
+                    null);
 
             boolean result = this.service.editProduct(productVO);
             log.info("\t +result: {}", result);
@@ -496,8 +496,7 @@ public class ProductController {
                     "default/",
                     product.getBarcode(),
                     product.getReg_date(),
-                    null
-            );
+                    null);
 
             boolean result = this.service.editProduct(productVO);
             log.info("\t +result: {}", result);
