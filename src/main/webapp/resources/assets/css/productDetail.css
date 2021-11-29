@@ -767,7 +767,7 @@ textarea {
 .modal-item input {
     border: none;
     background: transparent;
-    color: #959595;
+    color: #6e6e6e;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 15px;
     text-align: center;
@@ -843,11 +843,11 @@ textarea {
 .modal-title {
     text-align: center;
     font-family: "NEXON Lv1 Gothic OTF bold";
-    color: #959595;
+    color: #6e6e6e;
 }
 
 .modal-header {
-    border-bottom: 1px solid #959595 !important;
+    border-bottom: 1px solid #6e6e6e !important;
     margin: 0 6%;
     z-index: 100;
 }
