@@ -40,7 +40,7 @@ public class GroupController {
 		HttpSession session = req.getSession();
 		String loginId = (String) session.getAttribute("member_id");
 
-		List<MemberVO> list = this.service.selectGroupMemberList(box_no);
+		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
 
 		List<BoxPermissionMemberVO> permissionList = this.service.selectGroupPermissionList(box_no);
 
