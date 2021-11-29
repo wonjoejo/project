@@ -185,6 +185,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
             <!-- right -->
             <div class="my-wrapper2">
+              <c:choose>
               <div class="group" id="pw">
                 <label for="pwd" class="label"> 패스워드 </label>
                 <input
@@ -196,6 +197,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                 />
                 <i id="pwd1" class="fas fa-eye active"></i>
 			  </div>
+			  </c:choose>
               <div class="group">
                 <label for="name" class="label"> 이름 </label
                 ><input
