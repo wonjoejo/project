@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=42">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
-<c:set var="member_id" value="${sessionScope.member_id}" />
+<c:set var="member_id" value="${sessionScope.__AUTH__.member_id}"/>
   <div class="side-menu">
     <div class="profile">
 
@@ -62,33 +62,37 @@
                 class="far fa-list-alt"></i> 박스 리스트</a></span>
         <span class="menu-item inactive createview"><a href="${pageContext.request.contextPath}/box/createview"><i
                 class="far fa-plus-square"></i> 박스 생성</a></span>
-        <span class="menu-item inactive joingroup"><a href="#" data-target="group" data-toggle="modal"><i
+        <span class="menu-item inactive joingroup"><a href="#"><i
                 class="far fa-envelope"></i> 박스 참여</a></span>
         <span class="menu-item inactive qnaboard"><a href="${pageContext.request.contextPath}/board/listPerPage"><i
                 class="far fa-question-circle"></i> Q&A</a></span>
         <span class="menu-item inactive logout"><a href="/member/logout"><i
                 class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
     </div>
-</div>
+  </div>
 
-<div id="group" class="modal">
-    <div class="modal-window">
-        <div class="title">
-            <h5>참여코드(6자리)를 입력해 주세요</h5>
-        </div>
-        <form action="/box/join" method="post">
-            <input type="hidden" name="member_id" value="${member_id}">
-            <input type="text" name="box_no">
-            <div class="buttons">
-                <input type="submit" value="참여">
-                <button data-dismiss="modal">취소</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
-<script type="application/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>
+<%--<div id="group" class="modal">--%>
+<%--    <div class="modal-window">--%>
+<%--        <div class="title">--%>
+<%--            <h5>참여코드(6자리)를 입력해 주세요</h5>--%>
+<%--        </div>--%>
+<%--        <form action="/box/join" method="post">--%>
+<%--            <input type="hidden" name="member_id" value="${member_id}">--%>
+<%--            <input type="text" name="box_no">--%>
+<%--            <div class="buttons">--%>
+<%--                <input type="submit" value="참여">--%>
+<%--                <button data-dismiss="modal">취소</button>--%>
+<%--            </div>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--</div>--%>
+<script>
+	const boxNo = '${box_no}';
+	const memberId = '${member_id}';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=6"></script>
+<%--<script type="application/javascript"--%>
+<%--        src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>--%>
 
 </html>
