@@ -85,7 +85,7 @@ li {
 	background: rgba(255, 255, 255, 0.66);
 	border-radius: 50px;
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
-	/*  overflow: hidden; */
+	  overflow: hidden;
 	height: 80vh;
 	-ms-overflow-style: none; /* IE and Edge */
 	overflow-y: scroll;
@@ -95,6 +95,8 @@ li {
 	padding: 30px;
 	scrollbar-width: none; /* Firefox */
 	width: 80vw;
+
+
 }
 
 @media screen and ( max-width: 767px){
@@ -696,4 +698,3 @@ ul {
 ::-webkit-scrollbar {
 	display: none;
 }
-

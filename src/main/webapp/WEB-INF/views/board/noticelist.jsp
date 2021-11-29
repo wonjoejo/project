@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=10">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 
 </head>
@@ -31,8 +31,8 @@
 
     <div class="main-container">
         <div class="wrapper">
-        
-        	<jsp:include page="../common/leftmobile.jsp"/>
+
+            <jsp:include page="../common/leftmobile.jsp"/>
 
             <div id="top_content">
                 <h1 class="title">Q&A</h1>
@@ -41,21 +41,26 @@
                     <button id="noticewriteBtn" type="button"> + 공지작성</button>
                 </c:if>
             </div>
-            
-             <div class="search_pc">
-            	<form id="searchForm" action="/board/searchlist" method='get'>
 
-                    <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+            <div class="search_pc">
+                <form id="searchForm" action="/board/searchlist" method='get'>
+
+                    <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything"
+                           value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 
                     <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
                     <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
                     <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
-                    <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
+                    <button class='searchbtn'><img class="searchimg"
+                                                   src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
+                    </button>
                 </form>
             </div>
 
-            <div class="noticewrapper noticemainlist" >
-                <h2 class="notice"><img class="noticeimg" src="${pageContext.request.contextPath}/resources/assets/img/warning.png" />&nbsp;&nbsp;공지사항</h2>
+            <div class="noticewrapper noticemainlist">
+                <h2 class="notice"><img class="noticeimg"
+                                        src="${pageContext.request.contextPath}/resources/assets/img/warning.png"/>&nbsp;&nbsp;공지사항
+                </h2>
 
                 <div id="boardtitlenone" class="boardlistcontainer noticelistcontainer">
                     <div class="item">No</div>
@@ -69,18 +74,18 @@
                         <div class="noticelist">
 
                             <div class="item">
-                                <fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
+                                <fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}"/>
                             </div>
                             <div class="item">
-                                <c:out value="${board.member_id}" />
+                                <c:out value="${board.member_id}"/>
                             </div>
                             <div class="item">
                                 <a href="/board/noticedetail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-                                    <c:out value="${board.title}" />
+                                    <c:out value="${board.title}"/>
                                 </a>
                             </div>
                             <div class="item">
-                                <c:out value="${board.board_idx}" />
+                                <c:out value="${board.board_idx}"/>
                             </div>
                         </div>
                     </c:forEach>
@@ -94,26 +99,32 @@
                     <!-- 1. 이전 이동 여부 표시 (prev) -->
                     <ul class="pagination">
                         <c:if test="${pageMaker.prev}">
-                            <li class="page-item"><a class="page-link" href="/board/noticePage?currPage=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}&pagesPerPage=${cri.pagesPerPage}"><i class="fas fa-angle-left"></i></a></li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="/board/noticePage?currPage=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}&pagesPerPage=${cri.pagesPerPage}"><i
+                                    class="fas fa-angle-left"></i></a></li>
                         </c:if>
 
                         <!-- 페이지 번호 목록 표시 -->
                         <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-                            <c:set var="cp" value="${pageMaker.cri.currPage}" />
+                            <c:set var="cp" value="${pageMaker.cri.currPage}"/>
 
                             <c:choose>
                                 <c:when test="${pageNum == cp}">
                                     <li class="page-item active"><a class="page-link" href="#">${pageNum}</a></li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li class="page-item"><a class="page-link" href="/board/noticePage?currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="/board/noticePage?currPage=${pageNum}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">${pageNum}</a>
+                                    </li>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
 
                         <!-- 2. 다음 이동 여부 표시 (next) -->
                         <c:if test="${pageMaker.next}">
-                            <li class="page-item"><a class="page-link" href="/board/noticePage?currPage=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><i class="fas fa-angle-right"></i></a></li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="/board/noticePage?currPage=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><i
+                                    class="fas fa-angle-right"></i></a></li>
                         </c:if>
                     </ul>
                 </form>
@@ -131,9 +142,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
 <script>
-	const currPage = ${cri.currPage};
-	const amount = ${cri.amount};
-	const pagesPerPage = ${cri.pagesPerPage};
+    const currPage = ${cri.currPage};
+    const amount = ${cri.amount};
+    const pagesPerPage = ${cri.pagesPerPage};
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=30"></script>

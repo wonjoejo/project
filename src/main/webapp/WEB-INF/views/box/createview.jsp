@@ -97,15 +97,15 @@
                         <div class="input-container">
                             <div class="box-name">
                                 <span class="label">박스 이름</span>
-                                <input type="text" name="box_name" placeholder="박스 이름을 입력해 주세요">
+                                <input type="text" name="box_name" placeholder="박스 이름을 입력해 주세요" required>
                             </div>
                             <%--<c:if> 문 써서 기업회원인지 확인 후, 개인 회원일 경우에만 박스 모드 선택 노출--%>
                             <c:choose>
                                 <c:when test="${member.member_type eq 0}">
                                     <div class="box-mode">
                                         <span class="label">박스 모드</span>
-                                        <select class="mode-select" name="box_mode">
-                                            <option selected disabled>모드를 선택하세요</option>
+                                        <select class="mode-select" name="box_mode" required>
+                                            <option value = "" selected disabled>모드를 선택하세요</option>
                                             <option value="1">식품</option>
                                             <option value="2">화장품</option>
                                             <option value="3">의약품</option>
