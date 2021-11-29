@@ -1,8 +1,3 @@
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-	return new bootstrap.Tooltip(tooltipTriggerEl)
-});
-
 //권한 설정페이지로 이동
 $("#grouppermission").click(function () {
 	location.href = ctx + "/group/permissionlist?box_no=" + boxNo;
@@ -15,24 +10,23 @@ $("#groupcode").click(function () {
 		html:
 			`<input id="invite" type="text" data-clipboard-text="${boxNo}" 
 			value="${boxNo}" readonly><br>
-			<button class="copy-btn" data-clipboard-target="#invite" data-bs-toggle="tooltip" data-bs-placement="top" title="복사 성공!">
+			<button id="copy" class="copy-btn" data-clipboard-target="#invite">
 			<i class="fas fa-paste"></i> 복사</button>`,
 		showConfirmButton: false,
 		showCloseButton: true,
 		footer: '위 번호를 복사하여 참여란에 붙여넣기 해 주세요'
 	})
+
 	copyClipBoard();
 });
 
-const copyBtn = document.querySelector('.copy-btn');
-const tooltip = bootstrap.Tooltip.getOrCreateInstance(copyBtn);
-tooltip.hide();
 
 function copyClipBoard() {
+	const copyBtn = document.querySelector('.copy-btn');
 	const clipBoard = new ClipboardJS(copyBtn);
 	clipBoard.on('success', function (e) {
 		console.log(e);
-		tooltip.show();
+
 	})
 }
 
