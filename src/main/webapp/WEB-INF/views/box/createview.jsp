@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="member" value="${sessionScope.__AUTH__}"/>
 <html>
 <head>
     <title>BoxCreate</title>
@@ -98,18 +100,25 @@
                                 <input type="text" name="box_name" placeholder="박스 이름을 입력해 주세요">
                             </div>
                             <%--<c:if> 문 써서 기업회원인지 확인 후, 개인 회원일 경우에만 박스 모드 선택 노출--%>
-                            <div class="box-mode">
-                                <span class="label">박스 모드</span>
-                                <select class="mode-select" name="box_mode">
-                                    <option selected disabled>모드를 선택하세요</option>
-                                    <option value="1">식품</option>
-                                    <option value="2">화장품</option>
-                                    <option value="3">의약품</option>
-                                    <option value="4">의류</option>
-                                    <option value="5">굿즈</option>
-                                    <option value="6">기타</option>
-                                </select>
-                            </div>
+                            <c:choose>
+                                <c:when test="${member.member_type eq 0}">
+                                    <div class="box-mode">
+                                        <span class="label">박스 모드</span>
+                                        <select class="mode-select" name="box_mode">
+                                            <option selected disabled>모드를 선택하세요</option>
+                                            <option value="1">식품</option>
+                                            <option value="2">화장품</option>
+                                            <option value="3">의약품</option>
+                                            <option value="4">의류</option>
+                                            <option value="5">굿즈</option>
+                                            <option value="6">기타</option>
+                                        </select>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="hidden" name="box_mode" value="0">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <span class="label">박스 메모</span>
                         <textarea rows="5" cols="10" name="box_memo" placeholder="박스의 간단한 설명을 입력해 주세요"></textarea>

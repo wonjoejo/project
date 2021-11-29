@@ -423,26 +423,45 @@ table td {
 
 #profile_img {
 
-    display: inline-block;
-    width: 70%;
-	height: 100%;
-    overflow: hidden;
-/*     object-fit: cover;   */
-    border-radius: 5px;
-    padding :8px;
+	border-radius: 50%;
+	display: inline-block;
+	height: 100px;
+	margin-bottom: 5px;
+	/*     object-fit: cover;   */
+	overflow: hidden;
+	padding: 8px;
+	width: 100px;
 
 }
 
 #profile_permission { /*permissionlist용 사이즈*/
 
-    display: inline-block;
-    width: 35%;
+	border-radius: 5px;
+	display: inline-block;
 	height: 45%;
-    overflow: hidden;
-/*     object-fit: cover;  이게 있으면 넘치는 부분이 잘림*/ 
-    border-radius: 5px;
+	overflow: hidden;
+	/*     object-fit: cover;  이게 있으면 넘치는 부분이 잘림*/
+	width: 35%;
+}
 
+.member-info {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+}
 
+.member-name {
+	display: flex;
+	flex-direction: row;
+	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
+	font-size: 1.2rem;
+	justify-content: center;
+}
+
+.fa-crown {
+	color: #FFE400;
+	margin-right: 3px;
 }
 
 .scroll {

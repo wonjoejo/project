@@ -6,16 +6,11 @@
 
 	<!--그룹원 목록  -->
 	<select id="selectGroupMemberList" resultType="com.wonjoejo.myapp.domain.MemberVO">
-		
-	
-		SELECT 
-		*
+		SELECT *
 		FROM MEMBER m
-		INNER JOIN BOX_PERMISSION p ON p.member_id = m.member_id
+				 INNER JOIN BOX_PERMISSION p ON p.member_id = m.member_id
 		WHERE p.BOX_NO = #{box_no}
-		
-			
-	
+		order by MASTER_PER
 	</select>
 	
 	<select id="checkMaster" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO">
@@ -27,28 +22,41 @@
 	<!--그룹원 권한 조회  -->
 	
 		<select id="selectGroupPermission" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO" >
-		
-		
-			 SELECT 
-			 *
-			 FROM BOX_PERMISSION p
-			 INNER JOIN MEMBER m ON p.member_id = m.member_id
-			 WHERE BOX_NO = #{box_no}
-		
-	
-	</select>
+
+
+			SELECT *
+			FROM BOX_PERMISSION p
+					 INNER JOIN MEMBER m ON p.member_id = m.member_id
+			WHERE BOX_NO = #{box_no}
+			order by MASTER_PER
+
+
+		</select>
 	
 	<!-- 그룹원 권한 조회 2 -->
 	<select id="selectGroupPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionMemberVO" >
-	
-		 SELECT
-		 no, p.member_id, box_no, master_per, write_per, read_per, edit_per, delete_per, member_stat, name, email, phone_number, photo_name, photo_path
-		 FROM BOX_PERMISSION p
-		 INNER JOIN MEMBER m ON p.member_id = m.member_id
-		 WHERE BOX_NO = #{box_no}
-	
 
-</select>
+		SELECT no,
+			   p.member_id,
+			   box_no,
+			   master_per,
+			   write_per,
+			   read_per,
+			   edit_per,
+			   delete_per,
+			   member_stat,
+			   name,
+			   email,
+			   phone_number,
+			   photo_name,
+			   photo_path
+		FROM BOX_PERMISSION p
+				 INNER JOIN MEMBER m ON p.member_id = m.member_id
+		WHERE BOX_NO = #{box_no}
+		order by MASTER_PER
+
+
+	</select>
 	
 
 	<!--그룹 가입-->

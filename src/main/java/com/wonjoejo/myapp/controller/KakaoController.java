@@ -16,9 +16,11 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -55,8 +57,10 @@ private MemberService service;
 	@RequestMapping(value = "/login/oauth_kakao")
 	public String oauthKakao(
 			@RequestParam(value = "code", required = false) String code
-			, Model model, HttpSession session) throws Exception {
+			, Model model, HttpSession session, ModelAndView modelAndView) throws Exception {
 		
+		
+		session.removeAttribute(MemberController.authKey);
 		
 		System.out.println("#########" + code);
         String access_Token = getAccessToken(code);
@@ -80,10 +84,10 @@ private MemberService service;
         
         String kakaoPhoto = (String)userInfo.get("profile_image_url");
         log.info("프로필 받았니({})", kakaoPhoto);
-        
+
         
         if(service.getMember(kakaoName)==null) { // 같은 아이디 없으면 가입시켜쥼
-        	
+        	log.debug("if 넘어왔니");
         	
         	MemberVO memberVO 
         	= new MemberVO(
@@ -101,22 +105,26 @@ private MemberService service;
         			null,
         			null
         			);
-
+        	
+        	
         	boolean result = service.register(memberVO);
+        	log.debug("등록성공했니");
         	
         	if(result == true)
-        		session.setAttribute("member", memberVO);
+        		//session.setAttribute("member", memberVO);
+        		session.setAttribute(MemberController.authKey, memberVO);
         		
-        	log.debug("등록된거니"); // DB 저장까지 되는데...
+        	log.debug("true가 아니니?");	
+        	
+        	log.debug("등록된거니"); // DB 저장까지 되는데...      
+        	log.debug("MemberController.authKey");
+        	
         } 
-        
-//        else {
-//        	log.info("이미 존재하는 회원");
-//        	return "redirect:/member/register"; // 문제는 로그인할 때도 먹혀
-//        }
+ 
         session.setAttribute("member_id", kakaoName);
         session.setAttribute("photo_name", kakaoPhoto);
         session.setAttribute("name", kakaoName);
+      
         return "redirect: /";
 	} // oauthKakao
 	

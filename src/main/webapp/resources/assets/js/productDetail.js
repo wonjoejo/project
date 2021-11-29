@@ -41,7 +41,6 @@ function clickMention() {
 
 
 					} else {
-
 						modalProfile.src =  'https://intobox.s3.ap-northeast-2.amazonaws.com/' + data.photo_path + data.photo_name;
 						modalId.value = id;
 						modalName.value = data.name;

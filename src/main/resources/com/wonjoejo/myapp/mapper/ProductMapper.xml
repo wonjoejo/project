@@ -118,9 +118,8 @@
             PRODUCT_QTN        = #{product_qtn},
             PRODUCT_PHOTO_NAME = #{product_photo_name},
             PRODUCT_PHOTO_PATH = #{product_photo_path},
-            UPDATE_DATE = current_date
-        WHERE
-            PRODUCT_NO = #{product_no}
+            UPDATE_DATE        = CURRENT_DATE
+        WHERE PRODUCT_NO = #{product_no}
     </update>
 
 
