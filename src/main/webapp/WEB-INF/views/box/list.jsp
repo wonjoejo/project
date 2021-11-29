@@ -87,12 +87,8 @@
 
 </body>
 <script>
-    const result = '${result}';
-    if (result !== '') {
-        console.log("???");
-        alert("되나????" + result);
-    } else {
-        console.log("else문 탐");
-    }
+	const result = '${result}';
 </script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/js/boxalert.js"></script>
 </html>

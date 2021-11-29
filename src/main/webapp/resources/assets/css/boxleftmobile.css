@@ -122,14 +122,14 @@ a:hover {
 	border-left: 1px solid transparent;
 }
 
-.menu-item {
+.menu-item_m {
 	margin-bottom: 2rem;
 	display: flex;
 	flex-direction: row;
 	padding-left: 20%;
 }
 
-.menu-item i {
+.menu-item_m i {
 	margin-right: 12px;
 }
 

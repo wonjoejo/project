@@ -32,7 +32,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=88">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=89">
 
 </head>
 
@@ -92,7 +92,7 @@
       <div class="carousel-caption d-none d-md-block">
      	 <div class="slidegroub">
       		<p class="groubpoint">그룹 관리,</p>
-	        <p>초대는 쉽게 권한은 필요한 만큼만</p>
+	        <p>초대는 쉽게<br>권한은 필요한 만큼만</p>
         </div>
      </div>
     </div>
@@ -101,7 +101,7 @@
       <div class="carousel-caption d-none d-md-block">
         <div class="slidegroub">
        		<p class="groubpoint">물품 리스트,</p>
-	        <p>댓글 기능, 멘션 기능으로 상황 공유</p>
+	        <p>댓글 기능,<br>멘션 기능으로 상황 공유</p>
         </div>
       </div>
     </div>
@@ -219,7 +219,7 @@
 			<div>
 				<ul>
 					<li>
-						<img class="groupimg" src="http://placehold.it/100x100" />
+						<img class="groupimg" src="${pageContext.request.contextPath}/resources/assets/img/group.png" />
 						<div class="grouptext">
 							<p>
 								<h1 class="grouptext_p"><i class="fas fa-users"></i> 그룹 초대</h1>

@@ -26,7 +26,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleft.css?ver=11">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleft.css?ver=13">
 
 
 <div class="side-menu">
@@ -39,35 +39,37 @@
           />
           </a>
       </c:when>
-        <c:when test="${not empty photo_path}">
-           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img
-            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
-          />
-          </a>
-        </c:when>
-        <c:otherwise>
-         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
-          </a>
-        </c:otherwise>
-      </c:choose>
+            <c:when test="${not empty photo_path}">
+                <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+                    <img
+                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+                    />
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+                    <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+                </a>
+            </c:otherwise>
+        </c:choose>
         <p class="name">${sessionScope.member_id}</p>
     </div>
     <div class="menu">
-    	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i class="fas fa-home"></i>HOME</a></span>
-        <span class="menu-item active"><a
+    	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i
+                class="fas fa-home"></i>HOME</a></span>
+        <span class="menu-item active mybox"><a
                 href="${pageContext.request.contextPath}/box/detail?box_no=${box_no}">
                 <i class="fas fa-archive"></i> 나의 박스</a></span>
-        <span class="menu-item inactive"><a
+        <span class="menu-item inactive productlist"><a
                 href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
                 <i class="fas fa-list-alt"></i> 물품 리스트</a></span>
-        <span class="menu-item inactive"><a
+        <span class="menu-item inactive category"><a
                 href="${pageContext.request.contextPath}/category/detail?box_no=${box_no}"><i class="fas fa-table"></i> 카테고리</a></span>
-        <span class="menu-item inactive"><a
+        <span class="menu-item inactive groupmenu"><a
                 href="${pageContext.request.contextPath}/group/grouplist?box_no=${box_no}"><i
                 class="fas fa-user-friends"></i> 그룹</a></span>
-        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/chart/get?box_no=${box_no}"><i
+        <span class="menu-item inactive chart"><a
+                href="${pageContext.request.contextPath}/chart/get?box_no=${box_no}"><i
                 class="far fa-chart-bar"></i> 차트</a></span>
         <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/member/logout"><i
                 class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
@@ -93,7 +95,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/inboxmenu.js?ver=1"></script>
 
 
 </html>

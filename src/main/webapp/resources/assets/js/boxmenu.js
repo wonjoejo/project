@@ -30,67 +30,77 @@ if(window.location.pathname.indexOf('list')!==-1) {
 	qna.classList.add("active");
 }
 
-// const joinGroupBtn = document.querySelector(".joingroup");
-//
-// joinGroupBtn.addEventListener("click", function (e) {
-// 	e.preventDefault();
-// 	Swal.fire({
-// 		title: '참여할 박스의 코드를 입력해 주세요(숫자 4~5자리)',
-// 		input: 'text',
-// 		inputAutoTrim: 'true',
-// 		inputAttributes: {
-// 			autocapitalize: 'off'
-// 		},
-// 		showCancelButton: true,
-// 		confirmButtonText: '제출',
-// 		cancelButtonText: '취소',
-// 		inputValidator: (keyword) => {
-// 			return new Promise((resolve) => {
-// 				fetch(`/group/find?keyword=${keyword}`)
-// 					.then(response => {
-// 						if (!response.ok) {
-// 							throw new Error(response.statusText)
-// 						}
-// 						return response.json();
-// 					})
-// 					.catch(error => {
-// 						Swal.showValidationMessage(
-// 							`Request failed: ${error}`
-// 						)
-// 					})
-// 					.then(data => {
-// 						if (keyword === data) {
-// 							fetch(`/group/master?member_id=${data}&box_no=${boxNo}`)
-// 								.then(response2 => {
-// 									if (!response2.ok) {
-// 										throw new Error(response2.statusText)
-// 									}
-// 									return response2.json();
-// 								})
-// 								.then(data2 => {
-// 									console.log(data2);
-// 									if (data2 === false) {
-// 										resolve('일치 하는 회원이 없습니다')
-// 									} else {
-// 										Swal.fire({
-// 											position: 'center',
-// 											icon: 'success',
-// 											title: `${data}님께 마스터 권한이 양도 되었습니다`,
-// 											showConfirmButton: false,
-// 											timer: 1500
-// 										})
-// 										resolve()
-// 										location.href = `permissionlist?box_no=${boxNo}`;
-// 									}
-// 								})
-// 						} else {
-// 							resolve('일치 하는 회원이 없습니다')
-// 						}
-// 					})
-// 			})
-// 		}
-//
-// 	})
-// })
+// 박스 참여
+const joinGroupBtn = document.querySelector(".joingroup");
+
+joinGroupBtn.addEventListener("click", function (e) {
+	e.preventDefault();
+	console.log("click");
+	Swal.fire({
+		title: '박스 참여',
+		text: '참여할 박스의 초대 코드를 입력해 주세요(숫자 4자리)',
+		input: 'text',
+		inputAutoTrim: 'true',
+		inputAttributes: {
+			autocapitalize: 'off'
+		},
+		showCancelButton: true,
+		confirmButtonText: '제출',
+		cancelButtonText: '취소',
+		inputValidator: (box_no) => {
+			return new Promise((resolve) => {
+				fetch(`/box/check?box_no=${box_no}&member_id=${memberId}`)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(response.statusText)
+						}
+						return response.json();
+					})
+					.catch(error => {
+						Swal.showValidationMessage(
+							`해당하는 박스 번호가 없거나 이미 참여한 박스입니다`
+						)
+					})
+					.then(data => {
+						console.log(data);
+						const bodyData = {
+							box_no: box_no,
+							member_id: memberId
+						}
+						if (data === true) {
+							fetch(`/box/join`, {
+								method: 'POST',
+								body: JSON.stringify(bodyData)
+							})
+								.then(response2 => {
+									console.log(response2);
+									if (!response2.ok) {
+										throw new Error(response2.statusText)
+									}
+								})
+								.then(data2 => {
+									console.log(data2);
+									if (data2 === "false") {
+										resolve('일치 하는 박스가 없습니다')
+									} else {
+										Swal.fire({
+											position: 'center',
+											icon: 'success',
+											title: `${box_no}에 참여하였습니다`,
+											showConfirmButton: false,
+										})
+										resolve()
+										location.href = `/box/list?member_id=${memberId}`;
+									}
+								})
+						} else {
+							resolve('일치 하는 박스가 없습니다');
+						}
+					})
+			})
+		}
+
+	})
+})
 
 

@@ -50,34 +50,34 @@
 		 
 			 <div class="menu_in">
 			 	
-			 	 <div class="profile">
-
-      <c:choose>
-      <c:when test="${fn:contains(photo_name, 'kakao')}">
-          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img
-            src="${photo_name}"
-          />
-          </a>
-      </c:when>
-        <c:when test="${not empty photo_path}">
-           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img
-            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
-          />
-          </a>
-        </c:when>
-        <c:otherwise>
-         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
-          </a>
-        </c:otherwise>
-      </c:choose>
-        <p class="name">${member_id}</p>
-
-    </div>
+				 	 <div class="profile">
+	
+				      <c:choose>
+				      <c:when test="${fn:contains(photo_name, 'kakao')}">
+				          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+				          <img
+				            src="${photo_name}"
+				          />
+				          </a>
+				      </c:when>
+				        <c:when test="${not empty photo_path}">
+				           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+				          <img
+				            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+				          />
+				          </a>
+				        </c:when>
+				        <c:otherwise>
+				         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+				          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+				          </a>
+				        </c:otherwise>
+				      </c:choose>
+				        <p class="name">${member_id}</p>
+	
+	    			</div>
 			 
-			   	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i class="fas fa-home"></i>HOME</a></span>
+			   	   <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i class="fas fa-home"></i>HOME</a></span>
 			       <span class="menu-item boxlist"><a
 			               href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i
 			               class="far fa-list-alt"></i> 박스 리스트</a></span>
@@ -97,7 +97,7 @@
 </div>
 
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/leftmobilemenu.js?ver=60"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/leftmobilemenu.js?ver=61"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
 <script type="application/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>

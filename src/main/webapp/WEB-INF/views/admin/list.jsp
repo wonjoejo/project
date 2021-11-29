@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
   <head>
@@ -85,18 +86,26 @@ pageEncoding="UTF-8"%>
             <div class="memberlist">
                 <c:forEach items="${list}" var="member">
                 
-                  <div class="tablecontainer">     
-                      
+                  <div class="tablecontainer">
                         <c:choose>
-                          <c:when test="${not empty member.photo_name}">
+				         
+				         <c:when test="${fn:contains(member.photo_name, 'kakao')}">
+				          <div class="item" id="${member.photo_name}">
+                            <img src="<c:out value="${member.photo_name}"/>" width="60" height="60" style="border-radius: 7px; object-fit: cover">
+                          </div>	
+				         </c:when>
+				                        
+                          <c:when test="${not empty member.photo_path}">
                           <div class="item" id="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}">
                             <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"/>" width="60" height="60" style="border-radius: 7px; object-fit: cover">
                             </div>	
                           </c:when>
+                         
                           <c:otherwise>
                           <div class="item" id="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png">
                             <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>" width="60" height="60">  
                             </div>	  
+                         
                           </c:otherwise>
                         </c:choose>
              
