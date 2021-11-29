@@ -320,12 +320,15 @@ public class ProductController {
             rttrs.addAttribute("result", result);
         }
 
-
-        Boolean memberType = this.service.checkMemberType(productVO.getBox_no(), productVO.getProduct_no());
         log.info("\t +box_no: {} / product_no: {}", productVO.getBox_no(), productVO.getProduct_no());
+
+        
+        // QR코드 생성을 위한 member type 확인 
+        // 기업회원(member_type=1, true) / 일반회원(member_type=0, false)
+        Boolean memberType = this.service.checkMemberType(productVO.getBox_no(), productVO.getProduct_no());
         log.info("\t +member Type: {}", memberType);
         
-        if (memberType = true) {
+        if (memberType == true) {
             // QR코드 생성
             QRUtils qrUtils = new QRUtils();
 
