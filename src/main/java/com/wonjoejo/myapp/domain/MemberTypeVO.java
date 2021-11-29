@@ -1,7 +1,5 @@
 package com.wonjoejo.myapp.domain;
 
-import java.util.Date;
-
 import lombok.Value;
 
 @Value

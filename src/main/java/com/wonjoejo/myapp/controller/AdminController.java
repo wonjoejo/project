@@ -79,6 +79,33 @@ public class AdminController {
 		model.addAttribute("list", list);
     } // searchMember
     
+    // 전체 회원 검색 리스트
+    @GetMapping("/searchList")
+	public String searchList(@ModelAttribute("mcri") AdminCriteria mcri, Model model) {
+			
+		log.debug("searchList({}) invoked.", model);
+		
+		String keyword = mcri.getKeyword();
+		log.info("\t + keyword: {}", keyword);
+
+		mcri.setKeyword(keyword.replace(" ", ""));
+		log.info("\t + mcri.keyword: {}", mcri.getKeyword());
+		
+		List<MemberVO> searchList = this.service.getsearchPage(mcri);
+		log.info("\t+ list size:{}", searchList.size());
+
+		model.addAttribute("searchList", searchList);
+		
+		Integer totalAmount = this.service.getsearchTotal(mcri);
+
+		PageDTO pageDTO = new PageDTO(mcri, totalAmount);
+
+		model.addAttribute("pageMaker", pageDTO);
+
+		//list.jsp 그대로 사용
+		return "/admin/searchList";
+	}//searchList
+    
     // 개인 회원 검색 리스트
     @GetMapping("/searchList0")
 	public String searchList0(@ModelAttribute("mcri") AdminCriteria mcri, Model model) {

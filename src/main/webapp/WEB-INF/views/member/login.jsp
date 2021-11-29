@@ -15,7 +15,11 @@
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
-
+	
+	<!-- kakao -->
+	<script src="https:/developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=5"/>
@@ -98,18 +102,19 @@
                 <a href="#" class="social-login__link social-login__link--google">
                     <img
                         class="social-image"
-                        src="${pageContext.request.contextPath}/resources/assets/img/btn_google.png"/>
+                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_google.png"/>
                 </a>
                 <a href="#" class="social-login__link social-login__link--naver">
                     <img
                         class="social-image"
-                        src="${pageContext.request.contextPath}/resources/assets/img/btn_naver.png"/>
+                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_naver.png"/>
                 </a>
-                <a href="#" class="social-login__link social-login__link--kakao">
-                    <img
+                <a href="javascript:void(0)" class="social-login__link social-login__link--kakao" >   
+                   <img
                         class="social-image"
-                        src="${pageContext.request.contextPath}/resources/assets/img/btn_kakao.png"/>
+                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_kakao.png" onclick="kakaoLogin();"/>
                 </a>
+               
             </div>
     </div>
     <div class="img-container">
@@ -225,4 +230,38 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ <script>
+  // 카카오로그인
+  function kakaoLogin() {
+
+    $.ajax({
+        url: '/login/getKakaoAuthUrl',
+        type: 'get',
+        async: false,
+        dataType: 'text',
+        success: function (res) {
+            location.href = res;
+        }
+    });
+
+  }
+
+  $(document).ready(function() {
+
+      let kakaoInfo = '${kakaoInfo}';
+
+      if(kakaoInfo != ""){
+          let data = JSON.parse(kakaoInfo);
+
+          alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
+          alert(
+          "user : \n" + "email : "
+          + data['email']  
+          + "\n nickname : " 
+          + data['nickname']);
+      }
+  });  
+
+  </script>
 </html>

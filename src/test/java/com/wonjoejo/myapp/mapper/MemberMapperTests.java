@@ -102,5 +102,16 @@ public class MemberMapperTests {
 
 		log.info("\t+ member_id:{}",member);
 	} // testFindId
+	
+	@Test
+	public void testMemberId() {
+		log.debug("testMemberId() invoked.");
+		
+		String member_id="c3";
+		
+		MemberVO member = this.mapper.selectMemberId(member_id);
+
+		log.info("\t+ member_id:{}",member);
+	} // testMemberId
 
 } // end class

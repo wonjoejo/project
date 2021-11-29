@@ -22,6 +22,9 @@ public interface AdminMapper {
 	// 총 레코드 수
 	public abstract Integer getTotalCount(String member_id);
 	
+	// 전체 회원 검색    
+	public abstract List<MemberVO> getsearchPage(AdminCriteria mcri);
+	
 	// 개인 회원 검색    
 	public abstract List<MemberVO> getsearchPage0(AdminCriteria mcri);
 	

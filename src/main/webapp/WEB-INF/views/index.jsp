@@ -31,7 +31,6 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=88">
-
 </head>
 
 <body>
@@ -249,5 +248,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/resources/assets/js/index.js?ver=10"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    let kakaoInfo = '${kakaoInfo}';
+
+    if(kakaoInfo != ""){
+        let data = JSON.parse(kakaoInfo);
+
+        alert("카카오로그인 성공 \n accessToken : " + data['accessToken']);
+        alert(
+        "user : \n" + "email : "
+        + data['email']  
+        + "\n nickname : " 
+        + data['nickname']);
+    }
+});  
+</script>
 </html>
 

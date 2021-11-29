@@ -210,20 +210,19 @@ pageEncoding="UTF-8"%>
                   class="social-login__link social-login__link--google"
                   ><img
                     class="social-image"
-                    src="${pageContext.request.contextPath}/resources/assets/img/btn_google.png"
+                    src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_google.png"
                   />
                 </a>
                 <a href="#" class="social-login__link social-login__link--naver"
                   ><img
                     class="social-image"
-                    src="${pageContext.request.contextPath}/resources/assets/img/btn_naver.png"
+                    src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_naver.png"
                   />
                 </a>
-                <a href="#" class="social-login__link social-login__link--kakao"
-                  ><img
-                    class="social-image"
-                    src="${pageContext.request.contextPath}/resources/assets/img/btn_kakao.png"
-                  />
+                <a href="javascript:void(0)" class="social-login__link social-login__link--kakao" >   
+                   <img
+                        class="social-image"
+                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_kakao.png" onclick="kakaoLogin();"/>
                 </a>
               </div>
               <div class="division">
@@ -361,7 +360,7 @@ pageEncoding="UTF-8"%>
                   class="input"
                   type="text"
                   name="email"
-                  placeholder="example@mail.com"
+                  placeholder="intobox2jo@gmail.com"
                   required
                 />
               </div>
@@ -408,7 +407,7 @@ pageEncoding="UTF-8"%>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
   <script
     type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=10"
+    src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=12"
   ></script>
   <script type="text/javascript">
   $(function () {
@@ -513,5 +512,22 @@ pageEncoding="UTF-8"%>
       },
     });
   }
+  </script>
+  <script>
+  // 카카오로그인
+  function kakaoLogin() {
+
+    $.ajax({
+        url: '/login/getKakaoAuthUrl',
+        type: 'get',
+        async: false,
+        dataType: 'text',
+        success: function (res) {
+            location.href = res;
+        }
+    });
+
+  }
+
   </script>
 </html>

@@ -69,6 +69,18 @@
         ]]>
     </select>
 	
+	<!-- 전체 회원 검색 목록 조회 -->
+    <select id="getsearchPage" resultType="com.wonjoejo.myapp.domain.MemberVO">  
+    <![CDATA[ 
+        SELECT 
+        	/*+ index_desc(MEMBER) */
+        	*
+   		FROM MEMBER           
+        WHERE (replace(member_id,' ','') like '%'||#{keyword}||'%' or replace(name,' ','') like '%'||#{keyword}||'%')            	
+       	OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
+        ]]>
+    </select>
+	
 	<!-- 개인 회원 검색 목록 조회 -->
     <select id="getsearchPage0" resultType="com.wonjoejo.myapp.domain.MemberVO">  
     <![CDATA[ 

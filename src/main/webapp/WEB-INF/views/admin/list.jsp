@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/admin.css?ver=11"
+      href="${pageContext.request.contextPath}/resources/assets/css/admin.css?ver=12"
     />
     <link
       rel="stylesheet"
@@ -89,7 +89,7 @@ pageEncoding="UTF-8"%>
                         <c:choose>
                           <c:when test="${not empty member.photo_name}">
                           <div class="item" id="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}">
-                            <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"/>" width="60" height="60" style="border-radius: 7px">
+                            <img src="<c:out value="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"/>" width="60" height="60" style="border-radius: 7px; object-fit: cover">
                             </div>	
                           </c:when>
                           <c:otherwise>
@@ -240,9 +240,12 @@ pageEncoding="UTF-8"%>
     if(type=="1") {
      document.searchForm.action="/admin/searchList0";
      console.log("개인회원");
-    } else {
+    } else if(type=="2") {
       document.searchForm.action="/admin/searchList1";
       console.log("기업회원");
+    } else {
+    	document.searchForm.action="/admin/searchList";
+        console.log("전체");
     }
   }
     </script>
