@@ -112,12 +112,15 @@
     <!-- edit -->
     <update id="updateProduct">
         UPDATE PRODUCT
-        SET PRODUCT_NAME       = #{product_name},
+        SET
+            PRODUCT_NAME       = #{product_name},
             PRODUCT_MEMO       = #{product_memo},
             PRODUCT_QTN        = #{product_qtn},
             PRODUCT_PHOTO_NAME = #{product_photo_name},
-            PRODUCT_PHOTO_PATH = #{product_photo_path}
-        WHERE PRODUCT_NO = #{product_no}
+            PRODUCT_PHOTO_PATH = #{product_photo_path},
+            UPDATE_DATE = current_date
+        WHERE
+            PRODUCT_NO = #{product_no}
     </update>
 
 
