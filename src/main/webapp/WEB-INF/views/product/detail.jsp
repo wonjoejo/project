@@ -239,7 +239,7 @@
                         <c:when test="${permit.write_per eq 0}">
                             <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
                             <input name="comment_content" id="commentContent" class="search" type="text"
-                                placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
+                                placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. " required/>
                             <ul class="suggestions detailsuggestions">
                             </ul>
                             <button id="insertBtn" class="searchbtn">
@@ -352,6 +352,6 @@
 <%-- product JS --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=5"></script>
 <%-- mention JS 실험 중 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=5"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=1"></script>
 
 </html>

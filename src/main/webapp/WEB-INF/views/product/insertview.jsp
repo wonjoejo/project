@@ -108,7 +108,7 @@
                     <ul>
                         <li>
                             <div class="title">이름</div>
-                            <input type="text" name="product_name" class="detail">
+                            <input type="text" name="product_name" class="detail" required>
                         </li>
                         <c:if test="${not empty baseCategory.cate_name1}">
                             <li>
@@ -145,7 +145,7 @@
                         </a>
                         <li>
                             <div class="title">메모</div>
-                            <textarea name="product_memo" class="detail detail-memo"></textarea>
+                            <textarea name="product_memo" class="detail detail-memo" placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
                         </li>
                         <ul class="suggestions">
                         </ul>

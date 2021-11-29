@@ -101,7 +101,7 @@
                     <div class="qtn">
                         <span>수량
                             <div class="bar"></div>
-                            <input type="number" name="product_qtn" value="${product.product_qtn}">
+                            <input type="number" name="product_qtn" value="${product.product_qtn}" required>
                         </span>
                     </div> <!-- qtn -->
                 </div> <!-- left-box -->

@@ -234,3 +234,43 @@ ul {
 .type2::-webkit-scrollbar-track {
     background-color: rgba(142, 200, 248, 0.288);
 }
+
+
+
+/* fadeup */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInUp {
+    opacity: 0;
+    animation: fadeInUp 1s ease-in-out 0s forwards;
+}
+
+
+.top5-list li:nth-child(2){
+    animation-delay: 0.5s;
+}
+
+.top5-list li:nth-child(3){
+    animation-delay: 1s;
+}
+
+.top5-list li:nth-child(4){
+    animation-delay: 1.5s;
+}
+
+.top5-list li:nth-child(5){
+    animation-delay: 2s;
+}

@@ -22,7 +22,7 @@
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <%-- chart css --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/chart.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/chart.css?ver=3">
 
 </head>
 <body>
@@ -74,7 +74,7 @@
                         <h3 class="top5-title">물품 수량 TOP 5</h3>
                         <ul class="top5-list">
                             <c:forEach items="${topProductList}" var="topList" varStatus="status">
-                                <li class="top5-list-container">
+                                <li class="top5-list-container fadeInUp">
                                     <div class="no">${status.count}</div>
                                     <c:if test="${not empty topList.product_photo_name && not empty topList.product_photo_path}">
                                         <div class="item" id="product-img">
@@ -115,7 +115,7 @@
                         <h3 class="top5-title">최신 입고 물품</h3>
                         <ul class="top5-list">
                             <c:forEach items="${dateProductList}" var="dateList" varStatus="status">
-                                <li class="top5-list-container">
+                                <li class="top5-list-container fadeInUp">
                                     <div class="no">${status.count}</div>
                                     <c:if test="${not empty dateList.product_photo_name && not empty dateList.product_photo_path}">
                                         <div class="item" id="product-img">
@@ -168,4 +168,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
+
+<script>
+    // fadein효과
+
+    $(document).ready(function(){
+        $(window).scroll(function(){
+            $('.fadeInUp').each(function(i){
+
+                var bottom_of_element = $(this).offset().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                if(bottom_of_window > bottom_of_element){
+                    $(this).animate({'opacity':'1','margin-left':'0px'},1000);
+                }
+            });
+        });
+    });
+</script>
 </html>
