@@ -54,68 +54,67 @@
                                                 <th>수정</th>
                                                 <th>삭제</th>
                                                 <th>추방</th>
-
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <c:forEach items="${list}" var="group">
-                                                <form>
-                                                    <c:if test="${group.member_stat != 1}">
-                                                        <input type="hidden" name="box_no" value="${box_no}">
-                                                        <tr>
-                                                            <td>
-                                                                <c:choose>
-                                                                    <c:when test="${group.photo_name eq null}">
-                                                                        <img id="profile_permission"
-                                                                            src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
-                                                                    </c:when>
-                                                                    <c:when test="${fn:contains(photo_name, 'kakao')}">
-                                                                        <a
-                                                                            href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-                                                                            <img id="profile_img"
-                                                                                src="${group.photo_name}" /></a>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <img id="profile_permission"
-                                                                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}" />
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </td>
-                                                            <td>
-                                                                <c:out value="${group.name}" />
-                                                            </td>
-                                                            <td>
-                                                                <c:out value="${group.member_id}" />
-                                                                <input class="member_id" type="hidden" name="member_id"
-                                                                    value="${group.member_id}">
-                                                            </td>
-                                                            <td>
-                                                                <c:choose>
-                                                                    <c:when test="${group.read_per == 0}">
-                                                                        <div class="form-switch">
-                                                                            <input
-                                                                                class="form-check-input read_per checked"
-                                                                                name="read_per" type="checkbox"
-                                                                                id="permission_o" checked value="0">
-                                                                            <input type="hidden" name="read_per"
-                                                                                value="1" class="unchecked" disabled>
-                                                                        </div>
-                                                                    </c:when>
 
+                                        <tbody>
+                                        <c:forEach items="${list}" var="group">
+                                            <c:if test="${group.member_stat ne 1}">
+                                                <form>
+                                                <input type="hidden" name="box_no" value="${group.box_no}">
+                                                <tr>
+
+                                                    <td>
+                                                        <c:choose>
+                                                            <c:when test="${group.photo_name eq null}">
+                                                                <img id="profile_permission"
+                                                                     src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
+                                                            </c:when>
+                                                            <c:when test="${fn:contains(group.photo_name, 'kakao')}">
+                                                                <a
+                                                                        href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+                                                                    <img id="profile_img"
+                                                                         src="${group.photo_name}"/></a>
+                                                            </c:when>
                                                             <c:otherwise>
-                                                            
+                                                                <img id="profile_permission"
+                                                                     src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}"/>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${group.name}"/>
+                                                    </td>
+
+                                                    <td>
+                                                        <c:out value="${group.member_id}"/>
+                                                        <input class="member_id" type="hidden" name="member_id"
+                                                               value="${group.member_id}">
+                                                    </td>
+
+                                                    <td>
+                                                        <c:choose>
+                                                            <c:when test="${group.read_per == 0}">
+                                                                <div class="form-switch">
+                                                                    <input
+                                                                            class="form-check-input read_per checked"
+                                                                            name="read_per" type="checkbox"
+                                                                            id="permission_o" checked value="0">
+                                                                    <input type="hidden" name="read_per"
+                                                                           value="1" class="unchecked" disabled>
+                                                                </div>
+                                                            </c:when>
+                                                            <c:otherwise>
                                                                 <div class="form-switch">
                                                                     <input class="form-check-input read_per checked"
-                                                                        name="read_per" type="checkbox"
-                                                                        id="permission_x" value="1">
+                                                                           name="read_per" type="checkbox"
+                                                                           id="permission_x" value="1">
                                                                     <input type="hidden" name="read_per" value="1"
-                                                                        class="unchecked">
+                                                                           class="unchecked">
                                                                 </div>
-                                                                
-
                                                             </c:otherwise>
-                                                            </c:choose>
-
+                                                        </c:choose>
                                                             </td>
 
                                                             <td>
@@ -141,8 +140,8 @@
                                                                         </div>
                                                                     </c:otherwise>
                                                                 </c:choose>
-
                                                             </td>
+
                                                             <td>
                                                                 <c:choose>
                                                                     <c:when test="${group.edit_per == 0}">
@@ -166,9 +165,9 @@
                                                                         </div>
                                                                     </c:otherwise>
                                                                 </c:choose>
-
                                                             </td>
-                                                            <td>
+
+                                                    <td>
                                                                 <c:choose>
                                                                     <c:when test="${group.delete_per == 0}">
                                                                         <div class="form-switch">
@@ -191,12 +190,12 @@
                                                                         </div>
                                                                     </c:otherwise>
                                                                 </c:choose>
+                                                    </td>
 
-                                                            </td>
-                                                            <input type="hidden" name="master_per"
-                                                                value="${group.master_per}">
-                                                            <td>
+                                                    <input type="hidden" name="master_per"
+                                                           value="${group.master_per}">
 
+                                                    <td>
                                                                 <c:if test="${group.master_per !=0}">
                                                                     <button class="groupout" name="master_per"
                                                                         id="${group.member_id}"><i
@@ -205,7 +204,6 @@
                                                             </td>
 
                                                         </tr>
-
                                                     </c:if>
                                                 </form>
                                             </c:forEach>
