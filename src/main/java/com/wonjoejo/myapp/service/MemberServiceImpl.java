@@ -136,6 +136,15 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		return  cnt;
 	} // idCheck
 	
+	// 아이디 가져오기
+	@Override
+	public MemberVO getMemberId(String member_id) {
+		
+		MemberVO member = this.mapper.selectMemberId(member_id);
+
+		return member;
+	} // getMemberId
+	
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");
@@ -147,6 +156,8 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 		log.debug("afterPropertiesSet({}) invoked.");
 		
 	} // afterPropertiesSet
+
+
 	
 
 } // end class

@@ -38,9 +38,10 @@ public interface MemberMapper {
 	// 회원 탈퇴
 	public abstract Integer deleteMember(String member_id);
 
-
-	
 	// 아이디 중복체크
 	public abstract Integer selectIdCheck(String member_id);
+	
+	// 아이디 가져오기
+	public abstract MemberVO selectMemberId(String member_id);
 	
 } // end interface

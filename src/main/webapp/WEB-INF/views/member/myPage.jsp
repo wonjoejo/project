@@ -261,15 +261,15 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
         </div>
         <div class="delete-content">
 	      <h5>탈퇴 전 유의사항</h5>
-	      <p>-탈퇴 후 같은 아이디, 이메일로 재가입이 불가합니다.</p>
+	      <p>-탈퇴 후 같은 아이디로 재가입이 불가합니다.</p>
         </div>
         <form id="deleteForm" action="/member/delete" method="post">
           <input type="hidden" name="member_id" value="${member_id}" />
           <div class="modalbuttons">
             <button class="delete-btn hvr-float" type="submit">
-              <i class="fas fa-minus-circle"></i>&nbsp;회원 탈퇴
+              <i class="fas fa-minus-circle"></i>&nbsp;탈퇴
             </button>
-            <button data-dismiss="modal">취소</button>
+            <button data-dismiss="modal" class="hvr-float">취소</button>
           </div>
         </form>
       </div>

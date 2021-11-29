@@ -1,5 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ page
-contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
   <!-- favicon -->
   <link
@@ -42,13 +44,24 @@ contentType="text/html;charset=UTF-8" language="java" %>
   <div class="side-menu">
     <div class="profile">
       <c:choose>
-        <c:when test="${not empty member.photo_name}">
+      <c:when test="${fn:contains(photo_name, 'kakao')}">
+          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
           <img
-            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${member.photo_path}${member.photo_name}"
+            src="${photo_name}"
           />
+          </a>
+      </c:when>
+        <c:when test="${not empty photo_path}">
+           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+          />
+          </a>
         </c:when>
         <c:otherwise>
+         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
           <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+          </a>
         </c:otherwise>
       </c:choose>
       <p class="name">${member_id}</p>

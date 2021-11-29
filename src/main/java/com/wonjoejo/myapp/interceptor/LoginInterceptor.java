@@ -56,11 +56,14 @@ public class LoginInterceptor
             session.setAttribute(MemberController.authKey, member);
             session.setAttribute("member_id", member.getMember_id());
             session.setAttribute("member_type", member.getMember_type());
+            session.setAttribute("photo_name", member.getPhoto_name());
+            session.setAttribute("photo_path", member.getPhoto_path());
+            
+            session.getAttribute("photo_name");
 
             log.info("==== 로그인 성공 : {} ====", member.getMember_id());
             log.info("==== 로그인 성공 : {} ====", member.getMember_type());
             
-
             // 자동 로그인
             String rememberMe = req.getParameter("rememberMe");
             if (rememberMe != null) { // 자동로그인 옵션이 ON이면

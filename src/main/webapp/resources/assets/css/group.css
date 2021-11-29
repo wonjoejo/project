@@ -212,7 +212,10 @@ body {
 	margin-bottom: 20px;
 	color: #4E4E4E;
 	cursor: pointer;
-	background: red;
+	background: rgb(255, 255, 255);
+	border-style: solid;
+	border-color :#8032fdb4;
+    border-radius: 45px;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 	border-radius: 45px;
 	font-family: 'NEXON Lv1 Gothic OTF Bold',sans-serif;
@@ -424,8 +427,21 @@ table td {
     width: 70%;
 	height: 100%;
     overflow: hidden;
-    object-fit: cover;
+/*     object-fit: cover;   */
     border-radius: 5px;
+    padding :8px;
+
+}
+
+#profile_permission { /*permissionlist용 사이즈*/
+
+    display: inline-block;
+    width: 35%;
+	height: 45%;
+    overflow: hidden;
+/*     object-fit: cover;  이게 있으면 넘치는 부분이 잘림*/ 
+    border-radius: 5px;
+
 
 }
 

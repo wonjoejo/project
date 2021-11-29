@@ -257,7 +257,7 @@ function displayMatches() {
 			);
 			return `
     <li>
-        <span class="name">${member.member_id}</span>
+        <span class="mention-id">${member.member_id}</span>
     </li>
     `;
 		})
@@ -271,7 +271,8 @@ function displayMatches() {
 
 // 목록에서 선택 시 클릭한 id가 input 창에 반영
 function clickName() {
-	const names = document.querySelectorAll('.name');
+	const names = document.querySelectorAll('.mention-id');
+	console.log("click!");
 	names.forEach(function (item) {
 		item.addEventListener('click', function (e) {
 			e.preventDefault();

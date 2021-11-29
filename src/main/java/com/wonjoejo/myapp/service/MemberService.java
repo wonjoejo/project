@@ -1,10 +1,12 @@
 package com.wonjoejo.myapp.service;
 
-import com.wonjoejo.myapp.domain.LoginDTO;
-import com.wonjoejo.myapp.domain.MemberVO;
+import java.util.Date;
+import java.util.HashMap;
+
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
+import com.wonjoejo.myapp.domain.LoginDTO;
+import com.wonjoejo.myapp.domain.MemberVO;
 
 public interface MemberService {
 
@@ -18,7 +20,6 @@ public interface MemberService {
 	public abstract MemberVO findMemberByRemberMe(String rememberMe) throws Exception;
 	public abstract boolean editMemberWithRememberMe(String member_id, String rememberMe, Date rememberAge) throws Exception;	 
 	
-	// 계정 찾기를 MemberVO 주는 게 맞나?
 	// 아이디 찾기
 	public abstract MemberVO findId(@Param("email") String email, @Param("name") String name);
 	
@@ -39,5 +40,9 @@ public interface MemberService {
 
 	// 아이디 중복체크
 	public abstract Integer idCheck(String member_id);
+	
+	// 전체 회원 아이디 가져오기
+	public abstract MemberVO getMemberId(String member_id);
+	
 	
 } // end interface

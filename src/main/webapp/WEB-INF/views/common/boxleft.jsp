@@ -8,6 +8,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="permit" value="${sessionScope.permission}"/>
 <c:set var="box_no" value="${permit.box_no}"/>
 <html>
@@ -30,7 +31,27 @@
 
 <div class="side-menu">
     <div class="profile">
-        <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
+        <c:choose>
+      <c:when test="${fn:contains(photo_name, 'kakao')}">
+          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="${photo_name}"
+          />
+          </a>
+      </c:when>
+        <c:when test="${not empty photo_path}">
+           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+          />
+          </a>
+        </c:when>
+        <c:otherwise>
+         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+          </a>
+        </c:otherwise>
+      </c:choose>
         <p class="name">${sessionScope.member_id}</p>
     </div>
     <div class="menu">

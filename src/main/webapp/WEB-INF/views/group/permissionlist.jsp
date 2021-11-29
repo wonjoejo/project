@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 			<html>
 
 			<head>
@@ -17,7 +19,7 @@
 
 				<!-- font awesome -->
 				<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
-					
+
 				<!-- stylesheets -->
 				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=4">
 			</head>
@@ -33,14 +35,16 @@
 
 							<div class="but">
 
-							<c:if test="${isMaster==true}">
-								<!-- 임시  --> 
+								<c:if test="${isMaster==true}">
+									<!-- 임시  -->
 									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
-							 </c:if> 
-									<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
-        					    <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
-              						  <button class="box-list-btn hvr-float"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>
-         						</a>
+								</c:if>
+								<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
+								<a
+									href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
+									<button class="box-list-btn hvr-float"><i class="fas fa-list-ul list-icon"></i>박스
+										리스트</button>
+								</a>
 							</div>
 						</div>
 
@@ -65,10 +69,27 @@
 											<c:if test="${group.member_stat != 1}">
 												<tbody>
 													<tr>
-														<td><img id="profile_img"
-																src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
+														<td>
+															<c:choose>
+																<c:when test="${group.photo_name eq null}">
+																	<img id="profile_permission"
+																		src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
+																</c:when>
+																<c:when test="${fn:contains(photo_name, 'kakao')}">
+																	<a
+																		href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+																		<img id="profile_img"
+																			src="${group.photo_name}" /></a>
+																</c:when>
+																<c:otherwise>
+																	<img id="profile_permission"
+																		src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}" />
+																</c:otherwise>
+															</c:choose>
 														</td>
-														<td><c:out value="${group.name}"/></td>
+														<td>
+															<c:out value="${group.name}" />
+														</td>
 														<td>
 															<c:out value="${group.member_id}" />
 														</td>
@@ -154,11 +175,11 @@
 						location.href = "${pageContext.request.contextPath}/group/editview?box_no=${box_no}";
 
 					})
-					
-					$("#groupcode").click(function(){
-							Swal.fire('초대 번호 "${box_no}" 입니다.')							
+
+					$("#groupcode").click(function () {
+						Swal.fire('초대 번호 "${box_no}" 입니다.')
 					})
-					
+
 				})
 
 

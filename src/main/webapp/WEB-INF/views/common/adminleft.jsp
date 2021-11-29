@@ -1,3 +1,4 @@
+<%@page import="org.apache.poi.util.SystemOutLogger"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -20,17 +21,30 @@
 -->
 <c:set var="member_id" value="${sessionScope.member_id}"/>
 <div class="side-menu">
-    <div class="profile">
-        <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
+   <div class="profile">
+
+      <c:choose>
+        <c:when test="${not empty photo_name}">
+           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+          />
+          </a>
+        </c:when>
+        <c:otherwise>
+         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+          </a>
+        </c:otherwise>
+      </c:choose>
         <p class="name">${member_id}</p>
-        <p class="role">관리자</p>
+      <p class="role">관리자</p>
     </div>
+        
     <div class="menu">
     	<span class="menu-item active adminpage"><a
                 href="${pageContext.request.contextPath}/admin/listPerPage"><i
                 class="far fa-user-circle"></i>회원 관리</a></span>
-        <span class="menu-item inactive chart"><a
-                href="${pageContext.request.contextPath}/admin/chart"><i class="fas fa-chart-bar"></i>차트</a></span>
         <span class="menu-item inactive qnaboard"><a href="${pageContext.request.contextPath}/board/listPerPage"><i
                 class="far fa-question-circle"></i> Q&A</a></span>
         <span class="menu-item inactive logout"><a href="/member/logout"><i

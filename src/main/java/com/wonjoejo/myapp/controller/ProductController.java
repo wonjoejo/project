@@ -578,25 +578,4 @@ public class ProductController {
     } // makeQrcode
 
 
-
-
-    // 차트
-
-    @GetMapping("/chart")
-    public void chart(){
-
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
 } // end class

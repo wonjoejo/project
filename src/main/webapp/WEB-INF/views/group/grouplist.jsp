@@ -2,8 +2,7 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<c:set var="permit" value="${sessionScope.permission}"/>
-			
+		<c:set var="permit" value="${sessionScope.permission}"/>	
 			<html>
 			<style>
 				.but {
@@ -62,8 +61,8 @@
 						<div class="scroll type2">
 							<div class="group-wrapper">
 								<div class="group-container">
-
 									<c:forEach items="${list}" var="group">
+										<c:if test="${group.member_stat != 1}">
 										<c:choose>
 											<c:when test="${master_id eq group.member_id}">
 												<div class="groupmaster hvr-grow">
@@ -76,10 +75,10 @@
 															<img id="profile_img"
 																src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}" />
 														</c:otherwise>
-
 													</c:choose>
-													<c:out value="${group.member_id}" /><br />
+													<i class="fas fa-crown">
 													<c:out value="${group.name}" /><br />
+													<c:out value="${group.member_id}" /><br /></i>
 													<c:out value="${group.phone_number}" /><br />
 												</div>
 											</c:when>
@@ -87,6 +86,10 @@
 											<c:otherwise>
 												<div class="group hvr-grow">
 													<c:choose>
+													<c:when test="${fn:contains(photo_name, 'kakao')}">
+         												 <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+												          <img id="profile_img" src="${group.photo_name}"/></a>
+												      </c:when>
 														<c:when test="${group.photo_name eq null}">
 															<img id="profile_img"
 																src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
@@ -97,14 +100,14 @@
 														</c:otherwise>
 
 													</c:choose>
-													<c:out value="${group.member_id}" /><br />
 													<c:out value="${group.name}" /><br />
+													<c:out value="${group.member_id}" /><br />
 													<c:out value="${group.phone_number}" /><br />
 
 												</div>
 											</c:otherwise>
 										</c:choose>
-
+										</c:if>
 									</c:forEach>
 								</div>
 							</div>
