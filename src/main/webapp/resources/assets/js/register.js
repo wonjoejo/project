@@ -6,29 +6,127 @@ $(document).ready(function () {
   const member_personal = 0;
   const member_company = 1;
 
-  $(".next").click(function () {
-    current_fs = $(this).parent();
-    next_fs = $(this).parent().next();
 
-    //show the next fieldset
-    next_fs.show();
-    //hide the current fieldset with style
-    current_fs.animate(
-      { opacity: 0 },
-      {
-        step: function (now) {
-          // for making fielset appear animation
-          opacity = 1 - now;
+  const nameJ = /^[가-힣a-zA-Z]+$/;
+  const mailJ =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  const phoneJ = /^010?([0-9]{4})?([0-9]{4})$/;
+  const pwJ = /^[A-Za-z0-9]{4,12}$/;
 
-          current_fs.css({
-            display: "none",
-            position: "relative",
-          });
-          next_fs.css({ opacity: opacity });
-        },
-        duration: 500,
-      }
-    );
+
+  // next2
+  $('#next2').click(function (){
+    const memberId = document.querySelector('#member_id');
+    const password = document.querySelector('#pwd');
+    const passwordCheck = document.querySelector('#pwdcheck');
+
+
+    if (memberId.value === ""){
+      Swal.fire({
+        icon: 'warning',
+        title: '"아이디를 입력해주세요."'
+      });
+    } else if (password.value === "" || !pwJ.test(password.value)){
+      Swal.fire({
+        icon: 'warning',
+        title: '"패스워드를 확인해주세요."'
+      });
+    } else if (passwordCheck.value === "" || password.value != passwordCheck.value){
+      Swal.fire({
+        icon: 'warning',
+        title: '"패스워드가 일치하지 않습니다."'
+      });
+    }
+
+    else {
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate(
+          { opacity: 0 },
+          {
+            step: function (now) {
+              // for making fielset appear animation
+              opacity = 1 - now;
+
+              current_fs.css({
+                display: "none",
+                position: "relative",
+              });
+              next_fs.css({ opacity: opacity });
+            },
+            duration: 500,
+          }
+      );
+    }
+
+
+  });
+
+  // submit
+  $('#submitBtn').click(function (){
+    const name = document.querySelector('#name');
+    const email = document.querySelector('#email');
+    const phoneNumber = document.querySelector('#phone_number');
+
+
+    if (name.value === "" || !nameJ.test(name.value)){
+      Swal.fire({
+        icon: 'warning',
+        title: '"이름을 확인해주세요."'
+      });
+      return false
+    } else if (email.value === "" || !mailJ.test(email.value)){
+      Swal.fire({
+        icon: 'warning',
+        title: '"이메일를 확인해주세요."'
+      });
+      return false
+    } else if (phoneNumber.value === "" || !phoneJ.test(phoneNumber.value)){
+      Swal.fire({
+        icon: 'warning',
+        title: '"휴대전화를 확인해주세요."'
+      });
+      return false
+    } // if-else
+
+    alert("회원가입이 완료 되었습니다.");
+
+
+
+
+  });
+
+
+
+  // next1
+  $("#next1").click(function () {
+      current_fs = $(this).parent();
+      next_fs = $(this).parent().next();
+
+      //show the next fieldset
+      next_fs.show();
+      //hide the current fieldset with style
+      current_fs.animate(
+          { opacity: 0 },
+          {
+            step: function (now) {
+              // for making fielset appear animation
+              opacity = 1 - now;
+
+              current_fs.css({
+                display: "none",
+                position: "relative",
+              });
+              next_fs.css({ opacity: opacity });
+            },
+            duration: 500,
+          }
+      );
+
   });
 
   $(".previous").click(function () {
@@ -60,6 +158,7 @@ $(document).ready(function () {
   $(".next").click(function () {
     document.querySelector(".title2").style.display = "none";
   });
+
 
   // 개인 회원
   $("button[name='personal']").click(function () {

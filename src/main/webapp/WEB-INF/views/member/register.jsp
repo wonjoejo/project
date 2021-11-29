@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=13"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=1"
     />
 
     <style>
@@ -235,16 +235,15 @@ pageEncoding="UTF-8"%>
 
               <div class="group">
                 <label for="member_id" class="label">
-                  아이디<i class="fas fa-asterisk"></i> </label
-                ><input
+                  아이디<i class="fas fa-asterisk"></i> </label>
+                <input
                   id="member_id"
                   class="input"
                   type="text"
                   name="member_id"
                   placeholder="ID"
                   required
-                  oninput="checkId()"
-                />
+                  oninput="checkId()"/>
               </div>
               <div class="alert alert-success" id="alert-success-id">
                 사용 가능한 아이디입니다.
@@ -384,7 +383,7 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div>
-              <button class="register-submit" type="submit">가입하기</button>
+              <button id="submitBtn" class="register-submit" type="submit">가입하기</button>
             </div>
             <button
               type="button"
@@ -405,10 +404,9 @@ pageEncoding="UTF-8"%>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-  <script
-    type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=12"
-  ></script>
+<%--  sweet alert --%>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+
   <script type="text/javascript">
   $(function () {
       $("#alert-success").hide();
@@ -508,6 +506,12 @@ pageEncoding="UTF-8"%>
            $("#alert-success-id").hide();
            $("#alert-danger-id").show();
            $(".register-submit").attr("disabled", "disabled");
+
+           $("#submitBtn").click(function (){
+             alert("아이디를 확인 해주세요");
+             return false;
+           })
+
         }
       },
     });
@@ -530,4 +534,7 @@ pageEncoding="UTF-8"%>
   }
 
   </script>
+  <script
+          type="text/javascript"
+          src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=2"></script>
 </html>
