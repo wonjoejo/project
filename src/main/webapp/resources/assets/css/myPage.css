@@ -330,25 +330,21 @@ body {
 
 /* profile image */
 #profile-upload {
-  border-radius: 50%;
-  height: 118px;
-  overflow: hidden;
-  width: 118px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3%;
-  margin-bottom: 3%;
   align-items: center;
-  background: #ffffff no-repeat center/40%
-    url(/resources/assets/img/photo_name.png);
+  background: #FFFFFF no-repeat center/40% url(/resources/assets/img/photo_name.png);
   background-size: cover;
+  border-radius: 50%;
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
   color: rgb(155, 153, 169);
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  height: 118px;
   justify-content: center;
+  margin: 3% auto;
+  overflow: hidden;
   position: relative;
+  width: 118px;
 }
 
 /*#profile-upload:hover input.upload {*/
@@ -471,19 +467,19 @@ body {
 }
 
 .kakao {
-	outline: none;
-    border: none;
-    cursor: pointer;
-    display: block;
-    position: relative;
-    background-color: #fcad26;
-    font-size: 14px;
-    font-weight: 300px;
-    color: white;
-    letter-spacing: -1px;
-    padding: 17px 47px;
-    border-radius: 20px;
-    font-family: 'NEXON Lv1 Gothic OTF';
+  background-color: #FCAD26;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: 'NEXON Lv1 Gothic OTF', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -1px;
+  outline: none;
+  padding: 17px 47px;
+  position: relative;
 }
 
 .kakao:hover {
