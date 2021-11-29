@@ -86,6 +86,10 @@
 											<c:otherwise>
 												<div class="group hvr-grow">
 													<c:choose>
+													<c:when test="${fn:contains(photo_name, 'kakao')}">
+         												 <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+												          <img id="profile_img" src="${group.photo_name}"/></a>
+												      </c:when>
 														<c:when test="${group.photo_name eq null}">
 															<img id="profile_img"
 																src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
