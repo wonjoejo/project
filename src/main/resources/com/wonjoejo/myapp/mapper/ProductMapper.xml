@@ -112,7 +112,8 @@
     <!-- edit -->
     <update id="updateProduct">
         UPDATE PRODUCT
-        SET PRODUCT_NAME       = #{product_name},
+        SET
+            PRODUCT_NAME       = #{product_name},
             PRODUCT_MEMO       = #{product_memo},
             PRODUCT_QTN        = #{product_qtn},
             PRODUCT_PHOTO_NAME = #{product_photo_name},

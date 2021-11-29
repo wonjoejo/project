@@ -23,10 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Log4j2
@@ -280,7 +277,8 @@ public class ProductController {
 
         ProductVO productVO;
         MemberTypeVO memberTypeVO;
-        
+
+
         
         
         if (file.getSize() !=0) {
@@ -462,6 +460,7 @@ public class ProductController {
         String uploadDir = "product";
 
         ProductVO productVO;
+        Date date = new Date(System.currentTimeMillis());
         
         if (file.getSize() !=0) {
         	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
