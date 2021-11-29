@@ -219,7 +219,17 @@ public class ProductServiceTests {
 		int totalCount = this.service.getTotalCount(box_no);		
 		log.info("\t+ totalCount: {}",totalCount);
 	}//testGetTotal
-    
+
+    @Test(timeout=1000)
+	public void testRegGetTotal() {
+		log.debug("testRegGetTotal() invoked.");
+
+        int box_no = 1417;
+
+		int totalCount = this.service.getEditTotalCount(box_no);
+		log.info("\t+ totalCount: {}",totalCount);
+	}//testRegGetTotal
+
     
     @Test(timeout=1000)
 	public void testDeleteProductComment() {

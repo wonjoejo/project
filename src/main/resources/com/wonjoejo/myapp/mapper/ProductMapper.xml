@@ -84,6 +84,28 @@
         ]]>
     </select>
 
+    <!-- 오늘 등록된 물품 개수  -->
+    <select id="getRegTotalCount" resultType="int">
+        <![CDATA[
+        SELECT COUNT(PRODUCT_NO)
+        FROM PRODUCT
+        WHERE TO_CHAR(REG_DATE, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
+        AND box_no = #{box_no}
+
+        ]]>
+    </select>
+
+    <!-- 오늘 수정된 물품 개수  -->
+    <select id="getEditTotalCount" resultType="int">
+        <![CDATA[
+        SELECT COUNT(PRODUCT_NO)
+        FROM PRODUCT
+        WHERE TO_CHAR(UPDATE_DATE, 'YYYYMMDD') = TO_CHAR(SYSDATE, 'YYYYMMDD')
+          AND box_no = #{box_no}
+
+        ]]>
+    </select>
+
 
     <!-- product 1건 상세조회 -->
     <select id="selectProduct" resultType="com.wonjoejo.myapp.domain.ProductVO">

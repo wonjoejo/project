@@ -59,12 +59,12 @@
                             <div class="number">${totalAmount}</div>
                         </div>
                         <div class="box2 text-box">
-                            <p class="subject">오늘의 입고</p>
-                            <div class="number">+5</div>
+                            <p class="subject">오늘 등록된 물품 개수</p>
+                            <div class="number">${regTotalAmount}</div>
                         </div>
                         <div class="box3 text-box">
-                            <p class="subject">오늘의 출고</p>
-                            <div class="number">-2</div>
+                            <p class="subject">오늘 수정된 물품 개수</p>
+                            <div class="number">${editTotalAmount}</div>
                         </div>
                     </div>
                 </div>
