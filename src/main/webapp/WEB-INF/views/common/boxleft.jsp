@@ -26,7 +26,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleft.css?ver=11">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleft.css?ver=13">
 
 
 <div class="side-menu">
