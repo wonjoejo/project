@@ -36,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <!-- stylesheets -->
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=9"
+      href="${pageContext.request.contextPath}/resources/assets/css/myPage.css?ver=10"
     />
     <link
       rel="stylesheet"
@@ -61,7 +61,34 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
               <h2 class="fs-title" style="margin-top: -5px">프로필 이미지</h2>
 
               <c:choose>
-                <c:when test="${not empty member.photo_name}">
+		      <c:when test="${fn:contains(photo_name, 'kakao')}">
+		          <div
+                    id="profile-upload"
+                    style="
+                      background-image: url('${member.photo_name}');
+                    "
+                  >
+                    <input
+                      type="file"
+                      name="file"
+                      id="profile-photo"
+                      class="upload"
+                    />
+                    <input
+                      type="hidden"
+                      name="photo_name"
+                      id="default"
+                      value="${member.photo_name}"
+                    />
+                    <input
+                      type="hidden"
+                      name="photo_path"
+                      value="${member.photo_path}"
+                    />
+                  </div>
+		      	</c:when>
+		      
+                <c:when test="${not empty photo_path}">
                   <div
                     id="profile-upload"
                     style="
@@ -143,6 +170,18 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                   </c:otherwise>
                 </c:choose>
               </div>
+              
+              <c:choose>
+      		  <c:when test="${fn:contains(photo_name, 'kakao')}">
+              <div class="group">
+              	<button
+                      type="button"
+                      class="kakao">
+                   카카오 회원입니다.
+                 </button>
+              </div>
+              </c:when>
+              </c:choose>
 
               <!-- 멤버 타입 숨기기 -->
               <div class="member_input" style="visibility: hidden; height: 1%">
@@ -169,7 +208,9 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                   />
                 </div>
               </c:if>
-
+              
+			  <c:choose>
+      		  <c:when test="${not fn:contains(photo_name, 'kakao')}">
               <div class="group">
                 <label for="member_id" class="label"> 아이디 </label>
                 <input
@@ -181,12 +222,28 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                   readonly
                 />
               </div>
+              </c:when>
+              </c:choose>
             </div>
 
             <!-- right -->
             <div class="my-wrapper2">
               <c:choose>
-              <div class="group" id="pw">
+      		  <c:when test="${fn:contains(photo_name, 'kakao')}">
+              <div class="group">
+                <label for="member_id" class="label"> 아이디 </label>
+                <input
+                  id="member_id"
+                  class="input"
+                  type="text"
+                  name="member_id"
+                  value="${member.member_id}"
+                  readonly
+                />
+              </div>
+			  </c:when>
+			  <c:otherwise>
+			  <div class="group" id="pw">
                 <label for="pwd" class="label"> 패스워드 </label>
                 <input
                   id="pwd"
@@ -197,6 +254,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                 />
                 <i id="pwd1" class="fas fa-eye active"></i>
 			  </div>
+			  </c:otherwise>
 			  </c:choose>
               <div class="group">
                 <label for="name" class="label"> 이름 </label
@@ -219,7 +277,12 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                   value="${member.email}"
                 />
               </div>
-
+				
+			  <c:choose>
+      		  <c:when test="${fn:contains(photo_name, 'kakao')}">
+              
+			  </c:when>
+			  <c:otherwise>
               <div class="group">
                 <label for="phone_number" class="label"> 휴대전화 </label>
                 <input
@@ -230,6 +293,8 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
                   value="${member.phone_number}"
                 />
               </div>
+              </c:otherwise>
+			  </c:choose>
             </div>
 
             <div class="buttons">

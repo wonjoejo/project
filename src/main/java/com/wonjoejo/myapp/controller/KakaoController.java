@@ -84,12 +84,14 @@ private MemberService service;
         
         String kakaoPhoto = (String)userInfo.get("profile_image_url");
         log.info("프로필 받았니({})", kakaoPhoto);
+        
+        MemberVO memberVO = null;
 
         
         if(service.getMember(kakaoName)==null) { // 같은 아이디 없으면 가입시켜쥼
         	log.debug("if 넘어왔니");
         	
-        	MemberVO memberVO 
+        	memberVO 
         	= new MemberVO(
         			kakaoName, 
         			0, 
@@ -117,14 +119,34 @@ private MemberService service;
         	log.debug("true가 아니니?");	
         	
         	log.debug("등록된거니"); // DB 저장까지 되는데...      
-        	log.debug("MemberController.authKey");
+        	log.debug(MemberController.authKey);
         	
-        } 
+        } else {
+        	MemberVO vo = new MemberVO(
+        			kakaoName, 
+        			0, 
+        			0, 
+        			kakaoName, 
+        			"12345!!!", 
+        			kakaoId,
+        			null,
+        			kakaoPhoto,
+        			null,
+        			null,
+        			null,
+        			null,
+        			null
+        			);
+        	
+        	session.setAttribute(MemberController.authKey, vo);
+        			
+        }
  
         session.setAttribute("member_id", kakaoName);
         session.setAttribute("photo_name", kakaoPhoto);
         session.setAttribute("name", kakaoName);
-      
+        
+        
         return "redirect: /";
 	} // oauthKakao
 	
