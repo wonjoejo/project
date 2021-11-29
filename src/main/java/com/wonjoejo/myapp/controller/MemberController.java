@@ -2,29 +2,20 @@ package com.wonjoejo.myapp.controller;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
-
-import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
-
-import javax.management.ValueExp;
-
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.wonjoejo.myapp.util.Email;
-import com.wonjoejo.myapp.util.EmailSender;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -32,23 +23,13 @@ import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import com.wonjoejo.myapp.service.MemberService;
-
+import com.wonjoejo.myapp.util.Email;
+import com.wonjoejo.myapp.util.EmailSender;
 import com.wonjoejo.myapp.util.UploadFileUtils;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
 
 @Log4j2
 @NoArgsConstructor
@@ -112,7 +93,7 @@ public class MemberController {
                         member.getEmail(),
                         member.getPhone_number(),
                         member.getPhoto_name(),
-                        "https://intobox.s3.ap-northeast-2.amazonaws.com/default/",
+                        member.getPhoto_name(),
                         null,
                         null,
                         null,
@@ -156,7 +137,7 @@ public class MemberController {
                         member.getEmail(),
                         member.getPhone_number(),
                         member.getPhoto_name(),
-                        "https://intobox.s3.ap-northeast-2.amazonaws.com/default/",
+                        member.getPhoto_name(),
                         member.getCompany_name(),
                         null,
                         null,
@@ -240,7 +221,7 @@ public class MemberController {
         // upload 할 폴더 경로 지정
         String uploadDir = "profile";
 
-      MemberVO memberVO;
+        MemberVO memberVO;
 		String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 		
 		log.info(file.getOriginalFilename());
@@ -469,4 +450,6 @@ public class MemberController {
         Gson gson = new Gson();
         return gson.toJson("/login");
     } //findPasswordOK
+    
+    
 } // end class

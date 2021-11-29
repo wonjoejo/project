@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: heewonseo
@@ -26,11 +27,33 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=42">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
-<c:set var="member_id" value="${sessionScope.member_id}"/>
-<div class="side-menu">
+<c:set var="member_id" value="${sessionScope.member_id}" />
+  <div class="side-menu">
     <div class="profile">
-        <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
+
+      <c:choose>
+      <c:when test="${fn:contains(photo_name, 'kakao')}">
+          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="${photo_name}"
+          />
+          </a>
+      </c:when>
+        <c:when test="${not empty photo_path}">
+           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+          />
+          </a>
+        </c:when>
+        <c:otherwise>
+         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+          </a>
+        </c:otherwise>
+      </c:choose>
         <p class="name">${member_id}</p>
+
     </div>
     <div class="menu">
     	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/"><i class="fas fa-home"></i>HOME</a></span>

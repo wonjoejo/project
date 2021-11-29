@@ -54,8 +54,8 @@ pageEncoding="UTF-8"%>
           <!-- 회원 유형 -->
           <div class="top-right">
           <select class="mode-select" name="member_type" onChange="typeselect()">
-            <option selected disabled>회원 유형</option>
-            <option value="1">개인 회원</option>
+            <option>회원 유형</option>
+            <option selected value="1">개인 회원</option>
             <option value="2">기업 회원</option>
           </select>
           
@@ -239,10 +239,13 @@ pageEncoding="UTF-8"%>
     if(type=="1") {
         document.searchForm.action="/admin/searchList0";
         console.log("개인회원");
-    } else {
-        document.searchForm.action="/admin/searchList1";
-        console.log("기업회원");
-    }
+       } else if(type=="2") {
+         document.searchForm.action="/admin/searchList1";
+         console.log("기업회원");
+       } else {
+       	document.searchForm.action="/admin/searchList";
+           console.log("전체");
+       }
   }
     </script>
 </html>

@@ -79,7 +79,17 @@ public class AdminServiceImpl implements AdminService, InitializingBean, Disposa
  	return this.mapper.getTotalCount(member_id);
  	} // getTotalCount
  	
-    
+ 	// 전체 회원 검색 페이지 
+   	@Override
+   	public List<MemberVO> getsearchPage(AdminCriteria mcri) {
+   		log.debug("getListPerPage({}) invoked.",mcri);
+   		
+   		List<MemberVO> list = this.mapper.getsearchPage(mcri);
+   		log.info("\t+ list size:{} ",list.size());
+   		
+   		return list;
+   	}//getsearchPage
+ 	
     // 개인 회원 검색 페이지 
   	@Override
   	public List<MemberVO> getsearchPage0(AdminCriteria mcri) {

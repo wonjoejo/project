@@ -144,4 +144,18 @@
         
     </select>
 	
+	
+	<!-- 아이디 가져오기 -->
+    <select id="selectMemberId" resultType="com.wonjoejo.myapp.domain.MemberVO">
+
+        <![CDATA[
+
+        SELECT member_id
+        FROM member
+		WHERE member_id = #{member_id}
+		
+        ]]>
+
+    </select>
+	
 </mapper>

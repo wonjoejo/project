@@ -69,8 +69,9 @@ $(document).ready(function () {
     document.querySelector("#company_name").style.display = "none";
     document.querySelector(".input").style.display = "none";
 
-    document.querySelector("#arr1").style.display = "block";
-
+	$("#arr1").fadeToggle(function() {
+	});
+	
     document.querySelector("#arr2").style.display = "none";
 
     $("#personalBtn").toggleClass("personal");
@@ -110,9 +111,20 @@ $(document).ready(function () {
 
   // 기업 회원
   $("button[name='company']").click(function () {
-    document.querySelector("#company_name").style.display = "block";
-
-    document.querySelector(".input").style.display = "block";
+    //document.querySelector("#company_name").style.display = "block";
+    
+    $("#company_name").slideToggle(300, function() {
+	
+	$("#company_name.input").slideToggle(300,function() {
+	 $("#company_name.input").focus();
+	});
+	
+	});
+    
+    
+	$("#arr2").fadeToggle(function() {
+	});
+    //document.querySelector(".input").style.display = "block";
 
     document.getElementById("member_type").value = member_company;
 

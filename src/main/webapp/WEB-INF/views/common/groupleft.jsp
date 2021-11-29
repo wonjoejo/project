@@ -1,6 +1,8 @@
 <%-- Created by IntelliJ IDEA. User: heewonseo Date: 2021/11/09 Time: 21:02 To change this template use File | Settings
     | File Templates. --%>
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
         <html>
 
 
@@ -21,10 +23,32 @@
 
 
         <div class="side-menu">
-            <div class="profile">
-                <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png" />
-                <p class="name">name</p>
-            </div>
+           <div class="profile">
+
+      <c:choose>
+      <c:when test="${fn:contains(photo_name, 'kakao')}">
+          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="${photo_name}"
+          />
+          </a>
+      </c:when>
+        <c:when test="${not empty photo_path}">
+           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img
+            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+          />
+          </a>
+        </c:when>
+        <c:otherwise>
+         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+          <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+          </a>
+        </c:otherwise>
+      </c:choose>
+        <p class="name">${member_id}</p>
+
+    </div>
             <div class="menu">
                 <span class="menu-item inactive"><a
                         href="${pageContext.request.contextPath}/box/list?member_id=${member_id}"><i
