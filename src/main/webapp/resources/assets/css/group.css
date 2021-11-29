@@ -427,9 +427,9 @@ table td {
     width: 70%;
 	height: 100%;
     overflow: hidden;
-/*     object-fit: cover;  이게 있으면 넘치는 부분이 잘림*/ 
+/*     object-fit: cover;   */
     border-radius: 5px;
-    margin-bottom : 8px;
+    padding :8px;
 
 }
 
