@@ -144,8 +144,8 @@ outBtn.forEach(function (item) {
 				};
 				
 				Swal.fire({
-						title: '진짜?',
-						text: "You won't be able to revert this!",
+						title: `${member_id}님을 그룹에서 추방하시겠습니까?`,
+						text: "강퇴된 회원은 박스를 볼 수 없습니다.",
 						icon: 'warning',
 						showCancelButton: true,
 						confirmButtonColor: '#3085D6',
