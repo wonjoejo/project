@@ -59,6 +59,17 @@ public class ChartController {
         log.info("\t+ total: {}" , totalAmount);
         model.addAttribute("totalAmount",totalAmount);
 
+        // 오늘 등록된 물품 개수
+        Integer regTotalAmount = this.productService.getRegTotalCount(box_no);
+        log.info("\t+ regTotal: {}" , regTotalAmount);
+        model.addAttribute("regTotalAmount",regTotalAmount);
+
+        // 오늘 수정된 물품 개수
+        Integer editTotalAmount = this.productService.getEditTotalCount(box_no);
+        log.info("\t+ editTotal: {}" , editTotalAmount);
+        model.addAttribute("editTotalAmount",editTotalAmount);
+
+
         // Top5 물품 리스트
         List<ProductVO> topproductList = this.productService.getTopProductList(box_no);
         List<ProductVO> toplist = new ArrayList<>();
@@ -84,7 +95,6 @@ public class ChartController {
                 dateList.add(dateProductList.get(i));
             }
         }
-
 
         model.addAttribute("dateProductList", dateList);
 

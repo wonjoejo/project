@@ -16,7 +16,13 @@ public interface ProductService {
 	// chart 최신 입고 물품
 	public abstract List<ProductVO> getDateProductList(Integer box_no);
 
-    // 물품 한건 상세보기
+	// chart 오늘 등록된 물품 개수
+	public abstract Integer getRegTotalCount(Integer box_no);
+
+	// chart 오늘 수정된 물품 개수
+	public abstract Integer getEditTotalCount(Integer box_no);
+
+	// 물품 한건 상세보기
 	public abstract ProductVO getProduct(Integer product_no);
 
 	// 물품 작성

@@ -65,6 +65,22 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		return list;
 	} //getDateProductList
 
+	// chart 오늘 등록된 물품 수
+	@Override
+	public Integer getRegTotalCount(Integer box_no) {
+		log.debug("getRegTotalCount() invoked.");
+
+		return this.mapper.getRegTotalCount(box_no);
+	} // getRegTotalCount
+
+	// chart 오늘 수정된 물품 수
+	@Override
+	public Integer getEditTotalCount(Integer box_no) {
+		log.debug("getEditTotalCount() invoked.");
+
+		return this.mapper.getEditTotalCount(box_no);
+	} // getEditTotalCount
+
 
 	@Override
 	public ProductVO getProduct(Integer product_no) {
