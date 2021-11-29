@@ -21,16 +21,16 @@ menus.forEach(function(item,index){
 });
 
 
-if(window.location.pathname.indexOf('box/detail')!==-1) {
+if (window.location.pathname.indexOf('box/detail') !== -1) {
 	myBox.classList.remove("inactive");
 	myBox.classList.add("active");
-} else if (window.location.pathname.indexOf('product/list') !== -1) {
+} else if (window.location.pathname.indexOf('product') !== -1) {
 	productList.classList.remove("inactive");
 	productList.classList.add("active");
 } else if (window.location.pathname.indexOf('category/detail') !== -1) {
 	category.classList.remove("inactive");
 	category.classList.add("active");
-} else if (window.location.pathname.indexOf('group/grouplist') !== -1) {
+} else if (window.location.pathname.indexOf('group') !== -1) {
 	group.classList.remove("inactive");
 	group.classList.add("active");
 } else if (window.location.pathname.indexOf('chart/get') !== -1) {

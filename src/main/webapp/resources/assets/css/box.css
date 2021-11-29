@@ -271,12 +271,13 @@ body {
 }
 
 textarea {
-	border: none;
 	background: #FFFFFF;
-	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+	border: none;
 	border-radius: 50px;
+	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
 	margin-bottom: 20px;
 	padding: 20px;
+	resize: none !important;
 }
 
 .product-photo {
