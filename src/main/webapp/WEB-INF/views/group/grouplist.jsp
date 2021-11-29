@@ -141,5 +141,5 @@
 				const ctx = '${pageContext.request.contextPath}';
 			</script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/assets/js/grouplist.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/assets/js/grouplist.js?ver=1"></script>
 			</html>
