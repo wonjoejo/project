@@ -33,6 +33,8 @@ submit.addEventListener("click", function (e) {
 		objectArray[objectArray.length] = object;
 	}
 
+	console.log(objectArray);
+
 	// fetch 비동기 처리
 	fetch('/group/edit', {
 		method: 'POST',

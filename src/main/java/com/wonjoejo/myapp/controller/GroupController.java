@@ -144,9 +144,8 @@ public class GroupController {
 
 		System.out.println("====size====" + array.size());
 
-		if (!array.isEmpty()) {
+		if (!array.isJsonNull()) {
 			for (int i = 0; i < array.size(); i++) {
-
 				JsonElement element = array.get(i);
 				BoxPermissionVO vo = new BoxPermissionVO(null, element.getAsJsonObject().get("member_id").getAsString(),
 						element.getAsJsonObject().get("box_no").getAsInt(),
@@ -158,8 +157,8 @@ public class GroupController {
 
 				boolean result = this.service.permissionGroup(vo);
 				log.info("result:=== {} ===", result);
-				return "true";
 			}
+			return "true";
 		}
 		return "false";
 	}// permissiongroup
