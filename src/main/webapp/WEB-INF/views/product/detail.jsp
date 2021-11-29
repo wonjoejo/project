@@ -234,7 +234,7 @@
                             <input type="hidden" id="memberId" name="member_id" value="${sessionScope.member_id}">
                             <input name="comment_content" id="commentContent" class="search" type="text"
                                 placeholder="댓글을 입력해주세요. @으로 그룹원 태그가 가능합니다. "/>
-                            <ul class="suggestions">
+                            <ul class="suggestions detailsuggestions">
                             </ul>
                             <button id="insertBtn" class="searchbtn">
                                 <i class="fas fa-pencil-alt"></i>

@@ -375,6 +375,7 @@
 }
 
 .title {
+	position: relative;
     font-family: "NEXON Lv1 Gothic OTF";
     display: flex;
     align-items: center;
@@ -581,6 +582,7 @@ textarea {
 /* search */
 
 #search {
+	position: relative;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -712,8 +714,13 @@ textarea {
     /*float: top;*/
     margin: 0;
     padding: 0;
-    position: absolute;
+    position: absolute!important;
     /*perspective: 20px;*/
+}
+
+.detailsuggestions {
+    left: 40px;
+    top: 50px;
 }
 
 .suggestions li {
