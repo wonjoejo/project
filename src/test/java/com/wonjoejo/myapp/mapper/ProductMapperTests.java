@@ -177,19 +177,20 @@ public class ProductMapperTests {
     } // testProductDelete
     
     
-//    
-//    @Test
-//    public void testMemberType() {
-//    	log.debug("testMemberType() invoked.");
-//    	
-//    	Integer product_no = 517;
-//    	Integer box_no = 1330;
-//    	
-//    	Integer checkMemberType = this.mapper.checkMemberType(box_no, product_no);
-//    	
-//    	log.info("\t+ checkMemberType: {} ", checkMemberType);
-//    	
-//    }
+    
+    @Test // 멤버타입 조회 - 기업회원(member_type=1) / 일반회원(member_type=0)
+    public void testMemberType() {
+    	log.debug("testMemberType() invoked.");
+    	
+    	Integer product_no = 610;
+    	Integer box_no = 1417;
+    	
+    	Integer checkMemberType = this.mapper.checkMemberType(box_no, product_no);
+    	
+    	log.info("\t+ checkMemberType: {} ", checkMemberType);
+    	
+    } // testMemberType
+    
     
     @Test(timeout=1000)
  	public void testDeleteProductComment() {

@@ -55,7 +55,7 @@ public interface ProductMapper {
 	//바코드 생성
 	public abstract Integer updateBarcode(@Param("product_no") Integer product_no, @Param("barcode") String barcode);
 	
-	// 회원 타입 조회(기업/일반)
+	// 회원 타입 조회(기업인지 여부)
 	public abstract Integer checkMemberType(@Param("box_no")Integer box_no, @Param("product_no")Integer product_no);
 	
 	// 물품 댓글 삭제

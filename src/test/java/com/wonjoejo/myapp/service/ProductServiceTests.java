@@ -233,5 +233,20 @@ public class ProductServiceTests {
     
     
     
+    @Test // 멤버타입 조회 - 기업회원(member_type=1, true) / 일반회원(member_type=0, false)
+    public void testMemberType() {
+    	log.debug("testMemberType() invoked.");
+    	
+    	Integer product_no = 609;
+    	Integer box_no = 1447;
+    	
+    	Boolean checkMemberType = this.service.checkMemberType(box_no, product_no);
+    	
+    	log.info("\t+ checkMemberType: {} ", checkMemberType);
+    	
+    } // testMemberType
+    
+    
+    
 
 } // end class
