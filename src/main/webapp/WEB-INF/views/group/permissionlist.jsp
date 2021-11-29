@@ -65,8 +65,17 @@
 											<c:if test="${group.member_stat != 1}">
 												<tbody>
 													<tr>
-														<td><img id="profile_img"
-																src="https://github.com/Jeong-YuJeong/jeong_bit07/blob/master/images/song_1.png?raw=true">
+														<td>
+															<c:choose>
+																<c:when test="${group.photo_name eq null}">
+																	<img id="profile_permission"
+																		src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
+																</c:when>
+																<c:otherwise>
+																	<img id="profile_permission"
+																		src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}" />
+																</c:otherwise>
+															</c:choose>
 														</td>
 														<td><c:out value="${group.name}"/></td>
 														<td>
