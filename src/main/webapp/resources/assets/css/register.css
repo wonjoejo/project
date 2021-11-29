@@ -693,3 +693,8 @@
   top: 318px;
   left: 200px;
 }
+
+
+.swal2-title {
+  font-size: 1.6em !important;
+}
