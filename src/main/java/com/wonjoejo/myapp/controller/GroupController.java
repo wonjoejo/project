@@ -136,7 +136,7 @@ public class GroupController {
 
 	@PostMapping("/edit")
 	@ResponseBody
-	public void edit(@RequestBody String object) {
+	public String edit(@RequestBody String object) {
 
 		log.debug("grouppermission({}) invoked.", object);
 
@@ -158,12 +158,10 @@ public class GroupController {
 
 				boolean result = this.service.permissionGroup(vo);
 				log.info("result:=== {} ===", result);
-
+				return "true";
 			}
 		}
-
-		log.info("=====element : {}", array.toString());
-
+		return "false";
 	}// permissiongroup
 
 	// 그룹원 검색
