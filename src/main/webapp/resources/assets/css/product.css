@@ -520,3 +520,7 @@ ul.bs-autocomplete-menu a {
 	width: 102px;
 }
 
+textarea {
+	resize: none !important;
+}
+

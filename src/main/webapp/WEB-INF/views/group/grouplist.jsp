@@ -62,11 +62,11 @@
 												<c:when test="${master_id eq group.member_id}">
 													<div class="groupmaster hvr-grow">
 														<c:choose>
-															<c:when test="${fn:contains(photo_name, 'kakao')}">
+															<c:when test="${fn:contains(group.photo_name, 'kakao')}">
 																<a
-																	href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+																		href="${pageContext.request.contextPath}/member/myPage?member_id=${group.member_id}">
 																	<img id="profile_img"
-																		src="${group.photo_name}" /></a>
+																		 src="${group.photo_name}"/></a>
 															</c:when>
 															<c:when test="${group.photo_name eq null}">
 																<img id="profile_img"

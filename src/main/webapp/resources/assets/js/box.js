@@ -1,24 +1,27 @@
 let file = document.querySelector("#box-photo");
 
-file.addEventListener("change",function (f) {
+if (file != null) {
+	file.addEventListener("change", function (f) {
 
-	let reader = new FileReader();
-	let input = f.target;
+		let reader = new FileReader();
+		let input = f.target;
 
-	reader.onload = function (e) {
+		reader.onload = function (e) {
 
-		let dataUrl = reader.result;
-		console.log(dataUrl);
-		const productPhoto = document.querySelector(".product-photo");
+			let dataUrl = reader.result;
+			console.log(dataUrl);
+			const productPhoto = document.querySelector(".product-photo");
 
-		if(productPhoto!=null) {
-			productPhoto.style.backgroundImage = "url(" + dataUrl + ")";
-		} else {
-			productPhotoEdit.style.backgroundImage = "url(" + dataUrl + ")";
+			if (productPhoto != null) {
+				productPhoto.style.backgroundImage = "url(" + dataUrl + ")";
+			} else {
+				productPhotoEdit.style.backgroundImage = "url(" + dataUrl + ")";
+			}
 		}
-	}
-	reader.readAsDataURL(input.files[0]);
-});
+		reader.readAsDataURL(input.files[0]);
+	});
+}
+
 
 let images = document.querySelectorAll(".default-img");
 let productPhoto = document.querySelector(".product-photo");
@@ -26,24 +29,26 @@ let productPhotoEdit = document.querySelector(".product-photo-edit");
 let defaultName = document.querySelector("#default-name");
 let defaultPath = document.querySelector("#default-path");
 
+if (images != null) {
+	images.forEach(function (item, number) {
 
-images.forEach(function (item, number) {
+		item.addEventListener("click", function () {
+			if (productPhoto != null) {
+				productPhoto.style.backgroundImage = "url(" + this.src + ")";
+			} else {
+				productPhotoEdit.style.backgroundImage = "url(" + this.src + ")";
+			}
 
-	item.addEventListener("click", function () {
-		if (productPhoto != null) {
-			productPhoto.style.backgroundImage = "url(" + this.src + ")";
-		} else {
-			productPhotoEdit.style.backgroundImage = "url(" + this.src + ")";
-		}
+			console.log(this.src);
 
-		console.log(this.src);
+			let result = this.src.split("default/");
+			defaultPath.setAttribute("value", "default/")
+			defaultName.setAttribute("value", result[1]);
+		});
 
-		let result = this.src.split("default/");
-		defaultPath.setAttribute("value", "default/")
-		defaultName.setAttribute("value", result[1]);
 	});
+}
 
-});
 
 // box edit 시 원래 이미지 불러오는 함수!
 if (productPhotoEdit != null) {
@@ -57,6 +62,7 @@ const deleteBtn = document.querySelector(".delete-btn");
 
 if (deleteBtn != null) {
 	deleteBtn.addEventListener("click", function (e) {
+		console.log("click!");
 		e.preventDefault();
 		Swal.fire({
 			title: '정말 삭제하시겠습니까?',
