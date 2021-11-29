@@ -42,15 +42,13 @@ public class GroupController {
 
 		List<BoxPermissionMemberVO> list = this.service.selectGroupPermissionList(box_no);
 
-		List<BoxPermissionMemberVO> permissionList = this.service.selectGroupPermissionList(box_no);
-
 		String masterId = "";
 
-		for (BoxPermissionMemberVO member : permissionList) {
-			if (member.getMaster_per() == 0) {
-				masterId = member.getMember_id();
-			}
-		}
+		for (BoxPermissionMemberVO member : list) {
+            if (member.getMaster_per() == 0) {
+                masterId = member.getMember_id();
+            }
+        }
 
 		log.info("\t+list.size{}", list.size());
 		log.info("\t+masterId{}", masterId);
