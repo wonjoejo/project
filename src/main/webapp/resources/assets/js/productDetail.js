@@ -73,14 +73,59 @@ function clickMention() {
 						comments += '</div>';
 
 					} else {
-						Swal.fire({
-							title: id,
-							html: '<i class="far fa-user-circle"></i>' + data.name + '<br><i class="far fa-envelope-open"></i>' + data.email + '<br><i class="fas fa-mobile-alt"></i>' + data.phone_number,
-							imageUrl: 'https://intobox.s3.ap-northeast-2.amazonaws.com/' + data.photo_path + data.photo_name,
-							imageWidth: 200,
-							imageHeight: 200,
-							imageAlt: 'Custom image',
-						})
+						comments += '<div class = "modal-dialog">';
+						comments += '<div class = "modal-content">';
+						comments += '<div class = "modal-header">';
+						comments += '<h5 class = "modal-title" id = "memberModalLabel"> 회원 상세정보 </h5>';
+						comments += '<button type = "button" class = "btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+						comments += '</div>';
+						comments += '<div class="modal-body">';
+						comments += '<div class="modal-item">';
+						comments += '<img id="modal-profile" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png">';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-id" value="';
+						comments += id;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-name" value="';
+						comments += data.name;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-mail" value="';
+						comments += data.email;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-phone" value="';
+						comments += data.phone_number;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '</div>';
+						comments += '</div>';
+						comments += '<ul class="bg-bubbles">';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '</ul>';
+						comments += '</div>';
+						comments += '</div>';
+						// Swal.fire({
+						// 	title: id,
+						// 	html: '<i class="far fa-user-circle"></i>' + data.name + '<br><i class="far fa-envelope-open"></i>' + data.email + '<br><i class="fas fa-mobile-alt"></i>' + data.phone_number,
+						// 	imageUrl: 'https://intobox.s3.ap-northeast-2.amazonaws.com/' + data.photo_path + data.photo_name,
+						// 	imageWidth: 200,
+						// 	imageHeight: 200,
+						// 	imageAlt: 'Custom image',
+						// })
 
 					} // if-else
 
@@ -120,7 +165,7 @@ function getCommentList() {
 						const list = this.comment_content.split(' ');
 						for (let i = 0; i < list.length; i++) {
 							if (list[i].startsWith('@')) {
-								comments += '<span class="mention" id="' + list[i].substring(1) + '">' + list[i] + '</span>';
+								comments += '<span class="mention" data-bs-toggle="modal" data-bs-target="#memberModal" id="' + list[i].substring(1) + '">' + list[i] + '</span>';
 							} else {
 								comments += '<span class="text">&nbsp;' + list[i] + '</span>';
 							}

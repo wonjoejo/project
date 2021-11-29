@@ -220,11 +220,11 @@
                                     <a href="#" id="more">더보기</a>
                                 </span>
                             </c:if>
-						</div> <!-- detail-memo -->
-					</li>
-				</ul>
-			</div> <!-- right-box -->
-			</div> <!-- product-detail-wrap -->
+                        </div> <!-- detail-memo -->
+                    </li>
+                </ul>
+            </div> <!-- right-box -->
+            </div> <!-- product-detail-wrap -->
 
             <%-- 댓글 --%>
             <div class="comment-wrap">
@@ -267,6 +267,41 @@
 
 <%--modal--%>
 <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-content">
+                <h5 class="modal-title" id="memberModalLabel"> 회원 상세정보 </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <img id="modal-profile"
+                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png">
+                    <div class="modal-input">
+                        <input id="modal-id" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                        <input id="modal-name" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                        <input id="modal-phone" value="" readonly/>
+                    </div>
+                </div>
+            </div>
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
 
 </div>
 
@@ -306,6 +341,6 @@
 <%-- product JS --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=4"></script>
 <%-- mention JS 실험 중 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=1"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=3"></script>
 
 </html>
