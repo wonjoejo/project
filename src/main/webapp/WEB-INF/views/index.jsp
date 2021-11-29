@@ -219,7 +219,7 @@
 			<div>
 				<ul>
 					<li>
-						<img class="groupimg" src="http://placehold.it/100x100" />
+						<img class="groupimg" src="${pageContext.request.contextPath}/resources/assets/img/group.png" />
 						<div class="grouptext">
 							<p>
 								<h1 class="grouptext_p"><i class="fas fa-users"></i> 그룹 초대</h1>
