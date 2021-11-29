@@ -85,19 +85,19 @@
         ></span
       >
       <span class="menu-item inactive logout"
-        ><a href="/member/logout"
-          ><i class="fas fa-sign-out-alt"></i> 로그아웃</a
-        ></span
+      ><a href="/member/logout"
+      ><i class="fas fa-sign-out-alt"></i> 로그아웃</a
+      ></span
       >
     </div>
   </div>
 
   <script
-    type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"
+          type="application/javascript"
+          src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"
   ></script>
   <script
-    type="application/javascript"
-    src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"
+          type="application/javascript"
+          src="${pageContext.request.contextPath}/resources/assets/js/myleft.js?ver=3"
   ></script>
 </html>
