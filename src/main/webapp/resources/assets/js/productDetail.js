@@ -166,6 +166,13 @@ function insertComment() {
 
 	console.log(data);
 
+	if (document.querySelector('#commentContent').value === ""){
+		Swal.fire({
+			icon: 'warning',
+			text: '댓글을 입력해주세요.',
+		});
+	} // if
+
 	fetch('/comment/insert', {
 		method: 'POST',
 		body: JSON.stringify(data),
@@ -174,6 +181,7 @@ function insertComment() {
 		}
 	})
 		.then(function (response) {
+
 			if (response) {
 				getCommentList();
 				document.querySelector('#commentContent').value = "";
