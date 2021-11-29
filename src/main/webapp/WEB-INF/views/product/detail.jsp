@@ -225,11 +225,11 @@
                                     <a href="#" id="more">더보기</a>
                                 </span>
                             </c:if>
-						</div> <!-- detail-memo -->
-					</li>
-				</ul>
-			</div> <!-- right-box -->
-			</div> <!-- product-detail-wrap -->
+                        </div> <!-- detail-memo -->
+                    </li>
+                </ul>
+            </div> <!-- right-box -->
+            </div> <!-- product-detail-wrap -->
 
             <%-- 댓글 --%>
             <div class="comment-wrap">
@@ -298,7 +298,6 @@
                     </div>
                 </div>
             </div>
-
             <ul class="bg-bubbles">
                 <li></li>
                 <li></li>
@@ -353,7 +352,5 @@
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=4"></script>
 <%-- mention JS 실험 중 --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=3"></script>
-
-
 
 </html>
