@@ -138,7 +138,7 @@ public class ProductServiceTests {
     public void testProductEdit() {
         log.debug("testProductEdit() invoked");
 
-        Integer product_no = 358;
+        Integer product_no = 526;
         Integer box_no = null;
         String product_name = "지현edit";
         String product_memo = "edit";

@@ -120,7 +120,7 @@ public class ProductMapperTests {
     public void testProductEdit() {
         log.debug("testProductEdit() invoked.");
 
-        Integer product_no = 358;
+        Integer product_no = 522;
         Integer box_no = null;
         String product_name = "지현update";
         String product_memo = "지현update";

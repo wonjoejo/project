@@ -39,7 +39,7 @@
         <form method="POST" action="/product/edit" enctype="multipart/form-data">
             <input type="hidden" name="product_no" value="${product.product_no}">
             <input type="hidden" name="box_no" value="${product.box_no}">
-            <input type="hidden" name="update_date" value="${product.update_date}">
+<%--            <input type="hidden" name="update_date" value="${product.update_date}">--%>
 
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
