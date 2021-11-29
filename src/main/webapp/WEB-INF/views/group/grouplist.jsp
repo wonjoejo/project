@@ -22,24 +22,24 @@
 
 				<!-- bootstrap -->
 				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-					integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-					crossorigin="anonymous">
+					  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+					  crossorigin="anonymous">
 
 				<!-- font awesome -->
 				<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 				<!-- stylesheets -->
-				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=6">
+				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=7">
 			</head>
 
 			<body>
 
-				<div class="container">
-					<jsp:include page="../common/boxleft.jsp" />
+			<div class="container">
+				<jsp:include page="../common/boxleft.jsp"/>
 
-					<div class="main-container">
-						<div class="name">
-							<h1>그룹 리스트</h1>
+				<div class="main-container">
+					<div class="name">
+						<h1>그룹 리스트</h1>
 
 							<div class="but">
 								<c:if test="${permit.master_per eq 0}">
@@ -122,16 +122,17 @@
 								</div>
 							</div>
 						</div>
-					</div>
-
 				</div>
+
+			</div>
 
 
 			</body>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-				crossorigin="anonymous"></script>
+					integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+					crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 			<script>
 				const boxNo = '${box_no}';
 				const loginId = '${sessionScope.member_id}';
@@ -140,20 +141,4 @@
 				const ctx = '${pageContext.request.contextPath}';
 			</script>
 			<script src="${pageContext.request.contextPath}/resources/assets/js/grouplist.js"></script>
-						<script>
-				//권한 설정페이지로 이동
-				$(document).ready(function () {
-					
-					$("#grouppermission").click(function () {
-						location.href = "${pageContext.request.contextPath}/group/permissionlist?box_no=${box_no}";
-					})
-
-					$("#groupcode").click(function () {
-						Swal.fire('초대 번호 "${box_no}" 입니다.')
-					})
-
-				})
-
-			</script>
-
 			</html>

@@ -5,7 +5,10 @@ $("#grouppermission").click(function () {
 
 // 초대
 $("#groupcode").click(function () {
-	Swal.fire(`초대번호는 ${boxNo}`)
+	Swal.fire({
+		title: '박스 초대 번호',
+		text: "탈퇴하시는 경우 박스 또한 리스트에서 사라집니다.",
+	}`초대번호는 ${boxNo}`)
 });
 
 //그룹 탈퇴
