@@ -476,7 +476,8 @@ public class ProductController {
                     uploadDir,
                     product.getBarcode(),
                     product.getReg_date(),
-                    null);
+                    null
+            );
 
             boolean result = this.service.editProduct(productVO);
             log.info("\t +result: {}", result);
@@ -493,7 +494,8 @@ public class ProductController {
                     "default/",
                     product.getBarcode(),
                     product.getReg_date(),
-                    null);
+                    null
+            );
 
             boolean result = this.service.editProduct(productVO);
             log.info("\t +result: {}", result);
