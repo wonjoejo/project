@@ -22,7 +22,7 @@
 <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 <!-- stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleftmobile.css?ver=111">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleftmobile.css?ver=112">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>
@@ -47,43 +47,44 @@
     			<span></span>
 			</label>
 		 
-			 <div class="menu_in">
+			 	<div class="menu_in">
 			 	
-			 	 <div class="profile">
-			        <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
-			        <p class="name">${member_id}</p>
-			    </div>
-			 
-			   	<span class="menu-item inactive"><a href="${pageContext.request.contextPath}/">
-			   			<i class="fas fa-home"></i>HOME</a></span>
-		        <span class="menu-item active"><a
-		                href="${pageContext.request.contextPath}/box/detail?box_no=${box_no}">
-		                <i class="fas fa-archive"></i> 나의 박스</a></span>
-		        <span class="menu-item inactive"><a
-		                href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
-		                <i class="fas fa-list-alt"></i> 물품 리스트</a></span>
-		        <span class="menu-item inactive"><a
-		                href="${pageContext.request.contextPath}/category/detail?box_no=${box_no}">
-		                <i class="fas fa-table"></i> 카테고리</a></span>
-		        <span class="menu-item inactive"><a
-		                href="${pageContext.request.contextPath}/group/grouplist?box_no=${box_no}">
-		                <i class="fas fa-user-friends"></i> 그룹</a></span>
-		        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/chart/get?box_no=${box_no}">
-		        		<i class="far fa-chart-bar"></i> 차트</a></span>
-		        <span class="menu-item inactive"><a href="${pageContext.request.contextPath}/member/logout">
-		        		<i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
+				 	 <div class="profile">
+				        <img src="${pageContext.request.contextPath}/resources/assets/img/logo6.png"/>
+				        <p class="name">${member_id}</p>
+				    </div>
+				 
+				   	<span class="menu-item_m inactive"><a href="${pageContext.request.contextPath}/">
+				   			<i class="fas fa-home"></i>HOME</a></span>
+			        <span class="menu-item_m active"><a
+			                href="${pageContext.request.contextPath}/box/detail?box_no=${box_no}">
+			                <i class="fas fa-archive"></i> 나의 박스</a></span>
+			        <span class="menu-item_m inactive"><a
+			                href="${pageContext.request.contextPath}/product/listPerPage?box_no=${box_no}">
+			                <i class="fas fa-list-alt"></i> 물품 리스트</a></span>
+			        <span class="menu-item_m inactive"><a
+			                href="${pageContext.request.contextPath}/category/detail?box_no=${box_no}">
+			                <i class="fas fa-table"></i> 카테고리</a></span>
+			        <span class="menu-item_m inactive"><a
+			                href="${pageContext.request.contextPath}/group/grouplist?box_no=${box_no}">
+			                <i class="fas fa-user-friends"></i> 그룹</a></span>
+			        <span class="menu-item_m inactive"><a href="${pageContext.request.contextPath}/chart/get?box_no=${box_no}">
+			        		<i class="far fa-chart-bar"></i> 차트</a></span>
+			        <span class="menu-item_m inactive"><a href="${pageContext.request.contextPath}/member/logout">
+			        		<i class="fas fa-sign-out-alt"></i> 로그아웃</a></span>
 		
-		        <c:if test="${permit.write_per eq 0}">
-		            <div class="product-create-btn">
-		                <a href="${pageContext.request.contextPath}/product/insertview?box_no=${box_no}">
-		                <span>
-		                    <i class="fas fa-plus"></i>
-		                    물품 등록
-		                </span>
-		                </a>
-		            </div>
-		        </c:if>
-    
+			        <c:if test="${permit.write_per eq 0}">
+			            <div class="product-create-btn">
+			                <a href="${pageContext.request.contextPath}/product/insertview?box_no=${box_no}">
+			                <span>
+			                    <i class="fas fa-plus"></i>
+			                    물품 등록
+			                </span>
+			                </a>
+			            </div>
+			        </c:if>
+
+  				</div>    
 			<label class="menu_bg_close" for="toggle_menu"></label><!--토글옆부분 검정색닫기-->
 		</nav>
 	</header>
