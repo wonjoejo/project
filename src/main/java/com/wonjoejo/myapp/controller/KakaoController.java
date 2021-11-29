@@ -60,6 +60,8 @@ private MemberService service;
 			, Model model, HttpSession session, ModelAndView modelAndView) throws Exception {
 		
 		
+		session.removeAttribute(MemberController.authKey);
+		
 		System.out.println("#########" + code);
         String access_Token = getAccessToken(code);
         System.out.println("###access_Token#### : " + access_Token);
@@ -82,11 +84,10 @@ private MemberService service;
         
         String kakaoPhoto = (String)userInfo.get("profile_image_url");
         log.info("프로필 받았니({})", kakaoPhoto);
-        
-        
+
         
         if(service.getMember(kakaoName)==null) { // 같은 아이디 없으면 가입시켜쥼
-        	
+        	log.debug("if 넘어왔니");
         	
         	MemberVO memberVO 
         	= new MemberVO(
@@ -107,24 +108,23 @@ private MemberService service;
         	
         	
         	boolean result = service.register(memberVO);
-        	
+        	log.debug("등록성공했니");
         	
         	if(result == true)
-        		session.setAttribute("member", memberVO);
+        		//session.setAttribute("member", memberVO);
+        		session.setAttribute(MemberController.authKey, memberVO);
         		
-        	log.debug("등록된거니"); // DB 저장까지 되는데...
+        	log.debug("true가 아니니?");	
+        	
+        	log.debug("등록된거니"); // DB 저장까지 되는데...      
+        	log.debug("MemberController.authKey");
+        	
         } 
-        
-        ModelMap modelMap = modelAndView.getModelMap();
-        MemberVO member = (MemberVO) modelMap.get(MemberController.authKey);
-        
+ 
         session.setAttribute("member_id", kakaoName);
         session.setAttribute("photo_name", kakaoPhoto);
         session.setAttribute("name", kakaoName);
-        session.setAttribute(MemberController.authKey, member);
-        
-        log.debug(member);
-        
+      
         return "redirect: /";
 	} // oauthKakao
 	
