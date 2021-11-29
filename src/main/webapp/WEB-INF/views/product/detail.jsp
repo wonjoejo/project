@@ -11,15 +11,19 @@
     <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
 
     <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+    />
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=1">
 
 </head>
 <body>
@@ -197,7 +201,7 @@
                                     <c:forEach var="id" items="${mentions}" begin="0" end="${fn:length(mentions)}">
                                         <c:choose>
                                             <c:when test="${fn:startsWith(id,'@')}">
-                                                <span class="mention" id="${id}">
+                                                <span class="mention detailbtn" id="${id}" data-bs-toggle="modal" data-bs-target="#memberModal">
                                                         ${id}
                                                 </span>
                                             </c:when>
@@ -263,17 +267,57 @@
 
 </div> <!-- container -->
 
-<%--modal--%>
+<!-- Modal -->
 <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="memberModalLabel">회원 상세정보</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
 
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-item">
+                    <img id="modal-profile" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
+                    <div class="modal-input">
+                        <input id="modal-id" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                        <input id="modal-name" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                        <input id="modal-mail" value="" readonly/>
+                    </div>
+                    <div class="modal-input">
+                        <input id="modal-phone" value="" readonly/>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
 </div>
+
 
 </body>
 
 <!-- bootstrap js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 
@@ -283,6 +327,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%-- kakao sdk --%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 
 <script>
 	const product_memo = '${product.product_memo}';
@@ -304,6 +349,8 @@
 <%-- product JS --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=2"></script>
 <%-- mention JS 실험 중 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=1"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=3"></script>
+
+
 
 </html>
