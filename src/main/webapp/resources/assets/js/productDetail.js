@@ -23,16 +23,55 @@ function clickMention() {
 					}
 				})
 				.then((data) => {
+					let comments = "";
 					console.log(data);
 					if (data.photo_path === null || data.photo_path === undefined) {
-						Swal.fire({
-							title: id,
-							html: '<i class="far fa-user-circle"></i>' + data.name + '<br><i class="far fa-envelope-open"></i>' + data.email + '<br><i class="fas fa-mobile-alt"></i>' + data.phone_number,
-							imageUrl: `https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png`,
-							imageWidth: 200,
-							imageHeight: 200,
-							imageAlt: 'Custom image',
-						})
+						comments += '<div class = "modal-dialog">';
+						comments += '<div class = "modal-content">';
+						comments += '<div class = "modal-header">';
+						comments += '<h5 class = "modal-title" id = "memberModalLabel"> 회원 상세정보 </h5>';
+						comments += '<button type = "button" class = "btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+						comments += '</div>';
+						comments += '<div class="modal-body">';
+						comments += '<div class="modal-item">';
+						comments += '<img id="modal-profile" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png">';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-id" value="';
+						comments += id;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-name" value="';
+						comments += data.name;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-mail" value="';
+						comments += data.email;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '<div class = "modal-input">';
+						comments += '<input id = "modal-phone" value="';
+						comments += data.phone_number;
+						comments += '" readonly/>';
+						comments += '</div>';
+						comments += '</div>';
+						comments += '</div>';
+						comments += '<ul class="bg-bubbles">';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '<li></li>';
+						comments += '</ul>';
+						comments += '</div>';
+						comments += '</div>';
+
 					} else {
 						Swal.fire({
 							title: id,
@@ -43,8 +82,9 @@ function clickMention() {
 							imageAlt: 'Custom image',
 						})
 
-					}
+					} // if-else
 
+					$('#memberModal').html(comments);
 				})
 
 
@@ -108,88 +148,6 @@ function getCommentList() {
 			$("#comment-box").html(comments);
 
 			clickMention();
-
-
-			// 수정 버튼 클릭 시 수정 폼 변경 -> 수정 보류 (사유: 멘션 수정 불가)
-			// const modifyBtn = document.querySelectorAll('.comment-modify');
-			// modifyBtn.forEach(function (item) {
-			// 	item.addEventListener("click", function (e) {
-			// 		e.preventDefault();
-			// 		console.log(item.parentElement.previousElementSibling.previousElementSibling);
-			//
-			// 		const checkBtn = item.nextElementSibling.nextElementSibling;
-			// 		const cancelBtn = item.nextElementSibling.nextElementSibling.nextElementSibling;
-			// 		const commentNo = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling;
-			// 		const memberId = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-			// 		const commentContent = item.parentElement.previousElementSibling.previousElementSibling.children;
-			// 		const commentDiv = item.parentElement.previousElementSibling.previousElementSibling;
-			// 		const comment = document.querySelector(".comment");
-			//
-			//
-			// 		console.log(commentContent);
-			// 		let context = "";
-			//
-			// 		for (let i = 0; i < commentContent.length; i++) {
-			// 			context += commentContent[i].innerHTML;
-			// 		}
-			//
-			// 		console.log(context);
-			//
-			// 		commentDiv.remove();
-			//
-			// 		let input = document.createElement("input");
-			// 		input.type = "text";
-			// 		input.name = "comment_content";
-			// 		input.value = context;
-			// 		input.classList.add("commentContent");
-			// 		input.id = "commentContent"
-			// 		comment.appendChild(input);
-			//
-			//
-			// 		const commentInput = document.querySelector(".commentContent");
-			//
-			//
-			// 		// commentContent.commmentContent.disabled = false;
-			// 		commentInput.style.border = "1px solid #ADADAD";
-			// 		item.style.display = "none";
-			// 		item.nextElementSibling.style.display = "none";
-			// 		checkBtn.style.display = "inline";
-			// 		cancelBtn.style.display = "inline";
-			//
-			// 		// 취소 버튼
-			// 		cancelBtn.addEventListener("click", getCommentList);
-
-			// 		// 수정
-			// 		checkBtn.addEventListener("click", function (e) {
-			// 			e.preventDefault();
-			//
-			// 			const data = {
-			// 				comment_no: commentNo.value,
-			// 				member_id: memberId.value,
-			// 				product_no: product_no,
-			// 				comment_content: commentInput.value
-			// 			};
-			//
-			// 			console.log(data);
-			//
-			// 			fetch('/comment/edit', {
-			// 				method: 'POST',
-			// 				body: JSON.stringify(data),
-			// 				headers: {
-			// 					'Content-Type': 'application/json'
-			// 				}
-			// 			})
-			// 				.then(function (response) {
-			// 					if (response) getCommentList();
-			// 				})
-			//
-			// 				.catch(function (error) {
-			// 					console.log(error)
-			// 				}); // fetch
-			//
-			// 		}); // click
-			// 	}); // click
-			// }); // modifyBtn forEach
 
 			// 삭제
 			const deleteBtn = document.querySelectorAll('.comment-delete');
@@ -264,10 +222,6 @@ function insertComment() {
 }
 ; // insertComment
 
-
-console.log("Product insert page");
-
-const searchInput = document.querySelector(".search");
 const suggestions = document.querySelector(".suggestions");
 const comment = document.querySelector("#commentContent");
 let mentions = [];
@@ -338,7 +292,7 @@ function displayMatches() {
 			);
 			return `
     <li>
-        <span class="name">${member.member_id}</span>
+        <span class="mention-id">${member.member_id}</span>
     </li>
     `;
 		})
@@ -352,7 +306,8 @@ function displayMatches() {
 
 // 목록에서 선택 시 클릭한 id가 input 창에 반영
 function clickName() {
-	const names = document.querySelectorAll('.name');
+	const names = document.querySelectorAll('.mention-id');
+	console.log("click!");
 	names.forEach(function (item) {
 		item.addEventListener('click', function (e) {
 			e.preventDefault();

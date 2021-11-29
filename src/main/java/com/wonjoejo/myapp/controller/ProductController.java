@@ -282,6 +282,7 @@ public class ProductController {
         MemberTypeVO memberTypeVO;
         
         
+        
         if (file.getSize() !=0) {
         	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
@@ -294,7 +295,8 @@ public class ProductController {
                     uploadedFileName,
                     uploadDir,
                     product.getBarcode(),
-                    product.getReg_date()
+                    product.getReg_date(),
+                    null
             );
 
             boolean result = this.service.insertProduct(productVO);
@@ -311,7 +313,8 @@ public class ProductController {
                     product.getProduct_photo_name(),
                     "default/",
                     product.getBarcode(),
-                    product.getReg_date()
+                    product.getReg_date(),
+                    null
             );
 
             boolean result = this.service.insertProduct(productVO);
@@ -319,24 +322,23 @@ public class ProductController {
             rttrs.addAttribute("result", result);
         }
 
-        // QR코드 생성
-        QRUtils qrUtils = new QRUtils();
 
-        String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
-        log.info("\t + barcodeName: {}", barcodeName);
-
-        Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
-
-        log.info("\t +barcode Success: {}", isSuccess);
-        
-        
-        
-        
-        // 여기부터
-        log.info("\t +box_no: {} / product_no: {} 이렇게 떴당", productVO.getBox_no(), productVO.getProduct_no());
         Boolean memberType = this.service.checkMemberType(productVO.getBox_no(), productVO.getProduct_no());
-        log.info("\t +member Type: {} 이렇게 떴당222222222", memberType);
+        log.info("\t +box_no: {} / product_no: {}", productVO.getBox_no(), productVO.getProduct_no());
+        log.info("\t +member Type: {}", memberType);
         
+        if (memberType = true) {
+            // QR코드 생성
+            QRUtils qrUtils = new QRUtils();
+
+            String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
+            log.info("\t + barcodeName: {}", barcodeName);
+
+            Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
+
+            log.info("\t +barcode Success: {}", isSuccess);
+        }
+
 
         // Category insert
         CategoryVO categoryVO = new CategoryVO(
@@ -522,19 +524,26 @@ public class ProductController {
     @PostMapping("/delete")
     public String productDelete(Integer product_no, ProductDTO product, RedirectAttributes rttrs) {
         log.debug("productDelete({}) invoked.", product_no);
-        
+
         rttrs.addAttribute("box_no", product.getBox_no());
+
+        // comment 삭제 넣어야 함!!!!
 
         // category 삭제
         boolean result1 = this.service.deleteCategory(product_no);
         log.info("\t +result1(Category): {}", result1);
-
-        // product 삭제
-        boolean result2 = this.service.deleteProduct(product_no);
+        
+        // 댓글 삭제
+        boolean result2 = this.service.deleteProductComment(product_no);
         log.info("\t +result2: {}", result2);
+                
+        // product 삭제
+        boolean result3 = this.service.deleteProduct(product_no);
+        log.info("\t +result3: {}", result3);
 
         return "redirect:/product/listPerPage";
     } // productDelete
+    
 
     @PostMapping(value = "/search", produces = "application/json; charset=utf8")
     @ResponseBody
@@ -567,27 +576,6 @@ public class ProductController {
         log.info("/t + fileName : {}", fileName);
 
     } // makeQrcode
-
-
-
-
-    // 차트
-
-    @GetMapping("/chart")
-    public void chart(){
-
-    };
-
-
-
-
-
-
-
-
-
-
-
 
 
 } // end class

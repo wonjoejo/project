@@ -29,6 +29,9 @@
 
     <div class="main-container">
         <div class="top-content">
+        
+        	<jsp:include page="../common/boxleftmobile.jsp"/>
+        
             <h1>카테고리</h1>
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                 <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>

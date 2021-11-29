@@ -20,53 +20,58 @@
 	<!-- stylesheets -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=115">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
-	<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 </head>
 <body>
 
 <div class="container">
 
 	<jsp:include page="../common/left.jsp"/>
-	
 
-	<div class="main-container">		
+
+	<div class="main-container">
 		<div class="wrapper">
-		
-		<jsp:include page="../common/leftmobile.jsp"/>
-		
+
+			<jsp:include page="../common/leftmobile.jsp"/>
+
 			<div id="top_content">
-				
-			
+
+
 				<h1 class="title">Q&A</h1>
-				
+
 				<c:if test="${member_id != null}">
-					<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}"><button id="writeBtn" type="button"> + 글 작성</button></a>
+					<a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+						<button id="writeBtn" type="button"> + 글 작성</button>
+					</a>
 				</c:if>
-				
-			</div> 	
-				
-			 <div class="search_pc">
-				 <form id="searchForm" action="/board/searchlist" method='get'>
-		
-			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-			        
-			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
-			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-			        <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
-			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
-			     </form>
-			  </div>
-		
-			<div class="noticewrapper" >
+
+			</div>
+
+			<div class="search_pc">
+				<form id="searchForm" action="/board/searchlist" method='get'>
+
+					<input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text'
+						   name='keyword' placeholder="  키워드 입력" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+
+					<input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+					<input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
+					<button class='searchbtn'><img class="searchimg"
+												   src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
+					</button>
+				</form>
+			</div>
+
+			<div class="noticewrapper">
 				<h2 class="notice">공지사항</h2>
 				<div id="notice">
-				
+
 					<c:forEach items="${noticeList}" var="board" begin="0" end="2">
-						<div class="noticelist">   
-											
+						<div class="noticelist">
+
 							<div class="item">
-								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div> 
+								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}"/>
+							</div>
 							<div class="item">
 								<c:out value="${board.member_id}" />
 							</div>	 
@@ -85,19 +90,19 @@
 				</div>
 				<button id="addBtn" type="button">더보기</button>
 			</div>
-			
+
 			<div id="boardtable">
 
 				<div id="boardtitlenone" class="boardlistcontainer">
-					<div class="item">No</div>
-					<div class="item">Title</div>
-					<div class="item">written by</div>
-					<div class="item">Register date</div> 
+					<div class="item">번호</div>
+					<div class="item">제목</div>
+					<div class="item">작성자</div>
+					<div class="item">작성일</div>
 				</div>
 
 				<div class="boardlist">
-				<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고 
-						목록을 만들어 줘야 합니다 -->
+					<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고
+                            목록을 만들어 줘야 합니다 -->
 					<c:forEach items="${list}" var="board">
 					
 						<div class="boardlistcontainer">     
@@ -176,8 +181,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=40"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=50"></script>
 
 </html>

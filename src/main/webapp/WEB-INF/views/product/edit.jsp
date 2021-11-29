@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="box_no" value="${sessionScope.permission.box_no}"/>
 <html>
 <head>
     <title>소중한 물건들을 모아, 인투박스</title>
@@ -147,6 +148,8 @@
                             <div class="title">메모</div>
                             <textarea name="product_memo" class="detail detail-memo">${product.product_memo}</textarea>
                         </li>
+                        <ul class="suggestions">
+                        </ul>
                     </ul>
                 </div> <!-- right-box -->
             </div> <!-- product-detail-wrap -->
@@ -182,8 +185,8 @@
         src="${pageContext.request.contextPath}/resources/assets/js/product.js"></script>
 
 
-
 <script>
+	const box_no = '${box_no}';
 	$(document).ready(function () {
 		$('#nav-icon3').click(function () {
 			$(this).toggleClass('open');
@@ -208,4 +211,7 @@
 
 	});
 </script>
+<%-- mention JS --%>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js"></script>
 </html>

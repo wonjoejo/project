@@ -49,16 +49,16 @@
     <!-- chart 물품 top5 -->
     <select id="selectProductTop" resultType="com.wonjoejo.myapp.domain.ProductVO">
         <![CDATA[
-        SELECT
-            PRODUCT_NO,
-            BOX_NO,
-            PRODUCT_NAME,
-            PRODUCT_MEMO,
-            PRODUCT_QTN,
-            PRODUCT_PHOTO_NAME,
-            PRODUCT_PHOTO_PATH,
-            BARCODE,
-            REG_DATE
+        SELECT PRODUCT_NO,
+               BOX_NO,
+               PRODUCT_NAME,
+               PRODUCT_MEMO,
+               PRODUCT_QTN,
+               PRODUCT_PHOTO_NAME,
+               PRODUCT_PHOTO_PATH,
+               BARCODE,
+               REG_DATE,
+               UPDATE_DATE
         FROM PRODUCT
         WHERE box_no = #{box_no}
         ORDER BY PRODUCT_QTN DESC
@@ -68,16 +68,16 @@
     <!-- chart 최신 입고 물품 -->
     <select id="selectProductDate" resultType="com.wonjoejo.myapp.domain.ProductVO">
         <![CDATA[
-        SELECT
-            PRODUCT_NO,
-            BOX_NO,
-            PRODUCT_NAME,
-            PRODUCT_MEMO,
-            PRODUCT_QTN,
-            PRODUCT_PHOTO_NAME,
-            PRODUCT_PHOTO_PATH,
-            BARCODE,
-            REG_DATE
+        SELECT PRODUCT_NO,
+               BOX_NO,
+               PRODUCT_NAME,
+               PRODUCT_MEMO,
+               PRODUCT_QTN,
+               PRODUCT_PHOTO_NAME,
+               PRODUCT_PHOTO_PATH,
+               BARCODE,
+               REG_DATE,
+               UPDATE_DATE
         FROM PRODUCT
         WHERE box_no = #{box_no}
         ORDER BY REG_DATE DESC
@@ -116,8 +116,7 @@
             PRODUCT_MEMO       = #{product_memo},
             PRODUCT_QTN        = #{product_qtn},
             PRODUCT_PHOTO_NAME = #{product_photo_name},
-            PRODUCT_PHOTO_PATH = #{product_photo_path},
-            BARCODE            = #{barcode}
+            PRODUCT_PHOTO_PATH = #{product_photo_path}
         WHERE PRODUCT_NO = #{product_no}
     </update>
 
@@ -309,5 +308,10 @@
 		WHERE b.BOX_NO = #{box_no} and p.PRODUCT_NO = #{product_no}
 	</select>
 
+    <!-- 물품 댓글 전체 삭제 -->
+    <delete id="deleteProductComment">
+        DELETE FROM product_comment 
+        WHERE PRODUCT_NO =#{product_no}
+    </delete>
 
 </mapper>

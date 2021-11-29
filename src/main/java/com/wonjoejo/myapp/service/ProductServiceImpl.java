@@ -211,6 +211,15 @@ public class ProductServiceImpl implements ProductService, InitializingBean, Dis
 		
 		return affectedLines == 1;
 		
+	}
+
+	@Override
+	public Boolean deleteProductComment(Integer product_no) {
+		log.debug("deleteProductComment({}) invoked", product_no);
+
+		int affectedLines = this.mapper.deleteProductComment(product_no);
+
+		return affectedLines == 1;
 	} // deleteCategory
 	
 	

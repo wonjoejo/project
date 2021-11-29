@@ -14,7 +14,8 @@
                BOX_MEMO,
                BOX_PHOTO_NAME,
                BOX_PHOTO_PATH,
-               REG_DATE
+               REG_DATE,
+               BOX_STATUS
         FROM BOX
                  right outer join (SELECT * FROM BOX_PERMISSION ORDER BY NO DESC) BOX_PERMISSION
                                   on BOX.BOX_NO = BOX_PERMISSION.BOX_NO

@@ -14,8 +14,9 @@ public class BoxVO {
     private String box_photo_name;
     private String box_photo_path;
     private Date reg_date;
+    private Integer box_status;
 
-    public BoxVO(Integer box_no, String member_id, Integer box_mode, String box_name, String box_memo, String box_photo_name, String box_photo_path, Date reg_date) {
+    public BoxVO(Integer box_no, String member_id, Integer box_mode, String box_name, String box_memo, String box_photo_name, String box_photo_path, Date reg_date, Integer box_status) {
 
         this.box_no = box_no;
         this.member_id = member_id;
@@ -25,7 +26,7 @@ public class BoxVO {
         this.box_photo_name = box_photo_name;
         this.box_photo_path = box_photo_path;
         this.reg_date = reg_date;
-
+        this.box_status = box_status;
     } // constructor
 
 } // end class

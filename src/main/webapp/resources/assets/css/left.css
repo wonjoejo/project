@@ -68,6 +68,16 @@
   background: rgba(255, 255, 255, 0.66);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
   border-radius: 50px;
+  
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.side-menu::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
+
 }
 
 a {

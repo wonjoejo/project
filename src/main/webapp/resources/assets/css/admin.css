@@ -443,7 +443,7 @@ select:focus {
 .modal-item input {
   border: none;
   background: transparent;
-  color: #a29db7;
+  color: #959595;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 15px;
   text-align: center;
@@ -520,11 +520,11 @@ select:focus {
 .modal-title {
   text-align: center;
   font-family: "NEXON Lv1 Gothic OTF bold";
-  color: #bdbbc5;
+  color: #959595;
 }
 
 .modal-header {
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid #959595 !important;
   margin: 0 6%;
   z-index: 100;
 }

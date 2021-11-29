@@ -11,15 +11,16 @@
 <html lang="en">
 <head>
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <meta charset="UTF-8">
     <title>소중한 물건들을 모아, 인투박스</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon-72x72.png"
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
           sizes="16x16">
-    <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/favicon-72x72.png" sizes="16x16">
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
 
     <!-- bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,7 +31,9 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=88">
+
 </head>
 
 <body>
