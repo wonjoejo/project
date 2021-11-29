@@ -82,18 +82,18 @@ private MemberService service;
         log.info("프로필 받았니({})", kakaoPhoto);
         
         
-        if(service.getMember(kakaoId)==null) { // 같은 아이디 없으면 가입시켜쥼
+        if(service.getMember(kakaoName)==null) { // 같은 아이디 없으면 가입시켜쥼
         	
         	
         	MemberVO memberVO 
         	= new MemberVO(
-        			kakaoId, 
+        			kakaoName, 
         			0, 
         			0, 
         			kakaoName, 
         			"12345!!!", 
         			kakaoId,
-        			"010",
+        			null,
         			kakaoPhoto,
         			null,
         			null,
@@ -114,7 +114,7 @@ private MemberService service;
 //        	log.info("이미 존재하는 회원");
 //        	return "redirect:/member/register"; // 문제는 로그인할 때도 먹혀
 //        }
-        session.setAttribute("member_id", kakaoId);
+        session.setAttribute("member_id", kakaoName);
         session.setAttribute("photo_name", kakaoPhoto);
         session.setAttribute("name", kakaoName);
         return "redirect: /";
@@ -233,11 +233,13 @@ private MemberService service;
     
     // 로그아웃
     public void kakaoLogout(String access_Token) {
-        String reqURL = "https://kapi.kakao.com/v1/user/logout";
+        //String reqURL = "https://kapi.kakao.com/v1/user/logout";
+    	String reqURL="https://kauth.kakao.com/oauth/logout?client_id=00ef15c831025dec2d6369d13510dee5&logout_redirect_uri=http://localhost:8090/";
+    	
         try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
+            conn.setRequestMethod("GET");
             conn.setRequestProperty("Authorization", "Bearer " + access_Token);
             
             int responseCode = conn.getResponseCode();
