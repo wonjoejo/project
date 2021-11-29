@@ -27,59 +27,61 @@
     <jsp:include page="../common/left.jsp"/>
 
     <div class="main-container">
-    
-    	<jsp:include page="../common/leftmobile.jsp"/>
-        
+
+        <jsp:include page="../common/leftmobile.jsp"/>
+
         <h1>박스 리스트</h1>
 
-        <div class="box-wrapper">
-            <div class="box-container">
-                <c:forEach items="${list}" var="box">
-                    <a href="${pageContext.request.contextPath}/box/detail?box_no=${box.box_no}">
-                        <div class="box hvr-grow">
-                            <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
-                                ${box.box_name}
-                        </div>
-                    </a>
-                </c:forEach>
-            </div>
-        </div>
-        <!-- 페이징 처리 -->
-        <div id="pagination">
-
-            <form action="#" id="paginationForm">
-                <!-- 1. 이전 이동 여부 표시 (prev) -->
-                <ul class="pagination">
-                    <c:if test="${pageMaker.prev}">
-                        <li class="page-item"><a class="page-link"
-                                href="/box/list?currPage=${pageMaker.startPage-1}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}"><i
-                                class="fas fa-angle-left"></i></a></li>
-                    </c:if>
-
-                    <!-- 페이지 번호 목록 표시 -->
-                    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-                        <c:set var="cp" value="${cri.currPage}"/>
-
-                        <c:choose>
-                            <c:when test="${pageNum == cp}">
-                                <li class="page-item active"><a class="page-link" href="#">${pageNum}</a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <li class="page-item"><a class="page-link"
-                                                         href="/box/list?currPage=${pageNum}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}">${pageNum}</a>
-                                </li>
-                            </c:otherwise>
-                        </c:choose>
+        <div class="scroll type2">
+            <div class="box-wrapper">
+                <div class="box-container">
+                    <c:forEach items="${list}" var="box">
+                        <a href="${pageContext.request.contextPath}/box/detail?box_no=${box.box_no}">
+                            <div class="box hvr-grow">
+                                <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/${box.box_photo_path}${box.box_photo_name}"/>
+                                    ${box.box_name}
+                            </div>
+                        </a>
                     </c:forEach>
+                </div>
+            </div>
+            <!-- 페이징 처리 -->
+            <div id="pagination">
 
-                    <!-- 2. 다음 이동 여부 표시 (next) -->
-                    <c:if test="${pageMaker.next}">
-                        <li class="page-item"><a class="page-link"
-                                                 href="/box/list?currPage=${pageMaker.endPage+1}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}"><i
-                                class="fas fa-angle-right"></i></a></li>
-                    </c:if>
-                </ul>
-            </form>
+                <form action="#" id="paginationForm">
+                    <!-- 1. 이전 이동 여부 표시 (prev) -->
+                    <ul class="pagination">
+                        <c:if test="${pageMaker.prev}">
+                            <li class="page-item"><a class="page-link"
+                                                     href="/box/list?currPage=${pageMaker.startPage-1}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}"><i
+                                    class="fas fa-angle-left"></i></a></li>
+                        </c:if>
+
+                        <!-- 페이지 번호 목록 표시 -->
+                        <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+                            <c:set var="cp" value="${cri.currPage}"/>
+
+                            <c:choose>
+                                <c:when test="${pageNum == cp}">
+                                    <li class="page-item active"><a class="page-link" href="#">${pageNum}</a></li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="/box/list?currPage=${pageNum}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}">${pageNum}</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+
+                        <!-- 2. 다음 이동 여부 표시 (next) -->
+                        <c:if test="${pageMaker.next}">
+                            <li class="page-item"><a class="page-link"
+                                                     href="/box/list?currPage=${pageMaker.endPage+1}&amount=${cri.amount}&pagesPerPage=${cri.pagesPerPage}&member_id=${member_id}"><i
+                                    class="fas fa-angle-right"></i></a></li>
+                        </c:if>
+                    </ul>
+                </form>
+            </div>
         </div>
     </div>
 

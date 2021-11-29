@@ -100,7 +100,7 @@
                         <div class="input-container">
                             <div class="box-name">
                                 <span class="label">박스 이름</span>
-                                <input type="text" name="box_name" value="${box.box_name}">
+                                <input type="text" name="box_name" value="${box.box_name}" required>
                             </div>
                         </div>
                         <span class="label">박스 메모</span>
