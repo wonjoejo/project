@@ -58,8 +58,6 @@ public class LoginInterceptor
             session.setAttribute("member_type", member.getMember_type());
             session.setAttribute("photo_name", member.getPhoto_name());
             session.setAttribute("photo_path", member.getPhoto_path());
-            
-            session.getAttribute("photo_name");
 
             log.info("==== 로그인 성공 : {} ====", member.getMember_id());
             log.info("==== 로그인 성공 : {} ====", member.getMember_type());
