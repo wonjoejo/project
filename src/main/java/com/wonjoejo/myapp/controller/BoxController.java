@@ -1,5 +1,7 @@
 package com.wonjoejo.myapp.controller;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.*;
 import com.wonjoejo.myapp.service.BoxService;
 import com.wonjoejo.myapp.service.GroupService;
@@ -361,31 +363,25 @@ public class BoxController {
     } // get
 
     @PostMapping("/join")
-    public String joinGroup(Integer box_no, String member_id, RedirectAttributes rttrs) {
-        log.debug("joinGroup({},{}) invoked.", box_no, member_id);
+    @ResponseBody
+    public String joinGroup(@RequestBody String data) {
+        log.debug("joinGroup({}) invoked.", data);
 
-        // 같은 박스에 같은 회원이 이미 존재하는지 중복 검사하는 로직 추가해야 함
+        JsonElement element = JsonParser.parseString(data);
 
-        // 박스에 있는 회원 리스트 조회 -> member_id 있는지 확인 -> 있으면 처리하지 않음
-        List<MemberVO> groupList = this.groupService.selectGroupMemberList(box_no);
-        for (MemberVO member : groupList) {
-            log.info("\t+ member_id: {}", member.getMember_id());
-            if (member_id.equals(member.getMember_id())) {
-                return "redirect:/box/list";
-                // alert 띄우고 싶은데...
-            } else {
-                break;
-            } // if-else
-        } // for
 
-        boolean result = this.service.joinBox(member_id, box_no);
+        boolean result = this.service.joinBox(element.getAsJsonObject().get("member_id").getAsString(),
+                element.getAsJsonObject().get("box_no").getAsInt());
         log.info("\t +result: {}", result);
-        rttrs.addAttribute("member_id", member_id);
 
-        return "redirect:/box/list";
+        if (!result) {
+            return "false";
+        }
+
+        return "/box/list";
     } // joinGroup
 
-    @PostMapping("/check")
+    @GetMapping("/check")
     @ResponseBody
     public String checkId(Integer box_no, String member_id, RedirectAttributes rttrs) {
         // 같은 박스에 같은 회원이 이미 존재하는지 중복 검사하는 로직 추가해야 함

@@ -37,20 +37,16 @@
             <div id="top-content">
             
             	<jsp:include page="../common/boxleftmobile.jsp"/>
-            
+
                 <h1 class="title">물품 리스트</h1>
             </div> <!-- top_content -->
 
             <div class="product-main-container">
 
                 <div id="top-search" data-html2canvas-ignore>
-                    <input class="search" type="text" placeholder="&nbsp;&nbsp;키워드를 입력하세요" id="search" value=""/>
-                    <button class="searchbtn">
-                        <img class="searchimg"
-                             src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
-                    </button>
+                    <input class="search" type="text" placeholder="&nbsp;&nbsp;키워드 입력 후 엔터키를 누르세요" id="search"
+                           value=""/>
                 </div> <!-- top-search -->
-
 
                 <div class="product-container">
                     <c:forEach items="${list}" var="product">
@@ -59,10 +55,21 @@
                             <!-- product_photo의 이름과 경로가 모두 null이 아닐 때 -->
                             <c:if
                                     test="${not empty product.product_photo_name && not empty product.product_photo_path}">
-                                <div class="item product-img">
-                                    <img id="product-img" crossorigin="anonymous"
-                                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${fn:contains(product.product_photo_path,'default')}">
+                                        <div class="item product-img">
+                                            <img id="product-img" crossorigin="anonymous"
+                                                 src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="item product-img">
+                                            <img id="product-img" crossorigin="anonymous"
+                                                 src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+
                             </c:if> <!-- product-img -->
 
                             <!-- product_photo의 이름과 경로 중 하나라도 null일때 -->
@@ -189,5 +196,5 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <%-- product list js 파일 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=7"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=8"></script>
 </html>

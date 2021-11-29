@@ -390,25 +390,21 @@ const imgBtn = document.querySelector("#img-btn");
 
 imgBtn.addEventListener("click", (e) => {
 	e.preventDefault();
-	console.log("click!");
-	// document.querySelectorAll(".ball").forEach(value => {
-	// 	value.style.transform = "none";
-	// })
 
 	const container = document.querySelector(".main-container");
+
+	container.style.boxShadow = "none";
 
 	html2canvas(container, {
 		logging: true, letterRendering: 1,
 		allowTaint: false,
 		useCORS: true,
-		proxy: '/etc/proxy_image',
+		dpi: 300
 	}).then(function (canvas) {
-		saveAs(canvas.toDataURL('image/png'), 'mylist.png');
+		saveAs(canvas.toDataURL(), 'list.png');
 	})
+	container.style.boxShadow = "0 4px 40px rgba(0, 0, 0, 0.2)";
 
-	// document.querySelectorAll(".ball").forEach(value => {
-	// 	value.style.transform = `scale(${Math.random()})`;
-	// })
 });
 
 function saveAs(uri, filename) {

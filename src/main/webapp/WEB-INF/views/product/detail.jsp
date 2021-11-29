@@ -349,8 +349,8 @@
 </script>
 
 <%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=4"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=5"></script>
 <%-- mention JS 실험 중 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=3"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=5"></script>
 
 </html>
