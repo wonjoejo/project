@@ -24,17 +24,17 @@ $(document).ready(function () {
     if (memberId.value === ""){
       Swal.fire({
         icon: 'warning',
-        title: '"아이디를 입력해주세요."'
+        title: '아이디를 입력해주세요.'
       });
     } else if (password.value === "" || !pwJ.test(password.value)){
       Swal.fire({
         icon: 'warning',
-        title: '"패스워드를 확인해주세요."'
+        title: '패스워드를 확인해주세요.'
       });
     } else if (passwordCheck.value === "" || password.value != passwordCheck.value){
       Swal.fire({
         icon: 'warning',
-        title: '"패스워드가 일치하지 않습니다."'
+        title: '패스워드가 일치하지 않습니다.'
       });
     }
 
@@ -76,19 +76,19 @@ $(document).ready(function () {
     if (name.value === "" || !nameJ.test(name.value)){
       Swal.fire({
         icon: 'warning',
-        title: '"이름을 확인해주세요."'
+        title: '이름을 확인해주세요.'
       });
       return false
     } else if (email.value === "" || !mailJ.test(email.value)){
       Swal.fire({
         icon: 'warning',
-        title: '"이메일를 확인해주세요."'
+        title: '이메일를 확인해주세요.'
       });
       return false
     } else if (phoneNumber.value === "" || !phoneJ.test(phoneNumber.value)){
       Swal.fire({
         icon: 'warning',
-        title: '"휴대전화를 확인해주세요."'
+        title: '휴대전화를 확인해주세요.'
       });
       return false
     } // if-else

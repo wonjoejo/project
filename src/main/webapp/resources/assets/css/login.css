@@ -146,7 +146,7 @@
 .login-image {
   display: flex;
   float: right;
-  width: 85% !important;
+  width: 84% !important;
 }
 
 .title1 {
@@ -157,10 +157,11 @@
   color: #444b59;
   line-height: 1.2;
   margin-left: 9px;
+  margin-top: 4%;
 }
 
 .title2 {
-  padding: 4px 0 15px 0;
+  padding: 4px 0 23px 0;
 }
 
 .loginform .group .label {
@@ -324,6 +325,7 @@ textarea:focus {
   border-radius: 30px;
   border: none;
   margin-right: 5px;
+  margin-top: 1%;
 }
 
 .division {
@@ -352,40 +354,32 @@ textarea:focus {
 }
 
 .social-image {
-  width: 75px;
-  padding: 13px 25px 13px 25px;
+  width: 52px;
+  padding: 7px 7px 7px 13px;
 }
 
 .social-login {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
   padding: 9px 36px;
   position: static;
   width: 370px;
-  /* height: 80px; */
+  border: 2px solid #FEE500;
+  border-radius: 30px;
+  background: #fff;
+  align-items: center;
+  height: 55px;
+  margin-top: 4%;
+  font-family: "Noto Sans KR", sans-serif;
+  padding-right: 45px;
 }
 
-.social-login__link {
-  text-decoration: none;
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* box-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.12); */
-  /* border-radius: 0.5rem; */
-  /* height: 5.5rem;
-  width: 5.5rem; */
-  /* transition: 0.2s linear all; */
-  border: 2px solid #789ade;
-  box-sizing: border-box;
-  border-radius: 8px;
+.social-login:hover {
+  /*transform: scale(1.05) translateY(-0.3rem);*/
+  background: #FEE500;
 }
-.social-login__link:hover {
-  transform: scale(1.05) translateY(-0.3rem);
-  /* box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.08); */
-}
+
 
 /* loginIndex */
 
@@ -611,14 +605,6 @@ break{
   color: #fff;
   font-weight: 300;
 }
-
-
-
-
-
-
-
-
 
 /* Sweet Alert */
 .swal2-show {
