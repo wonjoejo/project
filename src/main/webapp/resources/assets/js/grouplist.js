@@ -1,7 +1,22 @@
-//권한 설정페이지로 이동
-$("#grouppermission").click(function () {
-	location.href = ctx + "/group/permissionlist?box_no=" + boxNo;
-});
+const groupPermission = document.querySelector("#grouppermission");
+const permissionBtn = document.querySelector("#permissionBtn");
+
+
+//권한 보기 페이지로 이동
+if (groupPermission != null) {
+	groupPermission.addEventListener('click', function (e) {
+		e.preventDefault();
+		location.href = ctx + "/group/permissionlist?box_no=" + boxNo;
+	})
+}
+
+//권한 설정 페이지로 이동
+if (permissionBtn != null) {
+	permissionBtn.addEventListener('click', function (e) {
+		e.preventDefault();
+		location.href = ctx + "/group/editview?box_no=" + boxNo;
+	})
+}
 
 // 초대
 $("#groupcode").click(function () {
@@ -60,8 +75,6 @@ deletebtn.addEventListener("click", function (e) {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(data) // memberId와 boxNo
-
-
 			}).then(function (response) {
 				if (response.ok) {
 					console.log(response.ok);

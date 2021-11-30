@@ -36,8 +36,8 @@
 							<div class="but">
 
 								<c:if test="${isMaster==true}">
-									<!-- 임시  -->
-									<button class="submit-btn hvr-float" id="grouppermission"><i>권한설정</i></button>
+									<!-- 임시 -->
+									<button class="submit-btn hvr-float" id="permissionBtn"><i>권한설정</i></button>
 								</c:if>
 								<button class="submit-btn hvr-float" id="groupcode"><i>그룹초대</i></button>
 								<a
@@ -169,21 +169,13 @@
 			</body>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
 			<script>
-				//권한 설정페이지로 이동
-				$(document).ready(function () {
-					$("#grouppermission").click(function () {
-						location.href = "${pageContext.request.contextPath}/group/editview?box_no=${box_no}";
-
-					})
-
-					$("#groupcode").click(function () {
-						Swal.fire('초대 번호 "${box_no}" 입니다.')
-					})
-
-				})
-
-
+				const boxNo = '${box_no}';
+				const loginId = '${sessionScope.member_id}';
+				const masterId = '${master_id}';
+				const memberId = '${group.member_id}';
+				const ctx = '${pageContext.request.contextPath}';
 
 			</script>
+			<script src="${pageContext.request.contextPath}/resources/assets/js/grouplist.js?ver=1"></script>
 
 			</html>
