@@ -9,13 +9,13 @@
 
     <!-- favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
-          sizes="16x16">
+        sizes="16x16">
     <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-          crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=24">
+        href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=24">
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
+        href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 
 </head>
 <body>
@@ -35,9 +35,7 @@
         <jsp:include page="../common/boxleft.jsp" />
         <div class="main-container">
             <div id="top-content">
-            
-            	<jsp:include page="../common/boxleftmobile.jsp"/>
-
+                <jsp:include page="../common/boxleftmobile.jsp"/>
                 <h1 class="title">물품 리스트</h1>
             </div> <!-- top_content -->
 
@@ -45,7 +43,7 @@
 
                 <div id="top-search" data-html2canvas-ignore>
                     <input class="search" type="text" placeholder="&nbsp;&nbsp;키워드 입력 후 엔터키를 누르세요" id="search"
-                           value=""/>
+                        value=""/>
                 </div> <!-- top-search -->
 
                 <div class="product-container">
@@ -59,13 +57,13 @@
                                     <c:when test="${fn:contains(product.product_photo_path,'default')}">
                                         <div class="item product-img">
                                             <img id="product-img" crossorigin="anonymous"
-                                                 src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
+                                                src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
                                         <div class="item product-img">
                                             <img id="product-img" crossorigin="anonymous"
-                                                 src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
