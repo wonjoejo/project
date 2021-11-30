@@ -28,23 +28,23 @@
 <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">--%>
 
 <c:set var="member_id" value="${sessionScope.__AUTH__.member_id}"/>
-  <div class="side-menu">
+<div class="side-menu">
     <div class="profile">
 
-      <c:choose>
-      <c:when test="${fn:contains(photo_name, 'kakao')}">
-          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img
-            src="${photo_name}"
-          />
-          </a>
-      </c:when>
-        <c:when test="${not empty photo_path}">
-           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-          <img
-            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
-          />
-          </a>
+        <c:choose>
+            <c:when test="${fn:contains(photo_name, 'kakao')}">
+                <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+                    <img
+                            src="${photo_name}"
+                    />
+                </a>
+            </c:when>
+            <c:when test="${not empty photo_path}">
+                <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+                    <img
+                            src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
+                    />
+                </a>
         </c:when>
         <c:otherwise>
          <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
@@ -91,7 +91,7 @@
 	const memberId = '${member_id}';
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=10"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
 <%--<script type="application/javascript"--%>
 <%--        src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>--%>
 
