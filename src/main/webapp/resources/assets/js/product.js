@@ -127,7 +127,7 @@ deleteBtn.addEventListener("click", function (e) {
             imageWidth: 200,
             imageHeight: 200,
             imageAlt: 'QR CODE',
-            footer: '<a href="' + url + '">다운로드</a>'
+            footer: '<a href="' + url + '"><i class="fas fa-download"/> 다운로드</a>'
         })
     })
 

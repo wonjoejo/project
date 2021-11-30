@@ -41,9 +41,7 @@
 <%--    <input type="hidden" name="update_date" value="${product.update_date}">--%>
     <div class="main-container">
         <div class="top-content">
-        
-        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
-        
+            <jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
             <h1>물품 상세보기</h1>
 
             <div class="wrapper">
@@ -353,7 +351,7 @@
 </script>
 
 <%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=5"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=6"></script>
 <%-- mention JS 실험 중 --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=1"></script>
 
