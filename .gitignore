@@ -24,3 +24,7 @@ src/main/java/com/wonjoejo/myapp/util/S3Utils.java
 src/main/webapp/WEB-INF/classes/
 
 src/main/webapp/WEB-INF/lib/
+
+src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+
+src/main/webapp/WEB-INF/web.xml

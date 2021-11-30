@@ -38,7 +38,7 @@
 				<jsp:include page="../common/boxleft.jsp"/>
 
 				<div class="main-container">
-					<div class="name">
+					<div>
 					
 						<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
 					
