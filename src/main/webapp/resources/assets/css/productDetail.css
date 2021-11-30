@@ -364,7 +364,7 @@
 .right-box ul li {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 730px;
     height: 2.6vw;
     font-size: 1rem;
 
@@ -494,6 +494,7 @@
 .to-category {
     text-align: right;
     margin: 10px 1.5%;
+    width: 700px;
 }
 
 textarea {

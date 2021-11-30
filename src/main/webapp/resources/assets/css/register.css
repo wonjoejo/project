@@ -175,6 +175,7 @@
   color: #444b59;
   line-height: 1.2;
   text-align: left;
+  margin-top: 7%
 }
 
 .title2 {
@@ -263,7 +264,7 @@
   background: #5a95f5;
   border-radius: 30px;
   border: none;
-  margin-top: 6.5%;
+  margin-top: 12.5%;
 }
 
 .action-button-previous {
@@ -482,32 +483,32 @@
 }
 
 .social-image {
-  width: 75px;
-  padding: 13px 25px 13px 25px;
+  width: 52px;
+  padding: 7px 7px 7px 13px;
 }
 
 .social-login {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
   padding: 9px 36px;
   position: static;
   width: 370px;
+  border: 2px solid #FEE500;
+  border-radius: 30px;
+  background: #fff;
+  align-items: center;
+  height: 44px;
+  margin-top: 16px;
+  margin-bottom: 30px;
+  font-family: "Noto Sans KR", sans-serif;
+  padding-right: 45px;
+  font-size: 14px;
 }
 
-.social-login__link {
-  text-decoration: none;
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #789ade;
-  box-sizing: border-box;
-  border-radius: 8px;
-}
-.social-login__link:hover {
-  transform: scale(1.05) translateY(-0.3rem);
+.social-login:hover {
+  /*transform: scale(1.05) translateY(-0.3rem);*/
+  background: #FEE500;
 }
 
 .group .label {
@@ -603,7 +604,7 @@
   background: #5a95f5;
   border-radius: 30px;
   border: none;
-  margin-top: 6.5%;
+  margin-top: 10.5%;
 }
 
 /* 유효성 검사 */
@@ -694,7 +695,29 @@
   left: 200px;
 }
 
+/* Sweet Alert */
+.swal2-show {
+    -webkit-animation: swal2-show .3s;
+    animation: swal2-show .3s;
+    border-image-source: repeating-linear-gradient( 
+90deg, #4776E6 0%, #8E54E9 100%) !important;
+    border-image-width: 5px !important;
+    border-image-slice: 1 !important;
+    border-style: solid !important;
+    color: black !important;
+}
 
 .swal2-title {
   font-size: 1.6em !important;
+  margin-bottom: 3% !important;
+  margin-top: 1% !important;
+}
+
+.swal2-confirm {
+	background: linear-gradient(
+90deg, #4776E6 0%, #8E54E9 100%) !important;
+    border: none !important;
+    border-radius: 24px !important;
+    box-shadow: inset 0 5px 10px rgb(149 149 149 / 20%) !important;
+    color: #FFFFFF !important;
 }

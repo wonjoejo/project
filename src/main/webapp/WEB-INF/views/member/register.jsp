@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=1"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=2"
     />
 
     <style>
@@ -204,7 +204,7 @@ pageEncoding="UTF-8"%>
             <div class="form-card">
               <h2 class="fs-title">간편 회원가입</h2>
 
-              <div class="social-login">
+              <!--  <div class="social-login">
                 <a
                   href="#"
                   class="social-login__link social-login__link--google"
@@ -224,7 +224,16 @@ pageEncoding="UTF-8"%>
                         class="social-image"
                         src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_kakao.png" onclick="kakaoLogin();"/>
                 </a>
+              </div>-->
+              
+              <div>
+               
+                <button class="social-login" type="button" onclick="kakaoLogin();"> 
+                <img
+                        class="social-image"
+                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_kakao.png"/>카카오로 시작하기</button>
               </div>
+              
               <div class="division">
                 <div class="line l"></div>
                 <span>혹은</span>
@@ -507,11 +516,6 @@ pageEncoding="UTF-8"%>
            $("#alert-danger-id").show();
            $(".register-submit").attr("disabled", "disabled");
 
-           $("#submitBtn").click(function (){
-             alert("아이디를 확인 해주세요");
-             return false;
-           })
-
         }
       },
     });
@@ -536,5 +540,5 @@ pageEncoding="UTF-8"%>
   </script>
   <script
           type="text/javascript"
-          src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=2"></script>
+          src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=3"></script>
 </html>

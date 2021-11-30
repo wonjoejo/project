@@ -9,13 +9,13 @@
 
     <!-- favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
-          sizes="16x16">
+        sizes="16x16">
     <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-          crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous">
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
@@ -25,27 +25,29 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=24">
+        href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=24">
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
+        href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 
 </head>
 <body>
+
     <div class="container">
         <jsp:include page="../common/boxleft.jsp" />
         <div class="main-container">
             <div id="top-content">
-            
-            	<jsp:include page="../common/boxleftmobile.jsp"/>
-
+                <jsp:include page="../common/boxleftmobile.jsp"/>
                 <h1 class="title">물품 리스트</h1>
             </div> <!-- top_content -->
 
+
+
+        <div class="scroll type2">
             <div class="product-main-container">
 
                 <div id="top-search" data-html2canvas-ignore>
                     <input class="search" type="text" placeholder="&nbsp;&nbsp;키워드 입력 후 엔터키를 누르세요" id="search"
-                           value=""/>
+                        value=""/>
                 </div> <!-- top-search -->
 
                 <div class="product-container">
@@ -59,13 +61,13 @@
                                     <c:when test="${fn:contains(product.product_photo_path,'default')}">
                                         <div class="item product-img">
                                             <img id="product-img" crossorigin="anonymous"
-                                                 src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
+                                                src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
                                         <div class="item product-img">
                                             <img id="product-img" crossorigin="anonymous"
-                                                 src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
@@ -87,32 +89,32 @@
                             <div class="item" id="product-cate">
                                 <c:if test="${not empty product.cate_detail1}">
                                     <div class="product-cate-1">
-                                        <c:out value='${product.cate_name1}│ ${product.cate_detail1}' />
+                                        <c:out value='${product.cate_name1}│ ${product.cate_detail1}'/>
                                     </div>
                                 </c:if>
 
                                 <c:if test="${not empty product.cate_detail2}">
                                     <div class="product-cate-2">
-                                        <c:out value='${product.cate_name2}│ ${product.cate_detail2}' />
+                                        <c:out value='${product.cate_name2}│ ${product.cate_detail2}'/>
                                     </div>
                                 </c:if>
 
                                 <c:if test="${not empty product.cate_detail3}">
                                     <div class="product-cate-3">
-                                        <c:out value='${product.cate_name3}│ ${product.cate_detail3}' />
+                                        <c:out value='${product.cate_name3}│ ${product.cate_detail3}'/>
                                     </div>
                                 </c:if>
 
                                 <c:if test="${not empty product.cate_detail4}">
                                     <div class="product-cate-4">
-                                        <c:out value='${product.cate_name4}│ ${product.cate_detail4}' />
+                                        <c:out value='${product.cate_name4}│ ${product.cate_detail4}'/>
                                     </div>
                                 </c:if>
 
                             </div> <!-- product-cate -->
 
                             <div class="item" id="product-qtn">
-                                <c:out value='${product.product_qtn}' />
+                                <c:out value='${product.product_qtn}'/>
                             </div> <!-- product-qtn-->
 
                         </div>
@@ -121,7 +123,7 @@
                 </div> <!-- product-container -->
 
                 <!-- 페이징 처리 -->
-                <div id="pagination" data-html2canvas-ignore>
+                <div class="listPage" data-html2canvas-ignore>
                     <form action="#" id="paginationForm">
                         <input type="hidden" name="currPage">
                         <input type="hidden" name="amount">
@@ -136,12 +138,12 @@
 											&amount=${pageMaker.cri.amount}
 											&pagesPerPage=${cri.pagesPerPage}
 											&box_no=${pageMaker.cri.box_no}">
-                                        <i class="fas fa-angle-left"></i></a></li>
+                                    <i class="fas fa-angle-left"></i></a></li>
                             </c:if>
 
                             <!-- 페이지 번호 목록 표시 -->
                             <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-                                <c:set var="cp" value="${pageMaker.cri.currPage}" />
+                                <c:set var="cp" value="${pageMaker.cri.currPage}"/>
 
                                 <c:choose>
                                     <c:when test="${pageNum == cp}">
@@ -164,7 +166,7 @@
 										&amount=${pageMaker.cri.amount}
 										&pagesPerPage=${pageMaker.cri.pagesPerPage}
 										&box_no=${pageMaker.cri.box_no}">
-                                        <i class="fas fa-angle-right"></i></a></li>
+                                    <i class="fas fa-angle-right"></i></a></li>
                             </c:if>
                         </ul>
                     </form>
@@ -173,19 +175,20 @@
                     <button type="button" id="img-btn"><i class="far fa-file-image"></i> 다운로드</button>
                     <button type="button" id="excel-btn"><i class="fas fa-file-excel"></i> 다운로드</button>
                 </div>
-            </div> <!-- product-main-container -->
-        </div> <!-- main-container -->
-    </div> <!-- container -->
+            </div>
+        </div> <!-- product-main-container -->
+    </div> <!-- main-container -->
+</div> <!-- container -->
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
 <script>
-	const boxNo = '${box_no}';
-	const currPage = '${cri.currPage}';
-	const amount = '${cri.amount}';
-	const pagesPerPage = '${cri.pagesPerPage}';
+    const boxNo = '${box_no}';
+    const currPage = '${cri.currPage}';
+    const amount = '${cri.amount}';
+    const pagesPerPage = '${cri.pagesPerPage}';
 </script>
 <%-- autocomplete(자동완성) 기능 --%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"

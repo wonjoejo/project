@@ -36,7 +36,7 @@
   />
   <!--  --><link
     rel="stylesheet"
-    href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3"
+    href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=1"
   />
   
   

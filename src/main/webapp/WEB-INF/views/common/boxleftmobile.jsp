@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <html>
 
 
@@ -23,7 +24,7 @@
 
 <!-- stylesheets -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleftmobile.css?ver=112">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=2">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>
 
