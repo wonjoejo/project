@@ -42,6 +42,8 @@
 					
 						<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
 					
+					<div class="name">
+		
 						<h1>그룹 리스트</h1>
 
 							<div class="but">
