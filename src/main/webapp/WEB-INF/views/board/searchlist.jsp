@@ -43,7 +43,7 @@
 			 <div class="search_pc">
 				<form id="searchForm" action="/board/searchlist" method='get'>
 		
-			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="키워드 입력" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 			        
 			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
 			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
