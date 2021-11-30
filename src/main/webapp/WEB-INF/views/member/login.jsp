@@ -22,7 +22,7 @@
 	
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=5"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=6"/>
 </head>
 <body>
 <!-- header -->
@@ -89,32 +89,15 @@
             </div>
 
             <div>
-                <button class="login-submit" type="submit">Login</button>
+                <button class="login-submit" type="submit">로그인</button>
             </div>
 
-            <div class="division">
-                <div class="line l"></div>
-                <span>간편 로그인</span>
-                <div class="line r"></div>
-            </div>
-
-            <div class="social-login">
-                <a href="#" class="social-login__link social-login__link--google">
-                    <img
-                        class="social-image"
-                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_google.png"/>
-                </a>
-                <a href="#" class="social-login__link social-login__link--naver">
-                    <img
-                        class="social-image"
-                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_naver.png"/>
-                </a>
-                <a href="javascript:void(0)" class="social-login__link social-login__link--kakao" >   
-                   <img
-                        class="social-image"
-                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_kakao.png" onclick="kakaoLogin();"/>
-                </a>
+            <div>
                
+                <button class="social-login" type="button" onclick="kakaoLogin();"> 
+                <img
+                        class="social-image"
+                        src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/btn_kakao.png"/>카카오로 시작하기</button>
             </div>
     </div>
     <div class="img-container">
