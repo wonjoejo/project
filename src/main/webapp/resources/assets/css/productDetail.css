@@ -512,7 +512,7 @@
 }
 
 #detail-memo {
-    height: 95px;
+    height: 45px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -539,6 +539,10 @@
 @media screen and ( max-width: 767px) {
     .qtn span {
 
+    }
+
+    button {
+        padding: 0 !important;
     }
 }
 

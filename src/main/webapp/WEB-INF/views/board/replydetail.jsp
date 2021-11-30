@@ -2,6 +2,7 @@
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 	<title>Q&AReplyDetail</title>
@@ -31,41 +32,61 @@
 		<div class="wrapper">
 		
 			<jsp:include page="../common/leftmobile.jsp"/>
-			
-			<div id="detailtop">		
-				<h1 class="title">Q&A</h1>						
+
+			<div id="detailtop">
+				<h1 class="title">Q&A</h1>
 				<button id="listBtn" type="button">돌아가기</button>
 			</div><!-- detailtop -->
-			
-			<div id="detailcontent" >
+
+			<div id="detailcontent">
 				<form action="/board/replydetail" method="post">
-			
+
 					<div class="detailwrapper">
-						<div class="detailtitle">							
-							<input class="noline" type="text" name="title" value="${board.title}" readonly />
+						<div class="detailtitle">
+							<input class="noline" type="text" name="title" value="${board.title}" readonly/>
 						</div>
-						
+
 						<div class="detailid">
-							<input class="noline" type="text" name="member_id" value="${board.member_id}" readonly />
+							<div class="item">
+								<!-- 작성자 아이디 마스킹 처리 -->
+								<c:choose>
+									<%-- admin은 관리자라고 그대로 보여줌 --%>
+									<c:when test="${board.member_id eq 'admin'}">
+										<img id="admin_btn"
+											 src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/logo6.png"/>
+										인투박스
+									</c:when>
+									<c:otherwise>
+										<%-- 아이디가 null이 아닐 때 --%>
+										<c:if test="${board.member_id ne null && board.member_id !='' }">
+
+											<%-- 아이디의 앞 2자리까지 보여 주고 --%>
+											<input class="noline" type="text" name="member_id"
+												   value="${board.member_id}" readonly/>
+										</c:if>
+									</c:otherwise>
+								</c:choose>
+							</div> <!-- 아이디 마스킹 처리 끝 -->
 						</div>
-						
+
 						<div class="detaildate">
-							<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-						</div>            
-						
+							<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}"/>
+						</div>
+
 						<div class="detailcontent">
-							<textarea class="noline detailcon" name="content" cols="50" rows="10" readonly>${board.content}</textarea>
+							<textarea class="noline detailcon" name="content" cols="50" rows="10"
+									  readonly>${board.content}</textarea>
 						</div>
 					</div><!-- detailwrapper -->
-					
+
 					<div>
-						<c:if test="${member_id == 'admin'}">	
-							<c:if test="${board.depth == 0}">					
+						<c:if test="${member_id == 'admin'}">
+							<c:if test="${board.depth == 0}">
 								<button id="replyWriteBtn" type="button">답글작성</button>
 							</c:if>
 						</c:if>
-			            
-			            <c:if test="${member_id ==  board.member_id}">
+
+						<c:if test="${member_id ==  board.member_id}">
 							<button type="button" id="editBtn">수정</button>
 			                <button type="button" id="replydeleteBtn">삭제</button>
 			            </c:if> 

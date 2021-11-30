@@ -352,6 +352,12 @@ body {
 	text-overflow: ellipsis;
 }
 
+@media screen and ( max-width: 767px) {
+	#product-cate > div, #product-qtn {
+		display: none;
+	}
+}
+
 .product-cate-1 {
 	color: #FC5569;
 	background-color: #FEE5DD;

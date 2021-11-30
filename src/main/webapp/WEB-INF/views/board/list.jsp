@@ -27,11 +27,18 @@
 <body>
 
 <div class="container">
-    <jsp:include page="../common/left.jsp" />
+    <c:choose>
+        <c:when test="${member_id eq 'admin'}">
+            <jsp:include page="../common/adminleft.jsp"/>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="../common/left.jsp"/>
+        </c:otherwise>
+    </c:choose>
 
     <div class="main-container">
         <div class="wrapper">
-            <jsp:include page="../common/leftmobile.jsp" />
+            <jsp:include page="../common/leftmobile.jsp"/>
 
             <div id="top_content">
                 <h1 class="title">Q&A</h1>

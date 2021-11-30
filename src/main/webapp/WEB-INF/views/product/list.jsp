@@ -60,14 +60,14 @@
                                 <c:choose>
                                     <c:when test="${fn:contains(product.product_photo_path,'default')}">
                                         <div class="item product-img">
-                                            <img id="product-img" crossorigin="anonymous"
-                                                src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
+                                            <img id="product-img"
+                                                 src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
                                         <div class="item product-img">
-                                            <img id="product-img" crossorigin="anonymous"
-                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                            <img id="product-img" class="product-img" crossorigin="anonymous"
+                                                 src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
@@ -199,5 +199,5 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <%-- product list js 파일 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=8"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productList.js?ver=9"></script>
 </html>
