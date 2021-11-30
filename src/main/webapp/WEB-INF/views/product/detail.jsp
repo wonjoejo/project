@@ -25,7 +25,7 @@
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=10">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=4">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
 
 
@@ -352,7 +352,7 @@
 </script>
 
 <%-- product JS --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=6"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=7"></script>
 <%-- mention JS 실험 중 --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=2"></script>
 

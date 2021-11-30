@@ -4,6 +4,12 @@
 const productContainer = document.querySelector('.product-container');
 const pagination = document.querySelector('.pagination');
 const ctx = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+const img = document.querySelectorAll(".product-img");
+
+img.forEach(function (item) {
+	let url = item.src;
+	item.setAttribute('src', `${url}?timestamp=${new Date().getTime()}`);
+})
 
 
 $.widget("ui.autocomplete", $.ui.autocomplete, {

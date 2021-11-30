@@ -38,7 +38,7 @@ joinGroupBtn.addEventListener("click", function (e) {
 	console.log("click");
 	Swal.fire({
 		title: '박스 참여',
-		text: '참여할 박스의 초대 코드를 입력해 주세요/n(숫자 4자리)',
+		text: '참여할 박스의 초대 코드를 입력해 주세요 (4자리)',
 		input: 'text',
 		inputAutoTrim: 'true',
 		inputAttributes: {

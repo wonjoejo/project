@@ -2,6 +2,7 @@
 		 pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
 <head>
@@ -31,63 +32,100 @@
 
 	<div class="main-container">		
 		<div class="wrapper">
-		
+
 			<jsp:include page="../common/leftmobile.jsp"/>
-		
+
 			<div id="top_content">
 				<h1 class="title">Q&A</h1>
-				
-				<button id="listBtn" type="button">돌아가기</button>					
+
+				<button id="listBtn" type="button">돌아가기</button>
 			</div>
-			
-			 <div class="search_pc">
+
+			<div class="search_pc">
 				<form id="searchForm" action="/board/searchlist" method='get'>
-		
-			        <input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text' name='keyword' placeholder="Search everything" value='<c:out value="${pageMaker.cri.keyword}"/>'/>
-			        
-			        <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
-			        <input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-			        <input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
-			        <button class='searchbtn'><img class="searchimg" src="${pageContext.request.contextPath}/resources/assets/img/search.png" />검색</button>
-			     </form>
+
+					<input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text'
+						   name='keyword' placeholder="Search everything"
+						   value='<c:out value="${pageMaker.cri.keyword}"/>'/>
+
+					<input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+					<input type='hidden' name='pagesPerPage' value='${pageMaker.cri.pagesPerPage}'>
+					<button class='searchbtn'><img class="searchimg"
+												   src="${pageContext.request.contextPath}/resources/assets/img/search.png"/>검색
+					</button>
+				</form>
 			</div>
-			
-			<div id="boardtable" >
+
+			<div id="boardtable">
 
 				<div id="boardtitlenone" class="boardlistcontainer">
-					<div class="item">No</div>
-					<div class="item titleitem">Title</div>
-					<div class="item">written by</div>
-					<div class="item">Register date</div> 
+					<div class="item">번호</div>
+					<div class="item titleitem">제목</div>
+					<div class="item">작성자</div>
+					<div class="item">작성일</div>
 				</div>
 
 				<div class="boardlist">
-				<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고 
-						목록을 만들어 줘야 합니다 -->
+					<!-- BoardVO를 여러개 담고 있는 리스트 객체를 가지고
+                            목록을 만들어 줘야 합니다 -->
 					<c:forEach items="${searchList}" var="board">
-					
-						<div class="boardlistcontainer">     
+
+						<div class="boardlistcontainer">
 							<div class="item">
-								<c:out value="${board.board_idx}" />
-							</div>	
-							
-							<div class="item titleitem"> 
+								<c:out value="${board.board_idx}"/>
+							</div>
+
+							<div class="item titleitem">
 								<c:if test="${board.depth > 0}">
-									<img class="replyicon" src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
+									<img class="replyicon"
+										 src="${pageContext.request.contextPath}/resources/assets/img/listreply.png">&nbsp;
 								</c:if>
-								<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-								<c:out value="${board.title}" />
-								</a>
-							</div>					
+								<a href="/board/replydetail?ref=${board.ref}&board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}&depth=${board.depth}">
+									<c:if test="${member_id == 'admin'}">
+									<a href="/board/detail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+										</c:if>
+
+										<c:if test="${member_id == null}">
+										<a href="#" class="gojoinpage">
+											</c:if>
+
+											<c:out value="${board.title}"/>
+										</a>
+							</div>
+								<%--							<div class="item">--%>
 							<div class="item">
-								<c:out value="${board.member_id}" />
-							</div>						
+								<!-- 작성자 아이디 마스킹 처리 -->
+								<c:choose>
+									<%-- admin은 관리자라고 그대로 보여줌 --%>
+									<c:when test="${board.member_id eq 'admin'}">
+										<img id="admin_btn"
+											 src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/logo6.png"/>
+										인투박스
+									</c:when>
+									<c:otherwise>
+										<%-- 아이디가 null이 아닐 때 --%>
+										<c:if test="${board.member_id ne null && board.member_id !='' }">
+
+											<%-- 아이디의 앞 2자리까지 보여 주고 --%>
+											${fn:substring(board.member_id,0,2)}
+
+											<%-- 총 4개의 * 붙이기 --%>
+											<c:forEach begin="3" end="6" step="1">
+												*
+											</c:forEach>
+
+										</c:if>
+									</c:otherwise>
+								</c:choose>
+							</div> <!-- 아이디 마스킹 처리 끝 -->
+								<%--							</div>--%>
 							<div class="item">
-								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-							</div>            
+								<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}"/>
+							</div>
 						</div>
 					</c:forEach>
-				</div>		
+				</div>
 			</div>
 
 			<!-- 페이징 처리 -->
