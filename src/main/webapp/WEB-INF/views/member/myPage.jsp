@@ -302,7 +302,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
               <button class="submit-btn hvr-float" type="submit">
                 <i class="fas fa-pencil-alt"></i> 정보 수정
               </button>
-
+				
               <button
                 class="cancel-btn hvr-float"
                 type="button"
