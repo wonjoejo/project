@@ -33,11 +33,11 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=89">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=2">
 
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 <!-- header -->
 <header>
     <nav id="headerwrap" class="" data-navbar-on-scroll="data-navbar-on-scroll">
@@ -235,9 +235,15 @@
     </div><!-- section3_wrap -->
 </section>
 
-<footer>
-	<p>All rights Reserved © 2021</p>
-
+<footer style="overflow-y: hidden">
+	<div class="copyright">
+    <p>All rights Reserved © 2021</p>
+  </div>
+  <div class="social">
+    <a class="support">Contact Us</a>
+    <a href='mailto:intobox2jo@gmail.com' class="gmail">gmail</a>
+    <a href="https://github.com/wonjoejo/project" class="github">github</a>
+  </div>
 </footer>
 
 

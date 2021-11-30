@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=2"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=3"
     />
 
     <style>
