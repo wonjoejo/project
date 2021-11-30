@@ -91,7 +91,7 @@
 	const memberId = '${member_id}';
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=6"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=10"></script>
 <%--<script type="application/javascript"--%>
 <%--        src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>--%>
 

@@ -32,9 +32,6 @@
 
                     <div class="main-container">
                         <div class="name">
-                        
-                        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
-                        
                             <h1>그룹 설정</h1>
 
                             <div class="but">

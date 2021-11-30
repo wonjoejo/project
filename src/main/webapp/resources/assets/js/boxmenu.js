@@ -25,7 +25,7 @@ if(window.location.pathname.indexOf('list')!==-1) {
 } else if (window.location.pathname.indexOf('create') !== -1) {
 	create.classList.remove("inactive");
 	create.classList.add("active");
-} else if (window.location.pathname.indexOf('board') !== -1) {
+} else if (window.location.pathname.indexOf('qna') !== -1) {
 	qna.classList.remove("inactive");
 	qna.classList.add("active");
 }
