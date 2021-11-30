@@ -22,7 +22,7 @@
 	
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=6"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=1"/>
 </head>
 <body>
 <!-- header -->
