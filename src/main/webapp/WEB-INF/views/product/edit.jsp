@@ -217,5 +217,5 @@
 </script>
 <%-- mention JS --%>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/mention.js"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=3"></script>
 </html>

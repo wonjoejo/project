@@ -102,7 +102,11 @@ function clickName() {
 				text += `@${mentions[i]} `;
 			}
 			console.log(text);
-			memo.value = text;
+			if (memo.value !== "") {
+				memo.value = memo.value + text;
+			} else {
+				memo.value += text;
+			}
 			memo.focus();
 			$('.suggestions').empty();
 		})

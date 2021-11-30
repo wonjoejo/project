@@ -183,16 +183,21 @@ function insertComment() {
 		.then(function (response) {
 
 			if (response) {
+				// 리스트 불러오기
 				getCommentList();
+				// 입력창 초기화
 				document.querySelector('#commentContent').value = "";
+				// 댓글 등록 후, mentions 배열에 있던 것들 삭제 (초기화)
+				for (let i = 0; i < mentions.length + 1; i++) {
+					mentions.pop()
+				}
 			}
 		})
 		.catch(function (error) {
 			console.log(error);
 		}); // fetch
 
-}
-; // insertComment
+} // insertComment
 
 const suggestions = document.querySelector(".suggestions");
 const comment = document.querySelector("#commentContent");
@@ -300,6 +305,7 @@ function clickName() {
 			comment.focus();
 			$('.suggestions').empty();
 		})
+
 	})
 }
 
