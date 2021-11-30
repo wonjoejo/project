@@ -23,7 +23,7 @@
 
 <!-- stylesheets -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/boxleftmobile.css?ver=112">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=2">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>
 
