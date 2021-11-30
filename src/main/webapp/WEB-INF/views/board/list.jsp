@@ -36,8 +36,14 @@
 
             <div id="top_content">
 
-
                 <h1 class="title">Q&A</h1>
+                
+                 <c:if test="${member_id != null}">
+                    <a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
+                        <button id="writeBtn" type="button"> + 글 작성</button>
+                    </a>
+                </c:if>
+            </div>
 
 
                 <div class="search_pc">
@@ -54,15 +60,7 @@
                         </button>
                     </form>
                 </div>
-                <c:if test="${member_id != null}">
-                    <a href="/board/write?currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
-                        <button id="writeBtn" type="button"> + 글 작성</button>
-                    </a>
-                </c:if>
-            </div>
-
-
-
+ 
                 <div class="noticewrapper">
                     <h2 class="notice">공지사항</h2>
                     <div id="notice">

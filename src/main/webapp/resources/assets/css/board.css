@@ -55,6 +55,7 @@
 body {
 	/* gradient */
 	background: linear-gradient(26.81deg, #E2E3FC 65.34%, #D7F1F8 90.6%);
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 ul {
@@ -78,6 +79,7 @@ li {
 	height: 100%;
 	justify-content: flex-start;
 	width: 90px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .main-container {
@@ -392,6 +394,13 @@ ul {
 	width: 80%;
 }
 
+@media screen and ( max-width: 767px){
+	.write_wrapper {
+		width: 95%;
+	}
+}
+
+
 .write_title {
 	border-bottom: 1px solid #ADADAD;
 	font-size: 16px;
@@ -402,6 +411,13 @@ ul {
 	top: 100px;
 	width: 100%;
 
+}
+
+@media screen and ( max-width: 767px){
+	.write_title {
+		display: flex;
+		top: 50px;
+	}
 }
 
 .writeid {
@@ -415,6 +431,12 @@ ul {
 	padding: 20px;
 	width: 100%;
 
+}
+
+@media screen and ( max-width: 767px){
+	.writeid {
+		margin-top: 40px;
+	}
 }
 
 .writetitle {
@@ -492,6 +514,12 @@ ul {
 	width: 80%;
 }
 
+@media screen and ( max-width: 767px){
+	#detailcontent {
+		width: 95%;
+	}
+}
+
 
 #replyBtn {
 	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
@@ -564,6 +592,12 @@ ul {
 	margin: 10px 0;
 	padding-left: 10px;
 	width: 30%;
+}
+
+@media screen and ( max-width: 767px){
+	.editfix {
+		width: auto;
+	}
 }
 
 /* ====== noticelist css  ====== */
