@@ -41,6 +41,9 @@
 <%--    <input type="hidden" name="update_date" value="${product.update_date}">--%>
     <div class="main-container">
         <div class="top-content">
+        
+        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
+        
             <h1>물품 상세보기</h1>
 
             <div class="wrapper">
