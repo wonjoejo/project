@@ -59,7 +59,7 @@ pageEncoding="UTF-8"%>
           </a>
           <div class="top-right">
             <a href="/member/register">
-              <span class="join-btn btn-scroll-up">JOIN</span>
+              <span class="join-btn btn-scroll-up">회원가입</span>
             </a>
             <a href="${pageContext.request.contextPath}/board/list">
               <span class="login-btn btn-scroll-up">Q&A</span>

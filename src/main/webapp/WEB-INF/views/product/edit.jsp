@@ -150,7 +150,8 @@
                         </a>
                         <li>
                             <div class="title">메모</div>
-                            <textarea name="product_memo" class="detail detail-memo">${product.product_memo}</textarea>
+                            <textarea id="detail-memo" name="product_memo"
+                                      class="detail detail-memo">${product.product_memo}</textarea>
                         </li>
                         <ul class="suggestions">
                         </ul>

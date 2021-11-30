@@ -52,15 +52,15 @@
                             <span class="join-btn btn-scroll-up">내 박스 리스트</span>
                         </a>
                          <a href="${pageContext.request.contextPath}/member/logout">
-                            <span class="login-btn btn-scroll-up">LOGOUT</span>
+                            <span class="login-btn btn-scroll-up">로그아웃</span>
                         </a>
                     </c:when>
                     <c:otherwise>
                         <a href="${pageContext.request.contextPath}/member/register">
-                            <span class="join-btn btn-scroll-up">JOIN</span>
+                            <span class="join-btn btn-scroll-up">회원가입</span>
                         </a>
                         <a href="${pageContext.request.contextPath}/member/login">
-                            <span class="login-btn btn-scroll-up">LOGIN</span>
+                            <span class="login-btn btn-scroll-up">로그인</span>
                         </a>
                     </c:otherwise>
                 </c:choose>
