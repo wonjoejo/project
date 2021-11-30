@@ -4,6 +4,7 @@
 <c:set var="permit" value="${sessionScope.permission}"/>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>소중한 물건들을 모아, 인투박스</title>
 
     <!-- favicon -->
@@ -22,9 +23,9 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=10">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
 
 

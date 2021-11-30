@@ -25,7 +25,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=24">
+        href="${pageContext.request.contextPath}/resources/assets/css/product.css?ver=25">
     <link rel="stylesheet"
         href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
 

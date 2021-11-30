@@ -267,6 +267,16 @@ body {
 
 }
 
+@media screen and (max-width: 767px){	
+	.product-list{
+		width: 100%;
+	}
+	
+	.product-list-container {
+		width: 100%;
+	}
+}
+
 /* 마지막 줄에는 border bottom 라인 제거 */
 .product-container > div:last-child {
 	border: none;
@@ -305,6 +315,12 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 767px){
+	#product-name {
+		width: 300px;
+	}
 }
 
 /* product list - 카테고리 */
