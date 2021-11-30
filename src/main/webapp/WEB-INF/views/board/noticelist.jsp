@@ -57,7 +57,7 @@
                 </form>
             </div>
 
-            <div class="noticewrapper noticemainlist">
+            <div id="noticelistwrapper" class="noticewrapper noticemainlist">
                 <h2 class="notice"><img class="noticeimg"
                                         src="${pageContext.request.contextPath}/resources/assets/img/warning.png"/>&nbsp;&nbsp;공지사항
                 </h2>

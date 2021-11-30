@@ -32,6 +32,9 @@
     <jsp:include page="../common/boxleft.jsp"/>
     <div class="main-container">
         <div class="title-container">
+        
+        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
+        
             <h1>차트</h1>
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
                 <button class="box-list-btn"><i class="fas fa-list-ul list-icon"></i>박스 리스트</button>

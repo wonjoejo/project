@@ -28,6 +28,9 @@
 
     <div class="main-container">
         <div class="top-content">
+        
+        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
+        
             <h1>물품 등록</h1>
 
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">

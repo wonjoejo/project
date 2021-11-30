@@ -38,7 +38,7 @@
     
         <h1>박스 생성</h1>
 
-        <div class="box-wrapper">
+        <div class="box-wrapper scroll type2">
             <form class="boxcreateform" method="post" action="/box/create" enctype="multipart/form-data">
                 <input type="hidden" name="member_id" value="${sessionScope.member_id}">
                 <div class="form-container">
