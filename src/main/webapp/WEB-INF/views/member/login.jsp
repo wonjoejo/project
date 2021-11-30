@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
 
     <!-- favicon -->
@@ -22,7 +23,7 @@
 	
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css?ver=2"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=6"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/login.css?ver=7"/>
 </head>
 <body>
 <!-- header -->
@@ -40,7 +41,7 @@
 
             <div class="top-right">
                 <a href="/member/register">
-                    <span class="join-btn btn-scroll-up">JOIN</span>
+                    <span class="join-btn btn-scroll-up">회원가입</span>
                 </a>
                 <a href="${pageContext.request.contextPath}/board/listPerPage">
                     <span class="login-btn btn-scroll-up">Q&A</span>
@@ -88,7 +89,7 @@
 
             </div>
 
-            <div>
+            <div class="loginBtn_m">
                 <button class="login-submit" type="submit">로그인</button>
             </div>
 

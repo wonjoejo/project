@@ -92,6 +92,19 @@
   vertical-align: middle;
 }
 
+@media screen and ( max-width: 767px){
+	.main-logo img {
+		width: 300%;
+		padding-top: 20px;
+	}
+}
+
+@media screen and ( max-width: 767px){
+	.loginBtn_m  {
+		margin: 0 auto;
+		width: 290px;
+	}
+}
 .top-right {
   float: right;
   vertical-align: middle;
@@ -132,11 +145,24 @@
   padding: 9% 10% 0 12%;
 }
 
+@media screen and ( max-width: 767px){
+	#login-section {
+		 padding: 0;
+		 margin-top: 100px;
+	}
+}
+
 .form-wrap {
   display: flex;
   width: 34%;
   flex-direction: column;
   margin-top: 1%;
+}
+
+@media screen and ( max-width: 767px){
+	.form-wrap {
+		width: 100%;
+	}
 }
 
 .img-container {
@@ -147,6 +173,12 @@
   display: flex;
   float: right;
   width: 84% !important;
+}
+
+@media screen and ( max-width: 767px){
+	.login-image {
+	  display: none;
+	}	
 }
 
 .title1 {
@@ -160,8 +192,24 @@
   margin-top: 4%;
 }
 
+@media screen and ( max-width: 767px){
+	.title1 {
+	 	width: 90%;
+	 	margin:0 auto;
+		margin-top: 8%;
+		
+	}	
+}
+
 .title2 {
   padding: 4px 0 23px 0;
+}
+
+@media screen and ( max-width: 767px){
+	.title2 {
+		width: 95%;
+		margin: 0 auto;
+	}
 }
 
 .loginform .group .label {
@@ -185,6 +233,13 @@
   width: 370px;
   height: 44px;
   border: solid 2px;
+}
+
+@media screen and ( max-width: 767px){
+	.input {
+		 width: 290px;
+		 margin: 0 auto;
+	}
 }
 
 input:focus,
@@ -232,11 +287,24 @@ textarea:focus {
   font-size: 20px;
 }
 
+@media screen and ( max-width: 767px){
+	.login2 {
+		margin: 29px auto;
+		width: 80%;
+	}
+}
+
 #pwd1 {
     position: relative;
     bottom: 30px;
     left: 330px;
     color: #5a95f5;
+}
+
+@media screen and ( max-width: 767px){
+	#pwd1 {
+		 left: 300px;
+	}
 }
 
 /* Customize the label (the container) */
@@ -328,6 +396,13 @@ textarea:focus {
   margin-top: 1%;
 }
 
+@media screen and ( max-width: 767px){
+	.login-submit {
+		 width: 290px;
+		 margin: 0 auto;
+	}
+}
+
 .division {
   float: none;
   margin: 32px 0 21px 0;
@@ -375,6 +450,14 @@ textarea:focus {
   padding-right: 45px;
 }
 
+@media screen and ( max-width: 767px){
+	.social-login {
+		width: 290px;
+		margin: 4% auto;
+		
+	}
+}
+
 .social-login:hover {
   /*transform: scale(1.05) translateY(-0.3rem);*/
   background: #FEE500;
@@ -390,7 +473,6 @@ body {
 html, body {
     height: 100%;
 }
-
 
 .start-container {
   margin: 8% auto;
