@@ -736,3 +736,7 @@ ul {
 ::-webkit-scrollbar {
 	display: none;
 }
+
+#admin_btn {
+	width: 20px;
+}
