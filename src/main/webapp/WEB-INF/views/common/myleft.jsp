@@ -41,6 +41,7 @@
   
   
   <c:set var="member_id" value="${sessionScope.member_id}" />
+  
   <div class="side-menu">
     <div class="profile">
       <c:choose>
