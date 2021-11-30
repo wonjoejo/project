@@ -163,12 +163,12 @@ li {
 	width: 160px;
 }
 
-@media screen and ( max-width: 767px){
+/* @media screen and ( max-width: 767px){
 	.search {
 		width: auto;
 	}
 }
-
+ */
 .searchimg {
 	height: 25px;
 	width: 25px;
@@ -207,7 +207,7 @@ li {
 /* ====== 공지사항 ====== */
 
 #noticelistwrapper {
-	height: 90%;
+	height: 70%;
 }
 
 .noticewrapper {
@@ -275,7 +275,7 @@ li {
 
 	position: absolute;
 	right: 20px;
-	width: 70px;
+	width: 90px;
 
 }
 
@@ -636,7 +636,7 @@ ul {
 
 	/* position: absolute;
 	right: 250px; */
-	width: 90px;
+	width: 120px;
 }
 
 #noticelistBtn:hover {
@@ -735,4 +735,8 @@ ul {
 
 ::-webkit-scrollbar {
 	display: none;
+}
+
+#admin_btn {
+	width: 20px;
 }

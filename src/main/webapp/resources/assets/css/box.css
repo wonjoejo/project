@@ -178,6 +178,7 @@ body {
 
 @media screen and ( max-width: 767px){
 	.boxcreateform{
+		width: 100%;
 		height: 90%;
 	}
 }
@@ -265,6 +266,12 @@ body {
 	}
 }
 
+@media screen and ( max-width: 767px){
+	.form-container {
+		width: 100%;
+	}
+}
+
 .inputs input {
 	border: none;
 	background: #FFFFFF;
@@ -273,6 +280,12 @@ body {
 	height: 50px;
 	margin-bottom: 30px;
 	padding: 20px;
+}
+
+@media screen and ( max-width: 767px){
+	.inputs input {
+		width: 100%;
+	}
 }
 
 textarea {
@@ -501,6 +514,13 @@ select {
 	justify-content: center;
 }
 
+@media screen and (max-width: 767px){
+	.box-list-btn {
+		margin-bottom: 10px;
+		width: 120px;
+	}
+}
+
 .list-icon {
 	margin-right: 8%;
 	font-size: 1.2rem;
@@ -562,8 +582,21 @@ select {
 	background-color: transparent;
 }
 
+@media screen and (max-width: 767px){
+	.box-img {
+		width: 45%;
+		margin: 0 auto;
+	}
+}
+
 .box-img img {
 	width: 8vw;
+}
+
+@media screen and (max-width: 767px){
+	.box-img img {
+		width: 100%;
+	}
 }
 
 .box-img span {
@@ -575,6 +608,13 @@ select {
 	width: 72%;
 	display: flex;
 	flex-direction: column;
+}
+
+@media screen and (max-width: 767px){
+	.box-memo {
+		width: 45%;
+    	margin: 0 auto;
+	}
 }
 
 .title {
@@ -605,6 +645,12 @@ select {
 	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
 	color: white;
 	margin-right: 8px;
+}
+
+@media screen and (max-width: 767px){
+	.buttons > button {
+		margin-right: 1px;
+	}
 }
 
 /* 물품 리스트 */
@@ -643,6 +689,16 @@ select {
 	align-items: center;
 
 }
+@media screen and (max-width: 767px){
+	
+	.product-list {
+		width: 100%;
+	}
+	
+	.product-list-container {
+		width: 100%;
+	}
+}
 
 #product-list:last-child {
 	border: none;
@@ -678,6 +734,12 @@ select {
 	/* 내용이 길어지면 길어진 부분을 자르고 말줄임표 처리 */
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 767px){
+	#product-name {
+		width: 220px;	
+	}
 }
 
 /* product list - 카테고리 */

@@ -215,7 +215,7 @@ public class MemberController {
 
     // 회원 정보 수정
     @PostMapping("/edit")
-    public String edit(MemberDTO member, RedirectAttributes rttrs, MultipartFile file) throws Exception {
+    public String edit(MemberDTO member, RedirectAttributes rttrs, MultipartFile file, HttpSession session) throws Exception {
         log.debug("edit({}) invoked.", member);
 
         // upload 할 폴더 경로 지정
@@ -248,6 +248,8 @@ public class MemberController {
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t + 개인 프로필 result: {}",result);
 				rttrs.addAttribute("result",result);
+				session.setAttribute("photo_name", member.getPhoto_name());
+	            session.setAttribute("photo_path", member.getPhoto_path());
 				
 			} else { // 디폴트
 				memberVO = new MemberVO(
@@ -268,7 +270,9 @@ public class MemberController {
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t +개인 디폴트 result: {}",result);
 				rttrs.addAttribute("result",result);
-				
+				session.setAttribute("photo_name", member.getPhoto_name());
+	            session.setAttribute("photo_path", member.getPhoto_path());
+	            
 			}	// photo if-else 
 			
 		} else { // 기업
@@ -292,6 +296,8 @@ public class MemberController {
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t + 기업 프로필 result: {}",result);
 				rttrs.addAttribute("result",result);
+				session.setAttribute("photo_name", member.getPhoto_name());
+	            session.setAttribute("photo_path", member.getPhoto_path());
 				
 			} else { // 디폴트
 				memberVO = new MemberVO(
@@ -313,12 +319,16 @@ public class MemberController {
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t +기업 디폴트 result: {}",result);
 				rttrs.addAttribute("result",result);
+				session.setAttribute("photo_name", member.getPhoto_name());
+	            session.setAttribute("photo_path", member.getPhoto_path());
 				
 			} // photo if-else
 			
 		} // member-type if-else
 		
 		rttrs.addAttribute("member_id",member.getMember_id());
+		session.setAttribute("photo_name", member.getPhoto_name());
+        session.setAttribute("photo_path", member.getPhoto_path());
 		
 		return "redirect:/member/myPage?member_id={member_id}";
 		
@@ -349,14 +359,18 @@ public class MemberController {
 
 
 	@GetMapping("/myPage")
-	public void edit(String member_id, Model model) {
+	public void edit(String member_id, Model model, HttpSession session) {
 		log.debug("myPage invoked.");
 
 		MemberVO member = this.service.getMember(member_id);
 		log.info("\t+ member: {}", member);
 
 		model.addAttribute("member", member);
-
+		session.setAttribute("photo_name", member.getPhoto_name());
+        session.setAttribute("photo_path", member.getPhoto_path());
+		
+		
+		
 	} // edit
   
 
