@@ -22,9 +22,9 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=10">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=9">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
 
 
