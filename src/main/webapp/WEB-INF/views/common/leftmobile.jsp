@@ -24,7 +24,7 @@
 
 <!-- stylesheets -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/leftmobile.css?ver=102">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=1">
 
 <c:set var="member_id" value="${sessionScope.member_id}"/>
 

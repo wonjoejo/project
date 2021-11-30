@@ -25,7 +25,7 @@
 
 <!-- stylesheets -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/left.css?ver=42">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">
+<%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/modal.css?ver=3">--%>
 
 <c:set var="member_id" value="${sessionScope.__AUTH__.member_id}"/>
   <div class="side-menu">

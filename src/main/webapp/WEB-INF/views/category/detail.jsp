@@ -18,7 +18,7 @@
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/baseCategory.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/baseCategory.css?ver=3">
 </head>
 <body>
 <c:set var="box_no" value="${box_no}"/>
@@ -461,7 +461,7 @@
 <%-- boxmenu JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
 <%-- baseCateogy JS--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js?ver=1"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js?ver=2"></script>
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
