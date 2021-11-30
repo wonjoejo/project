@@ -132,6 +132,10 @@ body {
 	
 	overflow-y: scroll;
 	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+ .main-container::-webkit-scrollbar {
 	-ms-overflow-style: none; 
 }
 
@@ -881,6 +885,7 @@ ul.bs-autocomplete-menu a {
 	overflow-y: auto;
 	overflow-x: hidden;
 	width: 100%;
+	height: 100%;
 }
 
 /* 스크롤바 설정*/
