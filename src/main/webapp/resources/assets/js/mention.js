@@ -25,6 +25,10 @@ fetch("/group/json", {
 				memo.addEventListener("keyup", displayMatches);
 			}
 
+			for (let i = 0; i < mentions.length + 1; i++) {
+				mentions.pop()
+			}
+
 			if (memo.value.indexOf('@') === -1) {
 				$('.suggestions').empty();
 			} // @가 없을 경우 결과창 지우기
@@ -99,13 +103,20 @@ function clickName() {
 					mentions.splice(i, 1);
 				}
 
-				text += `@${mentions[i]} `;
+				if (mentions[i].indexOf('@') === -1) {
+					text += `@${mentions[i]} `;
+				} else {
+					text += `${mentions[i]} `;
+				}
+
+
 			}
 			console.log(text);
+			console.log(memo.value);
 			if (memo.value !== "") {
-				memo.value = memo.value + text;
+				memo.value = memo.value.substring(memo.value.length - 1, -1) + text;
 			} else {
-				memo.value += text;
+				memo.value = text;
 			}
 			memo.focus();
 			$('.suggestions').empty();
