@@ -183,15 +183,16 @@ body {
 }
 
 .box-container {
+	align-content: center;
+	align-items: center;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	width: 92%;
-	padding: 10px;
 	justify-content: center;
-	align-content: center;
-	align-items: center;
 	margin: 0 auto;
+	margin-top: 140px;
+	padding: 10px;
+	width: 92%;
 }
 
 .box {
@@ -204,13 +205,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	font-family: 'NEXON Lv1 Gothic OTF Bold', sans-serif;
-	height: 160px;
+	height: 200px;
 	justify-content: center;
-	margin-bottom: 20px;
-
 	margin: 30px;
+
+	margin-bottom: 20px;
 	padding: 30px;
-	width: 160px;
+	width: 200px;
 }
 
 @media (min-width: 841px) and (max-width: 991px) {	
@@ -604,7 +605,6 @@ select {
 	background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
 	color: white;
 	margin-right: 8px;
-	font-size: 0.8rem !important;
 }
 
 /* 물품 리스트 */
