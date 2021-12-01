@@ -1,13 +1,17 @@
 package com.wonjoejo.myapp.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import com.wonjoejo.myapp.domain.BoxPermissionBoxVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -317,10 +321,13 @@ public class MemberController {
 			} // photo if-else
 			
 		} // member-type if-else
-		
+
+
+
+
 		rttrs.addAttribute("member_id",member.getMember_id());
 		
-		return "redirect:/member/myPage?member_id={member_id}";
+		return "redirect:/member/myPage";
 		
 	} // edit
 	
@@ -330,11 +337,28 @@ public class MemberController {
 	public String delete(String member_id, RedirectAttributes rttrs) {
 		log.debug("delete({}) invoked.",member_id);
 
-		boolean result = this.service.deleteAccount(member_id);
-		log.info("\t +result: {}",result);
-		rttrs.addAttribute("\t+ result: {}",result);
+        // 회원탈퇴 시 master_per가 0이면 alert
+        List<BoxPermissionBoxVO> list = this.service.boxPermissionList(member_id);
+        log.info("list : {}", list);
+        for (BoxPermissionBoxVO boxPermission : list) {
+            log.info("\t+ master_per : {}", boxPermission.getMaster_per());
 
-		return "redirect:/member/logout";
+            if (boxPermission.getMaster_per() == 0){
+                rttrs.addAttribute("master_per", boxPermission.getMaster_per());
+                rttrs.addAttribute("member_id", member_id);
+                rttrs.addAttribute("result","result");
+                log.info(boxPermission.getMaster_per().toString());
+
+                return "redirect:/member/myPage";
+            } // if-else
+
+        } // for
+
+        boolean result = this.service.deleteAccount(member_id);
+        log.info("\t +result: {}",result);
+        rttrs.addAttribute("result" , result);
+
+        return "redirect:/member/logout";
 	} // delete
 
 	@GetMapping("/login")
@@ -355,7 +379,7 @@ public class MemberController {
 		MemberVO member = this.service.getMember(member_id);
 		log.info("\t+ member: {}", member);
 
-		model.addAttribute("member", member);
+        model.addAttribute("member", member);
 
 	} // edit
   

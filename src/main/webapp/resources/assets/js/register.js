@@ -93,9 +93,6 @@ $(document).ready(function () {
       return false
     } // if-else
 
-    alert("회원가입이 완료 되었습니다.");
-
-
 
 
   });

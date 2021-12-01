@@ -80,7 +80,8 @@ if (deleteBtn != null) {
 					type: "POST",
 					url: "/box/delete",
 					data: {
-						"box_no": box_no
+						"box_no": box_no,
+						"member_id": member_id
 					},
 					success: function (data) {
 						Swal.fire(

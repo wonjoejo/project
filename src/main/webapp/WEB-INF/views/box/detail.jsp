@@ -153,5 +153,5 @@
 	const box_no = '${box.box_no}';
 	const member_id = '${sessionScope.member_id}';
 </script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=4"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/box.js?ver=1"></script>
 </html>

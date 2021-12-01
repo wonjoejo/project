@@ -1,5 +1,6 @@
 package com.wonjoejo.myapp.service;
 
+import com.wonjoejo.myapp.domain.BoxPermissionBoxVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,8 @@ import com.wonjoejo.myapp.domain.MemberVO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.List;
 
 @Log4j2
 @NoArgsConstructor
@@ -110,5 +113,18 @@ public class MemberServiceTests {
 
         log.info("member: {}",member);
     } // testfindId
+
+    // 탈퇴시 master_per 체크
+    @Test(timeout = 1000)
+    public void testGetMasterPer(){
+        log.debug("testGetMasterPer() invoked.");
+
+        String member_id ="wlgus";
+
+        List<BoxPermissionBoxVO> boxPermission = this.service.boxPermissionList(member_id);
+        assert boxPermission != null;
+
+        boxPermission.forEach(log::info);
+    } // testGetMasterPer
 
 } // end class

@@ -2,7 +2,9 @@ package com.wonjoejo.myapp.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxPermissionBoxVO;
 import org.apache.ibatis.annotations.Param;
 
 import com.wonjoejo.myapp.domain.LoginDTO;
@@ -44,5 +46,9 @@ public interface MemberService {
 	// 전체 회원 아이디 가져오기
 	public abstract MemberVO getMemberId(String member_id);
 	
-	
+	// 탈퇴시 master_per check
+	public abstract List<BoxPermissionBoxVO> boxPermissionList(String member_id);
+
+
+
 } // end interface
