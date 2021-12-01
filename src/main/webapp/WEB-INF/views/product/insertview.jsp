@@ -28,9 +28,7 @@
 
     <div class="main-container">
         <div class="top-content">
-        
-        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
-        
+            <jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
             <h1>물품 등록</h1>
 
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
@@ -148,7 +146,7 @@
                         </a>
                         <li>
                             <div class="title">메모</div>
-                            <textarea name="product_memo" class="detail detail-memo" placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
+                            <textarea name="product_memo" class="detail" id="detail-memo" placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
                         </li>
                         <ul class="suggestions">
                         </ul>

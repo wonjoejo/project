@@ -93,6 +93,7 @@ public class ProductController {
         style.setAlignment(HorizontalAlignment.CENTER);
         style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.index);
         style.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.index);
+        
 
 
         List<ProductCategoryVO> list = this.service.getProductList(box_no);
@@ -176,7 +177,6 @@ public class ProductController {
                     cell = row.createCell(column++);
                     cell.setCellValue(cellValue.get(key));
                 }
-
             }
         }
 
