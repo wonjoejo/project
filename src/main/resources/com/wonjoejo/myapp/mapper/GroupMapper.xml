@@ -110,6 +110,15 @@
 		AND MEMBER_ID = #{member_id}
 	</update>
 
+	<!-- 박스 삭제시 member_stat 1로 -->
+	<update id="deleteBox">
+		UPDATE BOX_PERMISSION
+		SET MEMBER_STAT= 1,
+			MASTER_PER = 1
+		WHERE BOX_NO = #{box_no}
+		  AND MEMBER_ID = #{member_id}
+	</update>
+
 	<!-- 멤버 검색 -->
 	<select id="findMember" resultType="String">
 		SELECT MEMBER_ID

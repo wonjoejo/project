@@ -36,6 +36,9 @@ public interface GroupService {
 
     public abstract BoxPermissionVO getPermission(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
+    // 박스 삭제시 member-stat 1로
+    public abstract boolean deleteBox(@Param("box_no") Integer box_no, @Param("member_id") String member_id);
+
 
 }
 

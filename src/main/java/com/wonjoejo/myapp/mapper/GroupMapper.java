@@ -29,5 +29,8 @@ public interface GroupMapper {
 
 	public abstract int deleteMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no, @Param("member_stat") Integer member_stat);
 
+	// 박스 삭제 시 memberStat 1로 ..
+	public abstract  Integer deleteBox(@Param("box_no") Integer box_no, @Param("member_id") String member_id);
+
 	public abstract int updateBoxMasterInBox(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 } //end interface

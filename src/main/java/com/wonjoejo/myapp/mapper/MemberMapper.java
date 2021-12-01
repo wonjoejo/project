@@ -1,7 +1,9 @@
 package com.wonjoejo.myapp.mapper;
 
 import java.util.Date;
+import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxPermissionBoxVO;
 import com.wonjoejo.myapp.domain.LoginDTO;
 import com.wonjoejo.myapp.domain.MemberVO;
 import org.apache.ibatis.annotations.Param;
@@ -43,5 +45,9 @@ public interface MemberMapper {
 	
 	// 아이디 가져오기
 	public abstract MemberVO selectMemberId(String member_id);
-	
+
+	// 회원 탈퇴 전 box_permission master가 0인 박스가 있으면 alert
+	// 0마스터 1마스터x
+	public abstract List<BoxPermissionBoxVO> boxPermissionList(String member_id);
+
 } // end interface

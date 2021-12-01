@@ -297,13 +297,21 @@ public class BoxController {
     } // edit
 
     @PostMapping("/delete")
-    public String delete(Integer box_no, RedirectAttributes rttrs) {
+    public String delete(Integer box_no, RedirectAttributes rttrs, HttpServletRequest req) {
 
         log.debug("delete({}) invoked.", box_no);
 
         boolean result = this.service.deleteBox(box_no);
         log.info("\t +result: {}", result);
         rttrs.addAttribute("\t+ result: {}", result);
+
+        HttpSession session = req.getSession();
+        String member_id = (String) session.getAttribute("member_id");
+        log.info("id: {}", member_id);
+
+        boolean result2 = this.groupService.deleteBox(box_no, member_id);
+        log.info("\t+ group: {} ", result2);
+        rttrs.addAttribute("\t+ result2: {}", result2);
 
         return "/box/list";
     } // delete
