@@ -65,9 +65,6 @@ public class CategoryController {
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(data);
 
-        String selectedNum = element.getAsJsonObject().get("selectedNum").getAsString();
-        String rowName = "cate_detail" + selectedNum;
-        log.info(selectedNum);
 
         BaseCategoryVO baseCategoryVO = new BaseCategoryVO(
                 element.getAsJsonObject().get("category_no").getAsInt(),
@@ -82,7 +79,6 @@ public class CategoryController {
 
         boolean result1 = this.service.editBaseCategory(baseCategoryVO);
 
-        boolean result2 = this.service.deleteCategory(element.getAsJsonObject().get("category_no").getAsInt(), rowName);
 
         Gson gson = new Gson();
         String result = gson.toJson(result1);
@@ -97,31 +93,36 @@ public class CategoryController {
     @ResponseBody
     public String deleteCategory(@RequestBody String data){
         log.debug("deleteCategory({}) invoked.", data);
+
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(data);
 
-        DeleteCategoryVO categoryVO = new DeleteCategoryVO(
+        BaseCategoryVO baseCategoryVO = new BaseCategoryVO(
                 element.getAsJsonObject().get("category_no").getAsInt(),
                 element.getAsJsonObject().get("cate_name1").getAsString(),
                 element.getAsJsonObject().get("cate_name2").getAsString(),
                 element.getAsJsonObject().get("cate_name3").getAsString(),
                 element.getAsJsonObject().get("cate_name4").getAsString(),
-                element.getAsJsonObject().get("cate_name5").getAsString()
+                element.getAsJsonObject().get("cate_name5").getAsString(),
+                element.getAsJsonObject().get("box_no").getAsInt()
+
         );
+        boolean result1 = this.service.editBaseCategory(baseCategoryVO);
+
+        // cate_detail "" 으로 ..
+        String selectedNum = element.getAsJsonObject().get("selectedNum").getAsString();
+        String rowName = "cate_detail" + selectedNum;
+        log.info(rowName);
+
+        boolean result2 = this.service.deleteCategory(element.getAsJsonObject().get("category_no").getAsInt(), rowName);
+
+        Gson gson = new Gson();
+        String result = gson.toJson(result1);
+
+        log.info("result: {}",result);
 
 
-//        boolean result1 = this.service.deleteCategory(categoryVO);
-
-//        Gson gson = new Gson();
-//        String result = gson.toJson(result1);
-//
-//        log.info("result: {}",result);
-
-
-//        return result;
-
-        return null;
-
+        return result;
 
     } //deleteCategory
 
