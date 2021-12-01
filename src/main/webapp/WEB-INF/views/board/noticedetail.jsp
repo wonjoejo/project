@@ -36,26 +36,30 @@
 				<h1 class="title">Q&A</h1>						
 				<button id="noticepagelistBtn" type="button">돌아가기</button>			
 			</div>
-			
-			<div id="detailcontent" >
+
+			<div id="detailcontent">
 				<form action="/board/edit" method="post">
-					<input type="hidden" name="board_idx" value="${board.board_idx}" />
-			
+					<input type="hidden" name="board_idx" value="${board.board_idx}"/>
+
 					<div class="detailwrapper">
 						<div class="detailtitle">
-							<input class="noline" type="text" name="title" value="${board.title}" readonly />
+							<input class="noline" type="text" name="title" value="${board.title}" readonly/>
 						</div>
-						
+
 						<div class="detailid">
-							<input class="noline" type="text" name="member_id" value="${board.member_id}" readonly />
+							<img id="admin_btn"
+								 src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/logo6.png"/>
+							인투박스
+							<input class="noline" type="hidden" name="member_id" value="${board.member_id}" readonly/>
 						</div>
-						
+
 						<div class="detaildate">
-							<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}" />
-						</div>            
-						
+							<fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}"/>
+						</div>
+
 						<div class="detailcontent">
-							<textarea class="noline detailcon" name="content" cols="50" rows="10" readonly>${board.content}</textarea>
+							<textarea class="noline detailcon" name="content" cols="50" rows="10"
+									  readonly>${board.content}</textarea>
 						</div>
 					</div>
 			

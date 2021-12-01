@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="box_no" value="${param.box_no}"/>
 <html>
@@ -19,18 +21,23 @@
     <!-- box.css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <!-- productDetail.css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=5">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+          integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
+
 <div class="container">
     <jsp:include page="../common/boxleft.jsp"/>
 
     <div class="main-container">
         <div class="top-content">
-        
-        	<jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
-        
+
+            <jsp:include page="../common/leftmobile.jsp"/><!-- 모바일용메뉴 -->
+
             <h1>물품 등록</h1>
 
             <a href="${pageContext.request.contextPath}/box/list?member_id=${sessionScope.member_id}">
@@ -115,32 +122,77 @@
                         </li>
                         <c:if test="${not empty baseCategory.cate_name1}">
                             <li>
-                                <div class="title">${baseCategory.cate_name1}</div>
-                                <input type="text" name="cate_detail1" class="detail">
+                                <c:choose>
+                                    <c:when test="${fn:contains(baseCategory.cate_name1,'일자') || fn:contains(baseCategory.cate_name1,'기한') || fn:contains(baseCategory.cate_name1,'기간') }">
+                                        <div class="title">${baseCategory.cate_name1}</div>
+                                        <input type="text" id="datePicker" name="cate_detail1"
+                                               class="detail datePicker">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="title">${baseCategory.cate_name1}</div>
+                                        <input type="text" name="cate_detail1" class="detail">
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name2}">
                             <li>
-                                <div class="title">${baseCategory.cate_name2}</div>
-                                <input type="text" name="cate_detail2" class="detail">
+                                <c:choose>
+                                    <c:when test="${fn:contains(baseCategory.cate_name2,'일자') || fn:contains(baseCategory.cate_name2,'기한') || fn:contains(baseCategory.cate_name2,'기간') }">
+                                        <div class="title">${baseCategory.cate_name2}</div>
+                                        <input type="text" id="datePicker" name="cate_detail2"
+                                               class="detail datePicker">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="title">${baseCategory.cate_name2}</div>
+                                        <input type="text" name="cate_detail2" class="detail">
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name3}">
                             <li>
-                                <div class="title">${baseCategory.cate_name3}</div>
-                                <input type="text" name="cate_detail3" class="detail">
+                                <c:choose>
+                                    <c:when test="${fn:contains(baseCategory.cate_name3,'일자') || fn:contains(baseCategory.cate_name3,'기한') || fn:contains(baseCategory.cate_name3,'기간') }">
+                                        <div class="title">${baseCategory.cate_name3}</div>
+                                        <input type="text" id="datePicker" name="cate_detail3"
+                                               class="detail datePicker">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="title">${baseCategory.cate_name3}</div>
+                                        <input type="text" name="cate_detail3" class="detail">
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name4}">
                             <li>
-                                <div class="title">${baseCategory.cate_name4}</div>
-                                <input type="text" name="cate_detail4" class="detail">
+                                <c:choose>
+                                    <c:when test="${fn:contains(baseCategory.cate_name4,'일자') || fn:contains(baseCategory.cate_name4,'기한') || fn:contains(baseCategory.cate_name4,'기간') }">
+                                        <div class="title">${baseCategory.cate_name4}</div>
+                                        <input type="text" id="datePicker" name="cate_detail4"
+                                               class="detail datePicker">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="title">${baseCategory.cate_name4}</div>
+                                        <input type="text" name="cate_detail4" class="detail">
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
                         </c:if>
                         <c:if test="${not empty baseCategory.cate_name5}">
                             <li>
-                                <div class="title">${baseCategory.cate_name5}</div>
-                                <input type="text" name="cate_detail5" class="detail">
+                                <c:choose>
+                                    <c:when test="${fn:contains(baseCategory.cate_name5,'일자') || fn:contains(baseCategory.cate_name5,'기한') || fn:contains(baseCategory.cate_name5,'기간') }">
+                                        <div class="title">${baseCategory.cate_name5}</div>
+                                        <input type="text" id="datePicker" name="cate_detail5"
+                                               class="detail datePicker">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="title">${baseCategory.cate_name5}</div>
+                                        <input type="text" name="cate_detail5" class="detail">
+                                    </c:otherwise>
+                                </c:choose>
                             </li>
                         </c:if>
                         <a href="${pageContext.request.contextPath}/category/detail?box_no=${param.box_no}">
@@ -173,6 +225,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap-datepicker.ko.js"></script>
 
 
 <%--boxmenu JS--%>
@@ -182,14 +238,11 @@
 <script>
 
 	const box_no = '${param.box_no}';
-
-
 </script>
 
 <%-- mention 기능 실험중 --%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=3"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=4"></script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=3"></script>
 
