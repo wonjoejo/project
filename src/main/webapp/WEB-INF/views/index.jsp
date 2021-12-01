@@ -33,11 +33,11 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=89">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/index.css?ver=2">
 
 </head>
 
-<body>
+<body style="overflow-x: hidden">
 <!-- header -->
 <header>
     <nav id="headerwrap" class="" data-navbar-on-scroll="data-navbar-on-scroll">
@@ -52,15 +52,15 @@
                             <span class="join-btn btn-scroll-up">내 박스 리스트</span>
                         </a>
                          <a href="${pageContext.request.contextPath}/member/logout">
-                            <span class="login-btn btn-scroll-up">LOGOUT</span>
+                            <span class="login-btn btn-scroll-up">로그아웃</span>
                         </a>
                     </c:when>
                     <c:otherwise>
                         <a href="${pageContext.request.contextPath}/member/register">
-                            <span class="join-btn btn-scroll-up">JOIN</span>
+                            <span class="join-btn btn-scroll-up">회원가입</span>
                         </a>
                         <a href="${pageContext.request.contextPath}/member/login">
-                            <span class="login-btn btn-scroll-up">LOGIN</span>
+                            <span class="login-btn btn-scroll-up">로그인</span>
                         </a>
                     </c:otherwise>
                 </c:choose>
@@ -235,9 +235,15 @@
     </div><!-- section3_wrap -->
 </section>
 
-<footer>
-	<p>All rights Reserved © 2021</p>
-
+<footer style="overflow-y: hidden">
+	<div class="copyright">
+    <p>All rights Reserved © 2021</p>
+  </div>
+  <div class="social">
+    <a class="support">Contact Us</a>
+    <a href='mailto:intobox2jo@gmail.com' class="gmail">gmail</a>
+    <a href="https://github.com/wonjoejo/project" class="github">github</a>
+  </div>
 </footer>
 
 

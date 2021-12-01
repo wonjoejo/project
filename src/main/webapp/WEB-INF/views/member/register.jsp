@@ -39,7 +39,7 @@ pageEncoding="UTF-8"%>
     />
     <link
       rel="stylesheet"
-      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=2"
+      href="${pageContext.request.contextPath}/resources/assets/css/register.css?ver=3"
     />
 
     <style>
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
           </a>
           <div class="top-right">
             <a href="/member/login">
-              <span class="join-btn btn-scroll-up">LOGIN</span>
+              <span class="join-btn btn-scroll-up">로그인</span>
             </a>
             <a href="${pageContext.request.contextPath}/board/listPerPage">
               <span class="login-btn btn-scroll-up">Q&A</span>

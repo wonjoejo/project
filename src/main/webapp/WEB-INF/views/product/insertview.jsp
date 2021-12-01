@@ -19,7 +19,7 @@
     <!-- box.css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <!-- productDetail.css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=3">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
 </head>
 <body>

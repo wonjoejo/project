@@ -54,12 +54,6 @@ public class BoxController {
 
         model.addAttribute("list", list);
         model.addAttribute("member_id", loginId);
-
-        // paging
-        Integer totalAmount = this.service.getTotal(loginId);
-        PageDTO dto = new PageDTO(cri, totalAmount);
-        model.addAttribute("pageMaker", dto);
-        model.addAttribute("cri", cri);
         model.addAttribute("result", box_no);
         log.info("boxno: {}", box_no);
 

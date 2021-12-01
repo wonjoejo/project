@@ -4,6 +4,12 @@
 const productContainer = document.querySelector('.product-container');
 const pagination = document.querySelector('.pagination');
 const ctx = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+const img = document.querySelectorAll(".product-img");
+
+img.forEach(function (item) {
+	let url = item.src;
+	item.setAttribute('src', `${url}?timestamp=${new Date().getTime()}`);
+})
 
 
 $.widget("ui.autocomplete", $.ui.autocomplete, {
@@ -208,7 +214,8 @@ function printList(startNum, dataPerPage, data) {
 			img.src = `${ctx}${data[i].product_photo_path}${data[i].product_photo_name}`;
 		} else {
 			img.id = 'product-img'
-			img.src = `https://intobox.s3.ap-northeast-2.amazonaws.com/${data[i].product_photo_path}${data[i].product_photo_name}`;
+			img.crossOrigin = 'anonymous'
+			img.src = `https://intobox.s3.ap-northeast-2.amazonaws.com/${data[i].product_photo_path}${data[i].product_photo_name}?timestamp=${new Date().getTime()}`;
 		}
 
 		div2.appendChild(img);

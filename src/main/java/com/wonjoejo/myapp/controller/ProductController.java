@@ -493,7 +493,7 @@ public class ProductController {
                     product.getProduct_memo(),
                     product.getProduct_qtn(),
                     product.getProduct_photo_name(),
-                    "default/",
+                    product.getProduct_photo_path(),
                     product.getBarcode(),
                     product.getReg_date(),
                     null);

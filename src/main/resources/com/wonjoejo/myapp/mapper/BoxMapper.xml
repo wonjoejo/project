@@ -24,7 +24,6 @@
           and BOX_STATUS = 0
           and BOX_PERMISSION.MEMBER_STAT = 0
         order by no desc
-        OFFSET (#{currPage} - 1) * #{amount} ROWS FETCH NEXT #{amount} ROWS ONLY
         ]]>
 
     </select>
