@@ -34,7 +34,7 @@ modifyBtn.forEach(function (item, index) {
     item.addEventListener("click", function (e) {
         e.preventDefault();
 
-        console.log(item.parentElement.previousElementSibling.previousElementSibling);
+        console.log(item.parentElement.previousElementSibling);
         console.log(item.previousElementSibling.previousElementSibling);
 
         let data = {
@@ -49,7 +49,7 @@ modifyBtn.forEach(function (item, index) {
 
         console.log(data);
 
-        if (item.parentElement.previousElementSibling.value == "") {
+        if (item.parentElement.previousElementSibling.value === "") {
 
             Swal.fire({
                 text: '카테고리명을 입력해주세요',
@@ -240,161 +240,66 @@ deleteBtn.forEach(function (item, index) {
         console.log(item.parentElement.previousElementSibling);
         console.log(item.parentNode);
 
-        item.parentElement.previousElementSibling.value = "";
-        const selectedNum = item.classList[2].charAt(item.classList[2].length - 1);
-        console.log(document.getElementById('cate_name1').value);
+        Swal.fire({
+            title: '삭제하시겠습니까?',
+            text: "해당 카테고리의 상세 카테고리 정보들이 초기화됩니다.",
+            icon: 'warning',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '삭제',
+            showLoaderOnConfirm: true,
+            cancelButtonText: '취소',
+            preConfirm: function () {
+                return new Promise(function (resolve) {
 
-        // if (item.classList.contains('del-btn1')) {
-        //     document.getElementById('cate-name1').value = "";
-        // } else if (item.classList.contains('del-btn2')) {
-        //     document.getElementById('cate-name2').value = "";
-        // } else if (item.classList.contains('del-btn3')) {
-        //     document.getElementById('cate-name3').value = null;
-        // } else if (item.classList.contains('del-btn4')) {
-        //     document.getElementById('cate-name4').value = null;
-        // } else if (item.classList.contains('del-btn5')) {
-        //     document.getElementById('cate-name5').value = "";
-        // } // if-else
+                    item.parentElement.previousElementSibling.value = "";
+                    const selectedNum = item.classList[2].charAt(item.classList[2].length - 1);
+                    console.log(document.getElementById('cate_name1').value);
 
-        // fetch
-        const data = {
-            category_no: document.querySelector("#category-no").value,
-            box_no: document.querySelector("#box-no").value,
-            cate_name1: document.querySelector("#cate_name1").value,
-            cate_name2: document.querySelector("#cate_name2").value,
-            cate_name3: document.querySelector("#cate_name3").value,
-            cate_name4: document.querySelector("#cate_name4").value,
-            cate_name5: document.querySelector("#cate_name5").value,
-            selectedNum: selectedNum
-        };
+                    // fetch
+                    const data = {
+                        category_no: document.querySelector("#category-no").value,
+                        box_no: document.querySelector("#box-no").value,
+                        cate_name1: document.querySelector("#cate_name1").value,
+                        cate_name2: document.querySelector("#cate_name2").value,
+                        cate_name3: document.querySelector("#cate_name3").value,
+                        cate_name4: document.querySelector("#cate_name4").value,
+                        cate_name5: document.querySelector("#cate_name5").value,
+                        selectedNum: selectedNum
+                    };
 
-        console.log(data);
+                    console.log(data);
 
-        // cate_name
-        fetch('/category/edit', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(function (response) {
-                if (response) {
-                    Swal.fire('삭제되었습니다.', '', 'success');
+                    // cate_name
+                    fetch('/category/deleteCategory', {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(function (response) {
+                            if (response) {
+                                Swal.fire('삭제되었습니다.', '', 'success');
 
-                    item.style.display = "none";
-                    item.previousElementSibling.style.display = "none";
-                    item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
-                } else {
-                    Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
-                    console.log(response.status);
-                }
-            })
-            .catch(function (error) {
-                Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
-                console.log(error.status);
-            }); // fetch
-
-        // Swal.fire({
-        //     title: '삭제하시겠습니까?',
-        //     text: "해당 카테고리의 상세 카테고리 정보들이 초기화됩니다.",
-        //     icon: 'warning',
-        //     type: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: '삭제',
-        //     showLoaderOnConfirm: true,
-        //     cancelButtonText: '취소',
-        //     preConfirm: function () {
-        //         return new Promise(function (resolve) {
-        //             item.parentElement.previousElementSibling.value = "";
-        //             const selectedNum = item.classList[2].charAt(item.classList[2].length - 1);
-        //             console.log(document.getElementById('cate_name1').value);
-        //
-        //             if (item.classList.contains('del-btn1')) {
-        //                 document.getElementById('cate-name1').readonly = false;
-        //                 document.getElementById('cate-name1').value = "";
-        //             } else if (item.classList.contains('del-btn2')) {
-        //                 document.getElementById('cate-name2').value = "";
-        //             } else if (item.classList.contains('del-btn3')) {
-        //                 document.getElementById('cate-name3').value = null;
-        //             } else if (item.classList.contains('del-btn4')) {
-        //                 document.getElementById('cate-name4').setAttribute("value", "");
-        //             } else if (item.classList.contains('del-btn5')) {
-        //                 document.getElementById('cate-name5').value = "";
-        //             } // if-else
-        //
-        //             // fetch
-        //             const data = {
-        //                 category_no: document.querySelector("#category-no").value,
-        //                 box_no: document.querySelector("#box-no").value,
-        //                 cate_name1: document.querySelector("#cate_name1").value,
-        //                 cate_name2: document.querySelector("#cate_name2").value,
-        //                 cate_name3: document.querySelector("#cate_name3").value,
-        //                 cate_name4: document.querySelector("#cate_name4").value,
-        //                 cate_name5: document.querySelector("#cate_name5").value,
-        //                 selectedNum: selectedNum
-        //             };
-        //
-        //             console.log(data)
-        //
-        //             // cate_name
-        //             fetch('/category/edit', {
-        //                 method: 'POST',
-        //                 body: JSON.stringify(data),
-        //                 headers: {
-        //                     'Content-Type': 'application/json'
-        //                 }
-        //             })
-        //                 .then(function (response) {
-        //                     if (response) {
-        //                         Swal.fire('삭제되었습니다.', '', 'success');
-        //
-        //                         item.style.display = "none";
-        //                         item.previousElementSibling.style.display = "none";
-        //                         item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
-        //                     } else {
-        //                         Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
-        //                         console.log(response.status);
-        //                     }
-        //                 })
-        //                 .catch(function (error) {
-        //                     Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
-        //                     console.log(error.status);
-        //                 }); // fetch
-
-        // cate_detail
-
-        // const data2 = {
-        //     category_no: document.querySelector("#category-no").value,
-        //     cate_detail1: document.querySelector("#cate-name1").value,
-        //     cate_detail2: document.querySelector("#cate-name2").value,
-        //     cate_detail3: document.querySelector("#cate-name3").value,
-        //     cate_detail4: document.querySelector("#cate-name4").value,
-        //     cate_detail5: document.querySelector("#cate-name5").value
-        // }
-        // console.log(data2)
-        //
-        // fetch('/category/deleteCategory', {
-        //     method: 'POST',
-        //     body: JSON.stringify(data2),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // }).then(function (response) {
-        //     if (response) {
-        //         item.style.display = "none";
-        //         item.previousElementSibling.style.display = "none";
-        //         item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
-        //     } else {
-        //         console.log(response.status);
-        //     }
-        // }); // fetch
-        // });
-        //         },
-        //         allowOutsideClick: false
-        //     });
+                                item.style.display = "none";
+                                item.previousElementSibling.style.display = "none";
+                                item.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "inline-block";
+                            } else {
+                                Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
+                                console.log(response.status);
+                            }
+                        })
+                        .catch(function (error) {
+                            Swal.fire('삭제되지않았습니다.', '다시 한 번 시도해주세요.', 'error');
+                            console.log(error.status);
+                        }); // fetch
+                });
+            },
+            allowOutsideClick: false
+        });
 
 
     }); // click
