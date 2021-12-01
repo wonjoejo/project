@@ -74,7 +74,7 @@ $('#submitBtn').click(function (){
     Swal.fire({
       icon: 'warning',
       title: '이름을 확인해주세요.',
-      text:'영문 혹은 숫자로 입력해주세요'
+      text:'한글 또는 영문으로 입력해주세요'
 
     });
     return false
@@ -82,7 +82,7 @@ $('#submitBtn').click(function (){
   } else if (email.value === "" || !mailJ.test(email.value)){
     Swal.fire({
       icon: 'warning',
-      title: '이메일를 확인해주세요.',
+      title: '이메일을 확인해주세요.',
       text:'이메일 형식으로 입력해주세요.'
     });
 

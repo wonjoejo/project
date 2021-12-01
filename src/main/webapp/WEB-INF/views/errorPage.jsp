@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>errorPage</title>
+	<title>소중한 물건들을 모아, 인투박스</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/error.css?ver=10">
 </head>

@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>MyPage</title>
+    <title>소중한 물건들을 모아, 인투박스</title>
 
     <!-- favicon -->
     <link
@@ -365,7 +365,7 @@
 
 <script
         type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/myPage.js?ver=1"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/myPage.js?ver=2"></script>
 <script
         type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=4"></script>
