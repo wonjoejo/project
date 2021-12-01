@@ -184,7 +184,7 @@ body {
 }
 
 .box-container {
-	align-content: center;
+	/* align-content: center; */
 	align-items: center;
 	display: flex;
 	flex-direction: row;
@@ -194,6 +194,7 @@ body {
 	/* margin-top: 40vh; */
 	padding: 10px;
 	width: 92%;
+	height: 100%;
 }
 
 .box {

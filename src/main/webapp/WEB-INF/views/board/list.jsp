@@ -141,7 +141,7 @@
                                         인투박스
                                     </c:when>
 
-                                    <%-- 로그인한 작성자 본인의 아이디는 그대로 보여줌 -->
+                                    <%-- 로그인한 작성자 본인의 아이디는 그대로 보여줌 --%>
                                     <c:when test="${sessionScope.member_id eq board.member_id}">
                                         ${board.member_id}
                                     </c:when>

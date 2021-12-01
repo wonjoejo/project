@@ -34,6 +34,7 @@
 
     <div class="container">
         <jsp:include page="../common/boxleft.jsp" />
+
         <div class="main-container">
             <div id="top-content">
                 <jsp:include page="../common/boxleftmobile.jsp"/>
@@ -61,13 +62,13 @@
                                     <c:when test="${fn:contains(product.product_photo_path,'default')}">
                                         <div class="item product-img">
                                             <img id="product-img"
-                                                 src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
+                                                src="${pageContext.request.contextPath}/resources/assets/img/${product.product_photo_name}"/>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
                                         <div class="item product-img">
                                             <img id="product-img" class="product-img" crossorigin="anonymous"
-                                                 src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
+                                                src="https://intobox.s3.ap-northeast-2.amazonaws.com/${product.product_photo_path}${product.product_photo_name}"/>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
