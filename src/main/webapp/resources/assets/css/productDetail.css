@@ -155,7 +155,7 @@
 }
 
 .button {
-    display: flex;
+    display: flex !important;
     position: absolute;
     top: 0;
     width: 100%;

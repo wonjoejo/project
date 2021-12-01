@@ -13,6 +13,7 @@ menus.forEach(function(item,index){
 	item.classList.add("inactive");
 
 	item.addEventListener("click",function(){
+		console.log(item);
 		item.classList.remove("inactive");
 		item.classList.add("active");
 	});

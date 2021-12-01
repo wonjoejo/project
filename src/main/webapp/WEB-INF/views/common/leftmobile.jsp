@@ -35,7 +35,7 @@
     
     <header id="main_header">
     
-    <label class="mobile_menu hambuger" for="toggle_menu">
+    <label class="mobile_menu hambuger" id="mobile_menu" for="toggle_menu">
     	<span></span>
     	<span></span>
     	<span></span>
@@ -98,7 +98,7 @@
 </div>
 
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/leftmobilemenu.js?ver=61"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/leftmobilemenu.js?ver=1"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=3"></script>
 <script type="application/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/modal.js?ver=3"></script>
