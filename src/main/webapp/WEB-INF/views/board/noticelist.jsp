@@ -18,8 +18,8 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=1">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=2">
 
 </head>
 <body>
@@ -45,7 +45,7 @@
             <div class="search_pc">
                 <form id="searchForm" action="/board/searchlist" method='get'>
 
-                    <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;Search everything"
+                    <input class="search" type='text' name='keyword' placeholder="&nbsp;&nbsp;키워드로 검색"
                            value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 
                     <input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>
@@ -58,33 +58,37 @@
             </div>
 
             <div id="noticelistwrapper" class="noticewrapper noticemainlist">
-                <h2 class="notice"><img class="noticeimg"
-                                        src="${pageContext.request.contextPath}/resources/assets/img/warning.png"/>&nbsp;&nbsp;공지사항
-                </h2>
+                <div class="noticetitle">
+                    <h2 class="notice"><img class="noticeimg"
+                                            src="${pageContext.request.contextPath}/resources/assets/img/warning.png"/>&nbsp;&nbsp;공지사항
+                    </h2>
+                </div>
 
                 <div id="boardtitlenone" class="boardlistcontainer noticelistcontainer">
-                    <div class="item">No</div>
-                    <div class="item">Title</div>
-                    <div class="item">written by</div>
-                    <div class="item">Register date</div>
+                    <div class="item boardno">번호</div>
+                    <div class="item title">제목</div>
+                    <div class="item writer">작성자</div>
+                    <div class="item regdate">작성일</div>
                 </div>
 
                 <div id="noticelist">
                     <c:forEach items="${noticeList}" var="board">
                         <div class="noticelist">
 
-                            <div class="item">
+                            <div class="item regdate">
                                 <fmt:formatDate pattern="yyyy/MM/dd" value="${board.reg_date}"/>
                             </div>
-                            <div class="item">
-                                <c:out value="${board.member_id}"/>
+                            <div class="item writer">
+                                <img id="admin_btn"
+                                     src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/logo6.png"/>
+                                인투박스
                             </div>
-                            <div class="item">
+                            <div class="item title">
                                 <a href="/board/noticedetail?board_idx=${board.board_idx}&currPage=${pageMaker.cri.currPage}&amount=${pageMaker.cri.amount}&pagesPerPage=${pageMaker.cri.pagesPerPage}">
                                     <c:out value="${board.title}"/>
                                 </a>
                             </div>
-                            <div class="item">
+                            <div class="item boardno">
                                 <c:out value="${board.board_idx}"/>
                             </div>
                         </div>

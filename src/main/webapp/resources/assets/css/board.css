@@ -138,7 +138,8 @@ li {
 /* ====== 상단 검색 / 글쓰기  ====== */
 
 .search_pc {
-	display: contents;
+	display: flex;
+	justify-content: flex-end;
 }
 @media screen and ( max-width: 767px){
 	.search_pc {
@@ -214,7 +215,7 @@ li {
 	height: 150px;
 	margin: 0 auto;
 	position: relative;
-	top: 30px;
+	/*top: 30px;*/
 	width: 95%;
 }
 
@@ -260,6 +261,13 @@ li {
 	height: 40px;
 	margin-left: 30px;
 
+}
+
+.noticetitle {
+	display: flex;
+	left: 32px;
+	position: relative;
+	width: 100%;
 }
 
 #addBtn {
@@ -614,8 +622,8 @@ ul {
 
 .noticelistcontainer {
 	margin: 0 auto;
-	padding-left: 40px;
-	width: 98%;
+	padding-left: 33px;
+	/*width: 98%;*/
 }
 
 .noticeimg {
@@ -739,4 +747,20 @@ ul {
 
 #admin_btn {
 	width: 20px;
+}
+
+.boardno {
+	width: 5% !important;
+}
+
+.writer {
+	width: 10% !important;
+}
+
+.title {
+	width: 50% !important;
+}
+
+.regdate {
+	width: 5% !important;
 }
