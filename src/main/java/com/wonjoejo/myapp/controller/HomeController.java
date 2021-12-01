@@ -20,6 +20,7 @@ public class HomeController {
     public String home(Locale locale, HttpServletRequest req) {
         log.info("Welcome home! The client locale is {}.", locale);
 
+
         HttpSession session = req.getSession();
 
         log.info("session: {}", session);

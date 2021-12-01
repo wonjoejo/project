@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.wonjoejo.myapp.domain.*;
+import com.wonjoejo.myapp.service.BoxService;
 import com.wonjoejo.myapp.service.ProductService;
 import com.wonjoejo.myapp.util.QRUtils;
 import com.wonjoejo.myapp.util.UploadFileUtils;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -38,6 +40,8 @@ public class ProductController {
 
     @Setter(onMethod_ = {@Autowired})
     private ProductService service;
+    @Setter(onMethod_ = {@Autowired})
+    private BoxService boxService;
 
 
 //	@GetMapping("/list")
@@ -229,6 +233,14 @@ public class ProductController {
         ProductVO product = this.service.getProduct(product_no);
         log.info("\t+ 물품이름: {}", product.getProduct_name());
 
+        // QR코드 생성을 위한 member type 확인
+        // 기업회원(member_type=1, true) / 일반회원(member_type=0, false)
+        Boolean memberType = this.service.checkMemberType(product.getBox_no(), product.getProduct_no());
+        log.info("\t +member Type: {}", memberType);
+
+        model.addAttribute("type", memberType);
+
+
         model.addAttribute("product", product);
 
         // Category Detail
@@ -267,24 +279,22 @@ public class ProductController {
     } // productEdit
 
 
-    
-    
-    
     @PostMapping("/insert")
-    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file) throws Exception {
+    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file, HttpServletRequest req) throws Exception {
 
         log.debug("productInsert({}, {}) invoked.", product, file);
-        
+        String root = req.getRequestURL().toString();
+        log.info("====root=====: {}", root);
+
         // upload 할 폴더 경로 지정
         String uploadDir = "product";
 
         ProductVO productVO;
         MemberTypeVO memberTypeVO;
-        
-        
-        
-        if (file.getSize() !=0) {
-        	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
+
+
+        if (file.getSize() != 0) {
+            String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
 
             productVO = new ProductVO(
                     null,
@@ -334,7 +344,7 @@ public class ProductController {
             // QR코드 생성
             QRUtils qrUtils = new QRUtils();
 
-            String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
+            String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no(), root);
             log.info("\t + barcodeName: {}", barcodeName);
 
             Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
@@ -567,18 +577,18 @@ public class ProductController {
         return gson.toJson(list);
     }
 
-    @PostMapping("/qrcode")
-    @ResponseBody
-    public void makeQrcode(@RequestBody String data) throws Exception {
-        QRUtils qrUtils = new QRUtils();
-
-        JsonElement element = JsonParser.parseString(data);
-
-        String fileName = qrUtils.qrMaker(element.getAsJsonObject().get("product_no").getAsInt(), element.getAsJsonObject().get("box_no").getAsInt());
-
-        log.info("/t + fileName : {}", fileName);
-
-    } // makeQrcode
+//    @PostMapping("/qrcode")
+//    @ResponseBody
+//    public void makeQrcode(@RequestBody String data) throws Exception {
+//        QRUtils qrUtils = new QRUtils();
+//
+//        JsonElement element = JsonParser.parseString(data);
+//
+//        String fileName = qrUtils.qrMaker(element.getAsJsonObject().get("product_no").getAsInt(), element.getAsJsonObject().get("box_no").getAsInt());
+//
+//        log.info("/t + fileName : {}", fileName);
+//
+//    } // makeQrcode
 
 
 } // end class

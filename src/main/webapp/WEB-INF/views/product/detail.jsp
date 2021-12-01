@@ -107,12 +107,13 @@
 										공유하기
 										<!-- 기업회원일 때만 QR 생성 / 기업회원(1), 개인회원(0) -->
 									</div>
-									<c:if test="${sessionScope.member_type >= 0.1}">
-										<div class="qr-btn"> 
-												<img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/QR_icon.png" alt="QR코드"> 
-												QR코드
-										</div>
-									</c:if>
+									<c:if test="${type eq true}">
+                                        <div class="qr-btn">
+                                            <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/QR_icon.png"
+                                                 alt="QR코드">
+                                            QR코드
+                                        </div>
+                                    </c:if>
 								</div>
 							<!-- </a> -->
 

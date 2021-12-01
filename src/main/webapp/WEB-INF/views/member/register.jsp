@@ -238,7 +238,7 @@ pageEncoding="UTF-8"%>
                 <div class="line l"></div>
                 <span>혹은</span>
                 <div class="line r"></div>
-                <br />
+                <br/>
                 <span>직접 입력</span>
               </div>
 
@@ -246,13 +246,13 @@ pageEncoding="UTF-8"%>
                 <label for="member_id" class="label">
                   아이디<i class="fas fa-asterisk"></i> </label>
                 <input
-                  id="member_id"
-                  class="input"
-                  type="text"
-                  name="member_id"
-                  placeholder="ID"
-                  required
-                  oninput="checkId()"/>
+                        id="member_id"
+                        class="input"
+                        type="text"
+                        name="member_id"
+                        placeholder="ID"
+                        required
+                        oninput="checkId()"/>
               </div>
               <div class="alert alert-success" id="alert-success-id">
                 사용 가능한 아이디입니다.
@@ -261,7 +261,7 @@ pageEncoding="UTF-8"%>
                 사용 불가한 아이디입니다.
               </div>
               <div class="alert alert-danger" id="alert-min-id">
-                영문 3글자 이상 입력하세요.
+                영문, 숫자 조합으로 4자리 이상 입력해 주세요.
               </div>
 
               <div class="pw">
@@ -269,13 +269,13 @@ pageEncoding="UTF-8"%>
                   <label for="pwd" class="label">
                     패스워드<i class="fas fa-asterisk"></i> </label
                   ><input
-                    id="pwd"
-                    class="input"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  /><i id="pwd1" class="fas fa-eye active"></i>
+                        id="pwd"
+                        class="input"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                /><i id="pwd1" class="fas fa-eye active"></i>
                 </div>
                 <div class="alert alert-danger" id="alert-min-pw">
                   영문 혹은 숫자로 4~12글자 이상 입력하세요.
@@ -457,96 +457,97 @@ pageEncoding="UTF-8"%>
 				// $(".register-submit").removeAttr("disabled");
       		} else {  
       			$("#alert-success").hide();
-	            $("#alert-danger").show();
-	            // $(".register-submit").attr("disabled", "disabled");
-      		}//if-else	
+              $("#alert-danger").show();
+              // $(".register-submit").attr("disabled", "disabled");
+            }//if-else
         }); // pwdcheck input
 
-     	// 이름
-     	$("#name").keyup(function () {
-	        if (nameJ.test($(this).val())){
-	      	  $("#alert-danger-name").hide();
-	        } else {
-	          $("#alert-danger-name").show();
-	        } // nameJ
-     	}); // name input 
-     	
-      	// 메일
-      	$("#email").keyup(function () {
-	        if (mailJ.test($(this).val())){
-	      	  $("#alert-danger-mail").hide();
-	        } else {
-	            $("#alert-danger-mail").show();
-	        } // mailJ
-        }); // email input
-        
-	    // 폰번호
-	    $("#phone_number").keyup(function () {
-	        if (phoneJ.test($(this).val())){
-	      	  $("#alert-danger-phone").hide();
-	        }	else {
-	            $("#alert-danger-phone").show();
-	        } // phoneJ
-   	    }); // phone_number input
- 
-    }); // function
-  
+    // 이름
+    $("#name").keyup(function () {
+      if (nameJ.test($(this).val())) {
+        $("#alert-danger-name").hide();
+      } else {
+        $("#alert-danger-name").show();
+      } // nameJ
+    }); // name input
+
+    // 메일
+    $("#email").keyup(function () {
+      if (mailJ.test($(this).val())) {
+        $("#alert-danger-mail").hide();
+      } else {
+        $("#alert-danger-mail").show();
+      } // mailJ
+    }); // email input
+
+    // 폰번호
+    $("#phone_number").keyup(function () {
+      if (phoneJ.test($(this).val())) {
+        $("#alert-danger-phone").hide();
+      } else {
+        $("#alert-danger-phone").show();
+      } // phoneJ
+    }); // phone_number input
+
+  }); // function
+
   </script>
- 
+
   <script>
-  // 아이디 중복검사
-  function checkId() {
-    const member_id = $("#member_id").val(); //id값이 "id"인 입력란의 값을 저장
-    console.log(member_id);
-    $.ajax({
-      url: "/member/idCheck",
-      type: "post",
-      data: { member_id: member_id },
-      success: function (cnt) {
-        const submitBtn = document.querySelector('#submitBtn');
-        if (cnt != 1 && member_id.length > 2) {
-          // cnt가 0일 경우 -> 사용 가능한 아이디
-           $("#alert-min-id").hide();
-           $("#alert-success-id").show();
-           $("#alert-danger-id").hide();
-           submitBtn.disabled = false;
+    // 아이디 중복검사
+    function checkId() {
+      const member_id = $("#member_id").val(); //id값이 "id"인 입력란의 값을 저장
+      let reg_id = /^[A-Za-z]{1}[A-Za-z0-9_-]{3,19}$/ // 반드시 영문으로 시작 숫자+언더바/하이픈 허용 4~20자리
+      console.log(member_id);
+      $.ajax({
+        url: "/member/idCheck",
+        type: "post",
+        data: {member_id: member_id},
+        success: function (cnt) {
+          const submitBtn = document.querySelector('#submitBtn');
+          if (cnt != 1 && member_id.length > 2 && reg_id.test(member_id)) {
+            // cnt가 0일 경우 -> 사용 가능한 아이디
+            $("#alert-min-id").hide();
+            $("#alert-success-id").show();
+            $("#alert-danger-id").hide();
+            submitBtn.disabled = false;
 
 
-        } else {
-          // cnt가 1일 경우 -> 이미 존재하는 아이디
-           $("#alert-min-id").hide();
-           $("#alert-success-id").hide();
-           $("#alert-danger-id").show();
-          submitBtn.click(function (){
-            alert("아이디 확인");
+          } else {
+            // cnt가 1일 경우 -> 이미 존재하는 아이디
+            $("#alert-min-id").hide();
+            $("#alert-success-id").hide();
+            $("#alert-danger-id").show();
+            // submitBtn.click(function (){
+            //   alert("아이디 확인");
+            //
+            // });
+            submitBtn.disabled = true;
 
-          });
-          submitBtn.disabled = true;
 
-
-        }
-      },
-    });
-  }
+          }
+        },
+      });
+    }
   </script>
   <script>
-  // 카카오로그인
-  function kakaoLogin() {
+    // 카카오로그인
+    function kakaoLogin() {
 
-    $.ajax({
+      $.ajax({
         url: '/login/getKakaoAuthUrl',
         type: 'get',
         async: false,
         dataType: 'text',
         success: function (res) {
-            location.href = res;
+          location.href = res;
         }
-    });
+      });
 
-  }
+    }
 
   </script>
   <script
           type="text/javascript"
-          src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=3"></script>
+          src="${pageContext.request.contextPath}/resources/assets/js/register.js?ver=4"></script>
 </html>
