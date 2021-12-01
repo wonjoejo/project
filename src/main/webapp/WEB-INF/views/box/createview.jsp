@@ -10,7 +10,7 @@
 <c:set var="member" value="${sessionScope.__AUTH__}"/>
 <html>
 <head>
-    <title>BoxCreate</title>
+    <title>소중한 물건들을 모아, 인투박스</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png" sizes="16x16">

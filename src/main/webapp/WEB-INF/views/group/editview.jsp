@@ -5,7 +5,7 @@
             <html>
 
             <head>
-                <title>GroupList</title>
+                <title>소중한 물건들을 모아, 인투박스</title>
                 <c:set var="member_id" value="${sessionScope.member_id}" />
 
                 <!-- favicon -->

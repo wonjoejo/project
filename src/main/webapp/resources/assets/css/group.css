@@ -127,8 +127,7 @@ body {
 	box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
 	border-radius: 50px;
 	
-	/*scroll  */
-	
+
 }
 
 .name {
@@ -465,8 +464,10 @@ table td {
 	margin-right: 3px;
 }
 
+/*scroll  */
+
 .scroll {
-	height: 420px;
+	height: 87%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	width: 100%;

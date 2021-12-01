@@ -13,7 +13,7 @@
 
 
 			<head>
-				<title>GroupList</title>
+				<title>소중한 물건들을 모아, 인투박스</title>
 
 				<!-- favicon -->
 				<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/assets/img/logo6.png"
@@ -29,7 +29,7 @@
 				<script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
 				<!-- stylesheets -->
-				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=7">
+				<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/group.css?ver=2">
 			</head>
 
 			<body>

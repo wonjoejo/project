@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>LoginIndex</title>
+    <title>소중한 물건들을 모아, 인투박스</title>
 
     <!-- favicon -->
     <link
