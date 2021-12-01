@@ -140,6 +140,11 @@
                                         <img id="admin_btn" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/logo6.png" />
                                         인투박스
                                     </c:when>
+
+                                    <c:when test="${sessionScope.member_id eq board.member_id}">
+                                        ${board.member_id}
+                                    </c:when>
+
                                     <c:otherwise>
                                         <%-- 아이디가 null이 아닐 때 --%>
                                         <c:if test="${board.member_id ne null && board.member_id !='' }">
