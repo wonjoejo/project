@@ -200,7 +200,8 @@
                         </a>
                         <li>
                             <div class="title">메모</div>
-                            <textarea name="product_memo" class="detail" id="detail-memo" placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
+                            <textarea name="product_memo" class="detail" id="detail-memo-insert"
+                                      placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
                         </li>
                         <ul class="suggestions">
                         </ul>

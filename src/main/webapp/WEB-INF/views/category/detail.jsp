@@ -52,13 +52,13 @@
                                 <c:when test="${not empty baseCategory.cate_name1}">
 
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail1" id="cate-detail1"
-                                               value="${allCategory.cate_detail1}">
+                                        <input type="hidden" name="cate_name1" id="cate-detail1"
+                                               value="${allCategory.cate_name1}">
                                     </c:forEach>
                                     <input id="cate_name1" type="text" name="cate_name1"
                                            class="cate-name input-border"
                                            value="${baseCategory.cate_name1}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -87,13 +87,13 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail1" id="cate-detail1"
-                                               value="${allCategory.cate_detail1}">
+                                        <input type="hidden" name="cate_name1" id="cate-detail1"
+                                               value="${allCategory.cate_name1}">
                                     </c:forEach>
                                     <input type="text" name="cate_name1" id="cate_name1"
                                            class="cate-name none-cate-name cate-input" placeholder="카테고리1"
                                            value="${baseCategory.cate_name1}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -130,13 +130,13 @@
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name2}">
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail2" id="cate-detail2"
-                                               value="${allCategory.cate_detail2}">
+                                        <input type="hidden" name="cate_name2" id="cate-detail2"
+                                               value="${allCategory.cate_name2}">
                                     </c:forEach>
                                     <input id="cate_name2" type="text" name="cate_name2"
                                            class="cate-name input-border"
                                            value="${baseCategory.cate_name2}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -165,12 +165,12 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail2" id="cate-detail2"
-                                               value="${allCategory.cate_detail2}">
+                                        <input type="hidden" name="cate_name2" id="cate-detail2"
+                                               value="${allCategory.cate_name2}">
                                     </c:forEach>
                                     <input type="text" name="cate_name2" id="cate_name2"
                                            class="cate-name none-cate-name cate-input" placeholder="카테고리2"
-                                           value="${baseCategory.cate_name2}" disabled>
+                                           value="${baseCategory.cate_name2}" readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -206,13 +206,13 @@
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name3}">
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail3" id="cate-detail3"
-                                               value="${allCategory.cate_detail3}">
+                                        <input type="hidden" name="cate_name3" id="cate-detail3"
+                                               value="${allCategory.cate_name3}">
                                     </c:forEach>
                                     <input id="cate_name3" type="text" name="cate_name3"
                                            class="cate-name input-border"
                                            value="${baseCategory.cate_name3}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -241,13 +241,13 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail3" id="cate-detail3"
-                                               value="${allCategory.cate_detail3}">
+                                        <input type="hidden" name="cate_name3" id="cate-detail3"
+                                               value="${allCategory.cate_name3}">
                                     </c:forEach>
                                     <input type="text" name="cate_name3" id="cate_name3"
                                            class="cate-name none-cate-name cate-input" placeholder="카테고리3"
                                            value="${baseCategory.cate_name3}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -283,13 +283,13 @@
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name4}">
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail4" id="cate-detail4"
-                                               value="${allCategory.cate_detail4}">
+                                        <input type="hidden" name="cate_name4" id="cate-detail4"
+                                               value="${allCategory.cate_name4}">
                                     </c:forEach>
                                     <input id="cate_name4" type="text" name="cate_name4"
                                            class="cate-name input-border"
                                            value="${baseCategory.cate_name4}"
-                                           disabled>
+                                    >
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -318,13 +318,13 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail4" id="cate-detail4"
-                                               value="${allCategory.cate_detail4}">
+                                        <input type="hidden" name="cate_name4" id="cate-detail4"
+                                               value="${allCategory.cate_name4}">
                                     </c:forEach>
                                     <input type="text" name="cate_name4" id="cate_name4"
                                            class="cate-name none-cate-name cate-input" placeholder="카테고리4"
                                            value="${baseCategory.cate_name4}"
-                                           disabled>
+                                    >
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -360,13 +360,13 @@
                             <c:choose>
                                 <c:when test="${not empty baseCategory.cate_name5}">
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail5" id="cate-detail5"
-                                               value="${allCategory.cate_detail5}">
+                                        <input type="hidden" name="cate_name5" id="cate-detail5"
+                                               value="${allCategory.cate_name5}">
                                     </c:forEach>
                                     <input id="cate_name5" type="text" name="cate_name5"
                                            class="cate-name input-border"
                                            value="${baseCategory.cate_name5}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -395,13 +395,13 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${allCategory}" var="allCategory">
-                                        <input type="hidden" name="cate_detail5" id="cate-detail5"
-                                               value="${allCategory.cate_detail5}">
+                                        <input type="hidden" name="cate_name5" id="cate-detail5"
+                                               value="${allCategory.cate_name5}">
                                     </c:forEach>
                                     <input type="text" name="cate_name5" id="cate_name5"
                                            class="cate-name none-cate-name cate-input" placeholder="카테고리5"
                                            value="${baseCategory.cate_name5}"
-                                           disabled>
+                                           readonly>
 
                                     <div class="btn-wrap">
                                         <c:if test="${permit.master_per eq 0}">
@@ -460,9 +460,10 @@
 
 <%-- boxmenu JS--%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/boxmenu.js?ver=1"></script>
-<%-- baseCateogy JS--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js?ver=2"></script>
+
 <%-- sweet alert --%>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<%-- baseCateogy JS--%>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/resources/assets/js/baseCategory.js?ver=3"></script>
 </html>

@@ -2,8 +2,8 @@ package com.wonjoejo.myapp.service;
 
 
 import com.wonjoejo.myapp.domain.AllCategoryVO;
-import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
+import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -111,8 +111,8 @@ public class BaseCategoryServiceTests {
                 null
         );
 
-        boolean isSuccess2 = this.service.deleteCategory(category);
-        log.info("Category edited successfully : {}", isSuccess2);
+//        boolean isSuccess2 = this.service.deleteCategory(category);
+//        log.info("Category edited successfully : {}", isSuccess2);
 
     }
 

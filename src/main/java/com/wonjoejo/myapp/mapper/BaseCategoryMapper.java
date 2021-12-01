@@ -1,9 +1,8 @@
 package com.wonjoejo.myapp.mapper;
 
 import com.wonjoejo.myapp.domain.AllCategoryVO;
-import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public interface BaseCategoryMapper {
     public abstract Integer deleteBaseCategory(BaseCategoryVO baseCategory);
 
     // Category 삭제 (edit)
-    public abstract Integer deleteCategory(DeleteCategoryVO allcategory);
+    public abstract Integer deleteCategory(@Param("category_no") Integer category_no, @Param("rowName") String rowName);
 
     //------ BaseCategory 삭제 (업데이트로...) ------//
 
