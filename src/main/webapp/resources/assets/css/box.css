@@ -184,16 +184,17 @@ body {
 }
 
 .box-container {
-	align-content: center;
+	/* align-content: center; */
 	align-items: center;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 0 auto;
-	margin-top: 40vh;
+	/* margin-top: 40vh; */
 	padding: 10px;
 	width: 92%;
+	height: 100%;
 }
 
 .box {

@@ -121,6 +121,16 @@ public class GroupServiceImpl implements GroupService{
 		return vo;
 	} // getPermission
 
+	// box 삭제시 member stat 1로
+	@Override
+	public boolean deleteBox(Integer box_no, String member_id) {
+		log.debug("deleteBox({}, {}) invoked.", box_no, member_id);
+
+		int affectedRows = this.mapper.deleteBox(box_no, member_id);
+
+		return affectedRows == 1;
+	} // deleteBox
+
 	// 그룹 멤버 삭제(추방, 삭제 같이 사용)
 	@Override
 	public boolean deleteMember(String member_id, Integer box_no, Integer member_stat) {

@@ -133,4 +133,15 @@ public class GroupServiceTests {
 
 	}
 
+	// 박스 삭제
+	@Test(timeout=3000)
+	public void testDeleteBox() {
+		log.debug("testDeleteBox() invoked.");
+
+		boolean isSuccess = this.service.deleteBox(1463, "wlgus");
+
+		log.info("Group out successfully: {}", isSuccess);
+
+	} // testDeleteBox
+
 } // end class

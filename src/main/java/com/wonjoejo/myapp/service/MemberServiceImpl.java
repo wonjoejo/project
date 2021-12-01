@@ -1,7 +1,9 @@
 package com.wonjoejo.myapp.service;
 
 import java.util.Date;
+import java.util.List;
 
+import com.wonjoejo.myapp.domain.BoxPermissionBoxVO;
 import org.apache.http.conn.MultihomePlainSocketFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -144,7 +146,14 @@ public class MemberServiceImpl implements MemberService, InitializingBean, Dispo
 
 		return member;
 	} // getMemberId
-	
+
+	@Override
+	public List<BoxPermissionBoxVO> boxPermissionList(String member_id) {
+		log.debug("BoxPermissionBoxVO({}) invoked.", member_id);
+
+		return this.mapper.boxPermissionList(member_id);
+	} // BoxPermissionBoxVO
+
 	@Override
 	public void destroy() throws Exception {
 		log.debug("destroy({}) invoked.");

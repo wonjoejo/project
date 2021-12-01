@@ -392,7 +392,7 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div>
-              <button id="submitBtn" class="register-submit" type="submit">가입하기</button>
+              <button id="submitBtn" class="register-submit" type="submit" disabled="">가입하기</button>
             </div>
             <button
               type="button"
@@ -454,11 +454,11 @@ pageEncoding="UTF-8"%>
         	if(pwd == pwdcheck) {
 				$("#alert-success").show();
 				$("#alert-danger").hide();
-				$(".register-submit").removeAttr("disabled");  
+				// $(".register-submit").removeAttr("disabled");
       		} else {  
       			$("#alert-success").hide();
 	            $("#alert-danger").show();
-	            $(".register-submit").attr("disabled", "disabled");
+	            // $(".register-submit").attr("disabled", "disabled");
       		}//if-else	
         }); // pwdcheck input
 
@@ -503,18 +503,26 @@ pageEncoding="UTF-8"%>
       type: "post",
       data: { member_id: member_id },
       success: function (cnt) {
+        const submitBtn = document.querySelector('#submitBtn');
         if (cnt != 1 && member_id.length > 2) {
           // cnt가 0일 경우 -> 사용 가능한 아이디
            $("#alert-min-id").hide();
            $("#alert-success-id").show();
            $("#alert-danger-id").hide();
-           $(".register-submit").removeAttr("disabled");
+           submitBtn.disabled = false;
+
+
         } else {
           // cnt가 1일 경우 -> 이미 존재하는 아이디
            $("#alert-min-id").hide();
            $("#alert-success-id").hide();
            $("#alert-danger-id").show();
-           $(".register-submit").attr("disabled", "disabled");
+          submitBtn.click(function (){
+            alert("아이디 확인");
+
+          });
+          submitBtn.disabled = true;
+
 
         }
       },

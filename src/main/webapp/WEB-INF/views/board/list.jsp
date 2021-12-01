@@ -140,18 +140,21 @@
                                         <img id="admin_btn" src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/logo6.png" />
                                         인투박스
                                     </c:when>
+
+                                    <%-- 로그인한 작성자 본인의 아이디는 그대로 보여줌 --%>
+                                    <c:when test="${sessionScope.member_id eq board.member_id}">
+                                        ${board.member_id}
+                                    </c:when>
+
                                     <c:otherwise>
                                         <%-- 아이디가 null이 아닐 때 --%>
                                         <c:if test="${board.member_id ne null && board.member_id !='' }">
-
                                             <%-- 아이디의 앞 2자리까지 보여 주고 --%>
                                             ${fn:substring(board.member_id,0,2)}
-
                                             <%-- 총 4개의 * 붙이기 --%>
                                             <c:forEach begin="3" end="6" step="1">
                                                 *
                                             </c:forEach>
-
                                         </c:if>
                                     </c:otherwise>
                                 </c:choose>

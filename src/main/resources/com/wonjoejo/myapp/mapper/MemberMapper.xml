@@ -157,5 +157,26 @@
         ]]>
 
     </select>
-	
+
+	<!-- 탈퇴시 master_per 체크-->
+    <select id="boxPermissionList" resultType="com.wonjoejo.myapp.domain.BoxPermissionBoxVO">
+
+        <![CDATA[
+
+        SELECT
+            /*+ index_desc(box_permission) */
+            BOX.BOX_NO,
+            BOX_STATUS,
+            BOX_PERMISSION.MEMBER_ID,
+            BOX_PERMISSION.NO,
+            MASTER_PER
+        FROM BOX, BOX_PERMISSION
+        WHERE BOX_PERMISSION.MEMBER_ID = #{member_id}
+          AND BOX.BOX_STATUS = 0
+          AND BOX.BOX_NO = BOX_PERMISSION.BOX_NO
+
+        ]]>
+
+    </select>
+
 </mapper>

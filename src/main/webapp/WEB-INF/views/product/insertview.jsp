@@ -48,7 +48,7 @@
         <form method="POST" action="/product/insert" enctype="multipart/form-data">
             <input type="hidden" name="member_id" value="${sessionScope.member_id}">
             <input type="hidden" name="box_no" value="${box_no}">
- 
+
             <div class="product-detail-wrap">
                 <div class="left-box" id="left-box">
                     <div class="photo">
@@ -57,14 +57,14 @@
                             <input type="file" name="file" id="box-photo">
                             <input type="hidden" name="product_photo_name" id="default">
                             <input type="hidden" name="product_photo_path"
-                                   value="default">
+                                value="default">
                             <span id="img-file-upload"><i class="fas fa-upload"></i>파일 업로드</span>
                         </div> <!-- product-photo -->
 
                     </div> <!-- photo -->
 
                     <div class="default-photos carousel slide" data-bs-ride="carousel" data-bs-touch="false"
-                         data-bs-interval="false" id="carousel">
+                        data-bs-interval="false" id="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="photos">
@@ -200,7 +200,7 @@
                         </a>
                         <li>
                             <div class="title">메모</div>
-                            <textarea name="product_memo" class="detail detail-memo" placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
+                            <textarea name="product_memo" class="detail" id="detail-memo" placeholder="@으로 그룹원 태그가 가능합니다."></textarea>
                         </li>
                         <ul class="suggestions">
                         </ul>
