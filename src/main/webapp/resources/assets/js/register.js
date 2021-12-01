@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  var current_fs, next_fs, previous_fs; //fieldsets
-  var opacity;
-  var current = 1;
+  let current_fs, next_fs, previous_fs; //fieldsets
+  let opacity;
+  let current = 1;
 
   const member_personal = 0;
   const member_company = 1;
@@ -12,33 +12,33 @@ $(document).ready(function () {
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const phoneJ = /^010?([0-9]{4})?([0-9]{4})$/;
   const pwJ = /^[A-Za-z0-9]{4,12}$/;
+  let reg_id = /^[A-Za-z]{1}[A-Za-z0-9_-]{3,19}$/ // 반드시 영문으로 시작 숫자+언더바/하이픈 허용 4~20자리
 
 
   // next2
-  $('#next2').click(function (){
+  $('#next2').click(function (e) {
+    e.preventDefault();
     const memberId = document.querySelector('#member_id');
     const password = document.querySelector('#pwd');
     const passwordCheck = document.querySelector('#pwdcheck');
 
 
-    if (memberId.value === ""){
+    if (memberId.value === "" || !reg_id.test(memberId.value)) {
       Swal.fire({
         icon: 'warning',
-        title: '아이디를 입력해주세요.'
+        title: '아이디를 확인해주세요.'
       });
-    } else if (password.value === "" || !pwJ.test(password.value)){
+    } else if (password.value === "" || !pwJ.test(password.value)) {
       Swal.fire({
         icon: 'warning',
         title: '패스워드를 확인해주세요.'
       });
-    } else if (passwordCheck.value === "" || password.value != passwordCheck.value){
+    } else if (passwordCheck.value === "" || password.value !== passwordCheck.value) {
       Swal.fire({
         icon: 'warning',
         title: '패스워드가 일치하지 않습니다.'
       });
-    }
-
-    else {
+    } else {
       current_fs = $(this).parent();
       next_fs = $(this).parent().next();
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
       next_fs.show();
       //hide the current fieldset with style
       current_fs.animate(
-          { opacity: 0 },
+          {opacity: 0},
           {
             step: function (now) {
               // for making fielset appear animation
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 display: "none",
                 position: "relative",
               });
-              next_fs.css({ opacity: opacity });
+              next_fs.css({opacity: opacity});
             },
             duration: 500,
           }
@@ -67,62 +67,61 @@ $(document).ready(function () {
   });
 
   // submit
-  $('#submitBtn').click(function (){
+  $('#submitBtn').click(function (e) {
+    e.preventDefault();
     const name = document.querySelector('#name');
     const email = document.querySelector('#email');
     const phoneNumber = document.querySelector('#phone_number');
 
 
-    if (name.value === "" || !nameJ.test(name.value)){
+    if (name.value === "" || !nameJ.test(name.value)) {
       Swal.fire({
         icon: 'warning',
         title: '이름을 확인해주세요.'
       });
       return false
-    } else if (email.value === "" || !mailJ.test(email.value)){
+    } else if (email.value === "" || !mailJ.test(email.value)) {
       Swal.fire({
         icon: 'warning',
-        title: '이메일를 확인해주세요.'
+        title: '이메일을 확인해주세요.'
       });
       return false
-    } else if (phoneNumber.value === "" || !phoneJ.test(phoneNumber.value)){
+    } else if (phoneNumber.value === "" || !phoneJ.test(phoneNumber.value)) {
       Swal.fire({
         icon: 'warning',
-        title: '휴대전화를 확인해주세요.'
+        title: '전화번호를 확인해주세요.'
       });
       return false
     } // if-else
 
-
-
   });
 
 
-
   // next1
-  $("#next1").click(function () {
-      current_fs = $(this).parent();
-      next_fs = $(this).parent().next();
+  $("#next1").click(function (e) {
+    e.preventDefault();
+    current_fs = $(this).parent();
+    next_fs = $(this).parent().next();
 
-      //show the next fieldset
-      next_fs.show();
-      //hide the current fieldset with style
-      current_fs.animate(
-          { opacity: 0 },
-          {
-            step: function (now) {
-              // for making fielset appear animation
-              opacity = 1 - now;
+    //show the next fieldset
+    next_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate(
+        {opacity: 0},
+        {
+          step: function (now) {
+            // for making fielset appear animation
+            opacity = 1 - now;
 
-              current_fs.css({
-                display: "none",
-                position: "relative",
-              });
-              next_fs.css({ opacity: opacity });
-            },
-            duration: 500,
-          }
-      );
+            current_fs.css({
+              display: "none",
+              position: "relative",
+            });
+            next_fs.css({opacity: opacity});
+          },
+          duration: 500,
+        }
+    );
 
   });
 

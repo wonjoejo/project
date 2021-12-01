@@ -44,6 +44,7 @@ public class BoxController {
 
         log.debug("list({},{}) invoked.", model, cri);
 
+
         HttpSession session = req.getSession();
         String loginId = (String) session.getAttribute("member_id");
 
