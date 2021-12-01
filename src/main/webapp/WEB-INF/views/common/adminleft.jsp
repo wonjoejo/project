@@ -25,14 +25,14 @@
 
       <c:choose>
         <c:when test="${not empty photo_name}">
-           <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+           <a href="#">
           <img
             src="https://intobox.s3.ap-northeast-2.amazonaws.com/${photo_path}${photo_name}"
           />
           </a>
         </c:when>
         <c:otherwise>
-         <a href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+         <a href="#">
           <img src="https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png"/>
           </a>
         </c:otherwise>

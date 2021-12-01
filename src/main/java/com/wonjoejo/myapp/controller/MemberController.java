@@ -251,7 +251,6 @@ public class MemberController {
 					
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t + 개인 프로필 result: {}",result);
-				rttrs.addAttribute("result",result);
 				session.setAttribute("photo_name", member.getPhoto_name());
 	            session.setAttribute("photo_path", member.getPhoto_path());
 				
@@ -273,7 +272,6 @@ public class MemberController {
 				);
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t +개인 디폴트 result: {}",result);
-				rttrs.addAttribute("result",result);
 				session.setAttribute("photo_name", member.getPhoto_name());
 	            session.setAttribute("photo_path", member.getPhoto_path());
 	            
@@ -299,7 +297,6 @@ public class MemberController {
 				
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t + 기업 프로필 result: {}",result);
-				rttrs.addAttribute("result",result);
 				session.setAttribute("photo_name", member.getPhoto_name());
 	            session.setAttribute("photo_path", member.getPhoto_path());
 				
@@ -322,7 +319,6 @@ public class MemberController {
 				
 				boolean result = this.service.editMember(memberVO);
 				log.info("\t +기업 디폴트 result: {}",result);
-				rttrs.addAttribute("result",result);
 				session.setAttribute("photo_name", member.getPhoto_name());
 	            session.setAttribute("photo_path", member.getPhoto_path());
 				
@@ -361,7 +357,6 @@ public class MemberController {
 
                 return "redirect:/member/myPage";
             } // if-else
-
         } // for
 
         boolean result = this.service.deleteAccount(member_id);
