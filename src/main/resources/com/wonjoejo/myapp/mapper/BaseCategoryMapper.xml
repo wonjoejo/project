@@ -71,11 +71,21 @@
     <update id="deleteCategory">
 
         UPDATE CATEGORY SET
-            CATE_DETAIL1 = #{cate_detail1},
-            CATE_DETAIL2 = #{cate_detail2},
-            CATE_DETAIL3 = #{cate_detail3},
-            CATE_DETAIL4 = #{cate_detail4},
-            CATE_DETAIL5 = #{cate_detail5}
+        <if test='rowName == "cate_detail1"'>
+            CATE_DETAIL1 = ''
+        </if>
+        <if test='rowName == "cate_detail2"'>
+            CATE_DETAIL2 = ''
+        </if>
+        <if test='rowName == "cate_detail3"'>
+            CATE_DETAIL3 = ''
+        </if>
+        <if test='rowName == "cate_detail4"'>
+            CATE_DETAIL4 = ''
+        </if>
+        <if test='rowName == "cate_detail5"'>
+            CATE_DETAIL5 = ''
+        </if>
         WHERE CATEGORY_NO = #{category_no}
 
     </update>

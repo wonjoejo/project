@@ -513,13 +513,23 @@
 }
 
 #detail-memo {
+    height: 42px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#detail-memo-insert {
     height: 100px !important;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .detail:active {
-    border: 1px solid #5a95f5 !important;
+    border: 1px solid #5A95F5 !important;
+}
+
+.buttons {
+    margin-top: 5% !important;
 }
 
 .bar {

@@ -2,9 +2,8 @@ package com.wonjoejo.myapp.mapper;
 
 
 import com.wonjoejo.myapp.domain.AllCategoryVO;
-import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import com.wonjoejo.myapp.domain.BaseCategoryVO;
-import com.wonjoejo.myapp.domain.CategoryVO;
+import com.wonjoejo.myapp.domain.DeleteCategoryVO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -101,7 +100,7 @@ public class BaseCategoryMapperTests {
                 null
         );
 
-        this.mapper.deleteCategory(allcategory);
+//        this.mapper.deleteCategory(allcategory);
         log.info("\t+ category : {}", allcategory);
     } //testDeleteBaseCategory
 
