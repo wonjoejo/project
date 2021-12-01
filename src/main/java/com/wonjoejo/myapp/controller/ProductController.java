@@ -283,8 +283,6 @@ public class ProductController {
     public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file, HttpServletRequest req) throws Exception {
 
         log.debug("productInsert({}, {}) invoked.", product, file);
-        String root = req.getRequestURL().toString();
-        log.info("====root=====: {}", root);
 
         // upload 할 폴더 경로 지정
         String uploadDir = "product";
@@ -344,7 +342,7 @@ public class ProductController {
             // QR코드 생성
             QRUtils qrUtils = new QRUtils();
 
-            String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no(), root);
+            String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
             log.info("\t + barcodeName: {}", barcodeName);
 
             Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
