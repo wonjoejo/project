@@ -73,7 +73,7 @@
                                                             <c:when test="${fn:contains(group.photo_name, 'kakao')}">
                                                                 <a
                                                                         href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-                                                                    <img id="profile_img"
+                                                                    <img id="profile_permission"
                                                                          src="${group.photo_name}"/></a>
                                                             </c:when>
                                                             <c:otherwise>
@@ -220,14 +220,14 @@
 
             </body>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-                crossorigin="anonymous"></script>
+                    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                    crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.10/dist/sweetalert2.all.min.js"></script>
             <script>
-                const boxNo = '${box_no}';
-                const memberId = '${sessionScope.member_id}';
-                const memberId2 = '${member_id}';
+	            const boxNo = '${box_no}';
+	            const memberId = '${sessionScope.member_id}';
+	            const memberId2 = '${member_id}';
             </script>
-            <script src="${pageContext.request.contextPath}/resources/assets/js/group.js"></script>
+            <script src="${pageContext.request.contextPath}/resources/assets/js/group.js?ver=1"></script>
 
             </html>

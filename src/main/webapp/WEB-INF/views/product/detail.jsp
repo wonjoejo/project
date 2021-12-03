@@ -355,6 +355,6 @@
 <%-- product JS --%>
 <script src="${pageContext.request.contextPath}/resources/assets/js/product.js?ver=7"></script>
 <%-- mention JS 실험 중 --%>
-<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=2"></script>
+<script src="${pageContext.request.contextPath}/resources/assets/js/productDetail.js?ver=3"></script>
 
 </html>

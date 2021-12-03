@@ -31,22 +31,25 @@ function clickMention() {
 				.then((data) => {
 
 					console.log(data);
-					if (data.photo_path === null || data.photo_path === undefined) {
 
+					if (data.photo_name.indexOf('kakao') !== -1) {
+						modalProfile.src = data.photo_name;
+						modalId.value = id;
+						modalName.value = data.name;
+						modalMail.value = data.email;
+						modalPhone.value = '-';
+					} else if (data.photo_path === null || data.photo_path === undefined) {
 						modalProfile.src = "https://intobox.s3.ap-northeast-2.amazonaws.com/default/profile_default.png";
 						modalId.value = id;
 						modalName.value = data.name;
 						modalMail.value = data.email;
 						modalPhone.value = data.phone_number;
-
-
 					} else {
-						modalProfile.src =  'https://intobox.s3.ap-northeast-2.amazonaws.com/' + data.photo_path + data.photo_name;
+						modalProfile.src = 'https://intobox.s3.ap-northeast-2.amazonaws.com/' + data.photo_path + data.photo_name;
 						modalId.value = id;
 						modalName.value = data.name;
 						modalMail.value = data.email;
 						modalPhone.value = data.phone_number;
-
 					} // if-else
 
 				})

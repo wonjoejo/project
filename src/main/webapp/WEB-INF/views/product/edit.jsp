@@ -123,7 +123,7 @@
                         <c:if test="${not empty baseCategory.cate_name1}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name1,'일자') || fn:contains(baseCategory.cate_name1,'기한') || fn:contains(baseCategory.cate_name1,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name1,'일자') || fn:contains(baseCategory.cate_name1,'기한') || fn:contains(baseCategory.cate_name1,'날짜') }">
                                         <div class="title">${baseCategory.cate_name1}</div>
                                         <input type="text" id="datePicker" name="cate_detail1"
                                                class="detail datePicker" value="${category.cate_detail1}">
@@ -139,7 +139,7 @@
                         <c:if test="${not empty baseCategory.cate_name2}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name2,'일자') || fn:contains(baseCategory.cate_name2,'기한') || fn:contains(baseCategory.cate_name2,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name2,'일자') || fn:contains(baseCategory.cate_name2,'기한') || fn:contains(baseCategory.cate_name2,'날짜') }">
                                         <div class="title">${baseCategory.cate_name2}</div>
                                         <input type="text" id="datePicker" name="cate_detail2"
                                                class="detail datePicker" value="${category.cate_detail2}">
@@ -155,7 +155,7 @@
                         <c:if test="${not empty baseCategory.cate_name3}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name3,'일자') || fn:contains(baseCategory.cate_name3,'기한') || fn:contains(baseCategory.cate_name3,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name3,'일자') || fn:contains(baseCategory.cate_name3,'기한') || fn:contains(baseCategory.cate_name3,'날짜') }">
                                         <div class="title">${baseCategory.cate_name3}</div>
                                         <input type="text" id="datePicker" name="cate_detail3"
                                                class="detail datePicker" value="${category.cate_detail3}">
@@ -171,7 +171,7 @@
                         <c:if test="${not empty baseCategory.cate_name4}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name4,'일자') || fn:contains(baseCategory.cate_name4,'기한') || fn:contains(baseCategory.cate_name4,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name4,'일자') || fn:contains(baseCategory.cate_name4,'기한') || fn:contains(baseCategory.cate_name4,'날짜') }">
                                         <div class="title">${baseCategory.cate_name4}</div>
                                         <input type="text" id="datePicker" name="cate_detail4"
                                                class="detail datePicker" value="${category.cate_detail4}">
@@ -187,7 +187,7 @@
                         <c:if test="${not empty baseCategory.cate_name5}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name5,'일자') || fn:contains(baseCategory.cate_name5,'기한') || fn:contains(baseCategory.cate_name5,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name5,'일자') || fn:contains(baseCategory.cate_name5,'기한') || fn:contains(baseCategory.cate_name5,'날짜') }">
                                         <div class="title">${baseCategory.cate_name5}</div>
                                         <input type="text" id="datePicker" name="cate_detail5"
                                                class="detail datePicker" value="${category.cate_detail5}">

@@ -3,7 +3,7 @@ console.log("Product insert page");
 const members = [];
 const searchInput = document.querySelector(".search");
 const suggestions = document.querySelector(".suggestions");
-const memo = document.querySelector(".detail-memo");
+const memo = document.querySelector("#detail-memo-insert");
 let mentions = [];
 
 fetch("/group/json", {

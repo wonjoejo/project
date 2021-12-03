@@ -95,4 +95,19 @@
         VALUES (#{member_id}, #{box_no}, 1, 1, 1)
     </insert>
 
+    <select id="findGroupMember" resultType="com.wonjoejo.myapp.domain.BoxPermissionVO">
+        SELECT *
+        FROM BOX_PERMISSION
+        WHERE BOX_NO = #{box_no}
+          and MEMBER_ID = #{member_id}
+    </select>
+
+    <update id="updateGroupMember">
+        UPDATE BOX_PERMISSION
+        SET MEMBER_STAT = 0,
+            READ_PER    = 0
+        WHERE BOX_NO = #{box_no}
+          and MEMBER_ID = #{member_id}
+    </update>
+
 </mapper>

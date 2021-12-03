@@ -80,7 +80,7 @@ public class GroupController {
 		log.info("result: " + result);
 
 		return result;
-	}
+	} // json
 
 	// 그룹원 권한 목록
 	@GetMapping("/permissionlist")
@@ -132,7 +132,7 @@ public class GroupController {
 		model.addAttribute("list", list);
 		model.addAttribute("box_no", box_no);
 
-	}
+	} // editview
 
 	@PostMapping("/edit")
 	@ResponseBody
@@ -164,7 +164,7 @@ public class GroupController {
 	}// permissiongroup
 
 	// 그룹원 검색
-	@GetMapping("/find")
+	@GetMapping(value = "/find", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String findMember(String keyword) {
 

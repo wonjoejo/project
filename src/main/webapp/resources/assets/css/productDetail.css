@@ -627,6 +627,7 @@
 
 .right-box li input {
     border: none;
+    padding-left: 3%;
 }
 
 .to-category {
@@ -859,9 +860,9 @@ textarea {
 
 .suggestions {
     /*float: top;*/
-    margin: 0;
-    padding: 0;
-    position: absolute!important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: absolute !important;
     /*perspective: 20px;*/
 }
 

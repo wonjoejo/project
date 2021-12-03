@@ -111,9 +111,27 @@ public class BoxServiceImpl implements BoxService, InitializingBean, DisposableB
 
 	@Override
 	public boolean joinBox(String member_id, Integer box_no) {
-		log.debug("joinBox({},{}) invoked.",box_no,member_id);
+		log.debug("joinBox({},{}) invoked.", box_no, member_id);
 
-		int affectedLines = this.mapper.insertGroup(member_id,box_no);
+		int affectedLines = this.mapper.insertGroup(member_id, box_no);
+
+		return affectedLines == 1;
+	}
+
+	@Override
+	public BoxPermissionVO findGroupMember(String member_id, Integer box_no) {
+		log.debug("findGroupMember({},{}) invoked.", box_no, member_id);
+
+		BoxPermissionVO vo = this.mapper.findGroupMember(member_id, box_no);
+
+		return vo;
+	}
+
+	@Override
+	public boolean updateGroupMember(String member_id, Integer box_no) {
+		log.debug("updateGroupMember({},{}) invoked.", box_no, member_id);
+
+		int affectedLines = this.mapper.updateGroupMember(member_id, box_no);
 
 		return affectedLines == 1;
 	}

@@ -43,20 +43,6 @@ public class ProductController {
     @Setter(onMethod_ = {@Autowired})
     private BoxService boxService;
 
-
-//	@GetMapping("/list")
-//	public void productList(Model model) {
-//		log.debug("ProductList() invoked.");
-//		Integer box_id = 1005;
-//
-//		List<ProductVO> list = this.service.getProductList(box_id);				
-//
-//		log.info("\t+ list.size:{}",list.size());
-//
-//		model.addAttribute("list",list);
-//
-//	} // ProductList
-
     @GetMapping("/listPerPage")
     public String productListPerPage(@ModelAttribute("cri") Criteria cri, Integer box_no, Model model, HttpSession session) {
         log.debug("productListPerPage({}) invoked.", model);
@@ -144,7 +130,6 @@ public class ProductController {
 
 
         for (ProductCategoryVO product : list) {
-//            values.add(product.getProduct_no().toString());
             values.add(product.getProduct_name());
             values.add(product.getCate_detail1());
             values.add(product.getCate_detail2());
@@ -223,7 +208,7 @@ public class ProductController {
         log.info("json: {}", json);
 
         return json;
-    }
+    } // json
 
 
     @GetMapping("/detail")
@@ -369,86 +354,6 @@ public class ProductController {
 
         return "redirect:/product/listPerPage";
     } // productInsert
-    
-    
-/*
-    @PostMapping("/insert")
-    public String productInsert(ProductDTO product, CategoryDTO category, RedirectAttributes rttrs, MultipartFile file) throws Exception {
-
-        log.debug("productInsert({}, {}) invoked.", product, file);
-        
-        // upload 할 폴더 경로 지정
-        String uploadDir = "product";
-
-        ProductVO productVO;
-        
-        if (file.getSize() !=0) {
-        	String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
-
-            productVO = new ProductVO(
-                    null,
-                    product.getBox_no(),
-                    product.getProduct_name(),
-                    product.getProduct_memo(),
-                    product.getProduct_qtn(),
-                    uploadedFileName,
-                    uploadDir,
-                    product.getBarcode(),
-                    product.getReg_date(),
-                    null);
-
-            boolean result = this.service.insertProduct(productVO);
-            log.info("\t +result: {}", result);
-            rttrs.addAttribute("result", result);
-            
-        } else {
-            productVO = new ProductVO(
-                    null,
-                    product.getBox_no(),
-                    product.getProduct_name(),
-                    product.getProduct_memo(),
-                    product.getProduct_qtn(),
-                    product.getProduct_photo_name(),
-                    "default/",
-                    product.getBarcode(),
-                    product.getReg_date(),
-                    null);
-
-            boolean result = this.service.insertProduct(productVO);
-            log.info("\t +result: {}", result);
-            rttrs.addAttribute("result", result);
-        }
-
-        // QR코드 생성
-        QRUtils qrUtils = new QRUtils();
-
-        String barcodeName = qrUtils.qrMaker(productVO.getProduct_no(), product.getBox_no());
-        log.info("\t + barcodeName: {}", barcodeName);
-
-        Boolean isSuccess = this.service.createBarcode(productVO.getProduct_no(), barcodeName);
-
-        log.info("\t +barcode Success: {}", isSuccess);
-
-        // Category insert
-        CategoryVO categoryVO = new CategoryVO(
-                null,
-                null,
-                productVO.getProduct_no(),
-                category.getCate_detail1(),
-                category.getCate_detail2(),
-                category.getCate_detail3(),
-                category.getCate_detail4(),
-                category.getCate_detail5()
-        );
-
-        boolean result2 = this.service.insertCategory(categoryVO);
-        log.info("\t+ category result2: {}", result2);
-        rttrs.addAttribute("box_no", product.getBox_no());
-
-        return "redirect:/product/listPerPage";
-    } // productInsert
-    */
-    
 
 
     @GetMapping("/insertview")    // 물품 작성페이지
@@ -573,20 +478,7 @@ public class ProductController {
 
 
         return gson.toJson(list);
-    }
-
-//    @PostMapping("/qrcode")
-//    @ResponseBody
-//    public void makeQrcode(@RequestBody String data) throws Exception {
-//        QRUtils qrUtils = new QRUtils();
-//
-//        JsonElement element = JsonParser.parseString(data);
-//
-//        String fileName = qrUtils.qrMaker(element.getAsJsonObject().get("product_no").getAsInt(), element.getAsJsonObject().get("box_no").getAsInt());
-//
-//        log.info("/t + fileName : {}", fileName);
-//
-//    } // makeQrcode
+    } // searchProduct
 
 
 } // end class

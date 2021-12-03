@@ -30,8 +30,11 @@ public interface BoxMapper {
 
 	public abstract int insertGroup(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
-	// box 삭제시 
+	// box 삭제시
 
+	public abstract BoxPermissionVO findGroupMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
+
+	public abstract Integer updateGroupMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
 
 } // end interface

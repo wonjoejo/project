@@ -4,6 +4,7 @@ import com.wonjoejo.myapp.domain.BaseCategoryVO;
 import com.wonjoejo.myapp.domain.BoxPermissionVO;
 import com.wonjoejo.myapp.domain.BoxVO;
 import com.wonjoejo.myapp.domain.Criteria;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -29,5 +30,9 @@ public interface BoxService {
 	public abstract boolean grantMasterPermission(BoxPermissionVO boxPermission);
 
 	public abstract boolean joinBox(String member_id, Integer box_no);
+
+	public abstract BoxPermissionVO findGroupMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
+
+	public abstract boolean updateGroupMember(@Param("member_id") String member_id, @Param("box_no") Integer box_no);
 
 } // end interface

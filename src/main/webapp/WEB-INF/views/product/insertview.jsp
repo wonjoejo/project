@@ -21,8 +21,8 @@
     <!-- box.css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/box.css?ver=3">
     <!-- productDetail.css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=5">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=12">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/productDetail.css?ver=4">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/mention.css?ver=1">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
           integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw=="
@@ -123,7 +123,7 @@
                         <c:if test="${not empty baseCategory.cate_name1}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name1,'일자') || fn:contains(baseCategory.cate_name1,'기한') || fn:contains(baseCategory.cate_name1,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name1,'일자') || fn:contains(baseCategory.cate_name1,'기한') || fn:contains(baseCategory.cate_name1,'날짜') }">
                                         <div class="title">${baseCategory.cate_name1}</div>
                                         <input type="text" id="datePicker" name="cate_detail1"
                                                class="detail datePicker">
@@ -138,7 +138,7 @@
                         <c:if test="${not empty baseCategory.cate_name2}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name2,'일자') || fn:contains(baseCategory.cate_name2,'기한') || fn:contains(baseCategory.cate_name2,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name2,'일자') || fn:contains(baseCategory.cate_name2,'기한') || fn:contains(baseCategory.cate_name2,'날짜') }">
                                         <div class="title">${baseCategory.cate_name2}</div>
                                         <input type="text" id="datePicker" name="cate_detail2"
                                                class="detail datePicker">
@@ -153,7 +153,7 @@
                         <c:if test="${not empty baseCategory.cate_name3}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name3,'일자') || fn:contains(baseCategory.cate_name3,'기한') || fn:contains(baseCategory.cate_name3,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name3,'일자') || fn:contains(baseCategory.cate_name3,'기한') || fn:contains(baseCategory.cate_name3,'날짜') }">
                                         <div class="title">${baseCategory.cate_name3}</div>
                                         <input type="text" id="datePicker" name="cate_detail3"
                                                class="detail datePicker">
@@ -168,7 +168,7 @@
                         <c:if test="${not empty baseCategory.cate_name4}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name4,'일자') || fn:contains(baseCategory.cate_name4,'기한') || fn:contains(baseCategory.cate_name4,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name4,'일자') || fn:contains(baseCategory.cate_name4,'기한') || fn:contains(baseCategory.cate_name4,'날짜') }">
                                         <div class="title">${baseCategory.cate_name4}</div>
                                         <input type="text" id="datePicker" name="cate_detail4"
                                                class="detail datePicker">
@@ -183,7 +183,7 @@
                         <c:if test="${not empty baseCategory.cate_name5}">
                             <li>
                                 <c:choose>
-                                    <c:when test="${fn:contains(baseCategory.cate_name5,'일자') || fn:contains(baseCategory.cate_name5,'기한') || fn:contains(baseCategory.cate_name5,'기간') }">
+                                    <c:when test="${fn:contains(baseCategory.cate_name5,'일자') || fn:contains(baseCategory.cate_name5,'기한') || fn:contains(baseCategory.cate_name5,'날짜') }">
                                         <div class="title">${baseCategory.cate_name5}</div>
                                         <input type="text" id="datePicker" name="cate_detail5"
                                                class="detail datePicker">
@@ -245,6 +245,6 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=4"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=3"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=4"></script>
 
 </html>

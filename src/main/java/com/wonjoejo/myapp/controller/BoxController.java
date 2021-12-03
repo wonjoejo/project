@@ -371,10 +371,20 @@ public class BoxController {
         log.debug("joinGroup({}) invoked.", data);
 
         JsonElement element = JsonParser.parseString(data);
+        String member_id = element.getAsJsonObject().get("member_id").getAsString();
+        Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
 
+        BoxPermissionVO vo = this.service.findGroupMember(member_id, box_no);
 
-        boolean result = this.service.joinBox(element.getAsJsonObject().get("member_id").getAsString(),
-                element.getAsJsonObject().get("box_no").getAsInt());
+        boolean result = false;
+
+        if (vo != null) {
+            // update
+            result = this.service.updateGroupMember(member_id, box_no);
+        } else {
+            result = this.service.joinBox(member_id, box_no);
+        }
+
         log.info("\t +result: {}", result);
 
         if (!result) {
