@@ -66,7 +66,8 @@ deletebtn.addEventListener("click", function (e) {
 		showCancelButton: true,
 		confirmButtonColor: '#3085D6',
 		cancelButtonColor: '#DD3333',
-		confirmButtonText: 'YES'
+		confirmButtonText: '탈퇴',
+		cancelButtonText: '취소'
 	}).then((result) => {
 		if (result.isConfirmed) {
 			fetch(`/group/groupout`, {

@@ -11,16 +11,18 @@
 }
 
 .suggestions {
+	background-color: #FFFFFF;
 	margin: 0;
 	padding: 0;
 	position: relative;
+	width: fit-content !important;
 }
 
 .suggestions li {
 	background: white;
 	cursor: pointer;
 	list-style: none;
-	margin: 0;
+	margin: 0 !important;
 	text-transform: capitalize;
 	transition: background 0.2s;
 	width: 100px !important;

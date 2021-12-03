@@ -74,17 +74,17 @@
 															<c:choose>
 																<c:when test="${group.photo_name eq null}">
 																	<img id="profile_permission"
-																		src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
+																		 src="${pageContext.request.contextPath}/resources/assets/img/photo_null.png">
 																</c:when>
-																<c:when test="${fn:contains(photo_name, 'kakao')}">
+																<c:when test="${fn:contains(group.photo_name, 'kakao')}">
 																	<a
-																		href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
-																		<img id="profile_img"
-																			src="${group.photo_name}" /></a>
+																			href="${pageContext.request.contextPath}/member/myPage?member_id=${member_id}">
+																		<img id="profile_permission"
+																			 src="${group.photo_name}"/></a>
 																</c:when>
 																<c:otherwise>
 																	<img id="profile_permission"
-																		src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}" />
+																		 src="https://intobox.s3.ap-northeast-2.amazonaws.com/profile${group.photo_name}"/>
 																</c:otherwise>
 															</c:choose>
 														</td>

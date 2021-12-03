@@ -146,14 +146,15 @@ outBtn.forEach(function (item) {
 				};
 				
 				Swal.fire({
-						title: `${member_id}님을 그룹에서 추방하시겠습니까?`,
-						text: "강퇴된 회원은 박스를 볼 수 없습니다.",
-						icon: 'warning',
-						showCancelButton: true,
-						confirmButtonColor: '#3085D6',
-						cancelButtonColor: '#DD3333',
-						confirmButtonText: 'YES'
-					}).then((result) => {
+					title: `${member_id}님을 그룹에서 내보내시겠습니까?`,
+					text: "강퇴된 회원은 박스를 볼 수 없습니다.",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085D6',
+					cancelButtonColor: '#DD3333',
+					confirmButtonText: '추방',
+					cancelButtonText: '취소'
+				}).then((result) => {
 						if (result.isConfirmed) {
 									fetch(`/group/groupout`, {
 										method: 'POST',
