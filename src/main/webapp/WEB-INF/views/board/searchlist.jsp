@@ -52,7 +52,7 @@
 				<form id="searchForm" action="/board/searchlist" method='get'>
 
 					<input onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" class="search" type='text'
-						   name='keyword' placeholder="Search everything"
+						   name='keyword' placeholder="키워드 입력"
 						   value='<c:out value="${pageMaker.cri.keyword}"/>'/>
 
 					<input type='hidden' name='currPage' value='${pageMaker.cri.currPage}'>

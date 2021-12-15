@@ -140,6 +140,7 @@ li {
 .search_pc {
 	display: flex;
 	justify-content: flex-end;
+	padding-right: 10px;
 }
 @media screen and ( max-width: 767px){
 	.search_pc {
@@ -159,9 +160,10 @@ li {
 	border-radius: 40px;
 	box-sizing: border-box;
 
-	height: 30px;
+	height: 37px;
 	margin-left: 20px;
 	width: 160px;
+	padding-left: 10px;
 }
 
 /* @media screen and ( max-width: 767px){
@@ -182,8 +184,8 @@ li {
 
 	box-shadow: inset 0px 5px 10px rgba(149, 149, 149, 0.2);
 	color: #FFFFFF;
-	height: 30px;
-	width: 75px;
+	height: 37px;
+	min-width: 75px;
 	margin-left: 10px;
 }
 
@@ -241,6 +243,7 @@ li {
 .notice {
 	font-size: 16px;
 	overflow: hidden;
+	width: 100%;
 }
 
 @media screen and ( max-width: 767px){
@@ -275,7 +278,7 @@ li {
 	border: none;
 	border: 1px solid #5A95F5;
 	border-radius: 24px;
-	bottom: 20px;
+	bottom: 0px;
 	color: #5A95F5;
 	height: 30px;
 	margin: 0 auto;
