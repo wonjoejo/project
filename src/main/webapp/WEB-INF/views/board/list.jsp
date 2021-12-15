@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=6">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=7">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 </head>

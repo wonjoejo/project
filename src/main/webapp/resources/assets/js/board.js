@@ -35,7 +35,7 @@ $('form').on('submit',function(e){
 	}
 });
 	
-//검색 
+//검색 alert , 첫페이지로 이동 
 let searchForm = $("#searchForm");
 
 $("#searchForm button").on("click", function(e) {
@@ -97,7 +97,7 @@ $('#addBtn').click(function () {
       formObj.submit();
     }); //onclick*/
     
-//삭제버튼 
+//삭제버튼 --> admin 
 $('#deleteBtn').on('click',function(e){
       
 	Swal.fire({
@@ -130,7 +130,7 @@ $('#deleteBtn').on('click',function(e){
       formObj.submit();
     }); //onclick */
     
-//답글 삭제 버튼 
+//답글 삭제 버튼 --> 로그인한 아이디 회원 
 $('#replydeleteBtn').on('click',function(e){
       
 	Swal.fire({
@@ -145,7 +145,7 @@ $('#replydeleteBtn').on('click',function(e){
 	  if (result.value) {
 		var formObj = $('form');
  	      formObj.attr('method', 'POST');
- 	      formObj.attr('action', '/board/alldelete');
+ 	      formObj.attr('action', '/board/alldelete'); // 본글 답글 전체삭제 
  	     formObj.submit();
 	  }
 	})
@@ -186,7 +186,7 @@ $('#writeBtn').on('click', function () {
   console.log('onclicked on writeBtn...');
 
  self.location = `/board/write?board_idx=${board_idx}&currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
-});
+});//onclick
 
 //답글 완료 alert
 $('.writeBtn').click(function () {
@@ -201,30 +201,30 @@ $('.writeBtn').click(function () {
 		  icon: 'success',
 		  title: '글 등록 완료'
 		})
- }); //onclick*/
+ }); //onclick
 
 // 공지 등록 버튼을 마우스로 클릭하면, 이벤트 핸들러가 발생한다
 $('#noticewriteBtn').on('click', function () {
   console.log('onclicked on noticewriteBtn...');
 
    self.location = `/board/noticewrite?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
-});
+});//onclick
 
 //공지리스트로 돌아가기 버튼 
 $('#noticepagelistBtn').click(function () {
   console.log('click event triggered..');
 
   self.location = `/board/noticePage?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
-}); //onclick   
+}); //click   
 
 //q&a 리스트로 돌아가기 
 $('#noticelistBtn').click(function () {
   console.log('click event triggered..');
 
   self.location = `/board/listPerPage?currPage=${currPage}&amount=${amount}&pagesPerPage=${pagesPerPage}`;
-}); //onclick    
+}); //click    
 
-//페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+//전체 게시글 목록 페이징 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
 $('a.prev, a.next').on('click',function(e){
     e.preventDefault();
 
@@ -238,9 +238,9 @@ $('a.prev, a.next').on('click',function(e){
     paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
 
     paginationForm.submit();
-});  
+});//onclick 
     
-//공지사항 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+//공지사항 페이징 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
 $('a.prev, a.next').on('click',function(e){
     e.preventDefault();
 
@@ -254,9 +254,9 @@ $('a.prev, a.next').on('click',function(e){
     paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
 
     paginationForm.submit();
-});  
+});//onclick 
         
-//검색 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
+//검색 리스트 페이징 : 페이지네이션에서, prev/next 클릭시 , 제대로 이동하도록 처리 
 $('a.prev, a.next').on('click',function(e){
     e.preventDefault();
 
@@ -270,7 +270,7 @@ $('a.prev, a.next').on('click',function(e){
     paginationForm.find('input[name=pagesPerPage]').val('${pageMaker.cri.pagesPerPage}');
 
     paginationForm.submit();
-});   
+});//onclick 
 
 }); //.jq
 

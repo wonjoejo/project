@@ -10,7 +10,7 @@ import com.wonjoejo.myapp.domain.Criteria;
 public interface BoardService {
 	
 	//전체 게시물의 목록조회 
-    public abstract List<BoardVO> getList();
+    //public abstract List<BoardVO> getList();
     
     //게시물 페이지 
     public abstract List<BoardVO> getListPerPage(Criteria cri);
@@ -56,17 +56,17 @@ public interface BoardService {
 
 	//답글 목록
     public abstract List<BoardVO> getreplyList(Criteria cri);
-    
-    //검색 목록 
-    public abstract List<BoardVO> getsearchPage(Criteria cri);
-    
-    //검색 총 레코드 개수 반환 
-    public abstract Integer getsearchTotal(Criteria cri);
 
 	//본인 답글 상세보기 
     public abstract List<BoardVO> replydetail(Integer board_idx,@Param("ref") Integer ref, @Param("member_id")String member_id, @Param("depth") Integer depth);
 
 	//답글 답글, 본글 삭제 
     public abstract boolean alldelete(Integer board_idx,Integer ref);
+    
+    //검색 목록 
+    public abstract List<BoardVO> getsearchPage(Criteria cri);
+    
+    //검색 총 레코드 개수 반환 
+    public abstract Integer getsearchTotal(Criteria cri);
 	
 }//end interface

@@ -113,17 +113,17 @@
 
 <script>
 	const ref = ${board.ref};
-		const title = '${board.title}';
-		const member_id ='${board.member_id}';
-		
-		const board_idx = ${board.board_idx};
-		
-		const currPage = ${cri.currPage};
-		const amount = ${cri.amount};
-		const pagesPerPage = ${cri.pagesPerPage};
-    </script> 
+	const title = '${board.title}';
+	const member_id ='${board.member_id}';
+	
+	const board_idx = ${board.board_idx};
+	
+	const currPage = ${cri.currPage};
+	const amount = ${cri.amount};
+	const pagesPerPage = ${cri.pagesPerPage};
+</script> 
     
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=54"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/js/board.js?ver=54"></script>
     
 </html>
 

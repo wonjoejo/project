@@ -30,11 +30,11 @@ public class BoardServiceImpl
 
 	
     //게시물 목록 
-    @Override
-	public List<BoardVO> getList() {
-		log.debug(" getList({}) invoked.");
-		return this.mapper.getList();
-	}//getList
+//    @Override
+//	public List<BoardVO> getList() {
+//		log.debug(" getList({}) invoked.");
+//		return this.mapper.getList();
+//	}//getList
 
     
     //게시물 상세보기 
@@ -85,24 +85,24 @@ public class BoardServiceImpl
 	}//write
 	
 	//게시물 페이지 
-		@Override
-		public List<BoardVO> getListPerPage(Criteria cri) {
-			log.debug("getListPerPage({}) invoked.",cri);
-			
-			List<BoardVO> list = this.mapper.getListWithPaging(cri);
-			log.info("\t+ list size:{} ",list.size());
-			
-			return list;
-		}//getListPerPage
+	@Override
+	public List<BoardVO> getListPerPage(Criteria cri) {
+		log.debug("getListPerPage({}) invoked.",cri);
 		
+		List<BoardVO> list = this.mapper.getListWithPaging(cri);
+		log.info("\t+ list size:{} ",list.size());
 		
-		//총 레코드 개수 반환 
-		@Override
-		public Integer getTotal() {
-			log.debug("getTotal() invoked.");
-			
-			return this.mapper.getTotalCount();
-		}//getTotal
+		return list;
+	}//getListPerPage
+	
+	
+	//총 레코드 개수 반환 
+	@Override
+	public Integer getTotal() {
+		log.debug("getTotal() invoked.");
+		
+		return this.mapper.getTotalCount();
+	}//getTotal
 
 	
 	//게시물 답글 작성 
@@ -114,7 +114,7 @@ public class BoardServiceImpl
 		log.info("\t+ affectedRows: {}", affectedRows);
 
 		return affectedRows==1;
-	}
+	}//writeReply
 
 	
 	//공지사항 리스트  
@@ -122,7 +122,7 @@ public class BoardServiceImpl
 	public List<BoardVO> getnoticeList(Criteria cri) {
 		log.debug("getnoticeList({}) invoked.");
 		return this.mapper.getnoticeList();
-	}
+	}//getnoticeList
 
 	//공지사항 페이징 
 	@Override
@@ -133,14 +133,14 @@ public class BoardServiceImpl
 		log.info("\t+ list size:{} ",list.size());
 		
 		return list;
-	}
+	}//getnoticePage
 	
 	//공지사항 페이지 총 게시물 수 
 	@Override
 	public Integer getnoticeTotal() {
 		log.debug("getTotal() invoked.");	
 		return this.mapper.getNoticeCount();
-	}
+	}//getnoticeTotal
 
 	//공지사항 작성 
 	@Override
@@ -151,7 +151,7 @@ public class BoardServiceImpl
 		log.info("\t+ affectedRows: {}", affectedRows);
 		
 		return affectedRows==1;
-	}
+	}//noticeWrite
 	
 	//공지사항 상세보기 
 	@Override
@@ -227,7 +227,7 @@ public class BoardServiceImpl
 		log.info("\t+ board: {}", board);
 		
 		return board;
-	}
+	}//replydetail
 
 	//답글 본글 전체 삭제 
 	@Override
@@ -238,7 +238,7 @@ public class BoardServiceImpl
 		log.info("\t+ affectedRows: {}", affectedRows);
 		
 		return affectedRows==1;	
-	}
+	}//alldelete
 	
 	@Override
 	public void destroy() throws Exception {

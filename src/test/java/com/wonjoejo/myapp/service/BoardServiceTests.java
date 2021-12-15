@@ -46,16 +46,16 @@ public class BoardServiceTests {
 
     }//setup
 
-    @Test(timeout=1000)
-    public void testGetList() {
-        log.debug("testGet() invoked.");
-
-        List<BoardVO> board = this.service.getList();
-
-        assert board != null;
-
-        board.forEach(log::info);
-    }//testGetList
+//    @Test(timeout=1000)
+//    public void testGetList() {
+//        log.debug("testGet() invoked.");
+//
+//        List<BoardVO> board = this.service.getList();
+//
+//        assert board != null;
+//
+//        board.forEach(log::info);
+//    }//testGetList
     
     @Test(timeout=1000)
 	public void testGetListPerPage() {

@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/a959489452.js" crossorigin="anonymous"></script>
 
     <!-- stylesheets -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=3">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/board.css?ver=4">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/pagination.css?ver=2">
 
 </head>

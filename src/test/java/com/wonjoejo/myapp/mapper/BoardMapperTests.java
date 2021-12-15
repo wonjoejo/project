@@ -43,14 +43,14 @@ public class BoardMapperTests {
 
     
     //게시물 목록 조회 
-    @Test
-    public void testGetList() {
-        log.debug("testGetList() invoked.");
-
-        List<BoardVO> list = this.mapper.getList();
-        list.forEach(log::info); //람다식과 메소드 참조라는 것을 알아야한다
-
-    }//testGetList
+//    @Test
+//    public void testGetList() {
+//        log.debug("testGetList() invoked.");
+//
+//        List<BoardVO> list = this.mapper.getList();
+//        list.forEach(log::info); //람다식과 메소드 참조라는 것을 알아야한다
+//
+//    }//testGetList
     
     
     //페이징 처리된 게시판 목록조회

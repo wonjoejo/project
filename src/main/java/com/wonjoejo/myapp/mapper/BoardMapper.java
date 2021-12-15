@@ -10,7 +10,7 @@ import com.wonjoejo.myapp.domain.Criteria;
 public interface BoardMapper {
 	
 	//게시판 목록조회  
-	public abstract List<BoardVO> getList(); 
+	//public abstract List<BoardVO> getList(); 
 	
 	//페이징 처리된 게시판 목록조회 
 	public abstract List<BoardVO> getListWithPaging(Criteria cri);
@@ -63,15 +63,16 @@ public interface BoardMapper {
 	//답글 목록  
 	public abstract List<BoardVO> getreplyList(Criteria cri); 
 	
-	//검색    
-	public abstract List<BoardVO> getsearchPage(Criteria cri);
-	
-	//총 게시물 개수를 반환 
-	public abstract Integer getSearchCount(Criteria cri);
-	
 	//본인 답글 상세보기 
 	public abstract List<BoardVO> replyread(Integer board_idx,@Param("ref") Integer ref, @Param("member_id") String member_id, @Param("depth") Integer depth);
 
 	//답글 본글, 답글 전체 삭제 
 	public abstract Integer alldelete(Integer board_idx,Integer ref);
+	
+	//검색    
+	public abstract List<BoardVO> getsearchPage(Criteria cri);
+	
+	//검색 총 게시물 개수를 반환 
+	public abstract Integer getSearchCount(Criteria cri);
+	
 }//end interface

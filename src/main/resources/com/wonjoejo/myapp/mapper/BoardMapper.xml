@@ -78,7 +78,7 @@
         ]]>
     </select>
     
-    <!-- 게시판 목록조회 -->
+    <!-- 게시판 목록조회 
     <select id="getList" resultType="com.wonjoejo.myapp.domain.BoardVO">
         <![CDATA[ 
             SELECT
@@ -86,7 +86,7 @@
             FROM qna_board WHERE notice=0
             
         ]]>
-    </select>
+    </select>-->
     
     <!-- 페이징 처리된 게시판 목록조회 -->
     <select id="getListWithPaging" resultType="com.wonjoejo.myapp.domain.BoardVO">     
@@ -137,7 +137,7 @@
         DELETE FROM qna_board WHERE board_idx=#{board_idx}
     </delete>
     
-    <!-- 게시글 삭제 -->
+    <!-- 게시글 전체 삭제 -->
     <delete id="alldelete">
         DELETE FROM qna_board WHERE ref=#{ref}
     </delete>  

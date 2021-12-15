@@ -35,6 +35,7 @@ public class BoardController {
   			@ModelAttribute("cri") Criteria cri, 
   			Model model, HttpServletRequest req) {	
   		
+  		//member_id session으로 불러오기 
   		HttpSession session = req.getSession();
      	
      	String member_id = (String)session.getAttribute("member_id");
@@ -50,11 +51,11 @@ public class BoardController {
   		model.addAttribute("member_id",member_id);
   		model.addAttribute("list",list);
   		
+  		//noticeList 
   		List<BoardVO> noticeList = this.service.getnoticeList(cri);
   		log.info("\t+ list size:{}",list.size());
   		
-  		model.addAttribute("noticeList",noticeList);
-  		
+  		model.addAttribute("noticeList",noticeList);  		
   		
   		//--------------------------------------------//
   		//여기서부터 , 페이징 처리를 위한 모든 항목을 계산하도록 한다 
@@ -69,7 +70,7 @@ public class BoardController {
   		return "/board/list";
   	}//listPerPage
     
-    //특정 게시물 상세조회 화면 요청 > admin일때 
+    //게시글 상세조회 화면 요청 --> "admin"일때 board_idx로 이동 (모든 글 상세보기, 수정가능)
     @GetMapping({"/detail","/edit"})
     public void boarddetail(@ModelAttribute("cri") Criteria cri, Integer board_idx, Model model, HttpServletRequest req) {
     	
@@ -86,9 +87,9 @@ public class BoardController {
 		
 		model.addAttribute("member_id",member_id);
 		model.addAttribute("board", board);
-    }//boarddetail
+    }//detail, edit
     
-    //답글 상세조회 화면 요청 > 일반 회원 로그인 시
+    //본인글, 본인글의 답글 상세조회 화면 요청 --> "일반 회원" 로그인 했을때 (본인글, 본인글의 답글만 상세보기 가능) 
     @GetMapping("/replydetail")
     public String replydetail(@ModelAttribute("cri") Criteria cri, Integer board_idx ,@ModelAttribute("ref") String ref, @ModelAttribute("depth") String depth, Model model, HttpServletRequest req, RedirectAttributes rttrs) {
     	
@@ -106,19 +107,23 @@ public class BoardController {
     	String writerId = list.get(0).getMember_id(); // 질문글 쓴 ID
     	Integer depthNo = Integer.parseInt(depth);
     	
-    	//xml 에서 order by 해준걸로 본인글 = 0 / 답글 = 1  
+    	//sql문에서 order by 해서 본인글 = 0 / 답글 = 1  
+    	
+    	//본인글이거나 member_id가 admin 계정인 경우 
     	if(depthNo==0 && (writerId.equals(member_id) || member_id.equals("admin"))) {
     		model.addAttribute("member_id",member_id);
 			model.addAttribute("board", list.get(0));
 			
 			return "/board/replydetail";
-			
+		
+		//본인글의 답글이거나 member_id가 admin 계정인 경우 	
     	} else if (depthNo==1 && (writerId.equals(member_id) || member_id.equals("admin"))) {
     		model.addAttribute("member_id",member_id);
 			model.addAttribute("board", list.get(1));
 			
 			return "/board/replydetail";
-			
+		
+		//본인 작성글 & 답글 아닐 경우 
     	} else {
     		rttrs.addAttribute("member_id",member_id);
 
@@ -131,7 +136,7 @@ public class BoardController {
     	
     }//replydetail
     
-    //게시물 삭제 
+    //게시글 삭제 
     @PostMapping("/delete")
     public String delete(@ModelAttribute("board_idx") Integer board_idx, 
 			RedirectAttributes rttrs)  
@@ -144,7 +149,7 @@ public class BoardController {
 		return "redirect:/board/listPerPage";		
 	}//delete
     
-    //게시물 수정 
+    //게시글 수정 
     @PostMapping("/edit")
 	public String edit(BoardDTO board,RedirectAttributes rttrs) { 
 		log.debug("edit({}) invoked.",board);
@@ -184,7 +189,7 @@ public class BoardController {
 		
 		model.addAttribute("member_id",member_id);
 		
-	}//register
+	}//write
     
     //게시글 작성 POST
     @PostMapping("/write")
@@ -295,7 +300,7 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
 		model.addAttribute("member_id",member_id);
-    }
+    }//noticedetail
     
     
     //-------- 답글 ----------------------------------------//
