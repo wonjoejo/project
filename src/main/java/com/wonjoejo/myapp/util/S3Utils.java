@@ -33,8 +33,8 @@ public class S3Utils {
     final private AmazonS3 conn;
 
 //    String bucketName = "intobox";
-    String accessKey = "";
-    String secretKey = "";
+    String accessKey = "AKIAZN6DLURIWUIJVJWL";
+    String secretKey = "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";
 
     public S3Utils() {
         AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
@@ -54,7 +54,7 @@ public class S3Utils {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(fileData); //파일 넣음
 
         conn.putObject(bucketName, filePath, byteArrayInputStream, metaData);
-
+        // 이게 실제로 S3에 올라가는 코드
     }
 
     // 파일 삭제

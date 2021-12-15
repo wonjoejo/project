@@ -18,6 +18,7 @@ public class UploadFileUtils {
         //랜덤의 uid 를 만들어준다.
         UUID uid = UUID.randomUUID();
 
+        //유효id -> 겹칠 일 없는
         //savedName : 570d570a-7af1-4afe-8ed5-391d660084b7_g.JPG 같은 형식으로 만들어준다.
         String savedName = "/" + uid.toString() + "_" + originalName;
         log.info("저장된 이름 : "+ savedName);
@@ -29,6 +30,7 @@ public class UploadFileUtils {
         String uploadedFileName = null;
 
         uploadedFileName = (savedPath + savedName).replace(File.separatorChar, '/');
+        // 2021/12/14/1231-dfsdf2-dfsf.jpg
         //S3Util 의 fileUpload 메서드로 파일을 업로드한다.
         s3.fileUpload(bucketName, uploadPath + uploadedFileName, byteData);
 
@@ -40,12 +42,14 @@ public class UploadFileUtils {
 
     }
 
+    // calcPath 폴더 날짜별로 만드는 함수 /2021/11/..
     private static String calcPath(String uploadPath) {
 
         Calendar cal = Calendar.getInstance();
 
         String yearPath = File.separator + cal.get(Calendar.YEAR);
 
+        // 01, 02 형식으로
         String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
 
         String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
