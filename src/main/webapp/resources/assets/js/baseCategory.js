@@ -254,7 +254,10 @@ deleteBtn.forEach(function (item, index) {
             preConfirm: function () {
                 return new Promise(function (resolve) {
 
+                    // 삭제 눌렀을 때 -> 클릭한 base category의 이름을 null로 바꿔줌
                     item.parentElement.previousElementSibling.value = "";
+
+                    // del-btn 몇인지 -> length에서 -1해줘서 불러옴
                     const selectedNum = item.classList[2].charAt(item.classList[2].length - 1);
                     console.log(document.getElementById('cate_name1').value);
 

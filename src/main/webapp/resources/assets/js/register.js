@@ -45,6 +45,7 @@ $(document).ready(function () {
       //show the next fieldset
       next_fs.show();
       //hide the current fieldset with style
+      // animate 효과 만들기
       current_fs.animate(
           {opacity: 0},
           {

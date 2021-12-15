@@ -40,7 +40,8 @@ public class KakaoController {
 
 @Setter(onMethod_ = {@Autowired})
 private MemberService service;
-	
+
+// 인가코드 받기
 @RequestMapping(value = "/login/getKakaoAuthUrl")
 	public @ResponseBody String getKakaoAuthUrl(
 			HttpServletRequest request) throws Exception {
@@ -66,7 +67,7 @@ private MemberService service;
         String access_Token = getAccessToken(code);
         System.out.println("###access_Token#### : " + access_Token);
         
-        
+
         HashMap<String, Object> userInfo = getUserInfo(access_Token);
         System.out.println("###access_Token#### : " + access_Token);
         System.out.println("###userInfo#### : " + userInfo.get("email"));
@@ -161,16 +162,17 @@ private MemberService service;
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            //  URL연결은 입출력에 사용 될 수 있고, POST 혹은 PUT 요청을 하려면 setDoOutput을 true로 설정해야함.
+            // URL연결은 입출력에 사용 될 수 있고, POST 혹은 PUT 요청을 하려면 setDoOutput을 true로 설정해야함
             conn.setRequestMethod("POST");
+            // URLConnection의 출력 스트림을 사용할지의 여부
             conn.setDoOutput(true);
 
-            //	POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+            // POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=00ef15c831025dec2d6369d13510dee5");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:8090/login/oauth_kakao");     // 본인이 설정해 놓은 경로
+            sb.append("&client_id=00ef15c831025dec2d6369d13510dee5");  // 발급받은 key
+            sb.append("&redirect_uri=http://localhost:8090/login/oauth_kakao");     // redirect 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
@@ -184,11 +186,12 @@ private MemberService service;
             String line = "";
             String result = "";
 
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) { // readLine은 string으로 타입 고정
                 result += line;
             }
             System.out.println("response body : " + result);
 
+            // JSON객체 파싱에 유용한 Gson 라이브러리 활용
             // Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
