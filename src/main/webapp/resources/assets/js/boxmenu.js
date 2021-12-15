@@ -64,6 +64,7 @@ joinGroupBtn.addEventListener("click", function (e) {
 					})
 					.then(data => {
 						console.log(data);
+						// true, false
 						const bodyData = {
 							box_no: box_no,
 							member_id: memberId
@@ -81,6 +82,7 @@ joinGroupBtn.addEventListener("click", function (e) {
 								})
 								.then(data2 => {
 									console.log(data2);
+									// /box/list or false
 									if (data2 === "false") {
 										resolve('일치 하는 박스가 없습니다')
 									} else {

@@ -17,6 +17,7 @@ fetch("/group/json", {
 }).then((response) => response.json())
 	.then((data) => {
 		members.push(...data);
+		// [ 춘시기, 2jojoa ]
 
 		memo.addEventListener("keyup", (e) => {
 			const keyCode = e.keyCode;
@@ -26,14 +27,14 @@ fetch("/group/json", {
 			}
 
 			for (let i = 0; i < mentions.length + 1; i++) {
-				mentions.pop()
+				mentions.pop();
 			}
 
 			if (memo.value.indexOf('@') === -1) {
 				$('.suggestions').empty();
 			} // @가 없을 경우 결과창 지우기
 
-			if (keyCode === 8) {
+			if (keyCode === 8) { // 백스페이스 눌렀을 때 displayMatches 이벤트가 계속 발생하도록 함
 				let taggedIds = memo.value.replace(" ", "").split('@');
 				console.log(taggedIds);
 				mentions = taggedIds;
@@ -82,6 +83,7 @@ function displayMatches() {
 		})
 		.join("");
 	suggestions.innerHTML = html;
+	// 검색해서 표시되는거까지
 
 	clickName();
 
@@ -115,6 +117,8 @@ function clickName() {
 			console.log(memo.value);
 			if (memo.value !== "") {
 				memo.value = memo.value.substring(memo.value.length - 1, -1) + text;
+				console.log(memo.value.substring(memo.value.length - 1, -1));
+				// @는 이미 붙었기 때문에 기존 value값에서 @는 제외하고 그 다음부터 text를 붙여준다
 			} else {
 				memo.value = text;
 			}

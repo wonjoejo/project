@@ -66,8 +66,6 @@ public class ProductController {
 
     } // productListPerPage
 
-//    excel test
-
     @GetMapping("/excel")
     public void excelDownload(HttpServletResponse response, Integer box_no) throws IOException {
         log.info("excelDownload() invoked.");
@@ -92,7 +90,6 @@ public class ProductController {
         // header
         row = sheet.createRow(rowNum++);
         List<String> valueList = new ArrayList<>();
-//        valueList.add("NO.");
         valueList.add("물품명");
         valueList.add(baseCategory.getCate_name1());
         valueList.add(baseCategory.getCate_name2());
@@ -109,8 +106,10 @@ public class ProductController {
         for (int i = 0; i < valueList.size(); i++) {
             if (valueList.get(i) != null) {
                 listNo.add(i);
+                // 0 1 2 4 5 6
             } else if (valueList.get(i) == null) {
                 temp.add(i);
+                // 3
             }
         }
 
@@ -141,15 +140,22 @@ public class ProductController {
             values.add(sdf.format(product.getReg_date()));
         }
 
+        // [ 신라면컵라면, 2021-11-1, 20221-23-4, 상온, 종류, 3개, 메모, 샐러드, .... ]
+
 
         // 해시맵에 키 붙여서 넣어주기
         Map<String, String> cellValue = new HashMap<>();
         int num = 0;
+        // list -> 전체 product 값이 들어있는 productVO 리스트
+        // valueList -> 첫 행 값이 들어가있는 리스트
+        // values ->
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < valueList.size(); j++) {
                 cellValue.put(i + "_" + j, values.get(num++));
             } // j - for
         } // i - for
+        // 1_1
+        // cellValue 완성 ( "1_1", "신라면 컵라면" ) ( "1_2", "2021-11-1" )
 
 
         // valueList = 가로 cellValue = 해시맵
@@ -164,7 +170,9 @@ public class ProductController {
                 if (!temp.contains(j)) {
                     String key = i + "_" + j;
                     cell = row.createCell(column++);
+                    // cell 자체를 만드는 함수
                     cell.setCellValue(cellValue.get(key));
+                    // 만든 cell 안에 key값 (1_1)으로 value를 찾아서 값을 삽입
                 }
             }
         }
@@ -443,8 +451,6 @@ public class ProductController {
 
         rttrs.addAttribute("box_no", product.getBox_no());
 
-        // comment 삭제 넣어야 함!!!!
-
         // category 삭제
         boolean result1 = this.service.deleteCategory(product_no);
         log.info("\t +result1(Category): {}", result1);
@@ -479,6 +485,4 @@ public class ProductController {
 
         return gson.toJson(list);
     } // searchProduct
-
-
 } // end class

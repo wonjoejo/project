@@ -42,6 +42,7 @@ if (images != null) {
 			console.log(this.src);
 
 			let result = this.src.split("default/");
+			console.log(result);
 			defaultPath.setAttribute("value", "default/")
 			defaultName.setAttribute("value", result[1]);
 		});

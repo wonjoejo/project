@@ -375,6 +375,7 @@ public class BoxController {
         Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
 
         BoxPermissionVO vo = this.service.findGroupMember(member_id, box_no);
+        // 이미 BoxPermission table에 이 회원이 있는지... 찾음
 
         boolean result = false;
 
@@ -384,6 +385,7 @@ public class BoxController {
         } else {
             result = this.service.joinBox(member_id, box_no);
         }
+        // 실제 참여하는 코드
 
         log.info("\t +result: {}", result);
 
@@ -405,7 +407,6 @@ public class BoxController {
             log.info("\t+ member_id: {}", member.getMember_id());
             if (member_id.equals(member.getMember_id())) {
                 return "false";
-                // alert 띄우고 싶은데...
             } else {
                 break;
             } // if-else

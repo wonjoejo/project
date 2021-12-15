@@ -245,6 +245,6 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath}/resources/assets/js/productEdit.js?ver=4"></script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=4"></script>
+        src="${pageContext.request.contextPath}/resources/assets/js/mention.js?ver=5"></script>
 
 </html>

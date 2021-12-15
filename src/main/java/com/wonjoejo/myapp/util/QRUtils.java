@@ -23,7 +23,7 @@ public class QRUtils {
         BitMatrix bitMatrix = null;
         MatrixToImageConfig matrixToImageConfig = null;
         // QRCode에 담고 싶은 정보를 문자열로 표시한다. url이든 뭐든 가능하다.
-        String codeInformation = "https://f6b5-221-148-138-144.ngrok.io/product/detail?product_no=" + product_no + "&box_no=" + box_no;
+        String codeInformation = "https://cfa6-121-165-185-26.ngrok.io/product/detail?product_no=" + product_no + "&box_no=" + box_no;
 
         // 큐알코드 바코드 및 배경 색상값
         int onColor = 0xFF2e4e96; // 바코드 색

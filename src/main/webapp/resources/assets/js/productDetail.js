@@ -85,6 +85,7 @@ function getCommentList() {
 
 					if (this.comment_content.indexOf('@') !== -1) {
 						const list = this.comment_content.split(' ');
+						console.log(list);
 						for (let i = 0; i < list.length; i++) {
 							if (list[i].startsWith('@')) {
 								comments += '<span class="mention detailbtn" data-bs-toggle="modal" data-bs-target="#memberModal" id="' + list[i].substring(1) + '">' + list[i] + '</span>';
