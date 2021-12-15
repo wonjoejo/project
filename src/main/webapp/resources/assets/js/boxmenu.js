@@ -86,6 +86,7 @@ joinGroupBtn.addEventListener("click", function (e) {
 								})
 								.then(data2 => {
 									console.log(data2);
+									// /box/list or false
 									if (data2 === "false") {
 										resolve('일치 하는 박스가 없습니다')
 									} else {

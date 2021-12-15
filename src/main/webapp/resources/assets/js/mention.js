@@ -17,6 +17,7 @@ fetch("/group/json", {
 }).then((response) => response.json())
 	.then((data) => {
 		members.push(...data);
+		// [ 춘시기, 2jojoa ]
 
 		memo.addEventListener("keyup", (e) => {
 			const keyCode = e.keyCode; // e.keyCode 어떤 key를 눌렀는지 찾아올 수 있음
@@ -26,14 +27,14 @@ fetch("/group/json", {
 			}
 
 			for (let i = 0; i < mentions.length + 1; i++) {
-				mentions.pop()
+				mentions.pop();
 			}
 
 			if (memo.value.indexOf('@') === -1) {
 				$('.suggestions').empty();
 			} // @가 없을 경우 결과창 지우기
 
-			// 백스페이스 눌렀을 때 다른 suggestions 추천해줘야 함
+			// 백스페이스 눌렀을 때 다른 suggestions 추천해줘야 함 (displayMatches 이벤트가 계속 발생하도록 함)
 			if (keyCode === 8) {
 				let taggedIds = memo.value.replace(" ", "").split('@');
 				console.log(taggedIds);

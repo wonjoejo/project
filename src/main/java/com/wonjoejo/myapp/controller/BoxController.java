@@ -378,6 +378,7 @@ public class BoxController {
 
         // 박스 탈퇴 했을 때 다시 박스 가입할 수 있게
         BoxPermissionVO vo = this.service.findGroupMember(member_id, box_no);
+        // 이미 BoxPermission table에 이 회원이 있는지... 찾음
 
         boolean result = false;
 
@@ -387,6 +388,7 @@ public class BoxController {
         } else {
             result = this.service.joinBox(member_id, box_no);
         }
+        // 실제 참여하는 코드
 
         log.info("\t +result: {}", result);
 

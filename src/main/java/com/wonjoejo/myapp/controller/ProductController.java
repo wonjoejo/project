@@ -66,8 +66,6 @@ public class ProductController {
 
     } // productListPerPage
 
-//    excel test
-
     @GetMapping("/excel")
     public void excelDownload(HttpServletResponse response, Integer box_no) throws IOException {
         log.info("excelDownload() invoked.");
@@ -93,7 +91,6 @@ public class ProductController {
         row = sheet.createRow(rowNum++);
         //첫 행
         List<String> valueList = new ArrayList<>();
-//        valueList.add("NO.");
         valueList.add("물품명");
         valueList.add(baseCategory.getCate_name1());
         valueList.add(baseCategory.getCate_name2());
@@ -113,8 +110,10 @@ public class ProductController {
         for (int i = 0; i < valueList.size(); i++) {
             if (valueList.get(i) != null) {
                 listNo.add(i);
+                // 0 1 2 4 5 6
             } else if (valueList.get(i) == null) {
                 temp.add(i);
+                // 3
             }
         }
 
@@ -148,10 +147,15 @@ public class ProductController {
             values.add(sdf.format(product.getReg_date()));
         }
 
+        // [ 신라면컵라면, 2021-11-1, 20221-23-4, 상온, 종류, 3개, 메모, 샐러드, .... ]
+
 
         // 해시맵에 키 붙여서 넣어주기
         Map<String, String> cellValue = new HashMap<>();
         int num = 0;
+        // list -> 전체 product 값이 들어있는 productVO 리스트
+        // valueList -> 첫 행 값이 들어가있는 리스트
+        // values ->
         for (int i = 0; i < list.size(); i++) { // 맨 처음에 불러온 전체 product값 들어있는 productVO list
             for (int j = 0; j < valueList.size(); j++) { // 첫 행(제목) 값이 들어가 있는 list
                 cellValue.put(i + "_" + j, values.get(num++)); // 1-1의 values는 productVO를 위에 for문 돌려서 string으로 넣어준 것
@@ -456,8 +460,6 @@ public class ProductController {
 
         rttrs.addAttribute("box_no", product.getBox_no());
 
-        // comment 삭제 넣어야 함!!!!
-
         // category 삭제
         boolean result1 = this.service.deleteCategory(product_no);
         log.info("\t +result1(Category): {}", result1);
@@ -492,6 +494,4 @@ public class ProductController {
 
         return gson.toJson(list);
     } // searchProduct
-
-
 } // end class

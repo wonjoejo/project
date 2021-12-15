@@ -29,6 +29,7 @@ public class UploadFileUtils {
         String uploadedFileName = null;
 
         uploadedFileName = (savedPath + savedName).replace(File.separatorChar, '/');
+        // 2021/12/14/uuid_filename.jpg
         //S3Util 의 fileUpload 메서드로 파일을 업로드한다.
         s3.fileUpload(bucketName, uploadPath + uploadedFileName, byteData);
 
@@ -46,6 +47,7 @@ public class UploadFileUtils {
 
         String yearPath = File.separator + cal.get(Calendar.YEAR);
 
+        //01 02
         String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
 
         String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));

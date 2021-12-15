@@ -73,6 +73,7 @@ public class GroupController {
 		Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
 
 		List<MemberVO> list = this.service.selectGroupMemberList(box_no);
+		// 그룹원들 리스트
 
 		Gson gson = new Gson();
 		String result = gson.toJson(list);

@@ -86,6 +86,7 @@ function getCommentList() {
 					if (this.comment_content.indexOf('@') !== -1) {
 						// 공백 기준으로 단어 자르기
 						const list = this.comment_content.split(' ');
+						console.log(list);
 						for (let i = 0; i < list.length; i++) {
 							if (list[i].startsWith('@')) {
 								// class 따로 줘서 css도 따로 적용되도록
