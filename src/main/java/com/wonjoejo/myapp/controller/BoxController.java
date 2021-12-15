@@ -260,6 +260,8 @@ public class BoxController {
             log.info("\t +result: {}", result);
             rttrs.addAttribute("result", result);
         } else if (box.getBox_photo_path().contains("default")) {
+            // path에 default 가 들어가있으면
+            // 사용자가 수정할 때 carousal 의 다른 사진을 클릭했다는 것 ..
 
             boxVO = new BoxVO(
                     box.getBox_no(),
@@ -374,6 +376,7 @@ public class BoxController {
         String member_id = element.getAsJsonObject().get("member_id").getAsString();
         Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
 
+        // 박스 탈퇴 했을 때 다시 박스 가입할 수 있게
         BoxPermissionVO vo = this.service.findGroupMember(member_id, box_no);
 
         boolean result = false;

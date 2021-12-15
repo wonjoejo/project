@@ -23,6 +23,7 @@ if (file != null) {
 }
 
 
+// 클릭할 때 마다 default 이미지
 let images = document.querySelectorAll(".default-img");
 let productPhoto = document.querySelector(".product-photo");
 let productPhotoEdit = document.querySelector(".product-photo-edit");
@@ -44,6 +45,8 @@ if (images != null) {
 
 			// default 기준으로 나누기
 			let result = this.src.split("default/");
+			console.log(result);
+
 			// path는 default로 -> 커스텀 이미지 넣을까봐 다시
 			defaultPath.setAttribute("value", "default/")
 			// result 배열의 첫번째를 가져오기

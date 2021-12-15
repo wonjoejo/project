@@ -48,8 +48,11 @@ joinGroupBtn.addEventListener("click", function (e) {
 		showCancelButton: true,
 		confirmButtonText: '제출',
 		cancelButtonText: '취소',
+
 		inputValidator: (box_no) => { // 비동기로 validate 한 번 확인
+      // input 이 맞았는지 틀렸는지 한번 걸러줌
 			return new Promise((resolve) => {
+        // promise -> fetch 랑 같이 자주 씀
 				fetch(`/box/check?box_no=${box_no}&member_id=${memberId}`) // check checkId로 보냈다가 그 리턴값을 받아오는 것
 					.then(response => { // then을 2번 해야 fetch가 데이터 받아올 수 있음
 						if (!response.ok) {

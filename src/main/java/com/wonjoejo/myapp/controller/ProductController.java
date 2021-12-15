@@ -106,7 +106,9 @@ public class ProductController {
 
         // 몇번째가 null인지 -> null이면 temp에 넣는다
         List<Integer> temp = new ArrayList<>();
+        // 몇번째가 null 인지..
         List<Integer> listNo = new ArrayList<>();
+
 
         for (int i = 0; i < valueList.size(); i++) {
             if (valueList.get(i) != null) {
@@ -167,6 +169,7 @@ public class ProductController {
             for (int j = 0; j < valueList.size(); j++) {
                 log.info("column값: {} / j 값: {}", column, j);
                 if (column > listNo.size() - 1) {
+                    // 컬럼 초기화..
                     column = 0;
                 }
                 if (!temp.contains(j)) {
