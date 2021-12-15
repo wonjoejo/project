@@ -48,10 +48,13 @@ joinGroupBtn.addEventListener("click", function (e) {
 		showCancelButton: true,
 		confirmButtonText: '제출',
 		cancelButtonText: '취소',
-		inputValidator: (box_no) => {
+
+		inputValidator: (box_no) => { // 비동기로 validate 한 번 확인
+      // input 이 맞았는지 틀렸는지 한번 걸러줌
 			return new Promise((resolve) => {
-				fetch(`/box/check?box_no=${box_no}&member_id=${memberId}`)
-					.then(response => {
+        // promise -> fetch 랑 같이 자주 씀
+				fetch(`/box/check?box_no=${box_no}&member_id=${memberId}`) // check checkId로 보냈다가 그 리턴값을 받아오는 것
+					.then(response => { // then을 2번 해야 fetch가 데이터 받아올 수 있음
 						if (!response.ok) {
 							throw new Error(response.statusText)
 						}
@@ -64,15 +67,16 @@ joinGroupBtn.addEventListener("click", function (e) {
 					})
 					.then(data => {
 						console.log(data);
-						// true, false
+						// 여기 data가 true or false
+						// json 객체
 						const bodyData = {
 							box_no: box_no,
-							member_id: memberId
+							member_id: memberId // 로그인한 id
 						}
 						if (data === true) {
 							fetch(`/box/join`, {
 								method: 'POST',
-								body: JSON.stringify(bodyData)
+								body: JSON.stringify(bodyData) // body에 string 밖에 못 들어가니까
 							})
 								.then(response2 => {
 									console.log(response2);
@@ -93,7 +97,7 @@ joinGroupBtn.addEventListener("click", function (e) {
 											showConfirmButton: false,
 										})
 										resolve()
-										location.href = `/box/list?member_id=${memberId}`;
+										location.href = `/box/list?member_id=${memberId}`; // redirect 대신
 									}
 								})
 						} else {

@@ -89,6 +89,7 @@ public class ProductController {
 
         // header
         row = sheet.createRow(rowNum++);
+        //첫 행
         List<String> valueList = new ArrayList<>();
         valueList.add("물품명");
         valueList.add(baseCategory.getCate_name1());
@@ -100,8 +101,11 @@ public class ProductController {
         valueList.add("메모");
         valueList.add("등록날짜");
 
+        // 몇번째가 null인지 -> null이면 temp에 넣는다
         List<Integer> temp = new ArrayList<>();
+        // 몇번째가 null 인지..
         List<Integer> listNo = new ArrayList<>();
+
 
         for (int i = 0; i < valueList.size(); i++) {
             if (valueList.get(i) != null) {
@@ -113,6 +117,7 @@ public class ProductController {
             }
         }
 
+        // listNo만큼! 빈칸없이 cell을 당겨서 만들어줌
         for (int i = 0; i < listNo.size(); i++) {
             cell = row.createCell(i);
             cell.setCellStyle(style);
@@ -125,6 +130,8 @@ public class ProductController {
 
         // 전체 밸류값 넣어줌
         List<String> values = new ArrayList<>();
+        // 현재 list -> listNo, values, temp 있음
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 
@@ -149,22 +156,24 @@ public class ProductController {
         // list -> 전체 product 값이 들어있는 productVO 리스트
         // valueList -> 첫 행 값이 들어가있는 리스트
         // values ->
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < valueList.size(); j++) {
-                cellValue.put(i + "_" + j, values.get(num++));
+        for (int i = 0; i < list.size(); i++) { // 맨 처음에 불러온 전체 product값 들어있는 productVO list
+            for (int j = 0; j < valueList.size(); j++) { // 첫 행(제목) 값이 들어가 있는 list
+                cellValue.put(i + "_" + j, values.get(num++)); // 1-1의 values는 productVO를 위에 for문 돌려서 string으로 넣어준 것
             } // j - for
         } // i - for
-        // 1_1
-        // cellValue 완성 ( "1_1", "신라면 컵라면" ) ( "1_2", "2021-11-1" )
-
+        // 1-1 a1에 뭐 넣고 이런식
+        // cellValue 완성 ( "1_1", "신라면 컵라면") ( "1_2", "2021-11-01" )이런식
 
         // valueList = 가로 cellValue = 해시맵
+        // 값 뿌려줘야 함
         int column = 0;
         for (int i = 0; i < cellValue.size(); i++) {
+            // 다음 열 만들기
             row = sheet.createRow(rowNum++);
             for (int j = 0; j < valueList.size(); j++) {
                 log.info("column값: {} / j 값: {}", column, j);
                 if (column > listNo.size() - 1) {
+                    // 컬럼 초기화..
                     column = 0;
                 }
                 if (!temp.contains(j)) {

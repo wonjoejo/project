@@ -74,7 +74,7 @@ public class BoxController {
         BoxVO boxVO;
 
         // 커스텀 이미지 업로드
-        if (file.getSize() != 0) {
+        if (file.getSize() != 0) { // 기본 이미지 안 올리기 위해서 if문
 
             // 여기서 함수 불러와서 데이터 넣어줌 (리턴값은 uploadDir 이하 경로 + 파일이름 (/2021/11/14/8c47bd18-b475-4849-beec-a0d3d4d0bd7a_29325736.jpg)
             String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
@@ -260,6 +260,8 @@ public class BoxController {
             log.info("\t +result: {}", result);
             rttrs.addAttribute("result", result);
         } else if (box.getBox_photo_path().contains("default")) {
+            // path에 default 가 들어가있으면
+            // 사용자가 수정할 때 carousal 의 다른 사진을 클릭했다는 것 ..
 
             boxVO = new BoxVO(
                     box.getBox_no(),
@@ -367,13 +369,14 @@ public class BoxController {
 
     @PostMapping("/join")
     @ResponseBody
-    public String joinGroup(@RequestBody String data) {
+    public String joinGroup(@RequestBody String data) { // 아까 stringify한 data
         log.debug("joinGroup({}) invoked.", data);
 
         JsonElement element = JsonParser.parseString(data);
         String member_id = element.getAsJsonObject().get("member_id").getAsString();
         Integer box_no = element.getAsJsonObject().get("box_no").getAsInt();
 
+        // 박스 탈퇴 했을 때 다시 박스 가입할 수 있게
         BoxPermissionVO vo = this.service.findGroupMember(member_id, box_no);
         // 이미 BoxPermission table에 이 회원이 있는지... 찾음
 
