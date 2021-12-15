@@ -91,6 +91,7 @@ public class ProductController {
 
         // header
         row = sheet.createRow(rowNum++);
+        //첫 행
         List<String> valueList = new ArrayList<>();
 //        valueList.add("NO.");
         valueList.add("물품명");
@@ -103,6 +104,7 @@ public class ProductController {
         valueList.add("메모");
         valueList.add("등록날짜");
 
+        // 몇번째가 null인지 -> null이면 temp에 넣는다
         List<Integer> temp = new ArrayList<>();
         // 몇번째가 null 인지..
         List<Integer> listNo = new ArrayList<>();
@@ -116,6 +118,7 @@ public class ProductController {
             }
         }
 
+        // listNo만큼! 빈칸없이 cell을 당겨서 만들어줌
         for (int i = 0; i < listNo.size(); i++) {
             cell = row.createCell(i);
             cell.setCellStyle(style);
@@ -128,6 +131,8 @@ public class ProductController {
 
         // 전체 밸류값 넣어줌
         List<String> values = new ArrayList<>();
+        // 현재 list -> listNo, values, temp 있음
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 
@@ -147,16 +152,19 @@ public class ProductController {
         // 해시맵에 키 붙여서 넣어주기
         Map<String, String> cellValue = new HashMap<>();
         int num = 0;
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < valueList.size(); j++) {
-                cellValue.put(i + "_" + j, values.get(num++));
+        for (int i = 0; i < list.size(); i++) { // 맨 처음에 불러온 전체 product값 들어있는 productVO list
+            for (int j = 0; j < valueList.size(); j++) { // 첫 행(제목) 값이 들어가 있는 list
+                cellValue.put(i + "_" + j, values.get(num++)); // 1-1의 values는 productVO를 위에 for문 돌려서 string으로 넣어준 것
             } // j - for
         } // i - for
-
+        // 1-1 a1에 뭐 넣고 이런식
+        // cellValue 완성 ( "1_1", "신라면 컵라면") ( "1_2", "2021-11-01" )이런식
 
         // valueList = 가로 cellValue = 해시맵
+        // 값 뿌려줘야 함
         int column = 0;
         for (int i = 0; i < cellValue.size(); i++) {
+            // 다음 열 만들기
             row = sheet.createRow(rowNum++);
             for (int j = 0; j < valueList.size(); j++) {
                 log.info("column값: {} / j 값: {}", column, j);
@@ -167,7 +175,9 @@ public class ProductController {
                 if (!temp.contains(j)) {
                     String key = i + "_" + j;
                     cell = row.createCell(column++);
+                    // cell 자체를 만드는 함수
                     cell.setCellValue(cellValue.get(key));
+                    // 만든 cell 안에 key값 (1_1)으로 value를 찾아서 값을 삽입
                 }
             }
         }

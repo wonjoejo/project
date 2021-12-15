@@ -19,7 +19,7 @@ fetch("/group/json", {
 		members.push(...data);
 
 		memo.addEventListener("keyup", (e) => {
-			const keyCode = e.keyCode;
+			const keyCode = e.keyCode; // e.keyCode 어떤 key를 눌렀는지 찾아올 수 있음
 			console.log("keyup");
 			if (keyCode === 50) { // @
 				memo.addEventListener("keyup", displayMatches);
@@ -33,6 +33,7 @@ fetch("/group/json", {
 				$('.suggestions').empty();
 			} // @가 없을 경우 결과창 지우기
 
+			// 백스페이스 눌렀을 때 다른 suggestions 추천해줘야 함
 			if (keyCode === 8) {
 				let taggedIds = memo.value.replace(" ", "").split('@');
 				console.log(taggedIds);
@@ -59,14 +60,17 @@ function findMatches(wordToMatch, members) {
 	});
 } //findMatches
 
+// 매칭되는 멤버 리스트 보여주는 함수
 function displayMatches() {
 	console.log("displayMatches");
 
+	// @ 제외하고 아이디 찾기
 	let tagedIds = this.value.replace(" ", "").split('@');
 
 	const matchArray = findMatches(tagedIds[tagedIds.length - 1], members);
 	console.log(matchArray);
 
+	// 옆에 해당하는 아이디 리스트 출력
 	const html = matchArray
 		.map((member) => {
 			const regex = new RegExp(tagedIds[tagedIds.length - 1], "gi");
@@ -82,6 +86,7 @@ function displayMatches() {
 		})
 		.join("");
 	suggestions.innerHTML = html;
+	// 검색해서 표시되는 것까지
 
 	clickName();
 
@@ -89,20 +94,25 @@ function displayMatches() {
 
 // 목록에서 선택 시 클릭한 id가 input 창에 반영
 function clickName() {
+	// 후보군 전체 불러오기
 	const names = document.querySelectorAll('.mention-id');
 	names.forEach(function (item) {
+		// click한 하나를 mentions 배열에 넣기
 		item.addEventListener('click', function (e) {
 			e.preventDefault();
 			console.log(item);
 			mentions.push(`${item.innerHTML}`);
 			let text = "";
 			console.log(mentions);
+
 			for (let i = 0; i < mentions.length; i++) {
 
+				// 처음 @ 했을 때 공백이 생겨서 없애기
 				if (mentions[i] === '') {
 					mentions.splice(i, 1);
 				}
 
+				// 값이 없으면 -1 반환
 				if (mentions[i].indexOf('@') === -1) {
 					text += `@${mentions[i]} `;
 				} else {
@@ -112,9 +122,10 @@ function clickName() {
 
 			}
 			console.log(text);
-			console.log(memo.value);
+			console.log(memo.value); // value가 공백이 아니라 앞에 쓴 memo가 있을 때 내용 유지
 			if (memo.value !== "") {
-				memo.value = memo.value.substring(memo.value.length - 1, -1) + text;
+				memo.value = memo.value.substring(memo.value.length - 1, -1) + text; // 1을 쓰면 맨 앞 글자 날아가는 오류
+				// @는 이미 붙여주기 때문에 기존 value값에서 @ 제외한 text를 가져오기
 			} else {
 				memo.value = text;
 			}
