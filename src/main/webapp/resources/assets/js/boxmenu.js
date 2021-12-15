@@ -49,7 +49,9 @@ joinGroupBtn.addEventListener("click", function (e) {
 		confirmButtonText: '제출',
 		cancelButtonText: '취소',
 		inputValidator: (box_no) => {
+			// input 이 맞았는지 틀렸는지 한번 걸러줌
 			return new Promise((resolve) => {
+				// promise -> fetch 랑 같이 자주 씀
 				fetch(`/box/check?box_no=${box_no}&member_id=${memberId}`)
 					.then(response => {
 						if (!response.ok) {
@@ -64,6 +66,7 @@ joinGroupBtn.addEventListener("click", function (e) {
 					})
 					.then(data => {
 						console.log(data);
+						// data -> true, false 로 가져옴
 						const bodyData = {
 							box_no: box_no,
 							member_id: memberId

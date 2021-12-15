@@ -23,6 +23,7 @@ if (file != null) {
 }
 
 
+// 클릭할 때 마다 default 이미지
 let images = document.querySelectorAll(".default-img");
 let productPhoto = document.querySelector(".product-photo");
 let productPhotoEdit = document.querySelector(".product-photo-edit");
@@ -42,6 +43,8 @@ if (images != null) {
 			console.log(this.src);
 
 			let result = this.src.split("default/");
+			console.log(result);
+
 			defaultPath.setAttribute("value", "default/")
 			defaultName.setAttribute("value", result[1]);
 		});
