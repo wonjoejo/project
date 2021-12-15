@@ -34,6 +34,7 @@ if (images != null) {
 
 		item.addEventListener("click", function () {
 			if (productPhoto != null) {
+				// 클릭한 객체의 src를 가져온다 this.src
 				productPhoto.style.backgroundImage = "url(" + this.src + ")";
 			} else {
 				productPhotoEdit.style.backgroundImage = "url(" + this.src + ")";
@@ -41,8 +42,11 @@ if (images != null) {
 
 			console.log(this.src);
 
+			// default 기준으로 나누기
 			let result = this.src.split("default/");
+			// path는 default로 -> 커스텀 이미지 넣을까봐 다시
 			defaultPath.setAttribute("value", "default/")
+			// result 배열의 첫번째를 가져오기
 			defaultName.setAttribute("value", result[1]);
 		});
 

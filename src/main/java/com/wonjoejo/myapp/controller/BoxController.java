@@ -74,7 +74,7 @@ public class BoxController {
         BoxVO boxVO;
 
         // 커스텀 이미지 업로드
-        if (file.getSize() != 0) {
+        if (file.getSize() != 0) { // 기본 이미지 안 올리기 위해서 if문
 
             // 여기서 함수 불러와서 데이터 넣어줌 (리턴값은 uploadDir 이하 경로 + 파일이름 (/2021/11/14/8c47bd18-b475-4849-beec-a0d3d4d0bd7a_29325736.jpg)
             String uploadedFileName = UploadFileUtils.uploadFile(uploadDir, file.getOriginalFilename(), file.getBytes());
@@ -367,7 +367,7 @@ public class BoxController {
 
     @PostMapping("/join")
     @ResponseBody
-    public String joinGroup(@RequestBody String data) {
+    public String joinGroup(@RequestBody String data) { // 아까 stringify한 data
         log.debug("joinGroup({}) invoked.", data);
 
         JsonElement element = JsonParser.parseString(data);
@@ -405,7 +405,6 @@ public class BoxController {
             log.info("\t+ member_id: {}", member.getMember_id());
             if (member_id.equals(member.getMember_id())) {
                 return "false";
-                // alert 띄우고 싶은데...
             } else {
                 break;
             } // if-else
